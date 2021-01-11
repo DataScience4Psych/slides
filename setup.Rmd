@@ -30,6 +30,9 @@ library(countdown)
 # conflicted
 library(conflicted)
 conflict_prefer("filter", "dplyr")
+
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
 ```
 
 layout: true
