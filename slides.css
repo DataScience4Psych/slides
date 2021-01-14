@@ -12,14 +12,14 @@ p {
 h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  color: #A7D5E8;
+  color: #34c9f4;
   font-size: 12px;
   margin: 0 0 0.5em 0;
 }
 h1, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  color: #A7D5E8;
+  color: #34c9f4;
   margin-top: 0px;
   margin-bottom: 20px;
 }
@@ -36,7 +36,7 @@ a, a > code {
 
 /* Sections */
 .inverse {
-  background-color: #A7D5E8;
+  background-color: #34c9f4;
   color: #ffffff;
 }
 .inverse h1, .inverse h2, .inverse h3 {
@@ -56,7 +56,7 @@ a, a > code {
 
 /* Code formatting */
 .remark-code-line-highlighted {
-  background-color: #A7D5E8;
+  background-color: #34c9f4;
 }
 
 .remark-code { 
@@ -115,8 +115,8 @@ a, a > code {
 }
 
 .alert {
-  border-right: solid 5px #A7D5E8;
-  background-color: #A7D5E830;
+  border-right: solid 5px #34c9f4;
+  background-color: #34c9f430;
   padding: 1px 16px;
   margin-top: 12px;
   margin-bottom: 12px;
@@ -192,7 +192,7 @@ ul {
 }
 ul li:before {
   content: "✚"; 
-  color: #A7D5E8; 
+  color: #34c9f4; 
   display: inline-block; 
   width: 1.5em;
   margin-left: -1.5em
@@ -222,7 +222,7 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
 /* Footer */
 div.my-footer {
     background-color: #ffffff;
-    border-top: 1px solid #A7D5E8;
+    border-top: 1px solid #34c9f4;
     position: absolute;
     bottom: 0px;
     left: 80px;
@@ -316,7 +316,7 @@ div.my-footer a {
 }
 .hand-blue{
   font-family: 'Gochi Hand', cursive;
-  color: #A7D5E8;
+  color: #34c9f4;
   font-size: 125%;
 }
 .hand-pink{
@@ -331,7 +331,7 @@ div.my-footer a {
  font-family: 'Montserrat', sans-serif;
  font-size: 400%;
  font-weight: bold;
- color: #A7D5E8;
+ color: #34c9f4;
 }
 
 .huge-pink {

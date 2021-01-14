@@ -10,6 +10,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
+      slideNumberFormat: ""  
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -129,6 +130,25 @@ knitr::include_graphics("img/engine-dashboard.png")
 - Loading and viewing a data frame
 - Accessing a variable in a data frame
 - R functions
+
+
+---
+
+## Basics of working with R at the command line 
+
+- Launch RStudio/R.
+- Notice the default panes:
+    - Console (entire left)
+    - Environment/History (tabbed in upper right)
+    - Files/Plots/Packages/Help (tabbed in lower right)
+
+FYI: you can change the default location of the panes, among many other things: [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
+
+Go into the Console, where we interact with the live R process.
+
+.footnote[
+Source: [Jenny Bryan's stat545](https://stat545.com)
+]
 
 ---
 
@@ -368,3 +388,7 @@ Source: http://socviz.co/appendix.html#a-little-more-about-r
 - Use code formatting
 - For issues with R code: copy / paste your code and resulting error, don't use screenshots 
 ]
+
+---
+```{r links, child="../links.md"}
+```
