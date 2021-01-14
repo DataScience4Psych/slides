@@ -61,6 +61,8 @@ Long-term goals:
 - Literate programming (code, narrative, output in one place) $\rightarrow$ R Markdown
 - Version control $\rightarrow$ Git / GitHub
 
+
+
 ---
 
 class: middle
@@ -103,7 +105,7 @@ class: middle
 
 - R is a statistical programming language
 - RStudio is a convenient interface for R (an integrated development environment, IDE)
-- At its simplest:<sup>[+]</sup>
+- At its simplest:
     - R is like a car’s engine
     - RStudio is like a car’s dashboard
 
@@ -111,10 +113,6 @@ class: middle
 knitr::include_graphics("img/engine-dashboard.png")
 ```
 
-
-.footnote[
-[+] Source: [Modern Dive](https://moderndive.com/)
-]
 
 ---
 
@@ -134,7 +132,7 @@ knitr::include_graphics("img/engine-dashboard.png")
 
 ---
 
-## Basics of working with R at the command line 
+## Working with R at the command line 
 
 - Launch RStudio/R.
 - Notice the default panes:
@@ -142,13 +140,38 @@ knitr::include_graphics("img/engine-dashboard.png")
     - Environment/History (tabbed in upper right)
     - Files/Plots/Packages/Help (tabbed in lower right)
 
-FYI: you can change the default location of the panes, among many other things: [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
 
-Go into the Console, where we interact with the live R process.
+--
 
-.footnote[
-Source: [Jenny Bryan's stat545](https://stat545.com)
-]
+- FYI: You can change the default location of the panes, among many other things:
+  - [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
+
+---
+
+## Working with R at the command line (pt 2)
+
+- Go into the Console, where we interact with the live R process.
+- Make an assignment and then inspect the object you just created:
+
+```{r start_rbasics}
+x <- 3 * 4
+x
+```
+
+- All R statements where you create objects -- "assignments" -- have this form:
+
+```{r eval = FALSE}
+objectName <- value
+```
+
+- Read this as 'x gets 12'
+
+<!---
+and in my head I hear, e.g., "x gets 12".
+
+You will make lots of assignments and the operator `<-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize RStudio's keyboard shortcut: Alt + - (the minus sign).
+-->
+
 
 ---
 
@@ -369,9 +392,7 @@ class: middle
 knitr::include_graphics("img/r-help.png")
 ```
 
-.footnote[
-Source: http://socviz.co/appendix.html#a-little-more-about-r
-]
+
 
 ---
 
@@ -390,5 +411,10 @@ Source: http://socviz.co/appendix.html#a-little-more-about-r
 ]
 
 ---
-```{r links, child="../links.md"}
-```
+
+# Sources
+
+- Mine Çetinkaya-Rundel's [Data Science in a Box](https://datasciencebox.org/)
+- http://socviz.co/appendix.html#a-little-more-about-r
+- [Jenny Bryan's Stat545](https://stat545.com)
+- [Modern Dive](https://moderndive.com/)
