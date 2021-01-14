@@ -10,7 +10,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""  
+      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -143,7 +143,7 @@ knitr::include_graphics("img/engine-dashboard.png")
 
 --
 
-- FYI: You can change the default location of the panes, among many other things:
+- FYI: You can change the default location of the panes, among many other things
   - [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
 
 ---
@@ -306,7 +306,7 @@ What happens? Why the error?
 ## How will we use R Markdown?
 
 - Every assignment / report / project / etc. is an R Markdown document
-- You'll always have a template R Markdown document to start with
+- You'll have a template R Markdown document to start with
 - The amount of scaffolding in the template will decrease over the semester
 
 ---
