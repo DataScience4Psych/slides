@@ -25,7 +25,7 @@ dev.off <- function(){
 }
 # countdown
 if (!require("countdown")) devtools::install_github("gadenbuie/countdown")
-#devtools::install_github("gadenbuie/countdown")
+
 library(countdown)
 # conflicted
 library(conflicted)
