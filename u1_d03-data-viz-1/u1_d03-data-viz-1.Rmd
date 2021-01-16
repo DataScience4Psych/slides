@@ -22,10 +22,12 @@ library(tidyverse)
 library(fontawesome)
 library(magick)
 library(Tmisc)
-
 if (!require("dsbox")) devtools::install_github("rstudio-education/dsbox")
 if (!require("gradethis")) devtools::install_github("rstudio-education/gradethis")
 library(dsbox)
+
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
 ```
 
 class: middle
