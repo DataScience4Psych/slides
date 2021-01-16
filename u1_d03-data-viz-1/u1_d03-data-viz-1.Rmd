@@ -34,9 +34,22 @@ class: middle
 
 ---
 
-## What is EDA?
 
-> *"We will be exploring numbers. We need to handle them easily and look at them effectively. Techniques for handling and looking — whether graphical, arithmetic, or intermediate — will be important." --- John Tukey*
+.pull-left[ 
+> "We will be exploring numbers. We need to handle them easily and look at them effectively. Techniques for handling and looking — whether graphical, arithmetic, or intermediate — will be important."
+]
+
+.pull-right[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("../img/orangebook.png")
+```
+] 
+
+
+---
+
+
+## What is EDA?
 
 - Exploratory data analysis (EDA) is an approach to analyzing data sets to summarize its main characteristics.
 - Often, this is visual. That's what we're focusing on today.
@@ -53,7 +66,9 @@ class: middle
 ## Data visualization
 
 
-> *"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey*
+> "The simple graph has brought more information to the data analyst's mind than any other device."
+
+> John Tukey
 
 - Data visualization is the creation and study of the visual representation of data.
 - Many tools for visualizing data (R is one of them) exist, as do many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and that's what we're going to use).
@@ -152,7 +167,11 @@ library(tidyverse)
 - For help with the ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
 
 ---
+class: middle
 
+# Wrapping Up... Data visualization
+
+---
 class: middle
 
 # Visualizing Star Wars
@@ -429,6 +448,11 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 - `facet_wrap()`: 1d ribbon wrapped into 2d
 
 ---
+class: middle
+
+# Wrapping Up... Visualizing Star Wars
+
+---
 
 class: middle
 
@@ -547,3 +571,10 @@ ggplot(student_survey, aes(x = fb_visits_per_day)) +
   geom_histogram(binwidth = 1) +
   labs(title = "How many times do you go on Facebook per day?", x = "")
 ```
+
+---
+class: middle
+
+# Wrapping Up... Why do we visualize?
+
+
