@@ -36,6 +36,8 @@ class: middle
 
 ## What is EDA?
 
+> *"We will be exploring numbers. We need to handle them easily and look at them effectively. Techniques for handling and looking — whether graphical, arithmetic, or intermediate — will be important." --- John Tukey*
+
 - Exploratory data analysis (EDA) is an approach to analyzing data sets to summarize its main characteristics.
 - Often, this is visual. That's what we're focusing on today.
 - But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis. That's what we'll focus on next.
@@ -50,10 +52,11 @@ class: middle
 
 ## Data visualization
 
+
 > *"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey*
 
 - Data visualization is the creation and study of the visual representation of data.
-- There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and that's what we're going to use).
+- Many tools for visualizing data (R is one of them) exist, as do many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and that's what we're going to use).
 
 ---
 
