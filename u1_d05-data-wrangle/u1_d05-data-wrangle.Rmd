@@ -1017,7 +1017,7 @@ Time to actually play around with the Hotels dataset!
 ---
 # Sources
 
-- Mine Çetinkaya-Rundel's [Data Science in a Box](https://datasciencebox.org/)
+- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
 
 ---
 
