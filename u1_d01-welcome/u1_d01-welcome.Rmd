@@ -98,7 +98,7 @@ A: We can discuss that over `r emo::ji("coffee")`.
 
 .large[
 .center[
-[r-computing-lab.github.io/DataScience4Psych/](https://r-computing-lab.github.io/DataScience4Psych/)
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
 ]
 ]
 ---
