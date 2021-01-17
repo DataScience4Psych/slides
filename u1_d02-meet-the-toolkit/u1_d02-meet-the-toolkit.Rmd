@@ -261,6 +261,11 @@ Concepts introduced:
 
 ---
 
+class: middle
+
+# Wrapping Up...
+
+---
 ## R Markdown help
 
 .pull-left[
