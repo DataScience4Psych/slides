@@ -20,6 +20,10 @@ output:
 library(tidyverse)
 library(DT)
 library(here)
+
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+
 ```
 
 class: middle
@@ -91,7 +95,7 @@ Credit: Angela Zoss and Eric Monson, Duke DVS
 
 class: middle
 
-# Principles	for	effective	visualizations
+# Principles for effective visualizations
 
 ---
 
