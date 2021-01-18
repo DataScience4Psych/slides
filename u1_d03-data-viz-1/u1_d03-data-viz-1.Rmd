@@ -54,8 +54,9 @@ knitr::include_graphics("../img/orangebook.png")
 ## What is EDA?
 
 - Exploratory data analysis (EDA) is an approach to analyzing data sets to summarize its main characteristics.
-- Often, this is visual. That's what we're focusing on today.
-- But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis. That's what we'll focus on next.
+- Today, we'll be focusing on the visual aspects
+- But we might also calculate summary statistics and perform data wrangling/ manipulation/transformation at (or before) this stage of the analysis. 
+  - That's what we'll focus on next.
 
 ---
 
@@ -579,6 +580,7 @@ ggplot(student_survey, aes(x = fb_visits_per_day)) +
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Jenny Bryan's Stat545 ([link](https://stat545.com))
+- Julia Fukuyama's EDA([link](https://jfukuyama.github.io/)]
 
 
 ---
