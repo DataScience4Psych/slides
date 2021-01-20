@@ -4,6 +4,7 @@
     <title>Joining data from multiple sources   🤝</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -167,6 +168,19 @@ fisheries %&gt;%
 ```r
 fisheries %&gt;%
   summarise(across(is.numeric, mean))
+```
+
+```
+## Warning: Predicate functions must be wrapped in `where()`.
+## 
+##   # Bad
+##   data %&gt;% select(is.numeric)
+## 
+##   # Good
+##   data %&gt;% select(where(is.numeric))
+## 
+## i Please update your code.
+## This message is displayed once per session.
 ```
 
 ```
