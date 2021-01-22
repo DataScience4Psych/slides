@@ -16,12 +16,11 @@ make_full = function(myurl,gituser="datascience4psych",myrepo="slides") {
 make_hyperlink = function(myurl,mytext=myurl) {
   paste0('<a href="',myurl,'">',mytext,'</a>')
 }
-```
-```{r,echo=TRUE }
-(df_docs=list.files(path="slides/.", '[.]html$', recursive=TRUE))
+
+#(df_docs=list.files(path="slides/.", '[.]html$', recursive=TRUE))
 (df_docs=list.files( '[.]html$', recursive=TRUE))
 
-if(FALSE){
+
 df <- data.frame(
   stringsAsFactors = FALSE,
               title = str_replace_all(str_remove(df_docs, "\\.html"),"[_-]"," "),
@@ -34,5 +33,5 @@ df %>%
         link = glue::glue("[slides]({link})"),
         link = map(link, gt::md)) %>%
     gt()
-}
+
 ```
