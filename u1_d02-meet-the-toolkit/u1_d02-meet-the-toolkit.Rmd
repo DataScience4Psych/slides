@@ -429,7 +429,7 @@ knitr::include_graphics("img/r-help.png")
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
-- Kieran Healy's [Data Visualization: A practical introduction] (http://socviz.co/appendix.html#a-little-more-about-r)
+- Kieran Healy's [Data Visualization: A practical introduction](http://socviz.co/appendix.html#a-little-more-about-r)
 - [Jenny Bryan's Stat545](https://stat545.com)
 - [Modern Dive](https://moderndive.com/)
 
