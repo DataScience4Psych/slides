@@ -40,4 +40,6 @@ links.md
 */garbage.txt
 setup.html
 */html/*
-
+*.rdb
+*.rdx
+*.RData
