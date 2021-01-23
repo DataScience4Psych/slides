@@ -4,7 +4,6 @@
     <title>Data tidying and reshaping   🧹</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
@@ -167,15 +166,19 @@ staff %&gt;%
 
 ```
 ## # A tibble: 55 x 3
-##   faculty_type              year  percentage
-##   &lt;chr&gt;                     &lt;chr&gt;      &lt;dbl&gt;
-## 1 Full-Time Tenured Faculty 1975        29  
-## 2 Full-Time Tenured Faculty 1989        27.6
-## 3 Full-Time Tenured Faculty 1993        25  
-## 4 Full-Time Tenured Faculty 1995        24.8
-## 5 Full-Time Tenured Faculty 1999        21.8
-## 6 Full-Time Tenured Faculty 2001        20.3
-## # ... with 49 more rows
+##    faculty_type              year  percentage
+##    &lt;chr&gt;                     &lt;chr&gt;      &lt;dbl&gt;
+##  1 Full-Time Tenured Faculty 1975        29  
+##  2 Full-Time Tenured Faculty 1989        27.6
+##  3 Full-Time Tenured Faculty 1993        25  
+##  4 Full-Time Tenured Faculty 1995        24.8
+##  5 Full-Time Tenured Faculty 1999        21.8
+##  6 Full-Time Tenured Faculty 2001        20.3
+##  7 Full-Time Tenured Faculty 2003        19.3
+##  8 Full-Time Tenured Faculty 2005        17.8
+##  9 Full-Time Tenured Faculty 2007        17.2
+## 10 Full-Time Tenured Faculty 2009        16.8
+## # ... with 45 more rows
 ```
 
 ---
@@ -196,15 +199,19 @@ staff_long
 
 ```
 ## # A tibble: 55 x 3
-##   faculty_type              year  percentage
-##   &lt;chr&gt;                     &lt;chr&gt;      &lt;dbl&gt;
-## 1 Full-Time Tenured Faculty 1975        29  
-## 2 Full-Time Tenured Faculty 1989        27.6
-## 3 Full-Time Tenured Faculty 1993        25  
-## 4 Full-Time Tenured Faculty 1995        24.8
-## 5 Full-Time Tenured Faculty 1999        21.8
-## 6 Full-Time Tenured Faculty 2001        20.3
-## # ... with 49 more rows
+##    faculty_type              year  percentage
+##    &lt;chr&gt;                     &lt;chr&gt;      &lt;dbl&gt;
+##  1 Full-Time Tenured Faculty 1975        29  
+##  2 Full-Time Tenured Faculty 1989        27.6
+##  3 Full-Time Tenured Faculty 1993        25  
+##  4 Full-Time Tenured Faculty 1995        24.8
+##  5 Full-Time Tenured Faculty 1999        21.8
+##  6 Full-Time Tenured Faculty 2001        20.3
+##  7 Full-Time Tenured Faculty 2003        19.3
+##  8 Full-Time Tenured Faculty 2005        17.8
+##  9 Full-Time Tenured Faculty 2007        17.2
+## 10 Full-Time Tenured Faculty 2009        16.8
+## # ... with 45 more rows
 ```
 
 ---
@@ -434,15 +441,19 @@ rel_inc &lt;- read_excel("data/relig-income.xlsx") # directly from Excel!
 
 ```
 ## # A tibble: 12 x 6
-##   `Religious trad~ `Less than $30,~ `$30,000-$49,99~ `$50,000-$99,99~ `$100,000 or mo~ `Sample Size`
-##   &lt;chr&gt;                       &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
-## 1 Buddhist                     0.36             0.18             0.32             0.13           233
-## 2 Catholic                     0.36             0.19             0.26             0.19          6137
-## 3 Evangelical Pro~             0.35             0.22             0.28             0.14          7462
-## 4 Hindu                        0.17             0.13             0.34             0.36           172
-## 5 Historically Bl~             0.53             0.22             0.17             0.08          1704
-## 6 Jehovah's Witne~             0.48             0.25             0.22             0.04           208
-## # ... with 6 more rows
+##    `Religious trad~ `Less than $30,~ `$30,000-$49,99~ `$50,000-$99,99~ `$100,000 or mo~
+##    &lt;chr&gt;                       &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Buddhist                    0.36              0.18            0.32              0.13
+##  2 Catholic                    0.36              0.19            0.26              0.19
+##  3 Evangelical Pro~            0.35              0.22            0.28              0.14
+##  4 Hindu                       0.17              0.13            0.34              0.36
+##  5 Historically Bl~            0.53              0.22            0.17              0.08
+##  6 Jehovah's Witne~            0.48              0.25            0.22              0.04
+##  7 Jewish                      0.16              0.15            0.24              0.44
+##  8 Mainline Protes~            0.290             0.2             0.28              0.23
+##  9 Mormon                      0.27              0.2             0.33              0.2 
+## 10 Muslim                      0.34              0.17            0.290             0.2 
+## # ... with 2 more rows, and 1 more variable: `Sample Size` &lt;dbl&gt;
 ```
 ]
 
@@ -462,15 +473,19 @@ rel_inc %&gt;%
 
 ```
 ## # A tibble: 12 x 6
-##   religion             `Less than $30,00~ `$30,000-$49,999` `$50,000-$99,99~ `$100,000 or mor~     n
-##   &lt;chr&gt;                             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt;
-## 1 Buddhist                           0.36              0.18             0.32              0.13   233
-## 2 Catholic                           0.36              0.19             0.26              0.19  6137
-## 3 Evangelical Protest~               0.35              0.22             0.28              0.14  7462
-## 4 Hindu                              0.17              0.13             0.34              0.36   172
-## 5 Historically Black ~               0.53              0.22             0.17              0.08  1704
-## 6 Jehovah's Witness                  0.48              0.25             0.22              0.04   208
-## # ... with 6 more rows
+##    religion             `Less than $30,00~ `$30,000-$49,99~ `$50,000-$99,99~ `$100,000 or mor~     n
+##    &lt;chr&gt;                             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt;
+##  1 Buddhist                          0.36              0.18            0.32               0.13   233
+##  2 Catholic                          0.36              0.19            0.26               0.19  6137
+##  3 Evangelical Protest~              0.35              0.22            0.28               0.14  7462
+##  4 Hindu                             0.17              0.13            0.34               0.36   172
+##  5 Historically Black ~              0.53              0.22            0.17               0.08  1704
+##  6 Jehovah's Witness                 0.48              0.25            0.22               0.04   208
+##  7 Jewish                            0.16              0.15            0.24               0.44   708
+##  8 Mainline Protestant               0.290             0.2             0.28               0.23  5208
+##  9 Mormon                            0.27              0.2             0.33               0.2    594
+## 10 Muslim                            0.34              0.17            0.290              0.2    205
+## # ... with 2 more rows
 ```
 ]
 
@@ -501,15 +516,19 @@ rel_inc %&gt;%
 
 ```
 ## # A tibble: 48 x 4
-##   religion     n income            proportion
-##   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
-## 1 Buddhist   233 Less than $30,000       0.36
-## 2 Buddhist   233 $30,000-$49,999         0.18
-## 3 Buddhist   233 $50,000-$99,999         0.32
-## 4 Buddhist   233 $100,000 or more        0.13
-## 5 Catholic  6137 Less than $30,000       0.36
-## 6 Catholic  6137 $30,000-$49,999         0.19
-## # ... with 42 more rows
+##    religion                   n income            proportion
+##    &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
+##  1 Buddhist                 233 Less than $30,000       0.36
+##  2 Buddhist                 233 $30,000-$49,999         0.18
+##  3 Buddhist                 233 $50,000-$99,999         0.32
+##  4 Buddhist                 233 $100,000 or more        0.13
+##  5 Catholic                6137 Less than $30,000       0.36
+##  6 Catholic                6137 $30,000-$49,999         0.19
+##  7 Catholic                6137 $50,000-$99,999         0.26
+##  8 Catholic                6137 $100,000 or more        0.19
+##  9 Evangelical Protestant  7462 Less than $30,000       0.35
+## 10 Evangelical Protestant  7462 $30,000-$49,999         0.22
+## # ... with 38 more rows
 ```
 ]
 
@@ -535,15 +554,19 @@ rel_inc %&gt;%
 
 ```
 ## # A tibble: 48 x 5
-##   religion     n income            proportion frequency
-##   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Buddhist   233 Less than $30,000       0.36        84
-## 2 Buddhist   233 $30,000-$49,999         0.18        42
-## 3 Buddhist   233 $50,000-$99,999         0.32        75
-## 4 Buddhist   233 $100,000 or more        0.13        30
-## 5 Catholic  6137 Less than $30,000       0.36      2209
-## 6 Catholic  6137 $30,000-$49,999         0.19      1166
-## # ... with 42 more rows
+##    religion                   n income            proportion frequency
+##    &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Buddhist                 233 Less than $30,000       0.36        84
+##  2 Buddhist                 233 $30,000-$49,999         0.18        42
+##  3 Buddhist                 233 $50,000-$99,999         0.32        75
+##  4 Buddhist                 233 $100,000 or more        0.13        30
+##  5 Catholic                6137 Less than $30,000       0.36      2209
+##  6 Catholic                6137 $30,000-$49,999         0.19      1166
+##  7 Catholic                6137 $50,000-$99,999         0.26      1596
+##  8 Catholic                6137 $100,000 or more        0.19      1166
+##  9 Evangelical Protestant  7462 Less than $30,000       0.35      2612
+## 10 Evangelical Protestant  7462 $30,000-$49,999         0.22      1642
+## # ... with 38 more rows
 ```
 ]
 
@@ -766,7 +789,7 @@ ggplot(rel_inc_long, aes(y = religion, x = frequency, fill = income)) +
 ---
 class: middle
 
-# Wrapping Up... 
+# Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

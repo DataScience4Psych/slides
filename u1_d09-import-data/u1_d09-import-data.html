@@ -4,7 +4,6 @@
     <title>Importing data   ⬆️</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -291,7 +290,9 @@ read_csv("data/df-na.csv")
 ## 4 4     d              ola   
 ## 5 5     e              hola  
 ## 6 .     f              whatup
-## # ... with 3 more rows
+## 7 7     g              wassup
+## 8 8     h              sup   
+## 9 9     i              &lt;NA&gt;
 ```
 ]
 
@@ -321,7 +322,9 @@ read_csv("data/df-na.csv",
 ## 4     4 d     ola   
 ## 5     5 e     hola  
 ## 6    NA f     whatup
-## # ... with 3 more rows
+## 7     7 g     wassup
+## 8     8 h     sup   
+## 9     9 i     &lt;NA&gt;
 ```
 ]
 
@@ -352,7 +355,9 @@ read_csv("data/df-na.csv",
 ## 4     4 d              ola   
 ## 5     5 e              hola  
 ## 6    NA f              whatup
-## # ... with 3 more rows
+## 7     7 g              wassup
+## 8     8 h              sup   
+## 9     9 i              &lt;NA&gt;
 ```
 ]
 
@@ -460,7 +465,9 @@ If done, see next slide for stretch goal.
 ## 4 1822    3    
 ## 5 Brand 2 n    
 ## 6 3333    1    
-## # ... with 3 more rows
+## 7 2156    3    
+## 8 3987    6    
+## 9 3216    5
 ```
 ]
 ]
@@ -485,7 +492,7 @@ If done, see next slide for stretch goal.
 ## 4 Brand 2  3333     1
 ## 5 Brand 2  2156     3
 ## 6 Brand 2  3987     6
-## # ... with 1 more row
+## 7 Brand 2  3216     5
 ```
 ]
 
@@ -521,15 +528,19 @@ sales
 
 ```
 ## # A tibble: 19 x 6
-##   filename                month    year brand  item     n
-##   &lt;chr&gt;                   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 data/sales/01-sales.csv January  2019     1  1234     3
-## 2 data/sales/01-sales.csv January  2019     1  8721     9
-## 3 data/sales/01-sales.csv January  2019     1  1822     2
-## 4 data/sales/01-sales.csv January  2019     2  3333     1
-## 5 data/sales/01-sales.csv January  2019     2  2156     9
-## 6 data/sales/01-sales.csv January  2019     2  3987     6
-## # ... with 13 more rows
+##    filename                month     year brand  item     n
+##    &lt;chr&gt;                   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 data/sales/01-sales.csv January   2019     1  1234     3
+##  2 data/sales/01-sales.csv January   2019     1  8721     9
+##  3 data/sales/01-sales.csv January   2019     1  1822     2
+##  4 data/sales/01-sales.csv January   2019     2  3333     1
+##  5 data/sales/01-sales.csv January   2019     2  2156     9
+##  6 data/sales/01-sales.csv January   2019     2  3987     6
+##  7 data/sales/01-sales.csv January   2019     2  3827     6
+##  8 data/sales/02-sales.csv February  2019     1  1234     8
+##  9 data/sales/02-sales.csv February  2019     1  8721     2
+## 10 data/sales/02-sales.csv February  2019     1  1822     3
+## # ... with 9 more rows
 ```
 
 ---

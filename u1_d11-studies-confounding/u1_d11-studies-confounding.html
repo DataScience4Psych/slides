@@ -4,7 +4,6 @@
     <title>Scientific studies and confounding   😖</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
@@ -470,15 +469,19 @@ the apparent relationship between the other two variables.
 
 ```
 ## # A tibble: 4,526 x 3
-##   admit    gender dept 
-##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-## 1 Admitted Male   A    
-## 2 Admitted Male   A    
-## 3 Admitted Male   A    
-## 4 Admitted Male   A    
-## 5 Admitted Male   A    
-## 6 Admitted Male   A    
-## # ... with 4,520 more rows
+##    admit    gender dept 
+##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+##  1 Admitted Male   A    
+##  2 Admitted Male   A    
+##  3 Admitted Male   A    
+##  4 Admitted Male   A    
+##  5 Admitted Male   A    
+##  6 Admitted Male   A    
+##  7 Admitted Male   A    
+##  8 Admitted Male   A    
+##  9 Admitted Male   A    
+## 10 Admitted Male   A    
+## # ... with 4,516 more rows
 ```
 
 ---
@@ -561,15 +564,19 @@ ucbadmit %&gt;%
 
 ```
 ## # A tibble: 24 x 4
-##   dept  gender admit        n
-##   &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
-## 1 A     Female Rejected    19
-## 2 A     Female Admitted    89
-## 3 A     Male   Rejected   313
-## 4 A     Male   Admitted   512
-## 5 B     Female Rejected     8
-## 6 B     Female Admitted    17
-## # ... with 18 more rows
+##    dept  gender admit        n
+##    &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
+##  1 A     Female Rejected    19
+##  2 A     Female Admitted    89
+##  3 A     Male   Rejected   313
+##  4 A     Male   Admitted   512
+##  5 B     Female Rejected     8
+##  6 B     Female Admitted    17
+##  7 B     Male   Rejected   207
+##  8 B     Male   Admitted   353
+##  9 C     Female Rejected   391
+## 10 C     Female Admitted   202
+## # ... with 14 more rows
 ```
 
 ---
@@ -618,15 +625,19 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 12 x 5
 ## # Groups:   dept, gender [12]
-##   dept  gender admit        n perc_admit
-##   &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt;
-## 1 A     Female Admitted    89      0.824
-## 2 A     Male   Admitted   512      0.621
-## 3 B     Female Admitted    17      0.68 
-## 4 B     Male   Admitted   353      0.630
-## 5 C     Female Admitted   202      0.341
-## 6 C     Male   Admitted   120      0.369
-## # ... with 6 more rows
+##    dept  gender admit        n perc_admit
+##    &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt;
+##  1 A     Female Admitted    89      0.824
+##  2 A     Male   Admitted   512      0.621
+##  3 B     Female Admitted    17      0.68 
+##  4 B     Male   Admitted   353      0.630
+##  5 C     Female Admitted   202      0.341
+##  6 C     Male   Admitted   120      0.369
+##  7 D     Female Admitted   131      0.349
+##  8 D     Male   Admitted   138      0.331
+##  9 E     Female Admitted    94      0.239
+## 10 E     Male   Admitted    53      0.277
+## # ... with 2 more rows
 ```
 ]
 
@@ -690,15 +701,19 @@ ucbadmit
 
 ```
 ## # A tibble: 4,526 x 3
-##   admit    gender dept 
-##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-## 1 Admitted Male   A    
-## 2 Admitted Male   A    
-## 3 Admitted Male   A    
-## 4 Admitted Male   A    
-## 5 Admitted Male   A    
-## 6 Admitted Male   A    
-## # ... with 4,520 more rows
+##    admit    gender dept 
+##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+##  1 Admitted Male   A    
+##  2 Admitted Male   A    
+##  3 Admitted Male   A    
+##  4 Admitted Male   A    
+##  5 Admitted Male   A    
+##  6 Admitted Male   A    
+##  7 Admitted Male   A    
+##  8 Admitted Male   A    
+##  9 Admitted Male   A    
+## 10 Admitted Male   A    
+## # ... with 4,516 more rows
 ```
 ]
 .pull-right[
@@ -711,15 +726,19 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 4,526 x 3
 ## # Groups:   gender [2]
-##   admit    gender dept 
-##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-## 1 Admitted Male   A    
-## 2 Admitted Male   A    
-## 3 Admitted Male   A    
-## 4 Admitted Male   A    
-## 5 Admitted Male   A    
-## 6 Admitted Male   A    
-## # ... with 4,520 more rows
+##    admit    gender dept 
+##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+##  1 Admitted Male   A    
+##  2 Admitted Male   A    
+##  3 Admitted Male   A    
+##  4 Admitted Male   A    
+##  5 Admitted Male   A    
+##  6 Admitted Male   A    
+##  7 Admitted Male   A    
+##  8 Admitted Male   A    
+##  9 Admitted Male   A    
+## 10 Admitted Male   A    
+## # ... with 4,516 more rows
 ```
 ]
 
@@ -739,15 +758,19 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 4,526 x 3
 ## # Groups:   gender [2]
-##   admit    gender dept 
-##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-## 1 Admitted Male   A    
-## 2 Admitted Male   A    
-## 3 Admitted Male   A    
-## 4 Admitted Male   A    
-## 5 Admitted Male   A    
-## 6 Admitted Male   A    
-## # ... with 4,520 more rows
+##    admit    gender dept 
+##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+##  1 Admitted Male   A    
+##  2 Admitted Male   A    
+##  3 Admitted Male   A    
+##  4 Admitted Male   A    
+##  5 Admitted Male   A    
+##  6 Admitted Male   A    
+##  7 Admitted Male   A    
+##  8 Admitted Male   A    
+##  9 Admitted Male   A    
+## 10 Admitted Male   A    
+## # ... with 4,516 more rows
 ```
 ]
 .pull-right[
@@ -759,15 +782,19 @@ ucbadmit %&gt;%
 
 ```
 ## # A tibble: 4,526 x 3
-##   admit    gender dept 
-##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-## 1 Admitted Female A    
-## 2 Admitted Female A    
-## 3 Admitted Female A    
-## 4 Admitted Female A    
-## 5 Admitted Female A    
-## 6 Admitted Female A    
-## # ... with 4,520 more rows
+##    admit    gender dept 
+##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+##  1 Admitted Female A    
+##  2 Admitted Female A    
+##  3 Admitted Female A    
+##  4 Admitted Female A    
+##  5 Admitted Female A    
+##  6 Admitted Female A    
+##  7 Admitted Female A    
+##  8 Admitted Female A    
+##  9 Admitted Female A    
+## 10 Admitted Female A    
+## # ... with 4,516 more rows
 ```
 ]
 
@@ -787,15 +814,19 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 4,526 x 3
 ## # Groups:   gender [2]
-##   admit    gender dept 
-##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-## 1 Admitted Male   A    
-## 2 Admitted Male   A    
-## 3 Admitted Male   A    
-## 4 Admitted Male   A    
-## 5 Admitted Male   A    
-## 6 Admitted Male   A    
-## # ... with 4,520 more rows
+##    admit    gender dept 
+##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+##  1 Admitted Male   A    
+##  2 Admitted Male   A    
+##  3 Admitted Male   A    
+##  4 Admitted Male   A    
+##  5 Admitted Male   A    
+##  6 Admitted Male   A    
+##  7 Admitted Male   A    
+##  8 Admitted Male   A    
+##  9 Admitted Male   A    
+## 10 Admitted Male   A    
+## # ... with 4,516 more rows
 ```
 ]
 .pull-right[
