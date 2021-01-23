@@ -43,3 +43,5 @@ setup.html
 *.rdb
 *.rdx
 *.RData
+u1_d03-data-viz-1/u1_d03-data-viz-1_cache/*
+u1_d03-data-viz-1/u1_d03-data-viz-1_files/*

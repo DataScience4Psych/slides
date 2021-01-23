@@ -4,7 +4,6 @@
     <title>Data and visualization   📉</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -92,9 +91,208 @@ class: middle
 
 ---
 
-## Grammar of Graphics
+class: middle
 
-A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+# A First (and Reproducible) Example
+
+---
+
+## Reading in the Data
++ Heights of the highest points by state
+
+
+```r
+## 
+## load required packages and data
+library(tidyverse)
+options(tibble.print_min = 10)
+heights = read_csv("data/highest-points-by-state.csv")
+## switch from feet to meters
+heights$elevation = heights$elevation * .3048
+```
+---
+## Taking a look
+
+```r
+heights
+```
+
+```
+## # A tibble: 50 x 2
+##    elevation state      
+##        &lt;dbl&gt; &lt;chr&gt;      
+##  1      733. Alabama    
+##  2     6168. Alaska     
+##  3     3851. Arizona    
+##  4      839. Arkansas   
+##  5     4418. California 
+##  6     4399. Colorado   
+##  7      725. Connecticut
+##  8      137. Delaware   
+##  9      105. Florida    
+## 10     1458. Georgia    
+## # ... with 40 more rows
+```
+
+---
+## Taking another look
+
+```r
+arrange(heights, elevation)
+```
+
+```
+## # A tibble: 50 x 2
+##    elevation state       
+##        &lt;dbl&gt; &lt;chr&gt;       
+##  1      105. Florida     
+##  2      137. Delaware    
+##  3      163. Louisiana   
+##  4      246. Mississippi 
+##  5      247. Rhode Island
+##  6      376. Illinois    
+##  7      383. Indiana     
+##  8      472. Ohio        
+##  9      509. Iowa        
+## 10      540. Missouri    
+## # ... with 40 more rows
+```
+
+---
+## Taking another another look
+
+```r
+arrange(heights, desc(elevation))
+```
+
+```
+## # A tibble: 50 x 2
+##    elevation state     
+##        &lt;dbl&gt; &lt;chr&gt;     
+##  1     6168. Alaska    
+##  2     4418. California
+##  3     4399. Colorado  
+##  4     4392. Washington
+##  5     4207. Wyoming   
+##  6     4205. Hawaii    
+##  7     4123. Utah      
+##  8     4011. New Mexico
+##  9     4005. Nevada    
+## 10     3901. Montana   
+## # ... with 40 more rows
+```
+
+---
+## Taking another³ look... thoughtfully
+
+Goals:
++ Write down the set of numbers, keeping as much detail as
+possible
++ Pack the numbers efficiently, so you can see all of them at once
+
+
+---
+
+## Taking another³ look: Stem and Leaf
+.pull-left[
+
+```r
+stem(heights$elevation)
+```
+
+```
+## 
+##   The decimal point is 3 digit(s) to the right of the |
+## 
+##   0 | 11222445555667778
+##   1 | 0011123355566779
+##   2 | 0027
+##   3 | 4999
+##   4 | 00122444
+##   5 | 
+##   6 | 2
+```
+]
+--
+
+.pull-right[ 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
++ Notice that parts of the numbers (the beginnings) are
+repeated.
++ The first digit of each number is printed at the beginning
+of the line, the remainder at the ends.
++ The first digit is the "stem", the remainder are the "leaves".
+]
+---
+
+# What have we learned?
+
+The stem-and-leaf plot shows that there are three groups of
+states:
++ Alaska
++ The western and Rocky Mountain states (California, Colorado, Washington, Wyoming, Hawaii, Utah, New Mexico, Nevada, Montana, Idaho, Arizona, Oregon)
++ All the other states
+
+--
+
+```
+## 
+##   The decimal point is 3 digit(s) to the right of the |
+## 
+##   0 | 11222445555667778
+##   1 | 0011123355566779
+##   2 | 0027
+##   3 | 4999
+##   4 | 00122444
+##   5 | 
+##   6 | 2
+```
+---
+
+## Taking another⁴ look: Density
+
+Compare the stem-and-leaf plot with a density estimate
+
+
+```r
+ggplot(heights, aes(x = elevation)) + geom_density()
+```
+
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+--
+
+Alaska?
+
+---
+## Taking another⁴ look: Density+
+
+Compare the stem-and-leaf plot with a density estimate
+
+
+```r
+ggplot(heights, aes(x = elevation)) + geom_density()+ geom_rug()
+```
+
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+Alaska!
+
+---
+class: middle
+
+# Wrapping Up... 
+
+
+---
+class: middle
+
+# Grammar of Graphics
+
+---
+# Grammar of Graphics
+
+Grammar of graphics is a tool to efficiently describe the components of a graphic
 
 &lt;img src="img/grammar-of-graphics.png" width="70%" style="display: block; margin: auto;" /&gt;
 
@@ -114,7 +312,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Warning: Removed 28 rows containing missing values (geom_point).
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -153,7 +351,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
        x = "Height (cm)", y = "Weight (kg)")
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -183,7 +381,7 @@ library(tidyverse)
 ---
 class: middle
 
-# Wrapping Up... Data visualization
+# Wrapping Up... 
 
 ---
 class: middle
@@ -206,15 +404,19 @@ starwars
 
 ```
 ## # A tibble: 87 x 14
-##   name  height  mass hair_color skin_color eye_color birth_year sex   gender homeworld species films
-##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;lis&gt;
-## 1 Luke~    172    77 blond      fair       blue            19   male  mascu~ Tatooine  Human   &lt;chr~
-## 2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~ Tatooine  Droid   &lt;chr~
-## 3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~ Naboo     Droid   &lt;chr~
-## 4 Dart~    202   136 none       white      yellow          41.9 male  mascu~ Tatooine  Human   &lt;chr~
-## 5 Leia~    150    49 brown      light      brown           19   fema~ femin~ Alderaan  Human   &lt;chr~
-## 6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~ Tatooine  Human   &lt;chr~
-## # ... with 81 more rows, and 2 more variables: vehicles &lt;list&gt;, starships &lt;list&gt;
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender homeworld species
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;  
+##  1 Luke~    172    77 blond      fair       blue            19   male  mascu~ Tatooine  Human  
+##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~ Tatooine  Droid  
+##  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~ Naboo     Droid  
+##  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~ Tatooine  Human  
+##  5 Leia~    150    49 brown      light      brown           19   fema~ femin~ Alderaan  Human  
+##  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~ Tatooine  Human  
+##  7 Beru~    165    75 brown      light      blue            47   fema~ femin~ Tatooine  Human  
+##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu~ Tatooine  Droid  
+##  9 Bigg~    183    84 black      light      brown           24   male  mascu~ Tatooine  Human  
+## 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~ Stewjon   Human  
+## # ... with 77 more rows, and 3 more variables: films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;
 ```
 
 ]
@@ -285,7 +487,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Warning: Removed 28 rows containing missing values (geom_point).
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-22-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -313,7 +515,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 *      x = "Height (cm)", y = "Weight (kg)")
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -329,7 +531,7 @@ Who is the not so tall but really chubby character?
 
 .small[
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-24-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -379,7 +581,7 @@ ggplot(data = starwars,
   geom_point()
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Mass vs. height + gender
@@ -392,7 +594,7 @@ ggplot(data = starwars,
   geom_point()
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-27-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -406,7 +608,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass, color = gender)) +
 * geom_point(size = 2)
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-28-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -447,7 +649,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 *      subtitle = "Faceted by gender")
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-29-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -474,7 +676,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_grid(gender ~ .)
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-22-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-30-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -484,7 +686,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_grid(. ~ gender)
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-23-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-31-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -494,7 +696,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   facet_wrap(~ eye_color)
 ```
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-24-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-32-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -526,15 +728,19 @@ Below is an excerpt from the `datasaurus_dozen` dataset:
 
 ```
 ## # A tibble: 142 x 8
-##   away_x away_y bullseye_x bullseye_y circle_x circle_y dino_x dino_y
-##    &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1   32.3   61.4       51.2       83.3     56.0     79.3   55.4   97.2
-## 2   53.4   26.2       59.0       85.5     50.0     79.0   51.5   96.0
-## 3   63.9   30.8       51.9       85.8     51.3     82.4   46.2   94.5
-## 4   70.3   82.5       48.2       85.0     51.2     79.2   42.8   91.4
-## 5   34.1   45.7       41.7       84.0     44.4     78.2   40.8   88.3
-## 6   67.7   37.1       37.9       82.6     45.0     77.9   38.7   84.9
-## # ... with 136 more rows
+##    away_x away_y bullseye_x bullseye_y circle_x circle_y dino_x dino_y
+##     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1   32.3   61.4       51.2       83.3     56.0     79.3   55.4   97.2
+##  2   53.4   26.2       59.0       85.5     50.0     79.0   51.5   96.0
+##  3   63.9   30.8       51.9       85.8     51.3     82.4   46.2   94.5
+##  4   70.3   82.5       48.2       85.0     51.2     79.2   42.8   91.4
+##  5   34.1   45.7       41.7       84.0     44.4     78.2   40.8   88.3
+##  6   67.7   37.1       37.9       82.6     45.0     77.9   38.7   84.9
+##  7   53.3   97.5       39.5       80.8     48.6     78.8   35.6   79.9
+##  8   63.5   25.1       39.6       82.7     42.1     76.9   33.1   77.6
+##  9   68.0   81.0       34.8       80.0     41.0     76.4   29.0   74.5
+## 10   67.4   29.7       27.6       72.8     34.6     72.7   26.2   71.4
+## # ... with 132 more rows
 ```
 
 ---
@@ -552,15 +758,19 @@ datasaurus_dozen %&gt;%
 
 ```
 ## # A tibble: 13 x 2
-##   dataset        r
-##   &lt;chr&gt;      &lt;dbl&gt;
-## 1 away     -0.0641
-## 2 bullseye -0.0686
-## 3 circle   -0.0683
-## 4 dino     -0.0645
-## 5 dots     -0.0603
-## 6 h_lines  -0.0617
-## # ... with 7 more rows
+##    dataset          r
+##    &lt;chr&gt;        &lt;dbl&gt;
+##  1 away       -0.0641
+##  2 bullseye   -0.0686
+##  3 circle     -0.0683
+##  4 dino       -0.0645
+##  5 dots       -0.0603
+##  6 h_lines    -0.0617
+##  7 high_lines -0.0685
+##  8 slant_down -0.0690
+##  9 slant_up   -0.0686
+## 10 star       -0.0630
+## # ... with 3 more rows
 ```
 
 ]
@@ -685,7 +895,7 @@ ggplot(quartet, aes(x = x, y = y)) +
 Do you see anything out of the ordinary?
 ]
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -695,7 +905,12 @@ Do you see anything out of the ordinary?
 How are people reporting lower vs. higher values of FB visits?
 ]
 
-&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d03-data-viz-1_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+
+
+
 
 ---
 # Sources
@@ -708,9 +923,7 @@ How are people reporting lower vs. higher values of FB visits?
 ---
 class: middle
 
-# Wrapping Up... Why do we visualize?
-
-
+# Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
