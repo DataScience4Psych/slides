@@ -92,9 +92,76 @@ knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 
 ---
 
-## Grammar of Graphics
+class: middle
 
-A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+# A Reproducible Example
+
+---
+
+## Reading in the Data
+```{r echo=TRUE}
+## 
+## load required packages and data
+library(tidyverse)
+options(tibble.print_min = 10)
+heights = read_csv("data/highest-points-by-state.csv")
+## switch from feet to meters
+heights$elevation = heights$elevation * .3048
+```
+---
+## Taking a look
+```{r echo=TRUE}
+heights
+```
+
+---
+## Taking another look
+```{r echo=TRUE}
+arrange(heights, elevation)
+```
+
+---
+## Taking another another look
+```{r echo=TRUE}
+arrange(heights, desc(elevation))
+```
+
+---
+## Taking another³ look: Stem and Leaf
+
+```{r echo=TRUE}
+stem(heights$elevation)
+```
+
+---
+## Taking another⁴ look: Density
+```{r echo=TRUE}
+
+ggplot(heights, aes(x = elevation)) + geom_density()
+```
+
+---
+## Taking another⁵ look: Density Estimate+
+```{r echo=TRUE}
+ggplot(heights, aes(x = elevation)) + 
+                     geom_density() + geom_rug()
+```
+
+---
+class: middle
+
+# Wrapping Up... 
+
+
+---
+class: middle
+
+# Grammar of Graphics
+
+---
+# Grammar of Graphics
+
+Grammar of graphics is a tool to efficiently describe the components of a graphic
 
 ```{r echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/grammar-of-graphics.png")
@@ -172,7 +239,7 @@ library(tidyverse)
 ---
 class: middle
 
-# Wrapping Up... Data visualization
+# Wrapping Up... 
 
 ---
 class: middle
@@ -575,6 +642,11 @@ ggplot(student_survey, aes(x = fb_visits_per_day)) +
   labs(title = "How many times do you go on Facebook per day?", x = "")
 ```
 
+
+
+
+
+
 ---
 # Sources
 
@@ -586,6 +658,6 @@ ggplot(student_survey, aes(x = fb_visits_per_day)) +
 ---
 class: middle
 
-# Wrapping Up... Why do we visualize?
+# Wrapping Up...
 
 
