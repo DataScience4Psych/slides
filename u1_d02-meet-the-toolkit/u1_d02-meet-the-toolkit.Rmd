@@ -10,7 +10,6 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -19,7 +18,7 @@ output:
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
-
+#       slideNumberFormat: ""
 library(tidyverse)
 if (!require("fontawesome")) devtools::install_github("rstudio/fontawesome")
 library(fontawesome)
