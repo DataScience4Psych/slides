@@ -4,7 +4,6 @@
     <title>Importing data   ⬆️</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -149,6 +148,13 @@ df &lt;- tribble(
 write_csv(df, path = "data/df.csv")
 ```
 
+```
+## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
+## Please use the `file` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+```
+
 - Check that it got written out
 
 
@@ -157,8 +163,10 @@ fs::dir_ls("data")
 ```
 
 ```
-## data/df-na.csv           data/df.csv              data/edi-airbnb.csv      data/favourite-food.xlsx 
-## data/nobel.csv           data/sales               data/sales.xlsx
+## data/df-na.csv           data/df.csv              
+## data/edi-airbnb.csv      data/favourite-food.xlsx 
+## data/nobel.csv           data/sales               
+## data/sales.xlsx
 ```
 
 ---
@@ -198,8 +206,10 @@ names(edi_airbnb)
 ```
 
 ```
-##  [1] "ID"                   "Price"                "neighbourhood"        "accommodates"        
-##  [5] "Number of bathrooms"  "Number of Bedrooms"   "n beds"               "Review Scores Rating"
+##  [1] "ID"                   "Price"               
+##  [3] "neighbourhood"        "accommodates"        
+##  [5] "Number of bathrooms"  "Number of Bedrooms"  
+##  [7] "n beds"               "Review Scores Rating"
 ##  [9] "Number of reviews"    "listing_url"
 ```
 
@@ -235,8 +245,10 @@ names(edi_airbnb_col_names)
 ```
 
 ```
-##  [1] "id"                   "price"                "neighbourhood"        "accommodates"        
-##  [5] "bathroom"             "bedroom"              "bed"                  "review_scores_rating"
+##  [1] "id"                   "price"               
+##  [3] "neighbourhood"        "accommodates"        
+##  [5] "bathroom"             "bedroom"             
+##  [7] "bed"                  "review_scores_rating"
 ##  [9] "n_reviews"            "url"
 ```
 ]
@@ -254,8 +266,10 @@ names(edi_airbnb_cleaned_names)
 ```
 
 ```
-##  [1] "id"                   "price"                "neighbourhood"        "accommodates"        
-##  [5] "number_of_bathrooms"  "number_of_bedrooms"   "n_beds"               "review_scores_rating"
+##  [1] "id"                   "price"               
+##  [3] "neighbourhood"        "accommodates"        
+##  [5] "number_of_bathrooms"  "number_of_bedrooms"  
+##  [7] "n_beds"               "review_scores_rating"
 ##  [9] "number_of_reviews"    "listing_url"
 ```
 
@@ -518,7 +532,8 @@ sales_files
 ```
 
 ```
-## data/sales/01-sales.csv data/sales/02-sales.csv data/sales/03-sales.csv
+## data/sales/01-sales.csv data/sales/02-sales.csv 
+## data/sales/03-sales.csv
 ```
 
 ```r
