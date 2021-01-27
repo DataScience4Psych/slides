@@ -38,3 +38,6 @@ tidytext
 genius
 RColorBrewer
 wordcloud
+ggbeeswarm
+gt
+stringi

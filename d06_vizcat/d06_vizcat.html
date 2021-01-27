@@ -3,12 +3,9 @@
   <head>
     <title>Visualising categorical data</title>
     <meta charset="utf-8" />
-    <meta name="author" content="datasciencebox.org" />
+    <meta name="author" content="S. Mason Garrison" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <link href="libs/panelset/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="../xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
@@ -16,8 +13,7 @@
 class: center, middle, inverse, title-slide
 
 # Visualising categorical data
-## <br><br> Data Science in a Box
-### <a href="https://datasciencebox.org/">datasciencebox.org</a>
+### S. Mason Garrison
 
 ---
 
@@ -29,7 +25,7 @@ layout: true
   
 &lt;div class="my-footer"&gt;
 &lt;span&gt;
-&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
 &lt;/span&gt;
 &lt;/div&gt; 
 
@@ -90,7 +86,7 @@ ggplot(loans, aes(x = homeownership)) +
   geom_bar()
 ```
 
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -103,7 +99,7 @@ ggplot(loans, aes(x = homeownership,
   geom_bar()
 ```
 
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -115,7 +111,7 @@ ggplot(loans, aes(x = homeownership, fill = grade)) +
 * geom_bar(position = "fill")
 ```
 
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -124,10 +120,10 @@ Which bar plot is a more useful representation for visualizing the relationship 
 ]
 
 .pull-left[
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -136,7 +132,7 @@ Which bar plot is a more useful representation for visualizing the relationship 
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Code]
 
@@ -178,7 +174,7 @@ ggplot(loans, aes(x = homeownership, y = loan_amount)) +
   geom_violin()
 ```
 
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -191,7 +187,7 @@ ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
   geom_density_ridges(alpha = 0.5)
 ```
 
-&lt;img src="u2-d04-viz-cat_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
     </textarea>
@@ -201,7 +197,8 @@ ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
 "ratio": "16:9",
 "highlightLines": true,
 "highlightStyle": "solarized-light",
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

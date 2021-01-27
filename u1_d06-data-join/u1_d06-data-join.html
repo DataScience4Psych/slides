@@ -4,7 +4,6 @@
     <title>Joining data from multiple sources   🤝</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -379,7 +378,7 @@ inner_join(x, y)
 ```
 ]
 .pull-right[
-&lt;img src="img/inner-join.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/inner-join.gif" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -402,7 +401,7 @@ left_join(x, y)
 ```
 ]
 .pull-right[
-&lt;img src="img/left-join.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/left-join.gif" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -425,7 +424,7 @@ right_join(x, y)
 ```
 ]
 .pull-right[
-&lt;img src="img/right-join.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/right-join.gif" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -449,7 +448,7 @@ full_join(x, y)
 ```
 ]
 .pull-right[
-&lt;img src="img/full-join.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/full-join.gif" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -471,7 +470,7 @@ semi_join(x, y)
 ```
 ]
 .pull-right[
-&lt;img src="img/semi-join.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/semi-join.gif" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -492,7 +491,7 @@ anti_join(x, y)
 ```
 ]
 .pull-right[
-&lt;img src="img/anti-join.gif" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/anti-join.gif" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -593,11 +592,11 @@ fisheries %&gt;%
 
 ```
 ## # A tibble: 3 x 5
-##   country                          capture aquaculture   total continent
-##   &lt;chr&gt;                              &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    
-## 1 Democratic Republic of the Congo  237372        3161  240533 &lt;NA&gt;     
-## 2 Hong Kong                         142775        4258  147033 &lt;NA&gt;     
-## 3 Myanmar                          2072390     1017644 3090034 &lt;NA&gt;
+##   country                    capture aquaculture  total continent
+##   &lt;chr&gt;                        &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    
+## 1 Democratic Republic of th~  237372        3161 2.41e5 &lt;NA&gt;     
+## 2 Hong Kong                   142775        4258 1.47e5 &lt;NA&gt;     
+## 3 Myanmar                    2072390     1017644 3.09e6 &lt;NA&gt;
 ```
 
 ---
@@ -629,8 +628,8 @@ fisheries %&gt;%
 
 ```
 ## # A tibble: 0 x 5
-## # ... with 5 variables: country &lt;chr&gt;, capture &lt;dbl&gt;, aquaculture &lt;dbl&gt;, total &lt;dbl&gt;,
-## #   continent &lt;chr&gt;
+## # ... with 5 variables: country &lt;chr&gt;, capture &lt;dbl&gt;,
+## #   aquaculture &lt;dbl&gt;, total &lt;dbl&gt;, continent &lt;chr&gt;
 ```
 
 ---
@@ -707,7 +706,7 @@ ggplot(fisheries_summary,
 
 ---
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-43-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -793,7 +792,7 @@ ggplot(world_map, aes(x = long, y = lat, group = group)) +
   theme_minimal()
 ```
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-48-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -1854,17 +1853,17 @@ glimpse(fisheries_map)
 ```
 ## Rows: 72,685
 ## Columns: 11
-## $ country          &lt;chr&gt; "Angola", "Angola", "Angola", "Angola", "Angola", "Angola", ...
-## $ capture          &lt;dbl&gt; 486490, 486490, 486490, 486490, 486490, 486490, 486490, 4864...
-## $ aquaculture      &lt;dbl&gt; 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, ...
-## $ total            &lt;dbl&gt; 487145, 487145, 487145, 487145, 487145, 487145, 487145, 4871...
-## $ continent        &lt;chr&gt; "Africa", "Africa", "Africa", "Africa", "Africa", "Africa", ...
-## $ aquaculture_perc &lt;dbl&gt; 0.001344569, 0.001344569, 0.001344569, 0.001344569, 0.001344...
-## $ long             &lt;dbl&gt; 23.96650, 23.98828, 24.01006, 24.02559, 24.04141, 24.04668, ...
-## $ lat              &lt;dbl&gt; -10.87178, -11.00283, -11.18477, -11.31563, -11.37412, -11.4...
-## $ group            &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
-## $ order            &lt;int&gt; 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, ...
-## $ subregion        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
+## $ country          &lt;chr&gt; "Angola", "Angola", "Angola", "Ango...
+## $ capture          &lt;dbl&gt; 486490, 486490, 486490, 486490, 486...
+## $ aquaculture      &lt;dbl&gt; 655, 655, 655, 655, 655, 655, 655, ...
+## $ total            &lt;dbl&gt; 487145, 487145, 487145, 487145, 487...
+## $ continent        &lt;chr&gt; "Africa", "Africa", "Africa", "Afri...
+## $ aquaculture_perc &lt;dbl&gt; 0.001344569, 0.001344569, 0.0013445...
+## $ long             &lt;dbl&gt; 23.96650, 23.98828, 24.01006, 24.02...
+## $ lat              &lt;dbl&gt; -10.87178, -11.00283, -11.18477, -1...
+## $ group            &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,...
+## $ order            &lt;int&gt; 423, 424, 425, 426, 427, 428, 429, ...
+## $ subregion        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 ```
 
 ---
@@ -1880,7 +1879,7 @@ ggplot(fisheries_map, mapping = aes(x = long, y = lat, group = group)) +
   theme_minimal()
 ```
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-53-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-53-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1889,7 +1888,7 @@ ggplot(fisheries_map, mapping = aes(x = long, y = lat, group = group)) +
 What is misleading about the following map?
 ]
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-54-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1919,7 +1918,7 @@ ggplot() +
 
 ---
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-56-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-56-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1947,7 +1946,7 @@ ggplot() +
 
 ---
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-58-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-58-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1976,11 +1975,11 @@ ggplot() +
 
 ---
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-60-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-60-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="u1_d06-data-join_files/figure-html/unnamed-chunk-61-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 # Sources
