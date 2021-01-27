@@ -1,5 +1,5 @@
 ---
-title: "Visualising data with ggplot2"
+title: "Visualising data with ggplot2<br> `r emo::ji('palette')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:

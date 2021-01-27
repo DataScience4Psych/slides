@@ -1,5 +1,5 @@
 ---
-title: "Data and visualization <br> `r emo::ji('chart_with_downwards_trend')`"
+title: "Data and visualization <br> `r emo::ji('chart')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
