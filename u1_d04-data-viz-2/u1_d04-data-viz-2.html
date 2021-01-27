@@ -4,7 +4,6 @@
     <title>Building plots for various data types   📊</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -101,7 +100,7 @@ ggplot(data = starwars, mapping = aes(x = height)) +
 ## Warning: Removed 6 rows containing non-finite values (stat_bin).
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-2-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -114,10 +113,11 @@ ggplot(data = starwars, mapping = aes(x = height)) +
 ```
 
 ```
-## Warning: Removed 6 rows containing non-finite values (stat_density).
+## Warning: Removed 6 rows containing non-finite values
+## (stat_density).
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-3-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -135,7 +135,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -147,7 +147,7 @@ ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color)) +
   geom_bar()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -175,7 +175,7 @@ ggplot(data = starwars,
   coord_flip()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -189,7 +189,7 @@ ggplot(data = starwars,
   coord_flip()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ```r
   labs(y = "proportion")
@@ -209,9 +209,9 @@ ggplot(data = starwars,
 Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
 ]
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -242,7 +242,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_boxplot()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-11-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -256,7 +256,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_point()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -268,7 +268,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_violin()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-13-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -282,7 +282,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_jitter()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-15-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-15-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -295,7 +295,7 @@ ggplot(data = starwars, mapping = aes(y = height, x = gender)) +
   geom_beeswarm()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-16-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-16-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -308,7 +308,7 @@ ggplot(starwars, aes(x = height, y = gender, fill = gender, color = gender)) +
   geom_density_ridges(alpha = 0.5)
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -331,7 +331,7 @@ ggplot(starwars_without_jabba, aes(x = height, y = mass)) +
   geom_point()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-19-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-19-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -345,7 +345,7 @@ ggplot(starwars_without_jabba, aes(x = height, y = mass)) +
   geom_hex()
 ```
 
-&lt;img src="u1_d04-data-viz-2_files/figure-html/unnamed-chunk-20-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-20-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 # Sources
