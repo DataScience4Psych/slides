@@ -1,16 +1,16 @@
 ---
 title: "Visualising categorical data"
-subtitle: "<br><br> Data Science in a Box"
-author: "[datasciencebox.org](https://datasciencebox.org/)"
+author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
-    css: ["../xaringan-themer.css", "../slides.css"]
+    css: "../slides.css"
     lib_dir: libs
     nature:
       ratio: "16:9"
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
+      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
