@@ -96,10 +96,10 @@ knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 ## Grammar of Graphics
 
 .pull-left-narrow[
-A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+A grammar of graphics is a tool to concisely describe the components of a graphic
 ]
 .pull-right-wide[
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="90%"}
 knitr::include_graphics("img/grammar-of-graphics.png")
 ```
 ]
@@ -115,6 +115,7 @@ class: middle
 ---
 
 ## Reading in the Data
+
 + Heights of the highest points by state
 
 ```{r echo=TRUE}
@@ -323,12 +324,6 @@ knitr::include_graphics("img/jabbaplot.png")
 
 ---
 
-class: middle
-
-# Data visualization
-
----
-
 
 ## Mass vs. height
 
@@ -379,6 +374,11 @@ library(tidyverse)
 
 - For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
 ]
+
+---
+class: middle
+
+# Wrapping Up... 
 
 ---
 
@@ -473,7 +473,7 @@ ggplot(student_survey, aes(x = fb_visits_per_day)) +
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Jenny Bryan's Stat545 ([link](https://stat545.com))
-- Julia Fukuyama's EDA([link](https://jfukuyama.github.io/)]
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
 
 ---
