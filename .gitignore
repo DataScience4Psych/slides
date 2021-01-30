@@ -6,11 +6,12 @@
 .RData
 .Rhistory
 .Rproj.user/*
-
-*/libs/font-awesome/webfonts/*.svg
 d03_dataviz/starwars.html
 links.md
 setup.html
 u2*
 u3*
+fa-regular-400.svg
+fa-solid-900.svg
+fa-brands-400.svg
 *.svg
