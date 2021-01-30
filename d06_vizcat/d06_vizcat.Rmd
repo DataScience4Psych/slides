@@ -53,7 +53,7 @@ glimpse(starwars)
 ---
 #### Recode hair color
 
-  ```{r}
+  ```{r }
 starwars <- starwars %>%
   mutate(hair_color2 =
            fct_other(hair_color,
@@ -72,7 +72,7 @@ class: middle
 
 ## Bar plot
 
-```{r}
+```{r out.width="70%"}
 ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
@@ -81,8 +81,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
 
 ## Segmented bar plot: counts
 
-```{r}
-
+```{r out.width="70%"}
 
 ggplot(data = starwars, mapping = aes(x = gender, 
                   fill = hair_color))+ #<<
@@ -132,14 +131,16 @@ labs(y = "proportion")
 
 .pull-left[
 ```{r echo=FALSE, out.width = "100%"}
-ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
+ggplot(data = starwars, mapping = aes(x = gender, 
+                  fill = hair_color2)) +
   geom_bar() +
   coord_flip()
 ```
 ]
 .pull-right[
 ```{r echo=FALSE, out.width = "100%"}
-ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
+ggplot(data = starwars, mapping = aes(x = gender, 
+                  fill = hair_color2)) +
   geom_bar(position = "fill") +
   coord_flip() +
   labs(y = "proportion")
@@ -157,15 +158,15 @@ ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
 ]
 .panel[.panel-name[Code]
 ```{r bar-custom, fig.show = "hide", warning = FALSE}
-ggplot(loans, aes(y = homeownership, #<<
-                  fill = grade)) +
+ggplot(starwars, aes(y = gender, #<<
+                  fill = hair_color2)) +
   geom_bar(position = "fill") +
   labs( #<<
     x = "Proportion", #<<
     y = "Homeownership", #<<
-    fill = "Grade", #<<
-    title = "Grades of Lending Club loans", #<<
-    subtitle = "and homeownership of lendee" #<<
+    fill = "Hair Color", #<<
+    title = "Hair Colors of Starwars", #<<
+    subtitle = "and gender" #<<
   ) #<<
 ```
 ]
@@ -215,3 +216,9 @@ ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
 ```
 
 ---
+
+
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
