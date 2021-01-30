@@ -36,17 +36,33 @@ class: middle
 
 ---
 
-### Data 
+### Rembember this Data?
+.small[
+```{r message=FALSE}
+library(tidyverse)
+starwars
+```
+
+]
 
 ```{r}
-library(openintro)
-loans <- loans_full_schema %>%
-  select(loan_amount, interest_rate, term, grade, 
-         state, annual_income, homeownership, debt_to_income)
-glimpse(loans)
+
+glimpse(starwars)
 ```
 
 ---
+#### Recode hair color
+
+  ```{r}
+starwars <- starwars %>%
+  mutate(hair_color2 =
+           fct_other(hair_color,
+                     keep = c("black", "brown", "brown", "blond")
+           )
+  )
+```
+---
+
 
 class: middle
 
@@ -57,45 +73,76 @@ class: middle
 ## Bar plot
 
 ```{r}
-ggplot(loans, aes(x = homeownership)) +
+ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
 
 ---
 
-## Segmented bar plot
+## Segmented bar plot: counts
 
 ```{r}
-ggplot(loans, aes(x = homeownership, 
-                  fill = grade)) + #<<
+
+
+ggplot(data = starwars, mapping = aes(x = gender, 
+                  fill = hair_color))+ #<<
+  geom_bar()
+
+```
+
+---
+
+
+
+## Segmented bar plots
+
+  ```{r out.width="70%"}
+ggplot(data = starwars, mapping = aes(x = gender, 
+	   fill = hair_color2))+ #<<
   geom_bar()
 ```
 
 ---
 
-## Segmented bar plot
+## Segmented bar plots
 
-```{r}
-ggplot(loans, aes(x = homeownership, fill = grade)) +
-  geom_bar(position = "fill") #<<
+  ```{r out.width="70%"}
+ggplot(data = starwars, mapping = aes(x = gender, 
+	   fill = hair_color2))+ #<<
+  geom_bar()+ #<<
+  coord_flip()
 ```
 
 ---
 
+## Segmented bar plots: proportions
+
+```{r out.width="70%"}
+ggplot(data = starwars,
+       mapping = aes(x = gender, fill = hair_color2)) +
+  geom_bar(position = "fill") +
+  coord_flip()
+labs(y = "proportion")
+```
+
+---
 .question[
-Which bar plot is a more useful representation for visualizing the relationship between homeownership and grade?
-]
+    Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
+  ]
 
 .pull-left[
 ```{r echo=FALSE, out.width = "100%"}
-ggplot(loans, aes(x = homeownership, fill = grade)) +
-  geom_bar()
+ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
+  geom_bar() +
+  coord_flip()
 ```
 ]
 .pull-right[
 ```{r echo=FALSE, out.width = "100%"}
-ggplot(loans, aes(x = homeownership, fill = grade)) +
-  geom_bar(position = "fill")
+ggplot(data = starwars, mapping = aes(x = gender, fill = hair_color2)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  labs(y = "proportion")
 ```
 ]
 
@@ -124,7 +171,18 @@ ggplot(loans, aes(y = homeownership, #<<
 ]
 ]
 
+
 ---
+
+.your-turn[
+
+    Time to actually play around with the Star Wars dataset!
+
+      - Go to class git repo ([github.com/DataScience4Psych](https://github.com/DataScience4Psych)) and start `AE 03 - StarWars + Data visualization`.
+    - Open the R Markdown document and complete the exercise (and if time allows, the stretch goal exercise).]
+
+---
+
 
 class: middle
 
