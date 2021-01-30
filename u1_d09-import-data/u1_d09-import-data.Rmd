@@ -23,6 +23,7 @@ library(skimr)
 library(knitr)
 library(DT)
 library(here)
+conflict_prefer("col_double", "readr")
 ```
 
 class: middle
