@@ -4,6 +4,7 @@
     <title>Tidy data and data wrangling   🔧</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -135,7 +136,7 @@ Is each of the following a dataset or a summary table?
 ```
 ## # A tibble: 3 x 2
 ##   gender    avg_height
-##   &lt;chr&gt;          &lt;dbl&gt;
+## * &lt;chr&gt;          &lt;dbl&gt;
 ## 1 feminine        165.
 ## 2 masculine       177.
 ## 3 &lt;NA&gt;            181.
@@ -1396,7 +1397,7 @@ hotels %&gt;%
 ```
 ## # A tibble: 8 x 2
 ##   market_segment     n
-##   &lt;chr&gt;          &lt;int&gt;
+## * &lt;chr&gt;          &lt;int&gt;
 ## 1 Aviation         237
 ## 2 Complementary    743
 ## 3 Corporate       5295
@@ -1805,7 +1806,7 @@ hotels %&gt;%
 ```
 ## # A tibble: 2 x 2
 ##   hotel        mean_adr
-##   &lt;chr&gt;           &lt;dbl&gt;
+## * &lt;chr&gt;           &lt;dbl&gt;
 ## 1 City Hotel      105. 
 ## 2 Resort Hotel     95.0
 ```
@@ -1827,7 +1828,7 @@ hotels %&gt;%
 ```
 ## # A tibble: 2 x 2
 ##   hotel            n
-##   &lt;chr&gt;        &lt;int&gt;
+## * &lt;chr&gt;        &lt;int&gt;
 ## 1 City Hotel   79330
 ## 2 Resort Hotel 40060
 ```
@@ -1842,7 +1843,7 @@ hotels %&gt;%
 ```
 ## # A tibble: 2 x 2
 ##   hotel            n
-##   &lt;chr&gt;        &lt;int&gt;
+## * &lt;chr&gt;        &lt;int&gt;
 ## 1 City Hotel   79330
 ## 2 Resort Hotel 40060
 ```

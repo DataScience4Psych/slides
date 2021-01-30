@@ -4,6 +4,7 @@
     <title>Joining data from multiple sources   🤝</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -167,6 +168,19 @@ fisheries %&gt;%
 ```r
 fisheries %&gt;%
   summarise(across(is.numeric, mean))
+```
+
+```
+## Warning: Predicate functions must be wrapped in `where()`.
+## 
+##   # Bad
+##   data %&gt;% select(is.numeric)
+## 
+##   # Good
+##   data %&gt;% select(where(is.numeric))
+## 
+## i Please update your code.
+## This message is displayed once per session.
 ```
 
 ```
@@ -828,7 +842,6 @@ world_map %&gt;% select(region)
 ## 8                   Aruba
 ## 9                   Aruba
 ## 10                  Aruba
-## 11            Afghanistan
 ## 12            Afghanistan
 ## 13            Afghanistan
 ## 14            Afghanistan
@@ -1238,8 +1251,7 @@ world_map %&gt;% select(region)
 ## 418           Afghanistan
 ## 419           Afghanistan
 ## 420           Afghanistan
-## 421                Angola
-## 422                Angola
+## 421           Afghanistan
 ## 423                Angola
 ## 424                Angola
 ## 425                Angola
@@ -1536,7 +1548,6 @@ world_map %&gt;% select(region)
 ## 716                Angola
 ## 717                Angola
 ## 718                Angola
-## 719                Angola
 ## 720                Angola
 ## 721                Angola
 ## 722                Angola
@@ -1576,17 +1587,15 @@ world_map %&gt;% select(region)
 ## 756                Angola
 ## 757                Angola
 ## 758                Angola
-## 759              Anguilla
-## 760              Anguilla
-## 761              Anguilla
-## 762              Anguilla
+## 759                Angola
+## 760                Angola
+## 761                Angola
 ## 763              Anguilla
 ## 764              Anguilla
-## 765               Albania
-## 766               Albania
-## 767               Albania
-## 768               Albania
-## 769               Albania
+## 765              Anguilla
+## 766              Anguilla
+## 767              Anguilla
+## 768              Anguilla
 ## 770               Albania
 ## 771               Albania
 ## 772               Albania
@@ -1695,12 +1704,11 @@ world_map %&gt;% select(region)
 ## 875               Albania
 ## 876               Albania
 ## 877               Albania
-## 878               Finland
-## 879               Finland
-## 880               Finland
-## 881               Finland
-## 882               Finland
-## 883               Finland
+## 878               Albania
+## 879               Albania
+## 880               Albania
+## 881               Albania
+## 882               Albania
 ## 884               Finland
 ## 885               Finland
 ## 886               Finland
@@ -1711,7 +1719,6 @@ world_map %&gt;% select(region)
 ## 891               Finland
 ## 892               Finland
 ## 893               Finland
-## 894               Finland
 ## 895               Finland
 ## 896               Finland
 ## 897               Finland
@@ -1722,7 +1729,6 @@ world_map %&gt;% select(region)
 ## 902               Finland
 ## 903               Finland
 ## 904               Finland
-## 905               Finland
 ## 906               Finland
 ## 907               Finland
 ## 908               Finland
@@ -1747,15 +1753,14 @@ world_map %&gt;% select(region)
 ## 927               Finland
 ## 928               Finland
 ## 929               Finland
-## 930               Andorra
-## 931               Andorra
-## 932               Andorra
-## 933               Andorra
-## 934               Andorra
-## 935               Andorra
-## 936               Andorra
-## 937               Andorra
-## 938               Andorra
+## 930               Finland
+## 931               Finland
+## 932               Finland
+## 933               Finland
+## 934               Finland
+## 935               Finland
+## 936               Finland
+## 937               Finland
 ## 939               Andorra
 ## 940               Andorra
 ## 941               Andorra
@@ -1766,16 +1771,15 @@ world_map %&gt;% select(region)
 ## 946               Andorra
 ## 947               Andorra
 ## 948               Andorra
-## 949  United Arab Emirates
-## 950  United Arab Emirates
-## 951  United Arab Emirates
-## 952  United Arab Emirates
-## 953  United Arab Emirates
-## 954  United Arab Emirates
-## 955  United Arab Emirates
-## 956  United Arab Emirates
-## 957  United Arab Emirates
-## 958  United Arab Emirates
+## 949               Andorra
+## 950               Andorra
+## 951               Andorra
+## 952               Andorra
+## 953               Andorra
+## 954               Andorra
+## 955               Andorra
+## 956               Andorra
+## 957               Andorra
 ## 959  United Arab Emirates
 ## 960  United Arab Emirates
 ## 961  United Arab Emirates
@@ -1786,7 +1790,6 @@ world_map %&gt;% select(region)
 ## 966  United Arab Emirates
 ## 967  United Arab Emirates
 ## 968  United Arab Emirates
-## 969  United Arab Emirates
 ## 970  United Arab Emirates
 ## 971  United Arab Emirates
 ## 972  United Arab Emirates
@@ -1794,7 +1797,6 @@ world_map %&gt;% select(region)
 ## 974  United Arab Emirates
 ## 975  United Arab Emirates
 ## 976  United Arab Emirates
-## 977  United Arab Emirates
 ## 978  United Arab Emirates
 ## 979  United Arab Emirates
 ## 980  United Arab Emirates
@@ -1805,7 +1807,6 @@ world_map %&gt;% select(region)
 ## 985  United Arab Emirates
 ## 986  United Arab Emirates
 ## 987  United Arab Emirates
-## 988  United Arab Emirates
 ## 989  United Arab Emirates
 ## 990  United Arab Emirates
 ## 991  United Arab Emirates
@@ -1815,9 +1816,22 @@ world_map %&gt;% select(region)
 ## 995  United Arab Emirates
 ## 996  United Arab Emirates
 ## 997  United Arab Emirates
-## 998  United Arab Emirates
 ## 999  United Arab Emirates
 ## 1000 United Arab Emirates
+## 1001 United Arab Emirates
+## 1002 United Arab Emirates
+## 1003 United Arab Emirates
+## 1004 United Arab Emirates
+## 1005 United Arab Emirates
+## 1006 United Arab Emirates
+## 1007 United Arab Emirates
+## 1008 United Arab Emirates
+## 1009 United Arab Emirates
+## 1010 United Arab Emirates
+## 1011 United Arab Emirates
+## 1012 United Arab Emirates
+## 1013 United Arab Emirates
+## 1014 United Arab Emirates
 ##  [ reached 'max' / getOption("max.print") -- omitted 98338 rows ]
 ```
 ]
