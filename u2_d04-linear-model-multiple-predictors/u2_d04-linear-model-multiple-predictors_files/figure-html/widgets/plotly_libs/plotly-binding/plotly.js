@@ -79,12 +79,12 @@ HTMLWidgets.widget({
       flex.class = "plotly-crosstalk-control-panel";
       flex.style = "display: flex; flex-wrap: wrap";
       
-      // inject the colourpicker HTML container into the flexbox
+      // inject the colorpicker HTML container into the flexbox
       if (x.highlight.dynamic) {
         var pickerDiv = document.createElement("div");
         
         var pickerInput = document.createElement("input");
-        pickerInput.id = el.id + "-colourpicker";
+        pickerInput.id = el.id + "-colorpicker";
         pickerInput.placeholder = "asdasd";
         
         var pickerLabel = document.createElement("label");
@@ -132,25 +132,25 @@ HTMLWidgets.widget({
         // TODO: let users specify options?
         var opts = {
           value: colors[0],
-          showColour: "both",
+          showColor: "both",
           palette: "limited",
           allowedCols: colors.join(" "),
           width: "20%",
           height: "10%"
         };
-        picker.colourpicker({changeDelay: 0});
-        picker.colourpicker("settings", opts);
-        picker.colourpicker("value", opts.value);
-        // inform crosstalk about a change in the current selection colour
+        picker.colorpicker({changeDelay: 0});
+        picker.colorpicker("settings", opts);
+        picker.colorpicker("value", opts.value);
+        // inform crosstalk about a change in the current selection color
         var grps = x.highlight.ctGroups || [];
         for (var i = 0; i < grps.length; i++) {
-          crosstalk.group(grps[i]).var('plotlySelectionColour')
-            .set(picker.colourpicker('value'));
+          crosstalk.group(grps[i]).var('plotlySelectionColor')
+            .set(picker.colorpicker('value'));
         }
         picker.on("change", function() {
           for (var i = 0; i < grps.length; i++) {
-            crosstalk.group(grps[i]).var('plotlySelectionColour')
-              .set(picker.colourpicker('value'));
+            crosstalk.group(grps[i]).var('plotlySelectionColor')
+              .set(picker.colorpicker('value'));
           }
         });
       }
@@ -452,7 +452,7 @@ HTMLWidgets.widget({
         // Construct an event object "defining" the current event. 
         var event = {
           receiverID: traceManager.gd.id,
-          plotlySelectionColour: crosstalk.group(set).var("plotlySelectionColour").get()
+          plotlySelectionColor: crosstalk.group(set).var("plotlySelectionColor").get()
         };
         event[set] = e.value;
         // TODO: is there a smarter way to check object equality?
@@ -660,7 +660,7 @@ TraceManager.prototype.updateSelection = function(group, keys) {
     // placeholder for new "selection traces"
     var traces = [];
     // this variable is set in R/highlight.R
-    var selectionColour = crosstalk.group(group).var("plotlySelectionColour").get() || 
+    var selectionColor = crosstalk.group(group).var("plotlySelectionColor").get() || 
       this.highlight.color[0];
 
     for (var i = 0; i < this.origData.length; i++) {
@@ -695,19 +695,19 @@ TraceManager.prototype.updateSelection = function(group, keys) {
         // if it is defined, override color with the "dynamic brush color""
         if (d.marker) {
           trace.marker = trace.marker || {};
-          trace.marker.color =  selectionColour || trace.marker.color || d.marker.color;
+          trace.marker.color =  selectionColor || trace.marker.color || d.marker.color;
         }
         if (d.line) {
           trace.line = trace.line || {};
-          trace.line.color =  selectionColour || trace.line.color || d.line.color;
+          trace.line.color =  selectionColor || trace.line.color || d.line.color;
         }
         if (d.textfont) {
           trace.textfont = trace.textfont || {};
-          trace.textfont.color =  selectionColour || trace.textfont.color || d.textfont.color;
+          trace.textfont.color =  selectionColor || trace.textfont.color || d.textfont.color;
         }
         if (d.fillcolor) {
-          // TODO: should selectionColour inherit alpha from the existing fillcolor?
-          trace.fillcolor = selectionColour || trace.fillcolor || d.fillcolor;
+          // TODO: should selectionColor inherit alpha from the existing fillcolor?
+          trace.fillcolor = selectionColor || trace.fillcolor || d.fillcolor;
         }
         // attach a sensible name/legendgroup
         trace.name = trace.name || keys.join("<br />");

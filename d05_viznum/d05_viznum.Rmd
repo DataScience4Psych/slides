@@ -1,5 +1,5 @@
 ---
-title: "Visualising numerical data"
+title: "Visualizing numerical data"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
