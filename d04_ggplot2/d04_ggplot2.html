@@ -62,12 +62,21 @@ ggplot(data = [dataset],
 
 ## Data: Palmer Penguins
 
+.pull-right[
 Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+]
 
-.pull-left-narrow[
+.pull-left[
 &lt;img src="img/penguins.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
-.pull-right-wide[
+
+---
+
+## Data: Palmer Penguins
+
+Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+
+
 
 ```r
 library(palmerpenguins)
@@ -86,15 +95,18 @@ glimpse(penguins)
 ## $ sex               &lt;fct&gt; male, female, female, NA, female, ...
 ## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007...
 ```
-]
+
 
 ---
 
-.panelset[
-.panel[.panel-name[Plot]
+# Plot
+
 &lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-]
-.panel[.panel-name[Code]
+
+
+---
+
+# Code
 
 
 ```r
@@ -111,8 +123,6 @@ ggplot(data = penguins,
 ```
 ## Warning: Removed 2 rows containing missing values (geom_point).
 ```
-]
-]
 
 ---
 
@@ -408,11 +418,13 @@ ggplot(data = penguins,
 
 ---
 
-.panelset[
-.panel[.panel-name[Plot]
+# Plot
+
 &lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-]
-.panel[.panel-name[Code]
+
+---
+
+# Code
 
 
 ```r
@@ -432,27 +444,23 @@ ggplot(data = penguins,
 ```
 ## Warning: Removed 2 rows containing missing values (geom_point).
 ```
-]
-.panel[.panel-name[Narrative]
-.pull-left-wide[
+
+---
+
+# Narrative
+
 .midi[
-Start with the `penguins` data frame,
++ Start with the `penguins` data frame,
 map bill depth to the x-axis
 and map bill length to the y-axis. 
-
-Represent each observation with a point
++ Represent each observation with a point
 and map species to the color of each point.
-
-Title the plot "Bill depth and length", 
++ Title the plot "Bill depth and length", 
 add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
 label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
 label the legend "Species", 
 and add a caption for the data source.
-
-Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.
-]
-]
-]
++ Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.
 ]
 
 ---
@@ -646,7 +654,6 @@ ggplot(penguins,
 
 - **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
   - goes into `aes()`
-
 - **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
   - goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
   

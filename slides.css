@@ -2,7 +2,12 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono|Open+Sans);
 
-
+.remark-slide-content {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
 
 /* Turn off slide numbers */
 /* Don't want them on videos! */
@@ -46,7 +51,7 @@
 
 /* Title slide customization */
 .title-slide h1, h2, h3 {
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -64,14 +69,19 @@ h2 {
   font-weight: bold;
   color: #34c9f4;
   font-size: 12px;
-  margin: 0 0 0.5em 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 h1, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   color: #34c9f4;
-  margin-top: 0px;
-  margin-bottom: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 a, a > code {
   font-family: 'Fira Mono', monospace;
@@ -103,12 +113,12 @@ a, a > code {
 }
 .larger { font-size: 250% }
 .large { font-size: 150% }
-.midi { font-size: 85% }
+.midi { font-size: 80% }
 .small { font-size: 70% }
 .xsmall { font-size: 65% }
 .tiny { font-size: 50% }
 
-.midi .remark-code { font-size: 85%; }
+.midi .remark-code { font-size: 80%; }
 .small .remark-code { font-size: 70%; }
 .xsmall .remark-code { font-size: 65%; }
 .tiny .remark-code { font-size: 50%; }
@@ -127,7 +137,7 @@ a, a > code {
 
 .remark-inline-code { 
   font-family: 'Fira Mono', monospace;
-  font-size: 100%;
+  font-size: 80%;
   color: #869496;
 }
 
@@ -321,7 +331,7 @@ div.my-footer span {
     font-size: 12pt;
     position: absolute;
     color: #333333;
-    left: 20px;
+    left: 10px;
     bottom: 10px;
 }
 div.my-footer a {
