@@ -31,19 +31,19 @@ class: middle
 
 ## ggplot2 $\in$ tidyverse
 
-.pull-left[
-```{r echo=FALSE, out.width="80%"}
+.pull-left-narrow[
+```{r echo=FALSE}
 knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 ```
 ] 
-.pull-right[ 
+.pull-right-wide[ 
 - **ggplot2** is tidyverse's data visualization package 
 - Structure of the code for plots can be summarized as
 
 ```{r eval = FALSE}
 ggplot(data = [dataset], 
-       mapping = aes(x = [x-variable], 
-                     y = [y-variable])) +
+     mapping = aes(x = [x-variable], 
+                   y = [y-variable])) +
    geom_xxx() +
    other options
 ```

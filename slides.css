@@ -1,5 +1,55 @@
+/* Custom fonts */
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono|Open+Sans);
+
+
+
+/* Turn off slide numbers */
+/* Don't want them on videos! */
+.remark-slide-number {
+  display: none;
+}
+
+/* colors */
+:root {
+  --dark-blue: #002b36;
+  --light-blue: #A7D5E8;
+  --green: #8fada7;
+  --gray: #A7A7A7;
+  --pink: #E9AFA3;
+  --yellow: #e9d968;
+  --beige: #fdf6e3;
+  --green-faint: #8fada750;
+  --light-blue-faint: #A7D5E850;
+  --pink-faint: #E9AFA350;
+}
+
+/* Font colors */
+.dark-blue {
+  color: var(--dark-blue);
+}
+.light-blue {
+  color: var(--light-blue);
+}
+.green {
+  color: var(--green);
+}
+.gray {
+  color: var(--gray);
+}
+.pink {
+  color: var(--pink);
+}
+.yellow {
+  color: var(--yellow);
+}
+
+/* Title slide customization */
+.title-slide h1, h2, h3 {
+  text-align: left;
+  font-weight: bold;
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
 body { 
   font-family: 'Source Sans Pro'; sans-serif;
@@ -46,11 +96,22 @@ a, a > code {
 
 
 /* Font sizes */
-.large { font-size: 130% }
+.huge {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 400%;
+   font-weight: bold;
+}
+.larger { font-size: 250% }
+.large { font-size: 150% }
 .midi { font-size: 85% }
 .small { font-size: 70% }
-.xsmall { font-size: 60% }
+.xsmall { font-size: 65% }
 .tiny { font-size: 50% }
+
+.midi .remark-code { font-size: 85%; }
+.small .remark-code { font-size: 70%; }
+.xsmall .remark-code { font-size: 65%; }
+.tiny .remark-code { font-size: 50%; }
 
 
 
@@ -101,6 +162,33 @@ a, a > code {
   clear: both;
 }
 
+/*Alternative two-column layouts*/
+
+  /*Left 70% - Right 30% */
+.pull-left-wide {
+  width: 70%;
+  float: left;
+}
+.pull-right-narrow {
+  width: 27%;
+  float: right;
+}
+.pull-right-narrow ~ * {
+  clear: both;
+}
+
+  /*Left 30% - Right 70% */
+.pull-left-narrow {
+  width: 30%;
+  float: left;
+}
+.pull-right-wide {
+  width: 67%;
+  float: right;
+}
+.pull-right-wide ~ * {
+  clear: both;
+}
 
 /* Custom boxes */
 
@@ -265,13 +353,13 @@ div.my-footer a {
 }
 
 
-/* Slide number */
+/* Slide number 
 .remark-slide-number {
   color: #333333;
   opacity: 1;
   font-size: 12pt;
 }
-
+*/
 .title-slide .remark-slide-number {
   display: none;
 }
