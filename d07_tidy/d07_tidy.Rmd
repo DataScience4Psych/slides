@@ -97,16 +97,13 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 
 ## Displaying vs. summarizing data
 
-.panelset[
-
-.panel[.panel-name[Output]
 
 .pull-left[
 ```{r echo=FALSE}
 starwars %>%
   select(name, height, mass)
 ```
-]
+
 .pull-right[
 ```{r echo=FALSE}
 starwars %>%
@@ -115,9 +112,8 @@ starwars %>%
 ```
 ]
 
-]
+---
 
-.panel[.panel-name[Code]
 
 .pull-left[
 ```{r eval=FALSE}
@@ -135,6 +131,8 @@ starwars %>%
 ```
 ]
 
-]
+# Sources
 
-]
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+
