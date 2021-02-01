@@ -745,7 +745,7 @@ ggplot(
 
 ---
 
-## Face and color, no legend
+## Facet and color, no legend
 
 .pull-left-narrow[
 ```{r facet-color-no-legend, fig.show = "hide", warning = FALSE}

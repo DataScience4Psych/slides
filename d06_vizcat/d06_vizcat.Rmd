@@ -1,5 +1,5 @@
 ---
-title: "Visualizing categorical data"
+title: "Visualizing categorical data<br> `r emo::ji('cat')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -36,17 +36,17 @@ class: middle
 
 ---
 
-### Rembember this Data?
-.small[
+### Remember this Data?
+
 ```{r message=FALSE}
 library(tidyverse)
 starwars
 ```
 
-]
 
+---
+### Perhaps now?
 ```{r}
-
 glimpse(starwars)
 ```
 
@@ -72,7 +72,7 @@ class: middle
 
 ## Bar plot
 
-```{r out.width="70%"}
+```{r out.width="55%"}
 ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
@@ -81,7 +81,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
 
 ## Segmented bar plot: counts
 
-```{r out.width="70%"}
+```{r out.width="55%"}
 
 ggplot(data = starwars, mapping = aes(x = gender, 
                   fill = hair_color))+ #<<
@@ -95,7 +95,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Segmented bar plots
 
-  ```{r out.width="70%"}
+```{r out.width="55%"}
 ggplot(data = starwars, mapping = aes(x = gender, 
 	   fill = hair_color2))+ #<<
   geom_bar()
@@ -105,7 +105,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Segmented bar plots
 
-  ```{r out.width="70%"}
+```{r out.width="55%"}
 ggplot(data = starwars, mapping = aes(x = gender, 
 	   fill = hair_color2))+ #<<
   geom_bar()+ #<<
@@ -116,7 +116,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Segmented bar plots: proportions
 
-```{r out.width="70%"}
+```{r out.width="45%"}
 ggplot(data = starwars,
        mapping = aes(x = gender, fill = hair_color2)) +
   geom_bar(position = "fill") +
@@ -124,7 +124,9 @@ ggplot(data = starwars,
 labs(y = "proportion")
 ```
 
+
 ---
+
 .question[
     Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
   ]
@@ -151,26 +153,25 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Customizing bar plots
 
-.panelset[
-.panel[.panel-name[Plot]
+.pull-left[
 ```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r bar-custom, fig.show = "hide", warning = FALSE}
 ggplot(starwars, aes(y = gender, #<<
                   fill = hair_color2)) +
   geom_bar(position = "fill") +
   labs( #<<
     x = "Proportion", #<<
-    y = "Homeownership", #<<
+    y = "Gender", #<<
     fill = "Hair Color", #<<
     title = "Hair Colors of Starwars", #<<
-    subtitle = "and gender" #<<
+    subtitle = "by gender" #<<
   ) #<<
 ```
 ]
-]
+
 
 
 ---

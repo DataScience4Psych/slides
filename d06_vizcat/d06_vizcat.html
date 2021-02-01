@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Visualizing categorical data</title>
+    <title>Visualizing categorical data  🐱</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Visualizing categorical data
+# Visualizing categorical data<br> 🐱
 ### S. Mason Garrison
 
 ---
@@ -47,8 +47,8 @@ class: middle
 
 ---
 
-### Rembember this Data?
-.small[
+### Remember this Data?
+
 
 ```r
 library(tidyverse)
@@ -74,8 +74,9 @@ starwars
 ## #   vehicles &lt;list&gt;, starships &lt;list&gt;, hair_color2 &lt;fct&gt;
 ```
 
-]
 
+---
+### Perhaps now?
 
 ```r
 glimpse(starwars)
@@ -130,7 +131,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
 
-&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-5-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -143,7 +144,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
   geom_bar()
 ```
 
-&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-6-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -151,28 +152,28 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Segmented bar plots
 
-  
-  ```r
-  ggplot(data = starwars, mapping = aes(x = gender, 
-  *   fill = hair_color2))+
+
+```r
+ggplot(data = starwars, mapping = aes(x = gender, 
+*   fill = hair_color2))+
   geom_bar()
-  ```
-  
-  &lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+```
+
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-7-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Segmented bar plots
 
-  
-  ```r
-  ggplot(data = starwars, mapping = aes(x = gender, 
-  *   fill = hair_color2))+
-  *geom_bar()+
+
+```r
+ggplot(data = starwars, mapping = aes(x = gender, 
+*   fill = hair_color2))+
+* geom_bar()+
   coord_flip()
-  ```
-  
-  &lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+```
+
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-8-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -186,7 +187,7 @@ ggplot(data = starwars,
   coord_flip()
 ```
 
-&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-9-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ```r
 labs(y = "proportion")
@@ -200,7 +201,9 @@ labs(y = "proportion")
 ## [1] "labels"
 ```
 
+
 ---
+
 .question[
     Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
   ]
@@ -216,11 +219,10 @@ labs(y = "proportion")
 
 ## Customizing bar plots
 
-.panelset[
-.panel[.panel-name[Plot]
+.pull-left[
 &lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 
 ```r
 *ggplot(starwars, aes(y = gender,
@@ -228,14 +230,14 @@ labs(y = "proportion")
   geom_bar(position = "fill") +
 * labs(
 *   x = "Proportion",
-*   y = "Homeownership",
+*   y = "Gender",
 *   fill = "Hair Color",
 *   title = "Hair Colors of Starwars",
-*   subtitle = "and gender"
+*   subtitle = "by gender"
 * )
 ```
 ]
-]
+
 
 
 ---

@@ -5,6 +5,8 @@
 .remark-slide-content {
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 /* Turn off slide numbers */
@@ -67,11 +69,19 @@ h2 {
   font-weight: bold;
   color: #34c9f4;
   font-size: 12px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 h1, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   color: #34c9f4;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 a, a > code {
   font-family: 'Fira Mono', monospace;
@@ -122,12 +132,12 @@ a, a > code {
 
 .remark-code { 
   font-family: 'Fira Mono', monospace;
-  font-size: 80%;
+  font-size: 100%;
 }
 
 .remark-inline-code { 
   font-family: 'Fira Mono', monospace;
-  font-size: 80%;
+  font-size: 100%;
   color: #869496;
 }
 

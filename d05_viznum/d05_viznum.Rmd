@@ -1,5 +1,5 @@
 ---
-title: "Visualizing numerical data"
+title: "Visualizing numerical data<br> `r emo::ji('numbers')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -33,7 +33,8 @@ class: middle
 
 - Univariate data analysis - distribution of single variable
 - Bivariate data analysis - relationship between two variables
-- Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
+- Multivariate data analysis - relationship between many variables at once, 
+  - usually focusing on the relationship between two while conditioning for others
 
 ---
 
@@ -54,11 +55,12 @@ class: middle
 
 .pull-left-wide[
 
-- Thousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals
-
-- Not all loans are created equal -- ease of getting a loan depends on (apparent) ability to pay back the loan
-
-- Data includes loans *made*, these are not loan applications
+- Thousands of loans made through the Lending Club,
+  - a platform that allows individuals to lend to each other
+- Not all loans are created equal 
+  - ease of getting a loan depends on (apparent) ability to repay the loan
+- Data includes loans *made* 
+  - (these data are not loan applications)
 ]
 .pull-right-narrow[
 ```{r echo=FALSE, out.width = "100%"}
@@ -70,7 +72,7 @@ knitr::include_graphics("img/lending-club.png")
 
 ## Take a peek at data
 
-```{r output.lines=18}
+```{r output.lines=15}
 library(openintro)
 glimpse(loans_full_schema)
 ```
@@ -126,6 +128,12 @@ variable        | type
 
 class: middle
 
+# Wrapping Up...
+
+---
+
+class: middle
+
 # Visualizing numerical data
 
 ---
@@ -149,46 +157,49 @@ class: middle
 
 ## Histogram
 
-```{r message = TRUE, out.width = "50%"}
+```{r message = TRUE, out.width = "30%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram()
 ```
 
 ---
 
-## Histograms and binwidth
+## Histograms and binwidth 
 
-.panelset[
-.panel[.panel-name[binwidth = 1000]
-```{r out.width = "50%"}
++ binwidth = 1000
+
+```{r out.width = "30%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 1000)
 ```
-]
-.panel[.panel-name[binwidth = 5000]
-```{r out.width = "50%"}
+
+---
+
+## binwidth = 5000
+```{r out.width = "30%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000)
 ```
-]
-.panel[.panel-name[binwidth = 20000]
+
+---
+
+## binwidth = 20000
+
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 20000)
 ```
-]
-]
 
 ---
 
 ## Customizing histograms
 
-.panelset[
-.panel[.panel-name[Plot]
-```{r ref.label = "hist-custom", echo = FALSE, warning = FALSE}
+.pull-left[
+```{r ref.label = "hist-custom",out.width = "100%", echo = FALSE, warning = FALSE}
 ```
+
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r hist-custom, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000) +
@@ -201,16 +212,16 @@ ggplot(loans, aes(x = loan_amount)) +
 ]
 ]
 
+
 ---
 
 ## Fill with a categorical variable
 
-.panelset[
-.panel[.panel-name[Plot]
-```{r ref.label = "hist-fill", echo = FALSE, warning = FALSE}
+.pull-left[
+```{r ref.label = "hist-fill",out.width = "100%", echo = FALSE, warning = FALSE}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r hist-fill, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = loan_amount, 
                   fill = homeownership)) + #<<
@@ -229,12 +240,11 @@ ggplot(loans, aes(x = loan_amount,
 
 ## Facet with a categorical variable
 
-.panelset[
-.panel[.panel-name[Plot]
-```{r ref.label = "hist-facet", echo = FALSE, warning = FALSE}
+.pull-left[
+```{r ref.label = "hist-facet", out.width = "100%",echo = FALSE, warning = FALSE}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r hist-facet, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = loan_amount, fill = homeownership)) + 
   geom_histogram(binwidth = 5000) +
@@ -258,7 +268,7 @@ class: middle
 
 ## Density plot
 
-```{r}
+```{r,out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_density()
 ```
@@ -267,37 +277,37 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ## Density plots and adjusting bandwidth
 
-.panelset[
-.panel[.panel-name[adjust = 0.5]
+.pull-left[
++ adjust = 0.5
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 0.5)
 ```
 ]
-.panel[.panel-name[adjust = 1]
+.pull-right[
++ adjust = 1
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 1) # default bandwidth
 ```
 ]
-.panel[.panel-name[adjust = 2]
+---
+
+# adjust = 2
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 2)
 ```
-]
-]
 
 ---
 
 ## Customizing density plots
 
-.panelset[
-.panel[.panel-name[Plot]
-```{r ref.label = "density-custom", echo = FALSE, warning = FALSE}
+.pull-left[
+```{r ref.label = "density-custom", echo = FALSE, warning = FALSE,out.width = "100%"}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r density-custom, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 2) +
@@ -314,12 +324,11 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ## Adding a categorical variable
 
-.panelset[
-.panel[.panel-name[Plot]
-```{r ref.label = "density-cat", echo = FALSE, warning = FALSE}
+.pull-left[
+```{r ref.label = "density-cat", echo = FALSE, warning = FALSE,out.width = "100%"}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r density-cat, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = loan_amount, 
                   fill = homeownership)) + #<<
@@ -363,12 +372,11 @@ ggplot(loans, aes(x = annual_income)) +
 
 ## Customizing box plots
 
-.panelset[
-.panel[.panel-name[Plot]
-```{r ref.label = "box-custom", echo = FALSE, warning = FALSE}
+.pull-left[
+```{r ref.label = "box-custom", echo = FALSE, warning = FALSE,out.width = "100%"}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r box-custom, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = interest_rate)) +
   geom_boxplot() +
@@ -389,12 +397,11 @@ ggplot(loans, aes(x = interest_rate)) +
 
 ## Adding a categorical variable
 
-.panelset[
-.panel[.panel-name[Plot]
+.pull-left[
 ```{r ref.label = "box-cat", echo = FALSE, warning = FALSE}
 ```
 ]
-.panel[.panel-name[Code]
+.pull-right[.small[
 ```{r box-cat, fig.show = "hide", warning = FALSE}
 ggplot(loans, aes(x = interest_rate,
                   y = grade)) + #<<
@@ -442,3 +449,11 @@ ggplot(loans %>% filter(debt_to_income < 100),
        aes(x = debt_to_income, y = interest_rate)) +
   geom_hex()
 ```
+
+---
+
+
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
