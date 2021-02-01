@@ -3,10 +3,8 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono|Open+Sans);
 
 .remark-slide-content {
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /* Turn off slide numbers */
@@ -69,19 +67,11 @@ h2 {
   font-weight: bold;
   color: #34c9f4;
   font-size: 12px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-right: 5px;
-  margin-left: 5px;
 }
 h1, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   color: #34c9f4;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-right: 5px;
-  margin-left: 5px;
 }
 a, a > code {
   font-family: 'Fira Mono', monospace;
