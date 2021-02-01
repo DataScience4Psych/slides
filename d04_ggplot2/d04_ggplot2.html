@@ -4,6 +4,7 @@
     <title>Visualizing data with ggplot2  👩‍🎨</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -501,6 +502,12 @@ ggplot(penguins,
 
 class: middle
 
+# Wrapping Up...
+
+---
+
+class: middle
+
 # Aesthetics
 
 ---
@@ -658,7 +665,9 @@ ggplot(penguins,
 - **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
   - goes into `aes()`
 - **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
-  - goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
+  - goes into `geom_*()` 
+     - (in the previous example, we used `geom_point()` , 
+         - but we'll learn about other geoms soon!)
   
 ---
 
@@ -675,11 +684,12 @@ class: middle
 
 ---
 
-.panelset[
-.panel[.panel-name[Plot]
+### Plot
 &lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-]
-.panel[.panel-name[Code]
+
+---
+
+### Code
 
 
 ```r
@@ -691,16 +701,15 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```
 ## Warning: Removed 2 rows containing missing values (geom_point).
 ```
-]
-]
 
 ---
 
 ## Various ways to facet
 
-.question[
+
 In the next few slides describe what each plot displays. Think about how the code relates to the output.
 
+.question[
 **Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots.
 But you should always label your plots!
 ]
@@ -812,6 +821,12 @@ ggplot(
 .pull-right-wide[
 &lt;img src="d04_ggplot2_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
+
+---
+
+class: middle
+
+# Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

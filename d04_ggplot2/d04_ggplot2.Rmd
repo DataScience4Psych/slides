@@ -470,6 +470,12 @@ ggplot(penguins,
 
 class: middle
 
+# Wrapping Up...
+
+---
+
+class: middle
+
 # Aesthetics
 
 ---
@@ -621,7 +627,9 @@ ggplot(penguins,
 - **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
   - goes into `aes()`
 - **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
-  - goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
+  - goes into `geom_*()` 
+     - (in the previous example, we used `geom_point()` , 
+         - but we'll learn about other geoms soon!)
   
 ---
 
@@ -638,28 +646,28 @@ class: middle
 
 ---
 
-.panelset[
-.panel[.panel-name[Plot]
+### Plot
 ```{r ref.label = "facet", echo = FALSE, warning = FALSE, out.width = "70%"}
 ```
-]
-.panel[.panel-name[Code]
+
+---
+
+### Code
 
 ```{r facet, fig.show = "hide"}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
   facet_grid(species ~ island) #<<
 ```
-]
-]
 
 ---
 
 ## Various ways to facet
 
-.question[
+
 In the next few slides describe what each plot displays. Think about how the code relates to the output.
 
+.question[
 **Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots.
 But you should always label your plots!
 ]
@@ -756,3 +764,9 @@ ggplot(
 ```{r ref.label = "facet-color-no-legend", echo = FALSE, warning = FALSE, out.width = "100%"}
 ```
 ]
+
+---
+
+class: middle
+
+# Wrapping Up...
