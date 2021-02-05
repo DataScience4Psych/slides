@@ -1,5 +1,5 @@
 ---
-title: "Grammar of data wrangling <br> `r emo::ji('broom')`"
+title: "Grammar of data wrangling <br> `r emo::ji('tool')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -19,6 +19,8 @@ output:
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(emo)
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
 ```
 
 
@@ -74,7 +76,7 @@ Source: [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master
 
 ## First look: Variables
 
-```{r output.lines=18}
+```{r output.lines=15}
 names(hotels)
 ```
 
@@ -82,7 +84,7 @@ names(hotels)
 
 ## Second look: Overview
 
-```{r output.lines=18}
+```{r output.lines=15}
 glimpse(hotels)
 ```
 

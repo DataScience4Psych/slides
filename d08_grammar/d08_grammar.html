@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Grammar of data wrangling   🧹</title>
+    <title>Grammar of data wrangling   🔱</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Grammar of data wrangling <br> 🧹
+# Grammar of data wrangling <br> 🔱
 ### S. Mason Garrison
 
 ---
@@ -71,7 +71,7 @@ layout: true
 
 - Data from two hotels: one resort and one city hotel
 - Observations: Each row represents a hotel booking
-- Goal for original data collection: Development of prediction models to classify a hotel booking's likelihood to be cancelled ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5))
+- Goal for original data collection: Development of prediction models to classify a hotel booking's likelihood to be canceled ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5))
 
 
 ```r
@@ -107,9 +107,6 @@ names(hotels)
 ## [13] "meal"                          
 ## [14] "country"                       
 ## [15] "market_segment"                
-## [16] "distribution_channel"          
-## [17] "is_repeated_guest"             
-## [18] "previous_cancellations"        
 ...
 ```
 
@@ -138,9 +135,6 @@ glimpse(hotels)
 ## $ children                       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, ...
 ## $ babies                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, ...
 ## $ meal                           &lt;chr&gt; "BB", "BB", "BB", "BB...
-## $ country                        &lt;chr&gt; "PRT", "PRT", "GBR", ...
-## $ market_segment                 &lt;chr&gt; "Direct", "Direct", "...
-## $ distribution_channel           &lt;chr&gt; "Direct", "Direct", "...
 ...
 ```
 
@@ -157,19 +151,15 @@ select(hotels, lead_time)
 
 ```
 ## # A tibble: 119,390 x 1
-##    lead_time
-##        &lt;dbl&gt;
-##  1       342
-##  2       737
-##  3         7
-##  4        13
-##  5        14
-##  6        14
-##  7         0
-##  8         9
-##  9        85
-## 10        75
-## # ... with 119,380 more rows
+##   lead_time
+##       &lt;dbl&gt;
+## 1       342
+## 2       737
+## 3         7
+## 4        13
+## 5        14
+## 6        14
+## # ... with 119,384 more rows
 ```
 
 ---
@@ -241,19 +231,15 @@ select(
 
 ```
 ## # A tibble: 119,390 x 1
-##    lead_time
-##        &lt;dbl&gt;
-##  1       342
-##  2       737
-##  3         7
-##  4        13
-##  5        14
-##  6        14
-##  7         0
-##  8         9
-##  9        85
-## 10        75
-## # ... with 119,380 more rows
+##   lead_time
+##       &lt;dbl&gt;
+## 1       342
+## 2       737
+## 3         7
+## 4        13
+## 5        14
+## 6        14
+## # ... with 119,384 more rows
 ```
 ]
 .pull-right[
@@ -276,19 +262,15 @@ select(hotels, lead_time)
 
 ```
 ## # A tibble: 119,390 x 1
-##    lead_time
-##        &lt;dbl&gt;
-##  1       342
-##  2       737
-##  3         7
-##  4        13
-##  5        14
-##  6        14
-##  7         0
-##  8         9
-##  9        85
-## 10        75
-## # ... with 119,380 more rows
+##   lead_time
+##       &lt;dbl&gt;
+## 1       342
+## 2       737
+## 3         7
+## 4        13
+## 5        14
+## 6        14
+## # ... with 119,384 more rows
 ```
 
 ---
@@ -308,19 +290,15 @@ select(hotels, hotel, lead_time)
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       342
-##  2 Resort Hotel       737
-##  3 Resort Hotel         7
-##  4 Resort Hotel        13
-##  5 Resort Hotel        14
-##  6 Resort Hotel        14
-##  7 Resort Hotel         0
-##  8 Resort Hotel         9
-##  9 Resort Hotel        85
-## 10 Resort Hotel        75
-## # ... with 119,380 more rows
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       342
+## 2 Resort Hotel       737
+## 3 Resort Hotel         7
+## 4 Resort Hotel        13
+## 5 Resort Hotel        14
+## 6 Resort Hotel        14
+## # ... with 119,384 more rows
 ```
 ]
 --
@@ -344,19 +322,15 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       342
-##  2 Resort Hotel       737
-##  3 Resort Hotel         7
-##  4 Resort Hotel        13
-##  5 Resort Hotel        14
-##  6 Resort Hotel        14
-##  7 Resort Hotel         0
-##  8 Resort Hotel         9
-##  9 Resort Hotel        85
-## 10 Resort Hotel        75
-## # ... with 119,380 more rows
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       342
+## 2 Resort Hotel       737
+## 3 Resort Hotel         7
+## 4 Resort Hotel        13
+## 5 Resort Hotel        14
+## 6 Resort Hotel        14
+## # ... with 119,384 more rows
 ```
 ]
 
@@ -372,21 +346,22 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       737
-##  2 Resort Hotel       709
-##  3 City Hotel         629
-##  4 City Hotel         629
-##  5 City Hotel         629
-##  6 City Hotel         629
-##  7 City Hotel         629
-##  8 City Hotel         629
-##  9 City Hotel         629
-## 10 City Hotel         629
-## # ... with 119,380 more rows
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       737
+## 2 Resort Hotel       709
+## 3 City Hotel         629
+## 4 City Hotel         629
+## 5 City Hotel         629
+## 6 City Hotel         629
+## # ... with 119,384 more rows
 ```
 ]
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
 
@@ -416,19 +391,15 @@ In programming, a pipe is a technique for passing information from one process t
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       737
-##  2 Resort Hotel       709
-##  3 City Hotel         629
-##  4 City Hotel         629
-##  5 City Hotel         629
-##  6 City Hotel         629
-##  7 City Hotel         629
-##  8 City Hotel         629
-##  9 City Hotel         629
-## 10 City Hotel         629
-## # ... with 119,380 more rows
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       737
+## 2 Resort Hotel       709
+## 3 City Hotel         629
+## 4 City Hotel         629
+## 5 City Hotel         629
+## 6 City Hotel         629
+## # ... with 119,384 more rows
 ```
 ]
 ]
@@ -454,19 +425,15 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       737
-##  2 Resort Hotel       709
-##  3 City Hotel         629
-##  4 City Hotel         629
-##  5 City Hotel         629
-##  6 City Hotel         629
-##  7 City Hotel         629
-##  8 City Hotel         629
-##  9 City Hotel         629
-## 10 City Hotel         629
-## # ... with 119,380 more rows
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       737
+## 2 Resort Hotel       709
+## 3 City Hotel         629
+## 4 City Hotel         629
+## 5 City Hotel         629
+## 6 City Hotel         629
+## # ... with 119,384 more rows
 ```
 ]
 ]
@@ -493,19 +460,15 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       737
-##  2 Resort Hotel       709
-##  3 City Hotel         629
-##  4 City Hotel         629
-##  5 City Hotel         629
-##  6 City Hotel         629
-##  7 City Hotel         629
-##  8 City Hotel         629
-##  9 City Hotel         629
-## 10 City Hotel         629
-## # ... with 119,380 more rows
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       737
+## 2 Resort Hotel       709
+## 3 City Hotel         629
+## 4 City Hotel         629
+## 5 City Hotel         629
+## 6 City Hotel         629
+## # ... with 119,384 more rows
 ```
 ]
 ]
@@ -557,7 +520,31 @@ find("keys") %&gt;%
 ```
 
 ---
+## What about other arguments?
 
+Use the dot to
+
+- send results to a function argument other than first one or 
+- use the previous result for multiple arguments
+
+
+```r
+hotels %&gt;%
+  filter(hotel == "Resort Hotel") %&gt;%
+* lm(adr ~ lead_time, data = .)
+```
+
+```
+## 
+## Call:
+## lm(formula = adr ~ lead_time, data = .)
+## 
+## Coefficients:
+## (Intercept)    lead_time  
+##    93.16876      0.01925
+```
+
+---
 ## A note on piping and layering
 
 - `%&gt;%` used mainly in **dplyr** pipelines, *we pipe the output of the previous line of code as the first input of the next line of code*
@@ -593,11 +580,11 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 2
-##    hotel        lead_time
-##    &lt;chr&gt;            &lt;dbl&gt;
-##  1 Resort Hotel       342
-##  2 Resort Hotel       737
-##  3 Resort Hotel         7
+##   hotel        lead_time
+##   &lt;chr&gt;            &lt;dbl&gt;
+## 1 Resort Hotel       342
+## 2 Resort Hotel       737
+## 3 Resort Hotel         7
 ...
 ```
 ]
@@ -628,7 +615,7 @@ ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
   geom_bar()
 ```
 
-&lt;img src="d08_grammar_files/figure-html/unnamed-chunk-23-1.png" width="25%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d08_grammar_files/figure-html/unnamed-chunk-24-1.png" width="25%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -654,6 +641,18 @@ ggplot(hotels,aes(x=hotel,y=deposit_type))+geom_bar()
 ggplot(hotels, aes(x = hotel, y = deposit_type)) + 
   geom_bar()
 ```
+
+
+---
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
