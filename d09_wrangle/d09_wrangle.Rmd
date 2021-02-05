@@ -1,0 +1,531 @@
+---
+title: "Hands on Data Wrangling <br> `r emo::ji('wrench')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+library(dsbox)
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+```
+
+class: middle
+
+# Working with a single data frame
+
+---
+
+class: middle
+
+.hand[You...]
+
+.huge-blue[have] .hand[a single data frame]
+
+.huge-pink[want] .hand[to slice it, and dice it, and juice it, and process it]
+
+---
+
+## `select` to keep variables
+
+```{r}
+hotels %>%
+  select(hotel, lead_time) #<<
+```
+
+---
+
+## `select` to exclude variables
+
+.small[
+```{r}
+hotels %>%
+  select(-agent) #<<
+```
+]
+
+---
+
+## `select` a range of variables
+
+```{r}
+hotels %>%
+  select(hotel:arrival_date_month) #<<
+```
+
+---
+
+## `select` variables with certain characteristics
+
+```{r}
+hotels %>%
+  select(starts_with("arrival")) #<<
+```
+
+---
+
+## `select` variables with certain characteristics
+
+```{r}
+hotels %>%
+  select(ends_with("type")) #<<
+```
+
+---
+
+## Select helpers
+
+- `starts_with()`: Starts with a prefix
+- `ends_with()`: Ends with a suffix
+- `contains()`: Contains a literal string
+- `num_range()`: Matches a numerical range like x01, x02, x03
+- `one_of()`: Matches variable names in a character vector
+- `everything()`: Matches all variables
+- `last_col()`: Select last variable, possibly with an offset
+- `matches()`: Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text)
+
+.footnote[
+See help for any of these functions for more info, e.g. `?everything`.
+]
+
+---
+
+## `arrange` in ascending / descending order
+
+.pull-left[
+```{r}
+hotels %>%
+  select(adults, children, babies) %>%
+  arrange(babies) #<<
+```
+]
+.pull-right[
+```{r}
+hotels %>%
+  select(adults, children, babies) %>%
+  arrange(desc(babies)) #<<
+```
+]
+
+---
+
+## `slice` for certain row numbers
+
+.midi[
+```{r}
+# first five
+hotels %>%
+  slice(1:5) #<<
+```
+]
+
+---
+
+.tip[
+In R, you can use the `#` (hashtag or pound sign, depending on your age 
+`r emo::ji("stuck_out_tongue_winking_eye")`) for adding comments to your code. 
+Any text following `#` will be printed as is, and won't be run as R code.
+This is useful for leaving comments in your code and for temporarily disabling 
+certain lines of code while debugging.
+]
+
+.small[
+```{r}
+hotels %>%
+  # slice the first five rows  # this line is a comment
+  #select(hotel) %>%           # this one doesn't run
+  slice(1:5)                   # this line runs
+```
+]
+
+---
+
+## `slice` for certain row numbers
+
+.midi[
+```{r}
+# last five
+last_row <- nrow(hotels)         # nrow() gives the number of rows in a data frame
+hotels %>%
+  slice((last_row - 4):last_row) #<<
+```
+]
+
+---
+
+## `filter` to select a subset of rows
+
+.midi[
+```{r}
+# bookings in City Hotels
+hotels %>%
+  filter(hotel == "City Hotel") #<<
+```
+]
+
+---
+
+## `filter` for many conditions at once
+
+```{r}
+hotels %>%
+  filter( 
+    adults == 0,     #<<
+    children >= 1    #<<
+    ) %>% 
+  select(adults, babies, children)
+```
+
+---
+
+## `filter` for more complex conditions
+
+```{r}
+# bookings with no adults and some children or babies in the room
+hotels %>%
+  filter( 
+    adults == 0,     
+    children >= 1 | babies >= 1     # | means or  #<<
+    ) %>%
+  select(adults, babies, children)
+```
+
+---
+
+## Logical operators in R
+
+<br>
+
+operator    | definition                   || operator     | definition
+------------|------------------------------||--------------|----------------
+`<`         | less than                    ||`x`&nbsp;&#124;&nbsp;`y`     | `x` OR `y` 
+`<=`        |	less than or equal to        ||`is.na(x)`    | test if `x` is `NA`
+`>`         | greater than                 ||`!is.na(x)`   | test if `x` is not `NA`
+`>=`        |	greater than or equal to     ||`x %in% y`    | test if `x` is in `y`
+`==`        |	exactly equal to             ||`!(x %in% y)` | test if `x` is not in `y`
+`!=`        |	not equal to                 ||`!x`          | not `x`
+`x & y`     | `x` AND `y`                  ||              |
+
+---
+
+.your-turn[
+
+Time to actually play around with the Hotels dataset!
+
+- Go to class git repo ([github.com/DataScience4Psych](https://github.com/DataScience4Psych)) and start `AE 04 - Hotels + Data wrangling`.
+- Open the R Markdown document and complete Exercises 1 - 4.
+
+]
+
+---
+
+class: middle
+
+# Pause ...
+
+---
+
+```{r include=FALSE}
+options(dplyr.print_max = 20)
+```
+
+
+class: middle
+
+# Moving Along...
+
+---
+## `distinct` to filter for unique rows
+
+... and `arrange` to order alphabetically
+
+.small[
+.pull-left[
+```{r}
+hotels %>% 
+  distinct(market_segment) %>% #<<
+  arrange(market_segment)
+```
+]
+.pull-right[
+```{r}
+hotels %>% 
+  distinct(hotel, market_segment) %>% #<<
+  arrange(hotel, market_segment)
+```
+]
+]
+
+---
+
+## `count` to create frequency tables
+
+.pull-left[
+```{r}
+# alphabetical order by default
+hotels %>%
+  count(market_segment) #<<
+```
+]
+--
+.pull-right[
+```{r}
+# descending frequency order
+hotels %>%
+  count(market_segment, sort = TRUE) #<<
+```
+]
+
+---
+
+## `count` and `arrange`
+
+.pull-left[
+```{r}
+# ascending frequency order
+hotels %>%
+  count(market_segment) %>%
+  arrange(n) #<<
+```
+]
+.pull-right[
+```{r}
+# descending frequency order
+# just like adding sort = TRUE
+hotels %>%
+  count(market_segment) %>%
+  arrange(desc(n)) #<<
+```
+]
+
+---
+
+## `count` for multiple variables
+
+```{r}
+hotels %>%
+  count(hotel, market_segment) #<<
+```
+
+---
+
+## order matters when you `count`
+
+.midi[
+.pull-left[
+```{r}
+# hotel type first
+hotels %>%
+  count(hotel, market_segment) #<<
+```
+]
+.pull-right[
+```{r}
+# market segment first
+hotels %>%
+  count(market_segment, hotel) #<<
+```
+]
+]
+
+---
+
+.your-turn[
+
+Time to actually play around with the Hotels dataset!
+
+- Go to class git repo ([github.com/DataScience4Psych](https://github.com/DataScience4Psych)) and start `AE 04 - Hotels + Data wrangling`.
+- Open the R Markdown document and complete Exercises 5 and 6.
+]
+
+---
+
+class: middle
+
+# Pause until you're ready ...
+
+
+
+---
+
+## `mutate` to add a new variable
+
+```{r}
+hotels %>%
+  mutate(little_ones = children + babies) %>% #<<
+  select(children, babies, little_ones) %>%
+  arrange(desc(little_ones))
+```
+
+---
+
+
+
+## Little ones in resort and city hotels
+
+.midi[
+.pull-left[
+```{r}
+# Resort Hotel
+hotels %>%
+  mutate(little_ones = children + babies) %>%
+  filter(
+    little_ones >= 1,
+    hotel == "Resort Hotel"
+    ) %>%
+  select(hotel, little_ones)
+```
+]
+.pull-right[
+```{r}
+# City Hotel
+hotels %>%
+  mutate(little_ones = children + babies) %>%
+  filter(
+    little_ones > 1,
+    hotel == "City Hotel"
+    )  %>%
+  select(hotel, little_ones)
+```
+]
+]
+
+---
+
+.question[
+What is happening in the following chunk?
+]
+
+.midi[
+```{r}
+hotels %>%
+  mutate(little_ones = children + babies) %>%
+  count(hotel, little_ones) %>%
+  mutate(prop = n / sum(n))
+```
+]
+
+---
+
+# `summarise` for summary stats
+
+```{r}
+# mean average daily rate for all bookings
+hotels %>%
+  summarise(mean_adr = mean(adr)) #<<
+```
+
+--
+
+<br>
+
+.tip[
+`summarise()` changes the data frame entirely, it collapses rows down to a single 
+summary statistic, and removes all columns that are irrelevant to the calculation.
+]
+
+---
+
+.tip[
+`summarise()` also lets you get away with being sloppy and not naming your new 
+column, but that's not recommended!
+]
+
+.midi[
+`r emo::ji("x")`
+
+```{r}
+hotels %>%
+  summarise(mean(adr))
+```
+
+`r emo::ji("white_check_mark")`
+
+```{r}
+hotels %>%
+  summarise(mean_adr = mean(adr))
+```
+]
+
+---
+
+# `group_by` for grouped operations
+
+```{r}
+# mean average daily rate for all booking at city and resort hotels
+hotels %>%
+  group_by(hotel) %>% #<<
+  summarise(mean_adr = mean(adr))
+```
+
+---
+
+## Calculating frequencies
+
+The following two give the same result, so `count` is simply short for `group_by` then determine frequencies 
+
+.pull-left[
+```{r}
+hotels %>%
+  group_by(hotel) %>%
+  summarise(n = n())
+```
+]
+.pull-right[
+```{r}
+hotels %>%
+  count(hotel)
+```
+]
+
+---
+
+# Multiple summary statistics
+
+`summarise` can be used for multiple summary statistics as well
+
+```{r}
+hotels %>%
+  summarise(
+    min_adr = min(adr),
+    mean_adr = mean(adr),
+    median_adr = median(adr),
+    max_adr = max(adr)
+    )
+```
+
+---
+
+.your-turn[
+
+Time to actually play around with the Hotels dataset!
+
+- Go to class git repo ([github.com/DataScience4Psych](https://github.com/DataScience4Psych)) and start `AE 04 - Hotels + Data wrangling`.
+- Open the R Markdown document and complete Exercises 7 and 8.
+]
+
+
+---
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Wrapping Up...

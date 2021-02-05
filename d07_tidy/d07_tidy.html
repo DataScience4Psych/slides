@@ -43,12 +43,14 @@ layout: true
 --
 
 .pull-left[
+
 **Characteristics of tidy data:**
 
 - Each variable forms a column.
 - Each observation forms a row.
 - Each type of observational unit forms a table.
 ]
+
 --
 .pull-right[
 **Characteristics of untidy data:**
@@ -95,34 +97,27 @@ What makes this data not tidy?
 &lt;img src="img/us-general-economic-characteristic-acs-2017.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
-Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03&amp;src=pt)
+Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03)
 ]
 
 ---
 
 ## Displaying vs. summarizing data
 
-.panelset[
-
-.panel[.panel-name[Output]
 
 .pull-left[
 
 ```
 ## # A tibble: 87 x 3
-##    name               height  mass
-##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;
-##  1 Luke Skywalker        172    77
-##  2 C-3PO                 167    75
-##  3 R2-D2                  96    32
-##  4 Darth Vader           202   136
-##  5 Leia Organa           150    49
-##  6 Owen Lars             178   120
-##  7 Beru Whitesun lars    165    75
-##  8 R5-D4                  97    32
-##  9 Biggs Darklighter     183    84
-## 10 Obi-Wan Kenobi        182    77
-## # ... with 77 more rows
+##   name           height  mass
+##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt;
+## 1 Luke Skywalker    172    77
+## 2 C-3PO             167    75
+## 3 R2-D2              96    32
+## 4 Darth Vader       202   136
+## 5 Leia Organa       150    49
+## 6 Owen Lars         178   120
+## # ... with 81 more rows
 ```
 ]
 .pull-right[
@@ -137,9 +132,8 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 ```
 ]
 
-]
+---
 
-.panel[.panel-name[Code]
 
 .pull-left[
 
@@ -159,9 +153,17 @@ starwars %&gt;%
 ```
 ]
 
-]
+---
+# Sources
 
-]
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+
+---
+
+class: middle
+
+# Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

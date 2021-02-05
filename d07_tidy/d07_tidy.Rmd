@@ -32,12 +32,14 @@ library(emo)
 --
 
 .pull-left[
+
 **Characteristics of tidy data:**
 
 - Each variable forms a column.
 - Each observation forms a row.
 - Each type of observational unit forms a table.
 ]
+
 --
 .pull-right[
 **Characteristics of untidy data:**
@@ -90,7 +92,7 @@ knitr::include_graphics("img/us-general-economic-characteristic-acs-2017.png")
 ```
 
 .footnote[
-Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03&src=pt)
+Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03)
 ]
 
 ---
@@ -103,7 +105,7 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 starwars %>%
   select(name, height, mass)
 ```
-
+]
 .pull-right[
 ```{r echo=FALSE}
 starwars %>%
@@ -131,8 +133,14 @@ starwars %>%
 ```
 ]
 
+---
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 
 
+---
+
+class: middle
+
+# Wrapping Up...
