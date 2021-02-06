@@ -136,14 +136,14 @@ hotels %>%
 ---
 
 .tip[
-In R, you can use the `#` (hashtag or pound sign, depending on your age 
++ In R, you can use the `#` (hashtag or pound sign, depending on your age 
 `r emo::ji("stuck_out_tongue_winking_eye")`) for adding comments to your code. 
 Any text following `#` will be printed as is, and won't be run as R code.
-This is useful for leaving comments in your code and for temporarily disabling 
++ This symbol is useful for leaving comments in your code and for temporarily disabling 
 certain lines of code while debugging.
 ]
 
-.small[
+.xsmall[
 ```{r}
 hotels %>%
   # slice the first five rows  # this line is a comment
@@ -421,12 +421,12 @@ hotels %>%
 
 ---
 
-# `summarise` for summary stats
+# `summarize` for summary stats
 
 ```{r}
 # mean average daily rate for all bookings
 hotels %>%
-  summarise(mean_adr = mean(adr)) #<<
+  summarize(mean_adr = mean(adr)) #<<
 ```
 
 --
@@ -434,14 +434,14 @@ hotels %>%
 <br>
 
 .tip[
-`summarise()` changes the data frame entirely, it collapses rows down to a single 
+`summarize()` changes the data frame entirely, it collapses rows down to a single 
 summary statistic, and removes all columns that are irrelevant to the calculation.
 ]
 
 ---
 
 .tip[
-`summarise()` also lets you get away with being sloppy and not naming your new 
+`summarize()` also lets you get away with being sloppy and not naming your new 
 column, but that's not recommended!
 ]
 
@@ -450,14 +450,14 @@ column, but that's not recommended!
 
 ```{r}
 hotels %>%
-  summarise(mean(adr))
+  summarize(mean(adr))
 ```
 
 `r emo::ji("white_check_mark")`
 
 ```{r}
 hotels %>%
-  summarise(mean_adr = mean(adr))
+  summarize(mean_adr = mean(adr))
 ```
 ]
 
@@ -469,7 +469,7 @@ hotels %>%
 # mean average daily rate for all booking at city and resort hotels
 hotels %>%
   group_by(hotel) %>% #<<
-  summarise(mean_adr = mean(adr))
+  summarize(mean_adr = mean(adr))
 ```
 
 ---
@@ -482,7 +482,7 @@ The following two give the same result, so `count` is simply short for `group_by
 ```{r}
 hotels %>%
   group_by(hotel) %>%
-  summarise(n = n())
+  summarize(n = n())
 ```
 ]
 .pull-right[
@@ -496,11 +496,11 @@ hotels %>%
 
 # Multiple summary statistics
 
-`summarise` can be used for multiple summary statistics as well
+`summarize` can be used for multiple summary statistics as well
 
 ```{r}
 hotels %>%
-  summarise(
+  summarize(
     min_adr = min(adr),
     mean_adr = mean(adr),
     median_adr = median(adr),
