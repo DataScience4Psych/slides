@@ -4,7 +4,6 @@
     <title>Tidy data   🔧</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -109,15 +108,19 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 
 ```
 ## # A tibble: 87 x 3
-##   name           height  mass
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt;
-## 1 Luke Skywalker    172    77
-## 2 C-3PO             167    75
-## 3 R2-D2              96    32
-## 4 Darth Vader       202   136
-## 5 Leia Organa       150    49
-## 6 Owen Lars         178   120
-## # ... with 81 more rows
+##    name               height  mass
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;
+##  1 Luke Skywalker        172    77
+##  2 C-3PO                 167    75
+##  3 R2-D2                  96    32
+##  4 Darth Vader           202   136
+##  5 Leia Organa           150    49
+##  6 Owen Lars             178   120
+##  7 Beru Whitesun lars    165    75
+##  8 R5-D4                  97    32
+##  9 Biggs Darklighter     183    84
+## 10 Obi-Wan Kenobi        182    77
+## # ... with 77 more rows
 ```
 ]
 .pull-right[
@@ -125,7 +128,7 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 ```
 ## # A tibble: 3 x 2
 ##   gender    avg_ht
-## * &lt;chr&gt;      &lt;dbl&gt;
+##   &lt;chr&gt;      &lt;dbl&gt;
 ## 1 feminine    165.
 ## 2 masculine   177.
 ## 3 &lt;NA&gt;        181.
@@ -152,11 +155,201 @@ starwars %&gt;%
     )
 ```
 ]
+---
+
+class: middle
+
+# Wrapping Up...
+---
+
+## Data structures in R
+
+Three main ways to store data
+
+- Matrix: Requires all the elements to be of the same type (e.g. numeric or character)
+
+- Data frame: Allows for mixed types of variables
+
+- Tibble: Like a data frame, but works more consistently
+
+## Tibbles
+
+Tibbles are a better version of data frames.
+
+The [documentation](https://tibble.tidyverse.org/) describes them as "data.frames for the lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist)."
+
+Two other advantages:
+
+- They subset more consistently: when you use square brackets to subset a tibble, you always get another tibble. With data frames you sometimes get a vector and sometimes get a data frame.
+
+- They print more elegantly.
+
+Base R functions, including those for data frames, try to guess what you want to do.
+
+This sometimes leads to unexpected outcomes, so tibbles have done away with most of that.
+
+
+## Tibbles don't change names
+
+. . .
+
+
+```r
+library(tidyverse)
+(df = data.frame("a" = 1:5, "b 2" = 5:1))
+```
+
+```
+##   a b.2
+## 1 1   5
+## 2 2   4
+## 3 3   3
+## 4 4   2
+## 5 5   1
+```
+
+```r
+(ti = tibble("a" = 1:5, "b 2" = 5:1))
+```
+
+```
+## # A tibble: 5 x 2
+##       a `b 2`
+##   &lt;int&gt; &lt;int&gt;
+## 1     1     5
+## 2     2     4
+## 3     3     3
+## 4     4     2
+## 5     5     1
+```
+
+## Tibbles complain about bad column names
+
+. . .
+
+```r
+df$c
+```
+
+```
+## NULL
+```
+
+```r
+ti$c
+```
+
+```
+## Warning: Unknown or uninitialised column: `c`.
+```
+
+```
+## NULL
+```
+
+## Tibbles subset consistently
+
+. . .
+
+```r
+df[,1]
+```
+
+```
+## [1] 1 2 3 4 5
+```
+
+```r
+ti[,1]
+```
+
+```
+## # A tibble: 5 x 1
+##       a
+##   &lt;int&gt;
+## 1     1
+## 2     2
+## 3     3
+## 4     4
+## 5     5
+```
+
+## Tibbles don't do partial matching
+
+. . .
+
+```r
+df$b
+```
+
+```
+## [1] 5 4 3 2 1
+```
+
+```r
+ti$b
+```
+
+```
+## Warning: Unknown or uninitialised column: `b`.
+```
+
+```
+## NULL
+```
+
+## Tibbles don't coerce strings to factors
+
+The most annoying thing about data frames:
+
+```r
+## arrrgh so inconsistent!
+df = data.frame(l1 = letters[1:5])
+df$l2 = letters[1:5]
+class(df$l1)
+```
+
+```
+## [1] "character"
+```
+
+```r
+class(df$l2)
+```
+
+```
+## [1] "character"
+```
+
+Tibbles don't have this problem
+
+```r
+## but with tibbles it's all the same
+ti = tibble(l1 = letters[1:5])
+ti$l2 = letters[1:5]
+class(ti$l1)
+```
+
+```
+## [1] "character"
+```
+
+```r
+class(ti$l2)
+```
+
+```
+## [1] "character"
+```
+
+
 
 ---
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
 
 ---
