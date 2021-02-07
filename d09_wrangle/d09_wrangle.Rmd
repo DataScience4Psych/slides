@@ -41,12 +41,15 @@ class: middle
 ---
 
 ## `select` to keep variables
-
+```{r message=FALSE,echo=FALSE}
+hotels <- read_csv("data/hotels.csv")
+```
+.medi[
 ```{r}
 hotels %>%
   select(hotel, lead_time) #<<
 ```
-
+]
 ---
 
 ## `select` to exclude variables
@@ -61,30 +64,30 @@ hotels %>%
 ---
 
 ## `select` a range of variables
-
+.medi[
 ```{r}
 hotels %>%
   select(hotel:arrival_date_month) #<<
 ```
-
+]
 ---
 
 ## `select` variables with certain characteristics
-
+.medi[
 ```{r}
 hotels %>%
   select(starts_with("arrival")) #<<
 ```
-
+]
 ---
 
 ## `select` variables with certain characteristics
-
+.medi[
 ```{r}
 hotels %>%
   select(ends_with("type")) #<<
 ```
-
+]
 ---
 
 ## Select helpers

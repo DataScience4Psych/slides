@@ -56,7 +56,7 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-body { 
+body {
   font-family: 'Source Sans Pro'; sans-serif;
   color: #333333;
 }
@@ -113,11 +113,12 @@ a, a > code {
 }
 .larger { font-size: 250% }
 .large { font-size: 150% }
+.medi { font-size: 90% }
 .midi { font-size: 80% }
 .small { font-size: 70% }
 .xsmall { font-size: 65% }
 .tiny { font-size: 50% }
-
+.medi .remark-code  { font-size: 90% }
 .midi .remark-code { font-size: 80%; }
 .small .remark-code { font-size: 70%; }
 .xsmall .remark-code { font-size: 65%; }
@@ -130,12 +131,12 @@ a, a > code {
   background-color: #34c9f4;
 }
 
-.remark-code { 
+.remark-code {
   font-family: 'Fira Mono', monospace;
   font-size: 100%;
 }
 
-.remark-inline-code { 
+.remark-inline-code {
   font-family: 'Fira Mono', monospace;
   font-size: 100%;
   color: #869496;
@@ -228,9 +229,9 @@ a, a > code {
   margin-bottom: 10px;
 }
 .instructions li::before {
-  content: ">"; 
+  content: ">";
   color: #FFD748;
-  display: inline-block; 
+  display: inline-block;
   margin-left: -1.5em
 }
 
@@ -257,9 +258,9 @@ a, a > code {
   margin-bottom: 10px;
 }
 .your-turn ul li:before {
-  content: "✚"; 
-  color: #FFD748; 
-  display: inline-block; 
+  content: "✚";
+  color: #FFD748;
+  display: inline-block;
   width: 1.5em;
   margin-left: -1.5em
 }
@@ -289,9 +290,9 @@ ul {
   list-style: none;
 }
 ul li:before {
-  content: "✚"; 
-  color: #34c9f4; 
-  display: inline-block; 
+  content: "✚";
+  color: #34c9f4;
+  display: inline-block;
   width: 1.5em;
   margin-left: -1.5em
 }
@@ -363,7 +364,7 @@ div.my-footer a {
 }
 
 
-/* Slide number 
+/* Slide number
 .remark-slide-number {
   color: #333333;
   opacity: 1;
