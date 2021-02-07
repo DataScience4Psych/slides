@@ -220,12 +220,12 @@ ti$c
 ## Tibbles subset consistently
 
 . . .
-.[
+
 ```{r}
 df[,1]
 ti[,1]
 ```
-]
+
 ---
 
 ## Tibbles don't *do* partial matching
@@ -240,10 +240,15 @@ ti$b
 
 ## Tibbles don't coerce strings to factors
 
+Previously...
+```{r}
+df = data.frame(l1 = letters[1:5])
+```
+```{r,include=FALSE}
+df = data.frame(l1 = letters[1:5],stringsAsFactors = TRUE)
+```
 The most annoying thing about data frames:
 ```{r}
-## arrrgh so inconsistent!
-df = data.frame(l1 = letters[1:5])
 df$l2 = letters[1:5]
 class(df$l1)
 class(df$l2)
@@ -251,7 +256,7 @@ class(df$l2)
 
 ---
 
-Tibbles don't have this problem
+# Tibbles don't have this problem
 ```{r}
 ## but with tibbles it's all the same
 ti = tibble(l1 = letters[1:5])
@@ -260,9 +265,8 @@ class(ti$l1)
 class(ti$l2)
 ```
 
-
-
 ---
+
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
@@ -274,3 +278,18 @@ class(ti$l2)
 class: middle
 
 # Wrapping Up...
+
+---
+
+## Ok...So... technically... 
+
+Base R has fixed this issue...
+
+```{r}
+df = data.frame(l1 = letters[1:5])
+df$l2 = letters[1:5]
+class(df$l1)
+class(df$l2)
+```
+
+

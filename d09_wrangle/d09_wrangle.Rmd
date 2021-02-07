@@ -41,12 +41,15 @@ class: middle
 ---
 
 ## `select` to keep variables
-
+```{r message=FALSE,echo=FALSE}
+hotels <- read_csv("data/hotels.csv")
+```
+.medi[
 ```{r}
 hotels %>%
   select(hotel, lead_time) #<<
 ```
-
+]
 ---
 
 ## `select` to exclude variables
@@ -61,30 +64,30 @@ hotels %>%
 ---
 
 ## `select` a range of variables
-
+.medi[
 ```{r}
 hotels %>%
   select(hotel:arrival_date_month) #<<
 ```
-
+]
 ---
 
 ## `select` variables with certain characteristics
-
+.medi[
 ```{r}
 hotels %>%
   select(starts_with("arrival")) #<<
 ```
-
+]
 ---
 
 ## `select` variables with certain characteristics
-
+.medi[
 ```{r}
 hotels %>%
   select(ends_with("type")) #<<
 ```
-
+]
 ---
 
 ## Select helpers
@@ -142,7 +145,7 @@ Any text following `#` will be printed as is, and won't be run as R code.
 + This symbol is useful for leaving comments in your code and for temporarily disabling 
 certain lines of code while debugging.
 ]
-
+--
 .xsmall[
 ```{r}
 hotels %>%
@@ -156,7 +159,7 @@ hotels %>%
 
 ## `slice` for certain row numbers
 
-.midi[
+.small[
 ```{r}
 # last five
 last_row <- nrow(hotels)         # nrow() gives the number of rows in a data frame
@@ -169,7 +172,7 @@ hotels %>%
 
 ## `filter` to select a subset of rows
 
-.midi[
+.small[
 ```{r}
 # bookings in City Hotels
 hotels %>%
@@ -180,7 +183,7 @@ hotels %>%
 ---
 
 ## `filter` for many conditions at once
-
+.medi[
 ```{r}
 hotels %>%
   filter( 
@@ -189,11 +192,11 @@ hotels %>%
     ) %>% 
   select(adults, babies, children)
 ```
-
+]
 ---
 
 ## `filter` for more complex conditions
-
+.midi[
 ```{r}
 # bookings with no adults and some children or babies in the room
 hotels %>%
@@ -203,7 +206,7 @@ hotels %>%
     ) %>%
   select(adults, babies, children)
 ```
-
+]
 ---
 
 ## Logical operators in R
@@ -249,6 +252,7 @@ class: middle
 # Moving Along...
 
 ---
+
 ## `distinct` to filter for unique rows
 
 ... and `arrange` to order alphabetically
@@ -315,12 +319,12 @@ hotels %>%
 ---
 
 ## `count` for multiple variables
-
+.medi[
 ```{r}
 hotels %>%
   count(hotel, market_segment) #<<
 ```
-
+]
 ---
 
 ## order matters when you `count`
@@ -363,14 +367,14 @@ class: middle
 ---
 
 ## `mutate` to add a new variable
-
+.medi[
 ```{r}
 hotels %>%
   mutate(little_ones = children + babies) %>% #<<
   select(children, babies, little_ones) %>%
   arrange(desc(little_ones))
 ```
-
+]
 ---
 
 

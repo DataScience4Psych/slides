@@ -51,6 +51,7 @@ class: middle
 
 ## `select` to keep variables
 
+.medi[
 
 ```r
 hotels %&gt;%
@@ -73,7 +74,7 @@ hotels %&gt;%
 ## 10 Resort Hotel        75
 ## # ... with 119,380 more rows
 ```
-
+]
 ---
 
 ## `select` to exclude variables
@@ -120,7 +121,7 @@ hotels %&gt;%
 ---
 
 ## `select` a range of variables
-
+.medi[
 
 ```r
 hotels %&gt;%
@@ -143,11 +144,11 @@ hotels %&gt;%
 ## 10 Resor~           1        75             2015 July            
 ## # ... with 119,380 more rows
 ```
-
+]
 ---
 
 ## `select` variables with certain characteristics
-
+.medi[
 
 ```r
 hotels %&gt;%
@@ -171,11 +172,11 @@ hotels %&gt;%
 ## # ... with 119,380 more rows, and 1 more variable:
 ## #   arrival_date_day_of_month &lt;dbl&gt;
 ```
-
+]
 ---
 
 ## `select` variables with certain characteristics
-
+.medi[
 
 ```r
 hotels %&gt;%
@@ -198,7 +199,7 @@ hotels %&gt;%
 ## 10 D                 D                 No Deposit   Transient    
 ## # ... with 119,380 more rows
 ```
-
+]
 ---
 
 ## Select helpers
@@ -319,7 +320,7 @@ Any text following `#` will be printed as is, and won't be run as R code.
 + This symbol is useful for leaving comments in your code and for temporarily disabling 
 certain lines of code while debugging.
 ]
-
+--
 .xsmall[
 
 ```r
@@ -360,7 +361,7 @@ hotels %&gt;%
 
 ## `slice` for certain row numbers
 
-.midi[
+.small[
 
 ```r
 # last five
@@ -400,7 +401,7 @@ hotels %&gt;%
 
 ## `filter` to select a subset of rows
 
-.midi[
+.small[
 
 ```r
 # bookings in City Hotels
@@ -444,7 +445,7 @@ hotels %&gt;%
 ---
 
 ## `filter` for many conditions at once
-
+.medi[
 
 ```r
 hotels %&gt;%
@@ -471,11 +472,11 @@ hotels %&gt;%
 ## 10      0      0        2
 ## # ... with 213 more rows
 ```
-
+]
 ---
 
 ## `filter` for more complex conditions
-
+.midi[
 
 ```r
 # bookings with no adults and some children or babies in the room
@@ -503,7 +504,7 @@ hotels %&gt;%
 ## 10      0      0        2
 ## # ... with 213 more rows
 ```
-
+]
 ---
 
 ## Logical operators in R
@@ -547,6 +548,7 @@ class: middle
 # Moving Along...
 
 ---
+
 ## `distinct` to filter for unique rows
 
 ... and `arrange` to order alphabetically
@@ -709,7 +711,7 @@ hotels %&gt;%
 ---
 
 ## `count` for multiple variables
-
+.medi[
 
 ```r
 hotels %&gt;%
@@ -735,7 +737,7 @@ hotels %&gt;%
 ## 13 Resort Hotel Offline TA/TO   7472
 ## 14 Resort Hotel Online TA      17729
 ```
-
+]
 ---
 
 ## order matters when you `count`
@@ -820,7 +822,7 @@ class: middle
 ---
 
 ## `mutate` to add a new variable
-
+.medi[
 
 ```r
 hotels %&gt;%
@@ -845,7 +847,7 @@ hotels %&gt;%
 ## 10        3      0           3
 ## # ... with 119,380 more rows
 ```
-
+]
 ---
 
 
