@@ -149,11 +149,14 @@ Three main ways to store data
 
 - Tibble: Like a data frame, but works more consistently
 
+---
 ## Tibbles
 
 Tibbles are a better version of data frames.
 
 The [documentation](https://tibble.tidyverse.org/) describes them as "data.frames for the lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist)."
+
+--
 
 Two other advantages:
 
@@ -165,6 +168,7 @@ Base R functions, including those for data frames, try to guess what you want to
 
 This sometimes leads to unexpected outcomes, so tibbles have done away with most of that.
 
+---
 
 ## Tibbles don't change names
 
@@ -176,6 +180,8 @@ library(tidyverse)
 (ti = tibble("a" = 1:5, "b 2" = 5:1))
 ```
 
+---
+
 ## Tibbles complain about bad column names
 
 . . .
@@ -183,6 +189,7 @@ library(tidyverse)
 df$c
 ti$c
 ```
+---
 
 ## Tibbles subset consistently
 
@@ -192,6 +199,8 @@ df[,1]
 ti[,1]
 ```
 
+---
+
 ## Tibbles don't do partial matching
 
 . . .
@@ -199,6 +208,8 @@ ti[,1]
 df$b
 ti$b
 ```
+
+---
 
 ## Tibbles don't coerce strings to factors
 
@@ -210,6 +221,8 @@ df$l2 = letters[1:5]
 class(df$l1)
 class(df$l2)
 ```
+
+---
 
 Tibbles don't have this problem
 ```{r}
