@@ -139,76 +139,103 @@ class: middle
 # Wrapping Up...
 ---
 
+class: middle
+
+# Data structures in R
+
+---
 ## Data structures in R
+Three main ways to store data:
 
-Three main ways to store data
-
-- Matrix: Requires all the elements to be of the same type (e.g. numeric or character)
-
-- Data frame: Allows for mixed types of variables
-
-- Tibble: Like a data frame, but works more consistently
+- Matrix: 
+  - Requires all the elements to be of the same type (e.g. numeric or character)
+- Data frame: 
+  - Allows for mixed types of variables
+- Tibble: 
+  - Like a data frame, but works more consistently
 
 ---
 ## Tibbles
 
 Tibbles are a better version of data frames.
 
-The [documentation](https://tibble.tidyverse.org/) describes them as "data.frames for the lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist)."
+- The [documentation](https://tibble.tidyverse.org/) describes them as 
+
+--
+>"data.frames for the lazy and surly: 
+>
+>they do less 
+>
+>(i.e. they don’t change variable names or types,
+>
+>and don’t do partial matching)
+>
+>and complain more
+>s
+>(e.g. when a variable does not exist)."
+
+---
+
+## Two other advantages:
+
+1. They subset more consistently: 
+  - when you use square brackets to subset a tibble, 
+      - you always get another tibble. 
+  - With data frames, you sometimes get a vector and sometimes get a data frame.
+2. They print more elegantly.
 
 --
 
-Two other advantages:
-
-- They subset more consistently: when you use square brackets to subset a tibble, you always get another tibble. With data frames you sometimes get a vector and sometimes get a data frame.
-
-- They print more elegantly.
-
-Base R functions, including those for data frames, try to guess what you want to do.
-
-This sometimes leads to unexpected outcomes, so tibbles have done away with most of that.
+#### Compared to base R
++ Base R functions, (including those for data frames), 
+  + try to guess what you want to do.
++ Sometimes, this "helpful" guessing  leads to unexpected outcomes, 
+  + so tibbles have done away with most of that.
 
 ---
 
 ## Tibbles don't change names
 
 . . .
-
+.midi[
 ```{r}
 library(tidyverse)
 (df = data.frame("a" = 1:5, "b 2" = 5:1))
 (ti = tibble("a" = 1:5, "b 2" = 5:1))
 ```
-
+]
 ---
 
 ## Tibbles complain about bad column names
 
 . . .
+
 ```{r}
 df$c
 ti$c
 ```
+
 ---
 
 ## Tibbles subset consistently
 
 . . .
+.[
 ```{r}
 df[,1]
 ti[,1]
 ```
-
+]
 ---
 
-## Tibbles don't do partial matching
+## Tibbles don't *do* partial matching
 
 . . .
+
 ```{r}
 df$b
 ti$b
 ```
-
 ---
 
 ## Tibbles don't coerce strings to factors
@@ -239,7 +266,6 @@ class(ti$l2)
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
-
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
 
