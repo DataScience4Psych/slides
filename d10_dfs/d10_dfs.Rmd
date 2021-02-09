@@ -346,13 +346,13 @@ class: middle
 --
 
 ```{r include=FALSE}
-enrolment <- read_csv("data/students/enrolment.csv")
+enrollment <- read_csv("data/students/enrollment.csv")
 survey <- read_csv("data/students/survey.csv")
 ```
 
 .pull-left[
 ```{r message = FALSE}
-enrolment
+enrollment
 ```
 ]
 .pull-right[
@@ -367,7 +367,7 @@ survey
 
 + In class
 ```{r}
-enrolment %>% 
+enrollment %>% 
   left_join(survey, by = "id") #<<
 ```
 ]
@@ -378,7 +378,7 @@ enrolment %>%
 
 + Survey missing
 ```{r}
-enrolment %>% 
+enrollment %>% 
   anti_join(survey, by = "id") #<<
 ```
 ---
@@ -388,7 +388,7 @@ enrolment %>%
 + Dropped
 ```{r}
 survey %>% 
-  anti_join(enrolment, by = "id") #<<
+  anti_join(enrollment, by = "id") #<<
 ```
 
 ---
@@ -441,7 +441,7 @@ purchases %>%
 ```{r}
 purchases %>% 
   left_join(prices) %>%
-  summarise(total_revenue = sum(price)) #<<
+  summarize(total_revenue = sum(price)) #<<
 ```
 ]
 
@@ -462,11 +462,15 @@ purchases %>%
 purchases %>% 
   left_join(prices) %>%
   group_by(customer_id) %>% #<<
-  summarise(total_revenue = sum(price))
+  summarize(total_revenue = sum(price))
 ```
 ]
 
+
+
 ---
+
+
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
