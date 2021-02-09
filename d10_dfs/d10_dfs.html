@@ -50,45 +50,19 @@ class: middle
 Information on 10 women in science who changed the world
 
 .small[
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Ada Lovelace &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Marie Curie &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Janaki Ammal &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Chien-Shiung Wu &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Katherine Johnson &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Rosalind Franklin &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Vera Rubin &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Gladys West &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Flossie Wong-Staal &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Jennifer Doudna &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|name               |
+|:------------------|
+|Ada Lovelace       |
+|Marie Curie        |
+|Janaki Ammal       |
+|Chien-Shiung Wu    |
+|Katherine Johnson  |
+|Rosalind Franklin  |
+|Vera Rubin         |
+|Gladys West        |
+|Flossie Wong-Staal |
+|Jennifer Doudna    |
 ]
 
 
@@ -642,7 +616,7 @@ class: middle
 .pull-left[
 
 ```r
-enrolment
+enrollment
 ```
 
 ```
@@ -678,7 +652,7 @@ survey
 + In class
 
 ```r
-enrolment %&gt;% 
+enrollment %&gt;% 
 * left_join(survey, by = "id")
 ```
 
@@ -699,7 +673,7 @@ enrolment %&gt;%
 + Survey missing
 
 ```r
-enrolment %&gt;% 
+enrollment %&gt;% 
 * anti_join(survey, by = "id")
 ```
 
@@ -717,7 +691,7 @@ enrolment %&gt;%
 
 ```r
 survey %&gt;% 
-* anti_join(enrolment, by = "id")
+* anti_join(enrollment, by = "id")
 ```
 
 ```
@@ -812,7 +786,7 @@ purchases %&gt;%
 ```r
 purchases %&gt;% 
   left_join(prices) %&gt;%
-* summarise(total_revenue = sum(price))
+* summarize(total_revenue = sum(price))
 ```
 
 ```
@@ -853,7 +827,7 @@ purchases %&gt;%
 purchases %&gt;% 
   left_join(prices) %&gt;%
 * group_by(customer_id) %&gt;%
-  summarise(total_revenue = sum(price))
+  summarize(total_revenue = sum(price))
 ```
 
 ```
@@ -865,7 +839,11 @@ purchases %&gt;%
 ```
 ]
 
+
+
 ---
+
+
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
