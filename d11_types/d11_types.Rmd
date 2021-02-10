@@ -814,21 +814,26 @@ middle: Transformations
 
 ## Power transformations
 
-The log transformation doesn't always work -- for a start, you can't log zero or a negative number.
++ The log transformation doesn't always work -- 
+	+ for a start, you can't log zero or a negative number.
 
-**Power transformations** allow a wider range of options.
++ **Power transformations** allow a wider range of options.
 
-Define a power transformation with parameter $\tau$ to be $x^\tau$.
++ Define a power transformation with parameter $\tau$ to be $x^\tau$.
 
-Where practical, we'll hugely prefer $\tau = 1$ (no transformation), $\tau = 0$, or possibly $\tau = -1$ (inverse transformation) because they're much easier to interpret.
++ Where practical, we'll hugely prefer $\tau = 1$ (no transformation), $\tau = 0$, or possibly $\tau = -1$ (inverse transformation) because they're much easier to interpret.
 
 ---
 
 ## Box-Cox transformation
 
-You might also see Box-Cox transformations: these are really just power transformations, but re-scaled so that they go continuously to the log transform as $\tau \to 0$ on either side.
++ You might also see Box-Cox transformations: 
+	+ these are really just power transformations, 
+	+ but re-scaled so that they go continuously to the log transform as $\tau \to 0$ on either side.
 
-Let $x$ be the original data value, and let $f_\tau$ be the Box-Cox transformation with parameter $\tau$. It is defined as:
++ Let $x$ be the original data value, 
++ and let $f_\tau$ be the Box-Cox transformation with parameter $\tau$. 
++ It is defined as:
 
 $$
 f_\tau(x) = \begin{cases}
@@ -867,7 +872,7 @@ Load `ggplot2`:
 library(ggplot2)
 ```
 
-We'll also use an R workspace prepared by Cleveland to use in conjunction with the book. Among other things, this contains the data sets used in the book.
+We'll also use an R workspace prepared by Cleveland to use in conjunction with his book. Among other things, this .RData contains the data sets used in the book.
 
 ```{r}
 load("lattice.RData")
