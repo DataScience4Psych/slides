@@ -46,7 +46,7 @@ cat_lovers
 
 ```{r}
 cat_lovers %>%
-  summarise(mean_cats = mean(number_of_cats))
+  summarize(mean_cats = mean(number_of_cats))
 ```
 
 ---
@@ -65,7 +65,7 @@ knitr::include_graphics("img/mean-help.png")
 
 ```{r}
 cat_lovers %>%
-  summarise(mean_cats = mean(number_of_cats, na.rm = TRUE))
+  summarize(mean_cats = mean(number_of_cats, na.rm = TRUE))
 ```
 
 ---
@@ -103,7 +103,7 @@ cat_lovers %>%
     name == "Doug Bass"    ~ 3,
     TRUE                   ~ as.numeric(number_of_cats)
     )) %>%
-  summarise(mean_cats = mean(number_of_cats))
+  summarize(mean_cats = mean(number_of_cats))
 ```
 ]
 
@@ -121,7 +121,7 @@ cat_lovers %>%
       ),
     number_of_cats = as.numeric(number_of_cats)
     ) %>%
-  summarise(mean_cats = mean(number_of_cats))
+  summarize(mean_cats = mean(number_of_cats))
 ```
 
 ---
@@ -157,6 +157,13 @@ class: middle
 <br>
 
 .hand-blue[let's learn about data types in R!]
+
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
 
@@ -614,7 +621,7 @@ hotels <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tid
 hotels %>%
   mutate(arrival_date_month = fct_relevel(arrival_date_month, month.name)) %>%
   group_by(hotel, arrival_date_month) %>%   # group by hotel type and arrival month
-  summarise(mean_adr = mean(adr)) %>%       # calculate mean_adr for each group
+  summarize(mean_adr = mean(adr)) %>%       # calculate mean_adr for each group
   ggplot(aes(
     x = arrival_date_month,
     y = mean_adr,                           # y-axis is the mean_adr calculated above
