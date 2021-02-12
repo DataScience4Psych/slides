@@ -20,6 +20,9 @@ output:
 library(tidyverse)
 library(DT)
 library(scales)
+library(reshape2)
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
 ```
 
 class: middle
@@ -85,12 +88,10 @@ glimpse(cat_lovers)
 ## Let's take another look
 
 .small[
-```{r echo=FALSE}
-cat_lovers %>%
-  datatable()
+```{r tables-mtcars,echo=FALSE}
+knitr::kable(cat_lovers[1:20,])
 ```
 ]
-
 ---
 
 ## You might need to babysit your respondents
@@ -295,7 +296,7 @@ Let's give formal names to what we've seen so far:
 
 .midi[
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 06 - Hotels + Data types` > open `type-coercion.Rmd` and knit.
+- [class git repo](https://github.com/DataScience4Psych) > `AE 05 - Hotels + Data types` > open `type-coercion.Rmd` and knit.
 - What is the type of the given vectors? First, guess. Then, try it out in R. 
 If your guess was correct, great! If not, discuss why they have that type.
 ]
@@ -322,6 +323,12 @@ typeof(c(1, "a"))
 ```
 ]
 ]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
 
@@ -430,6 +437,12 @@ FALSE | FALSE
 ]
 
 - Doesn't make sense for mathematical operations but make sense in the context of missing data
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
 
@@ -561,6 +574,12 @@ df %>%
 
 class: middle
 
+# Wrapping Up...
+
+---
+
+class: middle
+
 # Working with factors
 
 ---
@@ -611,7 +630,7 @@ knitr::include_graphics("img/forcats-part-of-tidyverse.png")
 
 .small[
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 06 - Hotels + Data types` > `hotels-forcats.Rmd` > knit
+- [class git repo](https://github.com/DataScience4Psych) > `AE 05 - Hotels + Data types` > `hotels-forcats.Rmd` > knit
 - Recreate the following. The x-axis first, then, as a stretch goal, the y-axis.
 ]
 ]
@@ -641,6 +660,11 @@ hotels %>%
 
 ---
 
+class: middle
+
+# Wrapping Up...
+
+---
 class: middle
 
 # Working with dates
@@ -798,6 +822,12 @@ hotels %>%
 
 ---
 
+class: middle
+
+# Wrapping Up...
+
+---
+
 middle: Transformations
 
 
@@ -848,8 +878,8 @@ f_\tau(x) = \begin{cases}
 \log x & \tau = 0
 \end{cases}
 $$
+---
 
------
 
 Here's a little picture of the transformations, note how the log transformation floats nicely in between the negative and positive values of $\tau$.
 
@@ -882,7 +912,7 @@ library(ggplot2)
 We'll also use an R workspace prepared by Cleveland to use in conjunction with his book. Among other things, this .RData contains the data sets used in the book.
 
 ```{r}
-load("lattice.RData")
+load("data/lattice.RData")
 ```
 
 
@@ -940,4 +970,13 @@ If we have random variables $X_i$, with $E(X_i) = \mu$ and $\text{Var}(X_i) = s^
 . . .
 
 
+---
+
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
+
+
+---
 

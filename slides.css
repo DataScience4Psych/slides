@@ -406,7 +406,10 @@ div.my-footer a {
     width: 700px;
 }
 
-
+/* Datatable headers */
+div.datatables {
+    color: #fff;
+}
 /* Handwriting */
 
 .hand{
