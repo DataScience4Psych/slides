@@ -18,10 +18,10 @@
 /* colors */
 :root {
   --dark-blue: #002b36;
-  --light-blue: #A7D5E8;
+  --light-blue: #34c9f4;
   --green: #8fada7;
   --gray: #A7A7A7;
-  --pink: #E9AFA3;
+  --pink: #F26BAA;
   --yellow: #e9d968;
   --beige: #fdf6e3;
   --green-faint: #8fada750;
@@ -67,7 +67,7 @@ p {
 h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  color: #34c9f4;
+  color: var(--light-blue);
   font-size: 12px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -77,7 +77,7 @@ h2 {
 h1, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  color: #34c9f4;
+  color: var(--light-blue);
   margin-top: 3px;
   margin-bottom: 3px;
   margin-right: 5px;
@@ -423,7 +423,7 @@ div.datatables {
 }
 .hand-pink{
   font-family: 'Gochi Hand', cursive;
-  color: #F26BAA;
+  color: var(--pink);
   font-size: 125%;
 }
 
@@ -440,5 +440,5 @@ div.datatables {
  font-family: 'Montserrat', sans-serif;
  font-size: 400%;
  font-weight: bold;
- color: #F26BAA;
+ color: var(--pink);
 }
