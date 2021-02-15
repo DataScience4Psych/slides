@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data types, recoding, and transformations   💽</title>
+    <title>Data types and recoding   💽</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data types, recoding, and transformations <br> 💽
+# Data types and recoding <br> 💽
 ### S. Mason Garrison
 
 ---
@@ -52,15 +52,19 @@ cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 
 ```
 ## # A tibble: 60 x 3
-##   name           number_of_cats handedness
-##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     
-## 1 Bernice Warren 0              left      
-## 2 Woodrow Stone  0              left      
-## 3 Willie Bass    1              left      
-## 4 Tyrone Estrada 3              left      
-## 5 Alex Daniels   3              left      
-## 6 Jane Bates     2              left      
-## # ... with 54 more rows
+##    name           number_of_cats handedness
+##    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     
+##  1 Bernice Warren 0              left      
+##  2 Woodrow Stone  0              left      
+##  3 Willie Bass    1              left      
+##  4 Tyrone Estrada 3              left      
+##  5 Alex Daniels   3              left      
+##  6 Jane Bates     2              left      
+##  7 Latoya Simpson 1              left      
+##  8 Darin Woods    1              left      
+##  9 Agnes Cobb     0              left      
+## 10 Tabitha Grant  0              left      
+## # ... with 50 more rows
 ```
 
 ---
@@ -243,8 +247,15 @@ cat_lovers %&gt;%
 
 - If your data does not behave how you expect it to, type coercion upon reading in the data might be the reason.
 - Go in and investigate your data, apply the fix, *save your data*, live happily ever after.
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
+
+
 
 class: middle
 
@@ -254,13 +265,6 @@ class: middle
 &lt;br&gt;
 
 .hand-blue[let's learn about data types in R!]
-
-
----
-
-class: middle
-
-# Wrapping Up...
 
 ---
 
@@ -1120,15 +1124,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 4
-##   arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-## 1             2015 July                           27
-## 2             2015 July                           27
-## 3             2015 July                           27
-## 4             2015 July                           27
-## 5             2015 July                           27
-## 6             2015 July                           27
-## # ... with 119,384 more rows, and 1 more variable:
+##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+##  1             2015 July                           27
+##  2             2015 July                           27
+##  3             2015 July                           27
+##  4             2015 July                           27
+##  5             2015 July                           27
+##  6             2015 July                           27
+##  7             2015 July                           27
+##  8             2015 July                           27
+##  9             2015 July                           27
+## 10             2015 July                           27
+## # ... with 119,380 more rows, and 1 more variable:
 ## #   arrival_date_day_of_month &lt;dbl&gt;
 ```
 
@@ -1150,15 +1158,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 5
-##   arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-## 1             2015 July                           27
-## 2             2015 July                           27
-## 3             2015 July                           27
-## 4             2015 July                           27
-## 5             2015 July                           27
-## 6             2015 July                           27
-## # ... with 119,384 more rows, and 2 more variables:
+##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+##  1             2015 July                           27
+##  2             2015 July                           27
+##  3             2015 July                           27
+##  4             2015 July                           27
+##  5             2015 July                           27
+##  6             2015 July                           27
+##  7             2015 July                           27
+##  8             2015 July                           27
+##  9             2015 July                           27
+## 10             2015 July                           27
+## # ... with 119,380 more rows, and 2 more variables:
 ## #   arrival_date_day_of_month &lt;dbl&gt;, arrival_date &lt;glue&gt;
 ```
 ]
@@ -1177,21 +1189,25 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 793 x 2
-##   arrival_date       n
-## * &lt;glue&gt;         &lt;int&gt;
-## 1 2015 August 1    110
-## 2 2015 August 10   207
-## 3 2015 August 11   117
-## 4 2015 August 12   133
-## 5 2015 August 13   107
-## 6 2015 August 14   329
-## # ... with 787 more rows
+##    arrival_date       n
+##  * &lt;glue&gt;         &lt;int&gt;
+##  1 2015 August 1    110
+##  2 2015 August 10   207
+##  3 2015 August 11   117
+##  4 2015 August 12   133
+##  5 2015 August 13   107
+##  6 2015 August 14   329
+##  7 2015 August 15   190
+##  8 2015 August 16    98
+##  9 2015 August 17   188
+## 10 2015 August 18    94
+## # ... with 783 more rows
 ```
 ]
 
 ---
 
-## Step 3. Visualise number of bookings per date.
+## Step 3. Visualize number of bookings per date.
 
 .midi[
 
@@ -1236,15 +1252,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 5
-##   arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-## 1             2015 July                           27
-## 2             2015 July                           27
-## 3             2015 July                           27
-## 4             2015 July                           27
-## 5             2015 July                           27
-## 6             2015 July                           27
-## # ... with 119,384 more rows, and 2 more variables:
+##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+##  1             2015 July                           27
+##  2             2015 July                           27
+##  3             2015 July                           27
+##  4             2015 July                           27
+##  5             2015 July                           27
+##  6             2015 July                           27
+##  7             2015 July                           27
+##  8             2015 July                           27
+##  9             2015 July                           27
+## 10             2015 July                           27
+## # ... with 119,380 more rows, and 2 more variables:
 ## #   arrival_date_day_of_month &lt;dbl&gt;, arrival_date &lt;date&gt;
 ```
 ]
@@ -1263,21 +1283,25 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 793 x 2
-##   arrival_date     n
-## * &lt;date&gt;       &lt;int&gt;
-## 1 2015-07-01     122
-## 2 2015-07-02      93
-## 3 2015-07-03      56
-## 4 2015-07-04      88
-## 5 2015-07-05      53
-## 6 2015-07-06      75
-## # ... with 787 more rows
+##    arrival_date     n
+##  * &lt;date&gt;       &lt;int&gt;
+##  1 2015-07-01     122
+##  2 2015-07-02      93
+##  3 2015-07-03      56
+##  4 2015-07-04      88
+##  5 2015-07-05      53
+##  6 2015-07-06      75
+##  7 2015-07-07      54
+##  8 2015-07-08      69
+##  9 2015-07-09      80
+## 10 2015-07-10      51
+## # ... with 783 more rows
 ```
 ]
 
 ---
 
-## Step 3a. Visualise number of bookings per date.
+## Step 3a. Visualize number of bookings per date.
 
 .midi[
 
@@ -1294,7 +1318,7 @@ hotels %&gt;%
 
 ---
 
-## Step 3b. Visualise using a smooth curve.
+## Step 3b. Visualize using a smooth curve.
 
 .midi[
 
@@ -1312,163 +1336,7 @@ hotels %&gt;%
 
 ---
 
-class: middle
 
-# Wrapping Up...
-
----
-
-middle: Transformations
-
-
----
-
-## Log transformation
-
-+ In an intro course, you probably learned to use the most common transformation, the log.
-
-+ The main reason we gave was that it often made positive data more normal.
-
-+ But there's another and perhaps more fundamental reason: 
-
-+ It often leads to differences between samples that we can interpret as a *multiplicative shift*.
-
-+ Some statisticians will go as far as to recommend log transforming positive data by default...
-
-&lt;!--, though by the end of Cleveland's chapter 2, we'll see an example where that backfires.
---&gt;
----
-
-## Power transformations
-
-+ The log transformation doesn't always work -- 
-	+ for a start, you can't log zero or a negative number.
-
-+ **Power transformations** allow a wider range of options.
-
-+ Define a power transformation with parameter `\(\tau\)` to be `\(x^\tau\)`.
-
-+ Where practical, we'll hugely prefer `\(\tau = 1\)` (no transformation), `\(\tau = 0\)`, or possibly `\(\tau = -1\)` (inverse transformation) because they're much easier to interpret.
-
----
-
-## Box-Cox transformation
-
-+ You might also see Box-Cox transformations: 
-	+ these are really just power transformations, 
-	+ but re-scaled so that they go continuously to the log transform as `\(\tau \to 0\)` on either side.
-
-+ Let `\(x\)` be the original data value, 
-+ and let `\(f_\tau\)` be the Box-Cox transformation with parameter `\(\tau\)`. 
-+ It is defined as:
-
-$$
-f_\tau(x) = \begin{cases}
-\frac{x^{\tau} - 1}{\tau} &amp; \tau \ne 0\\
-\log x &amp; \tau = 0
-\end{cases}`
-$$
----
-
-
-Here's a little picture of the transformations, note how the log transformation floats nicely in between the negative and positive values of `\(\tau\)`.
-
-
-```r
-x = seq(0, 5, length.out = 100)[-1]
-bc_trans = function(x, tau) {
-    if(tau == 0){
-        return(log(x))
-    }
-    return((x^tau - 1) / tau)
-}
-tau_vec = seq(-.4, 1.4, by = .2)
-transforms = sapply(tau_vec, function(tau) bc_trans(x, tau))
-transforms_melted = melt(transforms)
-transforms_for_plotting = transforms_melted %&gt;% mutate(x = x[Var1], tau = tau_vec[Var2])
-ggplot(transforms_for_plotting) +
-    geom_line(aes(x = x, y = value, color = as.factor(tau))) +
-    xlab("Original Data Value") + ylab("Transformed Value")
-```
-
-&lt;img src="d11_types_files/figure-html/unnamed-chunk-59-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-
-## Let's see how these work on real data
-
-Load `ggplot2`:
-
-
-```r
-library(ggplot2)
-```
-
-We'll also use an R workspace prepared by Cleveland to use in conjunction with his book. Among other things, this .RData contains the data sets used in the book.
-
-
-```r
-load("data/lattice.RData")
-```
-
-
-
-We'll use the stereogram fusion time data in `fusion.time`, which contains the group variable `nv.vv` (where "NV" means no visual information and "VV" means visual information) and the quantitative variable `time` (a positive number.)
-
-
-## Power transformations on fusion time data
-
-Let's try some of the power transformations on the fusion time data --- we would like to see which gives a distribution closest to normal. (Why?)
-
-We'll just look at the VV times for now.
-
-
-```r
-vv = fusion.time %&gt;% subset(nv.vv == "VV")
-tau_vec = seq(-1, 1, by = .25)
-transforms = sapply(tau_vec, function(tau) bc_trans(vv$time, tau))
-transforms_melted = melt(transforms)
-transforms_for_plotting = transforms_melted %&gt;% mutate(tau = tau_vec[Var2])
-
-ggplot(transforms_for_plotting) +
-    stat_qq(aes(sample = value)) +
-    facet_wrap(~ tau, scales = "free", ncol = 5)
-```
-
-&lt;img src="d11_types_files/figure-html/unnamed-chunk-62-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-Here `\(\tau\)`-values of `\(0\)` (the log transformation) and `\(-0.25\)` give the straightest normal QQ plots.
-
-Since it's much, much easier to interpret `\(\log(x)\)` than `\(x^{-0.25}\)`, we strongly prefer the log transformation.
-
-## Theoretical reasons for transformations
-
-In your more theoretical statistics courses, you might come across _variance-stabilizing transformations_.
-
-In real data, we often see that the variance depends on the mean.
-
-. . .
-
-For example, if `\(X\)` is distributed `\(\text{Poisson}(\lambda)\)`, `\(E_\lambda(X) = \lambda\)`, and `\(\text{Var}_\lambda(X) = \lambda\)`.
-
-For Poisson random variables, the square root transformation ($\tau =
-1/2$) is approximately variance stabilizing, that is, `\(X^{1/2}\)` will
-have variance that is about the same no matter what `\(\lambda\)` is.
-
-Conut data often have a Poisson distribution, and so it is often
-useful to use a square root transformation for counts.
-
-&gt; The re-expressions most frequently useful for counts are logs and (square) roots. In fact, it is rather hard to find a set of counts that are better analyzed as raw counts than as root counts.
-
-Tukey, EDA, p. 83-84
-
-. . .
-
-If we have random variables `\(X_i\)`, with `\(E(X_i) = \mu\)` and `\(\text{Var}(X_i) = s^2 \mu^2\)` (the standard deviation is proportional to the mean), then the log transformation ($\tau = 0$) is approximately variance stabilizing.
-
-. . .
-
-
----
 
 # Sources
 
@@ -1477,6 +1345,10 @@ If we have random variables `\(X_i\)`, with `\(E(X_i) = \mu\)` and `\(\text{Var}
 
 
 ---
+
+class: middle
+
+# Wrapping Up...
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
