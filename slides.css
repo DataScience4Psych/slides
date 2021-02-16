@@ -142,7 +142,12 @@ a, a > code {
   color: #869496;
 }
 
-.datatables html-widget{all:unset;}
+.datatables html-widget{
+background-color:unset;
+color: var(--dark-blue);
+font-family: unset;
+font-size: unset;
+}
 
 /* Two-column layout */
 .left-column {
@@ -407,10 +412,11 @@ div.my-footer a {
     width: 700px;
 }
 
-/* Datatable headers */
+/* Datatable headers
 div.datatables {
     color: #fff;
 }
+ */
 /* Handwriting */
 
 .hand{
