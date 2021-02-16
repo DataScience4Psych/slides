@@ -21,6 +21,8 @@ library(tidyverse)
 library(DT)
 library(scales)
 library(reshape2)
+library(htmltools)
+library(htmlwidgets)
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
 ```
@@ -34,11 +36,11 @@ class: middle
 ## Example: Cat lovers
 
 A survey asked respondents their name and number of cats. The instructions said to enter the number of cats as a numerical value.
-
+.medi[
 ```{r message=FALSE}
 cat_lovers <- read_csv("data/cat-lovers.csv")
 ```
-
+]
 ```{r echo=FALSE}
 cat_lovers
 ```
@@ -53,12 +55,12 @@ cat_lovers %>%
 ```
 
 ---
-
+.medi[
 ```{r eval=FALSE}
 ?mean
 ```
-
-```{r echo=FALSE, caption="Help for mean", out.width="80%", fig.align="center"}
+]
+```{r echo=FALSE, caption="Help for mean", out.width="75%", fig.align="center"}
 knitr::include_graphics("img/mean-help.png")
 ```
 
@@ -87,11 +89,12 @@ glimpse(cat_lovers)
 
 ## Let's take another look
 
-.small[
-```{r tables-mtcars,echo=FALSE}
-knitr::kable(cat_lovers[1:20,])
+```{r tables,echo=FALSE}
+#broken
+cat_lovers %>%
+  datatable()
 ```
-]
+
 ---
 
 ## You might need to babysit your respondents
@@ -240,7 +243,7 @@ c(c("hi", "hello"), c("bye", "jello"))
 
 .hand[with intention...]
 
-.pull-left[
+.medi.pull-left[
 ```{r}
 x <- 1:3
 x
@@ -251,7 +254,7 @@ typeof(y)
 ```
 ]
 --
-.pull-right[
+.medi.pull-right[
 ```{r}
 x <- c(TRUE, FALSE)
 x
@@ -294,15 +297,14 @@ Let's give formal names to what we've seen so far:
 
 ---
 
-.midi[
-.your-turn[
+.medi.your-turn[
 - [class git repo](https://github.com/DataScience4Psych) > `AE 05 - Hotels + Data types` > open `type-coercion.Rmd` and knit.
 - What is the type of the given vectors? First, guess. Then, try it out in R. 
 If your guess was correct, great! If not, discuss why they have that type.
 ]
-]
 
-.small[
+
+.midi[
 **Example:** Suppose we want to know the type of `c(1, "a")`. First, I'd look at: 
 
 .pull-left[
@@ -416,24 +418,21 @@ $\rightarrow$ See next slide for answers...
 
 - `NA` is unknown, so it could be `TRUE` or `FALSE`
 
-.pull-left[
-.midi[
+.medi.pull-left[
 - `TRUE` or `TRUE` is `TRUE` and `TRUE` or `FALSE` is also `TRUE`, and since both are `TRUE`
 ```{r}
 TRUE | TRUE
 FALSE | TRUE
 ```
 ]
-]
 
-.pull-right[
-.midi[
+
+.medi.pull-right[
 - `FALSE` or `TRUE` is `TRUE` and `FALSE` or `FALSE` is also `FALSE`, so you you can't tell which should be the right answer
 ```{r}
 FALSE | TRUE
 FALSE | FALSE
 ```
-]
 ]
 
 - Doesn't make sense for mathematical operations but make sense in the context of missing data
@@ -593,23 +592,24 @@ glimpse(cat_lovers)
 ---
 
 ## But coerce when plotting
-
-```{r out.width="70%"}
+.midi[
+```{r out.width="65%"}
 ggplot(cat_lovers, mapping = aes(x = handedness)) +
   geom_bar()
 ```
+]
 
 ---
 
 ## Use forcats to manipulate factors
-
-```{r out.width="70%"}
+.midi[
+```{r out.width="65%"}
 cat_lovers %>%
   mutate(handedness = fct_infreq(handedness)) %>% #<<
   ggplot(mapping = aes(x = handedness)) +
   geom_bar()
 ```
-
+]
 ---
 
 ## Come for the functionality
@@ -618,24 +618,24 @@ cat_lovers %>%
 ... stay for the logo
 ]
 .pull-right[
-```{r echo=FALSE, out.width="70%"}
+```{r echo=FALSE, out.width="75%"}
 knitr::include_graphics("img/forcats-part-of-tidyverse.png")
 ```
 ]
+
 - Factors are useful when you have true categorical data and you want to override the ordering of character vectors to improve display
 - They are also useful in modeling scenarios
 - The **forcats** package provides a suite of useful tools that solve common problems with factors
 
 ---
 
-.small[
-.your-turn[
+.small.your-turn[
 - [class git repo](https://github.com/DataScience4Psych) > `AE 05 - Hotels + Data types` > `hotels-forcats.Rmd` > knit
 - Recreate the following. The x-axis first, then, as a stretch goal, the y-axis.
 ]
-]
 
-```{r echo=FALSE, out.width="100%", fig.asp=0.4}
+
+```{r echo=FALSE, out.width="95%", fig.asp=0.4}
 hotels <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/hotels.csv")
 hotels %>%
   mutate(arrival_date_month = fct_relevel(arrival_date_month, month.name)) %>%
@@ -653,7 +653,7 @@ hotels %>%
   labs(x = "Arrival month",                 # customize labels
        y = "Mean ADR (average daily rate)",
        title = "Comparison of resort and city hotel prices across months",
-       subtitle = "Resort hotel prices soar in the summer while city hotel prices remain\nrelatively constant throughout the year",
+       subtitle = "Resort hotel prices soar in the summer, yet city hotel prices remain\nconstant throughout the year",
        color = "Hotel type") +
   scale_x_discrete(guide = guide_axis(check.overlap = TRUE))
 ```
@@ -674,7 +674,7 @@ class: middle
 ## Make a date
 
 .pull-left[
-```{r echo=FALSE, out.width="70%", fig.align="center"}
+```{r echo=FALSE, out.width="67%", fig.align="center"}
 knitr::include_graphics("img/lubridate-not-part-of-tidyverse.png")
 ```
 ]
@@ -706,7 +706,7 @@ hotels %>%
 
 ## Step 1. Put together dates.
 
-.midi[
+.medi[
 ```{r}
 library(glue)
 
@@ -722,7 +722,7 @@ hotels %>%
 
 ## Step 2. Count number of bookings per date.
 
-.midi[
+.medi[
 ```{r}
 hotels %>%
   mutate(arrival_date = glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")) %>%
@@ -734,13 +734,14 @@ hotels %>%
 
 ## Step 3. Visualize number of bookings per date.
 
-.midi[
-```{r out.width="70%"}
+.small[
+```{r out.width="60%"}
 hotels %>%
-  mutate(arrival_date = glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")) %>%
+  mutate(arrival_date =  glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")) %>%
   count(arrival_date) %>%
   ggplot(aes(x = arrival_date, y = n, group = 1)) +
-  geom_line()
+  geom_line()+
+  theme_bw()
 ```
 ]
 
@@ -759,7 +760,7 @@ hotels %>%
   count(arrival_date) %>%
   slice(1:7) %>%
   ggplot(aes(x = arrival_date, y = n, group = 1)) +
-  geom_line()
+  geom_line()+theme_bw()
 ```
 ]
 
@@ -767,7 +768,7 @@ hotels %>%
 
 ## Step 1. `REVISED` Put together dates `as dates`.
 
-.midi[
+.medi[
 ```{r}
 library(lubridate)
 
@@ -783,7 +784,7 @@ hotels %>%
 
 ## Step 2. Count number of bookings per date.
 
-.midi[
+.medi[
 ```{r}
 hotels %>%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %>% 
@@ -801,7 +802,7 @@ hotels %>%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %>% 
   count(arrival_date) %>%
   ggplot(aes(x = arrival_date, y = n, group = 1)) +
-  geom_line()
+  geom_line()+theme_bw()
 ```
 ]
 
@@ -810,12 +811,13 @@ hotels %>%
 ## Step 3b. Visualize using a smooth curve.
 
 .midi[
-```{r out.width="70%", message = FALSE}
+```{r out.width="65%", message = FALSE}
 hotels %>%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %>% 
   count(arrival_date) %>%
   ggplot(aes(x = arrival_date, y = n, group = 1)) +
-  geom_smooth() #<<
+  geom_smooth() +#<<
+  theme_bw()
 ```
 ]
 
