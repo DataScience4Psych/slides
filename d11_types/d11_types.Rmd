@@ -514,7 +514,7 @@ class(y)
 
 ## More on dates
 
-We can think of factors like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
+We can think of dates like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
 
 ```{r}
 as.integer(y)
@@ -525,7 +525,7 @@ as.integer(y) / 365 # roughly 50 yrs
 
 ## Data frames
 
-We can think of data frames like like vectors of equal length glued together
+We can think of data frames like vectors of equal length glued together
 
 ```{r}
 df <- data.frame(x = 1:2, y = 3:4)

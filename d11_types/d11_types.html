@@ -61,15 +61,19 @@ cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 
 ```
 ## # A tibble: 60 x 3
-##   name           number_of_cats handedness
-##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     
-## 1 Bernice Warren 0              left      
-## 2 Woodrow Stone  0              left      
-## 3 Willie Bass    1              left      
-## 4 Tyrone Estrada 3              left      
-## 5 Alex Daniels   3              left      
-## 6 Jane Bates     2              left      
-## # ... with 54 more rows
+##    name           number_of_cats handedness
+##    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     
+##  1 Bernice Warren 0              left      
+##  2 Woodrow Stone  0              left      
+##  3 Willie Bass    1              left      
+##  4 Tyrone Estrada 3              left      
+##  5 Alex Daniels   3              left      
+##  6 Jane Bates     2              left      
+##  7 Latoya Simpson 1              left      
+##  8 Darin Woods    1              left      
+##  9 Agnes Cobb     0              left      
+## 10 Tabitha Grant  0              left      
+## # ... with 50 more rows
 ```
 
 ---
@@ -874,7 +878,7 @@ class(y)
 
 ## More on dates
 
-We can think of factors like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
+We can think of dates like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
 
 
 ```r
@@ -897,7 +901,7 @@ as.integer(y) / 365 # roughly 50 yrs
 
 ## Data frames
 
-We can think of data frames like like vectors of equal length glued together
+We can think of data frames like vectors of equal length glued together
 
 
 ```r
@@ -1113,15 +1117,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 4
-##   arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-## 1             2015 July                           27
-## 2             2015 July                           27
-## 3             2015 July                           27
-## 4             2015 July                           27
-## 5             2015 July                           27
-## 6             2015 July                           27
-## # ... with 119,384 more rows, and 1 more variable:
+##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+##  1             2015 July                           27
+##  2             2015 July                           27
+##  3             2015 July                           27
+##  4             2015 July                           27
+##  5             2015 July                           27
+##  6             2015 July                           27
+##  7             2015 July                           27
+##  8             2015 July                           27
+##  9             2015 July                           27
+## 10             2015 July                           27
+## # ... with 119,380 more rows, and 1 more variable:
 ## #   arrival_date_day_of_month &lt;dbl&gt;
 ```
 
@@ -1143,15 +1151,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 5
-##   arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-## 1             2015 July                           27
-## 2             2015 July                           27
-## 3             2015 July                           27
-## 4             2015 July                           27
-## 5             2015 July                           27
-## 6             2015 July                           27
-## # ... with 119,384 more rows, and 2 more variables:
+##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+##  1             2015 July                           27
+##  2             2015 July                           27
+##  3             2015 July                           27
+##  4             2015 July                           27
+##  5             2015 July                           27
+##  6             2015 July                           27
+##  7             2015 July                           27
+##  8             2015 July                           27
+##  9             2015 July                           27
+## 10             2015 July                           27
+## # ... with 119,380 more rows, and 2 more variables:
 ## #   arrival_date_day_of_month &lt;dbl&gt;, arrival_date &lt;glue&gt;
 ```
 ]
@@ -1170,15 +1182,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 793 x 2
-##   arrival_date       n
-##   &lt;glue&gt;         &lt;int&gt;
-## 1 2015 August 1    110
-## 2 2015 August 10   207
-## 3 2015 August 11   117
-## 4 2015 August 12   133
-## 5 2015 August 13   107
-## 6 2015 August 14   329
-## # ... with 787 more rows
+##    arrival_date       n
+##    &lt;glue&gt;         &lt;int&gt;
+##  1 2015 August 1    110
+##  2 2015 August 10   207
+##  3 2015 August 11   117
+##  4 2015 August 12   133
+##  5 2015 August 13   107
+##  6 2015 August 14   329
+##  7 2015 August 15   190
+##  8 2015 August 16    98
+##  9 2015 August 17   188
+## 10 2015 August 18    94
+## # ... with 783 more rows
 ```
 ]
 
@@ -1230,15 +1246,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 5
-##   arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-## 1             2015 July                           27
-## 2             2015 July                           27
-## 3             2015 July                           27
-## 4             2015 July                           27
-## 5             2015 July                           27
-## 6             2015 July                           27
-## # ... with 119,384 more rows, and 2 more variables:
+##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
+##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
+##  1             2015 July                           27
+##  2             2015 July                           27
+##  3             2015 July                           27
+##  4             2015 July                           27
+##  5             2015 July                           27
+##  6             2015 July                           27
+##  7             2015 July                           27
+##  8             2015 July                           27
+##  9             2015 July                           27
+## 10             2015 July                           27
+## # ... with 119,380 more rows, and 2 more variables:
 ## #   arrival_date_day_of_month &lt;dbl&gt;, arrival_date &lt;date&gt;
 ```
 ]
@@ -1257,15 +1277,19 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 793 x 2
-##   arrival_date     n
-##   &lt;date&gt;       &lt;int&gt;
-## 1 2015-07-01     122
-## 2 2015-07-02      93
-## 3 2015-07-03      56
-## 4 2015-07-04      88
-## 5 2015-07-05      53
-## 6 2015-07-06      75
-## # ... with 787 more rows
+##    arrival_date     n
+##    &lt;date&gt;       &lt;int&gt;
+##  1 2015-07-01     122
+##  2 2015-07-02      93
+##  3 2015-07-03      56
+##  4 2015-07-04      88
+##  5 2015-07-05      53
+##  6 2015-07-06      75
+##  7 2015-07-07      54
+##  8 2015-07-08      69
+##  9 2015-07-09      80
+## 10 2015-07-10      51
+## # ... with 783 more rows
 ```
 ]
 
