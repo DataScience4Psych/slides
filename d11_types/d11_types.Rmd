@@ -739,7 +739,7 @@ hotels %>%
 ## Step 3. Visualize number of bookings per date.
 
 .small[
-```{r out.width="60%"}
+```{r out.width="55%"}
 hotels %>%
   mutate(arrival_date =  glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")) %>%
   count(arrival_date) %>%
@@ -800,8 +800,8 @@ hotels %>%
 
 ## Step 3a. Visualize number of bookings per date.
 
-.midi[
-```{r out.width="70%"}
+.small[
+```{r out.width="55%"}
 hotels %>%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %>% 
   count(arrival_date) %>%
@@ -814,8 +814,8 @@ hotels %>%
 
 ## Step 3b. Visualize using a smooth curve.
 
-.midi[
-```{r out.width="65%", message = FALSE}
+.small[
+```{r out.width="55%", message = FALSE}
 hotels %>%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %>% 
   count(arrival_date) %>%

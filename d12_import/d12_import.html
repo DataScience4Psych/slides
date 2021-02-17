@@ -72,7 +72,7 @@ nobel &lt;- read_csv(file = "data/nobel.csv")
 
 ---
 
-.tiny[
+.xxsmall[
 
 ```
 ## -- Data Summary ------------------------
@@ -146,15 +146,10 @@ df &lt;- tribble(
   3,  "c"
 )
 
-write_csv(df, path = "data/df.csv")
+write_csv(df, file = "data/df.csv")
 ```
 
-```
-## Warning: The `path` argument of `write_csv()` is deprecated as of readr 1.4.0.
-## Please use the `file` argument instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.
-```
+---
 
 - Check that it got written out
 
@@ -173,7 +168,7 @@ fs::dir_ls("data")
 ---
 
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 07 - Nobels and sales + Data import` &gt; open `nobels-csv.Rmd` and knit.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 06 - Nobels and sales + Data import` &gt; open `nobels-csv.Rmd` and knit.
 - Read in the `nobels.csv` file from the `data-raw/` folder.
 - Split into two (STEM and non-STEM): 
   - Create a new data frame, `nobel_stem`, that filters for the STEM fields 
@@ -190,7 +185,7 @@ respectively, to `data/`.
 
 class: middle
 
-# Wrapping Up...
+# Pausing...
 
 ---
 
@@ -234,7 +229,7 @@ ggplot(edi_airbnb, aes(x = Number of bathrooms, y = Price)) +
 
 ## Option 1 - Define column names
 
-.small[
+
 
 ```r
 edi_airbnb_col_names &lt;- read_csv("data/edi-airbnb.csv",
@@ -252,7 +247,7 @@ names(edi_airbnb_col_names)
 ##  [7] "bed"                  "review_scores_rating"
 ##  [9] "n_reviews"            "url"
 ```
-]
+
 
 ---
 
@@ -273,6 +268,13 @@ names(edi_airbnb_cleaned_names)
 ##  [7] "n_beds"               "review_scores_rating"
 ##  [9] "number_of_reviews"    "listing_url"
 ```
+
+---
+
+class: middle
+
+# Wrapping Up...
+
 
 ---
 
@@ -400,15 +402,10 @@ read_csv("data/df-na.csv",
 
 ---
 
-class: middle
-
-# Wrapping Up...
-
----
 # Pause the video...
 
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 07 - Nobels and sales + Data import` &gt; open `food-excel.Rmd` and knit. Work on **Exercise 1**.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 06 - Nobels and sales + Data import` &gt; open `food-excel.Rmd` and knit. Work on **Exercise 1**.
 - Read in the Excel file called `favourite-food.xlsx` from the `data-raw/` folder.
 - Clean up `NA`s and make sure you're happy with variable types.
 - Convert SES (socio economic status) to a factor variables with levels in the 
@@ -444,7 +441,7 @@ write_rds(x, path)
 ---
 
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 07 - Nobels and sales + Data import` &gt; open `food-excel.Rmd` and knit. Work on **Exercise 2**.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 06 - Nobels and sales + Data import` &gt; open `food-excel.Rmd` and knit. Work on **Exercise 2**.
 - Repeat the first three steps from Exercise 1.
 - Write out the resulting data frame to `favourite-food.rds` in the `data/` folder.
 - Read `favourite-food.rds` back in from  the `data/` folder and observe the 
@@ -462,14 +459,13 @@ class: middle
 
 .pull-left[
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 07 - Nobels and sales + Data import` &gt; open `sales-excel.Rmd` and knit. 
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 06 - Nobels and sales + Data import` &gt; open `sales-excel.Rmd` and knit. 
 - Load the `sales.xlsx` file from the `data-raw/` folder, using appropriate 
 arguments for the `read_excel()` function such that it looks like the following.
-If done, see next slide for stretch goal.
 ]
 ]
+.medi[
 .pull-right[
-.midi[
 
 ```
 ## # A tibble: 9 x 2
@@ -487,13 +483,12 @@ If done, see next slide for stretch goal.
 ```
 ]
 ]
-
 ---
 
 .pull-left[
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 07 - Nobels and sales + Data import` &gt; open `sales-excel.Rmd` and knit. 
-- **Stretch goal:** Manipulate the sales data such that it looks like the following.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 06 - Nobels and sales + Data import` &gt; open `sales-excel.Rmd` and knit. 
+- Manipulate the sales data such that it looks like the following.
 ]
 ]
 .pull-right[
@@ -525,7 +520,7 @@ class: middle
 # Importing many files
 
 ---
-
+.medi[
 
 ```r
 sales_files &lt;- fs::dir_ls("data/sales")
@@ -559,7 +554,7 @@ sales
 ## 10 data/sales/02-sales.csv February  2019     1  1822     3
 ## # ... with 9 more rows
 ```
-
+]
 ---
 
 ## vroom vroom!!
@@ -585,7 +580,8 @@ class: middle
 
 - **googlesheets4:** Google Sheets
 - **haven**: SPSS, Stata, and SAS files
-- **DBI**, along with a database specific backend (e.g. RMySQL, RSQLite, RPostgreSQL etc): allows you to run SQL queries against a database and return a data frame
+- **DBI**, along with a database specific backend (e.g. RMySQL, RSQLite, RPostgreSQL etc): 
+  - allows you to run SQL queries against a database and return a data frame
 - **jsonline**: JSON
 - **xml2**: xml
 - **rvest**: web scraping

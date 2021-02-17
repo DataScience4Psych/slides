@@ -117,11 +117,13 @@ a, a > code {
 .midi { font-size: 80% }
 .small { font-size: 70% }
 .xsmall { font-size: 65% }
+.xxsmall { font-size: 60% }
 .tiny { font-size: 50% }
 .medi .remark-code  { font-size: 90% }
 .midi .remark-code { font-size: 80%; }
 .small .remark-code { font-size: 70%; }
 .xsmall .remark-code { font-size: 65%; }
+.xxsmall .remark-code { font-size: 60%; }
 .tiny .remark-code { font-size: 50%; }
 
 
