@@ -94,7 +94,7 @@ ggplot(d, aes(x = fct_reorder(category, value), y = value, fill = category)) +
 ## Tell a story
 
 ```{r echo = FALSE, out.width = "80%"}
-knitr::include_graphics("img/time-series.story.png")
+knitr::include_graphics("img/time-series-story.png")
 ```
 
 .footnote[
