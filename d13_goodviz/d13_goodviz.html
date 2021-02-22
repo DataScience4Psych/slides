@@ -42,24 +42,33 @@ class: middle
 
 ## Keep it simple
 
-&lt;img src="img/pie-3d.jpg" width="300" style="display: block; margin: auto;" /&gt;
+.pull-left-narrow[
+&lt;img src="img/pie-3d.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right-wide[
+&lt;img src="d13_goodviz_files/figure-html/pie-to-bar-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;img src="d13_goodviz_files/figure-html/pie-to-bar-1.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Use	color	to	draw	attention
 
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-2-1.png" width="500" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-3-1.png" width="600" style="display: block; margin: auto;" /&gt;
+.pull-left[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
 
 ---
 
 ## Tell a story
 
-&lt;img src="img/time-series.story.png" width="800" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/time-series.story.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Credit: Angela Zoss and Eric Monson, Duke DVS
@@ -86,15 +95,18 @@ class: middle
 ## Data
 
 In September 2019, YouGov survey asked 1,639 GB adults the following question:
-
+.pull-left[
 &gt; In hindsight, do you think Britain was right/wrong to vote to leave EU?
 &gt;
 &gt;- Right to leave  
 &gt;- Wrong to leave  
 &gt;- Don't know
+]
+.pull-right[
 
 
-
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
 .footnote[ 
 Source: [YouGov Survey Results](https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/x0msmggx08/YouGov%20-%20Brexit%20and%202019%20election.pdf), retrieved Oct 7, 2019
@@ -112,11 +124,11 @@ class: middle
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(x = opinion)) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-6-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-7-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -126,11 +138,11 @@ ggplot(data = brexit, aes(x = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = fct_infreq(opinion))) +
+ggplot(brexit, aes(x = fct_infreq(opinion))) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-7-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-8-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -138,12 +150,15 @@ ggplot(data = brexit, aes(x = fct_infreq(opinion))) +
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(x = opinion)) +
   geom_bar() +
-  labs(x = "Opinion", y = "Count")
+* labs(
+*   x = "Opinion",
+*   y = "Count"
+* )
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-8-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -151,11 +166,11 @@ ggplot(data = brexit, aes(x = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = region)) +
+ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-9-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-10-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -168,7 +183,7 @@ ggplot(data = brexit, aes(x = region)) +
 ```r
 brexit &lt;- brexit %&gt;%
   mutate(
-    region = fct_relevel(
+*   region = fct_relevel(
       region,
       "london", "rest_of_south", "midlands_wales", "north", "scot"
     )
@@ -176,22 +191,24 @@ brexit &lt;- brexit %&gt;%
 ```
 ]
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-11-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-12-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Clean up labels
 
+`fct_recode`: Change factor levels by hand
+
 
 ```r
 brexit &lt;- brexit %&gt;%
   mutate(
-    region = fct_recode(
+*   region = fct_recode(
       region,
-      London = "london", 
-      `Rest of South` = "rest_of_south", 
-      `Midlands / Wales` = "midlands_wales", 
-      North = "north", 
+      London = "london",
+      `Rest of South` = "rest_of_south",
+      `Midlands / Wales` = "midlands_wales",
+      North = "north",
       Scotland = "scot"
     )
   )
@@ -203,26 +220,7 @@ brexit &lt;- brexit %&gt;%
 
 
 ```r
-ggplot(data = brexit, aes(x = region)) +
-  geom_bar()
-```
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-13-1.png" width="85%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: middle
-
-# Put long categories on 
-# the y-axis
-
----
-
-## Long categories can be hard to read
-
-
-```r
-ggplot(data = brexit, aes(x = region)) +
+ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
 
@@ -230,16 +228,21 @@ ggplot(data = brexit, aes(x = region)) +
 
 ---
 
-## Move them to the y-axis
+class: middle
+
+# Put long categories on the y-axis
+
+---
+
+## Long categories can be hard to read
 
 
 ```r
-ggplot(data = brexit, aes(x = region)) +
-  geom_bar() +
-  coord_flip()
+ggplot(brexit, aes(x = region)) +
+  geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-15-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -247,12 +250,40 @@ ggplot(data = brexit, aes(x = region)) +
 
 
 ```r
-*ggplot(data = brexit, aes(x = fct_rev(region))) +
+ggplot(brexit, aes(x = region)) +
   geom_bar() +
-  coord_flip()
+* coord_flip()
 ```
 
 &lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Move them to the y-axis
+
+
+```r
+*ggplot(brexit, aes(y = region)) +
+  geom_bar()
+```
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## And reverse the order of levels
+`fct_rev`: Reverse order of factor levels
+
+
+
+
+```r
+*ggplot(brexit, aes(y = fct_rev(region))) +
+  geom_bar()
+```
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -260,13 +291,15 @@ ggplot(data = brexit, aes(x = region)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = fct_rev(region))) +
+ggplot(brexit, aes(y = fct_rev(region))) +
   geom_bar() +
-* labs(x = "Region", y = "") +
-  coord_flip()
+* labs(
+*   x = "Count",
+*   y = "Region"
+* )
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -280,12 +313,11 @@ class: middle
 
 
 ```r
-ggplot(data = brexit, aes(x = region, fill = opinion)) +
-  geom_bar() +
-  coord_flip()
+*ggplot(brexit, aes(y = region, fill = opinion)) +
+  geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -293,27 +325,53 @@ ggplot(data = brexit, aes(x = region, fill = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion, fill = region)) +
+ggplot(brexit, aes(y = opinion, fill = region)) +
   geom_bar() +
-  coord_flip() +
-  facet_grid(. ~ region)
+* facet_wrap(~region, nrow = 1)
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Avoid redundancy
+## Avoid redundancy?
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(y = opinion)) +
   geom_bar() +
-  coord_flip() +
-  facet_grid(. ~ region)
+  facet_wrap(~region, nrow = 1)
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-22-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+## Redundancy can help tell a story
+
+
+
+```r
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
+  geom_bar() +
+  facet_wrap(~region, nrow = 1)
+```
+
+&lt;img src="d13_goodviz_files/figure-html/facet-fill-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Be selective with redundancy
+
+
+
+```r
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
+  geom_bar() +
+  facet_wrap(~region, nrow = 1) +
+* guides(fill = FALSE)
+```
+
+&lt;img src="d13_goodviz_files/figure-html/hide-legend-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -321,20 +379,19 @@ ggplot(data = brexit, aes(x = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
-  coord_flip() +
-  facet_grid(. ~ region) +
+  facet_wrap(~region, nrow = 1) +
+  guides(fill = FALSE) +
   labs(
-    title = "Was Britain right/wrong to vote to leave EU?",
-*   x = "",
-*   y = ""
-  ) 
+*   title = "Was Britain right/wrong to vote to leave EU?",
+    x = NULL, y = NULL
+  )
 ```
 
----
+&lt;img src="d13_goodviz_files/figure-html/informative-label-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-22-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -342,21 +399,19 @@ ggplot(data = brexit, aes(x = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
-  coord_flip() +
-  facet_grid(. ~ region) +
+  facet_wrap(~region, nrow = 1) +
+  guides(fill = FALSE) +
   labs(
     title = "Was Britain right/wrong to vote to leave EU?",
 *   subtitle = "YouGov Survey Results, 2-3 September 2019",
 *   caption = "Source: https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/x0msmggx08/YouGov%20-%20Brexit%20and%202019%20election.pdf",
-    x = "", 
-    y = "")
+    x = NULL, y = NULL
+  )
 ```
 
----
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-24-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/more-info-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -364,47 +419,48 @@ ggplot(data = brexit, aes(x = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
-  coord_flip() +
-  facet_grid(. ~ region) +
+  facet_wrap(~region, nrow = 1) +
+  guides(fill = FALSE) +
   labs(
     title = "Was Britain right/wrong to vote to leave EU?",
     subtitle = "YouGov Survey Results, 2-3 September 2019",
 *   caption = "Source: bit.ly/2lCJZVg",
-    x = "", 
-    y = ""
+    x = NULL, y = NULL
   )
 ```
 
----
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-26-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/short-link-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
+
+
+
+
 
 ## Fix up facet labels
 
 
 ```r
-ggplot(data = brexit, aes(x = opinion)) +
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
-  coord_flip() +
-* facet_grid(. ~ region, labeller = label_wrap_gen(width = 12)) +
+  facet_wrap(~region,
+    nrow = 1,
+*   labeller = label_wrap_gen(width = 12)
+  ) + 
+  guides(fill = FALSE) +
   labs(
     title = "Was Britain right/wrong to vote to leave EU?",
     subtitle = "YouGov Survey Results, 2-3 September 2019",
     caption = "Source: bit.ly/2lCJZVg",
-    x = "", 
-    y = ""
+    x = NULL, y = NULL
   )
 ```
 
----
+&lt;img src="d13_goodviz_files/figure-html/label-wrap-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-28-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
----
 
 class: middle
 
@@ -416,12 +472,11 @@ class: middle
 
 
 ```r
-ggplot(data = brexit, aes(x = region, fill = opinion)) +
-  geom_bar(position = "fill") +
-  coord_flip()
+ggplot(brexit, aes(y= region, fill = opinion)) +
+  geom_bar(position = "fill") 
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-29-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-23-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -429,19 +484,19 @@ ggplot(data = brexit, aes(x = region, fill = opinion)) +
 
 
 ```r
-ggplot(data = brexit, aes(x = region, fill = opinion)) +
+ggplot(brexit, aes(x = region, fill = opinion)) +
   geom_bar(position = "fill") +
   coord_flip() +
   scale_fill_viridis_d()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-30-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-24-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Clean up labels
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-31-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-25-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 # Sources
