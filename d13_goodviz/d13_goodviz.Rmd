@@ -461,6 +461,87 @@ ggplot(brexit, aes(y= region, fill = opinion)) +
 ```
 
 ---
+## Manually choose colors when needed
+
+
+
+```{r red-green}
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
+  geom_bar() +
+  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
+  guides(fill = FALSE) +
+  labs(title = "Was Britain right/wrong to vote to leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September 2019",
+       caption = "Source: bit.ly/2lCJZVg",
+       x = NULL, y = NULL) +
+  scale_fill_manual(values = c( #<<
+    "Wrong" = "red", #<<
+    "Right" = "green", #<<
+    "Don't know" = "gray" #<<
+  )) #<<
+```
+
+
+
+---
+
+## Choosing better colors
+
+.center.large[
+[colorbrewer2.org](https://colorbrewer2.org/)
+]
+
+```{r echo = FALSE, out.width = "60%"}
+knitr::include_graphics("img/color-brewer.png")
+```
+
+---
+
+## Use better colors
+
+
+
+```{r color-brewer}
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
+  geom_bar() +
+  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
+  guides(fill = FALSE) +
+  labs(title = "Was Britain right/wrong to vote to leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September 2019",
+       caption = "Source: bit.ly/2lCJZVg",
+       x = NULL, y = NULL) +
+  scale_fill_manual(values = c(
+    "Wrong" = "#ef8a62", #<<
+    "Right" = "#67a9cf", #<<
+    "Don't know" = "gray" #<<
+  ))
+```
+
+
+---
+
+## Select theme
+
+
+
+```{r theme,}
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
+  geom_bar() +
+  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
+  guides(fill = FALSE) +
+  labs(title = "Was Britain right/wrong to vote to leave EU?",
+       subtitle = "YouGov Survey Results, 2-3 September 2019",
+       caption = "Source: bit.ly/2lCJZVg",
+       x = NULL, y = NULL) +
+  scale_fill_manual(values = c("Wrong" = "#ef8a62",
+                               "Right" = "#67a9cf",
+                               "Don't know" = "gray")) +
+  theme_minimal() #<<
+```
+
+
+---
+
 
 ## Viridis scale works well with ordinal data 
 
@@ -490,7 +571,19 @@ ggplot(brexit, aes(x = region, fill = opinion)) +
 )
 ```
 
+
+
+
+.your-turn[
+### .hand[Your turn!]
+.midi[
+- RStudio Cloud > `AE 07 - Brexit + Telling stories with dataviz` > `brexit.Rmd`. 
+- Change the visualization in three different ways to tell slightly different stories with it each time.
+]
+]
+
 ---
+
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
