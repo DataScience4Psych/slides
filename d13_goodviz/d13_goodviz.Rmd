@@ -497,6 +497,56 @@ knitr::include_graphics("img/color-brewer.png")
 
 ---
 
+
+
+## Viridis scale works well with ordinal data 
+
+```{r out.width="85%"}
+ggplot(brexit, aes(y = region, fill = opinion)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d()
+```
+
+---
+
+## Clean up labels
+
+```{r echo=FALSE, out.width="85%"}
+
+
+ggplot(brexit, aes(y = opinion, fill = opinion)) +
+  geom_bar() +
+  facet_wrap(~region,
+    nrow = 1,
+    labeller = label_wrap_gen(width = 12) #<<
+  ) + 
+  guides(fill = FALSE) +
+  labs(
+    title = "Was Britain right/wrong to vote to leave EU?",
+    subtitle = "YouGov Survey Results, 2-3 September 2019",
+    caption = "Source: bit.ly/2lCJZVg",
+    x = NULL, y = NULL,fill=NULL
+  )
+
+
+
+ggplot(brexit, aes(y = region, fill = opinion)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d() +
+  labs(
+    title = "Was Britain right/wrong to vote to leave EU?",
+    subtitle = "YouGov Survey Results, 2-3 September 2019",
+    caption = "Source: bit.ly/2lCJZVg",
+    x = "", 
+    y = "",
+    fill = ""
+)
+```
+
+
+
+
+
 ## Use better colors
 
 
@@ -541,35 +591,6 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 
 ---
-
-
-## Viridis scale works well with ordinal data 
-
-```{r out.width="85%"}
-ggplot(brexit, aes(x = region, fill = opinion)) +
-  geom_bar(position = "fill") +
-  coord_flip() +
-  scale_fill_viridis_d()
-```
-
----
-
-## Clean up labels
-
-```{r echo=FALSE, out.width="85%"}
-ggplot(brexit, aes(x = region, fill = opinion)) +
-  geom_bar(position = "fill") +
-  coord_flip() +
-  scale_fill_viridis_d() +
-  labs(
-    title = "Was Britain right/wrong to vote to leave EU?",
-    subtitle = "YouGov Survey Results, 2-3 September 2019",
-    caption = "Source: bit.ly/2lCJZVg",
-    x = "", 
-    y = "",
-    fill = ""
-)
-```
 
 
 
