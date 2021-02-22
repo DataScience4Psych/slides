@@ -24,7 +24,6 @@ library(here)
 
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
-
 ```
 
 class: middle
@@ -63,7 +62,7 @@ ggplot(d, aes(x = fct_reorder(category, value), y = value)) +
 
 ## Use	color	to	draw	attention
 
-
+<br>
 
 .pull-left[
 ```{r echo = FALSE, out.width="100%"}
@@ -93,13 +92,19 @@ ggplot(d, aes(x = fct_reorder(category, value), y = value, fill = category)) +
 
 ## Tell a story
 
-```{r echo = FALSE, out.width = "80%"}
+```{r echo = FALSE, out.width = "95%"}
 knitr::include_graphics("img/time-series-story.png")
 ```
 
 .footnote[
 Credit: Angela Zoss and Eric Monson, Duke DVS
 ]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
 
@@ -122,12 +127,14 @@ class: middle
 ## Data
 
 In September 2019, YouGov survey asked 1,639 GB adults the following question:
+
 .pull-left[
 > In hindsight, do you think Britain was right/wrong to vote to leave EU?
 >
 >- Right to leave  
 >- Wrong to leave  
 >- Don't know
+
 ]
 .pull-right[
 ```{r echo=FALSE}
@@ -163,27 +170,34 @@ class: middle
 
 ## Alphabetical order is rarely ideal
 
-```{r out.width="85%"}
+.medi.pull-left[
+```{r alphaorder, fig.show = "hide"}
 ggplot(brexit, aes(x = opinion)) +
   geom_bar()
 ```
-
+]
+.pull-right-wide[
+```{r ref.label="alphaorder", echo = FALSE,out.width="85%"}
+```
+]
 ---
 
 ## Order by frequency
 
 `fct_infreq`: Reorder factors' levels by frequency
 
-```{r out.width="75%"}
+.midi[
+```{r out.width="60%"}
 ggplot(brexit, aes(x = fct_infreq(opinion))) +
   geom_bar()
 ```
+]
 
 ---
 
 ## Clean up labels
-
-```{r out.width="80%"}
+.medi.pull-left[
+```{r cleanlabs, fig.show = "hide"}
 ggplot(brexit, aes(x = opinion)) +
   geom_bar() +
   labs( #<<
@@ -191,23 +205,38 @@ ggplot(brexit, aes(x = opinion)) +
     y = "Count" #<<
   ) #<<
 ```
-
+]
+.pull-right[
+```{r ref.label="cleanlabs", echo = FALSE,out.width="100%"}
+```
+]
 ---
 
 ## Alphabetical order is rarely ideal
 
-```{r out.width="85%"}
+.midi.pull-left-narrow[
+```{r alphabs, fig.show = "hide"}
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
+]
+
+.pull-right-wide[
+```{r ref.label="alphabs", echo = FALSE,out.width="100%"}
+```
+]
+
+
 
 ---
+
+
 
 ## Use inherent level order
 
 `fct_relevel`: Reorder factor levels using a custom order
 
-.midi[
+
 ```{r eval=TRUE}
 brexit <- brexit %>%
   mutate(
@@ -217,15 +246,15 @@ brexit <- brexit %>%
     )
   )
 ```
-]
 
-```{r echo=FALSE, out.width="55%"}
+---
+.pull-left-wide[
+```{r echo=FALSE, out.width="120%"}
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
-
+]
 ---
-
 ## Clean up labels
 
 `fct_recode`: Change factor levels by hand
@@ -246,9 +275,9 @@ brexit <- brexit %>%
 
 ---
 
-## Clean up labels (cont.)
+## Clean!
 
-```{r out.width="85%"}
+```{r out.width="75%", echo=FALSE}
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
@@ -263,7 +292,7 @@ class: middle
 
 ## Long categories can be hard to read
 
-```{r out.width="85%"}
+```{r out.width="75%", echo=FALSE}
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
@@ -271,22 +300,22 @@ ggplot(brexit, aes(x = region)) +
 ---
 
 ## Move them to the y-axis
-
-```{r out.width="80%"}
+.medi[
+```{r out.width="55%"}
 ggplot(brexit, aes(x = region)) +
   geom_bar() +
   coord_flip()  #<<
 ```
-
+]
 ---
 
 ## Move them to the y-axis
-
-```{r out.width="80%"}
+.medi[
+```{r out.width="55%"}
 ggplot(brexit, aes(y = region)) + #<<
   geom_bar()
 ```
-
+]
 
 ---
 
@@ -295,16 +324,24 @@ ggplot(brexit, aes(y = region)) + #<<
 
 
 
-```{r out.width="80%"}
+.medi.pull-left[
+```{r fct_rev, fig.show = "hide"}
 ggplot(brexit, aes(y = fct_rev(region))) + #<<
   geom_bar()
 ```
+]
+.pull-right[
+```{r ref.label="fct_rev", echo = FALSE,out.width="100%"}
+```
+]
+
 
 ---
 
 ## Clean up labels
 
-```{r out.width="80%"}
+.medi.pull-left[
+```{r fct_revclean, fig.show = "hide"}
 ggplot(brexit, aes(y = fct_rev(region))) +
   geom_bar() +
   labs( #<<
@@ -312,6 +349,12 @@ ggplot(brexit, aes(y = fct_rev(region))) +
     y = "Region" #<<
   ) #<<
 ```
+]
+.pull-right[
+```{r ref.label="fct_revclean", echo = FALSE, out.width="100%"}
+```
+]
+
 
 ---
 
@@ -323,58 +366,113 @@ class: middle
 
 ## Segmented bar plots can be hard to read
 
-```{r out.width="80%"}
+.medi.pull-left-wide[
+```{r segbar, fig.show = "hide"}
 ggplot(brexit, aes(y = region, fill = opinion)) + #<<
   geom_bar()
+```
+]
+.pull-right[
+```{r ref.label="segbar", echo = FALSE, out.width="100%"}
+```
+]
+
+
+---
+
+```{r ref.label="segbar", echo = FALSE, out.width="80%"}
 ```
 
 ---
 
 ## Use facets
 
-```{r out.width="80%"}
+.medi.pull-left-wide[
+```{r segbarfac, fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = region)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) #<<
+```
+]
+.pull-right[
+```{r ref.label="segbarfac", echo = FALSE, out.width="100%"}
+```
+]
+---
+
+```{r ref.label="segbarfac", echo = FALSE, out.width="80%"}
 ```
 
 ---
 
 ## Avoid redundancy?
 
-```{r out.width="80%"}
+.medi.pull-left[
+```{r redun, fig.show = "hide"}
 ggplot(brexit, aes(y = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1)
 ```
+]
+.pull-right[
+```{r ref.label="redun", echo = FALSE, out.width="100%"}
+```
+]
+---
+
+```{r ref.label="redun", echo = FALSE, out.width="80%"}
+```
+
+---
+
 
 ## Redundancy can help tell a story
 
-
-```{r facet-fill}
+.medi.pull-left[
+```{r facet-fill, fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1)
 ```
+]
+.pull-right[
+```{r ref.label="facet-fill", echo = FALSE, out.width="100%"}
+```
+]
+---
 
+```{r ref.label="facet-fill", echo = FALSE, out.width="80%"}
+```
 
 ---
 
+
 ## Be selective with redundancy
 
-
-```{r hide-legend}
+.medi.pull-left[
+```{r hide-legend, fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
   guides(fill = FALSE) #<<
 ```
 
+]
+.pull-right[
+```{r ref.label="hide-legend", echo = FALSE, out.width="100%"}
+```
+]
+---
+
+```{r ref.label="hide-legend", echo = FALSE, out.width="80%"}
+```
+
 ---
 
 ## Informative labels
 
-```{r informative-label}
+.medi.pull-left[
+```{r informative-label,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -384,14 +482,24 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
+]
+.pull-right[
+```{r ref.label="informative-label", echo = FALSE, out.width="100%"}
+```
+]
 
 
+---
+
+```{r ref.label="informative-label", echo = FALSE, out.width="80%"}
+```
 
 ---
 
 ## A bit more info
 
-```{r more-info}
+.medi[
+```{r more-info,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -403,12 +511,19 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
+]
+
+---
+
+```{r ref.label="more-info", echo = FALSE, out.width="80%"}
+```
 
 ---
 
 ## Let's do better
 
-```{r short-link}
+.medi[
+```{r short-link,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -421,15 +536,19 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
   )
 ```
 
+]
+
 ---
 
+```{r ref.label="short-link", echo = FALSE, out.width="80%"}
+```
 
-
-
+---
 
 ## Fix up facet labels
 
-```{r label-wrap}
+.medi[
+```{r label-wrap ,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region,
@@ -444,9 +563,14 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
+]
 
+---
 
+```{r ref.label="label-wrap", echo = FALSE, out.width="80%"}
+```
 
+---
 class: middle
 
 # Select meaningful colors
@@ -455,17 +579,31 @@ class: middle
 
 ## Rainbow colors are not always the right choice
 
-```{r out.width="85%"}
+.medi.pull-left[
+```{r rainbow,fig.show = "hide"}
 ggplot(brexit, aes(y= region, fill = opinion)) +
   geom_bar(position = "fill") 
 ```
+]
+
+.pull-right[
+
+```{r ref.label="rainbow", echo = FALSE, out.width="100%"}
+```
+
+]
 
 ---
+
+```{r ref.label="rainbow", echo = FALSE, out.width="80%"}
+```
+
+---
+
 ## Manually choose colors when needed
 
-
-
-```{r red-green}
+.midi.pull-left-wide[
+```{r red-green,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
@@ -480,8 +618,20 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     "Don't know" = "gray" #<<
   )) #<<
 ```
+]
 
+.pull-right-narrow[
 
+```{r ref.label="red-green", echo = FALSE, out.width="100%"}
+```
+
+]
+
+---
+.center[
+```{r ref.label="red-green", echo = FALSE, out.width="80%"}
+```
+]
 
 ---
 
@@ -497,61 +647,9 @@ knitr::include_graphics("img/color-brewer.png")
 
 ---
 
-
-
-## Viridis scale works well with ordinal data 
-
-```{r out.width="85%"}
-ggplot(brexit, aes(y = region, fill = opinion)) +
-  geom_bar(position = "fill") +
-  scale_fill_viridis_d()
-```
-
----
-
-## Clean up labels
-
-```{r echo=FALSE, out.width="85%"}
-
-
-ggplot(brexit, aes(y = opinion, fill = opinion)) +
-  geom_bar() +
-  facet_wrap(~region,
-    nrow = 1,
-    labeller = label_wrap_gen(width = 12) #<<
-  ) + 
-  guides(fill = FALSE) +
-  labs(
-    title = "Was Britain right/wrong to vote to leave EU?",
-    subtitle = "YouGov Survey Results, 2-3 September 2019",
-    caption = "Source: bit.ly/2lCJZVg",
-    x = NULL, y = NULL,fill=NULL
-  )
-
-
-
-ggplot(brexit, aes(y = region, fill = opinion)) +
-  geom_bar(position = "fill") +
-  scale_fill_viridis_d() +
-  labs(
-    title = "Was Britain right/wrong to vote to leave EU?",
-    subtitle = "YouGov Survey Results, 2-3 September 2019",
-    caption = "Source: bit.ly/2lCJZVg",
-    x = "", 
-    y = "",
-    fill = ""
-)
-```
-
-
-
-
-
 ## Use better colors
-
-
-
-```{r color-brewer}
+.midi.pull-left-wide[
+```{r color-brewer,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
@@ -566,15 +664,27 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     "Don't know" = "gray" #<<
   ))
 ```
+]
 
+.pull-right-narrow[
+
+```{r ref.label="color-brewer", echo = FALSE, out.width="100%"}
+```
+
+]
+
+---
+
+.center[
+```{r ref.label="color-brewer", echo = FALSE, out.width="80%"}
+```
+]
 
 ---
 
 ## Select theme
 
-
-
-```{r theme,}
+```{r theme,fig.show = "hide"}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
@@ -592,18 +702,78 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ---
 
+.center[
+```{r ref.label="theme", echo = FALSE, out.width="80%"}
+```
+]
+
+---
 
 
+## Spot the Difference
+
+.pull-right-narrow[
+```{r ref.label="theme", echo = FALSE}
+```
+]
+
+.pull-left-narrow[
+```{r ref.label="color-brewer", echo = FALSE}
+```
+]
+
+---
 
 .your-turn[
 ### .hand[Your turn!]
 .midi[
-- RStudio Cloud > `AE 07 - Brexit + Telling stories with dataviz` > `brexit.Rmd`. 
+- `AE 07 - Brexit + Telling stories with dataviz` > `brexit.Rmd`. 
 - Change the visualization in three different ways to tell slightly different stories with it each time.
 ]
 ]
 
+
+
 ---
+
+## Viridis scale works well with ordinal data 
+.medi.pull-left-wide[
+```{r viridis,fig.show = "hide"}
+ggplot(brexit, aes(y = region, fill = opinion)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d()
+```
+]
+.pull-right[
+```{r ref.label="viridis", echo = FALSE, out.width="100%"}
+```
+]
+
+
+---
+.center[
+```{r ref.label="viridis", echo = FALSE, out.width="80%"}
+```
+]
+
+---
+
+### Clean up labels (Again)
+
+```{r echo=FALSE, out.width="75%"}
+ggplot(brexit, aes(y = region, fill = opinion)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d() +
+  labs(
+    title = "Was Britain right/wrong to vote to leave EU?",
+    subtitle = "YouGov Survey Results, 2-3 September 2019",
+    caption = "Source: bit.ly/2lCJZVg",
+    x = NULL, y = NULL,fill=NULL
+)
+```
+
+
+----
 
 # Sources
 

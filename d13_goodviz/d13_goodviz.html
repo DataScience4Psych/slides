@@ -54,7 +54,7 @@ class: middle
 
 ## Use	color	to	draw	attention
 
-
+&lt;br&gt;
 
 .pull-left[
 &lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -68,11 +68,17 @@ class: middle
 
 ## Tell a story
 
-&lt;img src="img/time-series-story.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/time-series-story.png" width="95%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Credit: Angela Zoss and Eric Monson, Duke DVS
 ]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---
 
@@ -95,12 +101,14 @@ class: middle
 ## Data
 
 In September 2019, YouGov survey asked 1,639 GB adults the following question:
+
 .pull-left[
 &gt; In hindsight, do you think Britain was right/wrong to vote to leave EU?
 &gt;
 &gt;- Right to leave  
 &gt;- Wrong to leave  
 &gt;- Don't know
+
 ]
 .pull-right[
 
@@ -122,32 +130,36 @@ class: middle
 
 ## Alphabetical order is rarely ideal
 
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(x = opinion)) +
   geom_bar()
 ```
-
+]
+.pull-right-wide[
 &lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-7-1.png" width="85%" style="display: block; margin: auto;" /&gt;
-
+]
 ---
 
 ## Order by frequency
 
 `fct_infreq`: Reorder factors' levels by frequency
 
+.midi[
 
 ```r
 ggplot(brexit, aes(x = fct_infreq(opinion))) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-8-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 ## Clean up labels
-
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(x = opinion)) +
@@ -157,28 +169,37 @@ ggplot(brexit, aes(x = opinion)) +
 *   y = "Count"
 * )
 ```
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 ---
 
 ## Alphabetical order is rarely ideal
 
+.midi.pull-left-narrow[
 
 ```r
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
+]
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-10-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+.pull-right-wide[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
 
 ---
+
+
 
 ## Use inherent level order
 
 `fct_relevel`: Reorder factor levels using a custom order
 
-.midi[
+
 
 ```r
 brexit &lt;- brexit %&gt;%
@@ -189,12 +210,12 @@ brexit &lt;- brexit %&gt;%
     )
   )
 ```
-]
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-12-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
-
+.pull-left-wide[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-12-1.png" width="120%" style="display: block; margin: auto;" /&gt;
+]
+---
 ## Clean up labels
 
 `fct_recode`: Change factor levels by hand
@@ -216,15 +237,9 @@ brexit &lt;- brexit %&gt;%
 
 ---
 
-## Clean up labels (cont.)
+## Clean!
 
-
-```r
-ggplot(brexit, aes(x = region)) +
-  geom_bar()
-```
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-14-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-14-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -236,18 +251,12 @@ class: middle
 
 ## Long categories can be hard to read
 
-
-```r
-ggplot(brexit, aes(x = region)) +
-  geom_bar()
-```
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-15-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-15-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Move them to the y-axis
-
+.medi[
 
 ```r
 ggplot(brexit, aes(x = region)) +
@@ -255,20 +264,20 @@ ggplot(brexit, aes(x = region)) +
 * coord_flip()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-16-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+]
 ---
 
 ## Move them to the y-axis
-
+.medi[
 
 ```r
 *ggplot(brexit, aes(y = region)) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-17-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
@@ -277,18 +286,23 @@ ggplot(brexit, aes(x = region)) +
 
 
 
+.medi.pull-left[
 
 ```r
 *ggplot(brexit, aes(y = fct_rev(region))) +
   geom_bar()
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Clean up labels
 
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(y = fct_rev(region))) +
@@ -298,8 +312,11 @@ ggplot(brexit, aes(y = fct_rev(region))) +
 *   y = "Region"
 * )
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -311,58 +328,86 @@ class: middle
 
 ## Segmented bar plots can be hard to read
 
+.medi.pull-left-wide[
 
 ```r
 *ggplot(brexit, aes(y = region, fill = opinion)) +
   geom_bar()
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Use facets
 
+.medi.pull-left-wide[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = region)) +
   geom_bar() +
 * facet_wrap(~region, nrow = 1)
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Avoid redundancy?
 
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(y = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1)
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-22-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
 
 ## Redundancy can help tell a story
 
-
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1)
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
 
-&lt;img src="d13_goodviz_files/figure-html/facet-fill-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-27-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
+
 ## Be selective with redundancy
 
-
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -371,12 +416,19 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 * guides(fill = FALSE)
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/hide-legend-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-29-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Informative labels
 
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -388,15 +440,21 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;img src="d13_goodviz_files/figure-html/informative-label-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
+---
 
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## A bit more info
 
+.medi[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -410,13 +468,17 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
+]
 
-&lt;img src="d13_goodviz_files/figure-html/more-info-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-32-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Let's do better
 
+.medi[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -431,16 +493,17 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
   )
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/short-link-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-33-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-
-
+---
 
 ## Fix up facet labels
 
+.medi[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -457,11 +520,13 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
+]
 
-&lt;img src="d13_goodviz_files/figure-html/label-wrap-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+---
 
 
 
+---
 class: middle
 
 # Select meaningful colors
@@ -470,19 +535,29 @@ class: middle
 
 ## Rainbow colors are not always the right choice
 
+.medi.pull-left[
 
 ```r
 ggplot(brexit, aes(y= region, fill = opinion)) +
   geom_bar(position = "fill") 
 ```
+]
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-23-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+.pull-right[
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
 
 ---
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
 ## Manually choose colors when needed
 
-
-
+.midi.pull-left-wide[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -499,10 +574,18 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 *   "Don't know" = "gray"
 * ))
 ```
+]
 
-&lt;img src="d13_goodviz_files/figure-html/red-green-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+.pull-right-narrow[
 
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
+]
+
+---
+.center[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-38-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
@@ -516,33 +599,8 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ---
 
-
-
-## Viridis scale works well with ordinal data 
-
-
-```r
-ggplot(brexit, aes(y = region, fill = opinion)) +
-  geom_bar(position = "fill") +
-  scale_fill_viridis_d()
-```
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-25-1.png" width="85%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Clean up labels
-
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-26-1.png" width="85%" style="display: block; margin: auto;" /&gt;&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-26-2.png" width="85%" style="display: block; margin: auto;" /&gt;
-
-
-
-
-
 ## Use better colors
-
-
-
+.midi.pull-left-wide[
 
 ```r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -559,15 +617,23 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 *   "Don't know" = "gray"
   ))
 ```
+]
 
-&lt;img src="d13_goodviz_files/figure-html/color-brewer-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+.pull-right-narrow[
 
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+.center[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-41-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 ## Select theme
-
-
 
 
 ```r
@@ -585,23 +651,67 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 * theme_minimal()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/theme-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
+---
+
+.center[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-42-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 
+## Spot the Difference
 
+.pull-right-narrow[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left-narrow[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-44-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+---
 
 .your-turn[
 ### .hand[Your turn!]
 .midi[
-- RStudio Cloud &gt; `AE 07 - Brexit + Telling stories with dataviz` &gt; `brexit.Rmd`. 
+- `AE 07 - Brexit + Telling stories with dataviz` &gt; `brexit.Rmd`. 
 - Change the visualization in three different ways to tell slightly different stories with it each time.
 ]
 ]
 
+
+
 ---
+
+## Viridis scale works well with ordinal data 
+.medi.pull-left-wide[
+
+```r
+ggplot(brexit, aes(y = region, fill = opinion)) +
+  geom_bar(position = "fill") +
+  scale_fill_viridis_d()
+```
+]
+.pull-right[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+.center[
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-46-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+### Clean up labels (Again)
+
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-47-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+
+----
 
 # Sources
 
