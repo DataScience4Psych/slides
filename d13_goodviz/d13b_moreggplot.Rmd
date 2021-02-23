@@ -467,8 +467,6 @@ ggplot() +
 
 ---
 
-## Image
-
 ```{r ref.label="verbose", out.width="85%", echo = FALSE}
 ```
 
@@ -554,45 +552,88 @@ minard = read_csv("data/minard.csv");minard_cities = read_csv("data/minard-citie
                                     group = division)))
 ```
 ]
+
 ---
 
 Let's add another layer for the cities:
-```{r, fig.width=6}
-plot_both = plot_troops +
-    geom_text(aes(x = long, y = lat, label = city), data = minard_cities, size = 3)
-
-plot_both
+.medi[
+```{r,minardpt2, out.width="55%"}
+(plot_both = plot_troops +
+              geom_text(aes(x = long, y = lat, label = city),
+              data = minard_cities, size = 3))
 ```
+]
 
-Notice: we have a new dataset for this layer.
-
-. . .
-
-Some things that we still don't like about this plot:
-
-- We would like the colors for advance and retreat to be grey and red.
-
-- We want the line widths to be proportional to the number of survivors.
-
-- We would like the line ends to be round instead of square.
+.footnote[Notice: we have a new dataset for this layer.]
 
 ---
 
-A "final" version of the plot, with better scales:
-```{r, fig.width=6}
-ggplot(minard) +
-    geom_path(aes(x = long, y = lat, color = direction, size = surviv^2, group = division), lineend = "round") +
-    geom_text(aes(x = long, y = lat, label = city), data = minard_cities, size = 3) + 
-    scale_size(range = c(.18, 15), breaks = (1:3 * 10^5)^2, labels = scales::comma(1:3 * 10^5), "Survivors") +
-    scale_color_manual(values = c("grey50","red"), breaks = c("A", "R"), labels = c("Advance", "Retreat"), "") +
-    xlab(NULL) + ylab(NULL) + theme(axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank())
+## Next Steps
+
+Some things that are still not great about this plot:
+
+.pull-left[
+- We would like the colors 
+  - for advance and retreat to be gray and red.
+- We want the line widths to be 
+  - proportional to the number of survivors.
+- We would like the line ends to be
+  - round instead of square.
+]
+.pull-right[
+```{r ref.label="minardpt2", out.width="99%", echo = FALSE}
 ```
+]
 
+---
 
+## An improved version of the plot, with better scales:
 
-## Exercises
+.small[.pull-left-narrow[
+```{r minardpt3, fig.show = "hide"}
+ggplot(minard) +
+    geom_path(aes(x = long, 
+                  y = lat, 
+                  color = direction, 
+                  size = surviv^2, 
+                  group = division), 
+              lineend = "round") +
+    geom_text(aes(x = long,
+                  y = lat,
+                  label = city),
+              data = minard_cities, 
+              size = 3) + 
+    scale_size(range = c(.18, 15), 
+               breaks = (1:3 * 10^5)^2, 
+               labels = 
+                 scales::comma(1:3 * 10^5),
+                 "Survivors") +
+    scale_color_manual(values = c("grey50",
+                                  "red"), 
+                       breaks = c("A",
+                                  "R"), 
+                       labels = c("Advance",
+                                  "Retreat"),
+                       "") +
+    xlab(NULL) + ylab(NULL) +
+    theme(axis.text = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.grid = element_blank())
+```
+]]
+.pull-right-wide[
+```{r ref.label="minardpt3", out.width="99%", echo = FALSE}
+```
+]
+---
 
+.your-turn[
+
+.midi[
 - Try creating a histogram on the diamonds dataset, for example with
+]
+]
+
 ```{r}
 p = ggplot() + geom_histogram(aes(x = carat), data = diamonds)
 ```
@@ -607,6 +648,7 @@ Re-write this using the `layer` function. Hint: if you don't know what the defau
 
 - Very difficult: Recreate the Minard map more precisely. Add text for the number of troops surviving on each segment, and add the time and temperature data to the bottom of the plot.
 
+---
 
 ## ggplot and EDA
 
