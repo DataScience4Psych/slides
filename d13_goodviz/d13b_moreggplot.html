@@ -717,26 +717,51 @@ ggplot(minard) +
 ---
 
 .your-turn[
+]
 
-.midi[
-- Try creating a histogram on the diamonds dataset, for example with
-]
-]
+- Try creating a histogram on the diamonds dataset, for example with...
+
 
 
 ```r
 p = ggplot() + geom_histogram(aes(x = carat), data = diamonds)
 ```
 
-Re-write this using the `layer` function. Hint: if you don't know what the default values for some of the aspects of the plot, examine `p$layers`
 
-- Remember that a histogram is a plot with `stat_bin` and `geom_bar`. Modify your histogram code so that it uses a different geom, for example `geom_line` or `geom_point`. This should be simple once you have the `layer` specification of a histogram.
+- Re-write this using the `layer` function. 
 
-- In your histogram, add an aesthetic mapping from one of the factor variables (maybe color or clarity) to the color aesthetic.
+.tip[
+- If you don't know what the default values for some of the aspects of the plot, examine `p$layers`
+- Remember that a histogram is a plot with `stat_bin` and `geom_bar`. 
+]
 
-- What is the default position adjustment for a histogram? Try changing the position adjustment to something different (hint: try `position_dodge`).
+---
 
-- Very difficult: Recreate the Minard map more precisely. Add text for the number of troops surviving on each segment, and add the time and temperature data to the bottom of the plot.
+.your-turn[
+]
+
+.pull-left-narrow[
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-25-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+]
+
+- Modify your histogram code so that it uses a different geom, for example `geom_line` or `geom_point`.
+- This change should be simple once you have the `layer` specification of a histogram.
+- In your histogram, 
+      - add an aesthetic mapping from one of the factor variables (maybe color or clarity) to the color aesthetic.
+
+.question[What is the default position adjustment for a histogram? 
+]
+
+.tip[- Try changing the position adjustment to something different 
+    - (try `position_dodge`).]
+
+---
+
+## Difficult Stretch Goal
+
+- Recreate the Minard map more precisely. 
+- Add text for the number of troops surviving on each segment, 
+    - and add the time and temperature data to the bottom of the plot.
 
 ---
 
@@ -746,11 +771,17 @@ Remember our passage from Tukey:
 
 &gt; *Exploratory data analysis is detective work*... As all detective stories remind us, many of the circumstances surrounding a crime are accidental or misleading. Equally, many of the indications to be discerned in bodies of data are accidental or misleading. To accept all appearances as conclusive would be destructively foolish, either in crime detection or in data analysis. *To fail to collect all appearances because some -- or even most -- are only accidents would, however, be gross misfeasance deserving (and often receiving) appropriate punishment.*
 
-. . .
+---
 
-The flexibility in the grammar of graphics allows us to collect many more "appearances" in the data than we would be able to if we just have access to a handful of named plots.
+# Concluding Thoughts
 
-Many of the plots that we can make with ggplot are not useful, but the point is to try visualizing the data in many different ways. ggplot opens up a very large space of statistical graphics to us for not very much effort.
+- The flexibility in the grammar of graphics allows us to collect many more "appearances" in the data than we would be able to,
+    - if we just have access to a handful of named plots.
+--
+
+- Many of the plots that we can make with ggplot are not useful, 
+    - but the point is to try visualizing the data in many different ways.
+- ggplot opens up a very large space of statistical graphics to us for not very much effort.
 
 ---
 
