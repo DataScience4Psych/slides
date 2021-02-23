@@ -773,7 +773,7 @@ ggplot(brexit, aes(y = region, fill = opinion)) +
 ```
 
 
-----
+---
 
 # Sources
 
