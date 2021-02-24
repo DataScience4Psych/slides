@@ -138,17 +138,24 @@ class: middle
 ## Components of a plot
 
 + A default dataset and set of mappings from variables to aesthetics.
-+ One or more _layers_, each of which contains 
-  * one geometric (`geom_*`) object, 
-  * one statistical transformation (`stat_*`), 
-  * one position adjustment (`position_*`), and 
-  * one dataset and 
-  * set of aesthetic mappings.
++ One or more _layers_, each of which contains
+--
+
+  + one geometric (`geom_*`) object, 
+  + one statistical transformation (`stat_*`), 
+  + one position adjustment (`position_*`), 
++ and one dataset and set of aesthetic mappings.
+--
+
 + One scale for each aesthetic mapping.
 + A coordinate system (`coord_*`).
 + A facet specification (`facet_*`).
+--
 
+.tip[
 Layers are the most important and involved part of the plot.
+]
+
 
 ---
 
@@ -158,6 +165,8 @@ Layers are the most important and involved part of the plot.
 - statistical transformation (stat)
 - geometric object (geom)
 - position adjustment
+
+--
 
 ```{r}
 p = ggplot(diamonds, aes(x = color, y = clarity)) + geom_point()
@@ -170,15 +179,12 @@ p$layers
 
 + Data: self evident. For ggplot the data needs to be formatted as a tibble or a data.frame.
 + Aesthetic mapping: Less evident
+--
 
----
-
-## Aesthetic mapping
-
-+ Describes how variables in the dataset are mapping 
-  * to "aesthetic" attributes of the plot.
-+ "Aesthetic" here means perceivable:
-  * something you can observe on the plot.
+  + Describes how variables in the dataset are mapping 
+     + to "aesthetic" attributes of the plot.
+  + "Aesthetic" here means perceivable:
+     + something you can observe on the plot.
   
 ---
 
@@ -283,7 +289,6 @@ Used to avoid "collisions" in the plot objects:
 ```{r}
 (p = ggplot(diamonds, aes(x = color, y = price)) + 
   geom_boxplot())
-
 ```
 ]
 
@@ -356,7 +361,8 @@ class: middle
   - A maps to "green", B maps to "blue"
   - A maps to "purple", B maps to "gold"
 --
-  - ... You probably get the picture
+
+- ... You probably get the picture
 
 ---
 
