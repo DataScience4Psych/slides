@@ -226,6 +226,7 @@ A statistical transformation is some transformation of the data.
 
 ![](img/ggplot_stat_table.png)
 --
+<br>
 .footnote[
 These stat transformations and position adjustments can overlap. Often there is more than one way to create the same plot.
 ]
@@ -356,11 +357,14 @@ class: middle
   + whether variable took value "A" or "B". 
 + But we could do that in a practically infinite number of ways
 --
+
+
 + e.g.
   - A maps to "red", B maps to "black"
   - A maps to "green", B maps to "blue"
   - A maps to "purple", B maps to "gold"
 --
+
 
 - ... You probably get the picture
 
@@ -390,14 +394,15 @@ Another aspect of the plot that can be specified independently of everything els
   - and is almost always what you want.
 --
 
+
+
 + `coord_flip` is sometimes useful:
   - for example, boxplots require the explanatory variable to be mapped to x, 
-    - so if you want a horizontal boxplot you need to use `coord_flip`.
+  - so if you want a horizontal boxplot you need to use `coord_flip`.
 --
-
 + `coord_polar` will often make your plots look cooler 
-  - and more difficult to read. 
-  - Not usually recommended.
+  * and more difficult to read. 
+  * Not usually recommended.
 ---
 
 ## Faceting
@@ -419,9 +424,13 @@ Allows you to make small multiples of plots.
 - `facet_wrap`:
   - Lays out the plots for each subset sequentially.
 --
+
 - `facet_grid`: 
   - Subsets the data according to two separate variables. 
+  
+  
 --
+
 + The facet position along the $x$-axis represents levels of one variable, 
   - and the facet position along the $y$-axis represents levels of the other variable.
 
