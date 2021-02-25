@@ -47,7 +47,7 @@ class: middle
 .pull-left[
 **Observational**  
 - Collect data in a way that does not interfere with how the data arise ("observe")
-- Only establish an association
+- Establish associations
 ]
 .pull-right[
 **Experimental**  
@@ -62,31 +62,45 @@ class: middle
 Obviously -- there is more to causal inference, but for the sake of time...
 ]
 
---
+---
+
 .question[
-Design a study comparing average energy levels of people who do and do not exercise -- both as an observational study and as an experiment.
-]
+What type of study is the following, observational or experiment? What does that mean in terms of causal conclusions?]
+
+- Researchers studying the relationship between exercising and energy levels asked participants in their study how many times a week they exercise and whether they have high or low energy when they wake up in the morning.
+
+- Based on responses to the exercise question the researchers grouped people into three categories (no exercise, exercise 1-3 times a week, and exercise more than 3 times a week).
+
+
+- The researchers then compared the proportions of people who said they have high energy in the mornings across the three exercise categories.
+
 
 ---
 
-## Study: Breakfast cereal keeps girls slim
+.question[
+What type of study is the following, observational or experiment? What does that mean in terms of causal conclusions?]
+
+- Researchers studying the relationship between exercising and energy levels randomly assigned participants in their study into three groups: no exercise, exercise 1-3 times a week, and exercise more than 3 times a week.
+
+- After one week, participants were asked whether they have high or low energy when they wake up in the morning.
+
+- The researchers then compared the proportions of people who said they have high energy in the mornings across the three exercise categories.
+
+
+---
+
+class: middle
+
+# Case study: Breakfast cereal keeps girls slim
+
+---
 
 .midi[
-*Girls who ate breakfast of any type had a lower average body mass index, a common obesity gauge, than those who said they didn't. The index was even lower for girls who said they ate cereal for breakfast, according to findings of the study conducted by the Maryland Medical Research Institute with funding from the National Institutes of Health (NIH) and cereal-maker General Mills.*
- 
-[...]
- 
-*The results were gleaned from a larger NIH survey of 2,379 girls in California, Ohio, and Maryland who were tracked between the ages of 9 and 19.*
- 
-[...]
- 
-*As part of the survey, the girls were asked once a year what they had eaten during the previous three days.*
- 
-[...]
-]
-
-.question[
-What is the explanatory and what is the response variable?
+&gt; *Girls who ate breakfast of any type had a lower average body mass index (BMI), a common obesity gauge, than those who said they didn't. The index was even lower for girls who said they ate cereal for breakfast, according to findings of the study conducted by the Maryland Medical Research Institute with funding from the National Institutes of Health (NIH) and cereal-maker General Mills.* [...]
+&gt;
+&gt; *The results were gleaned from a larger NIH survey of 2,379 girls in California, Ohio, and Maryland who were tracked between the ages of 9 and 19.* [...]
+&gt;
+&gt;*As part of the survey, the girls were asked once a year what they had eaten during the previous three days.* [...]
 ]
 
 .footnote[
@@ -95,17 +109,27 @@ Souce: [Study: Cereal Keeps Girls Slim](https://www.cbsnews.com/news/study-cerea
 
 ---
 
-### 3 possible explanations
+## Explanatory and response variables
+
+- Explanatory variable: Whether the participant ate breakfast or not
+- Response variable: BMI of the participant
+
+
+---
+
+## Three possible explanations
 
 --
 
-- Eating breakfast causes girls to be slimmer 
+1. Eating breakfast causes girls to be slimmer 
+
 
 --
-- Being slim causes girls to eat breakfast
+2. Being slim causes girls to eat breakfast
+
 
 --
-- A third variable is responsible for both -- a **confounding** variable: an extraneous variable that affects both the explanatory and the response variable, and that makes it seem like there is a relationship between them
+3. A third variable is responsible for both -- a **confounding** variable: an extraneous variable that affects both the explanatory and the response variable, and that makes it seem like there is a relationship between them
 
 ---
 
@@ -132,35 +156,30 @@ class: middle
 
 class: middle
 
-# Conditional probability
+# Climate change survey: A Conditional Probability Case Study
 
 ---
 
-## Conditional probability
+## Survey question
 
-**Notation**: `\(P(A | B)\)`: Probability of event A given event B
-
-- What is the probability that it will be unseasonably warm tomorrow?
-- What is the probability that it will be unseasonably warm tomorrow, given that it was unseasonably warm today?
-
----
-
-.midi[
-A July 2019 YouGov survey asked 1633 GB and 1333 USA randomly selected adults 
+&gt;A July 2019 YouGov survey asked 1633 GB and 1333 USA randomly selected adults 
 which of the following statements about the global environment best describes 
 their view:
-.small[
-- The climate is changing and human activity is mainly responsible  
-- The climate is changing and human activity is partly responsible, together with other factors  
-- The climate is changing but human activity is not responsible at all  
-- The climate is not changing  
-]
-The distribution of the responses by country of respondent is shown below.
-]
+&gt;
+&gt;- The climate is changing and human activity is mainly responsible  
+&gt;- The climate is changing and human activity is partly responsible, together with other factors  
+&gt;- The climate is changing but human activity is not responsible at all  
+&gt;- The climate is not changing  
+
+---
+
+## Survey data
 
 &lt;br&gt;
 
 .small[
+
+
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -212,12 +231,8 @@ Source: [YouGov - International Climate Change Survey](https://d25d2506sfb94s.cl
 ---
 
 .question[
-- What percent of (1) all respondents, (2) GB respondents,  
-(3) US respondents think the climate is changing and  
+What percent of **all respondents** think the climate is changing and  
 human activity is mainly responsible?  
-- Based on the percentages you calculate, does there appear to be a relationship 
-between country ands beliefs about climate change? Explain your reasoning.  
-- If yes, could there be another variable that explains this relationship?
 ]
 
 .small[
@@ -265,19 +280,202 @@ between country ands beliefs about climate change? Explain your reasoning.
 &lt;/table&gt;
 ]
 
+--
+
+
+```r
+(all &lt;- 1340 / 2966)
+```
+
+```
+## [1] 0.4517869
+```
+
+
+---
+
+.question[
+What percent of **GB respondents** think the climate is changing and  
+human activity is mainly responsible?  
+]
+
+.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is changing and human activity is mainly responsible &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is changing and human activity is partly responsible, together with other factors &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is changing but human activity is not responsible at all &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is not changing &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Don't know &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GB &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 833 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 604 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 114 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1633 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; US &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 507 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 493 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 133 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1333 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 1340 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 1097 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 169 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 113 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 247 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2966 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+--
+
+
+```r
+(gb &lt;- 833 / 1633)
+```
+
+```
+## [1] 0.5101041
+```
+
+---
+
+.question[
+What percent of **US respondents** think the climate is changing and  
+human activity is mainly responsible?  
+]
+
+.small[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is changing and human activity is mainly responsible &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is changing and human activity is partly responsible, together with other factors &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is changing but human activity is not responsible at all &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; The climate is not changing &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Don't know &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sum &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GB &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 833 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 604 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 49 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 114 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1633 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; US &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 507 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 493 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 120 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 133 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1333 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 1340 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 1097 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 169 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 0.5 in; "&gt; 113 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 247 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2966 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+--
+
+
+```r
+(us &lt;- 507 / 1333)
+```
+
+```
+## [1] 0.3803451
+```
+
+---
+
+.question[
+Based on the percentages we calculated, does there appear to be a relationship 
+between country and beliefs about climate change? If yes, could there be another variable that explains this relationship?
+]
+
+.pull-left[
+
+```r
+all
+```
+
+```
+## [1] 0.4517869
+```
+
+```r
+gb
+```
+
+```
+## [1] 0.5101041
+```
+
+```r
+us
+```
+
+```
+## [1] 0.3803451
+```
+]
+
+---
+
+## Conditional probability
+
+**Notation**: `\(P(A | B)\)`: Probability of event A given event B
+
+- What is the probability that it will be unseasonably warm tomorrow?
+- What is the probability that it will be unseasonably warm tomorrow, given that it was unseasonably warm today?
+
 ---
 
 ## Independence
 
-.question[
-Inspired by the previous example and how we used the conditional probabilities to make conclusions, come up with a definition of independent events. If easier, you can keep the context limited to the example (independence/dependence of beliefs about climate change and country), but try to push yourself to make a more general statement.
-]
+- If knowing event A happened tells you something about event B happening, or vice versa, then events A and B are not independent
+
+- If not, they are said to be independent
+
+- `\(P(A | B) = P(A)\)`
 
 ---
 
 class: middle
 
-# Simpson's paradox
+# Introducing Simpson's Paradox
 
 ---
 
@@ -290,6 +488,9 @@ class: middle
 
 ## Relationship between two variables
 
+&lt;br&gt;
+
+.pull-right-narrow[
 &lt;table&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
@@ -316,15 +517,19 @@ class: middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
---
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-7-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 ## Relationship between two variables
 
+&lt;br&gt;
+
+.pull-left-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right-narrow[
 &lt;table&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
@@ -351,13 +556,58 @@ class: middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+]
 
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Relationship between two variables
+
+&lt;br&gt;
+
+.pull-left-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right-narrow[
+&lt;table&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;border-right:1px solid;"&gt; x &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;border-right:1px solid;"&gt; y &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
 
 ---
 
 ## Considering a third variable
 
+&lt;br&gt;
+
+.pull-left-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right-narrow[
 &lt;table&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
@@ -395,13 +645,19 @@ class: middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 ## Relationship between three variables
 
+&lt;br&gt;
+
+.pull-left-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right-narrow[
 &lt;table&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
@@ -439,20 +695,19 @@ class: middle
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
-## Simpson's paradox
+class: middle
 
-- Not considering an important variable when studying a relationship can result 
-in **Simpson's paradox**.
-- Simpson's paradox illustrates the effect that omission of an explanatory 
-variable can have on the measure of association between another explanatory 
-variable and a response variable. 
-- In other words, the inclusion of a third variable in the analysis can change 
-the apparent relationship between the other two variables. 
+# Wrapping Up... 
+
+---
+
+class:middle 
+
+# Case study: Berkeley admission data
 
 ---
 
@@ -467,6 +722,7 @@ the apparent relationship between the other two variables.
 
 ## Data
 
+.pull-left[
 
 ```
 ## # A tibble: 4,526 x 3
@@ -482,12 +738,46 @@ the apparent relationship between the other two variables.
 ##  8 Admitted Male   A    
 ##  9 Admitted Male   A    
 ## 10 Admitted Male   A    
-## # ... with 4,516 more rows
+## 11 Admitted Male   A    
+## 12 Admitted Male   A    
+## 13 Admitted Male   A    
+## 14 Admitted Male   A    
+## 15 Admitted Male   A    
+## # ... with 4,511 more rows
+```
+]
+.pull-right[
+
+```
+## # A tibble: 2 x 2
+##   gender     n
+## * &lt;fct&gt;  &lt;int&gt;
+## 1 Female  1835
+## 2 Male    2691
 ```
 
----
+```
+## # A tibble: 6 x 2
+##   dept      n
+## * &lt;ord&gt; &lt;int&gt;
+## 1 A       933
+## 2 B       585
+## 3 C       918
+## 4 D       792
+## 5 E       584
+## 6 F       714
+```
 
-## Overall gender distribution
+```
+## # A tibble: 2 x 2
+##   admit        n
+## * &lt;fct&gt;    &lt;int&gt;
+## 1 Rejected  2771
+## 2 Admitted  1755
+```
+]
+
+---
 
 .question[
 What can you say about the overall gender distribution? Hint: Calculate the following probabilities: `\(P(Admit | Male)\)` and `\(P(Admit | Female)\)`.
@@ -511,12 +801,6 @@ ucbadmit %&gt;%
 
 ---
 
-## Overall gender distribution
-
-.question[
-What type of visualization would be appropriate for representing these data?
-]
-
 
 ```r
 ucbadmit %&gt;%
@@ -536,27 +820,35 @@ ucbadmit %&gt;%
 ## 4 Male   Admitted  1198      0.445
 ```
 
+- `\(P(Admit | Female)\)` = 0.304
+- `\(P(Admit | Male)\)` = 0.445
+
 ---
 
 ## Overall gender distribution
 
+.pull-left[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.medi[.pull-right[
 
 ```r
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
+ggplot(ucbadmit, aes(y = gender, 
+                     fill = admit)) +
   geom_bar(position = "fill") + 
-  labs(y = "", title = "Admit by gender")
+  labs(title = "Admit by gender",
+       y = NULL, x = NULL)
 ```
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+]
 
 ---
-
-## Gender distribution, by department
 
 .question[
 What can you say about the gender distribution by department ?
 ]
-
+.center[
 
 ```r
 ucbadmit %&gt;%
@@ -579,10 +871,8 @@ ucbadmit %&gt;%
 ## 10 C     Female Admitted   202
 ## # ... with 14 more rows
 ```
-
+]
 ---
-
-## Gender distribution, by department
 
 .question[
 Let's try again... What can you say about the gender distribution by department?
@@ -609,92 +899,214 @@ ucbadmit %&gt;%
 
 ## Gender distribution, by department
 
-.question[
-What type of visualization would be appropriate for representing these data?
+.pull-left[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
-.small[
+.midi.pull-right[
+
+```r
+ggplot(ucbadmit, aes(y = gender, fill = admit)) +
+  geom_bar(position = "fill") +
+  facet_wrap(. ~ dept) +
+  scale_x_continuous(labels = label_percent()) +
+  labs(title = "Admissions by gender and department",
+       x = NULL, y = NULL, fill = NULL) +
+  theme(legend.position = "bottom")
+```
+]
+
+
+
+
+---
+
+## Case for gender discrimination?
+
+.pull-left[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Closer look at departments
+
+.pull-left[
+
+```
+## # A tibble: 12 x 5
+## # Groups:   dept, gender [12]
+##    dept  gender n_admitted n_applied prop_admit
+##    &lt;ord&gt; &lt;fct&gt;       &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
+##  1 A     Female         89       108     0.824 
+##  2 A     Male          512       825     0.621 
+##  3 B     Female         17        25     0.68  
+##  4 B     Male          353       560     0.630 
+##  5 C     Female        202       593     0.341 
+##  6 C     Male          120       325     0.369 
+##  7 D     Female        131       375     0.349 
+##  8 D     Male          138       417     0.331 
+##  9 E     Female         94       393     0.239 
+## 10 E     Male           53       191     0.277 
+## 11 F     Female         24       341     0.0704
+## 12 F     Male           22       373     0.0590
+```
+]
+
+.pull-right[
 
 ```r
 ucbadmit %&gt;%
   count(dept, gender, admit) %&gt;%
   group_by(dept, gender) %&gt;%
-  mutate(perc_admit = n / sum(n)) %&gt;%
-  filter(admit == "Admitted")
+  mutate(
+    n_applied  = sum(n),
+    prop_admit = n / n_applied
+    ) %&gt;%
+  filter(admit == "Admitted") %&gt;%
+  rename(n_admitted = n) %&gt;%
+  select(-admit) %&gt;%
+  print(n = 12)
 ```
 
-```
-## # A tibble: 12 x 5
-## # Groups:   dept, gender [12]
-##    dept  gender admit        n perc_admit
-##    &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt;
-##  1 A     Female Admitted    89      0.824
-##  2 A     Male   Admitted   512      0.621
-##  3 B     Female Admitted    17      0.68 
-##  4 B     Male   Admitted   353      0.630
-##  5 C     Female Admitted   202      0.341
-##  6 C     Male   Admitted   120      0.369
-##  7 D     Female Admitted   131      0.349
-##  8 D     Male   Admitted   138      0.331
-##  9 E     Female Admitted    94      0.239
-## 10 E     Male   Admitted    53      0.277
-## # ... with 2 more rows
-```
 ]
 
 ---
 
-## Gender distribution, by department
+class:middle
 
-
-```r
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
-  geom_bar(position = "fill") +
-  facet_grid(. ~ dept) +
-  labs(x = "Gender", y = "", fill = "Admission",
-       title = "Admit by gender by department")
-```
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Gender distribution, by department
-
-.small[
-
-```r
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
-  geom_bar(position = "fill") +
-  scale_y_continuous(labels = percent) +
-  facet_wrap(. ~ dept) +
-  coord_flip() +
-  labs(x = "", y = "", fill = "", title = "Admissions by gender and department") +
-  theme(legend.position = "bottom")
-```
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-22-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-23-1.png" width="55%" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-24-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+# Wrapping Up...
 
 ---
 
 class: middle
 
-# group_by
+# Revisting Simpson's Paradox
+
+---
+
+## Relationship between two variables
+
+.pull-left-narrow[
+
+```
+## # A tibble: 8 x 3
+##       x     y z    
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1     2     4 A    
+## 2     3     3 A    
+## 3     4     2 A    
+## 4     5     1 A    
+## 5     6    11 B    
+## 6     7    10 B    
+## 7     8     9 B    
+## 8     9     8 B
+```
+]
+.pull-right-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Relationship between two variables
+
+.pull-left-narrow[
+
+```
+## # A tibble: 8 x 3
+##       x     y z    
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1     2     4 A    
+## 2     3     3 A    
+## 3     4     2 A    
+## 4     5     1 A    
+## 5     6    11 B    
+## 6     7    10 B    
+## 7     8     9 B    
+## 8     9     8 B
+```
+]
+.pull-right-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Considering a third variable
+
+.pull-left-narrow[
+
+```
+## # A tibble: 8 x 3
+##       x     y z    
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1     2     4 A    
+## 2     3     3 A    
+## 3     4     2 A    
+## 4     5     1 A    
+## 5     6    11 B    
+## 6     7    10 B    
+## 7     8     9 B    
+## 8     9     8 B
+```
+]
+.pull-right-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Relationship between three variables
+
+.pull-left-narrow[
+
+```
+## # A tibble: 8 x 3
+##       x     y z    
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+## 1     2     4 A    
+## 2     3     3 A    
+## 3     4     2 A    
+## 4     5     1 A    
+## 5     6    11 B    
+## 6     7    10 B    
+## 7     8     9 B    
+## 8     9     8 B
+```
+]
+.pull-right-wide[
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Simpson's paradox
+
+- Not considering an important variable when studying a relationship can result in **Simpson's paradox**
+- Simpson's paradox illustrates 
+  - the effect that omission of an explanatory variable can have 
+  - on the measure of association between 
+  - another explanatory variable and a response variable
+- The inclusion of a third variable in the analysis can change 
+  - the apparent relationship between the other two variables
+
+---
+
+class: middle
+
+# Aside: `group_by()` and `count()`
 
 ---
 
 ## What does group_by() do?
 
-`group_by()` takes an existing `tbl` and converts it into a grouped `tbl` where operations are performed "by group":
+`group_by()` takes an existing data frame and converts it into a grouped data frame where subsequent operations are performed "once per group"
 
-.pull-left[
+.medi.pull-left[
 
 ```r
 ucbadmit
@@ -717,7 +1129,7 @@ ucbadmit
 ## # ... with 4,516 more rows
 ```
 ]
-.pull-right[
+.medi.pull-right[
 
 ```r
 ucbadmit %&gt;% 
@@ -747,9 +1159,9 @@ ucbadmit %&gt;%
 
 ## What does group_by() not do?
 
-`group_by()` does not sort the data, `arrange()` does:
+`group_by()` does not sort the data, `arrange()` does
 
-.pull-left[
+.medi.pull-left[
 
 ```r
 ucbadmit %&gt;% 
@@ -774,7 +1186,7 @@ ucbadmit %&gt;%
 ## # ... with 4,516 more rows
 ```
 ]
-.pull-right[
+.medi.pull-right[
 
 ```r
 ucbadmit %&gt;% 
@@ -803,9 +1215,9 @@ ucbadmit %&gt;%
 
 ## What does group_by() not do?
 
-`group_by()` does not create frequency tables, `count()` does:
+`group_by()` does not create frequency tables, `count()` does
 
-.pull-left[
+.medi.pull-left[
 
 ```r
 ucbadmit %&gt;% 
@@ -830,7 +1242,7 @@ ucbadmit %&gt;%
 ## # ... with 4,516 more rows
 ```
 ]
-.pull-right[
+.medi.pull-right[
 
 ```r
 ucbadmit %&gt;% 
@@ -850,7 +1262,7 @@ ucbadmit %&gt;%
 
 ## Undo grouping with ungroup()
 
-.pull-left[
+.medi.pull-left[
 
 ```r
 ucbadmit %&gt;%
@@ -871,7 +1283,7 @@ ucbadmit %&gt;%
 ## 4 Male        0.445
 ```
 ]
-.pull-right[
+.medi.pull-right[
 
 ```r
 ucbadmit %&gt;%
@@ -895,15 +1307,9 @@ ucbadmit %&gt;%
 
 ---
 
-class: middle
-
-# count
-
----
-
 ## count() is a short-hand
 
-`count()` is a short-hand for `group_by()` and then `summarize()` to count the number of observations in each group:
+`count()` is a short-hand for `group_by()` and then `summarize()` to count the number of observations in each group
 
 .pull-left[
 
@@ -980,17 +1386,21 @@ ucbadmit %&gt;%
 
 ---
 
-.question[
-What is the difference between the two outputs?
-]
+## `summarize()` after `group_by()`
 
-.small[
-.pull-left[
+- `count()` ungroups after itself
+- `summarize()` peels off one layer of grouping by default, or you can specify a different behavior
+
+.medi[
 
 ```r
 ucbadmit %&gt;%
   group_by(gender, admit) %&gt;%
   summarize(n = n()) 
+```
+
+```
+## `summarise()` has grouped output by 'gender'. You can override using the `.groups` argument.
 ```
 
 ```
@@ -1004,42 +1414,19 @@ ucbadmit %&gt;%
 ## 4 Male   Admitted  1198
 ```
 ]
-.pull-right[
-
-```r
-ucbadmit %&gt;%
-  count(gender, admit)
-```
-
-```
-## # A tibble: 4 x 3
-##   gender admit        n
-##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
-## 1 Female Rejected  1278
-## 2 Female Admitted   557
-## 3 Male   Rejected  1493
-## 4 Male   Admitted  1198
-```
-]
-]
-
-&lt;br&gt;&lt;br&gt;
-
---
-
-- `count()` ungroups after itself
-- `summarize()` peels off one layer of grouping
-
----
-# Sources
-
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
 
 ---
 
 class: middle
 
-# Wrapping Up...
+# Wrapping Up... 
+
+&lt;br&gt;
+
+Sources:
+- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
