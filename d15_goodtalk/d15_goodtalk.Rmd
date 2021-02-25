@@ -279,11 +279,11 @@ ggplot(squirrels, aes(x = long, y = lat, color = where)) +
 ```{r echo=FALSE, message=FALSE}
 hectare_counts <- squirrels %>%
   group_by(hectare) %>%
-  summarise(n = n()) 
+  summarize(n = n()) 
 
 hectare_centroids <- squirrels %>%
   group_by(hectare) %>%
-  summarise(
+  summarize(
     centroid_x = mean(long),
     centroid_y = mean(lat)
   )
@@ -300,11 +300,11 @@ squirrels %>%
 ```{r eval=FALSE}
 hectare_counts <- squirrels %>%
   group_by(hectare) %>%
-  summarise(n = n()) 
+  summarize(n = n()) 
 
 hectare_centroids <- squirrels %>%
   group_by(hectare) %>%
-  summarise(
+  summarize(
     centroid_x = mean(long),
     centroid_y = mean(lat)
   )

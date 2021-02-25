@@ -416,7 +416,7 @@ quartet[23:44,]
 ```{r quartet-summary}
 quartet %>%
   group_by(set) %>%
-  summarise(
+  summarize(
     mean_x = mean(x), 
     mean_y = mean(y),
     sd_x = sd(x),

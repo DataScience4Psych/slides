@@ -279,7 +279,7 @@ How would you go about answering this question: Which years have the most movies
 ```{r}
 imdb_top_250 %>% 
   group_by(year) %>%
-  summarise(total = n()) %>%
+  summarize(total = n()) %>%
   arrange(desc(total)) %>%
   head(5)
 ```
@@ -298,7 +298,7 @@ How would you go about creating this visualization: Visualize the average yearly
 ```{r echo=FALSE, out.width="90%"}
 imdb_top_250 %>% 
   group_by(year) %>%
-  summarise(avg_score = mean(score)) %>%
+  summarize(avg_score = mean(score)) %>%
   ggplot(aes(y = avg_score, x = year)) +
     geom_point() +
     geom_smooth(method = "lm") +

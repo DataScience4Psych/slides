@@ -38,7 +38,7 @@ class: middle
 .pull-left[
 **Observational**  
 - Collect data in a way that does not interfere with how the data arise ("observe")
-- Only establish an association
+- Establish associations
 ]
 .pull-right[
 **Experimental**  
@@ -53,31 +53,44 @@ class: middle
 Obviously -- there is more to causal inference, but for the sake of time...
 ]
 
---
+---
+
 .question[
-Design a study comparing average energy levels of people who do and do not exercise -- both as an observational study and as an experiment.
+What type of study is the following, observational or experiment? What does that mean in terms of causal conclusions?
+
+*Researchers studying the relationship between exercising and energy levels asked participants in their study how many times a week they exercise and whether they have high or low energy when they wake up in the morning.*
+
+*Based on responses to the exercise question the researchers grouped people into three categories (no exercise, exercise 1-3 times a week, and exercise more than 3 times a week).* 
+
+*The researchers then compared the proportions of people who said they have high energy in the mornings across the three exercise categories.*
 ]
 
 ---
 
-## Study: Breakfast cereal keeps girls slim
+.question[
+What type of study is the following, observational or experiment? What does that mean in terms of causal conclusions?
 
-.midi[
-*Girls who ate breakfast of any type had a lower average body mass index, a common obesity gauge, than those who said they didn't. The index was even lower for girls who said they ate cereal for breakfast, according to findings of the study conducted by the Maryland Medical Research Institute with funding from the National Institutes of Health (NIH) and cereal-maker General Mills.*
- 
-[...]
- 
-*The results were gleaned from a larger NIH survey of 2,379 girls in California, Ohio, and Maryland who were tracked between the ages of 9 and 19.*
- 
-[...]
- 
-*As part of the survey, the girls were asked once a year what they had eaten during the previous three days.*
- 
-[...]
+*Researchers studying the relationship between exercising and energy levels randomly assigned participants in their study into three groups: no exercise, exercise 1-3 times a week, and exercise more than 3 times a week.* 
+
+*After one week, participants were asked whether they have high or low energy when they wake up in the morning.*
+
+*The researchers then compared the proportions of people who said they have high energy in the mornings across the three exercise categories.*
 ]
 
-.question[
-What is the explanatory and what is the response variable?
+---
+
+class: middle
+
+# Case study: Breakfast cereal keeps girls slim
+
+---
+
+.midi[
+> *Girls who ate breakfast of any type had a lower average body mass index (BMI), a common obesity gauge, than those who said they didn't. The index was even lower for girls who said they ate cereal for breakfast, according to findings of the study conducted by the Maryland Medical Research Institute with funding from the National Institutes of Health (NIH) and cereal-maker General Mills.* [...]
+>
+> *The results were gleaned from a larger NIH survey of 2,379 girls in California, Ohio, and Maryland who were tracked between the ages of 9 and 19.* [...]
+>
+>*As part of the survey, the girls were asked once a year what they had eaten during the previous three days.* [...]
 ]
 
 .footnote[
@@ -86,17 +99,28 @@ Souce: [Study: Cereal Keeps Girls Slim](https://www.cbsnews.com/news/study-cerea
 
 ---
 
-### 3 possible explanations
+## Explanatory and response variables
+
+- Explanatory variable: Whether the participant ate breakfast or not
+
+- Reponse variable: BMI of the participant
+
+
+---
+
+## Three possible explanations
 
 --
 
-- Eating breakfast causes girls to be slimmer 
+1. Eating breakfast causes girls to be slimmer 
+
 
 --
-- Being slim causes girls to eat breakfast
+2. Being slim causes girls to eat breakfast
+
 
 --
-- A third variable is responsible for both -- a **confounding** variable: an extraneous variable that affects both the explanatory and the response variable, and that makes it seem like there is a relationship between them
+3. A third variable is responsible for both -- a **confounding** variable: an extraneous variable that affects both the explanatory and the response variable, and that makes it seem like there is a relationship between them
 
 ---
 
@@ -127,7 +151,120 @@ class: middle
 
 class: middle
 
-# Conditional probability
+# Climate change survey: A Conditional Probability Case Study
+
+---
+
+## Survey question
+
+>A July 2019 YouGov survey asked 1633 GB and 1333 USA randomly selected adults 
+which of the following statements about the global environment best describes 
+their view:
+>
+>- The climate is changing and human activity is mainly responsible  
+>- The climate is changing and human activity is partly responsible, together with other factors  
+>- The climate is changing but human activity is not responsible at all  
+>- The climate is not changing  
+
+---
+
+## Survey data
+
+<br>
+
+.small[
+```{r echo=FALSE, message=FALSE}
+yougov_climate_table <- read_csv("data/yougov-climate.csv")
+
+response_levels <- names(yougov_climate_table)[-1]
+
+yougov_climate <- yougov_climate_table %>%
+  pivot_longer(cols = -country, names_to = "response", values_to = "count") %>%
+  uncount(count) %>%
+  mutate(response = fct_relevel(response, response_levels))
+```
+
+```{r climate-table, echo=FALSE}
+table(yougov_climate) %>% 
+  stats::addmargins() %>%
+  knitr::kable(format = "html", booktabs = TRUE) %>%
+  kableExtra::column_spec(column = 2:5, width = "0.5 in")
+```
+]
+
+.footnote[
+Source: [YouGov - International Climate Change Survey](https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/epjj0nusce/YouGov%20-%20International%20climate%20change%20survey.pdf)
+]
+
+---
+
+.question[
+What percent of **all respondents** think the climate is changing and  
+human activity is mainly responsible?  
+]
+
+.small[
+```{r ref.label="climate-table", echo=FALSE}
+```
+]
+
+--
+
+```{r}
+(all <- 1340 / 2966)
+```
+
+
+---
+
+.question[
+What percent of **GB respondents** think the climate is changing and  
+human activity is mainly responsible?  
+]
+
+.small[
+```{r ref.label="climate-table", echo=FALSE}
+```
+]
+
+--
+
+```{r}
+(gb <- 833 / 1633)
+```
+
+---
+
+.question[
+What percent of **US respondents** think the climate is changing and  
+human activity is mainly responsible?  
+]
+
+.small[
+```{r ref.label="climate-table", echo=FALSE}
+```
+]
+
+--
+
+```{r}
+(us <- 507 / 1333)
+```
+
+---
+
+.question[
+Based on the percentages we calculated, does there appear to be a relationship 
+between country and beliefs about climate change? If yes, could there be another variable that explains this relationship?
+]
+
+.pull-left[
+```{r}
+all
+gb
+us
+```
+]
 
 ---
 
@@ -140,72 +277,13 @@ class: middle
 
 ---
 
-.midi[
-A July 2019 YouGov survey asked 1633 GB and 1333 USA randomly selected adults 
-which of the following statements about the global environment best describes 
-their view:
-.small[
-- The climate is changing and human activity is mainly responsible  
-- The climate is changing and human activity is partly responsible, together with other factors  
-- The climate is changing but human activity is not responsible at all  
-- The climate is not changing  
-]
-The distribution of the responses by country of respondent is shown below.
-]
-
-<br>
-
-.small[
-```{r echo=FALSE,message=FALSE}
-yougov_climate_table <- read_csv("data/yougov-climate.csv")
-
-response_levels <- names(yougov_climate_table)[-1]
-
-yougov_climate <- yougov_climate_table %>%
-  pivot_longer(cols = -country, names_to = "response", values_to = "count") %>%
-  uncount(count) %>%
-  mutate(response = fct_relevel(response, response_levels))
-
-table(yougov_climate) %>% 
-  stats::addmargins() %>%
-  knitr::kable(format = "html", booktabs = TRUE) %>%
-  column_spec(column = 2:5, width = "0.5 in")
-```
-]
-
-.footnote[
-Source: [YouGov - International Climate Change Survey](https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/epjj0nusce/YouGov%20-%20International%20climate%20change%20survey.pdf)
-]
-
----
-
-.question[
-- What percent of (1) all respondents, (2) GB respondents,  
-(3) US respondents think the climate is changing and  
-human activity is mainly responsible?  
-- Based on the percentages you calculate, does there appear to be a relationship 
-between country ands beliefs about climate change? Explain your reasoning.  
-- If yes, could there be another variable that explains this relationship?
-]
-
-.small[
-```{r echo=FALSE,message=FALSE}
-table(yougov_climate) %>% 
-  addmargins() %>%
-  knitr::kable(format = "html", booktabs = TRUE) %>%
-  column_spec(column = 2:5, width = "0.5 in")
-```
-]
-
----
-
 ## Independence
 
-.question[
-Inspired by the previous example and how we used the conditional probabilities to make conclusions, come up with a definition of independent events. If easier, you can keep the context limited to the example (independence/dependence of beliefs about climate change and country), but try to push yourself to make a more general statement.
-]
+- If knowing event A happened tells you something about event B happening, or vice versa, then events A and B are not independent
 
----
+- If not, they are said to be independent
+
+- $P(A | B) = P(A)$
 
 class: middle
 
@@ -308,16 +386,13 @@ ggplot(data = df) +
 ```
 
 ---
+class: middle
 
-## Simpson's paradox
+# Wrapping Up... 
 
-- Not considering an important variable when studying a relationship can result 
-in **Simpson's paradox**.
-- Simpson's paradox illustrates the effect that omission of an explanatory 
-variable can have on the measure of association between another explanatory 
-variable and a response variable. 
-- In other words, the inclusion of a third variable in the analysis can change 
-the apparent relationship between the other two variables. 
+---
+
+# Case study: Berkeley admission data
 
 ---
 
@@ -332,13 +407,26 @@ the apparent relationship between the other two variables.
 
 ## Data
 
+.pull-left[
 ```{r message=FALSE, echo=FALSE}
-ucbadmit
+ucbadmit %>%
+  print(n = 15)
 ```
+]
+.pull-right[
+```{r message=FALSE, echo=FALSE}
+ucbadmit %>%
+  count(gender)
+
+ucbadmit %>%
+  count(dept)
+
+ucbadmit %>%
+  count(admit)
+```
+]
 
 ---
-
-## Overall gender distribution
 
 .question[
 What can you say about the overall gender distribution? Hint: Calculate the following probabilities: $P(Admit | Male)$ and $P(Admit | Female)$.
@@ -351,32 +439,39 @@ ucbadmit %>%
 
 ---
 
-## Overall gender distribution
-
-.question[
-What type of visualization would be appropriate for representing these data?
-]
-
-```{r}
+```{r ucbadmit-overall-prop}
 ucbadmit %>%
   count(gender, admit) %>%
   group_by(gender) %>%
   mutate(prop_admit = n / sum(n))
 ```
 
+- $P(Admit | Female)$ = 0.304
+- $P(Admit | Male)$ = 0.445
+
 ---
 
 ## Overall gender distribution
 
-```{r out.width = "80%"}
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
-  geom_bar(position = "fill") + 
-  labs(y = "", title = "Admit by gender")
+.panelset[
+
+.panel[.panel-name[Plot]
+```{r ref.label="gender-admit", echo = FALSE}
 ```
+]
+
+.panel[.panel-name[Code]
+```{r gender-admit, fig.show = "hide"}
+ggplot(ucbadmit, aes(y = gender, fill = admit)) +
+  geom_bar(position = "fill") + 
+  labs(title = "Admit by gender",
+       y = NULL, x = NULL)
+```
+]
+
+]
 
 ---
-
-## Gender distribution, by department
 
 .question[
 What can you say about the gender distribution by department ?
@@ -388,8 +483,6 @@ ucbadmit %>%
 ```
 
 ---
-
-## Gender distribution, by department
 
 .question[
 Let's try again... What can you say about the gender distribution by department?
@@ -405,79 +498,182 @@ ucbadmit %>%
 
 ## Gender distribution, by department
 
-.question[
-What type of visualization would be appropriate for representing these data?
-]
-
-.small[
-```{r}
-ucbadmit %>%
-  count(dept, gender, admit) %>%
-  group_by(dept, gender) %>%
-  mutate(perc_admit = n / sum(n)) %>%
-  filter(admit == "Admitted")
+.pull-right[
+```{r ref.label="gender-dept-admit", echo = FALSE}
 ```
 ]
 
----
-
-## Gender distribution, by department
-
-```{r out.width = "80%"}
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
+.pull-left[
+```{r gender-dept-admit, fig.show = "hide"}
+ggplot(ucbadmit, aes(y = gender, fill = admit)) +
   geom_bar(position = "fill") +
-  facet_grid(. ~ dept) +
-  labs(x = "Gender", y = "", fill = "Admission",
-       title = "Admit by gender by department")
-```
-
----
-
-## Gender distribution, by department
-
-.small[
-```{r}
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
-  geom_bar(position = "fill") +
-  scale_y_continuous(labels = percent) +
   facet_wrap(. ~ dept) +
-  coord_flip() +
-  labs(x = "", y = "", fill = "", title = "Admissions by gender and department") +
+  scale_x_continuous(labels = label_percent()) +
+  labs(title = "Admissions by gender and department",
+       x = NULL, y = NULL, fill = NULL) +
   theme(legend.position = "bottom")
 ```
 ]
 
+
+
 ---
 
-```{r echo=FALSE, out.width="55%"}
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
-  geom_bar(position = "fill") +
-  labs(x = "", y = "", fill = "", title = "Admissions by gender") +
-  coord_flip() +
-  scale_y_continuous(labels = percent)
+## Case for gender discrimination?
+
+.pull-left[
+```{r ref.label="gender-admit", echo=FALSE, out.width="100%"}
+```
+]
+.pull-right[
+```{r ref.label="gender-dept-admit", echo=FALSE, out.width="100%"}
+```
+]
+
+---
+
+## Closer look at departments
+
+.pull-left[
+```{r ref.label="gender-dept-admit-table", echo = FALSE}
+```
+]
+
+.pull-right[
+```{r gender-dept-admit-table, eval = FALSE}
+ucbadmit %>%
+  count(dept, gender, admit) %>%
+  group_by(dept, gender) %>%
+  mutate(
+    n_applied  = sum(n),
+    prop_admit = n / n_applied
+    ) %>%
+  filter(admit == "Admitted") %>%
+  rename(n_admitted = n) %>%
+  select(-admit) %>%
+  print(n = 12)
 ```
 
-```{r echo=FALSE, out.width="55%"}
-ggplot(ucbadmit, mapping = aes(x = gender, fill = admit)) +
-  geom_bar(position = "fill") +
-  facet_wrap(. ~ dept) +
-  labs(x = "", y = "", fill = "", title = "Admissions by gender and department") +
-  guides(fill = FALSE) +
-  coord_flip() +
-  scale_y_continuous(labels = percent)
-```
+]
 
 ---
 
 class: middle
 
-# group_by
+# Simpson's paradox
+
+---
+
+## Relationship between two variables
+
+.pull-left[
+```{r echo=FALSE, message=FALSE}
+df <- tribble(
+  ~x, ~y, ~z,
+  2,   4,  "A",
+  3,   3,  "A",
+  4,   2,  "A",
+  5,   1,  "A",
+  6,   11, "B",
+  7,   10, "B",
+  8,   9,  "B",
+  9,   8,  "B"
+)
+df
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+ggplot(df) +
+  geom_point(aes(x = x, y = y), color = "darkgray", size = 5) +
+  theme_minimal()
+```
+]
+
+---
+
+## Relationship between two variables
+
+.pull-left[
+```{r echo=FALSE, message=FALSE}
+df
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+ggplot(data = df) +
+  geom_point(aes(x = x, y = y), color = "darkgray", size = 5) +
+  geom_smooth(aes(x = x, y = x), color = "darkgray") +
+  theme_minimal()
+```
+]
+
+---
+
+## Considering a third variable
+
+.pull-left[
+```{r echo=FALSE, message=FALSE}
+df
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+ggplot(data = df) +
+  geom_point(aes(x = x, y = y, color = z), size = 5) +
+  geom_smooth(aes(x = x, y = x), method = "lm", color = "darkgray") +
+  theme_minimal()
+```
+]
+
+---
+
+## Relationship between three variables
+
+.pull-left[
+```{r echo=FALSE, message=FALSE}
+df
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+ggplot(data = df) +
+  geom_point(aes(x = x, y = y, color = z), size = 5) +
+  geom_smooth(aes(x = x, y = x), method = "lm", color = "darkgray") +
+  geom_smooth(aes(x = x, y = y, color = z), method = "lm") +
+  theme_minimal()
+```
+]
+
+---
+class: middle
+
+# Wrapping Up... 
+
+---
+class: middle
+
+# Simpson's paradox 
+
+---
+
+# Simpson's paradox
+
+- Not considering an important variable when studying a relationship can result in **Simpson's paradox**
+- Simpson's paradox illustrates the effect that omission of an explanatory variable can have on the measure of association between another explanatory variable and a response variable
+- The inclusion of a third variable in the analysis can change the apparent relationship between the other two variables
+
+---
+
+class: middle
+
+# Aside: `group_by()` and `count()`
 
 ---
 
 ## What does group_by() do?
 
-`group_by()` takes an existing `tbl` and converts it into a grouped `tbl` where operations are performed "by group":
+`group_by()` takes an existing data frame and converts it into a grouped data frame where subsequent operations are performed "once per group"
 
 .pull-left[
 ```{r}
@@ -495,7 +691,7 @@ ucbadmit %>%
 
 ## What does group_by() not do?
 
-`group_by()` does not sort the data, `arrange()` does:
+`group_by()` does not sort the data, `arrange()` does
 
 .pull-left[
 ```{r}
@@ -514,7 +710,7 @@ ucbadmit %>%
 
 ## What does group_by() not do?
 
-`group_by()` does not create frequency tables, `count()` does:
+`group_by()` does not create frequency tables, `count()` does
 
 .pull-left[
 ```{r}
@@ -555,21 +751,15 @@ ucbadmit %>%
 
 ---
 
-class: middle
-
-# count
-
----
-
 ## count() is a short-hand
 
-`count()` is a short-hand for `group_by()` and then `summarise()` to count the number of observations in each group:
+`count()` is a short-hand for `group_by()` and then `summarize()` to count the number of observations in each group
 
 .pull-left[
 ```{r}
 ucbadmit %>%
   group_by(gender) %>%
-  summarise(n = n()) 
+  summarize(n = n()) 
 ```
 ]
 .pull-right[
@@ -587,7 +777,7 @@ ucbadmit %>%
 ```{r}
 ucbadmit %>%
   group_by(gender, admit) %>%
-  summarise(n = n()) 
+  summarize(n = n()) 
 ```
 ]
 .pull-right[
@@ -599,34 +789,18 @@ ucbadmit %>%
 
 ---
 
-.question[
-What is the difference between the two outputs?
-]
-
-.small[
-.pull-left[
-```{r}
-ucbadmit %>%
-  group_by(gender, admit) %>%
-  summarise(n = n()) 
-```
-]
-.pull-right[
-```{r}
-ucbadmit %>%
-  count(gender, admit)
-```
-]
-]
-
-<br><br>
-
---
+## `summarize()` after `group_by()`
 
 - `count()` ungroups after itself
-- `summarise()` peels off one layer of grouping
+- `summarize()` peels off one layer of grouping by default, or you can specify a different behaviour
 
----
+
+```{r message=TRUE}
+ucbadmit %>%
+  group_by(gender, admit) %>%
+  summarize(n = n()) 
+```
+
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))

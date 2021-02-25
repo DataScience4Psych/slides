@@ -328,7 +328,7 @@ How would you go about answering this question: Which years have the most movies
 ```r
 imdb_top_250 %&gt;% 
   group_by(year) %&gt;%
-  summarise(total = n()) %&gt;%
+  summarize(total = n()) %&gt;%
   arrange(desc(total)) %&gt;%
   head(5)
 ```

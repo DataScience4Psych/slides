@@ -877,11 +877,11 @@ ggplot(squirrels, aes(x = long, y = lat, color = where)) +
 ```r
 hectare_counts &lt;- squirrels %&gt;%
   group_by(hectare) %&gt;%
-  summarise(n = n()) 
+  summarize(n = n()) 
 
 hectare_centroids &lt;- squirrels %&gt;%
   group_by(hectare) %&gt;%
-  summarise(
+  summarize(
     centroid_x = mean(long),
     centroid_y = mean(lat)
   )

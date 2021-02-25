@@ -903,14 +903,14 @@ class: middle
 
 ## count() is a short-hand
 
-`count()` is a short-hand for `group_by()` and then `summarise()` to count the number of observations in each group:
+`count()` is a short-hand for `group_by()` and then `summarize()` to count the number of observations in each group:
 
 .pull-left[
 
 ```r
 ucbadmit %&gt;%
   group_by(gender) %&gt;%
-  summarise(n = n()) 
+  summarize(n = n()) 
 ```
 
 ```
@@ -946,7 +946,7 @@ ucbadmit %&gt;%
 ```r
 ucbadmit %&gt;%
   group_by(gender, admit) %&gt;%
-  summarise(n = n()) 
+  summarize(n = n()) 
 ```
 
 ```
@@ -990,7 +990,7 @@ What is the difference between the two outputs?
 ```r
 ucbadmit %&gt;%
   group_by(gender, admit) %&gt;%
-  summarise(n = n()) 
+  summarize(n = n()) 
 ```
 
 ```
@@ -1028,7 +1028,7 @@ ucbadmit %&gt;%
 --
 
 - `count()` ungroups after itself
-- `summarise()` peels off one layer of grouping
+- `summarize()` peels off one layer of grouping
 
 ---
 # Sources
