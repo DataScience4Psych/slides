@@ -89,18 +89,18 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 31
-##    hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~
-##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
-##  1 Reso~           0       342             2015 July            
-##  2 Reso~           0       737             2015 July            
-##  3 Reso~           0         7             2015 July            
-##  4 Reso~           0        13             2015 July            
-##  5 Reso~           0        14             2015 July            
-##  6 Reso~           0        14             2015 July            
-##  7 Reso~           0         0             2015 July            
-##  8 Reso~           0         9             2015 July            
-##  9 Reso~           1        85             2015 July            
-## 10 Reso~           1        75             2015 July            
+##    hotel  is_canceled lead_time arrival_date_ye~ arrival_date_mo~
+##    &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
+##  1 Resor~           0       342             2015 July            
+##  2 Resor~           0       737             2015 July            
+##  3 Resor~           0         7             2015 July            
+##  4 Resor~           0        13             2015 July            
+##  5 Resor~           0        14             2015 July            
+##  6 Resor~           0        14             2015 July            
+##  7 Resor~           0         0             2015 July            
+##  8 Resor~           0         9             2015 July            
+##  9 Resor~           1        85             2015 July            
+## 10 Resor~           1        75             2015 July            
 ## # ... with 119,380 more rows, and 26 more variables:
 ## #   arrival_date_week_number &lt;dbl&gt;,
 ## #   arrival_date_day_of_month &lt;dbl&gt;,
@@ -158,18 +158,18 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 119,390 x 4
-##    arrival_date_ye~ arrival_date_mo~ arrival_date_we~
-##               &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;
-##  1             2015 July                           27
-##  2             2015 July                           27
-##  3             2015 July                           27
-##  4             2015 July                           27
-##  5             2015 July                           27
-##  6             2015 July                           27
-##  7             2015 July                           27
-##  8             2015 July                           27
-##  9             2015 July                           27
-## 10             2015 July                           27
+##    arrival_date_year arrival_date_month arrival_date_week_number
+##                &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
+##  1              2015 July                                     27
+##  2              2015 July                                     27
+##  3              2015 July                                     27
+##  4              2015 July                                     27
+##  5              2015 July                                     27
+##  6              2015 July                                     27
+##  7              2015 July                                     27
+##  8              2015 July                                     27
+##  9              2015 July                                     27
+## 10              2015 July                                     27
 ## # ... with 119,380 more rows, and 1 more variable:
 ## #   arrival_date_day_of_month &lt;dbl&gt;
 ```
@@ -287,13 +287,13 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 5 x 32
-##   hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~
-##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
-## 1 Reso~           0       342             2015 July            
-## 2 Reso~           0       737             2015 July            
-## 3 Reso~           0         7             2015 July            
-## 4 Reso~           0        13             2015 July            
-## 5 Reso~           0        14             2015 July            
+##   hotel   is_canceled lead_time arrival_date_ye~ arrival_date_mo~
+##   &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
+## 1 Resort~           0       342             2015 July            
+## 2 Resort~           0       737             2015 July            
+## 3 Resort~           0         7             2015 July            
+## 4 Resort~           0        13             2015 July            
+## 5 Resort~           0        14             2015 July            
 ## # ... with 27 more variables: arrival_date_week_number &lt;dbl&gt;,
 ## #   arrival_date_day_of_month &lt;dbl&gt;,
 ## #   stays_in_weekend_nights &lt;dbl&gt;, stays_in_week_nights &lt;dbl&gt;,
@@ -333,13 +333,13 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 5 x 32
-##   hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~
-##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
-## 1 Reso~           0       342             2015 July            
-## 2 Reso~           0       737             2015 July            
-## 3 Reso~           0         7             2015 July            
-## 4 Reso~           0        13             2015 July            
-## 5 Reso~           0        14             2015 July            
+##   hotel   is_canceled lead_time arrival_date_ye~ arrival_date_mo~
+##   &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
+## 1 Resort~           0       342             2015 July            
+## 2 Resort~           0       737             2015 July            
+## 3 Resort~           0         7             2015 July            
+## 4 Resort~           0        13             2015 July            
+## 5 Resort~           0        14             2015 July            
 ## # ... with 27 more variables: arrival_date_week_number &lt;dbl&gt;,
 ## #   arrival_date_day_of_month &lt;dbl&gt;,
 ## #   stays_in_weekend_nights &lt;dbl&gt;, stays_in_week_nights &lt;dbl&gt;,
@@ -373,13 +373,13 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 5 x 32
-##   hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~
-##   &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
-## 1 City~           0        23             2017 August          
-## 2 City~           0       102             2017 August          
-## 3 City~           0        34             2017 August          
-## 4 City~           0       109             2017 August          
-## 5 City~           0       205             2017 August          
+##   hotel   is_canceled lead_time arrival_date_ye~ arrival_date_mo~
+##   &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
+## 1 City H~           0        23             2017 August          
+## 2 City H~           0       102             2017 August          
+## 3 City H~           0        34             2017 August          
+## 4 City H~           0       109             2017 August          
+## 5 City H~           0       205             2017 August          
 ## # ... with 27 more variables: arrival_date_week_number &lt;dbl&gt;,
 ## #   arrival_date_day_of_month &lt;dbl&gt;,
 ## #   stays_in_weekend_nights &lt;dbl&gt;, stays_in_week_nights &lt;dbl&gt;,
@@ -412,18 +412,18 @@ hotels %&gt;%
 
 ```
 ## # A tibble: 79,330 x 32
-##    hotel is_canceled lead_time arrival_date_ye~ arrival_date_mo~
-##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
-##  1 City~           0         6             2015 July            
-##  2 City~           1        88             2015 July            
-##  3 City~           1        65             2015 July            
-##  4 City~           1        92             2015 July            
-##  5 City~           1       100             2015 July            
-##  6 City~           1        79             2015 July            
-##  7 City~           0         3             2015 July            
-##  8 City~           1        63             2015 July            
-##  9 City~           1        62             2015 July            
-## 10 City~           1        62             2015 July            
+##    hotel  is_canceled lead_time arrival_date_ye~ arrival_date_mo~
+##    &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;           
+##  1 City ~           0         6             2015 July            
+##  2 City ~           1        88             2015 July            
+##  3 City ~           1        65             2015 July            
+##  4 City ~           1        92             2015 July            
+##  5 City ~           1       100             2015 July            
+##  6 City ~           1        79             2015 July            
+##  7 City ~           0         3             2015 July            
+##  8 City ~           1        63             2015 July            
+##  9 City ~           1        62             2015 July            
+## 10 City ~           1        62             2015 July            
 ## # ... with 79,320 more rows, and 27 more variables:
 ## #   arrival_date_week_number &lt;dbl&gt;,
 ## #   arrival_date_day_of_month &lt;dbl&gt;,
