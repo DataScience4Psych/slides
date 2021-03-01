@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Communicating data science results effectively   📜</title>
+    <title>Communicating data science results effectively   📰</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Communicating data science results effectively <br> 📜
+# Communicating data science results effectively <br> 📰
 ### S. Mason Garrison
 
 ---
@@ -40,7 +40,7 @@ class: middle
 
 ---
 
-# Five core activities of data analysis
+# Five core activities of data science
 
 1. Stating and refining the question
 1. Exploring the data
@@ -48,6 +48,9 @@ class: middle
 1. Interpreting the results
 1. Communicating the results
 
+.center[
+&lt;img src="img/data-science.png" width="60%" height="100%" style="display: block; margin: auto;" /&gt;
+]
 .footnote[
 Roger D. Peng and Elizabeth Matsui. "The Art of Data Science." A Guide for Anyone Who Works with Data. Skybrude Consulting, LLC (2015).
 ]
@@ -77,13 +80,13 @@ Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (20
 
 ## Ex: COVID-19 and Vitamin D
 
-1. **Descriptive:** frequency of hospitalisations due to COVID-19 in a set of data collected from a group of individuals
+1. **Descriptive:** frequency of hospitalizations due to COVID-19 in a set of data collected from a group of individuals
 --
 
-1. **Exploratory:** examine relationships between a range of dietary factors and COVID-19 hospitalisations
+1. **Exploratory:** examine relationships between a range of dietary factors and COVID-19 hospitalizations
 --
 
-1. **Inferential:** examine whether any relationship between taking Vitamin D supplements and COVID-19 hospitalisations found in the sample hold for the population at large
+1. **Inferential:** examine whether any relationship between taking Vitamin D supplements and COVID-19 hospitalizations found in the sample hold for the population at large
 
 --
 1. **Predictive:** what types of people will take Vitamin D supplements during the next year
@@ -104,10 +107,10 @@ Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (20
 
 --
 
-.question[
-Suppose I want to estimate the average number of children in households in Edinburgh. I conduct a survey at an elementary school in Edinburgh and ask students at this elementary school how many children, including themselves, live in their house. Then, I take the average of the responses. Is this a biased or an unbiased estimate of the number of children in households in Edinburgh? If biased, will the value be an overestimate or underestimate?
+.large[.question[
+Suppose I want to estimate the average number of children in households in Winston-Salem. I conduct a survey at an elementary school in Winston-Salem and ask students at this elementary school how many children, including themselves, live in their house. Then, I take the average of the responses. Is this a biased or an unbiased estimate of the number of children in households in Winston-Salem? If biased, will the value be an overestimate or underestimate?
 ]
-
+]
 ---
 
 class: middle
@@ -229,7 +232,7 @@ dim(squirrels)
 ```
 
 ```
-## [1] 3023   35
+## [1] 3023   38
 ```
 
 ---
@@ -243,18 +246,18 @@ squirrels %&gt;% head()
 ```
 
 ```
-## # A tibble: 6 x 35
-##    long   lat unique_squirrel_id hectare shift date      
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
-## 1 -74.0  40.8 13A-PM-1014-04     13A     PM    2018-10-14
-## 2 -74.0  40.8 15F-PM-1010-06     15F     PM    2018-10-10
-## 3 -74.0  40.8 19C-PM-1018-02     19C     PM    2018-10-18
-## 4 -74.0  40.8 21B-AM-1019-04     21B     AM    2018-10-19
-## 5 -74.0  40.8 23A-AM-1018-02     23A     AM    2018-10-18
-## 6 -74.0  40.8 38H-PM-1012-01     38H     PM    2018-10-12
-## # ... with 29 more variables: hectare_squirrel_number &lt;dbl&gt;,
-## #   age &lt;chr&gt;, primary_fur_color &lt;chr&gt;,
-## #   highlight_fur_color &lt;chr&gt;,
+## # A tibble: 6 x 38
+##    long   lat unique_squirrel~ hectare NS    EW    shift
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 -74.0  40.8 13A-PM-1014-04   13A     13    A     PM   
+## 2 -74.0  40.8 15F-PM-1010-06   15F     15    F     PM   
+## 3 -74.0  40.8 19C-PM-1018-02   19C     19    C     PM   
+## 4 -74.0  40.8 21B-AM-1019-04   21B     21    B     AM   
+## 5 -74.0  40.8 23A-AM-1018-02   23A     23    A     AM   
+## 6 -74.0  40.8 38H-PM-1012-01   38H     38    H     PM   
+## # ... with 31 more variables: date &lt;date&gt;,
+## #   hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
+## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
 ## #   combination_of_primary_and_highlight_color &lt;chr&gt;,
 ## #   color_notes &lt;chr&gt;, location &lt;chr&gt;,
 ## #   above_ground_sighter_measurement &lt;chr&gt;,
@@ -265,7 +268,8 @@ squirrels %&gt;% head()
 ## #   approaches &lt;lgl&gt;, indifferent &lt;lgl&gt;, runs_from &lt;lgl&gt;,
 ## #   other_interactions &lt;chr&gt;, zip_codes &lt;dbl&gt;,
 ## #   community_districts &lt;dbl&gt;, borough_boundaries &lt;dbl&gt;,
-## #   city_council_districts &lt;dbl&gt;, police_precincts &lt;dbl&gt;
+## #   city_council_districts &lt;dbl&gt;, police_precincts &lt;dbl&gt;,
+## #   where &lt;chr&gt;
 ```
 ]
 
@@ -280,18 +284,18 @@ squirrels %&gt;% tail()
 ```
 
 ```
-## # A tibble: 6 x 35
-##    long   lat unique_squirrel_id hectare shift date      
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
-## 1 -74.0  40.8 6D-PM-1020-01      06D     PM    2018-10-20
-## 2 -74.0  40.8 21H-PM-1018-01     21H     PM    2018-10-18
-## 3 -74.0  40.8 31D-PM-1006-02     31D     PM    2018-10-06
-## 4 -74.0  40.8 37B-AM-1018-04     37B     AM    2018-10-18
-## 5 -74.0  40.8 21C-PM-1006-01     21C     PM    2018-10-06
-## 6 -74.0  40.8 7G-PM-1018-04      07G     PM    2018-10-18
-## # ... with 29 more variables: hectare_squirrel_number &lt;dbl&gt;,
-## #   age &lt;chr&gt;, primary_fur_color &lt;chr&gt;,
-## #   highlight_fur_color &lt;chr&gt;,
+## # A tibble: 6 x 38
+##    long   lat unique_squirrel~ hectare NS    EW    shift
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 -74.0  40.8 6D-PM-1020-01    06D     06    D     PM   
+## 2 -74.0  40.8 21H-PM-1018-01   21H     21    H     PM   
+## 3 -74.0  40.8 31D-PM-1006-02   31D     31    D     PM   
+## 4 -74.0  40.8 37B-AM-1018-04   37B     37    B     AM   
+## 5 -74.0  40.8 21C-PM-1006-01   21C     21    C     PM   
+## 6 -74.0  40.8 7G-PM-1018-04    07G     07    G     PM   
+## # ... with 31 more variables: date &lt;date&gt;,
+## #   hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
+## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
 ## #   combination_of_primary_and_highlight_color &lt;chr&gt;,
 ## #   color_notes &lt;chr&gt;, location &lt;chr&gt;,
 ## #   above_ground_sighter_measurement &lt;chr&gt;,
@@ -302,7 +306,8 @@ squirrels %&gt;% tail()
 ## #   approaches &lt;lgl&gt;, indifferent &lt;lgl&gt;, runs_from &lt;lgl&gt;,
 ## #   other_interactions &lt;chr&gt;, zip_codes &lt;dbl&gt;,
 ## #   community_districts &lt;dbl&gt;, borough_boundaries &lt;dbl&gt;,
-## #   city_council_districts &lt;dbl&gt;, police_precincts &lt;dbl&gt;
+## #   city_council_districts &lt;dbl&gt;, police_precincts &lt;dbl&gt;,
+## #   where &lt;chr&gt;
 ```
 ]
 
@@ -330,8 +335,7 @@ squirrels %&gt;% tail()
 ## 12 -74.0  40.8
 ## 13 -74.0  40.8
 ## 14 -74.0  40.8
-## 15 -74.0  40.8
-## # ... with 3,008 more rows
+## # ... with 3,009 more rows
 ```
 ]
 .pull-right[
@@ -342,28 +346,30 @@ squirrels %&gt;% tail()
 
 ## Make a plot
 
-.small[
+.small[.pull-right[
 
 ```r
 ggplot(squirrels, aes(x = long, y = lat)) +
   geom_point(alpha = 0.2)
 ```
-
-&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-10-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
+]
+.pull-left-wide[
+&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-11-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
 
 --
 
-.pull-left-wide[
+.pull-left[
 **Hypothesis:** There will be a higher density of sightings on the perimeter than inside the park.
 ]
 ---
 
 ## Try the easy solution first
-.pull-left-narrow[
-&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-.pull-right-wide[
+
+.small[
+.pull-right[
 
 ```r
 squirrels &lt;- squirrels %&gt;%
@@ -373,13 +379,18 @@ squirrels &lt;- squirrels %&gt;%
 ggplot(squirrels, aes(x = long, y = lat, color = where)) +
   geom_point(alpha = 0.2)
 ```
-]								   
+]
+]
+.pull-left-wide[
+&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+					   
 ---
 
 ## Then go deeper...
 
 .pull-left-narrow[
-&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right-wide[
 
@@ -439,19 +450,15 @@ squirrels %&gt;%
 
 ```
 ## # A tibble: 11 x 3
-##    shift age   other_interactions                                
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                                             
-##  1 AM    Adult staring at us                                     
-##  2 PM    Adult he took 2 steps then turned and stared at me      
-##  3 PM    Adult stared                                            
-##  4 PM    Adult stared                                            
-##  5 PM    Adult stared                                            
-##  6 PM    Adult stared &amp; then went back up tree—then ran to diffe~
-##  7 PM    Adult stared at me                                      
-##  8 AM    Adult approaches (saw me &amp; came forward),runs from (sta~
-##  9 AM    Adult started climbing down to me                       
-## 10 PM    Adult stared at me                                      
-## # ... with 1 more row
+##   shift age   other_interactions                                 
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                                              
+## 1 AM    Adult staring at us                                      
+## 2 PM    Adult he took 2 steps then turned and stared at me       
+## 3 PM    Adult stared                                             
+## 4 PM    Adult stared                                             
+## 5 PM    Adult stared                                             
+## 6 PM    Adult stared &amp; then went back up tree—then ran to differ~
+## # ... with 5 more rows
 ```
 ]
 

@@ -36,7 +36,7 @@ class: middle
 
 ---
 
-# Five core activities of data analysis
+# Five core activities of data science
 
 1. Stating and refining the question
 1. Exploring the data
@@ -44,6 +44,11 @@ class: middle
 1. Interpreting the results
 1. Communicating the results
 
+.center[
+```{r echo=FALSE, out.height="100%"}
+knitr::include_graphics("img/data-science.png")
+```
+]
 .footnote[
 Roger D. Peng and Elizabeth Matsui. "The Art of Data Science." A Guide for Anyone Who Works with Data. Skybrude Consulting, LLC (2015).
 ]
@@ -73,13 +78,13 @@ Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (20
 
 ## Ex: COVID-19 and Vitamin D
 
-1. **Descriptive:** frequency of hospitalisations due to COVID-19 in a set of data collected from a group of individuals
+1. **Descriptive:** frequency of hospitalizations due to COVID-19 in a set of data collected from a group of individuals
 --
 
-1. **Exploratory:** examine relationships between a range of dietary factors and COVID-19 hospitalisations
+1. **Exploratory:** examine relationships between a range of dietary factors and COVID-19 hospitalizations
 --
 
-1. **Inferential:** examine whether any relationship between taking Vitamin D supplements and COVID-19 hospitalisations found in the sample hold for the population at large
+1. **Inferential:** examine whether any relationship between taking Vitamin D supplements and COVID-19 hospitalizations found in the sample hold for the population at large
 
 --
 1. **Predictive:** what types of people will take Vitamin D supplements during the next year
@@ -100,10 +105,10 @@ Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (20
 
 --
 
-.question[
-Suppose I want to estimate the average number of children in households in Edinburgh. I conduct a survey at an elementary school in Edinburgh and ask students at this elementary school how many children, including themselves, live in their house. Then, I take the average of the responses. Is this a biased or an unbiased estimate of the number of children in households in Edinburgh? If biased, will the value be an overestimate or underestimate?
+.large[.question[
+Suppose I want to estimate the average number of children in households in Winston-Salem. I conduct a survey at an elementary school in Winston-Salem and ask students at this elementary school how many children, including themselves, live in their house. Then, I take the average of the responses. Is this a biased or an unbiased estimate of the number of children in households in Winston-Salem? If biased, will the value be an overestimate or underestimate?
 ]
-
+]
 ---
 
 class: middle
@@ -226,7 +231,7 @@ squirrels %>% tail()
 ```{r echo=FALSE}
 squirrels %>%
   select(long, lat) %>%
-  print(n = 15)
+  print(n = 14)
 ```
 ]
 .pull-right[
@@ -239,26 +244,30 @@ knitr::include_graphics("img/central-park-coords.png")
 
 ## Make a plot
 
-.small[
-```{r out.width="80%"}
+.small[.pull-right[
+```{r sq-plot1, fig.show = "hide"}
 ggplot(squirrels, aes(x = long, y = lat)) +
   geom_point(alpha = 0.2)
 ```
 ]
+]
+.pull-left-wide[
+```{r ref.label="sq-plot1", echo = FALSE,out.width="90%"}
+```
+]
+
 
 --
 
-.pull-left-wide[
+.pull-left-narrow[
 **Hypothesis:** There will be a higher density of sightings on the perimeter than inside the park.
 ]
 ---
 
 ## Try the easy solution first
-.pull-left-narrow[
-```{r ref.label="easy-solution", echo = FALSE}
-```
-]
-.pull-right-wide[
+
+.small[
+.pull-right[
 ```{r easy-solution, fig.show = "hide"}
 squirrels <- squirrels %>%
   separate(hectare, into = c("NS", "EW"), sep = 2, remove = FALSE) %>%
@@ -267,7 +276,13 @@ squirrels <- squirrels %>%
 ggplot(squirrels, aes(x = long, y = lat, color = where)) +
   geom_point(alpha = 0.2)
 ```						  
-]								   
+]
+]
+.pull-left-wide[
+```{r ref.label="easy-solution", echo =FALSE, out.width = "100%"}
+```
+]
+					   
 ---
 
 ## Then go deeper...

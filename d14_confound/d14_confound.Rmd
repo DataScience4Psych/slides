@@ -262,8 +262,8 @@ human activity is mainly responsible?
 ---
 
 .question[
-Based on the percentages we calculated, does there appear to be a relationship 
-between country and beliefs about climate change? If yes, could there be another variable that explains this relationship?
+- Based on the percentages we calculated, does there appear to be a relationship between country and beliefs about climate change? 
+- If yes, could there be another variable that explains this relationship?
 ]
 
 .pull-left[
@@ -568,7 +568,10 @@ ucbadmit %>%
 ---
 
 .question[
-What can you say about the overall gender distribution? Hint: Calculate the following probabilities: $P(Admit | Male)$ and $P(Admit | Female)$.
+What can you say about the overall gender distribution?
+]
+
+.small.tip[Calculate the following probabilities: $P(Admit | Male)$ and $P(Admit | Female)$.
 ]
 
 ```{r}

@@ -429,8 +429,8 @@ human activity is mainly responsible?
 ---
 
 .question[
-Based on the percentages we calculated, does there appear to be a relationship 
-between country and beliefs about climate change? If yes, could there be another variable that explains this relationship?
+- Based on the percentages we calculated, does there appear to be a relationship between country and beliefs about climate change? 
+- If yes, could there be another variable that explains this relationship?
 ]
 
 .pull-left[
@@ -865,7 +865,10 @@ class:middle
 ---
 
 .question[
-What can you say about the overall gender distribution? Hint: Calculate the following probabilities: `\(P(Admit | Male)\)` and `\(P(Admit | Female)\)`.
+What can you say about the overall gender distribution?
+]
+
+.small.tip[Calculate the following probabilities: `\(P(Admit | Male)\)` and `\(P(Admit | Female)\)`.
 ]
 
 
@@ -942,19 +945,15 @@ ucbadmit %&gt;%
 
 ```
 ## # A tibble: 24 x 4
-##    dept  gender admit        n
-##    &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
-##  1 A     Female Rejected    19
-##  2 A     Female Admitted    89
-##  3 A     Male   Rejected   313
-##  4 A     Male   Admitted   512
-##  5 B     Female Rejected     8
-##  6 B     Female Admitted    17
-##  7 B     Male   Rejected   207
-##  8 B     Male   Admitted   353
-##  9 C     Female Rejected   391
-## 10 C     Female Admitted   202
-## # ... with 14 more rows
+##   dept  gender admit        n
+##   &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
+## 1 A     Female Rejected    19
+## 2 A     Female Admitted    89
+## 3 A     Male   Rejected   313
+## 4 A     Male   Admitted   512
+## 5 B     Female Rejected     8
+## 6 B     Female Admitted    17
+## # ... with 18 more rows
 ```
 ]
 ---
@@ -1087,8 +1086,7 @@ class: middle
 ## 4     5     1 A    
 ## 5     6    11 B    
 ## 6     7    10 B    
-## 7     8     9 B    
-## 8     9     8 B
+## # ... with 2 more rows
 ```
 ]
 .pull-right-wide[
@@ -1111,8 +1109,7 @@ class: middle
 ## 4     5     1 A    
 ## 5     6    11 B    
 ## 6     7    10 B    
-## 7     8     9 B    
-## 8     9     8 B
+## # ... with 2 more rows
 ```
 ]
 .pull-right-wide[
@@ -1135,8 +1132,7 @@ class: middle
 ## 4     5     1 A    
 ## 5     6    11 B    
 ## 6     7    10 B    
-## 7     8     9 B    
-## 8     9     8 B
+## # ... with 2 more rows
 ```
 ]
 .pull-right-wide[
@@ -1159,8 +1155,7 @@ class: middle
 ## 4     5     1 A    
 ## 5     6    11 B    
 ## 6     7    10 B    
-## 7     8     9 B    
-## 8     9     8 B
+## # ... with 2 more rows
 ```
 ]
 .pull-right-wide[
@@ -1199,19 +1194,15 @@ ucbadmit
 
 ```
 ## # A tibble: 4,526 x 3
-##    admit    gender dept 
-##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-##  1 Admitted Male   A    
-##  2 Admitted Male   A    
-##  3 Admitted Male   A    
-##  4 Admitted Male   A    
-##  5 Admitted Male   A    
-##  6 Admitted Male   A    
-##  7 Admitted Male   A    
-##  8 Admitted Male   A    
-##  9 Admitted Male   A    
-## 10 Admitted Male   A    
-## # ... with 4,516 more rows
+##   admit    gender dept 
+##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+## 1 Admitted Male   A    
+## 2 Admitted Male   A    
+## 3 Admitted Male   A    
+## 4 Admitted Male   A    
+## 5 Admitted Male   A    
+## 6 Admitted Male   A    
+## # ... with 4,520 more rows
 ```
 ]
 .medi.pull-right[
@@ -1224,19 +1215,15 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 4,526 x 3
 ## # Groups:   gender [2]
-##    admit    gender dept 
-##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-##  1 Admitted Male   A    
-##  2 Admitted Male   A    
-##  3 Admitted Male   A    
-##  4 Admitted Male   A    
-##  5 Admitted Male   A    
-##  6 Admitted Male   A    
-##  7 Admitted Male   A    
-##  8 Admitted Male   A    
-##  9 Admitted Male   A    
-## 10 Admitted Male   A    
-## # ... with 4,516 more rows
+##   admit    gender dept 
+##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+## 1 Admitted Male   A    
+## 2 Admitted Male   A    
+## 3 Admitted Male   A    
+## 4 Admitted Male   A    
+## 5 Admitted Male   A    
+## 6 Admitted Male   A    
+## # ... with 4,520 more rows
 ```
 ]
 
@@ -1256,19 +1243,15 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 4,526 x 3
 ## # Groups:   gender [2]
-##    admit    gender dept 
-##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-##  1 Admitted Male   A    
-##  2 Admitted Male   A    
-##  3 Admitted Male   A    
-##  4 Admitted Male   A    
-##  5 Admitted Male   A    
-##  6 Admitted Male   A    
-##  7 Admitted Male   A    
-##  8 Admitted Male   A    
-##  9 Admitted Male   A    
-## 10 Admitted Male   A    
-## # ... with 4,516 more rows
+##   admit    gender dept 
+##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+## 1 Admitted Male   A    
+## 2 Admitted Male   A    
+## 3 Admitted Male   A    
+## 4 Admitted Male   A    
+## 5 Admitted Male   A    
+## 6 Admitted Male   A    
+## # ... with 4,520 more rows
 ```
 ]
 .medi.pull-right[
@@ -1280,19 +1263,15 @@ ucbadmit %&gt;%
 
 ```
 ## # A tibble: 4,526 x 3
-##    admit    gender dept 
-##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-##  1 Admitted Female A    
-##  2 Admitted Female A    
-##  3 Admitted Female A    
-##  4 Admitted Female A    
-##  5 Admitted Female A    
-##  6 Admitted Female A    
-##  7 Admitted Female A    
-##  8 Admitted Female A    
-##  9 Admitted Female A    
-## 10 Admitted Female A    
-## # ... with 4,516 more rows
+##   admit    gender dept 
+##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+## 1 Admitted Female A    
+## 2 Admitted Female A    
+## 3 Admitted Female A    
+## 4 Admitted Female A    
+## 5 Admitted Female A    
+## 6 Admitted Female A    
+## # ... with 4,520 more rows
 ```
 ]
 
@@ -1312,19 +1291,15 @@ ucbadmit %&gt;%
 ```
 ## # A tibble: 4,526 x 3
 ## # Groups:   gender [2]
-##    admit    gender dept 
-##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
-##  1 Admitted Male   A    
-##  2 Admitted Male   A    
-##  3 Admitted Male   A    
-##  4 Admitted Male   A    
-##  5 Admitted Male   A    
-##  6 Admitted Male   A    
-##  7 Admitted Male   A    
-##  8 Admitted Male   A    
-##  9 Admitted Male   A    
-## 10 Admitted Male   A    
-## # ... with 4,516 more rows
+##   admit    gender dept 
+##   &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
+## 1 Admitted Male   A    
+## 2 Admitted Male   A    
+## 3 Admitted Male   A    
+## 4 Admitted Male   A    
+## 5 Admitted Male   A    
+## 6 Admitted Male   A    
+## # ... with 4,520 more rows
 ```
 ]
 .medi.pull-right[
@@ -1482,6 +1457,10 @@ ucbadmit %&gt;%
 ucbadmit %&gt;%
   group_by(gender, admit) %&gt;%
   summarize(n = n()) 
+```
+
+```
+## `summarise()` has grouped output by 'gender'. You can override using the `.groups` argument.
 ```
 
 ```
