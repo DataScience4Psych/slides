@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Communicating data science results effectively   📰</title>
+    <title>Communicating data science results effectively   🗞</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Communicating data science results effectively <br> 📰
+# Communicating data science results effectively <br> 🗞
 ### S. Mason Garrison
 
 ---
@@ -92,7 +92,7 @@ Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (20
 1. **Predictive:** what types of people will take Vitamin D supplements during the next year
 
 --
-1. **Causal:** whether people with COVID-19 who were randomly assigned to take Vitamin D supplements or those who were not are hospitalised
+1. **Causal:** whether people with COVID-19 who were randomly assigned to take Vitamin D supplements or those who were not are hospitalized
 
 --
 1. **Mechanistic:** how increased vitamin D intake leads to a reduction in the number of viral illnesses
@@ -106,9 +106,20 @@ Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (20
 - Was the data you're working with collected in a way that introduces bias?
 
 --
+.pull-left[
+.question[
+- Suppose I want to estimate the average number of children in households in Winston-Salem. 
+- I conduct a survey at an elementary school in Winston-Salem and ask those students: 
+  - how many children, including themselves, live in their house.
+- Then, I take the average of the responses. 
+]
+]
 
-.large[.question[
-Suppose I want to estimate the average number of children in households in Winston-Salem. I conduct a survey at an elementary school in Winston-Salem and ask students at this elementary school how many children, including themselves, live in their house. Then, I take the average of the responses. Is this a biased or an unbiased estimate of the number of children in households in Winston-Salem? If biased, will the value be an overestimate or underestimate?
+--
+.pull-right[
+.question[
+- Is this a biased or an unbiased estimate of the number of children in households in Winston-Salem? 
+- If biased, will the value be an overestimate or underestimate?
 ]
 ]
 ---
@@ -149,13 +160,13 @@ class: middle
 
 ```r
 library(readxl)
-fav_food &lt;- read_excel("data/favourite-food.xlsx")
+fav_food &lt;- read_excel("data/favorite-food.xlsx")
 fav_food
 ```
 
 ```
 ## # A tibble: 5 x 4
-##   `Student ID` `Full Name`     favourite.food    mealPlan        
+##   `Student ID` `Full Name`     favorite.food     mealPlan        
 ##          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;             &lt;chr&gt;           
 ## 1            1 Sunil Huffmann  Strawberry yoghu~ Lunch only      
 ## 2            2 Barclay Lynn    French fries      Lunch only      
@@ -179,13 +190,13 @@ fav_food %&gt;% clean_names()
 
 ```
 ## # A tibble: 5 x 4
-##   student_id full_name       favourite_food     meal_plan        
-##        &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;              &lt;chr&gt;            
-## 1          1 Sunil Huffmann  Strawberry yoghurt Lunch only       
-## 2          2 Barclay Lynn    French fries       Lunch only       
-## 3          3 Jayendra Lyne   Peaches            Breakfast and lu~
-## 4          4 Leon Rossini    Anchovies          Lunch only       
-## 5          5 Chidiegwu Dunk~ Pizza              Breakfast and lu~
+##   student_id full_name        favorite_food     meal_plan        
+##        &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;             &lt;chr&gt;            
+## 1          1 Sunil Huffmann   Strawberry yoghu~ Lunch only       
+## 2          2 Barclay Lynn     French fries      Lunch only       
+## 3          3 Jayendra Lyne    Peaches           Breakfast and lu~
+## 4          4 Leon Rossini     Anchovies         Lunch only       
+## 5          5 Chidiegwu Dunkel Pizza             Breakfast and lu~
 ```
 ]
 
@@ -239,7 +250,7 @@ dim(squirrels)
 
 ## Look at the top...
 
-.small[
+.midi[
 
 ```r
 squirrels %&gt;% head()
@@ -247,14 +258,14 @@ squirrels %&gt;% head()
 
 ```
 ## # A tibble: 6 x 38
-##    long   lat unique_squirrel~ hectare NS    EW    shift
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 -74.0  40.8 13A-PM-1014-04   13A     13    A     PM   
-## 2 -74.0  40.8 15F-PM-1010-06   15F     15    F     PM   
-## 3 -74.0  40.8 19C-PM-1018-02   19C     19    C     PM   
-## 4 -74.0  40.8 21B-AM-1019-04   21B     21    B     AM   
-## 5 -74.0  40.8 23A-AM-1018-02   23A     23    A     AM   
-## 6 -74.0  40.8 38H-PM-1012-01   38H     38    H     PM   
+##    long   lat unique_squirrel_id hectare NS    EW    shift
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 -74.0  40.8 13A-PM-1014-04     13A     13    A     PM   
+## 2 -74.0  40.8 15F-PM-1010-06     15F     15    F     PM   
+## 3 -74.0  40.8 19C-PM-1018-02     19C     19    C     PM   
+## 4 -74.0  40.8 21B-AM-1019-04     21B     21    B     AM   
+## 5 -74.0  40.8 23A-AM-1018-02     23A     23    A     AM   
+## 6 -74.0  40.8 38H-PM-1012-01     38H     38    H     PM   
 ## # ... with 31 more variables: date &lt;date&gt;,
 ## #   hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
 ## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
@@ -277,7 +288,7 @@ squirrels %&gt;% head()
 
 ## ...and the bottom
 
-.small[
+.midi[
 
 ```r
 squirrels %&gt;% tail()
@@ -285,14 +296,14 @@ squirrels %&gt;% tail()
 
 ```
 ## # A tibble: 6 x 38
-##    long   lat unique_squirrel~ hectare NS    EW    shift
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 -74.0  40.8 6D-PM-1020-01    06D     06    D     PM   
-## 2 -74.0  40.8 21H-PM-1018-01   21H     21    H     PM   
-## 3 -74.0  40.8 31D-PM-1006-02   31D     31    D     PM   
-## 4 -74.0  40.8 37B-AM-1018-04   37B     37    B     AM   
-## 5 -74.0  40.8 21C-PM-1006-01   21C     21    C     PM   
-## 6 -74.0  40.8 7G-PM-1018-04    07G     07    G     PM   
+##    long   lat unique_squirrel_id hectare NS    EW    shift
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 -74.0  40.8 6D-PM-1020-01      06D     06    D     PM   
+## 2 -74.0  40.8 21H-PM-1018-01     21H     21    H     PM   
+## 3 -74.0  40.8 31D-PM-1006-02     31D     31    D     PM   
+## 4 -74.0  40.8 37B-AM-1018-04     37B     37    B     AM   
+## 5 -74.0  40.8 21C-PM-1006-01     21C     21    C     PM   
+## 6 -74.0  40.8 7G-PM-1018-04      07G     07    G     PM   
 ## # ... with 31 more variables: date &lt;date&gt;,
 ## #   hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
 ## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
@@ -315,7 +326,7 @@ squirrels %&gt;% tail()
 
 ## Validate with at least one external data source
 
-.pull-left[
+.medi[.pull-left-narrow[
 
 ```
 ## # A tibble: 3,023 x 2
@@ -335,10 +346,12 @@ squirrels %&gt;% tail()
 ## 12 -74.0  40.8
 ## 13 -74.0  40.8
 ## 14 -74.0  40.8
-## # ... with 3,009 more rows
+## 15 -74.0  40.8
+## # ... with 3,008 more rows
 ```
 ]
-.pull-right[
+]
+.pull-right-wide[
 &lt;img src="img/central-park-coords.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
@@ -346,7 +359,7 @@ squirrels %&gt;% tail()
 
 ## Make a plot
 
-.small[.pull-right[
+.medi[.pull-right[
 
 ```r
 ggplot(squirrels, aes(x = long, y = lat)) +
@@ -361,38 +374,42 @@ ggplot(squirrels, aes(x = long, y = lat)) +
 
 --
 
-.pull-left[
-**Hypothesis:** There will be a higher density of sightings on the perimeter than inside the park.
+.pull-left-narrow[
+**Hypothesis:** Squirrel sightings will have a higher density on the perimeter than inside the park.
 ]
 ---
 
 ## Try the easy solution first
 
 .small[
-.pull-right[
+.pull-right-narrow[
 
 ```r
 squirrels &lt;- squirrels %&gt;%
-  separate(hectare, into = c("NS", "EW"), sep = 2, remove = FALSE) %&gt;%
-  mutate(where = if_else(NS %in% c("01", "42") | EW %in% c("A", "I"), "perimeter", "inside")) 
+  separate(hectare, 
+           into = c("NS", "EW"), 
+           sep = 2, remove = FALSE) %&gt;%
+  mutate(where = 
+        if_else(NS %in% c("01", "42") | 
+                 EW %in% c("A", "I"),
+                      "perimeter",
+                      "inside")) 
 
-ggplot(squirrels, aes(x = long, y = lat, color = where)) +
+ggplot(squirrels, aes(x = long, y = lat,
+                      color = where)) +
   geom_point(alpha = 0.2)
 ```
 ]
 ]
 .pull-left-wide[
-&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-12-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 					   
 ---
 
 ## Then go deeper...
 
-.pull-left-narrow[
-&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-]
-.pull-right-wide[
+.medi[.pull-left[
 
 ```r
 hectare_counts &lt;- squirrels %&gt;%
@@ -403,17 +420,23 @@ hectare_centroids &lt;- squirrels %&gt;%
   group_by(hectare) %&gt;%
   summarize(
     centroid_x = mean(long),
-    centroid_y = mean(lat)
-  )
+    centroid_y = mean(lat))
 
 squirrels %&gt;%
-  left_join(hectare_counts, by = "hectare") %&gt;%
-  left_join(hectare_centroids, by = "hectare") %&gt;%
-  ggplot(aes(x = centroid_x, y = centroid_y, color = n)) +
+  left_join(hectare_counts,
+            by = "hectare") %&gt;%
+  left_join(hectare_centroids,
+            by = "hectare") %&gt;%
+  ggplot(aes(x = centroid_x, 
+             y = centroid_y, 
+             color = n)) +
   geom_hex()
 ```
 ]		
-
+]
+.pull-right[
+&lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 ---
 
 
@@ -440,7 +463,7 @@ squirrels %&gt;%
 
 ## The squirrel is staring at me!
 
-.midi[
+.medi[
 
 ```r
 squirrels %&gt;%
@@ -465,17 +488,34 @@ squirrels %&gt;%
 ---
 
 ## Communicating for your audience
+.pull-left-narrow[
+- Avoid: 
+  - jargon, 
+  - uninterpreted results, 
+  - lengthy output
+- Pay attention to: 
+  - organization, 
+  - presentation, 
+  - flow
+]
 
-- Avoid: Jargon, uninterpreted results, lengthy output
-- Pay attention to: Organization, presentation, flow
-- Don't forget about: Code style, coding best practices, meaningful commits
-- Be open to: Suggestions, feedback, taking (calculated) risks
+.pull-right-wide[
+- Don't forget about: 
+  - code style, 
+  - coding best practices, 
+  - meaningful commits
+- Be open to: 
+  - suggestions, 
+    - feedback, 
+    - taking (calculated) risks
+]
 
 ---
 # Sources
 
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
-
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Jeffery T. Leek and Roger D. Peng. "What is the question?." Science 347.6228 (2015): 1314-1315.
+- Roger D. Peng and Elizabeth Matsui. "The Art of Data Science." A Guide for Anyone Who Works with Data. Skybrude Consulting, LLC (2015).
 ---
 
 class: middle
