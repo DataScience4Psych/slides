@@ -189,6 +189,7 @@ class: middle
 # Using the SelectorGadget (PC)
 
 ---
+
 ## Using the SelectorGadget (PC)
 .small.pull-left-narrow[
 - Click on the logo next to the search bar
