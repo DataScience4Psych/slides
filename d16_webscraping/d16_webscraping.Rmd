@@ -109,52 +109,53 @@ knitr::include_graphics("img/rvest.png")
 - Open source tool that eases CSS selector generation and discovery
 - Easiest to use with the [Chrome Extension](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb) 
 - Find out more on the [SelectorGadget vignette](https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html)
+- Note: Our class is about 50-50 (Apple-Microsoft) 
+  - I have screen shots from a Mac in the slides,
+  - and screen captures from my PC
 ]
 .pull-right-wide[
 ```{r echo=FALSE, out.width="75%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget.png")
+knitr::include_graphics("img/selector_gadget/selector-gadget.png")
 ```
 ]
 
 ---
 
-## Using the SelectorGadget
+## Using the SelectorGadget (MAC)
 
-
-## Using the SelectorGadget
 
 ```{r echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget.gif")
+knitr::include_graphics("img/selector_gadget/selector-gadget.gif")
 ```
 
 ---
 
 ```{r echo=FALSE, out.width="95%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget-1.png")
+knitr::include_graphics("img/selector_gadget/selector-gadget-1.png")
 ```
 
 ---
 
 ```{r echo=FALSE, out.width="95%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget-2.png")
+knitr::include_graphics("img/selector_gadget/selector-gadget-2.png")
 ```
 
 ---
 
 ```{r echo=FALSE, out.width="95%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget-3.png")
+knitr::include_graphics("img/selector_gadget/selector-gadget-3.png")
 ```
 
 ---
 
 ```{r echo=FALSE, out.width="95%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget-4.png")
+knitr::include_graphics("img/selector_gadget/selector-gadget-4.png")
 ```
 
 ---
 
 ```{r echo=FALSE, out.width="95%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget-5.png")
+knitr::include_graphics("img/selector_gadget/selector-gadget-5.png")
 ```
 
 ---
@@ -162,42 +163,31 @@ knitr::include_graphics("img/selector-gadget/selector-gadget-5.png")
 Through this process of selection and rejection, SelectorGadget helps you come up with the appropriate CSS selector for your needs
 
 ```{r echo=FALSE, out.width="65%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget.gif")
+knitr::include_graphics("img/selector_gadget/selector-gadget.gif")
 ```
 
+---
 
-
-.pull-left[
-- Click on the app logo next to the search bar
+## Using the SelectorGadget (PC)
+.small.pull-left-narrow[
+- Click on the logo next to the search bar
 - A box will open in the bottom right of the website
+- Click on a page element (it will turn green), 
+  - SelectorGadget will generate a minimal CSS selector for that element, 
+  - and will highlight (yellow) everything that is matched by the selector
+- Click on a highlighted element to remove it from the selector (red), 
+  - or click on an unhighlighted element to add it to the selector
+- This process of selection and rejection, 
+  - helps you find the appropriate CSS selector for your needs
+
 ]
-.pull-right[
-```{r echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/selector-gadget/selector-gadget.gif")
-```
-]
-
---
-
-- Click on a page element (it will turn green), SelectorGadget will generate a 
-minimal CSS selector for that element, and will highlight (yellow) everything 
-that is matched by the selector
-
---
-- Click on a highlighted element to remove it from the selector (red), or 
-click on an unhighlighted element to add it to the selector
-
---
-- Through this process of selection and rejection, SelectorGadget helps you come 
-up with the appropriate CSS selector for your needs
-
-
 ---
 class: middle
 
 # Wrapping Up...
 
 ---
+
 
 
 
@@ -213,7 +203,9 @@ Take a look at the source code, look for the tag `table` tag:
 <br>
 http://www.imdb.com/chart/top
 
-![imdb_top](img/imdb_top_250.png)
+```{r echo=FALSE, out.width="65%"}
+knitr::include_graphics("img/imdb-top-250.png")
+```
 
 ---
 
@@ -224,7 +216,7 @@ library(robotstxt)
 paths_allowed("http://www.imdb.com")
 ```
 
-vs. e.g.
+vs.
 
 ```{r warning=FALSE}
 paths_allowed("http://www.facebook.com")
@@ -239,37 +231,369 @@ paths_allowed("http://www.facebook.com")
 - Follow along, and fill in the blanks as we go based on upcoming slides.
 ]
 
+
 ---
 
-## Select and format pieces
+## Plan
 
-.small[
-```{r message=FALSE, cache=TRUE}
-page <- read_html("http://www.imdb.com/chart/top")
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/plan.png")
+```
 
+---
+
+## Plan
+
+1. Read the whole page
+
+2. Scrape movie titles and save as `titles` 
+
+3. Scrape years movies were made in and save as `years`
+
+4. Scrape IMDB ratings and save as `ratings`
+
+5. Create a data frame called `imdb_top_250` with variables `title`, `year`, and `rating`
+
+---
+
+class: middle
+
+# Step 1. Read the whole page
+
+---
+
+## Read the whole page
+
+```{r}
+page <- read_html("https://www.imdb.com/chart/top/")
+page
+```
+
+---
+
+## A webpage in R
+
+- Result is a list with 2 elements
+
+```{r}
+typeof(page)
+```
+
+--
+
+- that we need to convert to something more familiar, like a data frame....
+
+```{r}
+class(page)
+```
+
+---
+
+class: middle
+
+# Step 2. Scrape movie titles and save as `titles` 
+
+---
+
+## Scrape movie titles
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/titles.png")
+```
+
+---
+
+## Scrape the nodes
+
+.pull-left[
+```{r output.lines=17}
+page %>%
+  html_nodes(".titleColumn a")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/titles.png")
+```
+]
+
+---
+
+## Extract the text from the nodes
+
+.pull-left[
+```{r output.lines=16}
+page %>%
+  html_nodes(".titleColumn a") %>%
+  html_text()
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/titles.png")
+```
+]
+
+---
+
+## Save as `titles`
+
+.pull-left[
+```{r output.lines=14}
 titles <- page %>%
   html_nodes(".titleColumn a") %>%
   html_text()
 
+titles
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/titles.png")
+```
+]
+
+---
+
+class: middle
+
+# Step 3. Scrape year movies were made and save as `years`
+
+---
+
+## Scrape years movies were made in
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/years.png")
+```
+
+---
+
+## Scrape the nodes
+
+.pull-left[
+```{r output.lines=17}
+page %>%
+  html_nodes(".secondaryInfo")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/years.png")
+```
+]
+
+---
+
+## Extract the text from the nodes
+
+.pull-left[
+```{r output.lines=16}
+page %>%
+  html_nodes(".secondaryInfo") %>%
+  html_text()
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/years.png")
+```
+]
+
+---
+
+## Clean up the text
+
+We need to go from `"(1994)"` to `1994`:
+
+- Remove `(` and `)`: string manipulation
+
+- Convert to numeric: `as.numeric()`
+
+---
+
+## stringr
+
+.pull-left-wide[
+- **stringr** provides a cohesive set of functions designed to make working with strings as easy as possible
+- Functions in stringr start with `str_*()`, e.g.
+  - `str_remove()` to remove a pattern from a string
+  ```{r}
+   str_remove(string = "jello", pattern = "el")
+  ```
+  - `str_replace()` to replace a pattern with another
+  ```{r}
+  str_replace(string = "jello", pattern = "j", replacement = "h")
+  ```
+]
+.pull-right-narrow[
+```{r echo=FALSE, fig.align="left", out.width="100%"}
+knitr::include_graphics("img/stringr.png")
+```
+]
+
+---
+
+## Clean up the text
+
+```{r output.lines=15}
+page %>%
+  html_nodes(".secondaryInfo") %>%
+  html_text() %>%
+  str_remove("\\(") # remove (
+```
+
+---
+
+## Clean up the text
+
+```{r output.lines=14}
+page %>%
+  html_nodes(".secondaryInfo") %>%
+  html_text() %>%
+  str_remove("\\(") %>% # remove (
+  str_remove("\\)") # remove )
+```
+
+---
+
+## Convert to numeric
+
+```{r output.lines=13}
+page %>%
+  html_nodes(".secondaryInfo") %>%
+  html_text() %>%
+  str_remove("\\(") %>% # remove (
+  str_remove("\\)") %>% # remove )
+  as.numeric()
+```
+
+---
+
+## Save as `years`
+
+.pull-left[
+```{r output.lines=11}
 years <- page %>%
   html_nodes(".secondaryInfo") %>%
   html_text() %>%
-  str_replace("\\(", "") %>% # remove (
-  str_replace("\\)", "") %>% # remove )
+  str_remove("\\(") %>% # remove (
+  str_remove("\\)") %>% # remove )
   as.numeric()
 
-scores <- page %>%
-  html_nodes("#main strong") %>%
+years
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/years.png")
+```
+]
+
+---
+
+class: middle
+
+# Step 4. Scrape IMDB ratings and save as `ratings`
+
+---
+
+## Scrape IMDB ratings
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/ratings.png")
+```
+
+---
+
+## Scrape the nodes
+
+.pull-left[
+```{r output.lines=17}
+page %>%
+  html_nodes("strong")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/ratings.png")
+```
+]
+
+---
+
+## Extract the text from the nodes
+
+.pull-left[
+```{r output.lines=16}
+page %>%
+  html_nodes("strong") %>%
+  html_text()
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/ratings.png")
+```
+]
+
+---
+
+## Convert to numeric
+
+.pull-left[
+```{r output.lines=15}
+page %>%
+  html_nodes("strong") %>%
   html_text() %>%
   as.numeric()
-  
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/ratings.png")
+```
+]
+
+---
+
+## Save as `ratings`
+
+.pull-left[
+```{r output.lines=12}
+ratings <- page %>%
+  html_nodes("strong") %>%
+  html_text() %>%
+  as.numeric()
+
+ratings
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/ratings.png")
+```
+]
+
+---
+
+class: middle
+
+# Step 5. Create a data frame called `imdb_top_250`
+
+---
+
+## Create a data frame: `imdb_top_250`
+
+```{r}
 imdb_top_250 <- tibble(
   title = titles, 
   year = years, 
-  score = scores
+  rating = ratings
   )
+
+imdb_top_250
 ```
-]
 
 ---
 
@@ -292,82 +616,87 @@ glimpse(imdb_top_250)
 - Add a variable for rank
 ```{r}
 imdb_top_250 <- imdb_top_250 %>%
-  mutate(rank = 1:nrow(imdb_top_250))
+  mutate(rank = 1:nrow(imdb_top_250)) %>%
+  relocate(rank)
 ```
 
 ---
 
 ```{r echo=FALSE}
-imdb_top_250 %>% datatable(options(list(dom = "p", pageLength = 8)), height = 400)
+imdb_top_250 %>%
+  print(n = 20)
 ```
 
 ---
 
-## Analyze
+class: middle
+
+# What next?
+
+---
 
 .question[
-How would you go about answering this question: Which 1995 movies made the list?
+Which years have the most movies on the list?
 ]
 
 --
 
 ```{r}
 imdb_top_250 %>% 
-  filter(year == 1995)
+  count(year, sort = TRUE)
 ```
 
 ---
 
-## Analyze
-
 .question[
-How would you go about answering this question: Which years have the most movies on the list?
+Which 1995 movies made the list?
 ]
 
 --
 
 ```{r}
 imdb_top_250 %>% 
-  group_by(year) %>%
-  summarize(total = n()) %>%
-  arrange(desc(total)) %>%
-  head(5)
+  filter(year == 1995) %>%
+  print(n = 8)
 ```
 
 ---
 
-## Visualize
-
 .question[
-How would you go about creating this visualization: Visualize the average yearly score for movies that made it on the top 250 list over time.
+Visualize the average yearly rating for movies that made it on the top 250 list over time.
 ]
 
 --
 
-.small[
-```{r echo=FALSE, out.width="90%"}
+.pull-left-narrow[
+```{r ref.label = "yearly-avg", echo = FALSE, out.width = "58%"}
+```
+]
+.pull-right-wide[
+```{r yearly-avg, fig.show = "hide"}
 imdb_top_250 %>% 
   group_by(year) %>%
-  summarize(avg_score = mean(score)) %>%
+  summarize(avg_score = mean(rating)) %>%
   ggplot(aes(y = avg_score, x = year)) +
-    geom_point() +
-    geom_smooth(method = "lm") +
-    labs(x = "Year", y = "Average score")
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Year", y = "Average score")
 ```
 ]
 
 ---
 
 ## Potential challenges
-
+.pull-left[
 - Unreliable formatting at the source
 - Data broken into many pages
 - ...
 
 .question[
-Compare the display of information at [gumtree.com/cars-vans-motorbikes/edinburgh](https://www.gumtree.com/cars-vans-motorbikes/edinburgh) to the list on the IMDB top 250 list. What challenges can you foresee in scraping a list of the available apartments?
-]
+Compare the display of information at [gumtree.com/cars-vans-motorbikes/london](https://www.gumtree.com/cars-vans-motorbikes/london) to the IMDB top 250 list.] 
+- What challenges can you foresee in scraping a list of the available cars?
 
+]
 ---
 
 .your-turn[
@@ -381,6 +710,7 @@ Compare the display of information at [gumtree.com/cars-vans-motorbikes/edinburg
 ]
 
 ---
+
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
