@@ -102,6 +102,17 @@ knitr::include_graphics("img/rvest.png")
 - `html_attr`   - Extract tags' attribute value by name
 
 ---
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Using the SelectorGadget
+
+---
 
 ## SelectorGadget
 
@@ -121,6 +132,11 @@ knitr::include_graphics("img/selector_gadget/selector-gadget.png")
 
 ---
 
+class: middle
+
+# Using the SelectorGadget (MAC)
+
+---
 ## Using the SelectorGadget (MAC)
 
 
@@ -159,15 +175,20 @@ knitr::include_graphics("img/selector_gadget/selector-gadget-5.png")
 ```
 
 ---
-
-Through this process of selection and rejection, SelectorGadget helps you come up with the appropriate CSS selector for your needs
+## Using the SelectorGadget (MAC)
+Through this process of selection and rejection, 
+SelectorGadget helps you find the appropriate CSS selector for your needs
 
 ```{r echo=FALSE, out.width="65%"}
 knitr::include_graphics("img/selector_gadget/selector-gadget.gif")
 ```
-
 ---
 
+class: middle
+
+# Using the SelectorGadget (PC)
+
+---
 ## Using the SelectorGadget (PC)
 .small.pull-left-narrow[
 - Click on the logo next to the search bar
@@ -407,7 +428,6 @@ knitr::include_graphics("img/years.png")
 We need to go from `"(1994)"` to `1994`:
 
 - Remove `(` and `)`: string manipulation
-
 - Convert to numeric: `as.numeric()`
 
 ---
@@ -418,13 +438,15 @@ We need to go from `"(1994)"` to `1994`:
 - **stringr** provides a cohesive set of functions designed to make working with strings as easy as possible
 - Functions in stringr start with `str_*()`, e.g.
   - `str_remove()` to remove a pattern from a string
-  ```{r}
-   str_remove(string = "jello", pattern = "el")
-  ```
+```{r}
+str_remove(string = "jello", pattern = "el")
+```
   - `str_replace()` to replace a pattern with another
-  ```{r}
-  str_replace(string = "jello", pattern = "j", replacement = "h")
-  ```
+  .midi[
+```{r}
+str_replace(string = "jello", pattern = "j", replacement = "h")
+```
+] 
 ]
 .pull-right-narrow[
 ```{r echo=FALSE, fig.align="left", out.width="100%"}
@@ -447,7 +469,7 @@ page %>%
 
 ## Clean up the text
 
-```{r output.lines=14}
+```{r output.lines=13}
 page %>%
   html_nodes(".secondaryInfo") %>%
   html_text() %>%
@@ -459,7 +481,7 @@ page %>%
 
 ## Convert to numeric
 
-```{r output.lines=13}
+```{r output.lines=11}
 page %>%
   html_nodes(".secondaryInfo") %>%
   html_text() %>%
@@ -668,11 +690,11 @@ Visualize the average yearly rating for movies that made it on the top 250 list 
 
 --
 
-.pull-left-narrow[
-```{r ref.label = "yearly-avg", echo = FALSE, out.width = "58%"}
+.pull-left[
+```{r ref.label = "yearly-avg", echo = FALSE, out.width = "100%"}
 ```
 ]
-.pull-right-wide[
+.medi.pull-right[
 ```{r yearly-avg, fig.show = "hide"}
 imdb_top_250 %>% 
   group_by(year) %>%
