@@ -41,18 +41,15 @@ class: middle
 --
 
 - These data are provided in an unstructured format: you can always copy&paste, 
-but it's time-consuming and prone to errors
+  - but it's time-consuming and prone to errors
 
 --
 - Web scraping is the process of extracting this information automatically and transform it into a structured dataset
 
 --
 - Two different scenarios:
-    - Screen scraping: extract data from source code of website, with html 
-    parser (easy) or regular expression matching (less easy).
-    - Web APIs (application programming interface): website offers a set of 
-    structured http requests that return JSON or XML files.
-
+    - Screen scraping: extract data from source code of website, with html parser (easy) or regular expression matching (less easy).
+    - Web APIs (application programming interface): website offers a set of structured http requests that return JSON or XML files.
 ---
 
 class: middle
@@ -64,8 +61,7 @@ class: middle
 ## Hypertext Markup Language
 
 - Most of the data on the web is still largely available as HTML 
-- It is structured (hierarchical / tree based), but it''s often not available in 
-a form useful for analysis (flat / tidy).
+- It is structured (hierarchical / tree based), but it''s often not available in a form useful for analysis (flat / tidy).
 
 ```html
 <html>
@@ -109,14 +105,14 @@ knitr::include_graphics("img/rvest.png")
 
 ## SelectorGadget
 
-.pull-left[
+.pull-left-narrow[
 - Open source tool that eases CSS selector generation and discovery
 - Easiest to use with the [Chrome Extension](https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb) 
 - Find out more on the [SelectorGadget vignette](https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html)
 ]
-.pull-right[
-```{r echo=FALSE}
-knitr::include_graphics("img/selector-gadget.png")
+.pull-right-wide[
+```{r echo=FALSE, out.width="75%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget.png")
 ```
 ]
 
@@ -124,13 +120,60 @@ knitr::include_graphics("img/selector-gadget.png")
 
 ## Using the SelectorGadget
 
+
+## Using the SelectorGadget
+
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget.gif")
+```
+
+---
+
+```{r echo=FALSE, out.width="95%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget-1.png")
+```
+
+---
+
+```{r echo=FALSE, out.width="95%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget-2.png")
+```
+
+---
+
+```{r echo=FALSE, out.width="95%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget-3.png")
+```
+
+---
+
+```{r echo=FALSE, out.width="95%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget-4.png")
+```
+
+---
+
+```{r echo=FALSE, out.width="95%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget-5.png")
+```
+
+---
+
+Through this process of selection and rejection, SelectorGadget helps you come up with the appropriate CSS selector for your needs
+
+```{r echo=FALSE, out.width="65%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget.gif")
+```
+
+
+
 .pull-left[
 - Click on the app logo next to the search bar
 - A box will open in the bottom right of the website
 ]
 .pull-right[
-```{r echo=FALSE,fig.align="center",out.height=250}
-knitr::include_graphics("img/selector-gadget.gif")
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/selector-gadget/selector-gadget.gif")
 ```
 ]
 
@@ -150,6 +193,13 @@ up with the appropriate CSS selector for your needs
 
 
 ---
+class: middle
+
+# Wrapping Up...
+
+---
+
+
 
 class: middle
 
