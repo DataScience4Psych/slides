@@ -785,18 +785,20 @@ class: middle
 
 Two different scenarios for web scraping:
 
-- Screen scraping: extract data from source code of website, with html parser (easy) or regular expression matching (less easy)
-
-- Web APIs (application programming interface): website offers a set of structured http requests that return JSON or XML files
+- Screen scraping: 
+  - extract data from source code of website, with html parser (easy) or regular expression matching (less easy)
+- Web APIs (application programming interface): 
+  - website offers a set of structured http requests that return JSON or XML files
 
 ---
 
 ## A new R workflow
 
-- When working in an R Markdown document, your analysis is re-run each time you knit
-
-- If web scraping in an R Markdown document, you'd be re-scraping the data each time you knit, which is undesirable (and not *nice*)!
-
+- When working in an R Markdown document, 
+  - your analysis is re-run each time you knit
+- If web scraping in an R Markdown document, 
+  - you'd be re-scraping the data each time you knit, 
+  - which is undesirable (and not *nice*)!
 - An alternative workflow: 
   - Use an R script to save your code 
   - Saving interim data scraped using the code in the script as CSV or RDS files
