@@ -709,19 +709,6 @@ imdb_top_250 %>%
 
 ---
 
-## Potential challenges
-.pull-left[
-- Unreliable formatting at the source
-- Data broken into many pages
-- ...
-
-.question[
-Compare the display of information at [gumtree.com/cars-vans-motorbikes/london](https://www.gumtree.com/cars-vans-motorbikes/london) to the IMDB top 250 list.] 
-- What challenges can you foresee in scraping a list of the available cars?
-
-]
----
-
 .your-turn[
 - [class git repo](https://github.com/DataScience4Psych) > `AE 08 - IMDB + Webscraping`.
 - Open `02-imdb-tvshows.R`.
@@ -731,6 +718,90 @@ Compare the display of information at [gumtree.com/cars-vans-motorbikes/london](
 - Examine each of the **first three** TV shows to also obtain genre, runtime, how many episodes so far, first five plot keywords.
 - Add this information to the `tvshows` data frame you created earlier.
 ]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Ethics
+
+---
+
+## "Can you?" vs "Should you?"
+
+```{r echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/ok-cupid-1.png")
+```
+
+.footnote[.small[
+Source: Brian Resnick, [Researchers just released profile data on 70,000 OkCupid users without permission](https://www.vox.com/2016/5/12/11666116/70000-okcupid-users-data-release), Vox.
+]]
+
+---
+
+## "Can you?" vs "Should you?"
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/ok-cupid-2.png")
+```
+
+---
+
+class: middle
+
+# Challenges
+
+---
+
+## Unreliable formatting at the source
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/unreliable-formatting.png")
+```
+
+---
+
+## Data broken into many pages
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/many-pages.png")
+```
+
+---
+
+class: middle
+
+# Workflow
+
+---
+
+## Screen scraping vs. APIs
+
+Two different scenarios for web scraping:
+
+- Screen scraping: extract data from source code of website, with html parser (easy) or regular expression matching (less easy)
+
+- Web APIs (application programming interface): website offers a set of structured http requests that return JSON or XML files
+
+---
+
+## A new R workflow
+
+- When working in an R Markdown document, your analysis is re-run each time you knit
+
+- If web scraping in an R Markdown document, you'd be re-scraping the data each time you knit, which is undesirable (and not *nice*)!
+
+- An alternative workflow: 
+  - Use an R script to save your code 
+  - Saving interim data scraped using the code in the script as CSV or RDS files
+  - Use the saved data in your analysis in your R Markdown document
+
 
 ---
 
