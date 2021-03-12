@@ -9,7 +9,7 @@
   padding-bottom: 15px;
 }
 
-/* Turn off slide numbers */
+/* Turn off slide numbers https://github.com/yihui/xaringan/blob/master/inst/rmarkdown/templates/xaringan/resources/default.css*/
 /* Don't want them on videos! */
 .remark-slide-number {
   display: none;
