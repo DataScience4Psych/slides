@@ -38,6 +38,8 @@ class: middle
 uoe_art <- read_csv("data/uoe-art.csv")
 ```
 
+https://rstudio.github.io/DT/
+
 ```{r echo=FALSE}
 uoe_art %>% 
   datatable()
@@ -45,13 +47,13 @@ uoe_art %>%
 
 ---
 
-```{r echo=FALSE, out.width="80%"}
+```{r echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/untitled-1963.png")
 ```
 
 ---
 
-```{r echo=FALSE, out.width="80%"}
+```{r echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/untitled-1963-headers-values.png")
 ```
 
@@ -128,7 +130,7 @@ knitr::include_graphics("img/funct-all-things.png")
 
 ## When should you write a function?
 
-Whenever you’ve copied and pasted a block of code more than twice.
+Whenever you've copied and pasted a block of code more than twice.
 
 <br><br>
 
@@ -320,7 +322,7 @@ scrape_art_info <- function(x){
 ## Function in action
 
 .midi[
-```{r cache=TRUE}
+```{r cache=FALSE}
 scrape_art_info(uoe_art$link[1]) %>%
   glimpse()
 ```
@@ -333,7 +335,7 @@ scrape_art_info(uoe_art$link[1]) %>%
 
 ## Function in action
 
-```{r cache=TRUE}
+```{r cache=FALSE}
 scrape_art_info(uoe_art$link[2]) %>%
   glimpse()
 ```
@@ -345,7 +347,7 @@ scrape_art_info(uoe_art$link[2]) %>%
 ## Function in action
 
 .midi[
-```{r cache=TRUE}
+```{r cache=FALSE}
 scrape_art_info(uoe_art$link[3]) %>%
   glimpse()
 ```
@@ -561,8 +563,8 @@ uoe_art_info_1 <- read_csv("data/uoe-art-info-1.csv")
 ```
 
 ```{r echo=FALSE}
-uoe_art_info_1 %>% 
-  datatable()
+#uoe_art_info_1 %>% 
+#  datatable()
 ```
 
 ---
