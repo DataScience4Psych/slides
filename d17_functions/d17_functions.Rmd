@@ -41,9 +41,13 @@ uoe_art <- read_csv("data/uoe-art.csv")
 https://rstudio.github.io/DT/
 
 ```{r echo=FALSE}
-uoe_art %>% 
-  datatable()
+#uoe_art %>% 
+#  datatable()
+
+knitr::kable(head(uoe_art), format = 'html')
 ```
+
+
 
 ---
 
@@ -565,6 +569,8 @@ uoe_art_info_1 <- read_csv("data/uoe-art-info-1.csv")
 ```{r echo=FALSE}
 #uoe_art_info_1 %>% 
 #  datatable()
+
+knitr::kable(head(uoe_art_info_1), format = 'html')
 ```
 
 ---
