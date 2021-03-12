@@ -464,7 +464,7 @@ You now have a function that will scrape the relevant info on art pieces given t
 
 --
 
-From the data frame you constructed in lab yesterday: `uoe_art$link`
+From the data frame you constructed previously: `uoe_art$link`
 
 ---
 
@@ -573,7 +573,7 @@ uoe_art_info_1 %>%
 uoe_art_info <- map_df(uoe_art$link, scrape_art_info)
 ```
 
-- This will take a while to run
+- This code will take a while to run
 - If you get `HTTP Error 429 (Too many requests)` you might want to slow down your hits by modifying your function to slow it down by adding a random wait (sleep) time between hitting each link
 
 ```{r eval=FALSE}
