@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Communicating data science results effectively   📰</title>
+    <title>Communicating data science results effectively   📜</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -13,7 +13,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Communicating data science results effectively <br> 📰
+# Communicating data science results effectively <br> 📜
 ### S. Mason Garrison
 
 ---
@@ -258,14 +258,14 @@ squirrels %&gt;% head()
 
 ```
 ## # A tibble: 6 x 35
-##    long   lat unique_squirrel_id hectare shift date      
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
-## 1 -74.0  40.8 13A-PM-1014-04     13A     PM    2018-10-14
-## 2 -74.0  40.8 15F-PM-1010-06     15F     PM    2018-10-10
-## 3 -74.0  40.8 19C-PM-1018-02     19C     PM    2018-10-18
-## 4 -74.0  40.8 21B-AM-1019-04     21B     AM    2018-10-19
-## 5 -74.0  40.8 23A-AM-1018-02     23A     AM    2018-10-18
-## 6 -74.0  40.8 38H-PM-1012-01     38H     PM    2018-10-12
+##    long   lat unique_squirrel~ hectare shift date      
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
+## 1 -74.0  40.8 13A-PM-1014-04   13A     PM    2018-10-14
+## 2 -74.0  40.8 15F-PM-1010-06   15F     PM    2018-10-10
+## 3 -74.0  40.8 19C-PM-1018-02   19C     PM    2018-10-18
+## 4 -74.0  40.8 21B-AM-1019-04   21B     AM    2018-10-19
+## 5 -74.0  40.8 23A-AM-1018-02   23A     AM    2018-10-18
+## 6 -74.0  40.8 38H-PM-1012-01   38H     PM    2018-10-12
 ## # ... with 29 more variables: hectare_squirrel_number &lt;dbl&gt;,
 ## #   age &lt;chr&gt;, primary_fur_color &lt;chr&gt;,
 ## #   highlight_fur_color &lt;chr&gt;,
@@ -295,14 +295,14 @@ squirrels %&gt;% tail()
 
 ```
 ## # A tibble: 6 x 35
-##    long   lat unique_squirrel_id hectare shift date      
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
-## 1 -74.0  40.8 6D-PM-1020-01      06D     PM    2018-10-20
-## 2 -74.0  40.8 21H-PM-1018-01     21H     PM    2018-10-18
-## 3 -74.0  40.8 31D-PM-1006-02     31D     PM    2018-10-06
-## 4 -74.0  40.8 37B-AM-1018-04     37B     AM    2018-10-18
-## 5 -74.0  40.8 21C-PM-1006-01     21C     PM    2018-10-06
-## 6 -74.0  40.8 7G-PM-1018-04      07G     PM    2018-10-18
+##    long   lat unique_squirrel~ hectare shift date      
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
+## 1 -74.0  40.8 6D-PM-1020-01    06D     PM    2018-10-20
+## 2 -74.0  40.8 21H-PM-1018-01   21H     PM    2018-10-18
+## 3 -74.0  40.8 31D-PM-1006-02   31D     PM    2018-10-06
+## 4 -74.0  40.8 37B-AM-1018-04   37B     AM    2018-10-18
+## 5 -74.0  40.8 21C-PM-1006-01   21C     PM    2018-10-06
+## 6 -74.0  40.8 7G-PM-1018-04    07G     PM    2018-10-18
 ## # ... with 29 more variables: hectare_squirrel_number &lt;dbl&gt;,
 ## #   age &lt;chr&gt;, primary_fur_color &lt;chr&gt;,
 ## #   highlight_fur_color &lt;chr&gt;,
@@ -471,15 +471,19 @@ squirrels %&gt;%
 
 ```
 ## # A tibble: 11 x 3
-##   shift age   other_interactions                                 
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                                              
-## 1 AM    Adult staring at us                                      
-## 2 PM    Adult he took 2 steps then turned and stared at me       
-## 3 PM    Adult stared                                             
-## 4 PM    Adult stared                                             
-## 5 PM    Adult stared                                             
-## 6 PM    Adult stared &amp; then went back up tree—then ran to differ~
-## # ... with 5 more rows
+##    shift age   other_interactions                                
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                                             
+##  1 AM    Adult staring at us                                     
+##  2 PM    Adult he took 2 steps then turned and stared at me      
+##  3 PM    Adult stared                                            
+##  4 PM    Adult stared                                            
+##  5 PM    Adult stared                                            
+##  6 PM    Adult stared &amp; then went back up tree—then ran to diffe~
+##  7 PM    Adult stared at me                                      
+##  8 AM    Adult approaches (saw me &amp; came forward),runs from (sta~
+##  9 AM    Adult started climbing down to me                       
+## 10 PM    Adult stared at me                                      
+## # ... with 1 more row
 ```
 ]
 
