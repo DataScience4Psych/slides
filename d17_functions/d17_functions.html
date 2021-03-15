@@ -36,13 +36,13 @@ layout: true
 
 class: middle
 
-# Edinburgh College of Art Collection
+# Extra Scaffolding: Edinburgh College of Art Collection
 
 ---
 
 
 
-https://rstudio.github.io/DT/
+
 
 &lt;table&gt;
  &lt;thead&gt;
@@ -110,6 +110,9 @@ https://rstudio.github.io/DT/
 
 ---
 
+
+
+
 .small[
 
 ```r
@@ -159,37 +162,34 @@ class: middle
 ## When should you write a function?
 
 --
-
-&lt;img src="img/funct-all-things.png" width="70%" style="display: block; margin: auto;" /&gt;
+.pull-left[
+&lt;img src="img/funct-all-things.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+--
+.pull-right[
+When you’ve copied and pasted a block of code more than twice.
+]
 
 ---
 
-## When should you write a function?
-
-Whenever you've copied and pasted a block of code more than twice.
-
-&lt;br&gt;&lt;br&gt;
-
---
-
 .question[
-How many times will be need to copy and paste the code we developed to scrape 
-additional data on each art piece in the Edinburgh College of Art Collection?
+How many times will we need to copy and paste the code we developed to scrape data on all of First Minister's COVID-19 speeches?
 ]
+
+&lt;img src="img/search-result.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Why functions?
 
 - Automate common tasks in a more powerful and general way than copy-and-pasting:
-    - You can give a function an evocative name that makes your code easier to understand.
-    - As requirements change, you only need to update code in one place, instead of many.
-    - You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+  - Give your function an evocative name that makes your code easier to understand
+  - As requirements change, only need to update code in one place, instead of many
+  - Eliminate chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another)
 
 --
 
-- Down the line: Improve your reach as a data scientist by writing functions 
-(and packages!) that others use
+- Down the line: Improve your reach as a data scientist by writing functions (and packages!) that others use
 
 ---
 
@@ -439,22 +439,26 @@ scrape_art_info(uoe_art$link[3]) %&gt;%
 
 ---
 
+class: middle
+
+# Writing functions
+
+---
+
 ## What goes in / what comes out?
 
+.pull-left-wide[
 - They take input(s) defined in the function definition
 
-.midi[
 
 ```r
 function([inputs separated by commas]){
   # what to do with those inputs
 }
 ```
-]
 
 - By default they return the last value computed in the function
 
-.midi[
 
 ```r
 scrape_page &lt;- function(x){
@@ -464,9 +468,9 @@ scrape_page &lt;- function(x){
   tibble(...)
 }
 ```
-]
 
 - You can define more outputs to be returned in a list as well as nice print methods (but we won't go there for now...)
+]
 
 ---
 
@@ -500,13 +504,16 @@ add_2(10)
 ```
 
 ---
+---
 
 ## Naming functions
 
 &gt; "There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
 
+---
 
---
+## Naming functions
+
 - Names should be short but clearly evoke what the function does
 
 --
@@ -516,12 +523,11 @@ add_2(10)
 - Multi-word names should be separated by underscores (`snake_case` as opposed to `camelCase`)
 
 --
-- A family of functions should be named similarly (`scrape_page`, `scrape_art_info` OR `str_squish`, `str_trim`, `str_remove` etc.)
+- A family of functions should be named similarly (`scrape_page()`, `scrape_speech()` OR `str_remove()`, `str_replace()` etc.)
 
 --
 - Avoid overwriting existing (especially widely used) functions
 
-.small[
 
 ```r
 # JUST DON'T
@@ -529,7 +535,15 @@ mean &lt;- function(x){
   x * 3 
   }
 ```
-]
+
+
+---
+
+class: middle
+
+# Wrapping Up
+
+
 
 ---
 
