@@ -30,7 +30,7 @@ library(DT)
 
 class: middle
 
-# Edinburgh College of Art Collection
+# Extra Scaffolding: Edinburgh College of Art Collection
 
 ---
 
@@ -38,7 +38,7 @@ class: middle
 uoe_art <- read_csv("data/uoe-art.csv")
 ```
 
-https://rstudio.github.io/DT/
+
 
 ```{r echo=FALSE}
 #uoe_art %>% 
@@ -76,6 +76,9 @@ knitr::include_graphics("img/untitled-1963-to-df.png")
 ]
 
 ---
+
+
+
 
 .small[
 ```{r eval=FALSE}
@@ -141,8 +144,7 @@ Whenever you've copied and pasted a block of code more than twice.
 --
 
 .question[
-How many times will be need to copy and paste the code we developed to scrape 
-additional data on each art piece in the Edinburgh College of Art Collection?
+How many times will be need to copy and paste the code we developed to scrape additional data on each art piece in the Edinburgh College of Art Collection?
 ]
 
 ---
@@ -373,7 +375,7 @@ function([inputs separated by commas]){
 ```
 ]
 
-- By default they return the last value computed in the function
+- By default, they return the last value computed in the function
 
 .midi[
 ```{r eval=FALSE}
