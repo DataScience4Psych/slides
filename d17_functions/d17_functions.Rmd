@@ -128,38 +128,38 @@ class: middle
 ## When should you write a function?
 
 --
-
-```{r echo=FALSE, out.width="70%"}
+.pull-left[
+```{r echo=FALSE, out.width="100%"}
 knitr::include_graphics("img/funct-all-things.png")
 ```
+]
+--
+.pull-right[
+When you’ve copied and pasted a block of code more than twice.
+]
 
 ---
 
-## When should you write a function?
-
-Whenever you've copied and pasted a block of code more than twice.
-
-<br><br>
-
---
-
 .question[
-How many times will be need to copy and paste the code we developed to scrape additional data on each art piece in the Edinburgh College of Art Collection?
+How many times will we need to copy and paste the code we developed to scrape data on all of First Minister's COVID-19 speeches?
 ]
+
+```{r echo=FALSE, out.width="55%"}
+knitr::include_graphics("img/search-result.png")
+```
 
 ---
 
 ## Why functions?
 
 - Automate common tasks in a more powerful and general way than copy-and-pasting:
-    - You can give a function an evocative name that makes your code easier to understand.
-    - As requirements change, you only need to update code in one place, instead of many.
-    - You eliminate the chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another).
+  - Give your function an evocative name that makes your code easier to understand
+  - As requirements change, only need to update code in one place, instead of many
+  - Eliminate chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another)
 
 --
 
-- Down the line: Improve your reach as a data scientist by writing functions 
-(and packages!) that others use
+- Down the line: Improve your reach as a data scientist by writing functions (and packages!) that others use
 
 ---
 
@@ -363,21 +363,25 @@ scrape_art_info(uoe_art$link[3]) %>%
 
 ---
 
+class: middle
+
+# Writing functions
+
+---
+
 ## What goes in / what comes out?
 
+.pull-left-wide[
 - They take input(s) defined in the function definition
 
-.midi[
 ```{r eval=FALSE}
 function([inputs separated by commas]){
   # what to do with those inputs
 }
 ```
-]
 
-- By default, they return the last value computed in the function
+- By default they return the last value computed in the function
 
-.midi[
 ```{r eval=FALSE}
 scrape_page <- function(x){
   # do bunch of stuff with the input...
@@ -386,9 +390,9 @@ scrape_page <- function(x){
   tibble(...)
 }
 ```
-]
 
 - You can define more outputs to be returned in a list as well as nice print methods (but we won't go there for now...)
+]
 
 ---
 
@@ -409,13 +413,16 @@ add_2(10)
 ```
 
 ---
+---
 
 ## Naming functions
 
 > "There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
 
+---
 
---
+## Naming functions
+
 - Names should be short but clearly evoke what the function does
 
 --
@@ -425,19 +432,26 @@ add_2(10)
 - Multi-word names should be separated by underscores (`snake_case` as opposed to `camelCase`)
 
 --
-- A family of functions should be named similarly (`scrape_page`, `scrape_art_info` OR `str_squish`, `str_trim`, `str_remove` etc.)
+- A family of functions should be named similarly (`scrape_page()`, `scrape_speech()` OR `str_remove()`, `str_replace()` etc.)
 
 --
 - Avoid overwriting existing (especially widely used) functions
 
-.small[
 ```{r eval=FALSE}
 # JUST DON'T
 mean <- function(x){ 
   x * 3 
   }
 ```
-]
+
+
+---
+
+class: middle
+
+# Wrapping Up
+
+
 
 ---
 
