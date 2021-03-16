@@ -34,9 +34,11 @@ layout: true
 
 
 
+
 class: middle
 
-# Extra Scaffolding: Edinburgh College of Art Collection
+# Edinburgh College of Art Collection
+Extra Scaffolding
 
 ---
 
@@ -111,8 +113,6 @@ class: middle
 ---
 
 
-
-
 .small[
 
 ```r
@@ -145,6 +145,75 @@ tibble(headers, values) %&gt;%
   add_column(link = first_info_url)
 ```
 ]
+
+---
+
+# Setting Up
+.medi[
+
+```r
+# load packages 
+
+library(tidyverse)
+library(rvest)
+
+# first url
+
+## set url 
+first_info_url &lt;- "https://collections.ed.ac.uk/art/record/22024?highlight=*:*"
+
+## read page at url ----
+page &lt;- read_html(first_info_url)
+```
+]
+---
+
+# Scrape headers
+
+
+```r
+headers &lt;- page %&gt;%
+  html_nodes("th") %&gt;%
+  html_text()
+```
+
+---
+
+# Scrape Values
+
+
+```r
+values &lt;- page %&gt;%
+  html_nodes("td") %&gt;%
+  html_text() %&gt;%
+  str_squish()
+```
+
+---
+
+# Put it together
+
+
+```r
+## put together in a tibble and add link to help keep track 
+
+tibble(headers, values) %&gt;%
+  pivot_wider(names_from = headers, 
+              values_from = values) %&gt;%
+  add_column(link = first_info_url)
+```
+
+```
+## # A tibble: 1 x 12
+##   Artist Title Date  Period Description Material Dimensions
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;     
+## 1 [Unkn~ Unti~ 1963  20th ~ Portrait o~ graphit~ 45.1cm H ~
+## # ... with 5 more variables: Collection &lt;chr&gt;,
+## #   Classification &lt;chr&gt;, Signature &lt;chr&gt;, `Accession
+## #   Number` &lt;chr&gt;, link &lt;chr&gt;
+```
+
+
 ---
 
 class: middle
@@ -160,23 +229,23 @@ class: middle
 ---
 
 ## When should you write a function?
-
+&lt;br&gt;
 --
 .pull-left[
 &lt;img src="img/funct-all-things.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 --
 .pull-right[
-When you’ve copied and pasted a block of code more than twice.
+
+- When you've copied and pasted a block of code more than twice.
 ]
 
----
+--
 
+&lt;br&gt;
 .question[
-How many times will we need to copy and paste the code we developed to scrape data on all of First Minister's COVID-19 speeches?
+How many times will we need to copy and paste the code we developed to scrape data on all of the art??
 ]
-
-&lt;img src="img/search-result.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -185,11 +254,15 @@ How many times will we need to copy and paste the code we developed to scrape da
 - Automate common tasks in a more powerful and general way than copy-and-pasting:
   - Give your function an evocative name that makes your code easier to understand
   - As requirements change, only need to update code in one place, instead of many
-  - Eliminate chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another)
-
+  - Eliminate chance of making incidental mistakes when you copy and paste
+      - (for example... updating a variable name in one place, but not in another)
+      
 --
 
-- Down the line: Improve your reach as a data scientist by writing functions (and packages!) that others use
+- Long-term
+  - Improve your reach as a data scientist by writing functions (and packages!) that others use
+  - Useful for internal lab management as well...
+
 
 ---
 
@@ -199,7 +272,7 @@ How many times will we need to copy and paste the code we developed to scrape da
 How many inputs does the following code have?
 ]
 
-.small[
+.midi[
 
 ```r
 ## set url ----
@@ -234,7 +307,7 @@ tibble(headers, values) %&gt;%
 How many inputs does the following code have?
 ]
 
-.small[
+.midi[
 
 ```r
 ## set url ----
@@ -264,27 +337,27 @@ tibble(headers, values) %&gt;%
 ---
 
 ## Turn your code into a function
-
+.pull-left[
 - Pick a short but informative **name**, preferably a verb.
+]
 
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-
+.pull-right[
 
 ```r
 scrape_art_info &lt;- 
 ```
-
+]
 ---
 
 ## Turn your code into a function
 
-- Pick a short but evocative **name**, preferably a verb.
+.pull-left[
+- Pick a short but informative **name**, preferably a verb.
 - List inputs, or **arguments**, to the function inside `function`. If we had more arguments the call would look like `function(x, y, z)`.
 
-&lt;br&gt;
+]
+
+.pull-right[
 
 
 ```r
@@ -296,25 +369,27 @@ scrape_art_info &lt;- function(x){
   
 }  
 ```
-
+]
 ---
 
 ## Turn your code into a function
-
+.pull-left[
 - Pick a short but informative **name**, preferably a verb.
 - List inputs, or **arguments**, to the function inside `function`. If we had more the call would look like `function(x, y, z)`.
 - Place the **code** you have developed in body of the function, a `{}` block that immediately follows `function(...)`.
-
+]
+.pull-right[
 
 ```r
 scrape_art_info &lt;- function(x){
 
-  # code we developed earlier to scrape info 
+  # code we developed earlier 
+  # to scrape info 
   # on single art piece goes here
   
 }
 ```
-
+]
 ---
 
 .your-turn[
@@ -441,36 +516,46 @@ scrape_art_info(uoe_art$link[3]) %&gt;%
 
 class: middle
 
+# Wrapping Up...
+
+
+---
+
+class: middle
+
 # Writing functions
 
 ---
 
 ## What goes in / what comes out?
 
-.pull-left-wide[
 - They take input(s) defined in the function definition
 
+.medi[
 
 ```r
 function([inputs separated by commas]){
   # what to do with those inputs
 }
 ```
+]
 
 - By default they return the last value computed in the function
 
+.medi[
 
 ```r
 scrape_page &lt;- function(x){
   # do bunch of stuff with the input...
-  
   # return a tibble
   tibble(...)
 }
 ```
-
-- You can define more outputs to be returned in a list as well as nice print methods (but we won't go there for now...)
 ]
+
+ - You can define more outputs to be returned in a list as well as nice print methods 
+   - (but we won't go there for now...)
+
 
 ---
 
@@ -504,11 +589,13 @@ add_2(10)
 ```
 
 ---
----
+
 
 ## Naming functions
 
-&gt; "There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
+&gt; "There are only two hard things in Computer Science: cache invalidation and naming things." 
+
+&gt;  -- Phil Karlton
 
 ---
 
