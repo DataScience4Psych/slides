@@ -811,9 +811,10 @@ steak_directions = function(temp, steak_type = "rare") {
     } 
     "you can keep cooking"
 }
-
+```
 --
 If we don't specify `steak_type`, we will get results as if we had specified it to be `"rare"`, but we can also over-ride that argument if we set it explicitly:
+
 
 ```{r}
 steak_directions(120, "rare")
