@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Fitting and interpreting models</title>
+    <title>Fitting and interpreting models  🏀</title>
     <meta charset="utf-8" />
-    <meta name="author" content="datasciencebox.org" />
+    <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <link href="libs/panelset/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset/panelset.js"></script>
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Fitting and interpreting models
-## <br><br> Data Science in a Box
-### <a href="https://datasciencebox.org/">datasciencebox.org</a>
+# Fitting and interpreting models<br> 🏀
+### S. Mason Garrison
 
 ---
 
@@ -32,7 +28,7 @@ layout: true
   
 &lt;div class="my-footer"&gt;
 &lt;span&gt;
-&lt;a href="https://introds.org" target="_blank"&gt;introds.org&lt;/a&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
 &lt;/span&gt;
 &lt;/div&gt; 
 
@@ -62,7 +58,7 @@ pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 
 `$$\widehat{height}_{i} = \beta_0 + \beta_1 \times width_{i}$$`
 
-&lt;img src="u4-d02-fitting-interpreting-models_files/figure-html/height-width-plot-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/height-width-plot-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -114,7 +110,7 @@ linear_reg() %&gt;%
 ```
 ## parsnip model object
 ## 
-## Fit time:  1ms 
+## Fit time:  0ms 
 ## 
 ## Call:
 ## stats::lm(formula = Height_in ~ Width_in, data = data)
@@ -132,7 +128,7 @@ linear_reg() %&gt;%
 ```
 ## parsnip model object
 ## 
-## Fit time:  26ms 
+## Fit time:  0ms 
 ## 
 ## Call:
 ## stats::lm(formula = Height_in ~ Width_in, data = data)
@@ -183,7 +179,7 @@ linear_reg() %&gt;%
 - **Slope:** For each additional inch the painting is wider, the height is expected to be higher, on average, by 0.781 inches.
 
 --
-- **Intercept:** Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this make sense?)
+- **Intercept:** Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this estimate make sense?)
 
 ---
 
@@ -233,19 +229,19 @@ class: middle
 
 ## Visualizing residuals
 
-&lt;img src="u4-d02-fitting-interpreting-models_files/figure-html/vis-res-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/vis-res-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Visualizing residuals (cont.)
 
-&lt;img src="u4-d02-fitting-interpreting-models_files/figure-html/vis-res-2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/vis-res-2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Visualizing residuals (cont.)
 
-&lt;img src="u4-d02-fitting-interpreting-models_files/figure-html/vis-res-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/vis-res-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -301,7 +297,7 @@ class: middle
 ## 18 L1764-13a        15        1
 ## 19 L1764-13b        15        1
 ## 20 L1764-14         37        0
-## # … with 3,373 more rows
+## # ... with 3,373 more rows
 ```
 ]
 ]
@@ -498,7 +494,7 @@ linear_reg() %&gt;%
 ## 18 L1764-13a        15 D/FL       
 ## 19 L1764-13b        15 D/FL       
 ## 20 L1764-14         37 F          
-## # … with 3,373 more rows
+## # ... with 3,373 more rows
 ```
 ]
 ]
@@ -537,7 +533,8 @@ linear_reg() %&gt;%
 "ratio": "16:9",
 "highlightLines": true,
 "highlightStyle": "solarized-light",
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

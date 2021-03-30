@@ -1035,7 +1035,7 @@ environment(f)
 ---
 Compare with:
 
-```{r}
+```{r,error=TRUE}
 f = function(y) {
     d = 8
     return(h())
@@ -1082,7 +1082,7 @@ What they can't do is change the values of those variables (except with a specia
 For example:
 
 
-```{r}
+```{r,error=TRUE}
 w = 12
 f = function(y) {
    d = 8
