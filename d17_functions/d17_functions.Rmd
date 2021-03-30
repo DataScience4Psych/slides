@@ -786,7 +786,7 @@ steak_directions(120, "rare")
 ```
 
 But this is of course different and will not work:
-```{r}
+```{r,error=TRUE}
 simulate_birthdays("rare", 120)
 ```
 
