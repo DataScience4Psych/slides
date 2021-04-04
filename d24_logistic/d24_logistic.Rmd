@@ -1,5 +1,5 @@
 ---
-title: "Logistic regression<br> `r emo::ji('log')`"
+title: "Logistic regression<br> `r emo::ji('tree')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
