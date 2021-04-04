@@ -716,7 +716,7 @@ Remember our passage from Tukey:
 
 # Sources
 
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 ---
 

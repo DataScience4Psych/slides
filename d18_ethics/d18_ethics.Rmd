@@ -447,5 +447,5 @@ Carole Cadwalladr and Emma Graham-Harrison. [How Cambridge Analytica turned Face
 ---
 # Sources
 
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 

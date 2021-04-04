@@ -189,7 +189,7 @@ $\sum_{i = 1}^n e_i^2$.
 
 ## Visualizing residuals
 
-```{r vis-res-1, echo=FALSE, out.width="70%"}
+```{r vis-res-1, echo=FALSE, out.width="70%",cache=TRUE}
 ht_wt_fit <- linear_reg() %>%
   set_engine("lm") %>%
   fit(Height_in ~ Width_in, data = pp)
@@ -216,7 +216,7 @@ p
 
 ## Visualizing residuals (cont.)
 
-```{r vis-res-2, echo=FALSE, out.width="70%"}
+```{r vis-res-2, echo=FALSE, out.width="70%", cache=TRUE}
 p <- p + 
   geom_smooth(method = "lm", color = "#8E2C90", se = FALSE) +
   geom_point(mapping = aes(y = .fitted), color = "#E48957") +
@@ -228,7 +228,7 @@ p
 
 ## Visualizing residuals (cont.)
 
-```{r vis-res-3, echo = FALSE, out.width="70%"}
+```{r vis-res-3, echo = FALSE, out.width="70%",cache=TRUE}
 p + 
   geom_segment(mapping = aes(xend = Width_in, yend = .fitted), color = "#E48957", alpha = 0.4) +
   labs(subtitle = "Data + least squares line + residuals")
@@ -239,6 +239,7 @@ p +
 ## Properties of least squares regression
 
 - The regression line goes through the center of mass point, the coordinates corresponding to average $x$ and average $y$, $(\bar{x}, \bar{y})$:  
+
 
 $$\bar{y} = b_0 + b_1 \bar{x} ~ \rightarrow ~ b_0 = \bar{y} - b_1 \bar{x}$$
 
@@ -254,16 +255,14 @@ $$\bar{y} = b_0 + b_1 \bar{x} ~ \rightarrow ~ b_0 = \bar{y} - b_1 \bar{x}$$
 ---
 
 ## Assumptions of least squares regression
-
+<br>
 From your earlier statistics courses, you remember linear models...
 
 Recall the assumptions for a linear model:
-
 - Normality of the errors
-
 - Same variance of errors within each group (homoscedasticity)
 
-
+<br>
 --- 
 ---
 
@@ -283,7 +282,7 @@ class: middle
 ## Categorical predictor with 2 levels
 
 .pull-left-narrow[
-.small[
+.midi[
 ```{r echo=FALSE}
 pp %>% 
   select(name, Height_in, landsALL) %>%
@@ -312,8 +311,7 @@ linear_reg() %>%
 ## Height & landscape features
 
 $$\widehat{Height_{in}} = 22.7 - 5.645~landsALL$$
-
-- **Slope:** Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features
++ **Slope: ** Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features
   - Compares baseline level (`landsALL = 0`) to the other level (`landsALL = 1`)
     
 - **Intercept:** Paintings that don't have landscape features are expected, on average, to be 22.7 inches tall

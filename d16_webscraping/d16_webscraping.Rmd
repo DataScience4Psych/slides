@@ -809,7 +809,7 @@ Two different scenarios for web scraping:
 
 # Sources
 
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 
 ---
 

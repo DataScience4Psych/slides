@@ -298,5 +298,5 @@ class: middle
 <br>
 
 Sources:
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 

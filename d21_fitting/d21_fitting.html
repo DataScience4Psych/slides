@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Fitting and interpreting models  🏀</title>
+    <title>Fitting and interpreting models  🏈</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -15,7 +15,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Fitting and interpreting models<br> 🏀
+# Fitting and interpreting models<br> 🏈
 ### S. Mason Garrison
 
 ---
@@ -250,6 +250,7 @@ class: middle
 
 - The regression line goes through the center of mass point, the coordinates corresponding to average `\(x\)` and average `\(y\)`, `\((\bar{x}, \bar{y})\)`:  
 
+
 `$$\bar{y} = b_0 + b_1 \bar{x} ~ \rightarrow ~ b_0 = \bar{y} - b_1 \bar{x}$$`
 
 --
@@ -264,16 +265,14 @@ class: middle
 ---
 
 ## Assumptions of least squares regression
-
+&lt;br&gt;
 From your earlier statistics courses, you remember linear models...
 
 Recall the assumptions for a linear model:
-
 - Normality of the errors
-
 - Same variance of errors within each group (homoscedasticity)
 
-
+&lt;br&gt;
 --- 
 ---
 
@@ -293,7 +292,7 @@ class: middle
 ## Categorical predictor with 2 levels
 
 .pull-left-narrow[
-.small[
+.midi[
 
 ```
 ## # A tibble: 3,393 x 3
@@ -353,8 +352,7 @@ linear_reg() %&gt;%
 ## Height &amp; landscape features
 
 `$$\widehat{Height_{in}} = 22.7 - 5.645~landsALL$$`
-
-- **Slope:** Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features
++ **Slope: ** Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features
   - Compares baseline level (`landsALL = 0`) to the other level (`landsALL = 1`)
     
 - **Intercept:** Paintings that don't have landscape features are expected, on average, to be 22.7 inches tall
