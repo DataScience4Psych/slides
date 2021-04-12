@@ -1,5 +1,5 @@
 ---
-title: "Prediction and overfitting<br> `r emo::ji('men_with_bunny_ears')`"
+title: "Prediction and overfitting<br> `r emo::ji('exercise')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
