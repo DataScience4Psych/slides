@@ -31,7 +31,7 @@ options(
 )
 
 data(email)
-email$spam_num=email$spam
+#email$spam_num=email$spam
 email$spam=as.factor(email$spam)
 
 plot_colors=c("#E48957", "#CA235F")
@@ -78,6 +78,11 @@ logistic_reg() %>%
       family = "binomial") %>%
   tidy() %>%
   print(n = 22)
+
+
+
+summary(glm(spam~re_subj, data=email, family = "binomial"))
+
 ```
 ]
 ]
