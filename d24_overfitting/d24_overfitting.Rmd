@@ -1,5 +1,5 @@
 ---
-title: "Prediction and overfitting<br> `r emo::ji('exercise')`"
+title: "Prediction and overfitting<br> `r emo::ji('running_man')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -22,13 +22,20 @@ library(tidymodels)
 library(openintro)
 library(patchwork)
 library(skimr)
-set.seed(1234)
+set.seed(1066)
 options(
   warnPartialMatchArgs = FALSE,
   warnPartialMatchAttr = FALSE, 
   warnPartialMatchDollar = FALSE,
   width = 100
 )
+
+data(email)
+email$spam_num=email$spam
+email$spam=as.factor(email$spam)
+
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
 ```
 
 class: middle
@@ -53,18 +60,20 @@ class: middle
 
 ## A multiple regression approach
 
-.panelset[
+.pull-left[
 .panel[.panel-name[Output]
 .small[
 ```{r ref.label = "spam-mlr", echo = FALSE, warning = FALSE}
 ```
 ]
 ]
-.panel[.panel-name[Code]
+]
+.pull-right[.panel[.panel-name[Code]
 ```{r spam-mlr, results = "hide"}
 logistic_reg() %>%
   set_engine("glm") %>%
-  fit(spam ~ ., data = email, family = "binomial") %>%
+  fit(spam ~ ., data = email, 
+      family = "binomial") %>%
   tidy() %>%
   print(n = 22)
 ```
@@ -81,7 +90,7 @@ logistic_reg() %>%
 
 --
 - Getting it right is **hard**!
-  - There is no guarantee the model estimates you have are correct
+  - No guarantee that you have the correct the model estimates
   - Or that your model will perform as well with new data as it did with your sample data
 
 ---
@@ -121,13 +130,21 @@ association %>%
 
 ## Spending our data
 
-- Several steps to create a useful model: parameter estimation, model selection, performance assessment, etc.
+- Several steps to create a useful model: 
+  - parameter estimation, 
+  - model selection, 
+  - performance assessment, etc.
+--
 
 - Doing all of this on the entire data we have available can lead to **overfitting**
+--
 
-- Allocate specific subsets of data for different tasks, as opposed to allocating the largest possible amount to the model parameter estimation only (which is what we've done so far)
+- Allocate specific subsets of data for different tasks, 
+  - as opposed to allocating the largest possible amount to the model parameter estimation only 
+  - (which is what we've done so far)
 
 ---
+
 
 class: middle
 
@@ -141,7 +158,6 @@ class: middle
   - Sandbox for model building 
   - Spend most of your time using the training set to develop the model
   - Majority of the data (usually 80%)
-  
 - **Testing set:**
   - Held in reserve to determine efficacy of one or two chosen models
   - Critical to look at it once, otherwise it becomes part of the modeling process
@@ -154,7 +170,7 @@ class: middle
 ```{r}
 # Fix random numbers by setting the seed 
 # Enables analysis to be reproducible when random numbers are used 
-set.seed(1116)
+set.seed(1066)
 
 # Put 80% of the data into the training set 
 email_split <- initial_split(email, prop = 0.80)
@@ -191,17 +207,27 @@ class: middle
 
 ## Fit a model to the training dataset
 
+
+
 ```{r}
+
+# AHHHHHHHHHHHHHHHHHHHH set iter doesn't stick!!!!
 email_fit <- logistic_reg() %>%
   set_engine("glm") %>%
   fit(spam ~ ., data = train_data, family = "binomial")
 ```
 
+```{r,error=TRUE,warning=FALSE}
+email_fit <- logistic_reg() %>%
+  set_engine("glm") %>%
+  fit(spam ~ ., data = train_data, family = "binomial") %>%
+  suppressWarnings(.)
+```
 ---
 
 ## Categorical predictors
 
-```{r echo=FALSE, out.width="75%", fig.width=10}
+```{r echo=FALSE, out.width="80%", fig.width=10}
 factor_predictors <- train_data %>%
   select(where(is.factor), -spam) %>%
   names()
@@ -268,6 +294,38 @@ train_data %>%
 
 ## Numerical predictors
 
+
+```{r echo=FALSE, highlight.output=c(14, 15)}
+options(width = 100)
+x <- train_data %>%
+  group_by(spam) %>%
+  select(where(is.numeric)) %>%
+  skim_without_charts()
+
+print(x, include_summary = FALSE)
+```
+
+
+---
+
+## Numerical predictors
+
+.tiny[
+```{r echo=FALSE, highlight.output=c(14, 15)}
+options(width = 100)
+x <- train_data %>%
+  group_by(spam) %>%
+  select(where(is.numeric)) %>%
+  skim_without_charts()
+
+print(x, include_summary = FALSE)
+```
+]
+
+---
+
+## Numerical predictors
+
 .small[
 ```{r echo=FALSE, highlight.output=c(14, 15)}
 options(width = 100)
@@ -287,7 +345,9 @@ print(x, include_summary = FALSE)
 ```{r}
 email_fit <- logistic_reg() %>%
   set_engine("glm") %>%
-  fit(spam ~ . - from - sent_email - viagra, data = train_data, family = "binomial") #<<
+  fit(spam ~ . - from - sent_email - viagra,  #<<
+      data = train_data, family = "binomial")%>% #<< 
+suppressWarnings(.)
 ```
 
 .small[
@@ -318,7 +378,7 @@ email_pred
 
 ---
 
-## A closer look at predictions
+### A closer look at predictions
 
 .pull-left-wide[
 ```{r highlight.output=c(6, 10)}
@@ -332,9 +392,11 @@ email_pred %>%
 
 ## Evaluate the performance
 
-**Receiver operating characteristic (ROC) curve**<sup>+</sup> which plot true positive rate vs. false positive rate (1 - specificity)
+**Receiver operating characteristic (ROC) curve**<sup>+</sup> which plot true positive rate vs. false positive rate 
 
-.pull-left[
+(1 - specificity)
+
+.medi.pull-left-narrow[
 ```{r roc, fig.show="hide"}
 email_pred %>%
   roc_curve(
@@ -345,7 +407,7 @@ email_pred %>%
   autoplot()
 ```
 ]
-.pull-right[
+.pull-right-wide[
 ```{r ref.label="roc", echo=FALSE, out.width="100%"}
 ```
 ]
@@ -362,7 +424,7 @@ email_pred %>%
 
 Find the area under the curve:
 
-.pull-left[
+.medi.pull-left-narrow[
 ```{r}
 email_pred %>%
   roc_auc(
@@ -372,7 +434,19 @@ email_pred %>%
   )
 ```
 ]
-.pull-right[
+.pull-right-wide[
 ```{r ref.label="roc", echo=FALSE, out.width="100%"}
 ```
 ]
+
+---
+
+class: middle
+
+# Wrapping Up... 
+
+<br>
+
+Sources:
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))

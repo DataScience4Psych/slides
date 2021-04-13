@@ -24,6 +24,8 @@ library(widgetframe)
 library(patchwork)
 set.seed(1234)
 options(dplyr.print_min = 10, dplyr.print_max = 6)
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
 ```
 
 class: middle
