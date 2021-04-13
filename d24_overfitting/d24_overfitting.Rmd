@@ -34,6 +34,8 @@ data(email)
 email$spam_num=email$spam
 email$spam=as.factor(email$spam)
 
+plot_colors=c("#E48957", "#CA235F")
+
 # Remember to compile
 # xaringan::inf_mr(cast_from = "..")
 ```
@@ -234,35 +236,35 @@ factor_predictors <- train_data %>%
 
 p_to_multiple <- ggplot(train_data, aes(x = to_multiple, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_from <- ggplot(train_data, aes(x = from, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_sent_email <- ggplot(train_data, aes(x = sent_email, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_winner <- ggplot(train_data, aes(x = winner, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_format <- ggplot(train_data, aes(x = format, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_re_subj <- ggplot(train_data, aes(x = re_subj, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_urgent_subj <- ggplot(train_data, aes(x = urgent_subj, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_number <- ggplot(train_data, aes(x = number, fill = spam)) +
   geom_bar() +
-  scale_fill_manual(values = c("#E48957", "#CA235F"))
+  scale_fill_manual(values = plot_colors)
 
 p_to_multiple + p_from + p_sent_email + p_winner + p_format + p_re_subj + p_urgent_subj + p_number +
   plot_layout(ncol = 4, guides = "collect") & 
