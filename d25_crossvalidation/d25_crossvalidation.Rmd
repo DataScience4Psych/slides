@@ -1,17 +1,16 @@
 ---
-title: "Cross validation"
-subtitle: "<br><br> Data Science in a Box"
-author: "[datasciencebox.org](https://datasciencebox.org/)"
+title: "Cross validation<br> `r emo::ji('cross')`"
+author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
-    css: ["../xaringan-themer.css", "../slides.css"]
+    css: "../slides.css"
     lib_dir: libs
-    anchor_sections: FALSE
     nature:
       ratio: "16:9"
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
+      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -23,6 +22,8 @@ library(tidymodels)
 library(gghighlight)
 library(knitr)
 set.seed(1234)
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
 ```
 
 class: middle
@@ -52,13 +53,20 @@ Source: The data come from [data.world](https://data.world/anujjain7/the-office-
 ---
 
 ## IMDB ratings
+.pull-left-wide[
+```{r ref.label = "officeimdb", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
 
-.panelset[
-```{r panelset = c(output = "Plot", source = "Code")}
-ggplot(office_ratings, aes(x = imdb_rating)) +
+
+.small.pull-right-narrow[
+```{r officeimdb, fig.show="hide", warning=FALSE}
+
+ggplot(office_ratings, 
+       aes(x = imdb_rating)) +
   geom_histogram(binwidth = 0.25) +
   labs(
-    title = "The Office ratings",
+    title = "The Office Ratings",
     x = "IMDB Rating"
   )
 ```
@@ -68,13 +76,22 @@ ggplot(office_ratings, aes(x = imdb_rating)) +
 
 ## IMDB ratings vs. number of votes
 
-.panelset[
-```{r panelset = c(output = "Plot", source = "Code"), out.width="55%"}
-ggplot(office_ratings, aes(x = total_votes, y = imdb_rating, color = season)) +
+.pull-left-wide[
+```{r ref.label = "officeimdb2", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+
+.small.pull-right-narrow[
+```{r officeimdb2, fig.show="hide", warning=FALSE}
+ggplot(office_ratings, 
+       aes(x = total_votes, 
+           y = imdb_rating, 
+           color = season)) +
   geom_jitter(alpha = 0.7) +
   labs(
-    title = "The Office ratings",
-    x = "Total votes",
+    title = "The Office Ratings",
+    x = "Total Votes",
     y = "IMDB Rating",
     color = "Season"
   )
@@ -85,14 +102,23 @@ ggplot(office_ratings, aes(x = total_votes, y = imdb_rating, color = season)) +
 
 ## Outliers
 
-.panelset[
-```{r panelset = c(output = "Plot", source = "Code"), out.width="55%"}
-ggplot(office_ratings, aes(x = total_votes, y = imdb_rating)) +
+.pull-left-wide[
+```{r ref.label = "officeimdb3", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+
+.small.pull-right-narrow[
+```{r officeimdb3, fig.show="hide", warning=FALSE}
+ggplot(office_ratings, 
+       aes(x = total_votes, 
+           y = imdb_rating)) +
   geom_jitter() +
-  gghighlight(total_votes > 4000, label_key = title) +
+  gghighlight(total_votes > 4000, 
+              label_key = title) +
   labs(
     title = "The Office ratings",
-    x = "Total votes",
+    x = "Total Votes",
     y = "IMDB Rating"
   )
 ```
@@ -108,14 +134,23 @@ If you like the [Dinner Party](https://www.imdb.com/title/tt1031477/) episode, I
 
 ## IMDB ratings vs. seasons
 
-.panelset[
-```{r panelset = c(output = "Plot", source = "Code"), out.width="55%"}
-ggplot(office_ratings, aes(x = factor(season), y = imdb_rating, color = season)) +
+.pull-left-wide[
+```{r ref.label = "officeimdb4", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+
+.small.pull-right-narrow[
+```{r officeimdb4, fig.show="hide", warning=FALSE}
+ggplot(office_ratings, 
+       aes(x = factor(season),
+           y = imdb_rating,
+           color = season)) +
   geom_boxplot() +
   geom_jitter() +
   guides(color = FALSE) +
   labs(
-    title = "The Office ratings",
+    title = "The Office Ratings",
     x = "Season",
     y = "IMDB Rating"
   )
@@ -130,7 +165,7 @@ class: middle
 
 ---
 
-## Train / test
+## Train / Test
 
 - Create an initial split
 
@@ -142,20 +177,22 @@ office_split <- initial_split(office_ratings) # prop = 3/4 by default
 --
 .pull-left[
 - Save training data
+.medi[
 ```{r}
 office_train <- training(office_split)
 dim(office_train)
 ```
-]
+]]
 
 --
 .pull-right[
 - Save testing data
+.medi[
 ```{r}
 office_test  <- testing(office_split)
 dim(office_test)
 ```
-]
+]]
 
 ---
 
@@ -172,7 +209,7 @@ office_mod
 
 ## Build recipe
 
-.panelset[
+
 .panel[.panel-name[Code]
 ```{r}
 office_rec <- recipe(imdb_rating ~ ., data = office_train) %>%
@@ -187,6 +224,10 @@ office_rec <- recipe(imdb_rating ~ ., data = office_train) %>%
   step_zv(all_predictors())
 ```
 ]
+---
+
+## Build recipe
+
 .panel[.panel-name[Output]
 .small[
 ```{r}
@@ -194,7 +235,7 @@ office_rec
 ```
 ]
 ]
-]
+
 
 ---
 
@@ -335,17 +376,17 @@ office_test_pred
 ## Evaluate performance on testing data
 
 - RMSE of model fit to testing data
-
+.medi[
 ```{r}
 rmse(office_test_pred, truth = imdb_rating, estimate = .pred)
 ```
-
+]
 - $R^2$ of model fit to testing data
-
+.medi[
 ```{r}
 rsq(office_test_pred, truth = imdb_rating, estimate = .pred)
 ```
-
+]
 ---
 
 ## Training vs. testing
@@ -435,7 +476,8 @@ knitr::include_graphics("img/cross-validation.png")
 ```{r}
 set.seed(345)
 
-folds <- vfold_cv(office_train, v = 5)
+folds <- vfold_cv(office_train, 
+                  v = 5)
 folds
 ```
 ]
@@ -452,18 +494,23 @@ knitr::include_graphics("img/cross-validation.png")
 .pull-left[
 ```{r}
 set.seed(456)
-
 office_fit_rs <- office_wflow %>%
   fit_resamples(folds)
-
-office_fit_rs
+#office_fit_rs
 ```
 ]
+
 .pull-right[
 ```{r echo=FALSE, out.width="100%", fig.align="right"}
 knitr::include_graphics("img/cross-validation-animated.gif")
 ```
 ]
+
+---
+
+```{r}
+office_fit_rs
+```
 
 ---
 
@@ -477,13 +524,15 @@ collect_metrics(office_fit_rs)
 
 ## Deeper look into CV metrics
 
-.panelset[
 .panel[.panel-name[Raw]
 ```{r}
 collect_metrics(office_fit_rs, summarize = FALSE) %>%
   print(n = 10)
 ```
 ]
+
+---
+
 .panel[.panel-name[Tidy]
 ```{r echo=FALSE}
 collect_metrics(office_fit_rs, summarize = FALSE) %>%
@@ -492,7 +541,7 @@ collect_metrics(office_fit_rs, summarize = FALSE) %>%
   kable(col.names = c("Fold", "RMSE", "R-squared"), digits = 3)
 ```
 ]
-]
+
 
 ---
 
@@ -531,7 +580,18 @@ office_train %>%
 
 ## What's next?
 
-```{r echo=FALSE, out.width="100%", fig.align="right"}
+```{r echo=FALSE, out.width="90%", fig.align="right"}
 knitr::include_graphics("img/post-cv-testing.png")
 ```
 
+---
+
+class: middle
+
+# Wrapping Up... 
+
+<br>
+
+Sources:
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
