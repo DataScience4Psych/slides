@@ -47,9 +47,9 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   scale_x_continuous(labels = label_dollar(suffix = "K")) + 
   scale_y_continuous(labels = label_dollar(suffix = "K")) +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Gift aid and family income",
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Gift Aid and Family Income",
     subtitle = "Random sample 50 students at Elmhurst College"
   )
 ```
@@ -82,8 +82,8 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   scale_x_continuous(labels = label_dollar(suffix = "K")) + 
   scale_y_continuous(labels = label_dollar(suffix = "K")) +
   labs(
-    x = "Family income",
-    y = "Gift aid",
+    x = "Family Income",
+    y = "Gift Aid",
     title = "Gift aid and family income",
     subtitle = "Random sample 50 students at Elmhurst College"
   )
@@ -110,8 +110,8 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   scale_x_continuous(labels = label_dollar(suffix = "K")) + 
   scale_y_continuous(labels = label_dollar(suffix = "K")) +
   labs(
-    x = "Family income",
-    y = "Gift aid",
+    x = "Family Income",
+    y = "Gift Aid",
     title = "Gift aid and family income",
     subtitle = "Random sample 50 students at Elmhurst College"
   )
@@ -185,8 +185,8 @@ If you want to estimate a population parameter, do you prefer to report a range 
 
 --
 
-- If we report a point estimate, we probably won’t hit the exact population parameter
-- If we report a range of plausible values we have a good shot at capturing the parameter
+- If we report a point estimate, we probably won't hit the exact population parameter
+- If we report a range of plausible values, we have a good shot at capturing the parameter
 
 ---
 
@@ -264,7 +264,7 @@ class: middle
 ## Bootstrapping
 
 .pull-left-wide[
-- _"pulling oneself up by one’s bootstraps"_: accomplishing an impossible task without any outside help
+- _"pulling oneself up by one's bootstraps"_: accomplishing an impossible task without any outside help
 - **Impossible task:** estimating a population parameter using data from only the given sample
 - **Note:** Notion of saying something about a population parameter using only information from an observed sample is the crux of statistical inference
 ]
@@ -297,8 +297,8 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurst_slope_obs), size = 6, hjust = 0)  +
   labs(
-    x = "Family income",
-    y = "Gift aid",
+    x = "Family Income",
+    y = "Gift Aid",
     title = "Gift aid and family income",
     subtitle = "Random sample 50 students at Elmhurst College"
   )
@@ -322,9 +322,9 @@ elmhurst_boot %>%
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   geom_text(aes(x = 200, y = 40), label = paste("slope = ?"), size = 6, hjust = 0)  +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Gift aid and family income",
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Gift Aid and Family Income",
     subtitle = "(Simulated) population of students at Elmhurst College"
   )
 ```
@@ -333,13 +333,17 @@ elmhurst_boot %>%
 
 ## Bootstrapping scheme
 
-1. Take a bootstrap sample - a random sample taken **with replacement** from the original sample, of the same size as the original sample
+1. Take a bootstrap sample
+    - a random sample taken **with replacement** from the original sample, 
+    - of the same size as the original sample
 
 --
-2. Calculate the bootstrap statistic - a statistic such as mean, median, proportion, slope, etc. computed on the bootstrap samples
+2. Calculate the bootstrap statistic 
+  - a statistic such as mean, median, proportion, slope, etc. computed on the bootstrap samples
 
 --
-3. Repeat steps (1) and (2) many times to create a bootstrap distribution - a distribution of bootstrap statistics
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution 
+    - a distribution of bootstrap statistics
 
 --
 4. Calculate the bounds of the XX% confidence interval as the middle XX% of the bootstrap distribution
@@ -370,9 +374,9 @@ ggplot(elmhurtst_boot_1, aes(x = family_income, y = gift_aid)) +
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_1_slope), size = 6, hjust = 0)  +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Bootstrap sample 1"
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Bootstrap Sample 1"
   )
 ```
 
@@ -402,15 +406,15 @@ ggplot(elmhurtst_boot_2, aes(x = family_income, y = gift_aid)) +
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_2_slope), size = 6, hjust = 0)  +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Bootstrap sample 2"
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Bootstrap Sample 2"
   )
 ```
 
 ---
 
-## Bootstrap sample 3
+## Bootstrap Sample 3
 
 ```{r}
 elmhurtst_boot_3 <- elmhurst %>%
@@ -434,15 +438,15 @@ ggplot(elmhurtst_boot_3, aes(x = family_income, y = gift_aid)) +
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_3_slope), size = 6, hjust = 0)  +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Bootstrap sample 3"
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Bootstrap Sample 3"
   )
 ```
 
 ---
 
-## Bootstrap sample 4
+## Bootstrap Sample 4
 
 ```{r}
 elmhurtst_boot_4 <- elmhurst %>%
@@ -466,15 +470,15 @@ ggplot(elmhurtst_boot_4, aes(x = family_income, y = gift_aid)) +
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_4_slope), size = 6, hjust = 0)  +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Bootstrap sample 4"
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Bootstrap Sample 4"
   )
 ```
 
 ---
 
-## Bootstrap samples 1 - 4
+## Bootstrap Samples 1 - 4
 
 ```{r echo=FALSE}
 ggplot() +
@@ -489,9 +493,9 @@ ggplot() +
   scale_x_continuous(labels = label_dollar(suffix = "K")) + 
   scale_y_continuous(labels = label_dollar(suffix = "K")) +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Bootstrap samples"
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Bootstrap Samples"
   )
 ```
 
@@ -530,9 +534,9 @@ ggplot(elmhurst_aug, aes(x = family_income, y = gift_aid)) +
   scale_x_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 275)) + 
   scale_y_continuous(labels = label_dollar(suffix = "K"), limits = c(0, 42)) +
   labs(
-    x = "Family income",
-    y = "Gift aid",
-    title = "Bootstrap samples"
+    x = "Family Income",
+    y = "Gift Aid",
+    title = "Bootstrap Samples"
   )
 ```
 
@@ -615,7 +619,7 @@ int_pctl(elmhurst_models, coef_info)
 ---
 
 ## Code
-
+.medi[
 ```{r eval=FALSE}
 # set a seed
 set.seed(1234)
@@ -639,3 +643,15 @@ elmhurst_coefs <- elmhurst_models %>%
 # calculate 95% (default) percentile interval
 int_pctl(elmhurst_models, coef_info)
 ```
+]
+---
+
+class: middle
+
+# Wrapping Up... 
+
+<br>
+
+Sources:
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))

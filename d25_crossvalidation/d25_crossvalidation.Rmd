@@ -442,6 +442,12 @@ Source: [tidymodels.org](https://www.tidymodels.org/start/resampling/)
 
 class: middle
 
+# Wrapping Up...
+
+---
+
+class: middle
+
 # Cross validation
 
 ---
