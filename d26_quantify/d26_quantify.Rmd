@@ -190,18 +190,6 @@ If you want to estimate a population parameter, do you prefer to report a range 
 
 ---
 
-.center[
-<iframe width="1100" height="500" src="https://news.gallup.com/poll/323480/britons-approval-leadership-new-low.aspx" frameborder="0" style="background:white;"></iframe>  
-]
-
-.footnote[
-.midi[
-Source: Gallup. [Britons' Approval of U.S. Leadership at New Low](https://news.gallup.com/poll/323480/britons-approval-leadership-new-low.aspx), 5 Nov 2020.
-]
-]
-
----
-
 class: middle
 
 # Confidence intervals
@@ -310,6 +298,7 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
 
 Generated assuming there are more students like the ones in the observed sample...
 
+
 ```{r echo=FALSE, warning=FALSE}
 elmhurst_boot %>% 
   slice_head(n = 50) %>%
@@ -335,7 +324,7 @@ elmhurst_boot %>%
 
 1. Take a bootstrap sample
     - a random sample taken **with replacement** from the original sample, 
-    - of the same size as the original sample
+      - of the same size as the original sample
 
 --
 2. Calculate the bootstrap statistic 

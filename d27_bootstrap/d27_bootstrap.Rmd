@@ -40,6 +40,9 @@ class: middle
 Take a guess! How much does a typical 3 BR flat in Edinburgh rents for?
 ]
 
+.footnote[ 
+So grateful to Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/)) for this demo
+]
 ---
 
 ## Sample
@@ -319,7 +322,6 @@ edi_3br %>%
 - We can do this for any sample statistic:
   - For a mean: `calculate(stat = "mean")`
   - For a median: `calculate(stat = "median")`
-  - Learn about calculating bootstrap intervals for other statistics in your homework
   
   
 ---
