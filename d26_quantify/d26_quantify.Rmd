@@ -152,7 +152,7 @@ knitr::include_graphics("img/photo-1571942676516-bcab84649e44.png")
 
 ## Estimation
 
-So far we have done lots of estimation (mean, median, slope, etc.), i.e.
+So far we have done lots of estimation (mean, median, slope, etc.)...
 - used data from samples to calculate sample statistics
 - which can then be used as estimates for population parameters
 
