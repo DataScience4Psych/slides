@@ -64,7 +64,7 @@ edi_3br
 
 ## Observed sample
 
-```{r message=FALSE, echo=FALSE, out.width="80%"}
+```{r message=FALSE, echo=FALSE, out.width="75%"}
 ggplot(data = edi_3br, mapping = aes(x = rent)) +
   geom_histogram(binwidth = 200) +
   labs(title = "Rent of 3 BR flats in Edinburgh")
@@ -96,14 +96,14 @@ knitr::include_graphics("img/rent-bootpop.png")
 
 ## Bootstrapping scheme
 
-1. Take a bootstrap sample - a random sample taken **with replacement** from the 
-original sample, of the same size as the original sample
-2. Calculate the bootstrap statistic - a statistic such as mean, median, 
+1. Take a bootstrap sample 
+    - a random sample taken **with replacement** from the original sample, of the same size as the original sample
+2. Calculate the bootstrap statistic 
+  - a statistic such as mean, median, 
 proportion, slope, etc. computed on the bootstrap samples
-3. Repeat steps (1) and (2) many times to create a bootstrap distribution - 
-a distribution of bootstrap statistics
-4. Calculate the bounds of the XX% confidence interval as the middle XX% 
-of the bootstrap distribution
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution 
+  - a distribution of bootstrap statistics
+4. Calculate the bounds of the XX% confidence interval as the middle XX% of the bootstrap distribution
 
 ---
 
