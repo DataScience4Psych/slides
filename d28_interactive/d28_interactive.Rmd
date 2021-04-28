@@ -1,5 +1,5 @@
 ---
-title: "Interactive web apps <br> `r emo::ji('shine')`"
+title: "Interactive web apps <br> `r emo::ji('star')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -14,6 +14,16 @@ output:
 ---
 
 ```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+library(openintro)
+
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
 ```
 
 ## Shiny
@@ -35,17 +45,27 @@ knitr::include_graphics("img/shiny.png")
 ## High level view
 
 - Every Shiny app has a webpage that the user visits, and behind this webpage there is a computer that serves this webpage by running R
-
 - When running your app locally, the computer serving your app is your computer
-
 - When your app is deployed, the computer serving your app is a web server
 
 ---
 
-.center[
-[minecr.shinyapps.io/fm-speeches-covid19-simple](https://minecr.shinyapps.io/fm-speeches-covid19-simple/)
-]
+## Anatomy of a Shiny app
 
-.center[
-<iframe width="1000" height="500" src="https://minecr.shinyapps.io/fm-speeches-covid19-simple/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-]
+- User interface
+  - controls the layout and appearance of app
+- Server function 
+  - contains instructions needed to build app
+  
+```{r echo=TRUE,eval=FALSE }
+library(shiny)
+# User interface 
+ui <- fluidPage()
+
+# Server function 
+server <- function(input, output) {}
+shinyApp(ui = ui, server = server)
+
+```
+
+
