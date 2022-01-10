@@ -65,8 +65,8 @@ A - None.
 
 --
 
-**Q - Is this an intro stat course?**  
-A - While statistics $\ne$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics. However this course is **not** your typical statistics course.
+**Q - Is this an intro CS course?**  
+A - Although statistics and computer science $\ne$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get comfortable with those topics. However this course is **not** your typical compsci course.
 
 --
 
@@ -75,12 +75,6 @@ A - Yes.
 
 ---
 
-# What is this course?
-
-**Q - Is this an intro CS course?**  
-A - No, but many themes are shared.
-
---
 
 **Q - What computing language will we learn?**  
 A - R.
@@ -88,7 +82,7 @@ A - R.
 --
 
 **Q: Why not language X?**  
-A: We can discuss that over `r emo::ji("coffee")`.
+A: We can discuss that *remotely* over `r emo::ji("coffee")`.
 
 
 ---
@@ -201,7 +195,7 @@ Tips for selecting a username:<sup>✦</sup>
 
 **Option 1.**
 
-- On Github, download the assignment called `AE 01a - UN Votes`.
+- On Github, download the assignment called `AE01a - UN Votes`.
 - In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
@@ -214,7 +208,7 @@ Tips for selecting a username:<sup>✦</sup>
 
 **Option 2.**
 
-- On Github, download the assignment called called `AE 01b - COVID`.
+- On Github, download the assignment called called `AE01b_COVID`.
 - In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
@@ -264,7 +258,7 @@ class: middle
 - Course content, logistics, etc. discussion on the course discussion forum.
     - Please post on the FAQ instead of direct messaging.
     - Use proper formatting: When asking questions involving code, please make sure to use inline code formatting for short bits of code or code snippets for longer, multi-line chunks.
-- Often it's a lot more pleasant an experience to get your questions answered in person. Make use of my office hours, I'm here to help!
+- Often it's a lot more pleasant an experience to get your questions answered in person. Make use of my *remote* office hours, I'm here to help!
 
 ---
 
