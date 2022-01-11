@@ -1,5 +1,5 @@
 ---
-title: "Welcome to Data Science <br> `r emo::ji('raised_hands')`"
+title: "Welcome to Data Science <br> `r emo::ji('cat')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
