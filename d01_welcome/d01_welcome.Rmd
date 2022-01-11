@@ -112,7 +112,7 @@ class: middle
 
 # The US of Bey
 
-```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="65%"}
+```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="50%"}
 knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
 ```
 
