@@ -205,7 +205,7 @@ Alaska?
 Compare the stem-and-leaf plot with a density estimate
 
 ```{r echo=TRUE, out.width="60%"}
-ggplot(heights, aes(x = elevation)) + geom_density()+ geom_rug()
+ggplot(heights, aes(x = elevation)) + geom_density() + geom_rug()
 ```
 
 
@@ -305,7 +305,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 
 ## Jabba!
 
-```{r echo = FALSE, warning = FALSE, cache = TRUE, out.width = "80%"}
+```{r echo = FALSE, warning = FALSE, cache = FALSE, out.width = "80%"}
 jabba <- image_read("img/jabba.png")
 
 fig <- image_graph(width = 1600, height = 900, res = 200)
