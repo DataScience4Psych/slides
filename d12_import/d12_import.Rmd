@@ -84,7 +84,7 @@ options(width = width)
 
 - Write a file
 
-```{r cache=TRUE}
+```{r cache=FALSE}
 df <- tribble(
   ~x, ~y,
   1,  "a",
