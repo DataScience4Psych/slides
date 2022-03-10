@@ -65,15 +65,19 @@ edi_3br &lt;- read_csv2("data/edi-3br.csv") # ; separated
 
 ```
 ## # A tibble: 15 x 4
-##   flat_id  rent title               address                      
-##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;                        
-## 1 flat_01   825 3 bedroom apartmen~ Burnhead Grove, Edinburgh, M~
-## 2 flat_02  2400 3 bedroom flat to ~ Simpson Loan, Quartermile, E~
-## 3 flat_03  1900 3 bedroom flat to ~ FETTES ROW, NEW TOWN, EH3 6SE
-## 4 flat_04  1500 3 bedroom apartmen~ Eyre Crescent, Edinburgh, Mi~
-## 5 flat_05  3250 3 bedroom flat to ~ Walker Street, Edinburgh     
-## 6 flat_06  2145 3 bedroom flat to ~ George Street, City Centre, ~
-## # ... with 9 more rows
+##    flat_id  rent title                       address             
+##    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;                       &lt;chr&gt;               
+##  1 flat_01   825 3 bedroom apartment to rent Burnhead Grove, Edi~
+##  2 flat_02  2400 3 bedroom flat to rent      Simpson Loan, Quart~
+##  3 flat_03  1900 3 bedroom flat to rent      FETTES ROW, NEW TOW~
+##  4 flat_04  1500 3 bedroom apartment to rent Eyre Crescent, Edin~
+##  5 flat_05  3250 3 bedroom flat to rent      Walker Street, Edin~
+##  6 flat_06  2145 3 bedroom flat to rent      George Street, City~
+##  7 flat_07  1500 3 bedroom flat to rent      Waverley Place , Ed~
+##  8 flat_08  1950 3 bedroom flat to rent      Drumsheugh Place, E~
+##  9 flat_09  1725 3 bedroom flat to rent      Crighton Place, Lei~
+## 10 flat_10  2995 3 bedroom flat to rent      Simpson Loan, Meado~
+## # ... with 5 more rows
 ```
 ]
 
@@ -192,16 +196,21 @@ boot_df
 ```
 
 ```
+## Response: rent (numeric)
 ## # A tibble: 15,000 x 2
-##   replicate  stat
-##       &lt;int&gt; &lt;dbl&gt;
-## 1         1 1793.
-## 2         2 1938.
-## 3         3 2175 
-## 4         4 2159.
-## 5         5 2084 
-## 6         6 1761 
-## # ... with 14,994 more rows
+##    replicate  stat
+##        &lt;int&gt; &lt;dbl&gt;
+##  1         1 1793.
+##  2         2 1938.
+##  3         3 2175 
+##  4         4 2159.
+##  5         5 2084 
+##  6         6 1761 
+##  7         7 1787.
+##  8         8 1817.
+##  9         9 1963.
+## 10        10 1800.
+## # ... with 14,990 more rows
 ```
 
 ---

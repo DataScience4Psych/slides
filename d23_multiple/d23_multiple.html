@@ -351,7 +351,7 @@ tidy(pp_fit)
 ## # A tibble: 3 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   4.77     0.0579      82.4  0.      
+## 1 (Intercept)   4.77     0.0579      82.4  0       
 ## 2 Width_in      0.0269   0.00373      7.22 6.58e-13
 ## 3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4
 ```
@@ -365,7 +365,7 @@ tidy(pp_fit)
 ## # A tibble: 3 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   4.77     0.0579      82.4  0.      
+## 1 (Intercept)   4.77     0.0579      82.4  0       
 ## 2 Width_in      0.0269   0.00373      7.22 6.58e-13
 ## 3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4
 ```
@@ -381,8 +381,8 @@ tidy(pp_fit)
 .panelset[
 .panel[.panel-name[Plot]
 .pull-left-wide[
-<div id="htmlwidget-ee152228cf82553809b6" style="width:100%;height:1483.2px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ee152228cf82553809b6">{"x":{"url":"d23_multiple_files/figure-html//widgets/widget_plotly-plot.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dd92764ef4558d96bb92" style="width:100%;height:1483.2px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dd92764ef4558d96bb92">{"x":{"url":"d23_multiple_files/figure-html//widgets/widget_plotly-plot.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 ]
 ]
 .panel[.panel-name[Code]
@@ -462,6 +462,11 @@ ggplot(data = pp, aes(x = Surface, fill = artistliving)) +
   labs(x = "Surface area", y = NULL) +
   geom_vline(xintercept = 1000) +
   geom_vline(xintercept = 5000, linetype = "dashed", color = "gray")
+```
+
+```
+## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use
+## `guides(&lt;scale&gt; = "none")` instead.
 ```
 
 ```
@@ -569,7 +574,7 @@ tidy(pp_main_fit)
 ## # A tibble: 3 x 5
 ##   term               estimate std.error statistic  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)        4.88     0.0424       115.   0.      
+## 1 (Intercept)        4.88     0.0424       115.   0       
 ## 2 Surface            0.000265 0.0000415      6.39 1.85e-10
 ## 3 artistlivingLiving 0.137    0.0970         1.41 1.57e- 1
 ```
@@ -672,12 +677,12 @@ tidy(pp_int_fit)
 
 ```
 ## # A tibble: 4 x 5
-##   term                     estimate std.error statistic   p.value
-##   &lt;chr&gt;                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)              4.91     0.0432       114.     0.     
-## 2 Surface                  0.000206 0.0000442      4.65   3.37e-6
-## 3 artistlivingLiving      -0.126    0.119         -1.06   2.89e-1
-## 4 Surface:artistlivingLi~  0.000479 0.000126       3.81   1.39e-4
+##   term                       estimate std.error statistic p.value
+##   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                 4.91e+0 0.0432       114.   0      
+## 2 Surface                     2.06e-4 0.0000442      4.65 3.37e-6
+## 3 artistlivingLiving         -1.26e-1 0.119         -1.06 2.89e-1
+## 4 Surface:artistlivingLiving  4.79e-4 0.000126       3.81 1.39e-4
 ```
 ]
 
@@ -689,12 +694,12 @@ tidy(pp_int_fit)
 
 ```
 ## # A tibble: 4 x 5
-##   term                     estimate std.error statistic   p.value
-##   &lt;chr&gt;                       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)              4.91     0.0432       114.     0.     
-## 2 Surface                  0.000206 0.0000442      4.65   3.37e-6
-## 3 artistlivingLiving      -0.126    0.119         -1.06   2.89e-1
-## 4 Surface:artistlivingLi~  0.000479 0.000126       3.81   1.39e-4
+##   term                       estimate std.error statistic p.value
+##   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)                 4.91e+0 0.0432       114.   0      
+## 2 Surface                     2.06e-4 0.0000442      4.65 3.37e-6
+## 3 artistlivingLiving         -1.26e-1 0.119         -1.06 2.89e-1
+## 4 Surface:artistlivingLiving  4.79e-4 0.000126       3.81 1.39e-4
 ```
 ]
 

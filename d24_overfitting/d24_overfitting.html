@@ -65,10 +65,10 @@ class: middle
 ##    term         estimate std.error statistic  p.value
 ##    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 (Intercept)  -9.09e+1   9.80e+3  -0.00928 9.93e- 1
-##  2 to_multiple  -2.68e+0   3.27e-1  -8.21    2.25e-16
-##  3 from         -2.19e+1   9.80e+3  -0.00224 9.98e- 1
+##  2 to_multiple1 -2.68e+0   3.27e-1  -8.21    2.25e-16
+##  3 from1        -2.19e+1   9.80e+3  -0.00224 9.98e- 1
 ##  4 cc            1.88e-2   2.20e-2   0.855   3.93e- 1
-##  5 sent_email   -2.07e+1   3.87e+2  -0.0536  9.57e- 1
+##  5 sent_email1  -2.07e+1   3.87e+2  -0.0536  9.57e- 1
 ##  6 time          8.48e-8   2.85e-8   2.98    2.92e- 3
 ##  7 image        -1.78e+0   5.95e-1  -3.00    2.73e- 3
 ##  8 attach        7.35e-1   1.44e-1   5.09    3.61e- 7
@@ -79,10 +79,10 @@ class: middle
 ## 13 password     -8.54e-1   2.97e-1  -2.88    4.03e- 3
 ## 14 num_char      5.06e-2   2.38e-2   2.13    3.35e- 2
 ## 15 line_breaks  -5.49e-3   1.35e-3  -4.06    4.91e- 5
-## 16 format       -6.14e-1   1.49e-1  -4.14    3.53e- 5
-## 17 re_subj      -1.64e+0   3.86e-1  -4.25    2.16e- 5
+## 16 format1      -6.14e-1   1.49e-1  -4.14    3.53e- 5
+## 17 re_subj1     -1.64e+0   3.86e-1  -4.25    2.16e- 5
 ## 18 exclaim_subj  1.42e-1   2.43e-1   0.585   5.58e- 1
-## 19 urgent_subj   3.88e+0   1.32e+0   2.95    3.18e- 3
+## 19 urgent_subj1  3.88e+0   1.32e+0   2.95    3.18e- 3
 ## 20 exclaim_mess  1.08e-2   1.81e-3   5.98    2.23e- 9
 ## 21 numbersmall  -1.19e+0   1.54e-1  -7.74    9.62e-15
 ## 22 numberbig    -2.95e-1   2.20e-1  -1.34    1.79e- 1
@@ -100,7 +100,7 @@ class: middle
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)    
 ## (Intercept) -1.95542    0.05639 -34.677  &lt; 2e-16 ***
-## re_subj     -2.88976    0.35937  -8.041  8.9e-16 ***
+## re_subj1    -2.88976    0.35937  -8.041  8.9e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -222,29 +222,29 @@ glimpse(train_data)
 ```
 
 ```
-## Rows: 3,137
+## Rows: 3,136
 ## Columns: 21
-## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ to_multiple  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ~
-## $ from         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ cc           &lt;int&gt; 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 2, 1, 0, 2, ~
-## $ sent_email   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, ~
-## $ time         &lt;dttm&gt; 2012-01-01 01:16:41, 2012-01-01 02:03:59,~
-## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ~
-## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, ~
-## $ dollar       &lt;dbl&gt; 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, ~
+## $ spam         &lt;fct&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ~
+## $ to_multiple  &lt;fct&gt; 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, ~
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+## $ cc           &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ sent_email   &lt;fct&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ time         &lt;dttm&gt; 2012-02-10 17:21:24, 2012-02-09 04:32:51,~
+## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ~
+## $ dollar       &lt;dbl&gt; 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, ~
 ## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no~
-## $ inherit      &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
 ## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ password     &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 1, 0, ~
-## $ num_char     &lt;dbl&gt; 11.370, 10.504, 7.773, 13.256, 1.231, 1.09~
-## $ line_breaks  &lt;int&gt; 202, 202, 192, 255, 29, 25, 237, 68, 79, 1~
-## $ format       &lt;dbl&gt; 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, ~
-## $ re_subj      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, ~
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, ~
-## $ urgent_subj  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ exclaim_mess &lt;dbl&gt; 0, 1, 6, 48, 1, 1, 18, 0, 1, 0, 4, 10, 20,~
-## $ number       &lt;fct&gt; big, small, small, small, none, none, smal~
+## $ password     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, ~
+## $ num_char     &lt;dbl&gt; 18.649, 0.696, 2.792, 17.049, 8.592, 1.360~
+## $ line_breaks  &lt;int&gt; 388, 20, 39, 386, 146, 28, 740, 42, 152, 7~
+## $ format       &lt;fct&gt; 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, ~
+## $ re_subj      &lt;fct&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ exclaim_mess &lt;dbl&gt; 20, 1, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 1,~
+## $ number       &lt;fct&gt; big, small, small, small, small, small, sm~
 ```
 ]
 .pull-right[
@@ -254,29 +254,29 @@ glimpse(test_data)
 ```
 
 ```
-## Rows: 784
+## Rows: 785
 ## Columns: 21
 ## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ to_multiple  &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, ~
-## $ from         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ cc           &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 1, 3, 0, 1, 0, 0, ~
-## $ sent_email   &lt;dbl&gt; 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ time         &lt;dttm&gt; 2012-01-01 12:55:06, 2012-01-01 16:08:59,~
+## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, ~
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+## $ cc           &lt;int&gt; 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, ~
+## $ sent_email   &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, ~
+## $ time         &lt;dttm&gt; 2012-01-01 04:09:49, 2012-01-01 22:00:18,~
 ## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
 ## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ dollar       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ dollar       &lt;dbl&gt; 0, 0, 5, 0, 21, 0, 0, 0, 11, 18, 16, 0, 2,~
 ## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no~
 ## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
 ## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ password     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, ~
-## $ num_char     &lt;dbl&gt; 4.837, 3.051, 0.869, 15.075, 0.596, 0.200,~
-## $ line_breaks  &lt;int&gt; 193, 69, 25, 354, 33, 10, 69, 45, 81, 569,~
-## $ format       &lt;dbl&gt; 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, ~
-## $ re_subj      &lt;dbl&gt; 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, ~
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ urgent_subj  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ exclaim_mess &lt;dbl&gt; 1, 1, 2, 10, 2, 0, 0, 1, 1, 2, 0, 3, 1, 1,~
-## $ number       &lt;fct&gt; big, small, small, small, small, small, no~
+## $ password     &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ num_char     &lt;dbl&gt; 13.256, 10.459, 18.037, 4.560, 16.647, 7.8~
+## $ line_breaks  &lt;int&gt; 255, 191, 345, 64, 560, 97, 881, 185, 350,~
+## $ format       &lt;fct&gt; 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, ~
+## $ re_subj      &lt;fct&gt; 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, ~
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, ~
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ exclaim_mess &lt;dbl&gt; 48, 0, 20, 0, 3, 1, 5, 3, 2, 15, 16, 4, 6,~
+## $ number       &lt;fct&gt; small, big, small, none, small, small, big~
 ```
 ]
 ]
@@ -333,11 +333,11 @@ train_data %&gt;%
 
 ```
 ## # A tibble: 3 x 3
-##   spam   from     n
-##   &lt;fct&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 0         1  2848
-## 2 1         0     2
-## 3 1         1   287
+##   spam  from      n
+##   &lt;fct&gt; &lt;fct&gt; &lt;int&gt;
+## 1 0     1      2847
+## 2 1     0         3
+## 3 1     1       286
 ```
 ]
 .pull-right[
@@ -352,10 +352,10 @@ train_data %&gt;%
 ```
 ## # A tibble: 3 x 3
 ##   spam  sent_email     n
-##   &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt;
-## 1 0              0  1987
-## 2 0              1   861
-## 3 1              0   289
+##   &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;
+## 1 0     0           1981
+## 2 0     1            866
+## 3 1     0            289
 ```
 ]
 
@@ -368,43 +368,31 @@ train_data %&gt;%
 ```
 ## 
 ## -- Variable type: numeric --------------------------------------------------------------------------
-## # A tibble: 34 x 11
-##    skim_variable spam  n_missing complete_rate      mean       sd    p0   p25    p50    p75  p100
-##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 to_multiple   0             0             1   0.166     0.373  0      0      0      0       1 
-##  2 to_multiple   1             0             1   0.0277    0.164  0      0      0      0       1 
-##  3 from          0             0             1   1         0      1      1      1      1       1 
-##  4 from          1             0             1   0.993     0.0830 0      1      1      1       1 
-##  5 cc            0             0             1   0.393     2.73   0      0      0      0      68 
-##  6 cc            1             0             1   0.505     3.55   0      0      0      0      50 
-##  7 sent_email    0             0             1   0.302     0.459  0      0      0      1       1 
-##  8 sent_email    1             0             1   0         0      0      0      0      0       0 
-*##  9 image         0             0             1   0.0516    0.494  0      0      0      0      20 
-*## 10 image         1             0             1   0.00692   0.0830 0      0      0      0       1 
-## 11 attach        0             0             1   0.111     0.654  0      0      0      0      20 
-## 12 attach        1             0             1   0.197     0.583  0      0      0      0       2 
-## 13 dollar        0             0             1   1.51      5.01   0      0      0      0      64 
-## 14 dollar        1             0             1   0.754     3.06   0      0      0      0      36 
-## 15 inherit       0             0             1   0.0362    0.218  0      0      0      0       6 
-## 16 inherit       1             0             1   0.0657    0.558  0      0      0      0       9 
-## 17 viagra        0             0             1   0         0      0      0      0      0       0 
-## 18 viagra        1             0             1   0.0277    0.471  0      0      0      0       8 
-## 19 password      0             0             1   0.123     1.07   0      0      0      0      28 
-## 20 password      1             0             1   0.0173    0.176  0      0      0      0       2 
-## 21 num_char      0             0             1  11.1      14.5    0.003  1.82   6.58  15.3   190.
-## 22 num_char      1             0             1   5.87     16.4    0.001  0.46   1.00   3.37  174.
-## 23 line_breaks   0             0             1 242.      321.     2     40    134    312.   4022 
-## 24 line_breaks   1             0             1 113.      334.     1     13     22     67    3729 
-## 25 format        0             0             1   0.721     0.449  0      0      1      1       1 
-## 26 format        1             0             1   0.443     0.498  0      0      0      1       1 
-## 27 re_subj       0             0             1   0.283     0.451  0      0      0      1       1 
-## 28 re_subj       1             0             1   0.0242    0.154  0      0      0      0       1 
-## 29 exclaim_subj  0             0             1   0.0794    0.270  0      0      0      0       1 
-## 30 exclaim_subj  1             0             1   0.0657    0.248  0      0      0      0       1 
-## 31 urgent_subj   0             0             1   0.00105   0.0324 0      0      0      0       1 
-## 32 urgent_subj   1             0             1   0.0138    0.117  0      0      0      0       1 
-## 33 exclaim_mess  0             0             1   6.60     49.8    0      0      1      5    1236 
-## 34 exclaim_mess  1             0             1   8.96     90.0    0      0      0      1    1209
+## # A tibble: 22 x 11
+##    skim_variable spam  n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
+##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 cc            0             0             1   0.416     2.73   0      0       0      0      68 
+##  2 cc            1             0             1   0.439     3.37   0      0       0      0      50 
+##  3 image         0             0             1   0.0534    0.502  0      0       0      0      20 
+##  4 image         1             0             1   0.00346   0.0588 0      0       0      0       1 
+##  5 attach        0             0             1   0.128     0.764  0      0       0      0      21 
+##  6 attach        1             0             1   0.235     0.629  0      0       0      0       2 
+##  7 dollar        0             0             1   1.61      5.43   0      0       0      0      64 
+##  8 dollar        1             0             1   0.599     1.95   0      0       0      0      26 
+*##  9 inherit       0             0             1   0.0365    0.242  0      0       0      0       6 
+*## 10 inherit       1             0             1   0.0727    0.564  0      0       0      0       9 
+## 11 viagra        0             0             1   0         0      0      0       0      0       0 
+## 12 viagra        1             0             1   0.0277    0.471  0      0       0      0       8 
+## 13 password      0             0             1   0.124     1.08   0      0       0      0      28 
+## 14 password      1             0             1   0.0208    0.185  0      0       0      0       2 
+## 15 num_char      0             0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
+## 16 num_char      1             0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
+## 17 line_breaks   0             0             1 245.      313.     2     42     138    319    3522 
+## 18 line_breaks   1             0             1  94.2     239.     1     14      23     66    2908 
+## 19 exclaim_subj  0             0             1   0.0804    0.272  0      0       0      0       1 
+## 20 exclaim_subj  1             0             1   0.0865    0.282  0      0       0      0       1 
+## 21 exclaim_mess  0             0             1   6.10     42.2    0      0       1      5    1203 
+## 22 exclaim_mess  1             0             1   4.70     55.4    0      0       0      1     939
 ```
 
 
@@ -417,43 +405,31 @@ train_data %&gt;%
 ```
 ## 
 ## -- Variable type: numeric --------------------------------------------------------------------------
-## # A tibble: 34 x 11
-##    skim_variable spam  n_missing complete_rate      mean       sd    p0   p25    p50    p75  p100
-##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 to_multiple   0             0             1   0.166     0.373  0      0      0      0       1 
-##  2 to_multiple   1             0             1   0.0277    0.164  0      0      0      0       1 
-##  3 from          0             0             1   1         0      1      1      1      1       1 
-##  4 from          1             0             1   0.993     0.0830 0      1      1      1       1 
-##  5 cc            0             0             1   0.393     2.73   0      0      0      0      68 
-##  6 cc            1             0             1   0.505     3.55   0      0      0      0      50 
-##  7 sent_email    0             0             1   0.302     0.459  0      0      0      1       1 
-##  8 sent_email    1             0             1   0         0      0      0      0      0       0 
-*##  9 image         0             0             1   0.0516    0.494  0      0      0      0      20 
-*## 10 image         1             0             1   0.00692   0.0830 0      0      0      0       1 
-## 11 attach        0             0             1   0.111     0.654  0      0      0      0      20 
-## 12 attach        1             0             1   0.197     0.583  0      0      0      0       2 
-## 13 dollar        0             0             1   1.51      5.01   0      0      0      0      64 
-## 14 dollar        1             0             1   0.754     3.06   0      0      0      0      36 
-## 15 inherit       0             0             1   0.0362    0.218  0      0      0      0       6 
-## 16 inherit       1             0             1   0.0657    0.558  0      0      0      0       9 
-## 17 viagra        0             0             1   0         0      0      0      0      0       0 
-## 18 viagra        1             0             1   0.0277    0.471  0      0      0      0       8 
-## 19 password      0             0             1   0.123     1.07   0      0      0      0      28 
-## 20 password      1             0             1   0.0173    0.176  0      0      0      0       2 
-## 21 num_char      0             0             1  11.1      14.5    0.003  1.82   6.58  15.3   190.
-## 22 num_char      1             0             1   5.87     16.4    0.001  0.46   1.00   3.37  174.
-## 23 line_breaks   0             0             1 242.      321.     2     40    134    312.   4022 
-## 24 line_breaks   1             0             1 113.      334.     1     13     22     67    3729 
-## 25 format        0             0             1   0.721     0.449  0      0      1      1       1 
-## 26 format        1             0             1   0.443     0.498  0      0      0      1       1 
-## 27 re_subj       0             0             1   0.283     0.451  0      0      0      1       1 
-## 28 re_subj       1             0             1   0.0242    0.154  0      0      0      0       1 
-## 29 exclaim_subj  0             0             1   0.0794    0.270  0      0      0      0       1 
-## 30 exclaim_subj  1             0             1   0.0657    0.248  0      0      0      0       1 
-## 31 urgent_subj   0             0             1   0.00105   0.0324 0      0      0      0       1 
-## 32 urgent_subj   1             0             1   0.0138    0.117  0      0      0      0       1 
-## 33 exclaim_mess  0             0             1   6.60     49.8    0      0      1      5    1236 
-## 34 exclaim_mess  1             0             1   8.96     90.0    0      0      0      1    1209
+## # A tibble: 22 x 11
+##    skim_variable spam  n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
+##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 cc            0             0             1   0.416     2.73   0      0       0      0      68 
+##  2 cc            1             0             1   0.439     3.37   0      0       0      0      50 
+##  3 image         0             0             1   0.0534    0.502  0      0       0      0      20 
+##  4 image         1             0             1   0.00346   0.0588 0      0       0      0       1 
+##  5 attach        0             0             1   0.128     0.764  0      0       0      0      21 
+##  6 attach        1             0             1   0.235     0.629  0      0       0      0       2 
+##  7 dollar        0             0             1   1.61      5.43   0      0       0      0      64 
+##  8 dollar        1             0             1   0.599     1.95   0      0       0      0      26 
+*##  9 inherit       0             0             1   0.0365    0.242  0      0       0      0       6 
+*## 10 inherit       1             0             1   0.0727    0.564  0      0       0      0       9 
+## 11 viagra        0             0             1   0         0      0      0       0      0       0 
+## 12 viagra        1             0             1   0.0277    0.471  0      0       0      0       8 
+## 13 password      0             0             1   0.124     1.08   0      0       0      0      28 
+## 14 password      1             0             1   0.0208    0.185  0      0       0      0       2 
+## 15 num_char      0             0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
+## 16 num_char      1             0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
+## 17 line_breaks   0             0             1 245.      313.     2     42     138    319    3522 
+## 18 line_breaks   1             0             1  94.2     239.     1     14      23     66    2908 
+## 19 exclaim_subj  0             0             1   0.0804    0.272  0      0       0      0       1 
+## 20 exclaim_subj  1             0             1   0.0865    0.282  0      0       0      0       1 
+## 21 exclaim_mess  0             0             1   6.10     42.2    0      0       1      5    1203 
+## 22 exclaim_mess  1             0             1   4.70     55.4    0      0       0      1     939
 ```
 ]
 
@@ -466,43 +442,31 @@ train_data %&gt;%
 ```
 ## 
 ## -- Variable type: numeric --------------------------------------------------------------------------
-## # A tibble: 34 x 11
-##    skim_variable spam  n_missing complete_rate      mean       sd    p0   p25    p50    p75  p100
-##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 to_multiple   0             0             1   0.166     0.373  0      0      0      0       1 
-##  2 to_multiple   1             0             1   0.0277    0.164  0      0      0      0       1 
-##  3 from          0             0             1   1         0      1      1      1      1       1 
-##  4 from          1             0             1   0.993     0.0830 0      1      1      1       1 
-##  5 cc            0             0             1   0.393     2.73   0      0      0      0      68 
-##  6 cc            1             0             1   0.505     3.55   0      0      0      0      50 
-##  7 sent_email    0             0             1   0.302     0.459  0      0      0      1       1 
-##  8 sent_email    1             0             1   0         0      0      0      0      0       0 
-*##  9 image         0             0             1   0.0516    0.494  0      0      0      0      20 
-*## 10 image         1             0             1   0.00692   0.0830 0      0      0      0       1 
-## 11 attach        0             0             1   0.111     0.654  0      0      0      0      20 
-## 12 attach        1             0             1   0.197     0.583  0      0      0      0       2 
-## 13 dollar        0             0             1   1.51      5.01   0      0      0      0      64 
-## 14 dollar        1             0             1   0.754     3.06   0      0      0      0      36 
-## 15 inherit       0             0             1   0.0362    0.218  0      0      0      0       6 
-## 16 inherit       1             0             1   0.0657    0.558  0      0      0      0       9 
-## 17 viagra        0             0             1   0         0      0      0      0      0       0 
-## 18 viagra        1             0             1   0.0277    0.471  0      0      0      0       8 
-## 19 password      0             0             1   0.123     1.07   0      0      0      0      28 
-## 20 password      1             0             1   0.0173    0.176  0      0      0      0       2 
-## 21 num_char      0             0             1  11.1      14.5    0.003  1.82   6.58  15.3   190.
-## 22 num_char      1             0             1   5.87     16.4    0.001  0.46   1.00   3.37  174.
-## 23 line_breaks   0             0             1 242.      321.     2     40    134    312.   4022 
-## 24 line_breaks   1             0             1 113.      334.     1     13     22     67    3729 
-## 25 format        0             0             1   0.721     0.449  0      0      1      1       1 
-## 26 format        1             0             1   0.443     0.498  0      0      0      1       1 
-## 27 re_subj       0             0             1   0.283     0.451  0      0      0      1       1 
-## 28 re_subj       1             0             1   0.0242    0.154  0      0      0      0       1 
-## 29 exclaim_subj  0             0             1   0.0794    0.270  0      0      0      0       1 
-## 30 exclaim_subj  1             0             1   0.0657    0.248  0      0      0      0       1 
-## 31 urgent_subj   0             0             1   0.00105   0.0324 0      0      0      0       1 
-## 32 urgent_subj   1             0             1   0.0138    0.117  0      0      0      0       1 
-## 33 exclaim_mess  0             0             1   6.60     49.8    0      0      1      5    1236 
-## 34 exclaim_mess  1             0             1   8.96     90.0    0      0      0      1    1209
+## # A tibble: 22 x 11
+##    skim_variable spam  n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
+##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1 cc            0             0             1   0.416     2.73   0      0       0      0      68 
+##  2 cc            1             0             1   0.439     3.37   0      0       0      0      50 
+##  3 image         0             0             1   0.0534    0.502  0      0       0      0      20 
+##  4 image         1             0             1   0.00346   0.0588 0      0       0      0       1 
+##  5 attach        0             0             1   0.128     0.764  0      0       0      0      21 
+##  6 attach        1             0             1   0.235     0.629  0      0       0      0       2 
+##  7 dollar        0             0             1   1.61      5.43   0      0       0      0      64 
+##  8 dollar        1             0             1   0.599     1.95   0      0       0      0      26 
+*##  9 inherit       0             0             1   0.0365    0.242  0      0       0      0       6 
+*## 10 inherit       1             0             1   0.0727    0.564  0      0       0      0       9 
+## 11 viagra        0             0             1   0         0      0      0       0      0       0 
+## 12 viagra        1             0             1   0.0277    0.471  0      0       0      0       8 
+## 13 password      0             0             1   0.124     1.08   0      0       0      0      28 
+## 14 password      1             0             1   0.0208    0.185  0      0       0      0       2 
+## 15 num_char      0             0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
+## 16 num_char      1             0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
+## 17 line_breaks   0             0             1 245.      313.     2     42     138    319    3522 
+## 18 line_breaks   1             0             1  94.2     239.     1     14      23     66    2908 
+## 19 exclaim_subj  0             0             1   0.0804    0.272  0      0       0      0       1 
+## 20 exclaim_subj  1             0             1   0.0865    0.282  0      0       0      0       1 
+## 21 exclaim_mess  0             0             1   6.10     42.2    0      0       1      5    1203 
+## 22 exclaim_mess  1             0             1   4.70     55.4    0      0       0      1     939
 ```
 ]
 
@@ -528,22 +492,22 @@ email_fit
 ```
 ## parsnip model object
 ## 
-## Fit time:  30ms 
+## Fit time:  21ms 
 ## 
 ## Call:  stats::glm(formula = spam ~ . - from - sent_email - viagra, family = stats::binomial, 
 ##     data = data)
 ## 
 ## Coefficients:
-##  (Intercept)   to_multiple            cc          time         image        attach        dollar  
-##   -1.001e+02    -2.840e+00     3.183e-02     7.495e-08    -1.561e+00     6.357e-01    -6.392e-02  
-##    winneryes       inherit      password      num_char   line_breaks        format       re_subj  
-##    1.792e+00     4.119e-01    -7.191e-01     7.709e-02    -6.067e-03    -7.616e-01    -2.756e+00  
-## exclaim_subj   urgent_subj  exclaim_mess   numbersmall     numberbig  
-##    3.376e-02     3.740e+00     9.253e-03    -9.810e-01     3.007e-02  
+##  (Intercept)  to_multiple1            cc          time         image        attach        dollar  
+##   -1.112e+02    -2.646e+00     2.594e-02     8.323e-08    -3.611e+00     5.879e-01    -8.206e-02  
+##    winneryes       inherit      password      num_char   line_breaks       format1      re_subj1  
+##    2.241e+00     3.761e-01    -7.070e-01     5.872e-02    -5.843e-03    -7.830e-01    -2.841e+00  
+## exclaim_subj  urgent_subj1  exclaim_mess   numbersmall     numberbig  
+##    1.867e-01     2.391e+00     1.067e-02    -6.830e-01     2.070e-01  
 ## 
-## Degrees of Freedom: 3136 Total (i.e. Null);  3118 Residual
+## Degrees of Freedom: 3135 Total (i.e. Null);  3117 Residual
 ## Null Deviance:	    1929 
-## Residual Deviance: 1423 	AIC: 1461
+## Residual Deviance: 1425 	AIC: 1463
 ```
 ]
 
@@ -557,16 +521,20 @@ predict(email_fit, test_data)
 ```
 
 ```
-## # A tibble: 784 x 1
-##   .pred_class
-##   &lt;fct&gt;      
-## 1 0          
-## 2 0          
-## 3 0          
-## 4 0          
-## 5 0          
-## 6 0          
-## # ... with 778 more rows
+## # A tibble: 785 x 1
+##    .pred_class
+##    &lt;fct&gt;      
+##  1 0          
+##  2 0          
+##  3 0          
+##  4 0          
+##  5 0          
+##  6 0          
+##  7 0          
+##  8 0          
+##  9 0          
+## 10 0          
+## # ... with 775 more rows
 ```
 
 
@@ -583,16 +551,20 @@ email_pred
 ```
 
 ```
-## # A tibble: 784 x 4
-##   .pred_0 .pred_1 spam  time               
-##     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
-## 1   0.994 0.00593 0     2012-01-01 12:55:06
-## 2   0.872 0.128   0     2012-01-01 16:08:59
-## 3   0.929 0.0710  0     2012-01-01 13:23:44
-## 4   0.998 0.00219 0     2012-01-01 14:38:32
-## 5   0.990 0.00963 0     2012-01-01 20:40:40
-## 6   0.989 0.0105  0     2012-01-01 21:07:20
-## # ... with 778 more rows
+## # A tibble: 785 x 4
+##    .pred_0  .pred_1 spam  time               
+##      &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
+##  1   0.927 0.0734   0     2012-01-01 04:09:49
+##  2   0.875 0.125    0     2012-01-01 22:00:18
+##  3   0.982 0.0179   0     2012-01-02 00:42:16
+##  4   0.852 0.148    0     2012-01-01 20:58:14
+##  5   0.998 0.00181  0     2012-01-02 02:07:22
+##  6   0.999 0.000845 0     2012-01-02 13:09:45
+##  7   0.999 0.00129  0     2012-01-02 10:12:51
+##  8   0.999 0.000545 0     2012-01-02 16:24:21
+##  9   0.984 0.0155   0     2012-01-03 04:34:50
+## 10   0.994 0.00594  0     2012-01-03 08:33:28
+## # ... with 775 more rows
 ```
 
 ---
@@ -608,20 +580,20 @@ email_pred %&gt;%
 ```
 
 ```
-## # A tibble: 784 x 4
+## # A tibble: 785 x 4
 ##    .pred_0 .pred_1 spam  time               
 ##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
-##  1 0.00831   0.992 0     2012-02-07 23:15:26
-##  2 0.269     0.731 1     2012-02-21 03:34:56
-*##  3 0.284     0.716 1     2012-02-29 02:55:56
-##  4 0.342     0.658 0     2012-02-03 08:25:39
-##  5 0.350     0.650 0     2012-01-11 21:00:16
-##  6 0.352     0.648 0     2012-01-11 13:10:06
-*##  7 0.359     0.641 1     2012-01-26 05:06:55
-##  8 0.359     0.641 1     2012-01-07 11:11:49
-##  9 0.363     0.637 1     2012-02-08 12:01:51
-## 10 0.365     0.635 1     2012-01-04 10:36:23
-## # ... with 774 more rows
+##  1   0.187   0.813 0     2012-01-08 09:28:42
+##  2   0.225   0.775 1     2012-01-19 19:43:14
+*##  3   0.235   0.765 1     2012-03-17 12:20:57
+##  4   0.246   0.754 1     2012-03-31 05:20:24
+##  5   0.254   0.746 1     2012-03-17 06:13:27
+##  6   0.274   0.726 1     2012-02-13 07:15:00
+*##  7   0.302   0.698 0     2012-03-17 10:41:28
+##  8   0.323   0.677 1     2012-02-28 05:19:20
+##  9   0.372   0.628 0     2012-01-28 14:41:43
+## 10   0.387   0.613 0     2012-02-04 05:39:37
+## # ... with 775 more rows
 ```
 ]
 
@@ -676,7 +648,7 @@ email_pred %&gt;%
 ## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc binary         0.868
+## 1 roc_auc binary         0.862
 ```
 ]
 .pull-right-wide[
