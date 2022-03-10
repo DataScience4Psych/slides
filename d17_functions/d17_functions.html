@@ -204,11 +204,13 @@ tibble(headers, values) %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 9
-##   Artist Title Date  Period Description Collection Classification
-##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;         
-## 1 [Unkn~ Unti~ 1963  20th ~ Portrait o~ Art Colle~ drawings (vis~
-## # ... with 2 more variables: Accession Number &lt;chr&gt;, link &lt;chr&gt;
+## # A tibble: 1 x 12
+##   Artist       Title Date  Period Description Material Dimensions
+##   &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;     
+## 1 [Unknown] B~ Unti~ 1963  20th ~ Portrait o~ graphit~ 45.1cm H ~
+## # ... with 5 more variables: Collection &lt;chr&gt;,
+## #   Classification &lt;chr&gt;, Signature &lt;chr&gt;,
+## #   `Accession Number` &lt;chr&gt;, link &lt;chr&gt;
 ```
 
 
@@ -439,14 +441,17 @@ scrape_art_info(uoe_art$link[1]) %&gt;%
 
 ```
 ## Rows: 1
-## Columns: 9
+## Columns: 12
 ## $ Artist             &lt;chr&gt; "[Unknown] Black"
 ## $ Title              &lt;chr&gt; "Untitled"
 ## $ Date               &lt;chr&gt; "1963"
 ## $ Period             &lt;chr&gt; "20th century; 1960s"
 ## $ Description        &lt;chr&gt; "Portrait of a woman"
+## $ Material           &lt;chr&gt; "graphite (mineral)/inorganic materi~
+## $ Dimensions         &lt;chr&gt; "45.1cm H x 33cm W"
 ## $ Collection         &lt;chr&gt; "Art Collection; Edinburgh College o~
 ## $ Classification     &lt;chr&gt; "drawings (visual works); pencil dra~
+## $ Signature          &lt;chr&gt; "Signature on drawing reads \"Black\~
 ## $ `Accession Number` &lt;chr&gt; "EU2907"
 ## $ link               &lt;chr&gt; "https://collections.ed.ac.uk/art/re~
 ```
@@ -467,9 +472,10 @@ scrape_art_info(uoe_art$link[2]) %&gt;%
 
 ```
 ## Rows: 1
-## Columns: 6
+## Columns: 7
 ## $ Artist             &lt;chr&gt; "A McIntosh"
 ## $ Title              &lt;chr&gt; "Rooftops"
+## $ Material           &lt;chr&gt; "paint (coating)"
 ## $ Collection         &lt;chr&gt; "Art Collection; Edinburgh College o~
 ## $ Classification     &lt;chr&gt; "paintings (visual works)"
 ## $ `Accession Number` &lt;chr&gt; "EU2339"
@@ -491,12 +497,13 @@ scrape_art_info(uoe_art$link[3]) %&gt;%
 
 ```
 ## Rows: 1
-## Columns: 8
+## Columns: 9
 ## $ Artist             &lt;chr&gt; "A Robson"
 ## $ Title              &lt;chr&gt; "Seated Male Nude"
 ## $ Date               &lt;chr&gt; "19 Nov 1958"
 ## $ Period             &lt;chr&gt; "20th century; 1950s"
 ## $ Description        &lt;chr&gt; "Gained his Diploma in 1959 from ECA~
+## $ Material           &lt;chr&gt; "graphite (mineral)/inorganic materi~
 ## $ Collection         &lt;chr&gt; "Art Collection; Edinburgh College o~
 ## $ `Accession Number` &lt;chr&gt; "EU1810"
 ## $ link               &lt;chr&gt; "https://collections.ed.ac.uk/art/re~
@@ -1284,7 +1291,7 @@ g
 ##     t = function(x) x^2
 ##     return(t)
 ## }
-## &lt;environment: 0x000002436fcbb8d0&gt;
+## &lt;environment: 0x000002139d701cc8&gt;
 ```
 
 ```r
@@ -1293,7 +1300,7 @@ g()
 
 ```
 ## function(x) x^2
-## &lt;environment: 0x0000024377c8c820&gt;
+## &lt;environment: 0x00000213981c0818&gt;
 ```
 
 ```r
@@ -1482,9 +1489,9 @@ f(1)
 
 ```
 ## h's environment:  
-## &lt;environment: 0x000002430655ec40&gt;
+## &lt;environment: 0x000002139711b780&gt;
 ## h's parent environment: 
-## &lt;environment: 0x000002436fcbb8d0&gt;
+## &lt;environment: 0x000002139d701cc8&gt;
 ```
 
 ```
@@ -1496,7 +1503,7 @@ environment(f)
 ```
 
 ```
-## &lt;environment: 0x000002436fcbb8d0&gt;
+## &lt;environment: 0x000002139d701cc8&gt;
 ```
 
 ---
@@ -1521,7 +1528,7 @@ f(5)
 
 ```
 ## h's environment: 
-## &lt;environment: 0x000002436fcbb8d0&gt;
+## &lt;environment: 0x000002139d701cc8&gt;
 ## h's parent environment: 
 ## &lt;environment: namespace:purrr&gt;
 ```
@@ -1605,7 +1612,7 @@ It looks like the value of `w` changed inside the function, but the value in the
 ---
 # Sources
 
-- Mine Çetinkaya-Rundel's Data Science in a Box([link](https://datasciencebox.org/))
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
 
