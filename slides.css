@@ -21,6 +21,7 @@
   --light-blue: #34c9f4;
   --green: #8fada7;
   --gray: #A7A7A7;
+  --dark-gray: #5b5b5b;
   --pink: #F26BAA;
   --yellow: #e9d968;
   --beige: #fdf6e3;
@@ -102,7 +103,10 @@ a, a > code {
 .inverse h1, .inverse h2, .inverse h3 {
   color: #f3f3f3;
 }
-
+.inversegray {
+  background-color: var(--dark-gray);
+  color: #ffffff;
+}
 
 
 /* Font sizes */

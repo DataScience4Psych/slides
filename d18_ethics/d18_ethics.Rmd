@@ -41,6 +41,7 @@ class: middle
 
 ---
 
+.inversegray[
 ```{r echo=FALSE, out.width = "100%"}
 knitr::include_graphics("img/exercise-cancer-time.png")
 ```
@@ -50,9 +51,9 @@ knitr::include_graphics("img/exercise-cancer-time.png")
 Alice Park. [Exercise Can Lower Risk of Some Cancers By 20%](https://time.com/4330041/reduce-cancer-risk-exercise/). Time Magazine. 16 May 2016.
 ]
 ]
-
+]
 ---
-
+.inversegray[
 ```{r echo=FALSE, out.width = "100%"}
 knitr::include_graphics("img/exercise-cancer-latimes.png")
 ```
@@ -64,11 +65,11 @@ Melissa Healy. [Exercising drives down risk for 13 cancers, research shows
 Los Angeles Times.  16 May 2016.
 ]
 ]
-
+]
 ---
 
 ## Original study
-
+<br>
 Moore, Steven C., et al. **["Association of leisure-time physical activity with risk of 26 types of cancer in 1.44 million adults."](https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2521826)** JAMA internal medicine 176.6 (2016): 816-825.
 
 - **Volunteers** were **asked** about their physical activity level over the preceding year. 
@@ -95,8 +96,8 @@ class: middle
 .question[
 What is the difference between these two pictures? Which presents a better way to represent these data?
 ]
-
-```{r echo=FALSE, out.width="80%"}
+<br>
+```{r echo=FALSE, out.width="90%"}
 knitr::include_graphics("img/axis-start-at-0.png")
 ```
 
@@ -118,7 +119,7 @@ knitr::include_graphics("img/cost_of_gas.png")
 ```
 
 ---
-
+<br>
 .pull-left-wide[
 ```{r echo=FALSE, out.width="100%"}
 df <- tibble(
@@ -145,6 +146,7 @@ ggplot(df, aes(x = date, y = cost, group = 1)) +
   scale_y_continuous(labels = label_dollar())
 ```
 ]
+<br><br>
 .pull-right-narrow[
 ```{r echo=FALSE, out.width="100%"}
 knitr::include_graphics("img/cost_of_gas.png")
@@ -179,6 +181,14 @@ Lucy D'Agostino McGowan. [Graph detective](https://livefreeordichotomize.com/202
 
 class: middle
 
+# Wrapping Up...
+
+
+
+---
+
+class: middle
+
 # Maps and areas
 
 ---
@@ -186,7 +196,7 @@ class: middle
 .question[
 Do you recognize this map? What does it show?
 ]
-
+<br>
 ```{r echo=FALSE,  out.width="60%"}
 knitr::include_graphics("img/election-2016-county.png")
 ```
@@ -203,13 +213,13 @@ The Washington Post. 1 Nov 2016.
 ---
 
 .pull-left[
-```{r echo=FALSE, out.width="60%"}
+```{r echo=FALSE, out.width="65%"}
 knitr::include_graphics("img/citizens-for-trump.png")
 ```
 ]
 --
 .pull-right[
-```{r echo=FALSE, out.width="60%"}
+```{r echo=FALSE, out.width="65%"}
 knitr::include_graphics("img/counties-for-trump.png")
 ```
 ]
@@ -252,8 +262,7 @@ class: middle
 
 ---
 
-On December 19, 2014, the front page of Spanish national newspaper El
-País read *"Catalan public opinion swings toward 'no' for independence, says survey"*.
+On December 19, 2014, the front page of Spanish national newspaper El País read *"Catalan public opinion swings toward 'no' for independence, says survey"*.
 
 ```{r echo=FALSE}
 catalan <- tibble(
@@ -262,7 +271,7 @@ catalan <- tibble(
 ) %>%
   mutate(response = fct_relevel(response, "No", "Yes", "No answer"))
 ```
-
+<br>
 ```{r catalan-misleading, echo=FALSE}
 ggplot(catalan, aes(y = fct_rev(response), x = rate, color = response, group = response)) +
   geom_point() +
@@ -271,7 +280,7 @@ ggplot(catalan, aes(y = fct_rev(response), x = rate, color = response, group = r
                size = 1) +
   scale_color_manual(values = c("#5C8AA9", "#9D303A", "gray")) +
   scale_x_continuous(labels = label_percent(scale = 1)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_minimal(base_size = 16) +
   labs(
     title = "Do you want Catalonia\nto become an independent state?",
@@ -302,7 +311,7 @@ ggplot(catalan, aes(y = fct_rev(response), x = rate, color = response, group = r
   geom_point(size = 3) +
   scale_color_manual(values = c("#5C8AA9", "#9D303A", "gray")) +
   scale_x_continuous(labels = label_percent(scale = 1)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   theme_minimal(base_size = 16) +
   labs(
     title = "Do you want Catalonia\nto become an independent state?",
