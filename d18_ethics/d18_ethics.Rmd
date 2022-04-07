@@ -276,7 +276,8 @@ catalan <- tibble(
 ggplot(catalan, aes(y = fct_rev(response), x = rate, color = response, group = response)) +
   geom_point() +
   geom_segment(aes(x = 0, xend = rate, 
-                   y = fct_rev(response), yend = fct_rev(response)),
+                   y = fct_rev(response),
+                   yend = fct_rev(response)),
                size = 1) +
   scale_color_manual(values = c("#5C8AA9", "#9D303A", "gray")) +
   scale_x_continuous(labels = label_percent(scale = 1)) +
