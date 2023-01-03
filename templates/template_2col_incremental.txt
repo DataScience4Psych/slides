@@ -1,0 +1,26 @@
+---
+.left-column[
+  ## Left column title
+]
+.right-column[
+ A whole sentence
+
++ one `Markdown` bullet point
+{{content}}
+
+]
+
+--
+
++ a second bullet point
+{{content}}
+
+--
+
++ a third bullet point
+{{content}}
+
+--
+
+    + a sub level
+---

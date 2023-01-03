@@ -1,0 +1,83 @@
+---
+title: "Data Science <br> for Psychologists"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+#       slideNumberFormat: ""  
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+
+
+```
+
+```{css, echo = F}
+.bg_orange {
+  position: relative;
+  z-index: 1;
+}
+
+.bg_orange::before {    
+      content: "";
+      background-image: url("../img/orangebook.png");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.15;
+      z-index: -1;
+}
+```
+
+
+class: middle, bg_orange
+# Exploratory & Graphical Data Analysis Reimagined
+
+---
+class: bg_orange
+
+.left-column[
+## Logistics
+- Course 
+- Professor
+- Assistant
+]
+.right-column[
+.  
+
+{{content}}
+
+]
+
+--
++ PSY 703: Data Science for Psychologists
+{{content}}
+
+--
++ S. Mason Garrison
+{{content}}
+
+--
++ Tukey
+{{content}}
+
+---
