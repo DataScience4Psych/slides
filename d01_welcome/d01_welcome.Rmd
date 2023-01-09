@@ -1,5 +1,5 @@
 ---
-title: "Welcome to Data Science <br> `r emo::ji('cat')`"
+title: "Welcome to Data Science <br> `r emo::ji('cat')`<br> for Psychologists"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -16,7 +16,25 @@ output:
 
 ```{r child = "../setup.Rmd"}
 ```
+```{css, echo = F}
+.bg_orange {
+  position: relative;
+  z-index: 1;
+}
 
+.bg_orange::before {    
+      content: "";
+      background-image: url("../img/orangebook.png");
+      background-size: contain;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.10;
+      z-index: -1;
+}
+```
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
@@ -24,7 +42,7 @@ output:
 library(tidyverse)
 if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
-
+if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
 
 ```
 
@@ -56,7 +74,7 @@ Data science is an exciting discipline that allows you to turn raw data into und
 
 # What is this course?
 
-This course is an introduction to data science, with an emphasis on statistical thinking and best practices.
+This course is an introduction to data science that is designed for psychologists. It emphasizes statistical thinking and best practices.
 
 --
 
@@ -160,62 +178,8 @@ knitr::include_graphics("img/unvotes.png")
 
 [minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
 
----
-
-## Create a GitHub account
-
-.small[
-.instructions[
-Go to [github.com](https://github.com/), and create an account (unless you already have one). 
-]
-]
-
-Tips for selecting a username:<sup>✦</sup>
-
-.small[
-- Incorporate your actual name.
-- Reuse username from other contexts, e.g., Twitter or Slack.
-- Pick a username you'll be comfortable revealing to your future boss.
-- Shorter is better than longer.
-- Be as unique as possible in as few characters as possible.
-- Make it timeless. Don’t highlight your current university, employer, etc.
-- Avoid words laden with special meaning in programming, like `NA`.
-]
-
-
---
-.small[ 
-<sup>✦</sup> Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan
-]
-
 
 ---
-
-.your-turn[
-
-**Option 1.**
-
-- On Github, download the assignment called `AE01a - UN Votes`.
-- In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
-- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
-- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
-
-]
-
----
-
-.your-turn[
-
-**Option 2.**
-
-- On Github, download the assignment called called `AE01b_COVID`.
-- In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
-- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
-- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
-]
-
----
-
 
 class: middle
 
@@ -223,17 +187,139 @@ class: middle
 
 ---
 
-class: middle
+class: middle, bg_orange
 
 # Course structure and policies
 
 ---
 
-## Class meetings
+.pull-left-narrow[
+## Logistics
+.xlarge[
++ Course <br><br>
++ Professor <br><br>
++ Assistants <br><br>
+]
+]
+.pull-right-wide[
+.white[.]  
+<br>
+{{content}}
 
+]
+
+--
++ PSY 703: Data Science for Psychologists
+  + Blended Synchronous
+<br><br>
+{{content}}
+
+--
++ S. Mason Garrison
+  + Green 438/Zoom
+  + Office Hours [calendly.com/smasongarrison/](http://www.calendly.com/smasongarrison/)
+<br><br>
+{{content}}
+
+--
++ Tukey `r emo::ji('cat')`
++ Archie `r emo::ji('cat')`
++ Annie `r emo::ji('cat')`
+
+{{content}}
+
+---
+## Structure
 - Interactive
 - Some lectures, lots of learn-by-doing
-- Bring your laptop to class every day
+- Meet twice a week 
+	- Tuesday are Face-to-Face Tutorials
+	- Thursdays are Solidarity Sessions
+- Bring your laptop!
+
+--
+- Flipped Lectures
+	- Pre-recorded Lectures
+	- Finalized by the week's start
+
+
+---
+
+# Big Ideas
+.pull-left-narrow[
+- Reproducibility;
+- Replication;
+- Robust Methods;
+- Really Nice Visualization; and
+- R
+]
+.pull-right-wide[
+
+```{r echo=FALSE, out.width="100%"}
+# r code to generate this figure is plot_metro.R
+knitr::include_graphics("img/plot007w.png")
+```
+]
+---
+
+# Categories of Topics
+.large.pull-left[
+- What
+- How
+]
+.pull-right-wide[
+
+```{r echo=FALSE, out.width="90%"}
+# r code to generate this figure is plot_jas.R
+knitr::include_graphics("img/p0.png")
+```
+]
+---
+
+# Learning Outcomes
+
+- Using R to visualize and model many kinds of data.
+- Given a dataset,
+	- able to visualize
+	- generate hypotheses
+	- investigate those hypotheses, &
+	- communicate your results.
+	
+---
+
+# Materials
+
+- Textbook
+  - R for Data Science: Import, Tidy, Transform, Visualize, and Model Data
+  - Hadley Wickham & Garrett Grolemund
+  - Online Edition
+  - r4ds.had.co.nz
+
+--
+- Software
+	- R
+	- Rstudio,
+	- Github
+	
+--
+- Coursenotes
+  - [datascience4psych.github.io/DataScience4Psych](https://datascience4psych.github.io/DataScience4Psych/)
+  
+---
+
+# Milestones
+
+- Labs
+- Portfolio
+- Presentation
+
+
+# Contract Grading
+
+- What is contract grading?
+  - Assessment based on effort
+  - More representative of the scientific process
+  - Specifics are in the syllabus and course notes
 
 ---
 
@@ -296,3 +382,79 @@ class: middle
 class: middle
 
 # Wrapping Up...
+
+
+---
+
+class: middle
+
+# Your Turn!
+
+
+---
+
+
+## Voting patterns in the UN
+
+```{r echo=FALSE, alt="UN Votes", out.width="100%"}
+knitr::include_graphics("img/unvotes.png")
+```
+
+[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
+
+
+---
+
+## Create a GitHub account
+
+.small[
+.instructions[
+Go to [github.com](https://github.com/), and create an account (unless you already have one). 
+]
+]
+
+Tips for selecting a username:<sup>✦</sup>
+
+.small[
+- Incorporate your actual name.
+- Reuse username from other contexts, e.g., Twitter or Slack.
+- Pick a username you'll be comfortable revealing to your future boss.
+- Shorter is better than longer.
+- Be as unique as possible in as few characters as possible.
+- Make it timeless. Don’t highlight your current university, employer, etc.
+- Avoid words laden with special meaning in programming, like `NA`.
+]
+
+
+--
+.small[ 
+<sup>✦</sup> Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan
+]
+
+
+---
+
+.your-turn[
+
+**Option 1.**
+
+- On Github, download the assignment called `AE01a - UN Votes`.
+- In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
+
+]
+
+---
+
+.your-turn[
+
+**Option 2.**
+
+- On Github, download the assignment called called `AE01b_COVID`.
+- In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
+]
+
+---

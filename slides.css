@@ -28,6 +28,7 @@
   --green-faint: #8fada750;
   --light-blue-faint: #A7D5E850;
   --pink-faint: #E9AFA350;
+  --white: #fff;
 }
 
 /* Font colors */
@@ -48,6 +49,9 @@
 }
 .yellow {
   color: var(--yellow);
+}
+.white {
+  color: var(--white);
 }
 
 /* Title slide customization */
