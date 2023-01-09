@@ -57,9 +57,11 @@ class: middle, bg_orange
 
 .left-column[
 ## Logistics
-- Course 
+.midi[
+- Course
 - Professor
 - Assistant
+]
 ]
 .right-column[
 .  
@@ -70,14 +72,97 @@ class: middle, bg_orange
 
 --
 + PSY 703: Data Science for Psychologists
++ Blended Synchronous
 {{content}}
 
 --
 + S. Mason Garrison
++ Green 438/Zoom
++ Office Hours (https://calendly.com/smasongarrison/)
 {{content}}
 
 --
 + Tukey
++ Archie
++ Annie
 {{content}}
 
 ---
+
+
+# Structure
+
+- Meet Twice a week 
+	- Tuesday are Face-to-Face Tutorials
+	- Thursdays are Solidarity Sessions
+	- Bring your laptop!
+- Asynchronous Content
+	- Pre-recorded Lectures
+	- Finalized by the week's start
+- Lecture Notes
+- Textbook
+
+---
+
+# Big Ideas
+
+- Reproducibility;
+- Replication;
+- Robust Methods;
+- Really Nice Visualization; and
+- R
+
+---
+
+# Categories of Topics
+
+- What
+- How
+
+---
+
+# Learning Outcomes
+
+Using R to visualize and model many kinds of data.
+- Given a dataset,
+	- able to visualize
+	- generate hypotheses
+	- investigate those hypotheses, &
+	- communicate your results.
+	
+---
+
+# Materials
+
+- Textbook
+-- 
+	- R for Data Science: Import, Tidy, Transform, Visualize, and Model Data
+		- Hadley Wickham & Garrett Grolemund
+		- Online Edition
+		- r4ds.had.co.nz
+--
+- Software
+	- R
+	- Rstudio,
+	- Github
+--
+
+- Coursenotes
+  - [datascience4psych.github.io/DataScience4Psych](https://datascience4psych.github.io/DataScience4Psych/)
+  
+---
+
+# Milestones
+
+- Labs
+- Portfolio
+- Presentation
+
+
+# Contract Grading
+
+- What is contract grading?
+- Assessment based on effort
+- More representative of the scientific process
+- Specifics are in the syllabus and course notes
+
