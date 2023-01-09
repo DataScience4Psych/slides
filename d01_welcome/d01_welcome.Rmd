@@ -421,7 +421,7 @@ Tips for selecting a username:<sup>✦</sup>
 - Pick a username you'll be comfortable revealing to your future boss.
 - Shorter is better than longer.
 - Be as unique as possible in as few characters as possible.
-- Make it timeless. Don’t highlight your current university, employer, etc.
+- Make it timeless. Don't highlight your current university, employer, etc.
 - Avoid words laden with special meaning in programming, like `NA`.
 ]
 
