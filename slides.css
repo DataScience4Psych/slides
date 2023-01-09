@@ -116,6 +116,7 @@ a, a > code {
    font-weight: bold;
 }
 .larger { font-size: 250% }
+.xlarge { font-size: 175% }
 .large { font-size: 150% }
 .medi { font-size: 90% }
 .midi { font-size: 80% }

@@ -47,7 +47,7 @@ library(emo)
       z-index: -1;
 }
 ```
----
+
 
 class: middle, bg_orange
 
@@ -55,16 +55,17 @@ class: middle, bg_orange
 
 ---
 
-.left-column[
+.pull-left[
 ## Logistics
-.midi[
-- Course
-- Professor
-- Assistant
+.xlarge[
++ Course<br/>
++ Professor<br/>
++ Assistants<br/>
 ]
 ]
-.right-column[
-.  
+.pull-right[
+.white[.]  
+<br/>
 
 {{content}}
 
@@ -72,13 +73,16 @@ class: middle, bg_orange
 
 --
 + PSY 703: Data Science for Psychologists
-+ Blended Synchronous
+  + Blended Synchronous
+<br/>
 {{content}}
 
 --
+
 + S. Mason Garrison
-+ Green 438/Zoom
-+ Office Hours (https://calendly.com/smasongarrison/)
+  + Green 438/Zoom
+  + Office Hours (https://calendly.com/smasongarrison/)
+<br/>
 {{content}}
 
 --
@@ -96,9 +100,12 @@ class: middle, bg_orange
 	- Tuesday are Face-to-Face Tutorials
 	- Thursdays are Solidarity Sessions
 	- Bring your laptop!
-- Asynchronous Content
+--
+
+- Flipped Lectures
 	- Pre-recorded Lectures
 	- Finalized by the week's start
+--	
 - Lecture Notes
 - Textbook
 
@@ -123,7 +130,7 @@ class: middle, bg_orange
 
 # Learning Outcomes
 
-Using R to visualize and model many kinds of data.
+- Using R to visualize and model many kinds of data.
 - Given a dataset,
 	- able to visualize
 	- generate hypotheses
@@ -135,18 +142,18 @@ Using R to visualize and model many kinds of data.
 # Materials
 
 - Textbook
--- 
-	- R for Data Science: Import, Tidy, Transform, Visualize, and Model Data
-		- Hadley Wickham & Garrett Grolemund
-		- Online Edition
-		- r4ds.had.co.nz
+  - R for Data Science: Import, Tidy, Transform, Visualize, and Model Data
+  - Hadley Wickham & Garrett Grolemund
+  - Online Edition
+  - r4ds.had.co.nz
+
 --
 - Software
 	- R
 	- Rstudio,
 	- Github
+	
 --
-
 - Coursenotes
   - [datascience4psych.github.io/DataScience4Psych](https://datascience4psych.github.io/DataScience4Psych/)
   
