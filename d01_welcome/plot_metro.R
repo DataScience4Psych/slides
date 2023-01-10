@@ -4,6 +4,7 @@
 library(tidyverse)
 library(tweenr)
 library(viridis)
+library(mathart) #
 # Make reproducible
 set.seed(10001)
 # Parameters
@@ -68,6 +69,6 @@ p2 <- ggplot() +
   coord_equal() +
   scale_size_continuous(range = c(0.5, 0.5)) +
   #scale_color_viridis() +
-  theme_blankcanvas(bg_col = "#A7D5E850", margin_cm = 0)
+  theme_blankcanvas(bg_col = "#34c9f4", margin_cm = 0)
 # print plot
 ggsave("img/plot007w.png", p2, width = 20, height = 20, units = "cm", dpi = 300)

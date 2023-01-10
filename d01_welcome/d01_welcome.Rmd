@@ -11,7 +11,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""
+#      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -35,6 +35,7 @@ output:
       z-index: -1;
 }
 ```
+
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
@@ -43,9 +44,9 @@ library(tidyverse)
 if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
 if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
-
+if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 ```
-
+---
 class: middle
 
 # Hello world!
@@ -67,36 +68,37 @@ class: middle
 --
 
 <br>
-
+<br>
+.large[
 Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. We're going to learn to do this in a `tidy` way -- more on that later!
-
+]
 ---
 
 # What is this course?
 
 This course is an introduction to data science that is designed for psychologists. It emphasizes statistical thinking and best practices.
-
+<br><br>
 --
 
 **Q - What data science background does this course assume?**  
 A - None.
-
+<br>
 --
 
 **Q - Is this an intro CS course?**  
-A - Although statistics and computer science $\ne$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get comfortable with those topics. However this course is **not** your typical compsci course.
-
+A - Although statistics and computer science $\ne$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get comfortable with those topics. However this course is **not** your typical course.
+<br>
 --
 
 **Q - Will we be doing computing?**   
 A - Yes.
-
----
+<br>
+--
 
 
 **Q - What computing language will we learn?**  
 A - R.
-
+<br>
 --
 
 **Q: Why not language X?**  
@@ -130,41 +132,41 @@ class: middle
 
 # The US of Bey
 
-```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="50%"}
+```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="55%"}
 knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
 ```
 
-Brooke Watson, [blog.brooke.science/posts/the-us-of-bey](https://blog.brooke.science/posts/the-us-of-bey/)
-
+.footnote[Brooke Watson, [blog.brooke.science/posts/the-us-of-bey](https://blog.brooke.science/posts/the-us-of-bey/)
+]
 ---
 
 # Punctuation in literature
 
-```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="48%"}
+```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
 knitr::include_graphics("img/julia-silge-punctuation.png")
 ```
 
-Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)
+.footnote[ Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
 
 ---
 
 # Text analysis of Trump's tweets
 
-```{r fig.align="center", echo=FALSE, alt="Trump tweets", out.width="63%"}
+```{r fig.align="center", echo=FALSE, alt="Trump tweets", out.width="61%"}
 knitr::include_graphics("img/david-robinson-trump-tweets.png")
 ```
 
-David Robinson, [varianceexplained.org/r/trump-tweets](http://varianceexplained.org/r/trump-tweets)
-
+.footnote[David Robinson, [varianceexplained.org/r/trump-tweets](http://varianceexplained.org/r/trump-tweets)
+]
 ---
 
 ## Greatest Twitter scheme of all time
 
-```{r fig.align="center", echo=FALSE, out.width = "43%"}
+```{r fig.align="center", echo=FALSE,out.width="38%"}
 knitr::include_graphics("img/bohemian-rhapsody.png")
 ```
 
-.small[
+.footnote[
 [gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d](https://gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d)
 ]
 
@@ -172,11 +174,11 @@ knitr::include_graphics("img/bohemian-rhapsody.png")
 
 ## Voting patterns in the UN
 
+[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
+
 ```{r echo=FALSE, alt="UN Votes", out.width="100%"}
 knitr::include_graphics("img/unvotes.png")
 ```
-
-[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
 
 
 ---
@@ -193,8 +195,8 @@ class: middle, bg_orange
 
 ---
 
-.pull-left-narrow[
 ## Logistics
+.pull-left-narrow[
 .xlarge[
 + Course <br><br>
 + Professor <br><br>
@@ -222,40 +224,44 @@ class: middle, bg_orange
 {{content}}
 
 --
-+ Tukey `r emo::ji('cat')`
-+ Archie `r emo::ji('cat')`
-+ Annie `r emo::ji('cat')`
++ Tukey `r emo::ji('cat_face')`
++ Archie `r emo::ji('smiley_cat')`
++ Annie `r emo::ji('pouting_cat')`
 
 {{content}}
 
 ---
 ## Structure
 - Interactive
-- Some lectures, lots of learn-by-doing
+  - Some lectures, lots of learn-by-doing
+--
+
 - Meet twice a week 
 	- Tuesday are Face-to-Face Tutorials
 	- Thursdays are Solidarity Sessions
-- Bring your laptop!
+--
+
+- Bring your laptop! `r emo::ji('computer')`
 
 --
 - Flipped Lectures
 	- Pre-recorded Lectures
-	- Finalized by the week's start
+	- Module is finalized by the week's start
 
 
 ---
 
 # Big Ideas
-.pull-left-narrow[
+.pull-left[
 - Reproducibility;
 - Replication;
 - Robust Methods;
 - Really Nice Visualization; and
 - R
 ]
-.pull-right-wide[
+.center.pull-right[
 
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="95%",fig.align = 'left'}
 # r code to generate this figure is plot_metro.R
 knitr::include_graphics("img/plot007w.png")
 ```
@@ -263,13 +269,13 @@ knitr::include_graphics("img/plot007w.png")
 ---
 
 # Categories of Topics
-.large.pull-left[
+.large.pull-left-narrow[
 - What
 - How
 ]
 .pull-right-wide[
 
-```{r echo=FALSE, out.width="90%"}
+```{r echo=FALSE, out.height="200%"}
 # r code to generate this figure is plot_jas.R
 knitr::include_graphics("img/p0.png")
 ```
