@@ -302,15 +302,15 @@ knitr::include_graphics("img/p0.png")
   - r4ds.had.co.nz
 
 --
+- Coursenotes
+  - [datascience4psych.github.io/DataScience4Psych](https://datascience4psych.github.io/DataScience4Psych/)
+
+--
 - Software
 	- R
 	- Rstudio,
 	- Github
-	
---
-- Coursenotes
-  - [datascience4psych.github.io/DataScience4Psych](https://datascience4psych.github.io/DataScience4Psych/)
-  
+	  
 ---
 
 # Milestones
@@ -319,7 +319,7 @@ knitr::include_graphics("img/p0.png")
 - Portfolio
 - Presentation
 
-
+---
 # Contract Grading
 
 - What is contract grading?
@@ -464,3 +464,9 @@ Tips for selecting a username:<sup>✦</sup>
 ]
 
 ---
+
+class: middle
+
+# Wrapping Up...
+
+
