@@ -17,7 +17,7 @@ make_hyperlink = function(myurl,mytext=myurl) {
   paste0('<a href="',myurl,'">',mytext,'</a>')
 }
 
-df_docs=list.files(path="slides/.", '[.]html$', recursive=TRUE)
+df_docs=list.files(path="../slides/.", '[.]html$', recursive=TRUE)
 #df_docs=list.files( '[.]html$', recursive=TRUE)
 
 
