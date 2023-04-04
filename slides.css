@@ -101,7 +101,7 @@ a, a > code {
 
 /* Sections */
 .inverse {
-  background-color: #34c9f4;
+  background-color: var(--light-blue);
   color: #ffffff;
 }
 .inverse h1, .inverse h2, .inverse h3 {
@@ -111,8 +111,13 @@ a, a > code {
   background-color: var(--dark-gray);
   color: #ffffff;
 }
-
-
+.inversedark {
+  background-color: var(--dark-blue);
+  color: #ffffff;
+}
+.inversedark h1, .inversedark h2, .inversedark h3 {
+  color: #ffffff;
+}
 /* Font sizes */
 .huge {
    font-family: 'Montserrat', sans-serif;
@@ -139,7 +144,7 @@ a, a > code {
 
 /* Code formatting */
 .remark-code-line-highlighted {
-  background-color: #34c9f4;
+  background-color: var(--light-blue);
 }
 
 .remark-code {
@@ -231,7 +236,7 @@ font-size: unset;
 }
 
 .alert {
-  border-right: solid 5px #34c9f4;
+  border-right: solid 5px var(--light-blue);
   background-color: #34c9f430;
   padding: 1px 16px;
   margin-top: 12px;
@@ -308,7 +313,7 @@ ul {
 }
 ul li:before {
   content: "✚";
-  color: #34c9f4;
+  color: var(--light-blue);
   display: inline-block;
   width: 1.5em;
   margin-left: -1.5em
@@ -338,7 +343,7 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
 /* Footer */
 div.my-footer {
     background-color: #ffffff;
-    border-top: 1px solid #34c9f4;
+    border-top: 1px solid var(--light-blue);
     position: absolute;
     bottom: 0px;
     left: 80px;
@@ -436,7 +441,7 @@ div.datatables {
 }
 .hand-blue{
   font-family: 'Gochi Hand', cursive;
-  color: #34c9f4;
+  color: var(--light-blue);
   font-size: 125%;
 }
 .hand-pink{
@@ -451,7 +456,7 @@ div.datatables {
  font-family: 'Montserrat', sans-serif;
  font-size: 400%;
  font-weight: bold;
- color: #34c9f4;
+ color: var(--light-blue);
 }
 
 .huge-pink {

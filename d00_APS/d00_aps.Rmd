@@ -1,0 +1,59 @@
+---
+title: "Data Science for Psychologists Workshop"
+subtitle: "APS Annual Convention"
+author: "Mason Garrison"
+date: "Sunday, May 28"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+class: center, middle
+
+# Data Science for Psychologists Workshop
+## APS Annual Convention
+### Mason Garrison
+#### Assistant Professor of Quantitative Psychology
+#### Wake Forest University
+
+---
+
+# Workshop Overview
+
+- Introduction to R and the tidyverse
+- Data Wrangling
+- Data Visualization
+
+---
+
+# Introduction to R and the tidyverse
+
+- Getting started with R and RStudio
+- Understanding the structure and philosophy of the tidyverse
+- Learning basic R syntax and operations
+
+---
+
+# Data Wrangling
+
+- Importing and exporting data in various formats
+- Cleaning, transforming, and reshaping data
+
+---
+
+# Data Visualization
+
+- Creating static and interactive visualizations using ggplot2
+- Customizing visual elements to enhance your plots
+- Interpreting and describing visualizations
+
+---
+
+class: center, middle
+
+# See you on Sunday, May 28 at 9 a.m.
+## Let's embark on this exciting learning adventure together!
