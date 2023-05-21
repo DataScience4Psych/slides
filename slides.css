@@ -2,26 +2,26 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono|Open+Sans);
 
+/* Define common styles for slide content */
 .remark-slide-content {
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
 }
 
-/* Turn off slide numbers https://github.com/yihui/xaringan/blob/master/inst/rmarkdown/templates/xaringan/resources/default.css*/
+/* Hide slide numbers https://github.com/yihui/xaringan/blob/master/inst/rmarkdown/templates/xaringan/resources/default.css*/
 /* Don't want them on videos! */
 .remark-slide-number {
   display: none;
 }
 
-/* colors */
+/* Define color variables */
 :root {
   --dark-blue: #002b36;
   --light-blue: #34c9f4;
   --green: #8fada7;
   --gray: #A7A7A7;
   --dark-gray: #5b5b5b;
+  --remark-gray:  #869496;
+  --remark-teal: #1E5C65;
   --pink: #F26BAA;
   --yellow: #e9d968;
   --beige: #fdf6e3;
@@ -31,7 +31,7 @@
   --white: #fff;
 }
 
-/* Font colors */
+/* Define font color classes */
 .dark-blue {
   color: var(--dark-blue);
 }
@@ -55,21 +55,22 @@
 }
 
 /* Title slide customization */
-.title-slide h1, h2, h3 {
+.title-slide h1, .title-slide h2, .title-slide h3 {
   text-align: center;
   font-weight: bold;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+/* Body styles */
 body {
-  font-family: 'Source Sans Pro'; sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #333333;
 }
 p {
   padding: 0;
-  margin: 0px;
+  margin: 0;
 }
-h2 {
+h1, h2, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   color: var(--light-blue);
@@ -79,21 +80,14 @@ h2 {
   margin-right: 5px;
   margin-left: 5px;
 }
-h1, h3 {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: bold;
-  color: var(--light-blue);
-  margin-top: 3px;
-  margin-bottom: 2px;
-  margin-right: 5px;
-  margin-left: 5px;
-}
+
 a, a > code {
   font-family: 'Fira Mono', monospace;
-  color: #1E5C65;
+  color: remark-teal;
   text-decoration: none;
 }
 
+/* Adjust font size for slide content */
 .remark-slide-content{
   font-size: 26px;
 }
@@ -118,29 +112,58 @@ a, a > code {
 .inversedark h1, .inversedark h2, .inversedark h3 {
   color: #ffffff;
 }
+
 /* Font sizes */
 .huge {
-   font-family: 'Montserrat', sans-serif;
-   font-size: 400%;
-   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 400%;
+  font-weight: bold;
 }
-.larger { font-size: 250% }
-.xlarge { font-size: 175% }
-.large { font-size: 150% }
-.medi { font-size: 90% }
-.midi { font-size: 80% }
-.small { font-size: 70% }
-.xsmall { font-size: 65% }
-.xxsmall { font-size: 60% }
-.tiny { font-size: 50% }
-.medi .remark-code  { font-size: 90% }
-.midi .remark-code { font-size: 80%; }
-.small .remark-code { font-size: 70%; }
-.xsmall .remark-code { font-size: 65%; }
-.xxsmall .remark-code { font-size: 60%; }
-.tiny .remark-code { font-size: 50%; }
-
-
+.larger {
+  font-size: 250%;
+}
+.xlarge {
+  font-size: 175%;
+}
+.large {
+  font-size: 150%;
+}
+.medi {
+  font-size: 90%;
+}
+.midi {
+  font-size: 80%;
+}
+.small {
+  font-size: 70%;
+}
+.xsmall {
+  font-size: 65%;
+}
+.xxsmall {
+  font-size: 60%;
+}
+.tiny {
+  font-size: 50%;
+}
+.medi .remark-code {
+  font-size: 90%;
+}
+.midi .remark-code {
+  font-size: 80%;
+}
+.small .remark-code {
+  font-size: 70%;
+}
+.xsmall .remark-code {
+  font-size: 65%;
+}
+.xxsmall .remark-code {
+  font-size: 60%;
+}
+.tiny .remark-code {
+  font-size: 50%;
+}
 
 /* Code formatting */
 .remark-code-line-highlighted {
@@ -155,7 +178,7 @@ a, a > code {
 .remark-inline-code {
   font-family: 'Fira Mono', monospace;
   font-size: 100%;
-  color: #869496;
+  color: remark-gray;
 }
 
 .datatables html-widget{
@@ -172,7 +195,9 @@ font-size: unset;
   height: 92%;
   float: left;
 }
-.left-column h2:last-of-type, .left-column h3:last-child {
+
+.left-column h2:last-of-type,
+.left-column h3:last-child {
   color: #000;
 }
 .right-column {
@@ -232,7 +257,7 @@ font-size: unset;
   margin-top: 12px;
   margin-bottom: 12px;
   font-size: 90%;
-  color: #1E5C65;
+  color: remark-teal;
 }
 
 .alert {
