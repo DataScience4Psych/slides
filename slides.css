@@ -7,8 +7,7 @@
   padding: 15px;
 }
 
-/* Hide slide numbers https://github.com/yihui/xaringan/blob/master/inst/rmarkdown/templates/xaringan/resources/default.css*/
-/* Don't want them on videos! */
+/* Hide slide numbers */
 .remark-slide-number {
   display: none;
 }
@@ -20,8 +19,6 @@
   --green: #8fada7;
   --gray: #A7A7A7;
   --dark-gray: #5b5b5b;
-  --remark-gray:  #869496;
-  --remark-teal: #1E5C65;
   --pink: #F26BAA;
   --yellow: #e9d968;
   --beige: #fdf6e3;
@@ -74,24 +71,18 @@ h1, h2, h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   color: var(--light-blue);
-  font-size: 12px;
-  margin-top: 3px;
-  margin-bottom: 2px;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin: 3px 5px;
 }
-
 a, a > code {
   font-family: 'Fira Mono', monospace;
-  color: remark-teal;
+  color: #1E5C65;
   text-decoration: none;
 }
 
 /* Adjust font size for slide content */
-.remark-slide-content{
+.remark-slide-content {
   font-size: 26px;
 }
-
 
 /* Sections */
 .inverse {
@@ -170,22 +161,23 @@ a, a > code {
   background-color: var(--light-blue);
 }
 
-.remark-code {
   font-family: 'Fira Mono', monospace;
   font-size: 100%;
 }
 
 .remark-inline-code {
+.remark-code, .remark-inline-code {
   font-family: 'Fira Mono', monospace;
   font-size: 100%;
   color: remark-gray;
 }
 
-.datatables html-widget{
-background-color:unset;
-color: var(--dark-blue);
 font-family: unset;
 font-size: unset;
+  background-color: unset;
+  color: var(--dark-blue);
+  font-family: unset;
+  font-size: unset;
 }
 
 /* Two-column layout */
@@ -195,7 +187,6 @@ font-size: unset;
   height: 92%;
   float: left;
 }
-
 .left-column h2:last-of-type,
 .left-column h3:last-child {
   color: #000;
@@ -220,9 +211,8 @@ font-size: unset;
   clear: both;
 }
 
-/*Alternative two-column layouts*/
-
   /*Left 70% - Right 30% */
+/* Alternative two-column layouts */
 .pull-left-wide {
   width: 70%;
   float: left;
@@ -234,7 +224,6 @@ font-size: unset;
 .pull-right-narrow ~ * {
   clear: both;
 }
-
   /*Left 30% - Right 70% */
 .pull-left-narrow {
   width: 30%;
@@ -249,7 +238,6 @@ font-size: unset;
 }
 
 /* Custom boxes */
-
 .question {
   border-left: solid 5px #1E5C65;
   background-color: #1E5C6530;
@@ -279,16 +267,16 @@ font-size: unset;
   content: ">";
   color: #FFD748;
   display: inline-block;
-  margin-left: -1.5em
+  margin-left: -1.5em;
 }
 
 .question, .your-turn, .tip {
-  padding: 5px 5px;
   margin-top: 20px;
   margin-bottom: 20px;
+  padding: 5px;
 }
 
-.question{
+.question {
   border-left: solid 5px #1E5C65;
   background-color: #d2dee0;
 }
@@ -297,7 +285,7 @@ font-size: unset;
   border-left: solid 5px #FFD748;
   background-color: #fff9e5;
 }
-.your-turn:before{
+.your-turn:before {
   content: "Your turn!";
   font-size: 150%;
   font-weight: bold;
@@ -309,14 +297,14 @@ font-size: unset;
   color: #FFD748;
   display: inline-block;
   width: 1.5em;
-  margin-left: -1.5em
+  margin-left: -1.5em;
 }
 
 .tip {
   border-right: solid 5px #F26BAA;
   background-color: #E7E7E7;
 }
-.tip:before{
+.tip:before {
   content: "Tip:";
   font-size: 120%;
   font-weight: bold;
@@ -324,13 +312,11 @@ font-size: unset;
   margin-bottom: 5px;
 }
 
-
 /* Quotes */
 blockquote {
   border-left: solid 5px lightgray;
   padding-left: 1em;
 }
-
 
 /* Lists */
 ul {
@@ -341,19 +327,16 @@ ul li:before {
   color: var(--light-blue);
   display: inline-block;
   width: 1.5em;
-  margin-left: -1.5em
+  margin-left: -1.5em;
 }
-ul li{
+ul li {
   margin: 10px 0;
 }
-
-
 
 /* Embedded images */
 img, video, iframe {
   max-width: 100%;
 }
-
 
 /* Tables */
 table {
@@ -361,32 +344,40 @@ table {
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
 }
-table thead th { border-bottom: 1px solid #ddd; }
-th, td { padding: 5px; }
-thead, tfoot, tr:nth-child(even) { background: #eee }
+table thead th {
+  border-bottom: 1px solid #ddd;
+}
+th, td {
+  padding: 5px;
+}
+thead, tfoot, tr:nth-child(even) {
+  background: #eee;
+}
 
 /* Footer */
 div.my-footer {
-    background-color: #ffffff;
-    border-top: 1px solid var(--light-blue);
-    position: absolute;
-    bottom: 0px;
-    left: 80px;
-    height: 35px;
-    width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid var(--light-blue);
+  position: absolute;
+  bottom: 0px;
+  left: 80px;
+  height: 35px;
+  width: 100%;
+}
+div.my-footer span,
+div.my-footer a {
+  font-size: 12pt;
+  color: #333333;
+  position: absolute;
 }
 div.my-footer span {
-    font-size: 12pt;
-    position: absolute;
-    color: #333333;
-    left: 10px;
-    bottom: 10px;
+  left: 10px;
+  bottom: 10px;
 }
 div.my-footer a {
-    font-size: 12pt;
-    color: #333333;
+  left: 110px;
+  bottom: 10px;
 }
-
 
 /* Footnote */
 .footnote {
@@ -396,20 +387,18 @@ div.my-footer a {
   font-size: 70%;
 }
 
-
 /* Logo */
 .remark-slide-content:after {
-    content: "";
-    position: absolute;
-    bottom: 5px;
-    right: 1100px;
-    height: 60px;
-    width: 81px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url("cat-hex.png");
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 1100px;
+  height: 60px;
+  width: 81px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("cat-hex.png");
 }
-
 
 /* Slide number
 .remark-slide-number {
@@ -418,13 +407,15 @@ div.my-footer a {
   font-size: 12pt;
 }
 */
+/* Slide number */
 .title-slide .remark-slide-number {
   display: none;
 }
 
-
 /* Media */
-@page { margin: 0; }
+@page {
+  margin: 0;
+}
 @media print {
   .remark-slide-scaler {
     width: 100% !important;
@@ -459,34 +450,28 @@ div.datatables {
 }
  */
 /* Handwriting */
-
-.hand{
+.hand, .hand-blue, .hand-pink {
   font-family: 'Gochi Hand', cursive;
   font-size: 125%;
 }
-.hand-blue{
-  font-family: 'Gochi Hand', cursive;
+.hand-blue {
   color: var(--light-blue);
-  font-size: 125%;
 }
-.hand-pink{
-  font-family: 'Gochi Hand', cursive;
+.hand-pink {
   color: var(--pink);
-  font-size: 125%;
 }
 
 /* Custom fonts */
-
 .huge-blue {
- font-family: 'Montserrat', sans-serif;
- font-size: 400%;
- font-weight: bold;
- color: var(--light-blue);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 400%;
+  font-weight: bold;
+  color: var(--light-blue);
 }
 
 .huge-pink {
- font-family: 'Montserrat', sans-serif;
- font-size: 400%;
- font-weight: bold;
- color: var(--pink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 400%;
+  font-weight: bold;
+  color: var(--pink);
 }
