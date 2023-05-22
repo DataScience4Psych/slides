@@ -207,6 +207,10 @@ library(package_name)
 
 ## tidyverse
 
+```{r,include=FALSE,eval= FALSE}
+source("hexwall.R")
+hexwall("\\img\\hexs", sticker_row_size = 4, sticker_width = 200, sort_mode = "color")
+```
 .pull-left[
 ![](img/tidyverse.png)
 ]

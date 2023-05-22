@@ -2,11 +2,13 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono|Open+Sans);
 
+/* Define common styles for slide content */
 .remark-slide-content {
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-size: 26px;
 }
 
 /* Turn off slide numbers https://github.com/yihui/xaringan/blob/master/inst/rmarkdown/templates/xaringan/resources/default.css*/
@@ -15,7 +17,7 @@
   display: none;
 }
 
-/* colors */
+/* Define color variables */
 :root {
   --dark-blue: #002b36;
   --light-blue: #34c9f4;
@@ -31,7 +33,7 @@
   --white: #fff;
 }
 
-/* Font colors */
+/* Define font color classes */
 .dark-blue {
   color: var(--dark-blue);
 }
@@ -61,8 +63,9 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+/* Body styles */
 body {
-  font-family: 'Source Sans Pro'; sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #333333;
 }
 p {
@@ -94,7 +97,8 @@ a, a > code {
   text-decoration: none;
 }
 
-.remark-slide-content{
+/* Adjust font size for slide content */
+.remark-slide-content {
   font-size: 26px;
 }
 
@@ -172,7 +176,8 @@ font-size: unset;
   height: 92%;
   float: left;
 }
-.left-column h2:last-of-type, .left-column h3:last-child {
+.left-column h2:last-of-type,
+.left-column h3:last-child {
   color: #000;
 }
 .right-column {
@@ -374,15 +379,15 @@ div.my-footer a {
 
 /* Logo */
 .remark-slide-content:after {
-    content: "";
-    position: absolute;
-    bottom: 5px;
-    right: 1100px;
-    height: 60px;
-    width: 81px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url("cat-hex.png");
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 1100px;
+  height: 60px;
+  width: 81px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("cat-hex.png");
 }
 
 
@@ -393,6 +398,7 @@ div.my-footer a {
   font-size: 12pt;
 }
 */
+/* Slide number */
 .title-slide .remark-slide-number {
   display: none;
 }
