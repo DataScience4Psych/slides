@@ -1,46 +1,35 @@
-# Slides
+## Workshop: Data Science for Psychologists in R
 
-This outline is a work in progress.
+### Hour 1: Introduction to R and Data Manipulation with base R and the tidyverse
 
-## Outline
+- Introduction to R and its capabilities in data science
+- Overview of the tidyverse ecosystem and its key packages (e.g., dplyr, tidyr)
+- Exploring data manipulation using base R functions
+- Data wrangling with dplyr: filtering, selecting, mutating, summarizing, and arranging data
+- Reshaping data with tidyr: pivot_longer and pivot_wider functions
+- Hands-on exercises and examples to practice data manipulation skills
 
-The course is divided into three parts. Part 1 is on exploratory data analysis, part 2 is making rigorous conclusions via statistical tools like modeling and inference, and part 3 includes topics that are designed to inspire students to learn more data science and statistics.
+### Hour 2: Data Wrangling and Transformation
 
-### Part 1: Exploring data
+- Recap of data manipulation with the tidyverse
+- Dealing with missing data: identifying missing values, handling missing data with tidyr and dplyr
+- Data transformation: creating new variables, applying functions, and working with dates and times
+- Handling categorical variables: factor levels, recoding, and creating dummy variables
+- Combining and merging datasets: joining tables based on common keys
+- Case study and practical exercises on data wrangling
 
-- p1_d01: Welcome to Data Science
-- p1_d02: Introduction to R/RStudio + git/GitHub
-- p1_d03: Fundamentals of data + data visualization
-- p1_d04: Tidy data + data wrangling
-- p1_d05: Types of variables
-- p1_d06: Recoding and transforming variables
-- p1_d07: Data Visualization and Exploration, Pt 1
-- p1_d08: Data Visualization and Exploration, Pt 2
-- p1_d09: Visualizing data over time and space
-- p1_d10: Confounding variables and Simpson's paradox
-- p1_d11: Case studies: SAT scores and smoking
+### Hour 3: Data Visualization and Communication
 
-### Part 2: Making rigorous conclusions
+- Introduction to data visualization and its importance in data science
+- Overview of ggplot2 and its grammar of graphics
+- Creating basic visualizations: scatter plots, bar plots, histograms, and line plots
+- Customizing plots: adding titles, labels, colors, and themes
+- Creating advanced visualizations: faceting, layering, and adding statistical transformations
+- Interactive visualizations with ggplot2 extensions (e.g., plotly, gganimate)
+- Best practices for data visualization and effective communication of results
+- Hands-on exercises and examples to create meaningful visualizations
 
-- p2_d01: The language of models
-- p2_d02: Formalizing linear models
-- p2_d03: Multiple linear regression
-- p2_d04: Model selection
-- p2_d05: Case study: Model selection for Paris Paintings
-- p2_d06: Prediction and model validation
-- p2_d07: Estimation via bootstrapping
-- p2_d08: Hypothesis testing via simulation methods
-- p2_d09: Inference overview
-- p2_d10: Inference for regression
-- p2_d11: Central Limit Theorem and CLT based inference
-- p2_d12: Case study: Inferring from the General Social Survey
-
-### Part 3: Looking forward
-
-- p3_d01: Web scraping
-- p3_d02: Functions and automation
-- p3_d03: Interactive visualizations with Shiny
-- p3_d04: Bayesian inference
+Throughout the workshop, there will be interactive coding exercises, case studies, and opportunities for participants to apply their knowledge and ask questions. By following this structure, participants will gain a solid foundation in R programming, data manipulation, and data visualization for data science tasks.
 
 ## Toolkit
 
