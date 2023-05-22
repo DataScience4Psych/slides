@@ -159,7 +159,7 @@ a, a > code {
 .remark-inline-code {
   font-family: 'Fira Mono', monospace;
   font-size: 100%;
-  color: remark-gray;
+  color: #869496;
 }
 
 .datatables html-widget{
@@ -237,7 +237,7 @@ font-size: unset;
   margin-top: 12px;
   margin-bottom: 12px;
   font-size: 90%;
-  color: remark-teal;
+  color: #1E5C65;
 }
 
 .alert {
