@@ -27,13 +27,12 @@ class: middle
 
 ## Introduction to R and Data Science
 
-...
-
 ---
 
-## The tidyverse Ecosystem
+```{r child="E:\\Dropbox\\Lab\\Teaching\\DS4P\\slides\\slides\\d01_welcome\\d01_welcome.Rmd", echo = F,error=TRUE}
 
-...
+```
+
 
 ---
 

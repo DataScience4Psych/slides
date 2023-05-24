@@ -41,7 +41,6 @@ output:
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
 #       slideNumberFormat: ""  
-knitr::opts_chunk$set(knitr.duplicate.label = "allow")
 library(tidyverse)
 if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
