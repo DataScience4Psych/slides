@@ -54,7 +54,7 @@ library(skimr)
 conflict_prefer("col_double", "readr")
 ```
 
-class: center, middle 
+class: center, middle , hidden
 
 # Data Science for Psychologists Workshop
 ## APS Annual Convention

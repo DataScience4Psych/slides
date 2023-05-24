@@ -1,0 +1,1948 @@
+---
+title: "Data and visualization <br> `r emo::ji('chart')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(emo)
+library(tidyverse)
+library(fontawesome)
+library(magick)
+library(Tmisc)
+if (!require("dsbox")) devtools::install_github("rstudio-education/dsbox")
+if (!require("gradethis")) devtools::install_github("rstudio-education/gradethis")
+library(dsbox)
+
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+```
+
+class: middle
+
+# Exploratory data analysis
+
+---
+
+
+.pull-left[ 
+> "We will be exploring numbers. We need to handle them easily and look at them effectively. Techniques for handling and looking — whether graphical, arithmetic, or intermediate — will be important."
+]
+
+.pull-right[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("../img/orangebook.png")
+```
+] 
+
+
+---
+
+
+## What is EDA?
+
+- Exploratory data analysis (EDA) is an approach to analyzing data sets to summarize its main characteristics.
+- Today, we'll be focusing on the visual aspects
+- But we might also calculate summary statistics and perform data wrangling/ manipulation/transformation at (or before) this stage of the analysis. 
+  - That's what we'll focus on next.
+
+---
+
+class: middle
+
+# Data visualization
+
+---
+
+## Data visualization
+
+
+> "The simple graph has brought more information to the data analyst's mind than any other device."
+
+> John Tukey
+
+- Data visualization is the creation and study of the visual representation of data.
+- Many tools for visualizing data (R is one of them) exist, as do many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and that's what we're going to use).
+
+---
+
+## ggplot2 $\in$ tidyverse
+
+.pull-left[
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
+```
+] 
+.pull-right[ 
+- **ggplot2** is tidyverse's data visualization package 
+- `gg` in "ggplot2" stands for Grammar of Graphics 
+- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+]
+
+---
+
+## Grammar of Graphics
+
+.pull-left-narrow[
+A grammar of graphics is a tool to concisely describe the components of a graphic
+]
+.pull-right-wide[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/grammar-of-graphics.png")
+```
+]
+
+.footnote[ Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)]
+
+---
+
+class: middle
+
+# A First (and Reproducible) Example
+
+---
+
+## Reading in the Data
+
++ Heights of the highest points by state
+
+```{r echo=TRUE}
+## 
+## load required packages and data
+library(tidyverse)
+options(tibble.print_min = 10)
+heights = read_csv("data/highest-points-by-state.csv")
+## switch from feet to meters
+heights$elevation = heights$elevation * .3048
+```
+---
+## Taking a look
+```{r echo=TRUE}
+heights
+```
+
+---
+## Taking another look
+```{r echo=TRUE}
+arrange(heights, elevation)
+```
+
+---
+## Taking another another look
+```{r echo=TRUE}
+arrange(heights, desc(elevation))
+```
+
+---
+## Taking another³ look... thoughtfully
+
+Goals:
++ Write down the set of numbers, keeping as much detail as
+possible
++ Pack the numbers efficiently, so you can see all of them at once
+
+
+---
+
+## Taking another³ look: Stem and Leaf
+.pull-left[
+```{r echo=TRUE, out.width="80%"}
+stem(heights$elevation)
+```
+]
+--
+
+.pull-right[ 
+<br><br><br><br>
++ Notice that parts of the numbers (the beginnings) are
+repeated.
++ The first digit of each number is printed at the beginning
+of the line, the remainder at the ends.
++ The first digit is the "stem", the remainder are the "leaves".
+]
+---
+
+# What have we learned?
+
+The stem-and-leaf plot shows that there are three groups of
+states:
++ Alaska
++ The western and Rocky Mountain states (California, Colorado, Washington, Wyoming, Hawaii, Utah, New Mexico, Nevada, Montana, Idaho, Arizona, Oregon)
++ All the other states
+
+--
+```{r echo=FALSE}
+stem(heights$elevation)
+```
+---
+
+## Taking another⁴ look: Density
+
+Compare the stem-and-leaf plot with a density estimate
+
+```{r echo=TRUE, out.width="60%"}
+ggplot(heights, aes(x = elevation)) + geom_density()
+```
+--
+
+Alaska?
+
+---
+## Taking another⁴ look: Density+
+
+Compare the stem-and-leaf plot with a density estimate
+
+```{r echo=TRUE, out.width="60%"}
+ggplot(heights, aes(x = elevation)) + geom_density() + geom_rug()
+```
+
+
+Alaska!
+
+---
+class: middle
+
+# Wrapping Up... 
+
+---
+
+class: middle
+
+# What is in a dataset?
+
+---
+
+## Dataset terminology
+
+- Each row is an **observation**
+- Each column is a **variable**
+
+.small[
+
+```{r message=FALSE}
+starwars
+```
+
+]
+
+---
+
+## Luke Skywalker
+
+![luke-skywalker](img/luke-skywalker.png)
+
+---
+
+## What's in the Star Wars data?
+
+Take a `glimpse` at the data:
+
+```{r}
+glimpse(starwars)
+```
+
+---
+
+.question[
+How many rows and columns does this dataset have?
+What does each row represent?
+What does each column represent?
+]
+
+```{r eval = FALSE}
+?starwars
+```
+
+```{r echo=FALSE}
+knitr::include_graphics("img/starwars-help.png")
+```
+
+---
+
+.question[
+How many rows and columns does this dataset have?
+]
+
+.pull-left[
+```{r}
+nrow(starwars) # number of rows
+ncol(starwars) # number of columns
+dim(starwars)  # dimensions (row column)
+```
+]
+
+---
+
+## Mass vs. height
+
+.question[ 
+How would you describe the relationship between mass and height of Starwars characters?
+What other variables would help us understand data points that don't follow the overall trend?
+Who is the not so tall but really chubby character?
+]
+
+```{r fig.width = 8, warning = FALSE, echo=FALSE, out.width = "50%"}
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters",
+       x = "Height (cm)", y = "Weight (kg)") +
+  geom_point(data = starwars %>% filter(name == "Jabba Desilijic Tiure"), size = 5, pch = 1, color = "pink", stroke = 3)
+```
+
+---
+
+## Jabba!
+
+```{r echo = FALSE, warning = FALSE, cache = FALSE, out.width = "80%"}
+jabba <- image_read("img/jabba.png")
+
+fig <- image_graph(width = 1600, height = 900, res = 200)
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters",
+       x = "Height (cm)", y = "Weight (kg)") +
+  geom_point(data = starwars %>% filter(name == "Jabba Desilijic Tiure"), size = 5, pch = 1, color = "pink", stroke = 3)
+dev.off()
+
+out <- fig %>% image_composite(jabba, offset = "+1000+30")
+
+image_write(out, "img/jabbaplot.png", format = "png")
+knitr::include_graphics("img/jabbaplot.png")
+```
+
+---
+
+
+## Mass vs. height
+
+```{r mass-height, fig.width = 8, out.width = "50%"}
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters",
+       x = "Height (cm)", y = "Weight (kg)")
+```
+
+---
+
+.question[ 
+- What are the functions doing the plotting?
+- What is the dataset being plotted?
+- Which variables map to which features (aesthetics) of the plot?
+- What does the warning mean?<sup>+</sup>
+]
+
+```{r ref.label="mass-height", fig.show = "hide"}
+```
+
+.footnote[
+<sup>+</sup>Suppressing warning to subsequent slides to save space
+]
+
+---
+
+## Hello ggplot2!
+
+.pull-left-wide[
+- `ggplot()` is the main function in ggplot2
+- Plots are constructed in layers
+- Structure of the code for plots can be summarized as
+
+```{r eval = FALSE}
+ggplot(data = [dataset], 
+       mapping = aes(x = [x-variable], y = [y-variable])) +
+   geom_xxx() +
+   other options
+```
+
+- The ggplot2 package comes with the tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+- For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+]
+
+---
+class: middle
+
+# Wrapping Up... 
+
+
+
+
+---
+
+class: middle
+
+# Why do we visualize?
+
+---
+
+## Anscombe's quartet
+
+```{r quartet-for-show, eval = FALSE, echo = FALSE}
+library(Tmisc)
+quartet
+```
+
+.pull-left[
+```{r quartet-view1, echo = FALSE}
+quartet[1:22,]
+```
+] 
+.pull-right[
+```{r quartet-view2, echo = FALSE}
+quartet[23:44,]
+```
+]
+
+---
+
+## Summarizing Anscombe's quartet
+
+```{r quartet-summary}
+quartet %>%
+  group_by(set) %>%
+  summarize(
+    mean_x = mean(x), 
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )
+```
+
+---
+
+## Visualizing Anscombe's quartet
+
+```{r quartet-plot, echo = FALSE, out.width = "80%", fig.asp = 0.5}
+ggplot(quartet, aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ set, ncol = 4)
+```
+
+---
+class: middle
+
+# Wrapping Up...
+
+
+
+
+
+
+---
+title: "Visualizing data with ggplot2<br> `r emo::ji('palette')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+```
+
+class: middle
+
+# ggplot2 `r emo::ji("heart")` `r emo::ji("penguin")`
+
+---
+
+## ggplot2 $\in$ tidyverse
+
+.pull-left-narrow[
+```{r echo=FALSE}
+knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
+```
+] 
+.pull-right-wide[ 
+- **ggplot2** is tidyverse's data visualization package 
+- Structure of the code for plots can be summarized as
+
+```{r eval = FALSE}
+ggplot(data = [dataset], 
+     mapping = aes(x = [x-variable], 
+                   y = [y-variable])) +
+   geom_xxx() +
+   other options
+```
+]
+
+---
+
+## Data: Palmer Penguins
+
+Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+
+
+.pull-left[
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/penguins.png")
+```
+]
+
+---
+
+## Data: Palmer Penguins
+
+Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+
+
+```{r}
+library(palmerpenguins)
+glimpse(penguins)
+```
+
+
+---
+
+# Plot
+
+```{r ref.label = "penguins", echo = FALSE, warning = FALSE, out.width = "70%", fig.width = 8}
+```
+
+
+---
+
+# Code
+
+```{r penguins, fig.show = "hide", out.width="80%"}
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species")
+```
+
+---
+class: middle
+
+# Wrapping Up...
+
+---
+class: middle
+
+# Coding out loud
+
+---
+
+.midi[
+> **Start with the `penguins` data frame**
+]
+
+.pull-left[
+```{r penguins-0, fig.show="hide", warning=FALSE}
+ggplot(data = penguins) #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-0", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> **map bill depth to the x-axis**
+]
+
+.pull-left[
+```{r penguins-1, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm)) #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-1", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> **and map bill length to the y-axis.**
+]
+
+.pull-left[
+```{r penguins-2, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-2", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> **Represent each observation with a point**
+]
+
+.pull-left[
+```{r penguins-3, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) + 
+  geom_point() #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-3", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> **and map species to the color of each point.**
+]
+
+.pull-left[
+```{r penguins-4, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) + #<<
+  geom_point()
+```
+]
+.pull-right[
+```{r ref.label = "penguins-4", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> **Title the plot "Bill depth and length"**
+]
+
+.pull-left[
+```{r penguins-5, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-5", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> **add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins"**
+]
+
+.pull-left[
+```{r penguins-6, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-6", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> **label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively**
+]
+
+.pull-left[
+```{r penguins-7, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-7", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+> **label the legend "Species"**
+]
+
+.pull-left[
+```{r penguins-8, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-8", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+> label the legend "Species", 
+> **and add a caption for the data source.**
+]
+
+.pull-left[
+```{r penguins-9, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-9", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+> label the legend "Species", 
+> and add a caption for the data source.
+> **Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.**
+]
+
+.pull-left[
+```{r penguins-10, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_color_viridis_d() #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins-10", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+# Plot
+
+```{r ref.label="penguins-10-nohighlight", echo = FALSE, warning = FALSE, out.width = "70%", fig.width = 8}
+```
+
+---
+
+# Code
+
+```{r penguins-10-nohighlight, fig.show = "hide"}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_color_viridis_d()
+```
+
+---
+
+# Narrative
+
+.midi[
++ Start with the `penguins` data frame,
+map bill depth to the x-axis
+and map bill length to the y-axis. 
++ Represent each observation with a point
+and map species to the color of each point.
++ Title the plot "Bill depth and length", 
+add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+label the legend "Species", 
+and add a caption for the data source.
++ Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.
+]
+
+---
+
+## Argument names
+
+.tip[
+You can omit the names of first two arguments when building plots with `ggplot()`.
+]
+
+.pull-left[
+```{r named-args, eval = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+.pull-right[
+```{r not-named-args, eval = FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           color = species)) +
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Aesthetics
+
+---
+
+## Aesthetics options
+
+Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are
+
+- `color`
+- `shape`
+- `size`
+- `alpha` (transparency)
+
+---
+
+## Color
+
+.pull-left[
+```{r color, fig.show = "hide", warning = FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species)) + #<<
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+.pull-right[
+```{r ref.label = "color", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+## Shape
+
+Mapped to a different variable than `color`
+
+.pull-left[
+```{r shape-island, fig.show = "hide", warning = FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = island)) + #<<
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+.pull-right[
+```{r ref.label = "shape-island", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+## Shape
+
+Mapped to same variable as `color`
+
+.pull-left[
+```{r shape-species, fig.show = "hide", warning = FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = species)) + #<<
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+.pull-right[
+```{r ref.label = "shape-species", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+## Size
+
+.pull-left[
+```{r size, fig.show = "hide", warning = FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = species,
+           size = body_mass_g)) + #<<
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+.pull-right[
+```{r ref.label = "size", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+## Alpha
+
+.pull-left[
+```{r alpha, fig.show = "hide", warning = FALSE}
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = species,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) + #<<
+  geom_point() +
+  scale_color_viridis_d()
+```
+]
+.pull-right[
+```{r ref.label = "alpha", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+.pull-left[
+**Mapping**
+
+```{r warning = FALSE, out.width = "100%"}
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           size = body_mass_g, #<<
+           alpha = flipper_length_mm)) + #<<
+  geom_point()
+```
+]
+.pull-right[
+**Setting**
+
+```{r warning = FALSE, out.width = "100%"}
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) + 
+  geom_point(size = 2, alpha = 0.5) #<<
+```
+]
+
+---
+
+## Mapping vs. setting
+
+- **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
+  - goes into `aes()`
+- **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
+  - goes into `geom_*()` 
+     - (in the previous example, we used `geom_point()` , 
+         - but we'll learn about other geoms soon!)
+  
+---
+
+class: middle
+
+# Faceting
+
+---
+
+## Faceting
+
+- Smaller plots that display different subsets of the data
+- Useful for exploring conditional relationships and large data
+
+---
+
+### Plot
+```{r ref.label = "facet", echo = FALSE, warning = FALSE, out.width = "70%"}
+```
+
+---
+
+### Code
+
+```{r facet, fig.show = "hide"}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ island) #<<
+```
+
+---
+
+## Various ways to facet
+
+
+In the next few slides describe what each plot displays. Think about how the code relates to the output.
+
+.question[
+**Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots.
+But you should always label your plots!
+]
+
+---
+
+```{r warning = FALSE}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ sex) #<<
+```
+
+---
+
+```{r warning = FALSE}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(sex ~ species) #<<
+```
+
+---
+
+```{r warning = FALSE, fig.asp = 0.5}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species) #<<
+```
+
+---
+
+```{r warning = FALSE, fig.asp = 0.5}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(. ~ species) #<<
+```
+
+---
+
+```{r warning = FALSE}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species, ncol = 2) #<<
+```
+
+---
+
+## Faceting summary
+
+- `facet_grid()`:
+    - 2d grid
+    - `rows ~ cols`
+    - use `.` for no split
+- `facet_wrap()`: 1d ribbon wrapped according to number of rows and columns specified or available plotting area
+
+---
+
+## Facet and color
+
+.pull-left-narrow[
+```{r facet-color-legend, fig.show = "hide", warning = FALSE}
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+      color = species)) + #<<
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() #<<
+```
+]
+.pull-right-wide[
+```{r ref.label = "facet-color-legend", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+## Facet and color, no legend
+
+.pull-left-narrow[
+```{r facet-color-no-legend, fig.show = "hide", warning = FALSE}
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+      color = species)) +
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() +
+  guides(color = FALSE) #<<
+```
+]
+.pull-right-wide[
+```{r ref.label = "facet-color-no-legend", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+
+
+
+---
+title: "Deeper Dive into ggplot <br> `r emo::ji('ocean')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(scales)
+library(DT)
+library(here)
+
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+```
+
+class: middle
+
+# Deep Diving into Grammar of Graphics
+
+---
+
+## What does "grammar of graphics" mean?
+
+* The analogy with English grammar, 
+  * or any language's grammar, 
+  * is that it allows you to put together component parts
+  
+--
+
++ Better than "grammar of graphics" might be the 
+  * "orthogonal components of graphics," 
+  * but that doesn't have the same alliterative appeal.
+
+
+--
+
++ The power of the grammar of graphics is that it is modular: 
+  * different aspects of the plot can be specified independently of each other.
+
+
+
+---
+
+## An example
+
++ As an example, the coordinate system is specified separately 
+  * from the geometric object used to represent the points.
++ We have three representations of the same data, where
+  * the only difference between them 
+  * is the coordinate system used to represent them.
+
+.medi[
+```{r fig.show = "hide"}
+bar_plot = ggplot(diamonds) + 
+    aes(x ="", fill = clarity)+
+    geom_bar(width = 1, position = "stack")
+bar_plot
+bar_plot + coord_polar()
+bar_plot + coord_polar(theta = "y")
+```
+]
+---
+
+```{r}
+bar_plot
+```
+
+---
+
+```{r}
+bar_plot + coord_polar()
+```
+
+---
+
+```{r}
+bar_plot + coord_polar(theta = "y")
+```
+
+---
+
+## Again, the same dataset
+
+Again, the same dataset, three different coordinate systems, very different representations:
+
+```{r fig.show = "hide"}
+dodged_bar_plot = ggplot(diamonds) +
+    geom_bar(aes(x = "", fill = clarity), width = 1, position = "dodge")
+dodged_bar_plot
+dodged_bar_plot + coord_polar()
+dodged_bar_plot + coord_polar(theta = "y")
+```
+---
+
+```{r}
+dodged_bar_plot
+```
+
+---
+
+```{r}
+dodged_bar_plot + coord_polar()
+```
+
+---
+
+```{r}
+dodged_bar_plot + coord_polar(theta = "y")
+```
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# What are the components of a plot?
+
+---
+
+## Components of a plot
+
++ A default dataset and set of mappings from variables to aesthetics.
++ One or more _layers_, each of which contains
+--
+
+  + one geometric (`geom_*`) object, 
+  + one statistical transformation (`stat_*`), 
+  + one position adjustment (`position_*`), 
++ and one dataset and set of aesthetic mappings.
+--
+
++ One scale for each aesthetic mapping.
++ A coordinate system (`coord_*`).
++ A facet specification (`facet_*`).
+--
+
+.tip[
+Layers are the most important and involved part of the plot.
+]
+
+
+---
+
+## What is a layer?
+
+- data and aesthetic mapping
+- statistical transformation (stat)
+- geometric object (geom)
+- position adjustment
+
+--
+
+```{r}
+p = ggplot(diamonds, aes(x = color, y = clarity)) + geom_point()
+p$layers
+```
+
+---
+
+## Data and aesthetic mapping
+
++ Data: self evident. For ggplot the data needs to be formatted as a tibble or a data.frame.
++ Aesthetic mapping: Less evident
+--
+
+  + Describes how variables in the dataset are mapping 
+     + to "aesthetic" attributes of the plot.
+  + "Aesthetic" here means perceivable:
+     + something you can observe on the plot.
+  
+---
+
+## Aesthetic/perceivable attributes
++ Examples include
+  * position along the $x$-axis, 
+  * color, 
+  * shape, 
+  * position along the $y$-axis, 
+  * opacity, 
+  * linetype
+
+---
+
+## Data and aesthetic mapping go together
+
+* They are not independent of each other:
+* the aesthetic mapping takes variables in your data and 
+  + maps them to aesthetics/perceivable parts of the plot and 
+  + is therefore specific to a dataset.
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Stats, Geoms, and Positions
+
+---
+
+# Statistical transformation
+
+A statistical transformation is some transformation of the data.
+
+![](img/ggplot_stat_table.png)
+--
+<br>
+.footnote[
+These stat transformations and position adjustments can overlap. Often there is more than one way to create the same plot.
+]
+
+
+---
+
+
+## Geometric objects
+
+Geometric objects (`geom_*`) control the type of plot you create. 
+
+Examples are:
+- Points, text 
+  * (zero-dimensional geometric objects)
+- Line, path 
+  * (one-dimensional geometric objects)
+- Polygon, interval 
+  * (two-dimensional geometric objects)
+- More complicated: boxplot
+
+---
+
+## Relationship between stats and geoms
+
+- Every statistic has a default geometric object, 
+  - and every geometric object has a default statistic.
+- Stats and geoms are not completely orthogonal: 
+  - not every combination is valid 
+  - (although many are).
+
+---
+
+## For example:
+- `stat_bin` and `geom_bar` 
+  - is valid and 
+  - standard for a histogram.
+- `stat_bin` and `geom_point` or `stat_bin` + `geom_line` 
+  - are valid 
+  - but non-standard combinations.
+    - They give a plot that is resembles a histogram  
+      - (interpretable that same way, too)
+- `stat_identity` and  `geom_boxplot`
+  - is invalid, because 
+  - boxplot needs certain computed quantities from the data.
+
+---
+
+## Position adjustment
+
+Used to avoid "collisions" in the plot objects:
+
+- In bar plots where one of the aesthetics is height, 
+  - the bars would often be plotted over each other. 
+  - In this case we use the "dodge" or "stack" position adjustments.
+- If we have issues with overplotting (multiple points in exactly the same place), 
+  - we can use the "jitter" position adjustment 
+    - to randomly move the points a small amount.
+---
+.medi[.pull-right-wide[
+```{r}
+(p = ggplot(diamonds, aes(x = color, y = price)) + 
+  geom_boxplot())
+```
+]
+
+.pull-left-narrow[
+```{r}
+p$layers
+```
+]
+]
+---
+
+```{r}
+ggplot(diamonds,aes(x = color, y = price, color = clarity)) + 
+  geom_boxplot(position = "identity")
+```
+
+---
+
+```{r}
+ggplot(diamonds,aes(x = color, y = price, color = clarity)) + 
+         geom_boxplot(position = "dodge")
+```
+
+.footnote[`position = "dodge"` is the default for boxplots, so you don't need to specify it.]
+
+---
+
+```{r}
+ggplot(diamonds,aes(x = color, y = price, color = clarity)) + 
+         geom_boxplot(position = position_dodge(width = 1))
+```
+
+.footnote[`position = "dodge"` is the default for boxplots, so you don't need to specify it.]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Scales and Coordinates
+
+---
+
+## Scales
+
++ So far, we've defined aesthetic mappings that specify,
+  + which perceivable aspects of the plot correspond 
+  + to which variables.
+--
+
++ However, perceivable aspects of the plot 
+  + can be mapped to variables many other ways.
+
+---
+
+## For example
+
++ If we have a categorical variable that takes values "A" and "B" to the color aesthetic, 
+  + that means that color is going to represent 
+  + whether variable took value "A" or "B". 
++ But we could do that in a practically infinite number of ways
+--
+
+
++ e.g.
+  - A maps to "red", B maps to "black"
+  - A maps to "green", B maps to "blue"
+  - A maps to "purple", B maps to "gold"
+--
+
+
+- ... You probably get the picture
+
+---
+
+## Modernized ggplot
+
+- *Now*, ggplot has good default mappings from values into aesthetic space, 
+  - but you will sometimes want to set them by hand.
+--
+
+- To do so, you use the `scale_*` functions.
+--
+
+- The *old* version of ggplot had poor mappings from continuous values to colors,
+  - and the [viridis](https://cran.r-project.org/web/packages/viridis/index.html) color scheme was much better. 
+- The most recent version of ggplot uses viridis by default 
+  - for both continuous values and ordered factors.
+
+---
+
+## Coordinate system
+
+Another aspect of the plot that can be specified independently of everything else is the coordinate system.
+
++ `coord_cartesian` is the default, 
+  - and is almost always what you want.
+--
+
+
+
++ `coord_flip` is sometimes useful:
+  - for example, boxplots require the explanatory variable to be mapped to x, 
+  - so if you want a horizontal boxplot you need to use `coord_flip`.
+--
++ `coord_polar` will often make your plots look cooler 
+  * and more difficult to read. 
+  * Not usually recommended.
+---
+
+## Faceting
+
+Allows you to make small multiples of plots.
+
++ Other grammars/plotting systems implement faceting with a fancy coordinate system, 
++ but it turns out that it's easier to use if you think about it separately.
+--
+
++ Each facet plots a subset of the data, 
+  - and it takes as input
+    - what variable(s) to use to make the subsets and 
+    - how to lay out the subsets.
+---
+
+## Facet options
+
+- `facet_wrap`:
+  - Lays out the plots for each subset sequentially.
+--
+
+- `facet_grid`: 
+  - Subsets the data according to two separate variables. 
+  
+  
+--
+
++ The facet position along the $x$-axis represents levels of one variable, 
+  - and the facet position along the $y$-axis represents levels of the other variable.
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# How this all works
+
+---
+
+## The long way
+
+- One way to specify a ggplot is to 
+  - specify all of the components we've seen.
+- If you understand all the parts, 
+  - this way is probably the least confusing method to specify a ggplot.
+- The problem is that it's verbose.
+
+---
+
+## Verbose
+
+- Suppose we want to make a plot with points and a smoother 
+  - from the diamonds dataset. 
+- We can specify data, mapping, geom, stat, and positions for each layer, 
+  - along with scales and the coordinate system as follows:
+  
+--
+
+.midi[  
+```{r verbose, fig.show = "hide"}
+ggplot() +
+    layer(
+        data = diamonds, mapping = aes(x = carat, y = price),
+        geom = "point", stat = "identity", position = "identity") +
+    layer(
+        data = diamonds, mapping = aes(x = carat, y = price),
+        geom = "smooth", position = "identity", stat = "smooth", params = list(method = "lm")) +
+    scale_x_log10() + scale_y_log10() + coord_cartesian()
+```
+]
+
+---
+
+```{r ref.label="verbose", out.width="85%", echo = FALSE}
+```
+
+---
+
+## Defaults make the code shorter
+
+The more standard way of writing the same plot would be:
+.medi[
+```{r}
+p = ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point() +
+    stat_smooth(method = "lm") +
+    scale_x_log10() +
+    scale_y_log10()
+```
+]
+--
+
+This code is still fairly long, but we don't have to specify...
+- position: Default for both `geom_point` and `stat_smooth` is `position = "identity"`.
+- stat, for `geom_point`: The default stat for `geom_point` is `stat = "identity"`.
+- geom, for `stat_smooth`: The default geom for `stat_smooth` is `geom_smooth`.
+- coordinate system: `coord_cartesian` is always the default.
+
+---
+
+You can check what stat, geom, and position is used for each of the layers:
+.medi[
+```{r}
+names(p)
+```
+.medi[
+```{r}
+p$layers
+```
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Minard on Napoleon's invasion of Russia
+
+---
+
+## Minard on Napoleon's invasion of Russia
+
+One of [the most famous statistical graphics, created by Charles Minard](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) depicts Napoleon's 1812 invasion of and retreat from Russia.
+
+.center[
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/Minard.png")
+```
+]
+
+---
+
+## Minard on Napoleon's invasion of Russia
+
+One of [the most famous statistical graphics, created by Charles Minard](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) depicts Napoleon's 1812 invasion of and retreat from Russia.
+
+.center[
+```{r echo=FALSE, out.width="81%"}
+knitr::include_graphics("img/Minard_Update.png")
+```
+]
+
+---
+.medi[
+```{r,minardpt1, out.width="55%"}
+minard = read_csv("data/minard.csv");minard_cities = read_csv("data/minard-cities.csv")
+(plot_troops = ggplot(minard) +
+                      geom_path(aes(x = long, y = lat,
+                                    color = direction,
+                                    size = surviv,
+                                    group = division)))
+```
+]
+
+---
+
+Let's add another layer for the cities:
+.medi[
+```{r,minardpt2, out.width="55%"}
+(plot_both = plot_troops +
+              geom_text(aes(x = long, y = lat, label = city),
+              data = minard_cities, size = 3))
+```
+]
+
+.footnote[Notice: we have a new dataset for this layer.]
+
+---
+
+## Next Steps
+
+Some things that are still not great about this plot:
+
+.pull-left[
+- We would like the colors 
+  - for advance and retreat to be gray and red.
+- We want the line widths to be 
+  - proportional to the number of survivors.
+- We would like the line ends to be
+  - round instead of square.
+]
+.pull-right[
+```{r ref.label="minardpt2", out.width="99%", echo = FALSE}
+```
+]
+
+---
+
+## An improved version of the plot, with better scales:
+
+.small[.pull-left-narrow[
+```{r minardpt3, fig.show = "hide"}
+ggplot(minard) +
+    geom_path(aes(x = long, 
+                  y = lat, 
+                  color = direction, 
+                  size = surviv^2, 
+                  group = division), 
+              lineend = "round") +
+    geom_text(aes(x = long,
+                  y = lat,
+                  label = city),
+              data = minard_cities, 
+              size = 3) + 
+    scale_size(range = c(.18, 15), 
+               breaks = (1:3 * 10^5)^2, 
+               labels = 
+                 scales::comma(1:3 * 10^5),
+                 "Survivors") +
+    scale_color_manual(values = c("grey50",
+                                  "red"), 
+                       breaks = c("A",
+                                  "R"), 
+                       labels = c("Advance",
+                                  "Retreat"),
+                       "") +
+    xlab(NULL) + ylab(NULL) +
+    theme(axis.text = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.grid = element_blank())
+```
+]]
+.pull-right-wide[
+```{r ref.label="minardpt3", out.width="99%", echo = FALSE}
+```
+]
+---
+
+.your-turn[
+]
+
+- Try creating a histogram on the diamonds dataset, for example with...
+
+
+```{r} 
+p = ggplot() + geom_histogram(aes(x = carat), data = diamonds)
+```
+
+
+- Re-write this using the `layer` function. 
+
+.tip[
+- If you don't know what the default values for some of the aspects of the plot, examine `p$layers`
+- Remember that a histogram is a plot with `stat_bin` and `geom_bar`. 
+]
+
+---
+
+.your-turn[
+]
+
+.pull-left-narrow[
+```{r,echo=FALSE,out.width="99%"} 
+
+(p = ggplot() + geom_histogram(aes(x = carat), data = diamonds))
+
+```
+]
+
+- Modify your histogram code so that it uses a different geom, for example `geom_line` or `geom_point`.
+- This change should be simple once you have the `layer` specification of a histogram.
+- In your histogram, 
+      - add an aesthetic mapping from one of the factor variables (maybe color or clarity) to the color aesthetic.
+
+.question[What is the default position adjustment for a histogram? 
+]
+
+.tip[- Try changing the position adjustment to something different 
+    - (try `position_dodge`).]
+
+---
+
+## Difficult Stretch Goal
+
+- Recreate the Minard map more precisely. 
+- Add text for the number of troops surviving on each segment, 
+    - and add the time and temperature data to the bottom of the plot.
+
+---
+
+## ggplot and EDA
+
+Remember our passage from Tukey:
+
+> *Exploratory data analysis is detective work*... As all detective stories remind us, many of the circumstances surrounding a crime are accidental or misleading. Equally, many of the indications to be discerned in bodies of data are accidental or misleading. To accept all appearances as conclusive would be destructively foolish, either in crime detection or in data analysis. *To fail to collect all appearances because some -- or even most -- are only accidents would, however, be gross misfeasance deserving (and often receiving) appropriate punishment.*
+
+---
+
+# Concluding Thoughts
+
+- The flexibility in the grammar of graphics allows us to collect many more "appearances" in the data than we would be able to,
+    - if we just have access to a handful of named plots.
+--
+
+- Many of the plots that we can make with ggplot are not useful, 
+    - but the point is to try visualizing the data in many different ways.
+- ggplot opens up a very large space of statistical graphics to us for not very much effort.
+
+---
+
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
+---
+
+class: middle
+
+# Wrapping Up...

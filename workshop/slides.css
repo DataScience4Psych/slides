@@ -471,3 +471,7 @@ div.datatables {
  font-weight: bold;
  color: var(--pink);
 }
+
+.my-hidden-slide {
+  display: none;
+}

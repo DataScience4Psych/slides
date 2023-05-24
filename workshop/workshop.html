@@ -49,7 +49,7 @@ layout: true
 
 
 
-class: center, middle 
+class: center, middle , hidden
 
 # Data Science for Psychologists Workshop
 ## APS Annual Convention
@@ -87,7 +87,7 @@ class: middle
 
 &lt;!-- rewrite
 - In addition to my work as an assistant professor, I'm also deeply involved in research, focused primarily on how we can leverage data science to improve our understanding of psychological phenomena
-- My substantive research interests span several areas, including individual differences, health inequity, and cognitive psychology
+- My substantive research interests span several areas, including individual differences, health inequity, and diversity science
 
  --&gt;
 
@@ -96,12 +96,12 @@ class: middle
 ## Why I'm Here Today
 
 &lt;!-- rewrite --&gt;
-- I'm passionate about sharing my love for data science with others, especially those within the field of psychology
+- I'm passionate about sharing my love for R with others, especially those within the field of psychology.
 - I believe that the tools and methodologies of data science can significantly enhance our ability to conduct impactful research in psychology
 - I'm excited to be here and share this journey with you!
 
 ---
-&lt;!-- rewrite --&gt;
+&lt;!-- rewrite
 ## Fun Facts About Me
 
 - I'm a cat lover! (as you might have guessed from my use of 🐱)
@@ -109,7 +109,7 @@ class: middle
 - I'm a coffee enthusiast â€“ I love exploring new blends and brewing methods. Happy to chat about coffee during breaks!
 
 ---
-
+ --&gt;
 class: middle
 
 # Workshop Overview!
@@ -429,355 +429,7 @@ class: middle
 
 ---
 
-class: center, middle 
 
-# Meet the toolkit &lt;br&gt; ⚒
-
----
-
-
-
-class: middle
-
-# Reproducible data analysis
-
----
-
-## Reproducibility checklist
-
-.question[
-What does it mean for a data analysis to be "reproducible"?
-]
-
---
-
-Near-term goals:
-
-- Are the tables and figures reproducible from the code and data?
-- Does the code actually do what you think it does?
-- In addition to what was done, is it clear **why** it was done? 
-(e.g., how were parameter settings chosen?)
-
-Long-term goals:
-
-- Can the code be used for other data?
-- Can you extend the code to do other things?
-
----
-
-## Toolkit
-
-![toolkit](img/toolkit.png)
-
-- Scriptability `\(\rightarrow\)` R
-- Literate programming (code, narrative, output in one place) `\(\rightarrow\)` R Markdown
-- Version control `\(\rightarrow\)` Git / GitHub
-
-
-
----
-
-class: middle
-
-# Toolkit overview
-
----
-
-&lt;img src="img/whole-game-01.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="img/whole-game-02.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="img/whole-game-03.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="img/whole-game-04.png" width="100%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: middle
-
-# R and RStudio
-
----
-
-## What is R/RStudio?
-
-- R is a statistical programming language
-- RStudio is a convenient interface for R (an integrated development environment, IDE)
-- At its simplest:
-    - R is like a carâ€™s engine
-    - RStudio is like a carâ€™s dashboard
-
-&lt;img src="img/engine-dashboard.png" width="66%" style="display: block; margin: auto;" /&gt;
-
-
----
-
-## Let's take a tour - R / RStudio
-
-.center[
-![](img/demo.png)
-]
-
-- Console
-- Using R as a calculator
-- Environment
-- Loading and viewing a data frame
-- Accessing a variable in a data frame
-- R functions
-
-
----
-
-## Working with R at the command line 
-
-- Launch RStudio/R.
-- Notice the default panes:
-    - Console (entire left)
-    - Environment/History (tabbed in upper right)
-    - Files/Plots/Packages/Help (tabbed in lower right)
-
-
---
-
-- FYI: You can change the default location of the panes, among many other things
-  - [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
-
----
-
-## Working with R at the command line (pt 2)
-
-- Go into the Console, where we interact with the live R process.
-- Make an assignment and then inspect the object you just created:
-
-
-```r
-x &lt;- 3 * 4
-x
-```
-
-```
-## [1] 12
-```
-
-- All R statements where you create objects -- "assignments" -- have this form:
-
-
-```r
-objectName &lt;- value
-```
-
-- Read this as 'x gets 12'
-
-&lt;!---
-and in my head I hear, e.g., "x gets 12".
-
-You will make lots of assignments and the operator `&lt;-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize RStudio's keyboard shortcut: Alt + - (the minus sign).
---&gt;
-
-
----
-
-## R essentials
-
-A short list (for now):
-
-- Functions are (most often) verbs, followed by what they will be applied to in parentheses:
-
-
-```r
-do_this(to_this)
-do_that(to_this, to_that, with_those)
-```
-
---
-
-- Columns (variables) in data frames are accessed with `$`:
-
-
-```r
-dataframe$var_name
-```
-
---
-
-- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
-
-
-```r
-install.packages("package_name")
-library(package_name)
-```
-
----
-
-## tidyverse
-
-.pull-left[
-![](img/tidyverse.png)
-]
-
-.pull-right[
-.center[
-[tidyverse.org](https://www.tidyverse.org/)
-]
-
-- The tidyverse is an opinionated collection of R packages designed for data science. 
-- All packages share an underlying philosophy and a common grammar. 
-]
-
----
-
-class: middle
-
-# R Markdown
-
----
-
-
-## R Markdown
-
-- Fully reproducible reports -- each time you knit the analysis is ran from the beginning
-- Simple markdown syntax for text
-- Code goes in chunks, defined by three backticks, narrative goes outside of chunks
-
----
-
-## Let's take a tour - R Markdown
-
-
-.center[
-![](img/demo.png)
-]
-
-Concepts introduced:
-
-- Copying a project of mine
-- Knitting documents
-- R Markdown and (some) R syntax
-
----
-
-.your-turn[
-
-- The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
-- Go to github page and fork the assignment `Bechdel + R Markdown`. 
-- Open and knit the R Markdown document `bechdel.Rmd` and follow along with the instructions.
-]
-
----
-
-class: middle
-
-# Wrapping Up...
-
----
-## R Markdown help
-
-.pull-left[
-.center[
-[R Markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
-]
-![](img/rmd-cheatsheet.png)
-]
-.pull-right[
-.center[
-Markdown Quick Reference  
-`Help -&gt; Markdown Quick Reference`
-]
-![](img/md-cheatsheet.png)
-]
-
----
-
-## Workspaces
-
-Remember this, and expect it to bite you a few times as you're learning to work 
-with R Markdown: The workspace of your R Markdown document is separate from the Console!
-
-- Run the following in the console
-
-```r
-x &lt;- 2
-x * 3
-```
-.question[
-All looks good, eh?
-]
-
-- Then, add the following chunk in your R Markdown document
-
-```r
-x * 3
-```
-.question[
-What happens? Why the error?
-]
-
----
-
-## How will we use R Markdown?
-
-- Every assignment / report / project / etc. is an R Markdown document
-- You'll have a template R Markdown document to start with
-- The amount of scaffolding in the template will decrease over the semester
-
----
-class: middle
-
-# Wrapping Up... R and R Markdown
-
-
----
-class: middle
-
-# Getting help in R
-
----
-
-## Reading help files
-
-&lt;img src="img/r-help.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-
-
----
-
-## Asking good questions
-
-.pull-left[
-- **Good:** Describe your intention and include your code and the error
-- **Better:** Describe your intention and create a minimum working example
-- **Best:** Write a **rep**roducible **ex**ample (reprex) -- we'll introduce this concept more formally and teach you the tools for it a little later in the semester
-]
---
-.pull-right[
-![](https://media.giphy.com/media/uRb2p09vY8lEs/giphy.gif)
-- Use code formatting
-- For issues with R code: copy / paste your code and resulting error, don't use screenshots!
-]
-
----
-
-# Sources
-
-- Mine Ã‡etinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
-- Kieran Healy's [Data Visualization: A practical introduction](http://socviz.co/appendix.html#a-little-more-about-r)
-- [Jenny Bryan's Stat545](https://stat545.com)
-- [Modern Dive](https://moderndive.com/)
-
----
-class: middle
-
-# Wrapping Up... Getting help in R
-
-
----
 class: center, middle 
 
 # "Data and visualization &lt;br&gt; 💹"
@@ -1027,7 +679,7 @@ Compare the stem-and-leaf plot with a density estimate
 ggplot(heights, aes(x = elevation)) + geom_density()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-31-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-19-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 --
 
 Alaska?
@@ -1042,7 +694,7 @@ Compare the stem-and-leaf plot with a density estimate
 ggplot(heights, aes(x = elevation)) + geom_density() + geom_rug()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-32-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-20-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 Alaska!
@@ -1073,7 +725,7 @@ starwars
 ```
 
 ```
-## # A tibble: 87 × 15
+## # A tibble: 87 × 14
 ##    name   height  mass hair_color skin_color eye_color birth_year
 ##    &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
 ##  1 Luke …    172    77 blond      fair       blue            19  
@@ -1087,9 +739,9 @@ starwars
 ##  9 Biggs…    183    84 black      light      brown           24  
 ## 10 Obi-W…    182    77 auburn, w… fair       blue-gray       57  
 ## # ℹ 77 more rows
-## # ℹ 8 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;, homeworld &lt;chr&gt;,
+## # ℹ 7 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;, homeworld &lt;chr&gt;,
 ## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, hair_color2 &lt;fct&gt;
+## #   starships &lt;list&gt;
 ```
 
 ]
@@ -1113,22 +765,21 @@ glimpse(starwars)
 
 ```
 ## Rows: 87
-## Columns: 15
-## $ name        &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth …
-## $ height      &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, …
-## $ mass        &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0,…
-## $ hair_color  &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, g…
-## $ skin_color  &lt;chr&gt; "fair", "gold", "white, blue", "white", "li…
-## $ eye_color   &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown",…
-## $ birth_year  &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, …
-## $ sex         &lt;chr&gt; "male", "none", "none", "male", "female", "…
-## $ gender      &lt;chr&gt; "masculine", "masculine", "masculine", "mas…
-## $ homeworld   &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine"…
-## $ species     &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human"…
-## $ films       &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of th…
-## $ vehicles    &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, …
-## $ starships   &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "T…
-## $ hair_color2 &lt;fct&gt; blond, NA, NA, Other, brown, Other, brown, …
+## Columns: 14
+## $ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth V…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 1…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, …
+## $ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, gr…
+## $ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "lig…
+## $ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", …
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, N…
+## $ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "m…
+## $ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masc…
+## $ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine",…
+## $ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human",…
+## $ films      &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of the…
+## $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;…
+## $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TI…
 ```
 
 ---
@@ -1167,7 +818,7 @@ ncol(starwars) # number of columns
 ```
 
 ```
-## [1] 15
+## [1] 14
 ```
 
 ```r
@@ -1175,7 +826,7 @@ dim(starwars)  # dimensions (row column)
 ```
 
 ```
-## [1] 87 15
+## [1] 87 14
 ```
 ]
 
@@ -1189,7 +840,7 @@ What other variables would help us understand data points that don't follow the 
 Who is the not so tall but really chubby character?
 ]
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-38-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-26-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1211,8 +862,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ```
 
 ```
-## Warning: Removed 28 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 28 rows containing missing values (`geom_point()`).
 ```
 
 &lt;img src="workshop_files/figure-html/mass-height-1.png" width="50%" style="display: block; margin: auto;" /&gt;
@@ -1235,8 +885,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ```
 
 ```
-## Warning: Removed 28 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 28 rows containing missing values (`geom_point()`).
 ```
 
 .footnote[
@@ -1462,7 +1111,7 @@ glimpse(penguins)
 
 # Plot
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -1482,8 +1131,7 @@ ggplot(data = penguins,
 ```
 
 ```
-## Warning: Removed 2 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 2 rows containing missing values (`geom_point()`).
 ```
 
 ---
@@ -1509,7 +1157,7 @@ class: middle
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1527,7 +1175,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-49-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1547,7 +1195,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1569,7 +1217,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-51-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1593,7 +1241,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-52-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1619,7 +1267,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-53-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1647,7 +1295,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1677,7 +1325,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-55-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-43-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1709,7 +1357,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-56-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1743,7 +1391,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-57-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1779,14 +1427,14 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-58-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-46-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 # Plot
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-59-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-47-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1808,8 +1456,7 @@ ggplot(data = penguins,
 ```
 
 ```
-## Warning: Removed 2 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 2 rows containing missing values (`geom_point()`).
 ```
 
 ---
@@ -1900,7 +1547,7 @@ ggplot(penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-60-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1922,7 +1569,7 @@ ggplot(penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-49-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1944,7 +1591,7 @@ ggplot(penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-62-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-50-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1965,7 +1612,7 @@ ggplot(penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-63-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-51-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1987,7 +1634,7 @@ ggplot(penguins,
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-64-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-52-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2005,7 +1652,7 @@ ggplot(penguins,
   geom_point()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-65-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-53-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 **Setting**
@@ -2018,7 +1665,7 @@ ggplot(penguins,
 * geom_point(size = 2, alpha = 0.5)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-66-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2048,7 +1695,7 @@ class: middle
 ---
 
 ### Plot
-&lt;img src="workshop_files/figure-html/unnamed-chunk-67-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-55-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2062,8 +1709,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```
 
 ```
-## Warning: Removed 2 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 2 rows containing missing values (`geom_point()`).
 ```
 
 ---
@@ -2087,7 +1733,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 * facet_grid(species ~ sex)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-68-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-56-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2098,7 +1744,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 * facet_grid(sex ~ species)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-69-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-57-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2109,7 +1755,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 * facet_wrap(~ species)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-70-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-58-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2120,7 +1766,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 * facet_grid(. ~ species)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-71-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-59-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2131,7 +1777,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 * facet_wrap(~ species, ncol = 2)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-72-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-60-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2161,7 +1807,7 @@ ggplot(
 ```
 ]
 .pull-right-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-73-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2183,7 +1829,7 @@ ggplot(
 ```
 ]
 .pull-right-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-74-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-62-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2375,11 +2021,10 @@ ggplot(loans, aes(x = loan_amount)) +
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-78-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-66-1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2393,7 +2038,7 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 1000)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-79-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-67-1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2404,7 +2049,7 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-80-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-68-1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2416,14 +2061,14 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 20000)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-81-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-69-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Customizing histograms
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-82-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-70-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 .pull-right[.small[
@@ -2446,7 +2091,7 @@ ggplot(loans, aes(x = loan_amount)) +
 ## Fill with a categorical variable
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-83-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-71-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2469,7 +2114,7 @@ ggplot(loans, aes(x = loan_amount,
 ## Facet with a categorical variable
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-84-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-72-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2502,7 +2147,7 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_density()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-85-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-73-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2516,7 +2161,7 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 0.5)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-86-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-74-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 + adjust = 1
@@ -2526,7 +2171,7 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 1) # default bandwidth
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-87-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-75-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -2537,14 +2182,14 @@ ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 2)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-88-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-76-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Customizing density plots
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-89-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-77-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2565,7 +2210,7 @@ ggplot(loans, aes(x = loan_amount)) +
 ## Adding a categorical variable
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-90-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-78-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2600,7 +2245,7 @@ ggplot(loans, aes(x = interest_rate)) +
   geom_boxplot()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-91-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-79-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2612,14 +2257,14 @@ ggplot(loans, aes(x = annual_income)) +
   geom_boxplot()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-92-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-80-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Customizing box plots
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-93-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-81-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2644,7 +2289,7 @@ ggplot(loans, aes(x = interest_rate)) +
 ## Adding a categorical variable
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-94-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-82-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2678,7 +2323,7 @@ ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
   geom_point()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-95-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-83-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2690,7 +2335,7 @@ ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
   geom_hex()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-96-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-84-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2703,7 +2348,7 @@ ggplot(loans %&gt;% filter(debt_to_income &lt; 100),
   geom_hex()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-97-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-85-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2744,7 +2389,7 @@ starwars
 ```
 
 ```
-## # A tibble: 87 × 15
+## # A tibble: 87 × 14
 ##    name   height  mass hair_color skin_color eye_color birth_year
 ##    &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
 ##  1 Luke …    172    77 blond      fair       blue            19  
@@ -2758,9 +2403,9 @@ starwars
 ##  9 Biggs…    183    84 black      light      brown           24  
 ## 10 Obi-W…    182    77 auburn, w… fair       blue-gray       57  
 ## # ℹ 77 more rows
-## # ℹ 8 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;, homeworld &lt;chr&gt;,
+## # ℹ 7 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;, homeworld &lt;chr&gt;,
 ## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
-## #   starships &lt;list&gt;, hair_color2 &lt;fct&gt;
+## #   starships &lt;list&gt;
 ```
 
 
@@ -2773,22 +2418,21 @@ glimpse(starwars)
 
 ```
 ## Rows: 87
-## Columns: 15
-## $ name        &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth …
-## $ height      &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, …
-## $ mass        &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0,…
-## $ hair_color  &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, g…
-## $ skin_color  &lt;chr&gt; "fair", "gold", "white, blue", "white", "li…
-## $ eye_color   &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown",…
-## $ birth_year  &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, …
-## $ sex         &lt;chr&gt; "male", "none", "none", "male", "female", "…
-## $ gender      &lt;chr&gt; "masculine", "masculine", "masculine", "mas…
-## $ homeworld   &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine"…
-## $ species     &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human"…
-## $ films       &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of th…
-## $ vehicles    &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, …
-## $ starships   &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "T…
-## $ hair_color2 &lt;fct&gt; blond, NA, NA, Other, brown, Other, brown, …
+## Columns: 14
+## $ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth V…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 1…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, …
+## $ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, gr…
+## $ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "lig…
+## $ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", …
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, N…
+## $ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "m…
+## $ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masc…
+## $ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine",…
+## $ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human",…
+## $ films      &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of the…
+## $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;…
+## $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TI…
 ```
 
 ---
@@ -2821,7 +2465,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-101-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-89-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2834,7 +2478,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-102-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-90-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2849,7 +2493,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-103-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-91-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2863,7 +2507,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
   coord_flip()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-104-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-92-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2877,7 +2521,7 @@ ggplot(data = starwars,
   coord_flip()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-105-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-93-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ```r
 labs(y = "proportion")
@@ -2899,10 +2543,10 @@ labs(y = "proportion")
   ]
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-106-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-94-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-107-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-95-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -2910,7 +2554,7 @@ labs(y = "proportion")
 ## Customizing bar plots
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-108-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-96-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
@@ -2963,7 +2607,7 @@ ggplot(loans, aes(x = homeownership, y = loan_amount)) +
   geom_violin()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-109-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-97-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2976,7 +2620,7 @@ ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
   geom_density_ridges(alpha = 0.5)
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-110-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-98-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -3462,21 +3106,21 @@ names(hotels)
 ```
 
 ```
-##  [1] "hotel"                         
-##  [2] "is_canceled"                   
-##  [3] "lead_time"                     
-##  [4] "arrival_date_year"             
-##  [5] "arrival_date_month"            
-##  [6] "arrival_date_week_number"      
-##  [7] "arrival_date_day_of_month"     
-##  [8] "stays_in_weekend_nights"       
-##  [9] "stays_in_week_nights"          
-## [10] "adults"                        
-## [11] "children"                      
-## [12] "babies"                        
-## [13] "meal"                          
-## [14] "country"                       
-## [15] "market_segment"                
+##  [1] "hotel"                          "is_canceled"                   
+##  [3] "lead_time"                      "arrival_date_year"             
+##  [5] "arrival_date_month"             "arrival_date_week_number"      
+##  [7] "arrival_date_day_of_month"      "stays_in_weekend_nights"       
+##  [9] "stays_in_week_nights"           "adults"                        
+## [11] "children"                       "babies"                        
+## [13] "meal"                           "country"                       
+## [15] "market_segment"                 "distribution_channel"          
+## [17] "is_repeated_guest"              "previous_cancellations"        
+## [19] "previous_bookings_not_canceled" "reserved_room_type"            
+## [21] "assigned_room_type"             "booking_changes"               
+## [23] "deposit_type"                   "agent"                         
+## [25] "company"                        "days_in_waiting_list"          
+## [27] "customer_type"                  "adr"                           
+## [29] "required_car_parking_spaces"    "total_of_special_requests"     
 ...
 ```
 
@@ -4022,7 +3666,7 @@ ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-146-1.png" width="25%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-134-1.png" width="25%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -6973,7 +6617,7 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-272-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-260-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -6988,7 +6632,7 @@ cat_lovers %&gt;%
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-273-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-261-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -7013,7 +6657,7 @@ cat_lovers %&gt;%
 ]
 
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-275-1.png" width="95%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-263-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -7157,7 +6801,7 @@ hotels %&gt;%
   theme_bw()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-280-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-268-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -7169,7 +6813,7 @@ Why does the plot start with August when we know our data start in July? And why
 ]
 
 .midi[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-281-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-269-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -7252,7 +6896,7 @@ hotels %&gt;%
   geom_line()+theme_bw()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-284-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-272-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -7270,7 +6914,7 @@ hotels %&gt;%
   theme_bw()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-285-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-273-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -7420,28 +7064,17 @@ fs::dir_ls("data")
 ```
 
 ```
-## data/cat-lovers.csv
-## data/df-na.csv
-## data/df.csv
-## data/edi-airbnb.csv
-## data/favorite-food.xlsx
-## data/favourite-food.xlsx
-## data/highest-points-by-state.csv
-## data/hotels.csv
-## data/instructional-staff.csv
-## data/lattice.RData
-## data/minard-cities.csv
-## data/minard-temps.csv
-## data/minard.csv
-## data/nobel.csv
-## data/relig-income.xlsx
-## data/sales
-## data/sales.xlsx
-## data/sales_d10
-## data/scientists
-## data/students
-## data/uoe-art-info-1.csv
-## data/uoe-art.csv
+## data/cat-lovers.csv              data/df-na.csv                   
+## data/df.csv                      data/edi-airbnb.csv              
+## data/favorite-food.xlsx          data/favourite-food.xlsx         
+## data/highest-points-by-state.csv data/hotels.csv                  
+## data/instructional-staff.csv     data/lattice.RData               
+## data/minard-cities.csv           data/minard-temps.csv            
+## data/minard.csv                  data/nobel.csv                   
+## data/relig-income.xlsx           data/sales                       
+## data/sales.xlsx                  data/sales_d10                   
+## data/scientists                  data/students                    
+## data/uoe-art-info-1.csv          data/uoe-art.csv
 ```
 
 ---
@@ -7481,10 +7114,8 @@ names(edi_airbnb)
 ```
 
 ```
-##  [1] "ID"                   "Price"               
-##  [3] "neighbourhood"        "accommodates"        
-##  [5] "Number of bathrooms"  "Number of Bedrooms"  
-##  [7] "n beds"               "Review Scores Rating"
+##  [1] "ID"                   "Price"                "neighbourhood"        "accommodates"        
+##  [5] "Number of bathrooms"  "Number of Bedrooms"   "n beds"               "Review Scores Rating"
 ##  [9] "Number of reviews"    "listing_url"
 ```
 
@@ -7520,10 +7151,8 @@ names(edi_airbnb_col_names)
 ```
 
 ```
-##  [1] "id"                   "price"               
-##  [3] "neighbourhood"        "accommodates"        
-##  [5] "bathroom"             "bedroom"             
-##  [7] "bed"                  "review_scores_rating"
+##  [1] "id"                   "price"                "neighbourhood"        "accommodates"        
+##  [5] "bathroom"             "bedroom"              "bed"                  "review_scores_rating"
 ##  [9] "n_reviews"            "url"
 ```
 
@@ -7541,10 +7170,8 @@ names(edi_airbnb_cleaned_names)
 ```
 
 ```
-##  [1] "id"                   "price"               
-##  [3] "neighbourhood"        "accommodates"        
-##  [5] "number_of_bathrooms"  "number_of_bedrooms"  
-##  [7] "n_beds"               "review_scores_rating"
+##  [1] "id"                   "price"                "neighbourhood"        "accommodates"        
+##  [5] "number_of_bathrooms"  "number_of_bedrooms"   "n_beds"               "review_scores_rating"
 ##  [9] "number_of_reviews"    "listing_url"
 ```
 
@@ -7637,8 +7264,7 @@ read_csv("data/df-na.csv",
 ```
 
 ```
-## Warning: One or more parsing issues, call `problems()` on your data frame
-## for details, e.g.:
+## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)
 ```
@@ -7808,8 +7434,7 @@ sales_files
 ```
 
 ```
-## data/sales/01-sales.csv data/sales/02-sales.csv 
-## data/sales/03-sales.csv
+## data/sales/01-sales.csv data/sales/02-sales.csv data/sales/03-sales.csv
 ```
 
 ```r
@@ -7951,7 +7576,7 @@ bar_plot + coord_polar(theta = "y")
 bar_plot
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-308-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-296-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -7960,7 +7585,7 @@ bar_plot
 bar_plot + coord_polar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-309-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-297-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -7969,7 +7594,7 @@ bar_plot + coord_polar()
 bar_plot + coord_polar(theta = "y")
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-310-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-298-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -7998,7 +7623,7 @@ dodged_bar_plot + coord_polar(theta = "y")
 dodged_bar_plot
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-312-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-300-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8007,7 +7632,7 @@ dodged_bar_plot
 dodged_bar_plot + coord_polar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-313-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-301-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8016,7 +7641,7 @@ dodged_bar_plot + coord_polar()
 dodged_bar_plot + coord_polar(theta = "y")
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-314-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-302-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8198,7 +7823,7 @@ Used to avoid "collisions" in the plot objects:
   geom_boxplot())
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-316-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-304-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-left-narrow[
@@ -8223,7 +7848,7 @@ ggplot(diamonds,aes(x = color, y = price, color = clarity)) +
   geom_boxplot(position = "identity")
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-318-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-306-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8233,7 +7858,7 @@ ggplot(diamonds,aes(x = color, y = price, color = clarity)) +
          geom_boxplot(position = "dodge")
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-319-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-307-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 .footnote[`position = "dodge"` is the default for boxplots, so you don't need to specify it.]
 
@@ -8245,7 +7870,7 @@ ggplot(diamonds,aes(x = color, y = price, color = clarity)) +
          geom_boxplot(position = position_dodge(width = 1))
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-320-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-308-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 .footnote[`position = "dodge"` is the default for boxplots, so you don't need to specify it.]
 
@@ -8408,7 +8033,7 @@ ggplot() +
 
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-321-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-309-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8443,9 +8068,8 @@ names(p)
 ```
 
 ```
-## [1] "data"        "layers"      "scales"      "mapping"    
-## [5] "theme"       "coordinates" "facet"       "plot_env"   
-## [9] "labels"
+## [1] "data"        "layers"      "scales"      "mapping"     "theme"       "coordinates"
+## [7] "facet"       "plot_env"    "labels"
 ```
 .medi[
 
@@ -8510,6 +8134,13 @@ minard = read_csv("data/minard.csv");minard_cities = read_csv("data/minard-citie
                                     group = division)))
 ```
 
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+```
+
 &lt;img src="workshop_files/figure-html/minardpt1-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 
@@ -8544,7 +8175,7 @@ Some things that are still not great about this plot:
   - round instead of square.
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-327-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-315-1.png" width="99%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -8585,7 +8216,7 @@ ggplot(minard) +
 ```
 ]]
 .pull-right-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-328-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-316-1.png" width="99%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -8614,7 +8245,7 @@ p = ggplot() + geom_histogram(aes(x = carat), data = diamonds)
 ]
 
 .pull-left-narrow[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-330-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-318-1.png" width="99%" style="display: block; margin: auto;" /&gt;
 ]
 
 - Modify your histogram code so that it uses a different geom, for example `geom_line` or `geom_point`.
@@ -8702,10 +8333,10 @@ class: middle
 &lt;br&gt;
 
 .pull-left[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-331-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-319-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-332-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-320-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -8758,7 +8389,7 @@ In September 2019, YouGov survey asked 1,639 GB adults the following question:
 .pull-right[
 
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-335-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-323-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[ 
@@ -8783,7 +8414,7 @@ ggplot(brexit, aes(x = opinion)) +
 ```
 ]
 .pull-right-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-336-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-324-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -8798,7 +8429,7 @@ ggplot(brexit, aes(x = fct_infreq(opinion))) +
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-337-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-325-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -8816,7 +8447,7 @@ ggplot(brexit, aes(x = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-338-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-326-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -8831,7 +8462,7 @@ ggplot(brexit, aes(x = region)) +
 ]
 
 .pull-right-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-339-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-327-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -8858,7 +8489,7 @@ brexit &lt;- brexit %&gt;%
 
 ---
 .pull-left-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-341-1.png" width="120%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-329-1.png" width="120%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 ## Clean up labels
@@ -8884,7 +8515,7 @@ brexit &lt;- brexit %&gt;%
 
 ## Clean!
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-343-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-331-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8896,7 +8527,7 @@ class: middle
 
 ## Long categories can be hard to read
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-344-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-332-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -8909,7 +8540,7 @@ ggplot(brexit, aes(x = region)) +
 * coord_flip()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-345-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-333-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -8921,7 +8552,7 @@ ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-346-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-334-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -8939,7 +8570,7 @@ ggplot(brexit, aes(x = region)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-347-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-335-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -8959,7 +8590,7 @@ ggplot(brexit, aes(y = fct_rev(region))) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-348-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-336-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -8981,13 +8612,13 @@ class: middle
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-349-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-337-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-350-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-338-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9002,11 +8633,11 @@ ggplot(brexit, aes(y = opinion, fill = region)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-351-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-339-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-352-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-340-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9021,11 +8652,11 @@ ggplot(brexit, aes(y = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-353-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-341-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-354-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-342-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9041,11 +8672,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-355-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-343-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-356-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-344-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9063,11 +8694,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-357-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-345-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-358-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-346-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9087,13 +8718,13 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-359-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-347-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-360-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-348-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9117,7 +8748,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-361-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-349-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9142,7 +8773,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-362-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-350-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9190,13 +8821,13 @@ ggplot(brexit, aes(y= region, fill = opinion)) +
 
 .pull-right[
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-364-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-352-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-365-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-353-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -9223,13 +8854,13 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .pull-right-narrow[
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-366-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-354-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 .center[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-367-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-355-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -9266,14 +8897,14 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .pull-right-narrow[
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-369-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-357-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
 .center[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-370-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-358-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -9300,7 +8931,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ---
 
 .center[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-371-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-359-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -9309,11 +8940,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ## Spot the Difference
 
 .pull-right-narrow[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-372-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-360-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-left-narrow[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-373-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-361-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -9340,20 +8971,20 @@ ggplot(brexit, aes(y = region, fill = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-374-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-362-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 ---
 .center[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-375-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-363-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 ### Clean up labels (Again)
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-376-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-364-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -9586,7 +9217,7 @@ dim(squirrels)
 ```
 
 ```
-## [1] 3023   38
+## [1] 3023   35
 ```
 
 ---
@@ -9600,22 +9231,22 @@ squirrels %&gt;% head()
 ```
 
 ```
-## # A tibble: 6 × 38
-##    long   lat unique_squirrel_id hectare NS    EW    shift
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 -74.0  40.8 13A-PM-1014-04     13A     13    A     PM   
-## 2 -74.0  40.8 15F-PM-1010-06     15F     15    F     PM   
-## 3 -74.0  40.8 19C-PM-1018-02     19C     19    C     PM   
-## 4 -74.0  40.8 21B-AM-1019-04     21B     21    B     AM   
-## 5 -74.0  40.8 23A-AM-1018-02     23A     23    A     AM   
-## 6 -74.0  40.8 38H-PM-1012-01     38H     38    H     PM   
-## # ℹ 31 more variables: date &lt;date&gt;,
-## #   hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
+## # A tibble: 6 × 35
+##    long   lat unique_squirrel_id hectare shift date      
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
+## 1 -74.0  40.8 13A-PM-1014-04     13A     PM    2018-10-14
+## 2 -74.0  40.8 15F-PM-1010-06     15F     PM    2018-10-10
+## 3 -74.0  40.8 19C-PM-1018-02     19C     PM    2018-10-18
+## 4 -74.0  40.8 21B-AM-1019-04     21B     AM    2018-10-19
+## 5 -74.0  40.8 23A-AM-1018-02     23A     AM    2018-10-18
+## 6 -74.0  40.8 38H-PM-1012-01     38H     PM    2018-10-12
+## # ℹ 29 more variables: hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
 ## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
 ## #   combination_of_primary_and_highlight_color &lt;chr&gt;,
 ## #   color_notes &lt;chr&gt;, location &lt;chr&gt;,
 ## #   above_ground_sighter_measurement &lt;chr&gt;,
-## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;, …
+## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;,
+## #   climbing &lt;lgl&gt;, eating &lt;lgl&gt;, foraging &lt;lgl&gt;, …
 ```
 ]
 
@@ -9630,22 +9261,22 @@ squirrels %&gt;% tail()
 ```
 
 ```
-## # A tibble: 6 × 38
-##    long   lat unique_squirrel_id hectare NS    EW    shift
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1 -74.0  40.8 6D-PM-1020-01      06D     06    D     PM   
-## 2 -74.0  40.8 21H-PM-1018-01     21H     21    H     PM   
-## 3 -74.0  40.8 31D-PM-1006-02     31D     31    D     PM   
-## 4 -74.0  40.8 37B-AM-1018-04     37B     37    B     AM   
-## 5 -74.0  40.8 21C-PM-1006-01     21C     21    C     PM   
-## 6 -74.0  40.8 7G-PM-1018-04      07G     07    G     PM   
-## # ℹ 31 more variables: date &lt;date&gt;,
-## #   hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
+## # A tibble: 6 × 35
+##    long   lat unique_squirrel_id hectare shift date      
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;    
+## 1 -74.0  40.8 6D-PM-1020-01      06D     PM    2018-10-20
+## 2 -74.0  40.8 21H-PM-1018-01     21H     PM    2018-10-18
+## 3 -74.0  40.8 31D-PM-1006-02     31D     PM    2018-10-06
+## 4 -74.0  40.8 37B-AM-1018-04     37B     AM    2018-10-18
+## 5 -74.0  40.8 21C-PM-1006-01     21C     PM    2018-10-06
+## 6 -74.0  40.8 7G-PM-1018-04      07G     PM    2018-10-18
+## # ℹ 29 more variables: hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
 ## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
 ## #   combination_of_primary_and_highlight_color &lt;chr&gt;,
 ## #   color_notes &lt;chr&gt;, location &lt;chr&gt;,
 ## #   above_ground_sighter_measurement &lt;chr&gt;,
-## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;, …
+## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;,
+## #   climbing &lt;lgl&gt;, eating &lt;lgl&gt;, foraging &lt;lgl&gt;, …
 ```
 ]
 
@@ -9695,7 +9326,7 @@ ggplot(squirrels, aes(x = long, y = lat)) +
 ]
 ]
 .pull-left-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-386-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-374-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -9729,7 +9360,7 @@ ggplot(squirrels, aes(x = long, y = lat,
 ]
 ]
 .pull-left-wide[
-&lt;img src="workshop_files/figure-html/unnamed-chunk-387-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-375-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 					   
 ---
@@ -9775,7 +9406,7 @@ squirrels %&gt;%
 ## ! The package "hexbin" is required for `stat_binhex()`
 ```
 
-&lt;img src="workshop_files/figure-html/unnamed-chunk-388-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop_files/figure-html/unnamed-chunk-376-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -10302,12 +9933,9 @@ map_chr(exam_scores, mean)
 ```
 
 ```
-## Warning: Automatic coercion from double to character was deprecated in
-## purrr 1.0.0.
-## ℹ Please use an explicit call to `as.character()` within
-##   `map_chr()` instead.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this
-## warning was generated.
+## Warning: Automatic coercion from double to character was deprecated in purrr 1.0.0.
+## ℹ Please use an explicit call to `as.character()` within `map_chr()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 ```
 
 ```
@@ -10699,7 +10327,7 @@ g()
 
 ```
 ## function(x) x^2
-## &lt;environment: 0x000001f84cc42a10&gt;
+## &lt;environment: 0x0000013bc97168c8&gt;
 ```
 
 ```r
@@ -10777,36 +10405,25 @@ ls()
 ```
 
 ```
-##  [1] "add_2"                    "bar_plot"                
-##  [3] "brexit"                   "cat_lovers"              
-##  [5] "d"                        "dates"                   
-##  [7] "dev.off"                  "df"                      
-##  [9] "dodged_bar_plot"          "edi_airbnb"              
-## [11] "edi_airbnb_cleaned_names" "edi_airbnb_col_names"    
-## [13] "enrollment"               "exam_scores"             
-## [15] "exam1"                    "exam2"                   
-## [17] "f"                        "fav_food"                
-## [19] "fig"                      "g"                       
-## [21] "h"                        "hectare_centroids"       
-## [23] "hectare_counts"           "heights"                 
-## [25] "hook_output"              "hotels"                  
-## [27] "jabba"                    "l"                       
-## [29] "last_row"                 "loans"                   
-## [31] "loans_full_schema"        "minard"                  
-## [33] "minard_cities"            "nobel"                   
-## [35] "oddcount"                 "oddcount_output"         
-## [37] "out"                      "p"                       
-## [39] "plot_both"                "plot_troops"             
-## [41] "prices"                   "professions"             
-## [43] "purchases"                "sales"                   
-## [45] "sales_files"              "scrape_art_info"         
-## [47] "square"                   "square_invisible"        
-## [49] "squirrels"                "starwars"                
-## [51] "steak_directions"         "survey"                  
-## [53] "t"                        "ti"                      
-## [55] "w"                        "width"                   
-## [57] "works"                    "x"                       
-## [59] "xsquared"                 "y"
+##  [1] "add_2"                    "bar_plot"                 "brexit"                  
+##  [4] "cat_lovers"               "d"                        "dates"                   
+##  [7] "dev.off"                  "df"                       "dodged_bar_plot"         
+## [10] "edi_airbnb"               "edi_airbnb_cleaned_names" "edi_airbnb_col_names"    
+## [13] "enrollment"               "exam_scores"              "exam1"                   
+## [16] "exam2"                    "fav_food"                 "fig"                     
+## [19] "g"                        "hectare_centroids"        "hectare_counts"          
+## [22] "heights"                  "hook_output"              "hotels"                  
+## [25] "jabba"                    "l"                        "last_row"                
+## [28] "loans"                    "loans_full_schema"        "minard"                  
+## [31] "minard_cities"            "nobel"                    "oddcount"                
+## [34] "oddcount_output"          "out"                      "p"                       
+## [37] "plot_both"                "plot_troops"              "prices"                  
+## [40] "professions"              "purchases"                "sales"                   
+## [43] "sales_files"              "scrape_art_info"          "square"                  
+## [46] "square_invisible"         "squirrels"                "starwars"                
+## [49] "steak_directions"         "survey"                   "ti"                      
+## [52] "width"                    "works"                    "x"                       
+## [55] "xsquared"                 "y"
 ```
 
 ---
@@ -10881,7 +10498,7 @@ f(1)
 
 ```
 ## h's environment:  
-## &lt;environment: 0x000001f84fa993d8&gt;
+## &lt;environment: 0x0000013bca1402a0&gt;
 ## h's parent environment: 
 ## &lt;environment: R_GlobalEnv&gt;
 ```
@@ -10922,14 +10539,13 @@ f(5)
 ## h's environment: 
 ## &lt;environment: R_GlobalEnv&gt;
 ## h's parent environment: 
-## &lt;environment: 0x000001f84bd15cb0&gt;
+## &lt;environment: 0x0000013bd3e5dd98&gt;
 ## attr(,"name")
 ## [1] ".conflicts"
 ```
 
 ```
-## Warning in h(): Incompatible methods ("Ops.data.frame",
-## "Ops.Date") for "*"
+## Warning in h(): Incompatible methods ("Ops.data.frame", "Ops.Date") for "*"
 ```
 
 ```
