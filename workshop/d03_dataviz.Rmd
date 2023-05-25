@@ -258,12 +258,12 @@ library(Tmisc)
 quartet
 ```
 
-.pull-left[
+.midi.pull-left[
 ```{r quartet-view1, echo = FALSE}
 quartet[1:22,]
 ```
 ] 
-.pull-right[
+.midi.pull-right[
 ```{r quartet-view2, echo = FALSE}
 quartet[23:44,]
 ```
@@ -272,8 +272,9 @@ quartet[23:44,]
 ---
 
 ## Summarizing Anscombe's quartet
-
-```{r quartet-summary}
+<br>
+.medi.pull-left-narrow[
+```{r quartet-summary,eval=FALSE}
 quartet %>%
   group_by(set) %>%
   summarize(
@@ -284,17 +285,22 @@ quartet %>%
     r = cor(x, y)
   )
 ```
-
+]
+.pull-right-wide[
+```{r ref.label="quartet-summary",echo=FALSE}
+```
+]
 ---
 
 ## Visualizing Anscombe's quartet
-
+<br>
+.middle[
 ```{r quartet-plot, echo = FALSE, out.width = "80%", fig.asp = 0.5}
 ggplot(quartet, aes(x = x, y = y)) +
   geom_point() +
   facet_wrap(~ set, ncol = 4)
 ```
-
+]
 ---
 class: middle
 
