@@ -1,5 +1,5 @@
 ---
-title: "Visualizing numerical and categorial data<br> `r emo::ji('numbers')`"
+title: "Visualizing numerical and categorial data<br> `r emo::ji('stars')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -25,23 +25,26 @@ loans_full_schema <- loans_full_schema %>%
 
 class: middle
 
-# Terminology
+# Introduction to Visualizing Data
 
 ---
 
-## Number of variables involved
+## Terminology and Overview
+
+<br>
+
+In this session, we will delve into the fascinating world of data visualization using data from a galaxy far, far away - the Star Wars universe.
+
+We'll cover:
 
 - Univariate data analysis - distribution of single variable
 - Bivariate data analysis - relationship between two variables
-- Multivariate data analysis - relationship between many variables at once, 
-  - usually focusing on the relationship between two while conditioning for others
+- Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
 
----
 
-## Types of variables
+- Variables can be **Numerical** (classified as **continuous** or **discrete**)¹ .footnote[¹based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.] or 
+  - **Categorical** (determined as **ordinal** or not based on the natural ordering of levels).
 
-- **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
-- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
 
 ---
 
@@ -70,16 +73,20 @@ knitr::include_graphics("img/lending-club.png")
 
 ---
 
-## Take a peek at data
+## A Glimpse at the Data
 
+We'll start by getting a brief overview of our dataset. 
+.medi[
 ```{r output.lines=15}
 library(openintro)
 glimpse(loans_full_schema)
 ```
-
+]
 ---
 
 ## Selected variables
+
+We then select a subset of variables that are particularly relevant for our exploration:
 
 ```{r}
 loans <- loans_full_schema %>%
@@ -92,39 +99,25 @@ glimpse(loans)
 
 ## Selected variables
 
+Here's a brief description of these variables:
+
 <br>
 
 .midi[
-variable        | description
-----------------|-------------
-`loan_amount`   |	Amount of the loan received, in US dollars
-`interest_rate` |	Interest rate on the loan, in an annual percentage
-`term`	        | The length of the loan, which is always set as a whole number of months
-`grade`	        | Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid
-`state`         |	US state where the borrower resides
-`annual_income` |	Borrower’s annual income, including any second income, in US dollars
-`homeownership`	| Indicates whether the person owns, owns but has a mortgage, or rents
-`debt_to_income` | Debt-to-income ratio
+variable        | description    | type
+----------------|----------------|-------------
+`loan_amount`   |	Amount of the loan received, in US dollars | numerical, continuous
+`interest_rate` |	Interest rate on the loan, in an annual percentage | numerical, continuous
+`term`	        | The length of the loan, which is always set as a whole number of months | numerical, discrete
+`grade`	        | .midi[Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid ]| categorical, ordinal
+`state`         |	US state where the borrower resides | categorical, not ordinal
+`annual_income` |	Borrower's annual income, including any second income, in US dollars | numerical, continuous
+`homeownership`	| Indicates whether the person owns, owns but has a mortgage, or rents | categorical, .medi[not ordinal]
+`debt_to_income` | Debt-to-income ratio | numerical, continuous
 ]
 
 ---
 
-## Variable types
-
-<br>
-
-variable        | type
-----------------|-------------
-`loan_amount`   |	numerical, continuous
-`interest_rate` |	numerical, continuous
-`term`	        | numerical, discrete
-`grade`	        | categorical, ordinal
-`state`         |	categorical, not ordinal
-`annual_income` |	numerical, continuous
-`homeownership`	| categorical, not ordinal
-`debt_to_income` | numerical, continuous
-
----
 
 class: middle
 
@@ -134,8 +127,18 @@ class: middle
 
 class: middle
 
-# Visualizing numerical data
+# Visualizing Numerical Data
 
+```{r, eval=FALSE,include=FALSE}
+<!--
+- Before we jump into visualizing numerical data, let's take a moment to discuss why it's important. 
+- Numerical data visualization allows us to see patterns, trends, and distributions in data. 
+- They provide a graphical representation of data which helps in understanding complex data easily. Let's start with Histograms.
+-->
+```
+
+```{r, eval=FALSE,include=FALSE}
+<!--
 ---
 
 ## Describing shapes of numerical distributions
@@ -147,20 +150,24 @@ class: middle
 - spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
 - unusual observations
 
----
 
+--> 
+```
+
+---
 class: middle
 
 # Histogram
 
 ---
 
-## Histogram
+## Histogram: `loan_amount`
 
 ```{r message = TRUE, out.width = "30%"}
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram()
 ```
+
 
 ---
 
