@@ -42,8 +42,8 @@ class: middle
 ]
 
 .pull-right[
-```{r echo=FALSE, out.width="90%"}
-knitr::include_graphics("../img/orangebook.png")
+```{r echo=FALSE, out.width="77%"}
+knitr::include_graphics("img/orangebook.png")
 ```
 ] 
 
@@ -72,10 +72,17 @@ class: middle
 > "The simple graph has brought more information to the data analyst's mind than any other device."
 
 > John Tukey
-
+.pull-left[
 - Data visualization is the creation and study of the visual representation of data.
-- Many tools for visualizing data (R is one of them) exist, as do many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and that's what we're going to use).
-
+- Many tools for visualizing data (R is one of them) exist, 
+  - as do many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and
+    - that's what we're going to use).
+    ]
+.pull-right[
+```{r echo=FALSE, out.width="57%"}
+knitr::include_graphics("img/orangebook.png")
+```
+] 
 ---
 
 ## ggplot2 $\in$ tidyverse
@@ -96,7 +103,7 @@ knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 ## Grammar of Graphics
 
 .pull-left-narrow[
-A grammar of graphics is a tool to concisely describe the components of a graphic
+- A grammar of graphics is a tool to concisely describe the components of a graphic
 ]
 .pull-right-wide[
 ```{r echo=FALSE, out.width="90%"}
@@ -148,15 +155,15 @@ arrange(heights, desc(elevation))
 ---
 ## Taking another³ look... thoughtfully
 
-Goals:
-+ Write down the set of numbers, keeping as much detail as
++ .large[Goals:]
+  + Write down the set of numbers, keeping as much detail as
 possible
-+ Pack the numbers efficiently, so you can see all of them at once
+  + Pack the numbers efficiently, so you can see all of them at once
 
 
 ---
 
-## Taking another³ look: Stem and Leaf
+## Taking another⁴ look: Stem and Leaf
 .pull-left[
 ```{r echo=TRUE, out.width="80%"}
 stem(heights$elevation)
@@ -179,20 +186,22 @@ of the line, the remainder at the ends.
 The stem-and-leaf plot shows that there are three groups of
 states:
 + Alaska
-+ The western and Rocky Mountain states (California, Colorado, Washington, Wyoming, Hawaii, Utah, New Mexico, Nevada, Montana, Idaho, Arizona, Oregon)
++ The western and Rocky Mountain states .tiny[(California, Colorado, Washington, Wyoming, Hawaii, Utah, New Mexico, Nevada, Montana, Idaho, Arizona, Oregon)]
 + All the other states
 
 --
+
 ```{r echo=FALSE}
 stem(heights$elevation)
 ```
+
 ---
 
-## Taking another⁴ look: Density
+## Taking another⁵ look: Density
 
 Compare the stem-and-leaf plot with a density estimate
 
-```{r echo=TRUE, out.width="60%"}
+```{r echo=TRUE, out.width="55%"}
 ggplot(heights, aes(x = elevation)) + geom_density()
 ```
 --
@@ -200,11 +209,11 @@ ggplot(heights, aes(x = elevation)) + geom_density()
 Alaska?
 
 ---
-## Taking another⁴ look: Density+
+## Taking another⁶ look: Density+
 
 Compare the stem-and-leaf plot with a density estimate
 
-```{r echo=TRUE, out.width="60%"}
+```{r echo=TRUE, out.width="55%"}
 ggplot(heights, aes(x = elevation)) + geom_density() + geom_rug()
 ```
 
@@ -229,14 +238,13 @@ class: middle
 - Each row is an **observation**
 - Each column is a **variable**
 
-.small[
-
+.center[.midi[
 ```{r message=FALSE}
 starwars
 ```
 
 ]
-
+]
 ---
 
 ## Luke Skywalker
@@ -248,11 +256,11 @@ starwars
 ## What's in the Star Wars data?
 
 Take a `glimpse` at the data:
-
+.medi[
 ```{r}
 glimpse(starwars)
 ```
-
+]
 ---
 
 .question[
@@ -379,8 +387,6 @@ library(tidyverse)
 class: middle
 
 # Wrapping Up... 
-
-
 
 
 ---

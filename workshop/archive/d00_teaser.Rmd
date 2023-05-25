@@ -3,18 +3,17 @@ title: "Welcome to Data Science <br> for Psychologists <br> `r emo::ji('cat')`"
 author: "S. Mason Garrison <br> Assistant Professor  <br> Wake Forest University"
 output:
   xaringan::moon_reader:
-    css: "../slides_dark.css"
+    css: "slides.css"
     lib_dir: libs
-    self_contained: TRUE
     nature:
       ratio: "16:9"
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-#      slideNumberFormat: ""
+      slideNumberFormat: ""
 ---
 
-```{r child = "../setup.Rmd",echo = F}
+```{r child = "./setup.Rmd",echo = F}
 ```
 
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE,include=FALSE}
@@ -22,13 +21,39 @@ output:
 #xaringan::inf_mr(cast_from = "..")
 #       slideNumberFormat: ""  
 library(tidyverse)
+
 if (!require("emo")) devtools::install_github("hadley/emo")
-library(emo)
 if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
 if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
+if (!require("fontawesome")) devtools::install_github("rstudio/fontawesome")
+if (!require("nycsquirrels18")) devtools::install_github("mine-cetinkaya-rundel/nycsquirrels18") 
+if (!require("dsbox")) devtools::install_github("rstudio-education/dsbox")
+if (!require("gradethis")) devtools::install_github("rstudio-education/gradethis")
+
+library(DT)
+library(Tmisc)
+library(dsbox)
+library(emo)
+library(fontawesome)
+library(here)
+library(htmltools)
+library(htmlwidgets)
+library(kableExtra)
+library(knitr)
+library(magick)
+library(openintro)
+library(palmerpenguins)
+library(readxl)
+library(reshape2)
+library(rvest)
+library(scales)
+library(skimr)
+
+conflict_prefer("col_double", "readr")
 ```
 
-class: center, middle 
+
+class: center, middle
 
 # Data Science for Psychologists Workshop
 ## APS Annual Convention
@@ -37,9 +62,47 @@ class: center, middle
 #### Wake Forest University
 
 ---
+
 class: middle
 
-# Workshop Overview!
+# A Little About Me
+
+---
+
+# Who Am I?
+
+.pull-left-wide[
+- My name is S. Mason Garrison
+- I'm an Assistant Professor of Quantitative Psychology 
+  - at Wake Forest University
+- I'm a Quantitative Psychologist and 
+  - Behavior Geneticist by training.
+]
+
+.center[
+```{r echo=FALSE, out.width="30%",fig.align = 'center'}
+knitr::include_graphics("img/greenmason.jpg")
+```
+]
+---
+
+
+## My Work
+
+<!-- rewrite
+- In addition to my work as an assistant professor, I'm also deeply involved in research, focused primarily on how we can leverage data science to improve our understanding of psychological phenomena
+- My substantive research interests span several areas, including individual differences, health inequity, and diversity science
+
+ -->
+
+---
+
+## Why I'm Here Today
+
+<!-- rewrite -->
+- I'm passionate about sharing my love for R with others, especially those within the field of psychology.
+- I believe that the tools and methodologies of data science can significantly enhance our ability to conduct impactful research in psychology
+- I'm excited to be here and share this journey with you!
 
 ---
 
@@ -94,12 +157,4 @@ class: middle
 knitr::include_graphics("img/plot007w.png")
 ```
 ]
-
 ---
-
-class: middle, inverse
-
-# See you Sunday!
-# May 28 at 9 a.m.
-
-

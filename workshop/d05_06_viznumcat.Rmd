@@ -431,27 +431,146 @@ ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
   geom_point()
 ```
 
+
+### Remember this Data?
+
+```{r message=FALSE}
+library(tidyverse)
+starwars
+```
+
+
+---
+### Perhaps now?
+```{r}
+glimpse(starwars)
+```
+
+---
+#### Recode hair color
+
+  ```{r }
+starwars <- starwars %>%
+  mutate(hair_color2 =
+           fct_other(hair_color,
+                     keep = c("black", "brown", "brown", "blond")
+           )
+  )
+```
 ---
 
-## Hex plot
 
-```{r warning = FALSE}
-ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
-  geom_hex()
+class: middle
+
+# Bar plot
+
+---
+
+## Bar plot
+
+```{r out.width="55%"}
+ggplot(data = starwars, mapping = aes(x = gender)) +
+  geom_bar()
 ```
 
 ---
 
-## Hex plot
+## Segmented bar plot: counts
 
-```{r warning = FALSE}
-ggplot(loans %>% filter(debt_to_income < 100), 
-       aes(x = debt_to_income, y = interest_rate)) +
-  geom_hex()
+```{r out.width="55%"}
+
+ggplot(data = starwars, mapping = aes(x = gender, 
+                  fill = hair_color))+ #<<
+  geom_bar()
+
 ```
 
 ---
 
+
+
+## Segmented bar plots
+
+```{r out.width="55%"}
+ggplot(data = starwars, mapping = aes(x = gender, 
+	   fill = hair_color2))+ #<<
+  geom_bar()
+```
+
+---
+
+## Segmented bar plots
+
+```{r out.width="55%"}
+ggplot(data = starwars, mapping = aes(x = gender, 
+	   fill = hair_color2))+ #<<
+  geom_bar()+ #<<
+  coord_flip()
+```
+
+---
+
+## Segmented bar plots: proportions
+
+```{r out.width="45%"}
+ggplot(data = starwars,
+       mapping = aes(x = gender, fill = hair_color2)) +
+  geom_bar(position = "fill") +
+  coord_flip()
+labs(y = "proportion")
+```
+
+
+---
+
+.question[
+    Which bar plot is a more useful representation for visualizing the relationship between gender and hair color?
+  ]
+
+.pull-left[
+```{r echo=FALSE, out.width = "100%"}
+ggplot(data = starwars, mapping = aes(x = gender, 
+                  fill = hair_color2)) +
+  geom_bar() +
+  coord_flip()
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width = "100%"}
+ggplot(data = starwars, mapping = aes(x = gender, 
+                  fill = hair_color2)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  labs(y = "proportion")
+```
+]
+
+---
+
+## Customizing bar plots
+
+.pull-left[
+```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE}
+```
+]
+.pull-right[.small[
+```{r bar-custom, fig.show = "hide", warning = FALSE}
+ggplot(starwars, aes(y = gender, #<<
+                  fill = hair_color2)) +
+  geom_bar(position = "fill") +
+  labs( #<<
+    x = "Proportion", #<<
+    y = "Gender", #<<
+    fill = "Hair Color", #<<
+    title = "Hair Colors of Starwars", #<<
+    subtitle = "by gender" #<<
+  ) #<<
+```
+]
+
+
+
+---
 
 # Sources
 
