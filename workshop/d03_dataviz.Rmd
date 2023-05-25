@@ -32,13 +32,15 @@ library(dsbox)
 
 class: middle
 
-# Exploratory data analysis
+#  Exploring Our Data: What is in a dataset?
 
 ---
 
 
 .pull-left[ 
 > "We will be exploring numbers. We need to handle them easily and look at them effectively. Techniques for handling and looking — whether graphical, arithmetic, or intermediate — will be important."
+
+> John Tukey
 ]
 
 .pull-right[
@@ -47,189 +49,6 @@ knitr::include_graphics("img/orangebook.png")
 ```
 ] 
 
-
----
-
-
-## What is EDA?
-
-- Exploratory data analysis (EDA) is an approach to analyzing data sets to summarize its main characteristics.
-- Today, we'll be focusing on the visual aspects
-- But we might also calculate summary statistics and perform data wrangling/ manipulation/transformation at (or before) this stage of the analysis. 
-  - That's what we'll focus on next.
-
----
-
-class: middle
-
-# Data visualization
-
----
-
-## Data visualization
-
-
-> "The simple graph has brought more information to the data analyst's mind than any other device."
-
-> John Tukey
-.pull-left[
-- Data visualization is the creation and study of the visual representation of data.
-- Many tools for visualizing data (R is one of them) exist, 
-  - as do many approaches/systems within R for making data visualizations (**ggplot2** is one of them, and
-    - that's what we're going to use).
-    ]
-.pull-right[
-```{r echo=FALSE, out.width="57%"}
-knitr::include_graphics("img/orangebook.png")
-```
-] 
----
-
-## ggplot2 $\in$ tidyverse
-
-.pull-left[
-```{r echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
-```
-] 
-.pull-right[ 
-- **ggplot2** is tidyverse's data visualization package 
-- `gg` in "ggplot2" stands for Grammar of Graphics 
-- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
-]
-
----
-
-## Grammar of Graphics
-
-.pull-left-narrow[
-- A grammar of graphics is a tool to concisely describe the components of a graphic
-]
-.pull-right-wide[
-```{r echo=FALSE, out.width="90%"}
-knitr::include_graphics("img/grammar-of-graphics.png")
-```
-]
-
-.footnote[ Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)]
-
----
-
-class: middle
-
-# A First (and Reproducible) Example
-
----
-
-## Reading in the Data
-
-+ Heights of the highest points by state
-
-```{r echo=TRUE}
-## 
-## load required packages and data
-library(tidyverse)
-options(tibble.print_min = 10)
-heights = read_csv("data/highest-points-by-state.csv")
-## switch from feet to meters
-heights$elevation = heights$elevation * .3048
-```
----
-## Taking a look
-```{r echo=TRUE}
-heights
-```
-
----
-## Taking another look
-```{r echo=TRUE}
-arrange(heights, elevation)
-```
-
----
-## Taking another another look
-```{r echo=TRUE}
-arrange(heights, desc(elevation))
-```
-
----
-## Taking another³ look... thoughtfully
-
-+ .large[Goals:]
-  + Write down the set of numbers, keeping as much detail as
-possible
-  + Pack the numbers efficiently, so you can see all of them at once
-
-
----
-
-## Taking another⁴ look: Stem and Leaf
-.pull-left[
-```{r echo=TRUE, out.width="80%"}
-stem(heights$elevation)
-```
-]
---
-
-.pull-right[ 
-<br><br><br><br>
-+ Notice that parts of the numbers (the beginnings) are
-repeated.
-+ The first digit of each number is printed at the beginning
-of the line, the remainder at the ends.
-+ The first digit is the "stem", the remainder are the "leaves".
-]
----
-
-# What have we learned?
-
-The stem-and-leaf plot shows that there are three groups of
-states:
-+ Alaska
-+ The western and Rocky Mountain states .tiny[(California, Colorado, Washington, Wyoming, Hawaii, Utah, New Mexico, Nevada, Montana, Idaho, Arizona, Oregon)]
-+ All the other states
-
---
-
-```{r echo=FALSE}
-stem(heights$elevation)
-```
-
----
-
-## Taking another⁵ look: Density
-
-Compare the stem-and-leaf plot with a density estimate
-
-```{r echo=TRUE, out.width="55%"}
-ggplot(heights, aes(x = elevation)) + geom_density()
-```
---
-
-Alaska?
-
----
-## Taking another⁶ look: Density+
-
-Compare the stem-and-leaf plot with a density estimate
-
-```{r echo=TRUE, out.width="55%"}
-ggplot(heights, aes(x = elevation)) + geom_density() + geom_rug()
-```
-
-
-Alaska!
-
----
-class: middle
-
-# Wrapping Up... 
-
----
-
-class: middle
-
-# What is in a dataset?
 
 ---
 
@@ -362,11 +181,20 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 
 ## Hello ggplot2!
 
-.pull-left-wide[
+.pull-left-narrow[
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
+```
+] 
+.pull-right[
+- **ggplot2** is tidyverse's data visualization package 
+- `gg` in "ggplot2" stands for Grammar of Graphics 
+- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
 - `ggplot()` is the main function in ggplot2
 - Plots are constructed in layers
 - Structure of the code for plots can be summarized as
-
+]
+--
 ```{r eval = FALSE}
 ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
@@ -374,6 +202,24 @@ ggplot(data = [dataset],
    other options
 ```
 
+
+---
+
+## ggplot2 $\in$ tidyverse
+
+
+.pull-right[ 
+- **ggplot2** is tidyverse's data visualization package 
+- `gg` in "ggplot2" stands for Grammar of Graphics 
+- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+]
+
+---
+
+## Grammar of Graphics
+
+.pull-left-narrow[
+- A grammar of graphics is a tool to concisely describe the components of a graphic
 - The ggplot2 package comes with the tidyverse
 
 ```{r}
@@ -381,7 +227,15 @@ library(tidyverse)
 ```
 
 - For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+
 ]
+.pull-right-wide[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/grammar-of-graphics.png")
+```
+]
+
+.footnote[ Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)]
 
 ---
 class: middle
