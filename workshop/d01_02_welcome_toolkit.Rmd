@@ -10,7 +10,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""
+#      slideNumberFormat: ""
 ---
 
 
@@ -48,20 +48,19 @@ class: middle
 
 # Who Am I?
 
-.pull-left-wide[
+.pull-left[
 - My name is S. Mason Garrison
-- I'm an Assistant Professor of Quantitative Psychology 
-  - at Wake Forest University
+- I'm an Assistant Professor of Quantitative Psychology at
+  - Wake Forest University
 - I'm a Quantitative Psychologist and 
   - Behavior Geneticist by training.
 ]
 
-.center[
-```{r echo=FALSE, out.width="30%",fig.align = 'center'}
+.center.pull-right[
+```{r echo=FALSE, out.width="90%"}
 knitr::include_graphics("img/greenmason.jpg")
 ```
 ]
-
 
 ---
 
@@ -69,29 +68,39 @@ knitr::include_graphics("img/greenmason.jpg")
 
 <!-- rewrite -->
 
-- As an active researcher, my substantive work focuses on examining the relationships between socioeconomic status, individual differences, and health.
-- I use genetically-informed designs to approach these complex questions, as the nature of my research are impractical for experiments.
+- My substantive work focuses on examining the relationships between socioeconomic status, individual differences, and health.
+- I use genetically-informed designs to approach these questions, as the nature of my research are impractical for experiments.
 - Instead, I rely heavily on pre-existing data sets, working with tons data, quite literally in some cases.
-- My current work is heavily centered around data modeling for all people of Utah and their ancestors. We've developed some novel pedigree models to comparing cousins up to the 11th degree. At the moment, we're looking at outcomes that the National Institute on Aging (NIA) is interested in.
-- This work represents a unique intersection of data science, genetics, and psychology..
+- My current work is heavily centered around data modeling for all people of Utah and their ancestors. 
+  - We've (Mike Hunter & Alex Burt) developed some novel pedigree models to comparing cousins up to the 11th degree. 
+  - At the moment, we're looking at outcomes that the National Institute on Aging (NIA) is interested in....
+
 
 
 ---
 
 ## Why I'm Here Today
 
-<!-- rewrite -->
+<!-- rewrite -->.large[
 - I'm passionate about sharing my love for R and data science with others, especially those within the field of psychology.
-- I believe that the tools and methodologies of data science can significantly enhance our ability to conduct efficient and impactful research in psychology
+- I believe that the tools and methodologies of data science can 
+  - meaningfully enhance our ability to conduct efficient and impactful research in psychology
 - I'm excited to be here and share this course with you!
-
+]
 ---
-<!-- rewrite -->
-## Fun Facts About Me
 
+## Fun Facts About Me
+.pull-left.large[
 - I'm a cat lover! (as you might have guessed from my use of `r emo::ji('cat')`)
-- I enjoy automating things and pretty active on wikipedia. 
+- I enjoy automating things and *pretty active* on wikipedia. 
 - I'm a chai tea enthusiast!
+]
+--
+.pull-right[
+```{r echo=FALSE, out.width="100%",fig.align = 'center'}
+knitr::include_graphics("img/wiki.png")
+```
+]
 
 ---
 
@@ -101,7 +110,36 @@ class: middle
 
 ---
 
+# Workshop Disclaimer
+.pull-left[
+- This workshop is adapted from my semester-long Data Science for Psychologists class. 
+- That class is fully-flipped, so you're going to experience the live version. 
+- However, I definitely encourage you to check out the full thing.
+]
+.pull-right[
+```{r echo=FALSE, out.width="95%",fig.align = 'center'}
+knitr::include_graphics("img/rbook.png")
+```
+]
+
+```{r ref.label="qr",echo=FALSE,out.width="10%"}
+```
+
+.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/) 
+]
+---
+
+```{r qr}
+library(qrcode)
+code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
+plot(code)
+```
+
+---
+
 # Workshop Overview
+
 
 - .large[<i class="fa fa-database fa"></i> Welcome to R and the tidyverse]
 --
@@ -184,17 +222,26 @@ Data science is an exciting discipline that allows you to turn raw data into und
 ---
 
 
-## What/where is this course?
+## Where is this course?
 
-<br><br><br>
-.large[
-.center[This class is streamlined from my graduate-level data science class. It's the 3rd and final methods class for our master's students.]]
-<br><br><br><br><br>
-
-.large[
+<br>
 .center[
-[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
+```{r ref.label="qr",echo=FALSE,out.width="20%"}
+```
+
+<br>
+Notes: [DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
 ]
+
+<br>
+.center[
+```{r,echo=FALSE,out.width="20%"}
+library(qrcode)
+code <- qr_code("https://github.com/DataScience4Psych/slides/tree/main/workshop")
+plot(code)
+```
+<br>
+Slides: [github.com/DataScience4Psych/slides/tree/main/workshop](https://github.com/DataScience4Psych/slides/tree/main/workshop)
 ]
 
 ---
