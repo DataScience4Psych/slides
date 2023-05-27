@@ -409,6 +409,7 @@ ggplot(data = penguins,
 # Code
 
 ```{r penguins-10-nohighlight, fig.show = "hide",warning=FALSE}
+
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,

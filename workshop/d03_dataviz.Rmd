@@ -203,18 +203,10 @@ ggplot(data = [dataset],
 ```
 
 
----
-
-## ggplot2 $\in$ tidyverse
-
-
-.pull-right[ 
-
-]
 
 ---
 
-## Grammar of Graphics
+## ggplot2 $\in$ tidyverse a.k.a. Grammar of Graphics
 
 .pull-left-narrow[
 - **ggplot2** is tidyverse's data visualization package 

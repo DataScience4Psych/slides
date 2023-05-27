@@ -33,7 +33,7 @@ class: middle
 
 <br>
 
-In this session, we will delve into the fascinating world of data visualization using data from a galaxy far, far away - the Star Wars universe.
+In this chunk, we will delve into the fascinating world of data visualization.
 
 We'll cover:
 
@@ -62,8 +62,7 @@ class: middle
   - a platform that allows individuals to lend to each other
 - Not all loans are created equal 
   - ease of getting a loan depends on (apparent) ability to repay the loan
-- Data includes loans *made* 
-  - (these data are not loan applications)
+- Data includes loans *made*, rather than loan applications.
 ]
 .pull-right-narrow[
 ```{r echo=FALSE, out.width = "100%"}
@@ -116,12 +115,7 @@ variable        | description    | type
 `debt_to_income` | Debt-to-income ratio | numerical, continuous
 ]
 
----
 
-
-class: middle
-
-# Wrapping Up...
 
 ---
 
@@ -157,7 +151,7 @@ class: middle
 ---
 class: middle
 
-# Histogram
+## Histograms
 
 ---
 
@@ -171,26 +165,26 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Histograms and binwidth 
+## Histograms and Binwidth
 
-+ binwidth = 1000
+Let's explore the `loan_amount` variable with different binwidths.
 
-```{r out.width = "30%"}
-ggplot(loans, aes(x = loan_amount)) +
+.pull-left[
+```{r out.width = "80%"}
+ggplot(loans, 
+       aes(x = loan_amount)) +
   geom_histogram(binwidth = 1000)
 ```
-
----
-
-## binwidth = 5000
-```{r out.width = "30%"}
-ggplot(loans, aes(x = loan_amount)) +
+]
+--
+.pull-right[
+```{r out.width = "80%"}
+ggplot(loans, 
+       aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000)
 ```
-
+]
 ---
-
-## binwidth = 20000
 
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
@@ -199,9 +193,13 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
+
 ## Customizing histograms
 
+We can further customize the histograms by adjusting labels, colors, and other properties.
+
 .pull-left[
+
 ```{r ref.label = "hist-custom",out.width = "100%", echo = FALSE, warning = FALSE}
 ```
 
@@ -269,11 +267,12 @@ ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
 
 class: middle
 
-# Density plot
+
+## Density Plots
 
 ---
 
-## Density plot
+## Density Plot
 
 ```{r,out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
@@ -284,17 +283,21 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ## Density plots and adjusting bandwidth
 
+Density plots allow us to visualize the distribution of numerical data with varying bandwidths.
+
 .pull-left[
 + adjust = 0.5
 ```{r out.width = "50%"}
-ggplot(loans, aes(x = loan_amount)) +
+ggplot(loans, 
+       aes(x = loan_amount)) +
   geom_density(adjust = 0.5)
 ```
 ]
 .pull-right[
 + adjust = 1
 ```{r out.width = "50%"}
-ggplot(loans, aes(x = loan_amount)) +
+ggplot(loans, 
+       aes(x = loan_amount)) +
   geom_density(adjust = 1) # default bandwidth
 ```
 ]
@@ -308,7 +311,9 @@ ggplot(loans, aes(x = loan_amount)) +
 
 ---
 
-## Customizing density plots
+## Customizing Density Plots
+
+We can customize density plots by adding labels, titles, and adjusting other visual properties.
 
 .pull-left[
 ```{r ref.label = "density-custom", echo = FALSE, warning = FALSE,out.width = "100%"}
@@ -326,6 +331,10 @@ ggplot(loans, aes(x = loan_amount)) +
 ```
 ]
 ]
+
+
+
+
 
 ---
 
@@ -405,7 +414,7 @@ ggplot(loans, aes(x = interest_rate)) +
 ## Adding a categorical variable
 
 .pull-left[
-```{r ref.label = "box-cat", echo = FALSE, warning = FALSE}
+```{r ref.label = "box-cat", echo = FALSE, warning = FALSE,out.width = "100%"}
 ```
 ]
 .pull-right[.small[
@@ -423,47 +432,8 @@ ggplot(loans, aes(x = interest_rate,
 ]
 ]
 
----
-
-class: middle
-
-# Relationships numerical variables
-
----
-
-## Scatterplot
-
-```{r warning = FALSE}
-ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
-  geom_point()
-```
 
 
-### Remember this Data?
-
-```{r message=FALSE}
-library(tidyverse)
-starwars
-```
-
-
----
-### Perhaps now?
-```{r}
-glimpse(starwars)
-```
-
----
-#### Recode hair color
-
-  ```{r }
-starwars <- starwars %>%
-  mutate(hair_color2 =
-           fct_other(hair_color,
-                     keep = c("black", "brown", "brown", "blond")
-           )
-  )
-```
 ---
 
 
@@ -474,6 +444,20 @@ class: middle
 ---
 
 ## Bar plot
+
+
+
+```{r stars,include=FALSE }
+starwars <- starwars %>%
+  mutate(hair_color2 =
+           fct_other(hair_color,
+                     keep = c("black", 
+                              "brown", "brown",
+                              "blond")
+           )
+  )
+```
+
 
 ```{r out.width="55%"}
 ggplot(data = starwars, mapping = aes(x = gender)) +
@@ -504,6 +488,13 @@ ggplot(data = starwars, mapping = aes(x = gender,
   geom_bar()
 ```
 
+
+---
+# For the curious...
+
+```{r ref.label = "stars", echo = TRUE, warning = FALSE}
+```
+
 ---
 
 ## Segmented bar plots
@@ -519,7 +510,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Segmented bar plots: proportions
 
-```{r out.width="45%"}
+```{r out.width="43%"}
 ggplot(data = starwars,
        mapping = aes(x = gender, fill = hair_color2)) +
   geom_bar(position = "fill") +
@@ -556,6 +547,8 @@ ggplot(data = starwars, mapping = aes(x = gender,
 
 ## Customizing bar plots
 
+We have flexibility in customizing bar plots by adjusting labels, titles, colors, and other visual properties.
+
 .pull-left[
 ```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE}
 ```
@@ -575,7 +568,16 @@ ggplot(starwars, aes(y = gender, #<<
 ```
 ]
 
+---
 
+class: middle
+
+
+## Summary and Wrapping Up
+
+- In this session, we explored various techniques for visualizing numerical and categorical data. 
+- We examined histograms, density plots, bar plots, and scatterplots to gain insights into the relationships within the data. 
+- By effectively visualizing data, we can uncover patterns and trends that lead to deeper understanding.
 
 ---
 
