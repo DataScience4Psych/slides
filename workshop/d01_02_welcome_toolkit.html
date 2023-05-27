@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Welcome to Data Science   for Psychologists   🐱</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="S. Mason Garrison   Assistant Professor   Wake Forest University" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Welcome to Data Science <br> for Psychologists <br> 🐱
+]
+.author[
+### S. Mason Garrison <br> Assistant Professor <br> Wake Forest University
+]
+
+---
+
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+class: center, middle 
+
+# Data Science for Psychologists Workshop
+## APS Annual Convention
+### Mason Garrison
+#### Assistant Professor of Quantitative Psychology
+#### Wake Forest University
+
+---
+
+class: middle
+
+# A Little About Me
+
+---
+
+# Who Am I?
+
+.pull-left[
+- My name is S. Mason Garrison
+- I'm an Assistant Professor of Quantitative Psychology at
+  - Wake Forest University
+- I'm a Quantitative Psychologist and 
+  - Behavior Geneticist by training.
+]
+
+.center.pull-right[
+&lt;img src="img/greenmason.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## My Work
+
+&lt;!-- rewrite --&gt;
+
+- My substantive work focuses on examining the relationships between socioeconomic status, individual differences, and health.
+- I use genetically-informed designs to approach these questions, as the nature of my research are impractical for experiments.
+- Instead, I rely heavily on pre-existing data sets, working with tons data, quite literally in some cases.
+- My current work is heavily centered around data modeling for all people of Utah and their ancestors. 
+  - We've (Mike Hunter &amp; Alex Burt) developed some novel pedigree models to comparing cousins up to the 11th degree. 
+  - At the moment, we're looking at outcomes that the National Institute on Aging (NIA) is interested in....
+
+
+
+---
+
+## Why I'm Here Today
+
+&lt;!-- rewrite --&gt;.large[
+- I'm passionate about sharing my love for R and data science with others, especially those within the field of psychology.
+- I believe that the tools and methodologies of data science can 
+  - meaningfully enhance our ability to conduct efficient and impactful research in psychology
+- I'm excited to be here and share this course with you!
+]
+---
+
+## Fun Facts About Me
+.pull-left.large[
+- I'm a cat lover! (as you might have guessed from my use of 🐱)
+- I enjoy automating things and *pretty active* on wikipedia. 
+- I'm a chai tea enthusiast!
+]
+--
+.pull-right[
+&lt;img src="img/wiki.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: middle
+
+# Workshop Overview!
+
+---
+
+# Workshop Disclaimer
+.pull-left[
+- This workshop is adapted from my semester-long Data Science for Psychologists class. 
+- That class is fully-flipped, so you're going to experience the live version. 
+- However, I definitely encourage you to check out the full thing.
+]
+.pull-right[
+&lt;img src="img/rbook.png" width="95%" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;img src="d01_02_welcome_toolkit_files/figure-html/unnamed-chunk-5-1.png" width="10%" style="display: block; margin: auto;" /&gt;
+
+.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/) 
+]
+---
+
+
+```r
+library(qrcode)
+code &lt;- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
+plot(code)
+```
+
+&lt;img src="d01_02_welcome_toolkit_files/figure-html/qr-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Workshop Overview
+
+
+- .large[&lt;i class="fa fa-database fa"&gt;&lt;/i&gt; Welcome to R and the tidyverse]
+--
+
+- .large[&lt;i class="fa fa-code fa"&gt;&lt;/i&gt; Data and Visualization]
+--
+
+- .large[&lt;i class="fa fa-flask fa"&gt;&lt;/i&gt; Data Wrangling]
+--
+
+- .large[&lt;i class="fa fa-paint-brush fa"&gt;&lt;/i&gt; Deep Dive into GGPlot]
+--
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.small[
+.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
+]
+]
+
+---
+
+# Introduction to R and the tidyverse
+.pull-left[
+- .large[Getting started with R and RStudio]
+- .large[Understanding the structure and philosophy of the tidyverse]
+- .large[Learning basic R syntax and operations]
+]
+---
+
+# Data Wrangling
+.pull-left[
+- .large[Importing and exporting data in various formats]
+- .large[Cleaning, transforming, and reshaping data]
+]
+---
+
+# Data Visualization
+
+.pull-left[
+- .large[Creating static and interactive visualizations using ggplot2]
+- .large[Customizing visual elements to enhance your plots]
+- .large[Interpreting and describing visualizations]
+]
+.center.pull-right[
+
+&lt;img src="img/plot007w.png" width="95%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+---
+class: middle
+
+# Hello world!
+
+---
+
+## What is data science?
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-flask fa"&gt;&lt;/i&gt; = data science?
+--
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = data science?
+--
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-user fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = data science?
+--
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-users fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = data science?
+--
+
+&lt;br&gt;
+&lt;br&gt;
+.large[
+Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. We're going to learn to do this in a `tidy` way -- more on that later!
+]
+---
+
+
+## Where is this course?
+
+&lt;br&gt;
+.center[
+&lt;img src="d01_02_welcome_toolkit_files/figure-html/unnamed-chunk-7-1.png" width="20%" style="display: block; margin: auto;" /&gt;
+
+&lt;br&gt;
+Notes: [DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
+]
+
+&lt;br&gt;
+.center[
+&lt;img src="d01_02_welcome_toolkit_files/figure-html/unnamed-chunk-8-1.png" width="20%" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+Slides: [github.com/DataScience4Psych/slides/tree/main/workshop](https://github.com/DataScience4Psych/slides/tree/main/workshop)
+]
+
+---
+
+class: center, middle 
+
+# Meet the toolkit
+## ⚒
+&lt;br&gt;
+.center[
+&lt;img src="d01_02_welcome_toolkit_files/figure-html/unnamed-chunk-9-1.png" width="20%" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+Slides: [github.com/DataScience4Psych/slides/tree/main/workshop](https://github.com/DataScience4Psych/slides/tree/main/workshop)
+]
+
+---
+
+class: middle
+
+# Reproducible data analysis
+
+---
+
+## Reproducibility checklist
+
+.question[
+What does it mean for a data analysis to be "reproducible"?
+]
+
+--
+
+Near-term goals:
+
+- Are the tables and figures reproducible from the code and data?
+- Does the code actually do what you think it does?
+- In addition to what was done, is it clear **why** it was done? 
+(e.g., how were parameter settings chosen?)
+
+--
+
+Long-term goals:
+
+- Can the code be used for other data?
+- Can you extend the code to do other things?
+
+---
+
+## Toolkit
+
+![toolkit](img/toolkit.png)
+
+- Scriptability `\(\rightarrow\)` R
+- Literate programming (code, narrative, output in one place) `\(\rightarrow\)` R Markdown
+- Version control `\(\rightarrow\)` Git / GitHub
+
+
+
+---
+
+class: middle
+
+# Toolkit overview
+
+---
+
+&lt;img src="img/whole-game-01.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="img/whole-game-02.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="img/whole-game-03.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="img/whole-game-04.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+# R and RStudio
+
+---
+
+## What is R/RStudio?
+
+- R is a statistical programming language
+- RStudio is a convenient interface for R (an integrated development environment, IDE)
+- At its simplest:
+    - R is like a car’s engine
+    - RStudio is like a car’s dashboard
+
+&lt;img src="img/engine-dashboard.png" width="66%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Let's take a tour - R / RStudio
+
+.center[
+![](img/demo.png)
+]
+
+- Console
+- Using R as a calculator
+- Environment
+- Loading and viewing a data frame
+- Accessing a variable in a data frame
+- R functions
+
+
+---
+
+## Tour: Working with R at the command line 
+
+- Launch RStudio/R.
+- Notice the default panes:
+    - Console (entire left)
+    - Environment/History (tabbed in upper right)
+    - Files/Plots/Packages/Help (tabbed in lower right)
+
+
+--
+
+- FYI: You can change the default location of the panes, among many other things
+  - [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
+
+---
+
+## Tour: Working with R at the command line (pt 2)
+
+- Go into the Console, where we interact with the live R process.
+- Make an assignment and then inspect the object you just created:
+
+
+```r
+x &lt;- 3 * 4
+x
+```
+
+```
+## [1] 12
+```
+
+- All R statements where you create objects -- "assignments" -- have this form:
+
+
+```r
+objectName &lt;- value
+```
+
+- Read this as 'x gets 12'
+
+
+.footnote[and in my head I hear, e.g., "x gets 12".
+
+You will make lots of assignments and the operator `&lt;-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize RStudio's keyboard shortcut: Alt + - (the minus sign).]
+
+
+---
+
+## R essentials
+
+A short list (for now):
+
+- Functions are (most often) verbs, followed by what they will be applied to in parentheses:
+
+
+```r
+do_this(to_this)
+do_that(to_this, to_that, with_those)
+```
+
+--
+
+- Columns (variables) in data frames are accessed with `$`:
+
+
+```r
+dataframe$var_name
+```
+
+--
+
+- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+
+```r
+install.packages("package_name")
+library(package_name)
+```
+
+---
+
+## tidyverse
+
+.pull-left[
+.center[
+&lt;img src="img/hexs.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
+.pull-right[
+.center[
+[tidyverse.org](https://www.tidyverse.org/)]
+- The tidyverse is an opinionated collection of R packages designed for data science.
+- All packages share an underlying philosophy and common grammar: the "tidy data" principles.
+- "Tidy data" has a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table.
+]
+
+
+---
+
+## tidyverse
+
+.pull-left[
+.center[
+&lt;img src="img/hexs.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
+.pull-right[
+.center[
+[tidyverse.org](https://www.tidyverse.org/)]
+- Key packages include: 
+  - **ggplot2** for data visualization.
+  - **dplyr** for data manipulation.
+  - **tidyr** for data tidying.
+  - **readr** for data import.
+  - **purrr** for functional programming.
+  - **tibble** for tibble, a modern reimagining of data frames.
+  - **stringr** for string manipulation.
+  - **forcats** for handling categorical variables.
+- These packages are designed to work together seamlessly.
+]
+
+---
+
+class: middle
+
+# R Markdown
+
+---
+
+
+## R Markdown
+
+- .large[Fully reproducible reports -- each time you knit the analysis is run from the beginning]
+- .large[Simple markdown syntax for text]
+- .large[Code goes in chunks, defined by three backticks, while narrative goes outside of chunks]
+---
+
+## Let's take a tour - R Markdown
+
+
+.center[
+![](img/demo.png)
+]
+
+Concepts introduced:
+
+- Copying a project
+- Knitting documents
+- R Markdown and (some) R syntax
+
+---
+
+.your-turn[
+
+- The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
+- Go to github page and fork the assignment `Bechdel + R Markdown`. 
+- Open and knit the R Markdown document `bechdel.Rmd` and follow along with the instructions.
+- https://github.com/DataScience4Psych/ae-02-bechdel-rmarkdown
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+## R Markdown help
+
+.pull-left[
+.center[
+[R Markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+]
+
+.center[
+&lt;img src="img/rmd-cheatsheet.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+]
+.pull-right[
+.center[
+Markdown Quick Reference  
+`Help -&gt; Markdown Quick Reference`
+]
+.center[
+&lt;img src="img/md-cheatsheet.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+]
+---
+
+## Workspaces
+
+Remember this, and expect it to bite you a few times as you're learning to work with R Markdown: The workspace of your R Markdown document is separate from the Console!
+
+- Run the following in the console
+
+```r
+x &lt;- 2
+x * 3
+```
+.question[
+All looks good, eh?
+]
+
+- Then, add the following chunk in your R Markdown document
+
+```r
+x * 3
+```
+--
+.question[
+What happens? Why the error?
+]
+
+---
+
+
+class: middle
+
+# Wrapping Up... R and R Markdown
+
+
+---
+
+class: middle
+
+# Getting help in R
+
+---
+
+## Reading help files
+
+&lt;img src="img/r-help.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Asking good questions
+
+.pull-left[
+- **Good:** Describe your intention and include your code and the error
+- **Better:** Describe your intention and create a minimum working example
+- **Best:** Write a **rep**roducible **ex**ample (reprex) -- we'll introduce this concept more formally and teach you the tools for it a little later in the semester
+]
+--
+.pull-right[
+![](https://media.giphy.com/media/uRb2p09vY8lEs/giphy.gif)
+- Use code formatting
+- For issues with R code: copy / paste your code and resulting error, don't use screenshots!
+]
+
+---
+
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Kieran Healy's [Data Visualization: A practical introduction](http://socviz.co/appendix.html#a-little-more-about-r)
+- [Jenny Bryan's Stat545](https://stat545.com)
+- [Modern Dive](https://moderndive.com/)
+
+---
+class: middle
+
+# Wrapping Up...
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

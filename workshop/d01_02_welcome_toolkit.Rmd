@@ -250,6 +250,16 @@ class: center, middle
 
 # Meet the toolkit
 ## `r emo::ji('hammer_and_pick')`
+<br>
+.center[
+```{r,echo=FALSE,out.width="20%"}
+library(qrcode)
+code <- qr_code("https://github.com/DataScience4Psych/slides/tree/main/workshop")
+plot(code)
+```
+<br>
+Slides: [github.com/DataScience4Psych/slides/tree/main/workshop](https://github.com/DataScience4Psych/slides/tree/main/workshop)
+]
 
 ---
 
