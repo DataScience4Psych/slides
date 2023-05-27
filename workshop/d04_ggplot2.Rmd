@@ -53,15 +53,18 @@ ggplot(data = [dataset],
 
 ## Data: Palmer Penguins
 
-Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
-
-
 .pull-left[
-```{r echo=FALSE, out.width="80%"}
+```{r echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/penguins.png")
 ```
 ]
 
+.pull-right[
++ Measurements for penguin species, 
+  + island in Palmer Archipelago, 
+  + size (flipper length, body mass, bill dimensions), and 
+  + sex.
+]
 ---
 
 ## Data: Palmer Penguins
@@ -114,12 +117,12 @@ class: middle
 > **Start with the `penguins` data frame**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-0, fig.show="hide", warning=FALSE}
 ggplot(data = penguins) #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-0", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -131,13 +134,13 @@ ggplot(data = penguins) #<<
 > **map bill depth to the x-axis**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-1, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm)) #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-1", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -150,14 +153,14 @@ ggplot(data = penguins,
 > **and map bill length to the y-axis.**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-2, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm)) #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-2", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -171,7 +174,7 @@ ggplot(data = penguins,
 > **Represent each observation with a point**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-3, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -179,7 +182,7 @@ ggplot(data = penguins,
   geom_point() #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-3", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -194,7 +197,7 @@ ggplot(data = penguins,
 > **and map species to the color of each point.**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-4, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -203,7 +206,7 @@ ggplot(data = penguins,
   geom_point()
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-4", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -219,7 +222,7 @@ ggplot(data = penguins,
 > **Title the plot "Bill depth and length"**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-5, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -229,7 +232,7 @@ ggplot(data = penguins,
   labs(title = "Bill depth and length") #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-5", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -246,7 +249,7 @@ ggplot(data = penguins,
 > **add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins"**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-6, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -257,7 +260,7 @@ ggplot(data = penguins,
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins") #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-6", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -275,7 +278,7 @@ ggplot(data = penguins,
 > **label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-7, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -287,7 +290,7 @@ ggplot(data = penguins,
        x = "Bill depth (mm)", y = "Bill length (mm)") #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-7", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -306,7 +309,7 @@ ggplot(data = penguins,
 > **label the legend "Species"**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-8, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -319,7 +322,7 @@ ggplot(data = penguins,
        color = "Species") #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-8", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -339,7 +342,7 @@ ggplot(data = penguins,
 > **and add a caption for the data source.**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-9, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -353,7 +356,7 @@ ggplot(data = penguins,
        caption = "Source: Palmer Station LTER / palmerpenguins package") #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-9", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -374,7 +377,7 @@ ggplot(data = penguins,
 > **Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.**
 ]
 
-.pull-left[
+.pull-left-wide[
 ```{r penguins-10, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
@@ -389,7 +392,7 @@ ggplot(data = penguins,
   scale_color_viridis_d() #<<
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 ```{r ref.label = "penguins-10", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
 ```
 ]
@@ -405,7 +408,7 @@ ggplot(data = penguins,
 
 # Code
 
-```{r penguins-10-nohighlight, fig.show = "hide"}
+```{r penguins-10-nohighlight, fig.show = "hide",warning=FALSE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -423,7 +426,7 @@ ggplot(data = penguins,
 
 # Narrative
 
-.midi[
+.medi[
 + Start with the `penguins` data frame,
 map bill depth to the x-axis
 and map bill length to the y-axis. 
@@ -435,6 +438,296 @@ label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively
 label the legend "Species", 
 and add a caption for the data source.
 + Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.
+]
+
+---
+
+# Coding out loud (larger graphics)
+
+---
+
+.midi[
+> **Start with the `penguins` data frame**
+]
+
+.pull-left[
+```{r penguins2-0, fig.show="hide", warning=FALSE}
+ggplot(data = penguins) #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-0", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> **map bill depth to the x-axis**
+]
+
+.pull-left[
+```{r penguins2-1, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm)) #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-1", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> **and map bill length to the y-axis.**
+]
+
+.pull-left[
+```{r penguins2-2, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-2", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> **Represent each observation with a point**
+]
+
+.pull-left[
+```{r penguins2-3, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) + 
+  geom_point() #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-3", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> **and map species to the color of each point.**
+]
+
+.pull-left[
+```{r penguins2-4, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) + #<<
+  geom_point()
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-4", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> **Title the plot "Bill depth and length"**
+]
+
+.pull-left[
+```{r penguins2-5, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-5", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> **add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins"**
+]
+
+.pull-left[
+```{r penguins2-6, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-6", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> **label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively**
+]
+
+.pull-left[
+```{r penguins2-7, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-7", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+> **label the legend "Species"**
+]
+
+.pull-left[
+```{r penguins2-8, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-8", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+> label the legend "Species", 
+> **and add a caption for the data source.**
+]
+
+.pull-left[
+```{r penguins2-9, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-9", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
+]
+
+---
+
+.midi[
+> Start with the `penguins` data frame,
+> map bill depth to the x-axis
+> and map bill length to the y-axis. 
+> Represent each observation with a point
+> and map species to the color of each point.
+> Title the plot "Bill depth and length", 
+> add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+> label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
+> label the legend "Species", 
+> and add a caption for the data source.
+> **Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.**
+]
+
+.pull-left[
+```{r penguins2-10, fig.show = "hide", warning = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_color_viridis_d() #<<
+```
+]
+.pull-right[
+```{r ref.label = "penguins2-10", echo = FALSE, warning = FALSE, out.width = "100%", fig.width = 8}
+```
 ]
 
 ---
@@ -599,19 +892,19 @@ ggplot(penguins,
 
 .pull-left[
 **Mapping**
-
+.medi[
 ```{r warning = FALSE, out.width = "100%"}
 ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-           size = body_mass_g, #<<
-           alpha = flipper_length_mm)) + #<<
+      aes(x = bill_depth_mm,
+          y = bill_length_mm,
+          size = body_mass_g, #<<
+          alpha = flipper_length_mm))+ #<<
   geom_point()
 ```
-]
+]]
 .pull-right[
 **Setting**
-
+.medi[
 ```{r warning = FALSE, out.width = "100%"}
 ggplot(penguins,
        aes(x = bill_depth_mm,
@@ -619,7 +912,7 @@ ggplot(penguins,
   geom_point(size = 2, alpha = 0.5) #<<
 ```
 ]
-
+]
 ---
 
 ## Mapping vs. setting
@@ -654,7 +947,7 @@ class: middle
 
 ### Code
 
-```{r facet, fig.show = "hide"}
+```{r facet, fig.show = "hide", warning = FALSE}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
   facet_grid(species ~ island) #<<
@@ -665,10 +958,10 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ## Various ways to facet
 
 
-In the next few slides describe what each plot displays. Think about how the code relates to the output.
+In the next few slides, describe what each plot displays. Think about how the code relates to the output.
 
 .question[
-**Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots.
+**Note:** The plots in the next few slides do not have proper titles, axis labels, etc. because I want you to figure out what's happening in the plots.
 But you should always label your plots!
 ]
 
@@ -714,13 +1007,18 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 
 ---
 
-## Faceting summary
+## Faceting summary  (Facinating...) 
 
-- `facet_grid()`:
-    - 2d grid
-    - `rows ~ cols`
-    - use `.` for no split
-- `facet_wrap()`: 1d ribbon wrapped according to number of rows and columns specified or available plotting area
+- Faceting allows you to create multiple plots based on a factor variable, which are then displayed in a grid.
+- **`facet_grid()`**:
+    - Creates a 2D grid of plots, one for each level of two factor variables.
+    - The format is `rows ~ cols`.
+    - Use `.` if there is no variable to split in either the row or column direction.
+- **`facet_wrap()`**:
+    - Creates a 1D ribbon of plots, each for a level of one factor variable.
+    - Plots are wrapped into a grid that respects the number of rows and columns specified or the available plotting area.
+    - Ideal when there's only one factor variable, or for multi-level factors.
+
 
 ---
 
