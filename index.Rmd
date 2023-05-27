@@ -11,7 +11,8 @@ library(stringi)
 
 
 make_full = function(myurl,gituser="datascience4psych",myrepo="slides") {
-  paste0('https://',gituser,'.github.io/',myrepo,'/',myurl)
+ # paste0('https://',gituser,'.github.io/',myrepo,'/',myurl)
+ paste0('https://',gituser,'.github.io/',myurl)
 }
 make_hyperlink = function(myurl,mytext=myurl) {
   paste0('<a href="',myurl,'">',mytext,'</a>')
