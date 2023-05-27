@@ -209,9 +209,7 @@ ggplot(data = [dataset],
 
 
 .pull-right[ 
-- **ggplot2** is tidyverse's data visualization package 
-- `gg` in "ggplot2" stands for Grammar of Graphics 
-- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+
 ]
 
 ---
@@ -219,7 +217,10 @@ ggplot(data = [dataset],
 ## Grammar of Graphics
 
 .pull-left-narrow[
-- A grammar of graphics is a tool to concisely describe the components of a graphic
+- **ggplot2** is tidyverse's data visualization package 
+- `gg` in "ggplot2" stands for Grammar of Graphics 
+- Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+- Grammar of graphics is a tool to concisely describe the components of a graphic
 - The ggplot2 package comes with the tidyverse
 
 ```{r}

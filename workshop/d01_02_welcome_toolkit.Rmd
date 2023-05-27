@@ -235,13 +235,13 @@ Notes: [DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psyc
 
 <br>
 .center[
-```{r,echo=FALSE,out.width="20%"}
+```{r slides,echo=FALSE,out.width="20%"}
 library(qrcode)
-code <- qr_code("https://github.com/DataScience4Psych/slides/tree/main/workshop")
+code <- qr_code("https://datascience4psych.github.io/slides/")
 plot(code)
 ```
 <br>
-Slides: [github.com/DataScience4Psych/slides/tree/main/workshop](https://github.com/DataScience4Psych/slides/tree/main/workshop)
+Slides: [datascience4psych.github.io/slides/](https://datascience4psych.github.io/slides/)
 ]
 
 ---
@@ -254,11 +254,11 @@ class: center, middle
 .center[
 ```{r,echo=FALSE,out.width="20%"}
 library(qrcode)
-code <- qr_code("https://github.com/DataScience4Psych/slides/tree/main/workshop")
+code <- qr_code("https://datascience4psych.github.io/slides/workshop/d01_02_welcome_toolkit.html")
 plot(code)
 ```
 <br>
-Slides: [github.com/DataScience4Psych/slides/tree/main/workshop](https://github.com/DataScience4Psych/slides/tree/main/workshop)
+Slide: [datascience4psych.github.io/slides/workshop/d01_02_welcome_toolkit.html](https://datascience4psych.github.io/slides/workshop/d01_02_welcome_toolkit.html)
 ]
 
 ---
