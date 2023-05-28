@@ -69,8 +69,8 @@ knitr::include_graphics("img/greenmason.jpg")
 <!-- rewrite -->
 
 - My substantive work focuses on examining the relationships between socioeconomic status, individual differences, and health.
-- I use genetically-informed designs to approach these questions, as the nature of my research are impractical for experiments.
-- Instead, I rely heavily on pre-existing data sets, working with tons data, quite literally in some cases.
+- I use genetically-informed designs to approach these questions, leveraging cousins, siblings, and other kin.
+- I rely heavily on pre-existing data sets, working with tons data, quite literally in some cases.
 - My current work is heavily centered around data modeling for all people of Utah and their ancestors. 
   - We've (Mike Hunter & Alex Burt) developed some novel pedigree models to comparing cousins up to the 11th degree. 
   - At the moment, we're looking at outcomes that the National Institute on Aging (NIA) is interested in....
@@ -148,9 +148,7 @@ plot(code)
 --
 
 - .large[<i class="fa fa-flask fa"></i> Data Wrangling]
---
 
-- .large[<i class="fa fa-paint-brush fa"></i> Deep Dive into GGPlot]
 --
 
 <br><br><br><br><br><br><br>
@@ -171,13 +169,6 @@ plot(code)
 ]
 ---
 
-# Data Wrangling
-.pull-left[
-- .large[Importing and exporting data in various formats]
-- .large[Cleaning, transforming, and reshaping data]
-]
----
-
 # Data Visualization
 
 .pull-left[
@@ -192,6 +183,16 @@ plot(code)
 knitr::include_graphics("img/plot007w.png")
 ```
 ]
+
+---
+
+# Data Wrangling
+.pull-left[
+- .large[Importing and exporting data in various formats]
+- .large[Cleaning, transforming, and reshaping data]
+]
+---
+
 
 ---
 class: middle
@@ -346,7 +347,7 @@ class: middle
 - R is a statistical programming language
 - RStudio is a convenient interface for R (an integrated development environment, IDE)
 - At its simplest:
-    - R is like a car’s engine
+    - R is like a car's engine
     - RStudio is like a car’s dashboard
 
 ```{r fig.align="center", echo=FALSE, out.width="66%"}
@@ -522,11 +523,18 @@ Concepts introduced:
 .your-turn[
 
 - The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
-- Go to github page and fork the assignment `Bechdel + R Markdown`. 
+- Go to github page and download the assignment `Bechdel + R Markdown`. 
 - Open and knit the R Markdown document `bechdel.Rmd` and follow along with the instructions.
 - https://github.com/DataScience4Psych/ae-02-bechdel-rmarkdown
 ]
 
+.center[
+```{r,echo=FALSE,out.width="20%"}
+library(qrcode)
+code <- qr_code("https://github.com/DataScience4Psych/ae-02-bechdel-rmarkdown")
+plot(code)
+```
+]
 ---
 
 class: middle

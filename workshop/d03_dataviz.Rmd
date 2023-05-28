@@ -10,7 +10,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""
+#      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}

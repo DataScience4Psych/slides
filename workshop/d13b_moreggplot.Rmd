@@ -10,7 +10,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""
+#      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -42,7 +42,7 @@ class: middle
 
 + Better than "grammar of graphics" might be the 
   * "orthogonal components of graphics," 
-  * but that doesn't have the same alliterative appeal.
+  * Alas, that doesn't have the same alliterative appeal.
 
 
 --

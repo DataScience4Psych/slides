@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Deeper Dive into ggplot   🌊</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Deeper Dive into ggplot <br> 🌊
+]
+.author[
+### S. Mason Garrison
+]
+
+---
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+class: middle
+
+# Deep Diving into Grammar of Graphics
+
+---
+
+## What does "grammar of graphics" mean?
+
+* The analogy with English grammar, 
+  * or any language's grammar, 
+  * is that it allows you to put together component parts
+  
+--
+
++ Better than "grammar of graphics" might be the 
+  * "orthogonal components of graphics," 
+  * Alas, that doesn't have the same alliterative appeal.
+
+
+--
+
++ The power of the grammar of graphics is that it is modular: 
+  * different aspects of the plot can be specified independently of each other.
+
+
+
+---
+
+## An example
+
++ As an example, the coordinate system is specified separately 
+  * from the geometric object used to represent the points.
++ We have three representations of the same data, where
+  * the only difference between them 
+  * is the coordinate system used to represent them.
+
+.medi[
+
+```r
+bar_plot = ggplot(diamonds) + 
+    aes(x ="", fill = clarity)+
+    geom_bar(width = 1, position = "stack")
+bar_plot
+```
+
+```r
+bar_plot + coord_polar()
+```
+
+```r
+bar_plot + coord_polar(theta = "y")
+```
+]
+---
+
+
+```r
+bar_plot
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+bar_plot + coord_polar()
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+bar_plot + coord_polar(theta = "y")
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Again, the same dataset
+
+Again, the same dataset, three different coordinate systems, very different representations:
+
+
+```r
+dodged_bar_plot = ggplot(diamonds) +
+    geom_bar(aes(x = "", fill = clarity), width = 1, position = "dodge")
+dodged_bar_plot
+```
+
+```r
+dodged_bar_plot + coord_polar()
+```
+
+```r
+dodged_bar_plot + coord_polar(theta = "y")
+```
+---
+
+
+```r
+dodged_bar_plot
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+dodged_bar_plot + coord_polar()
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+dodged_bar_plot + coord_polar(theta = "y")
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# What are the components of a plot?
+
+---
+
+## Components of a plot
+
++ A default dataset and set of mappings from variables to aesthetics.
++ One or more _layers_, each of which contains
+--
+
+  + one geometric (`geom_*`) object, 
+  + one statistical transformation (`stat_*`), 
+  + one position adjustment (`position_*`), 
++ and one dataset and set of aesthetic mappings.
+--
+
++ One scale for each aesthetic mapping.
++ A coordinate system (`coord_*`).
++ A facet specification (`facet_*`).
+--
+
+.tip[
+Layers are the most important and involved part of the plot.
+]
+
+
+---
+
+## What is a layer?
+
+- data and aesthetic mapping
+- statistical transformation (stat)
+- geometric object (geom)
+- position adjustment
+
+--
+
+
+```r
+p = ggplot(diamonds, aes(x = color, y = clarity)) + geom_point()
+p$layers
+```
+
+```
+## [[1]]
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity
+```
+
+---
+
+## Data and aesthetic mapping
+
++ Data: self evident. For ggplot the data needs to be formatted as a tibble or a data.frame.
++ Aesthetic mapping: Less evident
+--
+
+  + Describes how variables in the dataset are mapping 
+     + to "aesthetic" attributes of the plot.
+  + "Aesthetic" here means perceivable:
+     + something you can observe on the plot.
+  
+---
+
+## Aesthetic/perceivable attributes
++ Examples include
+  * position along the `\(x\)`-axis, 
+  * color, 
+  * shape, 
+  * position along the `\(y\)`-axis, 
+  * opacity, 
+  * linetype
+
+---
+
+## Data and aesthetic mapping go together
+
+* They are not independent of each other:
+* the aesthetic mapping takes variables in your data and 
+  + maps them to aesthetics/perceivable parts of the plot and 
+  + is therefore specific to a dataset.
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Stats, Geoms, and Positions
+
+---
+
+# Statistical transformation
+
+A statistical transformation is some transformation of the data.
+
+![](img/ggplot_stat_table.png)
+--
+&lt;br&gt;
+.footnote[
+These stat transformations and position adjustments can overlap. Often there is more than one way to create the same plot.
+]
+
+
+---
+
+
+## Geometric objects
+
+Geometric objects (`geom_*`) control the type of plot you create. 
+
+Examples are:
+- Points, text 
+  * (zero-dimensional geometric objects)
+- Line, path 
+  * (one-dimensional geometric objects)
+- Polygon, interval 
+  * (two-dimensional geometric objects)
+- More complicated: boxplot
+
+---
+
+## Relationship between stats and geoms
+
+- Every statistic has a default geometric object, 
+  - and every geometric object has a default statistic.
+- Stats and geoms are not completely orthogonal: 
+  - not every combination is valid 
+  - (although many are).
+
+---
+
+## For example:
+- `stat_bin` and `geom_bar` 
+  - is valid and 
+  - standard for a histogram.
+- `stat_bin` and `geom_point` or `stat_bin` + `geom_line` 
+  - are valid 
+  - but non-standard combinations.
+    - They give a plot that is resembles a histogram  
+      - (interpretable that same way, too)
+- `stat_identity` and  `geom_boxplot`
+  - is invalid, because 
+  - boxplot needs certain computed quantities from the data.
+
+---
+
+## Position adjustment
+
+Used to avoid "collisions" in the plot objects:
+
+- In bar plots where one of the aesthetics is height, 
+  - the bars would often be plotted over each other. 
+  - In this case we use the "dodge" or "stack" position adjustments.
+- If we have issues with overplotting (multiple points in exactly the same place), 
+  - we can use the "jitter" position adjustment 
+    - to randomly move the points a small amount.
+---
+.medi[.pull-right-wide[
+
+```r
+(p = ggplot(diamonds, aes(x = color, y = price)) + 
+  geom_boxplot())
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left-narrow[
+
+```r
+p$layers
+```
+
+```
+## [[1]]
+## geom_boxplot: outlier.colour = NULL, outlier.fill = NULL, outlier.shape = 19, outlier.size = 1.5, outlier.stroke = 0.5, outlier.alpha = NULL, notch = FALSE, notchwidth = 0.5, varwidth = FALSE, na.rm = FALSE, orientation = NA
+## stat_boxplot: na.rm = FALSE, orientation = NA
+## position_dodge2
+```
+]
+]
+---
+
+
+```r
+ggplot(diamonds,aes(x = color, y = price, color = clarity)) + 
+  geom_boxplot(position = "identity")
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+ggplot(diamonds,aes(x = color, y = price, color = clarity)) + 
+         geom_boxplot(position = "dodge")
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+.footnote[`position = "dodge"` is the default for boxplots, so you don't need to specify it.]
+
+---
+
+
+```r
+ggplot(diamonds,aes(x = color, y = price, color = clarity)) + 
+         geom_boxplot(position = position_dodge(width = 1))
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-15-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+.footnote[`position = "dodge"` is the default for boxplots, so you don't need to specify it.]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Scales and Coordinates
+
+---
+
+## Scales
+
++ So far, we've defined aesthetic mappings that specify,
+  + which perceivable aspects of the plot correspond 
+  + to which variables.
+--
+
++ However, perceivable aspects of the plot 
+  + can be mapped to variables many other ways.
+
+---
+
+## For example
+
++ If we have a categorical variable that takes values "A" and "B" to the color aesthetic, 
+  + that means that color is going to represent 
+  + whether variable took value "A" or "B". 
++ But we could do that in a practically infinite number of ways
+--
+
+
++ e.g.
+  - A maps to "red", B maps to "black"
+  - A maps to "green", B maps to "blue"
+  - A maps to "purple", B maps to "gold"
+--
+
+
+- ... You probably get the picture
+
+---
+
+## Modernized ggplot
+
+- *Now*, ggplot has good default mappings from values into aesthetic space, 
+  - but you will sometimes want to set them by hand.
+--
+
+- To do so, you use the `scale_*` functions.
+--
+
+- The *old* version of ggplot had poor mappings from continuous values to colors,
+  - and the [viridis](https://cran.r-project.org/web/packages/viridis/index.html) color scheme was much better. 
+- The most recent version of ggplot uses viridis by default 
+  - for both continuous values and ordered factors.
+
+---
+
+## Coordinate system
+
+Another aspect of the plot that can be specified independently of everything else is the coordinate system.
+
++ `coord_cartesian` is the default, 
+  - and is almost always what you want.
+--
+
+
+
++ `coord_flip` is sometimes useful:
+  - for example, boxplots require the explanatory variable to be mapped to x, 
+  - so if you want a horizontal boxplot you need to use `coord_flip`.
+--
++ `coord_polar` will often make your plots look cooler 
+  * and more difficult to read. 
+  * Not usually recommended.
+---
+
+## Faceting
+
+Allows you to make small multiples of plots.
+
++ Other grammars/plotting systems implement faceting with a fancy coordinate system, 
++ but it turns out that it's easier to use if you think about it separately.
+--
+
++ Each facet plots a subset of the data, 
+  - and it takes as input
+    - what variable(s) to use to make the subsets and 
+    - how to lay out the subsets.
+---
+
+## Facet options
+
+- `facet_wrap`:
+  - Lays out the plots for each subset sequentially.
+--
+
+- `facet_grid`: 
+  - Subsets the data according to two separate variables. 
+  
+  
+--
+
++ The facet position along the `\(x\)`-axis represents levels of one variable, 
+  - and the facet position along the `\(y\)`-axis represents levels of the other variable.
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# How this all works
+
+---
+
+## The long way
+
+- One way to specify a ggplot is to 
+  - specify all of the components we've seen.
+- If you understand all the parts, 
+  - this way is probably the least confusing method to specify a ggplot.
+- The problem is that it's verbose.
+
+---
+
+## Verbose
+
+- Suppose we want to make a plot with points and a smoother 
+  - from the diamonds dataset. 
+- We can specify data, mapping, geom, stat, and positions for each layer, 
+  - along with scales and the coordinate system as follows:
+  
+--
+
+.midi[  
+
+```r
+ggplot() +
+    layer(
+        data = diamonds, mapping = aes(x = carat, y = price),
+        geom = "point", stat = "identity", position = "identity") +
+    layer(
+        data = diamonds, mapping = aes(x = carat, y = price),
+        geom = "smooth", position = "identity", stat = "smooth", params = list(method = "lm")) +
+    scale_x_log10() + scale_y_log10() + coord_cartesian()
+```
+]
+
+---
+
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-16-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Defaults make the code shorter
+
+The more standard way of writing the same plot would be:
+.medi[
+
+```r
+p = ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point() +
+    stat_smooth(method = "lm") +
+    scale_x_log10() +
+    scale_y_log10()
+```
+]
+--
+
+This code is still fairly long, but we don't have to specify...
+- position: Default for both `geom_point` and `stat_smooth` is `position = "identity"`.
+- stat, for `geom_point`: The default stat for `geom_point` is `stat = "identity"`.
+- geom, for `stat_smooth`: The default geom for `stat_smooth` is `geom_smooth`.
+- coordinate system: `coord_cartesian` is always the default.
+
+---
+
+You can check what stat, geom, and position is used for each of the layers:
+.medi[
+
+```r
+names(p)
+```
+
+```
+## [1] "data"        "layers"      "scales"      "mapping"    
+## [5] "theme"       "coordinates" "facet"       "plot_env"   
+## [9] "labels"
+```
+.medi[
+
+```r
+p$layers
+```
+
+```
+## [[1]]
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity 
+## 
+## [[2]]
+## geom_smooth: se = TRUE, na.rm = FALSE, orientation = NA
+## stat_smooth: method = lm, formula = NULL, se = TRUE, n = 80, fullrange = FALSE, level = 0.95, na.rm = FALSE, orientation = NA, method.args = list(), span = 0.75
+## position_identity
+```
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Minard on Napoleon's invasion of Russia
+
+---
+
+## Minard on Napoleon's invasion of Russia
+
+One of [the most famous statistical graphics, created by Charles Minard](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) depicts Napoleon's 1812 invasion of and retreat from Russia.
+
+.center[
+&lt;img src="img/Minard.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Minard on Napoleon's invasion of Russia
+
+One of [the most famous statistical graphics, created by Charles Minard](https://en.wikipedia.org/wiki/Charles_Joseph_Minard) depicts Napoleon's 1812 invasion of and retreat from Russia.
+
+.center[
+&lt;img src="img/Minard_Update.png" width="81%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+.medi[
+
+```r
+minard = read_csv("data/minard.csv");minard_cities = read_csv("data/minard-cities.csv")
+(plot_troops = ggplot(minard) +
+                      geom_path(aes(x = long, y = lat,
+                                    color = direction,
+                                    size = surviv,
+                                    group = division)))
+```
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2
+## 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/minardpt1-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+Let's add another layer for the cities:
+.medi[
+
+```r
+(plot_both = plot_troops +
+              geom_text(aes(x = long, y = lat, label = city),
+              data = minard_cities, size = 3))
+```
+
+&lt;img src="d13b_moreggplot_files/figure-html/minardpt2-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+]
+
+.footnote[Notice: we have a new dataset for this layer.]
+
+---
+
+## Next Steps
+
+Some things that are still not great about this plot:
+
+.pull-left[
+- We would like the colors 
+  - for advance and retreat to be gray and red.
+- We want the line widths to be 
+  - proportional to the number of survivors.
+- We would like the line ends to be
+  - round instead of square.
+]
+.pull-right[
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-22-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## An improved version of the plot, with better scales:
+
+.small[.pull-left-narrow[
+
+```r
+ggplot(minard) +
+    geom_path(aes(x = long, 
+                  y = lat, 
+                  color = direction, 
+                  size = surviv^2, 
+                  group = division), 
+              lineend = "round") +
+    geom_text(aes(x = long,
+                  y = lat,
+                  label = city),
+              data = minard_cities, 
+              size = 3) + 
+    scale_size(range = c(.18, 15), 
+               breaks = (1:3 * 10^5)^2, 
+               labels = 
+                 scales::comma(1:3 * 10^5),
+                 "Survivors") +
+    scale_color_manual(values = c("grey50",
+                                  "red"), 
+                       breaks = c("A",
+                                  "R"), 
+                       labels = c("Advance",
+                                  "Retreat"),
+                       "") +
+    xlab(NULL) + ylab(NULL) +
+    theme(axis.text = element_blank(), 
+          axis.ticks = element_blank(), 
+          panel.grid = element_blank())
+```
+]]
+.pull-right-wide[
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-23-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+.your-turn[
+]
+
+- Try creating a histogram on the diamonds dataset, for example with...
+
+
+
+```r
+p = ggplot() + geom_histogram(aes(x = carat), data = diamonds)
+```
+
+
+- Re-write this using the `layer` function. 
+
+.tip[
+- If you don't know what the default values for some of the aspects of the plot, examine `p$layers`
+- Remember that a histogram is a plot with `stat_bin` and `geom_bar`. 
+]
+
+---
+
+.your-turn[
+]
+
+.pull-left-narrow[
+&lt;img src="d13b_moreggplot_files/figure-html/unnamed-chunk-25-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+]
+
+- Modify your histogram code so that it uses a different geom, for example `geom_line` or `geom_point`.
+- This change should be simple once you have the `layer` specification of a histogram.
+- In your histogram, 
+      - add an aesthetic mapping from one of the factor variables (maybe color or clarity) to the color aesthetic.
+
+.question[What is the default position adjustment for a histogram? 
+]
+
+.tip[- Try changing the position adjustment to something different 
+    - (try `position_dodge`).]
+
+---
+
+## Difficult Stretch Goal
+
+- Recreate the Minard map more precisely. 
+- Add text for the number of troops surviving on each segment, 
+    - and add the time and temperature data to the bottom of the plot.
+
+---
+
+## ggplot and EDA
+
+Remember our passage from Tukey:
+
+&gt; *Exploratory data analysis is detective work*... As all detective stories remind us, many of the circumstances surrounding a crime are accidental or misleading. Equally, many of the indications to be discerned in bodies of data are accidental or misleading. To accept all appearances as conclusive would be destructively foolish, either in crime detection or in data analysis. *To fail to collect all appearances because some -- or even most -- are only accidents would, however, be gross misfeasance deserving (and often receiving) appropriate punishment.*
+
+---
+
+# Concluding Thoughts
+
+- The flexibility in the grammar of graphics allows us to collect many more "appearances" in the data than we would be able to,
+    - if we just have access to a handful of named plots.
+--
+
+- Many of the plots that we can make with ggplot are not useful, 
+    - but the point is to try visualizing the data in many different ways.
+- ggplot opens up a very large space of statistical graphics to us for not very much effort.
+
+---
+
+# Sources
+
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
+---
+
+class: middle
+
+# Wrapping Up...
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightLines": true,
+"highlightStyle": "solarized-light",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

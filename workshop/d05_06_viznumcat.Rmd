@@ -576,7 +576,7 @@ class: middle
 ## Summary and Wrapping Up
 
 - In this session, we explored various techniques for visualizing numerical and categorical data. 
-- We examined histograms, density plots, bar plots, and scatterplots to gain insights into the relationships within the data. 
+- We examined histograms, density plots, and bar plots to gain insights into the relationships within the data. 
 - By effectively visualizing data, we can uncover patterns and trends that lead to deeper understanding.
 
 ---

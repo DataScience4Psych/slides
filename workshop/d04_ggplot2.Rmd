@@ -104,11 +104,6 @@ ggplot(data = penguins,
 ---
 class: middle
 
-# Wrapping Up...
-
----
-class: middle
-
 # Coding out loud
 
 ---

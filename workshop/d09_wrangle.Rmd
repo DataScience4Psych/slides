@@ -10,7 +10,7 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-      slideNumberFormat: ""
+#      slideNumberFormat: ""
 ---
 
 ```{r child = "../setup.Rmd"}
@@ -140,7 +140,7 @@ hotels %>%
 
 .tip[
 + In R, you can use the `#` (hashtag or pound sign, depending on your age 
-`r emo::ji("stuck_out_tongue_winking_eye")`) for adding comments to your code. 
+`r emo::ji("smile_cat")`) for adding comments to your code. 
 Any text following `#` will be printed as is, and won't be run as R code.
 + This symbol is useful for leaving comments in your code and for temporarily disabling 
 certain lines of code while debugging.

@@ -391,19 +391,19 @@ div.my-footer a {
 }
 
 
-/* Slide number
+/* Slide number*/
 .remark-slide-number {
   color: #333333;
   opacity: 1;
   font-size: 12pt;
 }
-*/
-/* Slide number */
+
+/* Slide number
 .title-slide .remark-slide-number {
   display: none;
 }
 
-
+*/
 /* Media */
 @page { margin: 0; }
 @media print {
