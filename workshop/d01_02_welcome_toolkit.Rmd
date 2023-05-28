@@ -37,6 +37,7 @@ class: center, middle
 ### Mason Garrison
 #### Assistant Professor of Quantitative Psychology
 #### Wake Forest University
+#### wifi: psychscience23
 
 ---
 
