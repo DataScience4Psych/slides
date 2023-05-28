@@ -71,19 +71,15 @@ starwars
 
 ```
 ## # A tibble: 87 × 14
-##    name   height  mass hair_color skin_color eye_color birth_year
-##    &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
-##  1 Luke …    172    77 blond      fair       blue            19  
-##  2 C-3PO     167    75 &lt;NA&gt;       gold       yellow         112  
-##  3 R2-D2      96    32 &lt;NA&gt;       white, bl… red             33  
-##  4 Darth…    202   136 none       white      yellow          41.9
-##  5 Leia …    150    49 brown      light      brown           19  
-##  6 Owen …    178   120 brown, gr… light      blue            52  
-##  7 Beru …    165    75 brown      light      blue            47  
-##  8 R5-D4      97    32 &lt;NA&gt;       white, red red             NA  
-##  9 Biggs…    183    84 black      light      brown           24  
-## 10 Obi-W…    182    77 auburn, w… fair       blue-gray       57  
-## # ℹ 77 more rows
+##   name    height  mass hair_color skin_color eye_color birth_year
+##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+## 1 Luke S…    172    77 blond      fair       blue            19  
+## 2 C-3PO      167    75 &lt;NA&gt;       gold       yellow         112  
+## 3 R2-D2       96    32 &lt;NA&gt;       white, bl… red             33  
+## 4 Darth …    202   136 none       white      yellow          41.9
+## 5 Leia O…    150    49 brown      light      brown           19  
+## 6 Owen L…    178   120 brown, gr… light      blue            52  
+## # ℹ 81 more rows
 ## # ℹ 7 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;, homeworld &lt;chr&gt;,
 ## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
 ## #   starships &lt;list&gt;
@@ -264,23 +260,16 @@ ggplot(data = [dataset],
 ```
 
 
+
 ---
 
-## ggplot2 `\(\in\)` tidyverse
+## ggplot2 `\(\in\)` tidyverse a.k.a. Grammar of Graphics
 
-
-.pull-right[ 
+.pull-left-narrow[
 - **ggplot2** is tidyverse's data visualization package 
 - `gg` in "ggplot2" stands for Grammar of Graphics 
 - Inspired by the book **Grammar of Graphics** by Leland Wilkinson
-]
-
----
-
-## Grammar of Graphics
-
-.pull-left-narrow[
-- A grammar of graphics is a tool to concisely describe the components of a graphic
+- Grammar of graphics is a tool to concisely describe the components of a graphic
 - The ggplot2 package comes with the tidyverse
 
 
@@ -422,8 +411,7 @@ class: middle
 "ratio": "16:9",
 "highlightLines": true,
 "highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+"countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
