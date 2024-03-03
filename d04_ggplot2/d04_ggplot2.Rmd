@@ -36,18 +36,21 @@ class: middle
 knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
 ```
 ] 
+
+<!-- markdownlint-disable error -->
 .pull-right-wide[ 
 - **ggplot2** is tidyverse's data visualization package 
 - Structure of the code for plots can be summarized as
 
 ```{r eval = FALSE}
-ggplot(data = [dataset], 
-     mapping = aes(x = [x-variable], 
-                   y = [y-variable])) +
+ggplot(data = [[dataset]],
+     mapping = aes(x = [[x-variable]],
+                   y = [[y-variable]])) +
    geom_xxx() +
    other options
 ```
 ]
+<!-- markdownlint-enable -->
 
 ---
 
@@ -88,7 +91,7 @@ glimpse(penguins)
 # Code
 
 ```{r penguins, fig.show = "hide", out.width="80%"}
-ggplot(data = penguins, 
+ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm, y = bill_length_mm,
                      color = species)) +
   geom_point() +
@@ -338,7 +341,7 @@ ggplot(data = penguins,
 > label the legend "Species", 
 > **and add a caption for the data source.**
 ]
-
+ 
 .pull-left[
 ```{r penguins-9, fig.show = "hide", warning = FALSE}
 ggplot(data = penguins,

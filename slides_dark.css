@@ -35,40 +35,50 @@
 .dark-blue {
   color: var(--dark-blue);
 }
+
 .light-blue {
   color: var(--light-blue);
 }
+
 .green {
   color: var(--green);
 }
+
 .gray {
   color: var(--gray);
 }
+
 .pink {
   color: var(--pink);
 }
+
 .yellow {
   color: var(--yellow);
 }
+
 .white {
   color: var(--white);
 }
 
 /* Title slide customization */
-.title-slide h1, h2, h3 {
+.title-slide h1,
+h2,
+h3 {
   text-align: center;
   font-weight: bold;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  font-family: 'Source Sans Pro'; sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #333333;
 }
+
 p {
   padding: 0;
   margin: 0px;
 }
+
 h2 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
@@ -79,7 +89,9 @@ h2 {
   margin-right: 5px;
   margin-left: 5px;
 }
-h1, h3 {
+
+h1,
+h3 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   color: var(--light-blue);
@@ -88,13 +100,15 @@ h1, h3 {
   margin-right: 5px;
   margin-left: 5px;
 }
-a, a > code {
+
+a,
+a>code {
   font-family: 'Fira Mono', monospace;
   color: #1E5C65;
   text-decoration: none;
 }
 
-.remark-slide-content{
+.remark-slide-content {
   font-size: 26px;
 }
 
@@ -104,41 +118,95 @@ a, a > code {
   background-color: var(--light-blue);
   color: #ffffff;
 }
-.inverse h1, .inverse h2, .inverse h3 {
+
+.inverse h1,
+.inverse h2,
+.inverse h3 {
   color: #f3f3f3;
 }
+
 .inversegray {
   background-color: var(--dark-gray);
   color: #ffffff;
 }
+
 .inversedark {
   background-color: var(--dark-blue);
   color: #ffffff;
 }
-.inversedark h1, .inversedark h2, .inversedark h3 {
+
+.inversedark h1,
+.inversedark h2,
+.inversedark h3 {
   color: #f3f3f3;
 }
+
 /* Font sizes */
 .huge {
-   font-family: 'Montserrat', sans-serif;
-   font-size: 400%;
-   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 400%;
+  font-weight: bold;
 }
-.larger { font-size: 250% }
-.xlarge { font-size: 175% }
-.large { font-size: 150% }
-.medi { font-size: 90% }
-.midi { font-size: 80% }
-.small { font-size: 70% }
-.xsmall { font-size: 65% }
-.xxsmall { font-size: 60% }
-.tiny { font-size: 50% }
-.medi .remark-code  { font-size: 90% }
-.midi .remark-code { font-size: 80%; }
-.small .remark-code { font-size: 70%; }
-.xsmall .remark-code { font-size: 65%; }
-.xxsmall .remark-code { font-size: 60%; }
-.tiny .remark-code { font-size: 50%; }
+
+.larger {
+  font-size: 250%
+}
+
+.xlarge {
+  font-size: 175%
+}
+
+.large {
+  font-size: 150%
+}
+
+.medi {
+  font-size: 90%
+}
+
+.midi {
+  font-size: 80%
+}
+
+.small {
+  font-size: 70%
+}
+
+.xsmall {
+  font-size: 65%
+}
+
+.xxsmall {
+  font-size: 60%
+}
+
+.tiny {
+  font-size: 50%
+}
+
+.medi .remark-code {
+  font-size: 90%
+}
+
+.midi .remark-code {
+  font-size: 80%;
+}
+
+.small .remark-code {
+  font-size: 70%;
+}
+
+.xsmall .remark-code {
+  font-size: 65%;
+}
+
+.xxsmall .remark-code {
+  font-size: 60%;
+}
+
+.tiny .remark-code {
+  font-size: 50%;
+}
 
 
 
@@ -158,11 +226,11 @@ a, a > code {
   color: #869496;
 }
 
-.datatables html-widget{
-background-color:unset;
-color: var(--dark-blue);
-font-family: unset;
-font-size: unset;
+.datatables html-widget {
+  background-color: unset;
+  color: var(--dark-blue);
+  font-family: unset;
+  font-size: unset;
 }
 
 /* Two-column layout */
@@ -172,54 +240,65 @@ font-size: unset;
   height: 92%;
   float: left;
 }
-.left-column h2:last-of-type, .left-column h3:last-child {
+
+.left-column h2:last-of-type,
+.left-column h3:last-child {
   color: #000;
 }
+
 .right-column {
   width: 75%;
   float: right;
   padding-top: 1em;
 }
+
 .center {
-  text-align:center;
+  text-align: center;
 }
+
 .pull-left {
   float: left;
   width: 47%;
 }
+
 .pull-right {
   float: right;
   width: 47%;
 }
-.pull-right ~ * {
+
+.pull-right~* {
   clear: both;
 }
 
 /*Alternative two-column layouts*/
 
-  /*Left 70% - Right 30% */
+/*Left 70% - Right 30% */
 .pull-left-wide {
   width: 70%;
   float: left;
 }
+
 .pull-right-narrow {
   width: 27%;
   float: right;
 }
-.pull-right-narrow ~ * {
+
+.pull-right-narrow~* {
   clear: both;
 }
 
-  /*Left 30% - Right 70% */
+/*Left 30% - Right 70% */
 .pull-left-narrow {
   width: 30%;
   float: left;
 }
+
 .pull-right-wide {
   width: 67%;
   float: right;
 }
-.pull-right-wide ~ * {
+
+.pull-right-wide~* {
   clear: both;
 }
 
@@ -250,6 +329,7 @@ font-size: unset;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 .instructions li::before {
   content: ">";
   color: #FFD748;
@@ -257,13 +337,15 @@ font-size: unset;
   margin-left: -1.5em
 }
 
-.question, .your-turn, .tip {
+.question,
+.your-turn,
+.tip {
   padding: 5px 5px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.question{
+.question {
   border-left: solid 5px #1E5C65;
   background-color: #d2dee0;
 }
@@ -272,13 +354,15 @@ font-size: unset;
   border-left: solid 5px #FFD748;
   background-color: #fff9e5;
 }
-.your-turn:before{
+
+.your-turn:before {
   content: "Your turn!";
   font-size: 150%;
   font-weight: bold;
   color: #FFD748;
   margin-bottom: 10px;
 }
+
 .your-turn ul li:before {
   content: "✚";
   color: #FFD748;
@@ -291,7 +375,8 @@ font-size: unset;
   border-right: solid 5px #F26BAA;
   background-color: #E7E7E7;
 }
-.tip:before{
+
+.tip:before {
   content: "Tip:";
   font-size: 120%;
   font-weight: bold;
@@ -311,6 +396,7 @@ blockquote {
 ul {
   list-style: none;
 }
+
 ul li:before {
   content: "✚";
   color: var(--light-blue);
@@ -318,14 +404,17 @@ ul li:before {
   width: 1.5em;
   margin-left: -1.5em
 }
-ul li{
+
+ul li {
   margin: 10px 0;
 }
 
 
 
 /* Embedded images */
-img, video, iframe {
+img,
+video,
+iframe {
   max-width: 100%;
 }
 
@@ -336,30 +425,44 @@ table {
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
 }
-table thead th { border-bottom: 1px solid #ddd; }
-th, td { padding: 5px; }
-thead, tfoot, tr:nth-child(even) { background: #eee }
+
+table thead th {
+  border-bottom: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+thead,
+tfoot,
+tr:nth-child(even) {
+  background: #eee
+}
 
 /* Footer */
 div.my-footer {
 
-    border-top: 1px solid var(--light-blue);
-    position: absolute;
-    bottom: 0px;
-    left: 80px;
-    height: 35px;
-    width: 100%;
+  border-top: 1px solid var(--light-blue);
+  position: absolute;
+  bottom: 0px;
+  left: 80px;
+  height: 35px;
+  width: 100%;
 }
+
 div.my-footer span {
-    font-size: 12pt;
-    position: absolute;
-    color: #333333;
-    left: 10px;
-    bottom: 10px;
+  font-size: 12pt;
+  position: absolute;
+  color: #333333;
+  left: 10px;
+  bottom: 10px;
 }
+
 div.my-footer a {
-    font-size: 12pt;
-    color: #333333;
+  font-size: 12pt;
+  color: #333333;
 }
 
 
@@ -374,15 +477,15 @@ div.my-footer a {
 
 /* Logo */
 .remark-slide-content:after {
-    content: "";
-    position: absolute;
-    bottom: 5px;
-    right: 1100px;
-    height: 60px;
-    width: 81px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url("cat-hex.png");
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  right: 1100px;
+  height: 60px;
+  width: 81px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("cat-hex.png");
 }
 
 
@@ -399,7 +502,10 @@ div.my-footer a {
 
 
 /* Media */
-@page { margin: 0; }
+@page {
+  margin: 0;
+}
+
 @media print {
   .remark-slide-scaler {
     width: 100% !important;
@@ -421,11 +527,11 @@ div.my-footer a {
 
 /* What is this? */
 .element.style {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 685px;
-    width: 700px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 685px;
+  width: 700px;
 }
 
 /* Datatable headers
@@ -435,16 +541,18 @@ div.datatables {
  */
 /* Handwriting */
 
-.hand{
+.hand {
   font-family: 'Gochi Hand', cursive;
   font-size: 125%;
 }
-.hand-blue{
+
+.hand-blue {
   font-family: 'Gochi Hand', cursive;
   color: var(--light-blue);
   font-size: 125%;
 }
-.hand-pink{
+
+.hand-pink {
   font-family: 'Gochi Hand', cursive;
   color: var(--pink);
   font-size: 125%;
@@ -453,15 +561,15 @@ div.datatables {
 /* Custom fonts */
 
 .huge-blue {
- font-family: 'Montserrat', sans-serif;
- font-size: 400%;
- font-weight: bold;
- color: var(--light-blue);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 400%;
+  font-weight: bold;
+  color: var(--light-blue);
 }
 
 .huge-pink {
- font-family: 'Montserrat', sans-serif;
- font-size: 400%;
- font-weight: bold;
- color: var(--pink);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 400%;
+  font-weight: bold;
+  color: var(--pink);
 }
