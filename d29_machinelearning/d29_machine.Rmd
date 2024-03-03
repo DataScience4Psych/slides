@@ -27,37 +27,68 @@ library(e1071)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
+
+
+class: middle
+# Machine Learning $in$ Theory
+
 ---
 
-Machine Learning in Theory
+## Machine Learning in Data Science
+
+.pull-right-wide[
+- Machine Learning is a subset of data science focused on models and algorithms that allow computers to 
+  - "learn" from and make decisions based on data.
+- These models make predictions or decisions without being explicitly programmed for the task. 
+- This process involves "learning" patterns from past data to apply to new, unseen data.]
 
 ---
 
-## Understanding Machine Learning Models
+.pull-left-narrow[
 
-At its core, a machine learning model aims to make predictions or decisions based on input data. This process involves learning patterns from past data to apply to new, unseen data.
+```{r echo=FALSE, fig.align = "center",caption="DALLE rendition of Comparison Chart of Learning Types: This chart visually compares supervised, unsupervised, and reinforcement learning"}
+knitr::include_graphics("img/ai_comparing_supervised.png")
+```
+]
+
+.pull-right-wide[
+- Three main types of machine learning:
+  - Supervised learning: With labeled data
+  - Unsupervised learning: Without labeled data
+  - Reinforcement learning: Based on feedback from the environment
+
+]
+
+---
+
+## Machine Learning vs. Traditional Statistics
+
+- **Statistical Inference:** Focus on hypothesis testing, model assumptions.
+- **Machine Learning:** Emphasis on prediction accuracy and model performance on unseen data.
+
 
 ---
 
 ## The Machine Learning Process
 .pull-left[
 
-Step 1: Collect and preprocess data.
-Step 2: Choose a model.
-Step 3: Train the model.
-Step 4: Evaluate the model.
-Step 5: Parameter tuning.
-Step 6: Prediction or deployment.
+- Step 1: Collect and preprocess data.
+- Step 2: Choose a model.
+- Step 3: Train the model.
+- Step 4: Evaluate the model.
+- Step 5: Parameter tuning.
+- Step 6: Prediction or deployment.
 ]
 
 ---
 
 ## Model Building: A Detailed Look
-.pull-left-narrow[
 
-Choosing a Model: Based on the problem (classification, regression).
-Training: The model learns from the training data.
-Testing: The model is evaluated using unseen data.
+.pull-left[
+
+- Choosing a Model: Based on the problem (classification, regression).
+- Training: The model learns from the training data.
+- Testing: The model is evaluated using unseen data.
 ]
 
 .footnote[
@@ -71,10 +102,10 @@ Testing assesses how well the model generalizes.
 
 .pull-right[
 
-True Positives (TP): Correctly predicted positive observations.
-True Negatives (TN): Correctly predicted negative observations.
-False Positives (FP): Incorrectly predicted positive observations.
-False Negatives (FN): Incorrectly predicted negative observations.
+- True Positives (TP): Correctly predicted positive observations.
+- True Negatives (TN): Correctly predicted negative observations.
+- False Positives (FP): Incorrectly predicted positive observations.
+- False Negatives (FN): Incorrectly predicted negative observations.
 
 "The confusion matrix forms the foundation for deriving more complex evaluation metrics like accuracy, precision, and recall."
 ]
@@ -91,13 +122,13 @@ False Negatives (FN): Incorrectly predicted negative observations.
 
 .pull-left[
 
-Objective: Differentiate between sonar signals bounced off a metal cylinder and those from a rock.
-Approach: Utilize a classification model to learn the differences based on signal patterns.
+- Objective: Differentiate between sonar signals bounced off a metal cylinder and those from a rock.
+- Approach: Utilize a classification model to learn the differences based on signal patterns.
 ]
 
 .pull-right[
-```{r}
-knitr::include_graphics("../img/sonar_signals_explained.png")
+```{r, echo=FALSE, fig.align = "center"}
+knitr::include_graphics("img/Data_Scientist_-_The_Noun_Project.svg.png")
 ```
 ]
 
@@ -107,17 +138,17 @@ knitr::include_graphics("../img/sonar_signals_explained.png")
 
 .pull-left[
 
-"Preprocessing transforms raw data into a format that improves the efficiency and accuracy of our model. This includes normalization, scaling, and handling missing values."
+Preprocessing transforms raw data into a format that improves the efficiency and accuracy of our model. This includes normalization, scaling, and handling missing values.
 ]
 
 ---
 
 ## Model Evaluation Metrics Explained
-.pull-left[
 
-Accuracy: The proportion of total predictions that were correct.
-Precision: The proportion of positive identifications that were actually correct.
-Recall: The proportion of actual positives that were identified correctly.
+.pull-left[
+- Accuracy: The proportion of total predictions that were correct.
+- Precision: The proportion of positive identifications that were actually correct.
+- Recall: The proportion of actual positives that were identified correctly.
 ]
 
 
@@ -125,8 +156,8 @@ Recall: The proportion of actual positives that were identified correctly.
 
 .pull-right[
 
-```{r}
-knitr::include_graphics("../img/evaluation_metrics.png")
+```{r, echo=FALSE, fig.align = "center"}
+knitr::include_graphics("img/Data_Scientist_-_The_Noun_Project.svg.png")
 ```
 ]
 
@@ -138,47 +169,21 @@ These metrics provide a comprehensive view of model performance across various a
 
 ---
 
-## Machine Learning $in$ Data Science
 
-.pull-left[
-
-```{r echo=FALSE, fig.align = "left",caption="DALLE rendition of Comparison Chart of Learning Types: This chart visually compares supervised, unsupervised, and reinforcement learning"}
-knitr::include_graphics("img/ai_comparing_supervised.png")
-```
-]
-
-.pull-right[
-- Machine Learning is a subset of data science focused on models and algorithms that allow computers to learn from and make decisions based on data.
-- These models make predictions or decisions without being explicitly programmed for the task.
-- Three main types of machine learning:
-  - Supervised learning: With labeled data
-  - Unsupervised learning: Without labeled data
-  - Reinforcement learning: Based on feedback from the environment
-]
-
----
-
-## Machine Learning vs. Traditional Statistics
-
-- **Statistical Inference:** Focus on hypothesis testing, model assumptions.
-- **Machine Learning:** Emphasis on prediction accuracy and model performance on unseen data.
-
-
-
----
 
 
 ## Dataset Overview
 
 .pull-left[
-```{r echo=FALSE, fig.align = "left"}
+```{r echo=FALSE, fig.align = "center"}
 knitr::include_graphics("img/PhysicsSchemw.png")
 ```
+
 ]
 
 .pull-right[
-Objective: Differentiate between Sonar signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock.
-Features: Signal strength across various frequencies.
+- Objective: Differentiate between Sonar signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock.
+- Features: Signal strength across various frequencies.
 ]
 
 ---
@@ -193,10 +198,12 @@ It contains 208 observations of sonar signals bounced off a metal cylinder and a
 
 
 ```{r sonar-data, echo=FALSE, fig.align = "center", out.width = "90%", fig.cap = "Sonar data"}
-
+library(kableExtra)
 library(mlbench)
 data(Sonar)
-glimpse(Sonar)
+glimpse(Sonar) %>% 
+  kable()
+
 ```
 
 ---
@@ -206,46 +213,53 @@ glimpse(Sonar)
 
 ## Splitting the Dataset
 
-.pull-left[
-```{r eval=FALSE}
+.medi.pull-left[
+```{r}
 set.seed(123)
-index <- createDataPartition(Sonar$Class, p = 0.75, list = FALSE)
+index <- createDataPartition(Sonar$Class, 
+                             p = 0.75,
+                             list = FALSE)
 trainData <- Sonar[index, ]
 testData <- Sonar[-index, ]
 ```
-
 ]
-.pull-right[
 
-- set.seed(123): Ensures reproducibility of the sample
-- createDataPartition(): Splits the data into training and test sets, with 75% of data for training
+.pull-right[
+- `set.seed(123)`: Ensures reproducibility of the sample
+- `createDataPartition()`: Splits the data into training and test sets, with 75% of data for training
 - trainData contains `r nrow(trainData)` observations.
 - testData contains `r nrow(testData)` observations.
 ]
 
 ---
 
-# Preprocessing: centering and scaling the numeric attributes
-.pull-left[
-```{r preprocessing, echo=FALSE}
+# Preprocessing: Centering and Scaling
 
-# Preprocessing: centering and scaling the numeric attributes
-preProcValues <- preProcess(trainData[, -ncol(trainData)], method = c("center", "scale"))
-trainDataPreprocessed <- predict(preProcValues, trainData)
-testDataPreprocessed <- predict(preProcValues, testData)
+.pull-left-wide[
+```{r preprocessing}
+
+preProcValues <- trainData %>% select (-Class) %>% 
+  preProcess(method = c("center", "scale"))
+
+trainDataPreprocessed <- predict(preProcValues,
+                                 trainData)
+testDataPreprocessed <- predict(preProcValues,
+                                testData)
 ```
 ]
-.pull-right[
+.pull-right-narrow[
 
-preProcess(): Prepares the data for modeling by centering and scaling.
-predict(): Applies the preprocessing steps to both training and testing sets.
-Ensures that all features contribute equally to the model.
+- `preProcess()`: Prepares the data for modeling by centering and scaling. Only does so to the training data. The can be estimated from the training data and applied to any data set with the same variables.
+- `predict()`: Applies the preprocessing steps to both training and testing sets.
+Ensures that all features contribute equally to the model. Nothing is recomputed when using the predict function.
 ]
+
 ---
+
 # Preprocessing: The Outcome
 
 
-#to do Code to show the effect of preprocessing, such as comparing the range of values before and after preprocessing.
+# to do Code to show the effect of preprocessing, such as comparing the range of values before and after preprocessing.
 
 .tip[
 Preprocessing can significantly impact model performance by normalizing feature scales.
@@ -291,7 +305,7 @@ print(modelLDA)
 
 .pull-left[
 ```{r}
-knitr::include_graphics("../img/confusion_matrix_detailed.png")
+knitr::include_graphics("img/Miinitraaleri.jpg")
 ```
 ]
 
