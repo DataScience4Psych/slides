@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Quantifying uncertainty<br> 🤷
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -42,20 +46,31 @@ class: middle
 
 ## Data
 
-- Family income and gift aid data from a random sample of fifty students in the freshman class of Elmhurst College in Illinois, USA
-- Gift aid is financial aid that does not need to be paid back, as opposed to a loan
 
-&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-2-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+.alert[Have you ever wondered how financial aid is distributed among students?]
 
+--
+
+- Today, we dive into data from [Elmhurst University](https://en.wikipedia.org/wiki/Elmhurst_University) to explore this question.
+--
+
+.pull-left[
+- We've plotted the relationship between family income and gift aid data from a random sample of fifty students in the Elmhurst freshman class.
+]
+.pull-right[
+&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-2-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
 .footnote[
 .small[
-The data come from the openintro package: [`elmhurst`](http://openintrostat.github.io/openintro/reference/elmhurst.html).
+The data come from the openintro package: [`elmhurst`](http://openintrostat.github.io/openintro/reference/elmhurst.html). Unlike a loan, gift aid is financial aid that does not need to be repaid
 ]
 ]
 
 ---
 
 ## Linear model
+
+
 
 .pull-left[
 .small[
@@ -68,7 +83,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term          estimate std.error statistic  p.value
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)    24.3       1.29       18.8  8.28e-24
@@ -77,9 +92,8 @@ linear_reg() %&gt;%
 ]
 ]
 .pull-right[
-&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-4-1.png" width="95%" style="display: block; margin: auto;" /&gt;
 ]
-
 ---
 
 ## Interpreting the slope
@@ -87,7 +101,7 @@ linear_reg() %&gt;%
 .pull-left-wide[
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term          estimate std.error statistic  p.value
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)    24.3       1.29       18.8  8.28e-24
@@ -95,12 +109,12 @@ linear_reg() %&gt;%
 ```
 ]
 .pull-right-narrow[
-&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 --
 
-For each additional $1,000 of family income, we would expect students to receive a net difference of 1,000 * (-0.0431) = -$43.10 in aid on average, i.e. $43.10 less in gift aid, on average.
+For each additional \$1,000 of family income, we would expect students to receive a net difference of 1,000 * (-0.0431) = -\$43.10 in aid on average, i.e. \$43.10 less in gift aid, on average.
 
 ---
 
@@ -214,7 +228,7 @@ or
 
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term          estimate std.error statistic  p.value
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)    24.3       1.29       18.8  8.28e-24
@@ -248,6 +262,12 @@ class: middle
 
 ## Observed sample
 
+
+```
+## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurst_slope_obs), : All aesthetics have length 1, but the data has 50 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -259,8 +279,10 @@ Generated assuming there are more students like the ones in the observed sample.
 
 
 ```
-## Error in `stop_vctrs()`:
-## ! Input must be a vector, not a &lt;boot_split/rsplit&gt; object.
+## Error in `map()`:
+## ℹ In index: 1.
+## Caused by error in `vec_size()`:
+## ! `x` must be a vector, not a &lt;boot_split/rsplit&gt; object.
 ```
 
 ---
@@ -293,6 +315,12 @@ elmhurtst_boot_1 &lt;- elmhurst %&gt;%
 ```
 
 
+
+```
+## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_1_slope), : All aesthetics have length 1, but the data has 50 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -305,6 +333,12 @@ elmhurtst_boot_2 &lt;- elmhurst %&gt;%
   slice_sample(n = 50, replace = TRUE)
 ```
 
+
+
+```
+## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_2_slope), : All aesthetics have length 1, but the data has 50 rows.
+## ℹ Did you mean to use `annotate()`?
+```
 
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-16-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -319,6 +353,12 @@ elmhurtst_boot_3 &lt;- elmhurst %&gt;%
 ```
 
 
+
+```
+## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_3_slope), : All aesthetics have length 1, but the data has 50 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-18-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -331,6 +371,12 @@ elmhurtst_boot_4 &lt;- elmhurst %&gt;%
   slice_sample(n = 50, replace = TRUE)
 ```
 
+
+
+```
+## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_4_slope), : All aesthetics have length 1, but the data has 50 rows.
+## ℹ Did you mean to use `annotate()`?
+```
 
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-20-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -366,6 +412,37 @@ we could keep going...
 
 ## 95% confidence interval
 
+
+```
+## Warning in geom_segment(aes(x = intervals %&gt;% pull(.lower), xend = intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
+```
+## Warning in geom_text(aes(x = intervals %&gt;% pull(.lower), y = 30), label = as.character(intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
+```
+## Warning in geom_segment(aes(x = intervals %&gt;% pull(.upper), xend = intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
+```
+## Warning in geom_text(aes(x = intervals %&gt;% pull(.upper), y = 30), label = as.character(intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
+```
+## Warning in geom_segment(aes(x = elmhurst_slope_obs, xend = elmhurst_slope_obs, : All aesthetics have length 1, but the data has 1000 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
+```
+## Warning in geom_text(aes(x = elmhurst_slope_obs, y = 30), label = as.character(elmhurst_slope_obs), : All aesthetics have length 1, but the data has 1000 rows.
+## ℹ Did you mean to use `annotate()`?
+```
+
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-24-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -374,7 +451,7 @@ we could keep going...
 
 
 ```
-## # A tibble: 2 x 6
+## # A tibble: 2 × 6
 ##   term           .lower .estimate  .upper .alpha .method   
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     
 ## 1 (Intercept)   21.8      24.4    26.8      0.05 percentile
@@ -472,6 +549,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

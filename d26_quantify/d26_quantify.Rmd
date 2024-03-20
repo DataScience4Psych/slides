@@ -38,10 +38,19 @@ class: middle
 
 ## Data
 
-- Family income and gift aid data from a random sample of fifty students in the freshman class of Elmhurst College in Illinois, USA
-- Gift aid is financial aid that does not need to be paid back, as opposed to a loan
 
-```{r echo=FALSE, out.width="50%"}
+.alert[Have you ever wondered how financial aid is distributed among students?]
+
+--
+
+- Today, we dive into data from [Elmhurst University](https://en.wikipedia.org/wiki/Elmhurst_University) to explore this question.
+--
+
+.pull-left[
+- We've plotted the relationship between family income and gift aid data from a random sample of fifty students in the Elmhurst freshman class.
+]
+.pull-right[
+```{r echo=FALSE, out.width="90%"}
 ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   geom_point(color = "#8E2C90", size = 2) +
   scale_x_continuous(labels = label_dollar(suffix = "K")) + 
@@ -50,19 +59,21 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
     x = "Family Income",
     y = "Gift Aid",
     title = "Gift Aid and Family Income",
-    subtitle = "Random sample 50 students at Elmhurst College"
+    subtitle = "Random sample 50 students at Elmhurst University"
   )
 ```
-
+]
 .footnote[
 .small[
-The data come from the openintro package: [`elmhurst`](http://openintrostat.github.io/openintro/reference/elmhurst.html).
+The data come from the openintro package: [`elmhurst`](http://openintrostat.github.io/openintro/reference/elmhurst.html). Unlike a loan, gift aid is financial aid that does not need to be repaid
 ]
 ]
 
 ---
 
 ## Linear model
+
+
 
 .pull-left[
 .small[
@@ -75,7 +86,7 @@ linear_reg() %>%
 ]
 ]
 .pull-right[
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="95%"}
 ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   geom_point(color = "#8E2C90", size = 2) +
   geom_smooth(method = "lm", se = FALSE, color = "#8E2C90") +
@@ -85,11 +96,10 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
     x = "Family Income",
     y = "Gift Aid",
     title = "Gift aid and family income",
-    subtitle = "Random sample 50 students at Elmhurst College"
+    subtitle = "Random sample 50 students at Elmhurst University"
   )
 ```
 ]
-
 ---
 
 ## Interpreting the slope
@@ -103,7 +113,7 @@ linear_reg() %>%
 ```
 ]
 .pull-right-narrow[
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="90%"}
 ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
   geom_point(color = "#8E2C90", size = 2) +
   geom_smooth(method = "lm", se = FALSE, color = "#8E2C90") +
@@ -113,14 +123,14 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
     x = "Family Income",
     y = "Gift Aid",
     title = "Gift aid and family income",
-    subtitle = "Random sample 50 students at Elmhurst College"
+    subtitle = "Random sample 50 students at Elmhurst University"
   )
 ```
 ]
 
 --
 
-For each additional $1,000 of family income, we would expect students to receive a net difference of 1,000 * (-0.0431) = -$43.10 in aid on average, i.e. $43.10 less in gift aid, on average.
+For each additional \$1,000 of family income, we would expect students to receive a net difference of 1,000 * (-0.0431) = -\$43.10 in aid on average, i.e. \$43.10 less in gift aid, on average.
 
 ---
 
@@ -288,7 +298,7 @@ ggplot(elmhurst, aes(x = family_income, y = gift_aid)) +
     x = "Family Income",
     y = "Gift Aid",
     title = "Gift aid and family income",
-    subtitle = "Random sample 50 students at Elmhurst College"
+    subtitle = "Random sample 50 students at Elmhurst University"
   )
 ```
 
@@ -314,7 +324,7 @@ elmhurst_boot %>%
     x = "Family Income",
     y = "Gift Aid",
     title = "Gift Aid and Family Income",
-    subtitle = "(Simulated) population of students at Elmhurst College"
+    subtitle = "(Simulated) population of students at Elmhurst University"
   )
 ```
 
