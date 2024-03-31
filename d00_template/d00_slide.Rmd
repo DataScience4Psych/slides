@@ -1,0 +1,111 @@
+---
+title: "Title Line 1 <br> `r emo::ji('cat')`<br> Title Line 2"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+#      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+#       slideNumberFormat: ""  
+knitr::opts_chunk$set(knitr.duplicate.label = "allow")
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+```
+---
+class: middle
+
+# Hello world!
+
+---
+# Welcome to [Course/Topic Name]
+
+.br
+`r emo::ji("emoji_name")`
+
+.large[
+Welcome to our journey through [Course/Topic Name]. We'll explore together, learn, and grow.
+]
+
+
+---
+
+# Course Overview Slide Template
+
+## Course Overview
+
+What will we cover today?
+
+- **Introduction to [Topic]**
+  - Key concepts and why it matters.
+  
+- **Deep Dive: [Specific Topic]**
+  - Exploring in detail.
+  
+- **Practical Application**
+  - How can you apply this knowledge?
+
+- **Q&A**
+  - Your questions answered.
+
+---
+
+Interactive Question Slide Template
+
+## Let's Discuss
+
+- What is your understanding of [Topic/Question]?
+
+--
+
+- How do you see [Topic/Question] applying to your work/life?
+
+.large[
+Feel free to share your thoughts and questions.
+]
+
+
+# Topic Title Here
+
+.small[
+.instructions[
+Go to [your_instruction_link](https://yourlinkhere.com/), and perform the action (unless you already have done so). 
+]
+]
+
+Tips for __________:<sup>✦</sup>
+
+.small[
+- Tip 1 with your content.
+- Tip 2 with your content.
+- Tip 3 with your content.
+- More tips as needed.
+]
+
+--
+.small[ 
+<sup>✦</sup> Source: [Your Source Name](http://yoursourceurl.com) by Author/Creator Name
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+

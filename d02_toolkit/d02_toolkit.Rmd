@@ -335,7 +335,7 @@ class: middle
 
 - We introduced GitHub as a platform for collaboration
 - But it's much more than that...
-- It's actually desiged for version control
+- It's actually designed for version control
 
 ---
 
@@ -386,11 +386,11 @@ knitr::include_graphics("img/phd_comics_vc.gif")
 ![](../img/demo.png)
 ]
 
-- Connect an R project to Github repository
+- Connect an R project to GitHub repository
 - Working with a local and remote repository
 - Making a change locally, committing, and pushing
 - Making a change on GitHub and pulling
-- There is just a bit more of GitHub that we'll use in this class, but for today this is enough
+- There is a bit more to GitHub that we'll use in this class, but for today this is enough
 
 ---
 class: middle
@@ -441,3 +441,4 @@ knitr::include_graphics("img/r-help.png")
 class: middle
 
 # Wrapping Up... Getting help in R
+
