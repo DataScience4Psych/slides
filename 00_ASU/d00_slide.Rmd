@@ -100,7 +100,7 @@ knitr::include_graphics("img/github-mark.png")
 - **Streamlined Publishing**  <!--Use platforms like JOSS (The Journal of Open Source Software) to publish tools developed for psychological research, fostering innovation.-->
 --
 
-- For psychologists, GitHub offers a platform to <!-- not only -->enhance research productivity<!-- but also contribute to a more open and collaborative scientific community.-->
+- For psychologists, GitHub offers a platform to <!-- not only -->enhance research productivity<!-- but also contribute to a more open and collaborative scientific community.--> for free ([as long as you're connected to an educational institution](https://education.github.com/benefits))
 
 ---
 
