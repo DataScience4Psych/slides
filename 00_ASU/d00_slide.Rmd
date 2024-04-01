@@ -43,6 +43,10 @@ library(qrcode)
 code <- qr_code("https://datascience4psych.github.io/slides/00_ASU/d00_slide#1")
 plot(code)
 ```
+.footnote[.center[
+[DataScience4Psych.github.io/slides/00_ASU/d00_slide](https://datascience4psych.github.io/slides/00_ASU/d00_slide#1) 
+]
+]
 
 ---
 
@@ -50,11 +54,11 @@ plot(code)
 # What is Git? What is GitHub?
 
 .pull-left[
-- **Git:** A distributed Version Control System (VCS). 
+- **Git:** A FREE distributed Version Control System (VCS). 
   - Effectively, it is a tool for easily tracking changes to your code, collaborating, and sharing. 
-  - With Git you can track the changes you make to your project so you always have a record of what you’ve worked on and 
-  - can easily revert back to an older version if need be. 
-  - It also makes working with others easier—groups of people can work together on the same project and merge their changes into one final source!
+  - <!--With Git you can -->Track the changes you make <!--to your project  so you always have a record of what you’ve worked on --> and 
+  - can easily revert back to an older version<!-- if need be. -->
+  - <!--It also  -->Makes working with others (and yourself) easier <!-- —groups of people can work together on the same project and merge their changes into one final source! -->
 ] 
 --
 .pull-right[ 
@@ -69,10 +73,12 @@ knitr::include_graphics("img/git-logo.png")
 .pull-left[
 - **GitHub:** A web-based platform built that extends Git’s capabilities by providing a web-based interface for collaboration. 
   - It’s widely used for code development, 
-  - allowing multiple people to work together on projects. 
+  - allowing multiple people to work together <!-- on projects. -->
   - GitHub hosts your repositories (project folders) and 
-  - provides tools for managing changes, reviewing code, and collaborating with others.
+  - provides tools for managing changes, reviewing code, and collaborating  <!--with others. -->
+- And it’s [FREE for people affiliated with academic institutions!](https://education.github.com/benefits)
 ]
+
 --
 .pull-right[ 
 ```{r echo=FALSE, out.width="50%"}
@@ -85,14 +91,20 @@ knitr::include_graphics("img/github-mark.png")
 
 # Why GitHub for Psychologists?
 
-- **Collaboration Made Easy:** Facilitates seamless collaboration across the globe, essential for multi-center studies and remote teams.
-- **Project Management:** Whether it's research data, experimental protocols, or manuscripts, manage all aspects of your projects in one place.
-- **Transparency and Reproducibility:** Open-source projects and data sharing align with the principles of open science, enhancing credibility and reproducibility.
-- **Educational Tool:** GitHub Classroom enables interactive learning, allowing students to submit assignments and get feedback easily.
-- **Streamlined Publishing:** Use platforms like JOSS (The Journal of Open Source Software) to publish tools developed for psychological research, fostering innovation.
-- For psychologists, GitHub offers a platform to not only enhance research productivity but also contribute to a more open and collaborative scientific community.
+- **Collaboration Made Easy**  <!--Facilitates seamless collaboration across the globe, essential for multi-center studies and remote teams.-->
+- **Project Management**  <!--Whether it's research data, experimental protocols, or manuscripts, manage all aspects of your projects in one place.-->
+--
+
+- **Transparency and Reproducibility**  <!--Open-source projects and data sharing align with the principles of open science, enhancing credibility and reproducibility.-->
+- **Educational Tools**  <!--GitHub Classroom enables interactive learning, allowing students to submit assignments and get feedback easily. -->
+- **Streamlined Publishing**  <!--Use platforms like JOSS (The Journal of Open Source Software) to publish tools developed for psychological research, fostering innovation.-->
+--
+
+- For psychologists, GitHub offers a platform to <!-- not only -->enhance research productivity<!-- but also contribute to a more open and collaborative scientific community.-->
 
 ---
+
+class: middle
 
 # Exploring GitHub's Potential for the Psychology Community
 
@@ -104,6 +116,9 @@ knitr::include_graphics("img/github-mark.png")
 - **Issue Tracking:** Log tasks, bugs, and feature requests as issues to keep track of project progress.
 - **Milestones:** Set important project milestones to track progress towards major goals.
 - **Project Boards:** Use Kanban-style boards to visualize workflow, from idea to implementation.
+
+--
+- Disclosure: I do not use most of these features consistently...
 
 .footnote[Learn more about GitHub for project management: [GitHub Project Management](https://docs.github.com/en/issues/trying-out-the-new-projects-experience)]
 
@@ -125,6 +140,7 @@ knitr::include_graphics("img/screenshot_r_lab_loggedout.png")
 knitr::include_graphics("img/screenshot_r_lab.png")
 ```
 ]
+
 ---
 
 .pull-left[
@@ -145,14 +161,19 @@ knitr::include_graphics("img/screenshot_r_lab.png")
 
 .pull-left[
 - **Interactive Learning:** GitHub provides a platform for sharing up-to-date course materials and notes, making learning more interactive and engaging.
-- **Version Control for Syllabi:** Easily update and revise syllabi policies, dates etc. (https://smasongarrison.github.io/syllabi/)
+- **Version Control for Syllabi:** Easily update and revise syllabi policies, dates etc. [smasongarrison.github.io/syllabi/](https://smasongarrison.github.io/syllabi/)
 - **Examples:** The [Data Science for Psychologists course repository](https://github.com/DataScience4Psych) repository showcases how GitHub can be used to enhance the teaching and learning experience.
 ]
 
 --
 .pull-right[
-```{r echo=FALSE, out.width="85%"}
+```{r echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/syllabus.png")
+```
+```{r echo=FALSE,out.width="10%",fig.align='center',fig.height=3}
+library(qrcode)
+code <- qr_code("https://smasongarrison.github.io/syllabi/")
+plot(code)
 ```
 ]
 ---
@@ -163,7 +184,12 @@ knitr::include_graphics("img/syllabus.png")
 ```{r echo=FALSE, out.width="85%"}
 knitr::include_graphics("img/screenshot_coursebook.png")
 ```
+```{r ref.label="qr_ds4p",echo=FALSE,out.width="10%"}
+```
+.footnote[.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/) 
 ]
+]]
 .pull-right[
 ```{r echo=FALSE, out.width="85%"}
 knitr::include_graphics("img/screenshot_courserepo.png")
@@ -180,15 +206,28 @@ knitr::include_graphics("img/screenshot_courserepo.png")
 
 --
 .pull-left[
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="50%"}
 knitr::include_graphics("img/screenshot_joss.png")
 ```
 ]
 .pull-right[
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="50%"}
 knitr::include_graphics("img/screenshot_joss_review.png")
 ```
 ]
+
+---
+.pull-left[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/screenshot_joss.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/screenshot_joss_review.png")
+```
+]
+
 ---
 
 ## Website Hosting with GitHub
@@ -198,6 +237,7 @@ knitr::include_graphics("img/screenshot_joss_review.png")
 - **Showcase Your Work:** GitHub Pages allows researchers and academics to host their professional portfolios, CVs, and even project pages for free.
 - **Example:** Visit [S. Mason Garrison's CV](https://smasongarrison.github.io/CV-Tex/SMasonGarrisonCV.pdf) hosted on GitHub for an example of how you can use GitHub Pages to host your academic CV.
 
+--
 
 .pull-left[
 ```{r echo=FALSE, out.width="100%"}
@@ -213,12 +253,14 @@ knitr::include_graphics("img/screenshot_cv_commits.png")
 
 ---
 
+class: middle
+
 # Intriguing, right?
 
 
 ---
 
-
+class: middle
 # GitHub toolkit overview
 
 ---
@@ -249,20 +291,15 @@ knitr::include_graphics("img/whole-game-04.png")
 
 ## Terminology Cheat Sheet
 
-- Repositories (Repo)
-  - Store your projects in repositories, including all files, revisions, and documentation.
+- **Repositories (Repo)**: Store your projects in repositories, including all files, revisions, and documentation.
+- **Commits**: Save changes to your project, creating a transparent history of your work and decisions.
+- **Push**: Send your committed changes to a remote repository on GitHub.com.
+- **Pull**: Fetch changes from a remote repository and merge them into your local repository.
+--
 
--Branches
-  - Work on different versions of a repository at the same time, allowing for parallel development.
-
-- Commits
-  - Save changes to your project, creating a transparent history of your work and decisions.
-
-- Pull Requests
-  - Propose changes to a project and discuss those changes with project collaborators before merging them.
-
-- Issues
-  - Track ideas, enhancements, tasks, or bugs for your projects. Organize with labels, assignees, and milestones.
+- **Pull Requests**: Propose changes to a project and discuss those changes with project collaborators before merging them.
+- **Branches**: Work on different versions of a repository at the same time, allowing for parallel development.
+- **Issues**: Track ideas, enhancements, tasks, or bugs for your projects. Organize with labels, assignees, and milestones.
 
 ---
 
@@ -288,7 +325,7 @@ knitr::include_graphics("img/lego-steps.png")
 
 ---
 
-## Versioning with human readable messages
+## Versioning (with human readable messages)
 
 ```{r echo=FALSE, fig.align = "center", out.width = "70%"}
 knitr::include_graphics("img/lego-steps-commit-messages.png")
@@ -312,7 +349,7 @@ knitr::include_graphics("img/phd_comics_vc.gif")
 - There are millions of git commands -- ok, that's an exaggeration, but there are a lot of them -- and very few people know them all. 99% of the time you will use git to add, commit, push, and pull.
 
 --
-- We will be doing Git things and interfacing with GitHub through RStudio, but if you google for help you might come across methods for doing these things in the command line -- skip that and move on to the next resource unless you feel comfortable trying it out.
+- We will be doing Git things and interfacing with GitHub through RStudio/GitHub Desktop, but if you google for help you might come across methods for doing these things in the command line -- skip that and move on to the next resource unless you feel comfortable trying it out.
 
 --
 - There is a great resource for working with git and R: [happygitwithr.com](http://happygitwithr.com/). Some of the content in there is beyond the scope of this talk, but it's a good place to look for help.
@@ -337,9 +374,11 @@ knitr::include_graphics("img/phd_comics_vc.gif")
 
 .small[
 .instructions[
-Go to [github.com](https://github.com/), and create an account (unless you already have one). 
+Go to [github.com](https://github.com/), and create an account (unless you already have one)... This is going to be the first step of the activity, so you can get ahead and do it now.
 ]
 ]
+
+--
 
 Tips for selecting a username:<sup>✦</sup>
 
@@ -363,12 +402,12 @@ Tips for selecting a username:<sup>✦</sup>
 
 class: middle
 
-## Practical Demonstrations
+## Practical Demonstration
 
 ---
 
 
-# Getting Started with GitHub
+## Part 1: Setting Up Your GitHub Repository
 
 1. **Sign Up on GitHub**
    - Visit [GitHub.com](https://github.com/) and create a new account.
@@ -377,55 +416,90 @@ class: middle
    - Click the "+" icon in the top right corner and select "New repository".
    - Name your repository and optionally add a description.
 
-3. **Install Git**
-   - Download and install Git from [git-scm.com](https://git-scm.com/).
+---
 
-4. **Configure Git with RStudio**
-   - In RStudio, go to Tools > Global Options > Git/SVN and make sure Git is recognized.
+## Part 2: Local Setup and Version Control
 
-5. **Clone a Repository**
-   - Use the "New Project" wizard in RStudio to clone your repository for local work.
-
-6. **Resources to Learn More**
-   - [GitHub Guides](https://guides.github.com/)
-   - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
-
-Start experimenting with small projects to get comfortable with the workflow. Happy coding!
+- Option A: Using RStudio (for R users)
+- Option B: Using GitHub Desktop (for a GUI approach)
 
 ---
 
-# Practical Demonstrations: Connecting R to GitHub
+## Option A: Using RStudio
+- 3 **Install Git**
+   - Download and install Git from [git-scm.com](https://git-scm.com/).
+- 4 **Configure Git with RStudio**
+   - In RStudio, go to Tools > Global Options > Git/SVN and make sure Git is recognized.
+- 5 **Clone a Repository**
+   - Use the "New Project" wizard in RStudio to clone your repository for local work.
+
+.footnote[**Resources to Learn More**
+   - [GitHub Guides](https://guides.github.com/)
+   - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
+]
+
+---
+
+## Option B: Using RStudio
+
+- 3 **Install and Set Up GitHub Desktop**
+   - Download and install GitHub Desktop from [desktop.github.com](https://desktop.github.com/).
+   - Open GitHub Desktop and sign in with your GitHub account.
+- 4 **Configure GitHub**  
+   - Configure your GitHub and email account under GitHub Desktop’s Preferences to ensure your commits are properly attributed to you.
+--
+
+- 5  **Clone the Repository Using GitHub Desktop**
+   - In GitHub Desktop, go to `File` > `Clone Repository`.
+   - Select the repository you created on GitHub from the list and choose a local path where you want to store the project files.
+   - Click `Clone` to create a local copy of your repository.
+  
+---
+
+# Part 3: Make Changes and Committing with GitHub
+  
+- 6 **Make Changes Locally**: 
+   - Add or modify files in your local project folder.
+- 7 **Commit Your Changes**: 
+   - Summarize your changes in a commit message and commit them. 
+   - In RStudio, use the Git tab. 
+   - In GitHub Desktop, use the Changes tab.
+  
+---
+- 7A **RStudio (Git tab)**
+   - Open RStudio and click on the Git tab in the top right panel.
+   - Check the box next to the files you want to commit, add a commit message in the top left panel, and click `Commit`.
+- 7B **GitHub Desktop (Changes tab)**
+   - Open GitHub Desktop; you should see the changes listed.
+   - Select the files you want to commit, add a commit message in the bottom left panel describing your changes, and click `Commit to main` (assuming you are working on the main branch).
+
+---
+
+# Part 4: Keeping in Sync
+
+- 8 **Push to GitHub**: Upload your changes to GitHub. Use the "Push" button in RStudio or GitHub Desktop.
+--
+
+- 8A **RStudio (Git tab)**
+   - With your changes committed, click the `Push` button in RStudio to upload your changes to the remote repository on GitHub.
+- 8B **GitHub Desktop (Changes tab)**
+   - With your changes committed, click the `Push origin` button in GitHub Desktop to upload your changes to the remote repository on GitHub.
+--
+
+- 9 **View your changes** 
+   - Your changes are now reflected on GitHub, and you can view them by navigating to your repository on the GitHub website.  
+- 10 **Pull from GitHub**: If changes are made on GitHub directly (by you or collaborators), you can update your local repository by clicking the `Pull` button in RStudio or GitHub Desktop.
+   - Start experimenting with small projects to get comfortable with the workflow. Happy coding!
+
+---
 
 
-## Step 1: Create a New Repository on GitHub
+## Additional Resources
 
-- Go to [GitHub](https://github.com/) and click on "New" in the Repositories tab.
-- Name your repository and add a brief description.
-- Choose to initialize with a README for an easy start.
-
-## Step 2: Clone the Repository in RStudio
-
-- In RStudio, go to File > New Project > Version Control > Git.
-- Paste the URL of your GitHub repository.
-- Choose a directory to store the project on your computer.
-
-## Step 3: Make Changes and Commit
-
-- Modify an existing file or create a new file in the RStudio project.
-- Go to the Git tab in RStudio, check the files you've changed, and click "Commit".
-- Write a commit message describing the changes and commit.
-
-## Step 4: Push Changes to GitHub
-
-- After committing your changes, click the "Push" button in RStudio to update your GitHub repository.
-- Your changes are now on GitHub!
-
-## Step 5: Pull Changes from GitHub
-
-- If changes are made on GitHub (by you or collaborators), you can update your local repository by clicking "Pull" in RStudio.
-
-.footnote[For a detailed guide, check out [Happy Git and GitHub for the useR](http://happygitwithr.com/)]
-
+- [GitHub Guides](https://guides.github.com/)
+- [Happy Git and GitHub for the useR](http://happygitwithr.com/)
+- GitHub Desktop Documentation: For detailed guides and troubleshooting, visit [docs.github.com/en/desktop](https://docs.github.com/en/desktop).
+- Interactive Tutorials: GitHub offers interactive tutorials to understand the workflow better; find them at [lab.github.com](https://lab.github.com/).
 
 ---
 
@@ -442,11 +516,15 @@ class: middle
 
 ## Any Questions?
 
-Feel free to ask any questions now, or reach out to me after the talk via email garrissm@wfu.edu or on github github.com/smasongarrison.
+Feel free to ask any questions now, or reach out to me after the talk via email _garrissm@wfu.edu_ or on github _github.com/smasongarrison_.
 
-```{r qr_ds4p, echo=FALSE, fig.align = "center", out.width = "30%"}
+```{r qr_ds4p, echo=FALSE, fig.align = "center", out.width = "30%", caption="Scan the QR code to visit the Data Science for Psych website"}
 library(qrcode)
 code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
 plot(code)
 ```
 
+.footnote[.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/) 
+]
+]
