@@ -31,31 +31,56 @@ if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
 ```
 
+---
 
 class: middle
 
 # Hello world!
 
----
 
-# Introduction to GitHub
-
-- **Origins:** Launched in 2008, GitHub began as a platform for software developers to collaborate on code.
-- **Evolution:** Over the years, GitHub has grown into a vast community where millions share, develop, and maintain software.
-- **Beyond Code:** GitHub's use has expanded beyond software development to include academics, writers, and researchers who collaborate on various projects.
-- **Features:** Offers version control with Git, issue tracking, project boards, and a platform for project management and collaboration
-- **In Education:** GitHub Classroom and _free_ educational accounts bolster its use in teaching and learning.
-
-- GitHub's unique blend of features supports not just coding projects but also the collaborative and iterative nature of academic research and teaching.
+```{r echo=FALSE,out.width="10%",fig.align='center',fig.cap="QR code for these slides",fig.height=3}
+library(qrcode)
+code <- qr_code("https://datascience4psych.github.io/slides/00_ASU/d00_slide#1")
+plot(code)
+```
 
 ---
+
+
 # What is Git? What is GitHub?
 
-- **Git:** A version control system that tracks changes in files and facilitates collaborative work on projects. Git runs locally on your computer, allowing you to manage your project's history.
-- **GitHub:** A web-based platform built on top of Git. It hosts your repositories online, making it easier to share your projects with others. GitHub adds a layer of social networking, issue tracking, project boards, and more to your Git projects.
-- **Synergy:** While Git manages your project history locally, GitHub takes it to the cloud, enabling collaboration across teams globally. Together, they streamline project workflows and enhance productivity.
+.pull-left[
+- **Git:** A distributed Version Control System (VCS). 
+  - Effectively, it is a tool for easily tracking changes to your code, collaborating, and sharing. 
+  - With Git you can track the changes you make to your project so you always have a record of what you’ve worked on and 
+  - can easily revert back to an older version if need be. 
+  - It also makes working with others easier—groups of people can work together on the same project and merge their changes into one final source!
+] 
+--
+.pull-right[ 
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/git-logo.png")
+```
+]
 
-Using Git and GitHub together combines the power of version control with the ease of online collaboration.
+---
+
+# What is GitHub?
+.pull-left[
+- **GitHub:** A web-based platform built that extends Git’s capabilities by providing a web-based interface for collaboration. 
+  - It’s widely used for code development, 
+  - allowing multiple people to work together on projects. 
+  - GitHub hosts your repositories (project folders) and 
+  - provides tools for managing changes, reviewing code, and collaborating with others.
+]
+--
+.pull-right[ 
+```{r echo=FALSE, out.width="50%"}
+knitr::include_graphics("img/github_logo.png")
+knitr::include_graphics("img/github-mark.png")
+```
+]
+
 ---
 
 # Why GitHub for Psychologists?
@@ -65,9 +90,7 @@ Using Git and GitHub together combines the power of version control with the eas
 - **Transparency and Reproducibility:** Open-source projects and data sharing align with the principles of open science, enhancing credibility and reproducibility.
 - **Educational Tool:** GitHub Classroom enables interactive learning, allowing students to submit assignments and get feedback easily.
 - **Streamlined Publishing:** Use platforms like JOSS (The Journal of Open Source Software) to publish tools developed for psychological research, fostering innovation.
-
-For psychologists, GitHub offers a platform to not only enhance research productivity but also contribute to a more open and collaborative scientific community.
-
+- For psychologists, GitHub offers a platform to not only enhance research productivity but also contribute to a more open and collaborative scientific community.
 
 ---
 
@@ -84,12 +107,25 @@ For psychologists, GitHub offers a platform to not only enhance research product
 
 .footnote[Learn more about GitHub for project management: [GitHub Project Management](https://docs.github.com/en/issues/trying-out-the-new-projects-experience)]
 
+---
 
 ## Managing Research Projects and Labs
 
 - **Collaboration at Scale:** GitHub enables team members to work together seamlessly, regardless of their location.
 - **Transparency and Reproducibility:** By hosting your lab's projects on GitHub, you ensure that your research processes are transparent and your results are reproducible.
 - **Example:** My [R Computing Lab](https://github.com/R-Computing-Lab) demonstrates how labs can manage datasets, code, and collaborate on analysis in real(ish)-time.
+
+.pull-left[
+```{r echo=FALSE, out.width="45%"}
+knitr::include_graphics("img/screenshot_r_lab_loggedout.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="45%"}
+knitr::include_graphics("img/screenshot_r_lab.png")
+```
+]
+---
 
 .pull-left[
 ```{r echo=FALSE, out.width="90%"}
@@ -101,6 +137,7 @@ knitr::include_graphics("img/screenshot_r_lab_loggedout.png")
 knitr::include_graphics("img/screenshot_r_lab.png")
 ```
 ]
+
 
 ---
 
@@ -210,31 +247,22 @@ knitr::include_graphics("img/whole-game-04.png")
 
 ---
 
-# Terminology
+## Terminology Cheat Sheet
 
-## Repositories
-- Store your projects in repositories, including all files, revisions, and documentation.
+- Repositories (Repo)
+  - Store your projects in repositories, including all files, revisions, and documentation.
 
-## Branches
-- Work on different versions of a repository at the same time, allowing for parallel development.
+-Branches
+  - Work on different versions of a repository at the same time, allowing for parallel development.
 
-## Commits
-- Save changes to your project, creating a transparent history of your work and decisions.
+- Commits
+  - Save changes to your project, creating a transparent history of your work and decisions.
 
-## Pull Requests
-- Propose changes to a project and discuss those changes with project collaborators before merging them.
+- Pull Requests
+  - Propose changes to a project and discuss those changes with project collaborators before merging them.
 
-## Issues
-- Track ideas, enhancements, tasks, or bugs for your projects. Organize with labels, assignees, and milestones.
-
-## GitHub Actions
-- Automate your workflow from idea to production with CI/CD pipelines directly in GitHub.
-
-## Project Boards
-- Plan and track your work and workflows with customizable project boards.
-
-## GitHub Pages
-- Host and publish your projects, documentation, or portfolio directly from your GitHub repository.
+- Issues
+  - Track ideas, enhancements, tasks, or bugs for your projects. Organize with labels, assignees, and milestones.
 
 ---
 
@@ -260,9 +288,7 @@ knitr::include_graphics("img/lego-steps.png")
 
 ---
 
-## Versioning 
-
-with human readable messages
+## Versioning with human readable messages
 
 ```{r echo=FALSE, fig.align = "center", out.width = "70%"}
 knitr::include_graphics("img/lego-steps-commit-messages.png")
@@ -340,7 +366,36 @@ class: middle
 ## Practical Demonstrations
 
 ---
+
+
+# Getting Started with GitHub
+
+1. **Sign Up on GitHub**
+   - Visit [GitHub.com](https://github.com/) and create a new account.
+   
+2. **Create Your First Repository**
+   - Click the "+" icon in the top right corner and select "New repository".
+   - Name your repository and optionally add a description.
+
+3. **Install Git**
+   - Download and install Git from [git-scm.com](https://git-scm.com/).
+
+4. **Configure Git with RStudio**
+   - In RStudio, go to Tools > Global Options > Git/SVN and make sure Git is recognized.
+
+5. **Clone a Repository**
+   - Use the "New Project" wizard in RStudio to clone your repository for local work.
+
+6. **Resources to Learn More**
+   - [GitHub Guides](https://guides.github.com/)
+   - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
+
+Start experimenting with small projects to get comfortable with the workflow. Happy coding!
+
+---
+
 # Practical Demonstrations: Connecting R to GitHub
+
 
 ## Step 1: Create a New Repository on GitHub
 
@@ -371,32 +426,6 @@ class: middle
 
 .footnote[For a detailed guide, check out [Happy Git and GitHub for the useR](http://happygitwithr.com/)]
 
----
-
-# Getting Started with GitHub
-
-1. **Sign Up on GitHub**
-   - Visit [GitHub.com](https://github.com/) and create a new account.
-   
-2. **Create Your First Repository**
-   - Click the "+" icon in the top right corner and select "New repository".
-   - Name your repository and optionally add a description.
-
-3. **Install Git**
-   - Download and install Git from [git-scm.com](https://git-scm.com/).
-
-4. **Configure Git with RStudio**
-   - In RStudio, go to Tools > Global Options > Git/SVN and make sure Git is recognized.
-
-5. **Clone a Repository**
-   - Use the "New Project" wizard in RStudio to clone your repository for local work.
-
-6. **Resources to Learn More**
-   - [GitHub Guides](https://guides.github.com/)
-   - [Happy Git and GitHub for the useR](http://happygitwithr.com/)
-
-Start experimenting with small projects to get comfortable with the workflow. Happy coding!
-
 
 ---
 
@@ -405,10 +434,19 @@ class: middle
 
 # Conclusion and Q&A
 
+- Today, we explored how GitHub can revolutionize research and collaboration in psychology.
+- We've seen its potential from managing labs to hosting websites.
+- Remember, the journey of a thousand miles begins with a single step. Start small and explore!
 
 ---
 
-class: middle
+## Any Questions?
 
-# Wrapping Up...
+Feel free to ask any questions now, or reach out to me after the talk via email garrissm@wfu.edu or on github github.com/smasongarrison.
+
+```{r qr_ds4p, echo=FALSE, fig.align = "center", out.width = "30%"}
+library(qrcode)
+code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
+plot(code)
+```
 
