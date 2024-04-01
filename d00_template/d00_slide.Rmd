@@ -36,7 +36,7 @@ class: middle
 # Welcome to [Course/Topic Name]
 
 .br
-`r emo::ji("emoji_name")`
+`r emo::ji('cat')`
 
 .large[
 Welcome to our journey through [Course/Topic Name]. We'll explore together, learn, and grow.

@@ -4,9 +4,11 @@
     <title>Data Science for Psychologists Workshop</title>
     <meta charset="utf-8" />
     <meta name="author" content="Mason Garrison" />
-    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
@@ -28,7 +30,24 @@ class: center, middle, inverse, title-slide
 ---
 
 
-class: center, middle
+---
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+class: center, middle 
 
 # Data Science for Psychologists Workshop
 ## APS Annual Convention
@@ -37,14 +56,134 @@ class: center, middle
 #### Wake Forest University
 
 ---
+class: middle
+
+# Workshop Overview!
+
+---
 
 # Workshop Overview
 
-- Introduction to R and the tidyverse
-- Data Wrangling
-- Data Visualization
+- .large[&lt;i class="fa fa-database fa"&gt;&lt;/i&gt; = Introduction to R and the tidyverse]
+--
+
+- .large[&lt;i class="fa fa-flask fa"&gt;&lt;/i&gt; = Data Wrangling]
+--
+
+- .large[&lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = Data Visualization]
+--
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.small[
+.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
+]
+]
 
 ---
+
+# Introduction to R and the tidyverse
+.dark-blue.pull-left[
+- .large[Getting started with R and RStudio]
+- .large[Understanding the structure and philosophy of the tidyverse]
+- .large[Learning basic R syntax and operations]
+]
+---
+
+# Data Wrangling
+.pull-left[
+- .large[Importing and exporting data in various formats]
+- .large[Cleaning, transforming, and reshaping data]
+]
+---
+
+# Data Visualization
+
+.pull-left[
+- .large[Creating static and interactive visualizations using ggplot2]
+- .large[Customizing visual elements to enhance your plots]
+- .large[Interpreting and describing visualizations]
+]
+.center.pull-right[
+
+&lt;img src="img/plot007w.png" width="95%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+---
+class: middle
+
+# Hello world!
+
+---
+
+## What is data science?
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-flask fa"&gt;&lt;/i&gt; = data science?
+--
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = data science?
+--
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-user fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = data science?
+--
+
+- &lt;i class="fa fa-database fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-users fa"&gt;&lt;/i&gt; + &lt;i class="fa fa-code fa"&gt;&lt;/i&gt; = data science?
+--
+
+&lt;br&gt;
+&lt;br&gt;
+.large[
+Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. We're going to learn to do this in a `tidy` way -- more on that later!
+]
+---
+
+# What is this course?
+
+This course is an introduction to data science that is designed for psychologists. It emphasizes statistical thinking and best practices.
+&lt;br&gt;&lt;br&gt;
+--
+
+**Q - What data science background does this course assume?**  
+A - None.
+&lt;br&gt;
+--
+
+**Q - Is this an intro CS course?**  
+A - Although statistics and computer science `\(\ne\)` data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get comfortable with those topics. However this course is **not** your typical course.
+&lt;br&gt;
+--
+
+**Q - Will we be doing computing?**   
+A - Yes.
+&lt;br&gt;
+--
+
+
+**Q - What computing language will we learn?**  
+A - R.
+&lt;br&gt;
+--
+
+**Q: Why not language X?**  
+A: We can discuss that *remotely* over ☕.
+
+
+---
+
+## Where is this course?
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.large[
+.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
+]
+]
+
+---
+class: middle
 
 # Introduction to R and the tidyverse
 
@@ -52,27 +191,187 @@ class: center, middle
 - Understanding the structure and philosophy of the tidyverse
 - Learning basic R syntax and operations
 
----
-
-# Data Wrangling
-
-- Importing and exporting data in various formats
-- Cleaning, transforming, and reshaping data
 
 ---
 
-# Data Visualization
+class: middle
 
-- Creating static and interactive visualizations using ggplot2
-- Customizing visual elements to enhance your plots
-- Interpreting and describing visualizations
+# R and RStudio
 
 ---
 
-class: center, middle
+## What is R/RStudio?
 
-# See you on Sunday, May 28 at 9 a.m.
-## Let's embark on this exciting learning adventure together!
+- R is a statistical programming language
+- RStudio is a convenient interface for R (an integrated development environment, IDE)
+- At its simplest:
+    - R is like a car’s engine
+    - RStudio is like a car’s dashboard
+
+&lt;img src="img/engine-dashboard.png" width="66%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Let's take a tour - R / RStudio
+
+.center[
+![](../img/demo.png)
+]
+
+- Console
+- Using R as a calculator
+- Environment
+- Loading and viewing a data frame
+- Accessing a variable in a data frame
+- R functions
+
+
+---
+
+## Working with R at the command line 
+
+- Launch RStudio/R.
+- Notice the default panes:
+    - Console (entire left)
+    - Environment/History (tabbed in upper right)
+    - Files/Plots/Packages/Help (tabbed in lower right)
+
+
+--
+
+- FYI: You can change the default location of the panes, among many other things
+  - [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio)
+
+---
+
+## Working with R at the command line (pt 2)
+
+- Go into the Console, where we interact with the live R process.
+- Make an assignment and then inspect the object you just created:
+
+
+```r
+x &lt;- 3 * 4
+x
+```
+
+```
+## [1] 12
+```
+
+- All R statements where you create objects -- "assignments" -- have this form:
+
+
+```r
+objectName &lt;- value
+```
+
+- Read this as 'x gets 12'
+
+&lt;!---
+and in my head I hear, e.g., "x gets 12".
+
+You will make lots of assignments and the operator `&lt;-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize RStudio's keyboard shortcut: Alt + - (the minus sign).
+--&gt;
+
+
+---
+
+## R essentials
+
+A short list (for now):
+
+- Functions are (most often) verbs, followed by what they will be applied to in parentheses:
+
+
+```r
+do_this(to_this)
+do_that(to_this, to_that, with_those)
+```
+
+--
+
+- Columns (variables) in data frames are accessed with `$`:
+
+
+```r
+dataframe$var_name
+```
+
+--
+
+- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+
+```r
+install.packages("package_name")
+library(package_name)
+```
+
+---
+
+## tidyverse
+
+.pull-left[
+![](img/tidyverse.png)
+]
+
+.pull-right[
+.center[
+[tidyverse.org](https://www.tidyverse.org/)
+]
+
+- The tidyverse is an opinionated collection of R packages designed for data science. 
+- All packages share an underlying philosophy and a common grammar. 
+]
+
+---
+
+class: middle
+
+# R Markdown
+
+---
+
+
+## R Markdown
+
+- Fully reproducible reports -- each time you knit the analysis is ran from the beginning
+- Simple markdown syntax for text
+- Code goes in chunks, defined by three backticks, narrative goes outside of chunks
+
+---
+
+## Let's take a tour - R Markdown
+
+
+.center[
+![](../img/demo.png)
+]
+
+Concepts introduced:
+
+- Copying a project of mine
+- Knitting documents
+- R Markdown and (some) R syntax
+
+---
+
+.your-turn[
+
+- The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
+- Go to github page and fork the assignment `Bechdel + R Markdown`. 
+- Open and knit the R Markdown document `bechdel.Rmd` and follow along with the instructions.
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

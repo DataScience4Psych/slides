@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Grammar of data wrangling <br> 🔩
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -122,19 +126,19 @@ glimpse(hotels)
 ```
 ## Rows: 119,390
 ## Columns: 32
-## $ hotel                          &lt;chr&gt; "Resort Hotel", "Resort ~
-## $ is_canceled                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ lead_time                      &lt;dbl&gt; 342, 737, 7, 13, 14, 14,~
-## $ arrival_date_year              &lt;dbl&gt; 2015, 2015, 2015, 2015, ~
-## $ arrival_date_month             &lt;chr&gt; "July", "July", "July", ~
-## $ arrival_date_week_number       &lt;dbl&gt; 27, 27, 27, 27, 27, 27, ~
-## $ arrival_date_day_of_month      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ stays_in_weekend_nights        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ stays_in_week_nights           &lt;dbl&gt; 0, 0, 1, 1, 2, 2, 2, 2, ~
-## $ adults                         &lt;dbl&gt; 2, 2, 1, 1, 2, 2, 2, 2, ~
-## $ children                       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ babies                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ meal                           &lt;chr&gt; "BB", "BB", "BB", "BB", ~
+## $ hotel                          &lt;chr&gt; "Resort Hotel", "Resort …
+## $ is_canceled                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ lead_time                      &lt;dbl&gt; 342, 737, 7, 13, 14, 14,…
+## $ arrival_date_year              &lt;dbl&gt; 2015, 2015, 2015, 2015, …
+## $ arrival_date_month             &lt;chr&gt; "July", "July", "July", …
+## $ arrival_date_week_number       &lt;dbl&gt; 27, 27, 27, 27, 27, 27, …
+## $ arrival_date_day_of_month      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ stays_in_weekend_nights        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ stays_in_week_nights           &lt;dbl&gt; 0, 0, 1, 1, 2, 2, 2, 2, …
+## $ adults                         &lt;dbl&gt; 2, 2, 1, 1, 2, 2, 2, 2, …
+## $ children                       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ babies                         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ meal                           &lt;chr&gt; "BB", "BB", "BB", "BB", …
 ...
 ```
 
@@ -150,7 +154,7 @@ select(hotels, lead_time)
 ```
 
 ```
-## # A tibble: 119,390 x 1
+## # A tibble: 119,390 × 1
 ##    lead_time
 ##        &lt;dbl&gt;
 ##  1       342
@@ -163,7 +167,7 @@ select(hotels, lead_time)
 ##  8         9
 ##  9        85
 ## 10        75
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 
 ---
@@ -234,7 +238,7 @@ select(
 ```
 
 ```
-## # A tibble: 119,390 x 1
+## # A tibble: 119,390 × 1
 ##    lead_time
 ##        &lt;dbl&gt;
 ##  1       342
@@ -247,7 +251,7 @@ select(
 ##  8         9
 ##  9        85
 ## 10        75
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 .pull-right[
@@ -269,7 +273,7 @@ select(hotels, lead_time)
 ```
 
 ```
-## # A tibble: 119,390 x 1
+## # A tibble: 119,390 × 1
 ##    lead_time
 ##        &lt;dbl&gt;
 ##  1       342
@@ -282,7 +286,7 @@ select(hotels, lead_time)
 ##  8         9
 ##  9        85
 ## 10        75
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 
 ---
@@ -301,7 +305,7 @@ select(hotels, hotel, lead_time)
 ```
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       342
@@ -314,7 +318,7 @@ select(hotels, hotel, lead_time)
 ##  8 Resort Hotel         9
 ##  9 Resort Hotel        85
 ## 10 Resort Hotel        75
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 --
@@ -337,7 +341,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       342
@@ -350,7 +354,7 @@ hotels %&gt;%
 ##  8 Resort Hotel         9
 ##  9 Resort Hotel        85
 ## 10 Resort Hotel        75
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 
@@ -365,7 +369,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       737
@@ -378,7 +382,7 @@ hotels %&gt;%
 ##  8 City Hotel         629
 ##  9 City Hotel         629
 ## 10 City Hotel         629
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 ---
@@ -414,7 +418,7 @@ In programming, a pipe is a technique for passing information from one process t
 ```
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       737
@@ -427,7 +431,7 @@ In programming, a pipe is a technique for passing information from one process t
 ##  8 City Hotel         629
 ##  9 City Hotel         629
 ## 10 City Hotel         629
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 ]
@@ -452,7 +456,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       737
@@ -465,7 +469,7 @@ hotels %&gt;%
 ##  8 City Hotel         629
 ##  9 City Hotel         629
 ## 10 City Hotel         629
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 ]
@@ -491,7 +495,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       737
@@ -504,7 +508,7 @@ hotels %&gt;%
 ##  8 City Hotel         629
 ##  9 City Hotel         629
 ## 10 City Hotel         629
-## # ... with 119,380 more rows
+## # ℹ 119,380 more rows
 ```
 ]
 ]
@@ -602,7 +606,7 @@ hotels +
 ```
 
 ```
-## Error in select(hotel, lead_time): object 'hotel' not found
+## Error in eval(expr, envir, enclos): object 'hotel' not found
 ```
 
 ✅
@@ -615,7 +619,7 @@ hotels %&gt;%
 
 
 ```
-## # A tibble: 119,390 x 2
+## # A tibble: 119,390 × 2
 ##    hotel        lead_time
 ##    &lt;chr&gt;            &lt;dbl&gt;
 ##  1 Resort Hotel       342
@@ -639,9 +643,9 @@ ggplot(hotels, aes(x = hotel, fill = deposit_type)) %&gt;%
 ```
 
 ```
-## Error in `validate_mapping()`:
-## ! `mapping` must be created by `aes()`
-## Did you use %&gt;% instead of +?
+## Error in `geom_bar()`:
+## ! `mapping` must be created by `aes()`.
+## ℹ Did you use `%&gt;%` or `|&gt;` instead of `+`?
 ```
 
 ✅
@@ -740,6 +744,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

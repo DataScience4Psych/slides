@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Communicating data science results effectively <br> 📰
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -33,6 +37,42 @@ layout: true
 ---
 
 
+```
+## -- R CMD build --------------------------------------------------
+##   
+  
+  
+   checking for file 'C:\Users\smaso\AppData\Local\Temp\Rtmps94i4Z\remotes67582960f0\mine-cetinkaya-rundel-nycsquirrels18-abae394/DESCRIPTION' ...
+  
+   checking for file 'C:\Users\smaso\AppData\Local\Temp\Rtmps94i4Z\remotes67582960f0\mine-cetinkaya-rundel-nycsquirrels18-abae394/DESCRIPTION' ... 
+  
+v  checking for file 'C:\Users\smaso\AppData\Local\Temp\Rtmps94i4Z\remotes67582960f0\mine-cetinkaya-rundel-nycsquirrels18-abae394/DESCRIPTION'
+## 
+  
+  
+  
+-  preparing 'nycsquirrels18':
+##    checking DESCRIPTION meta-information ...
+  
+   checking DESCRIPTION meta-information ... 
+  
+v  checking DESCRIPTION meta-information
+## 
+  
+  
+  
+-  checking for LF line-endings in source and make files and shell scripts
+## 
+  
+-  checking for empty or unneeded directories
+## 
+  
+-  building 'nycsquirrels18_0.0.0.9000.tar.gz'
+## 
+  
+   
+## 
+```
 
 class: middle
 
@@ -266,13 +306,13 @@ squirrels %&gt;% head()
 ## 4 -74.0  40.8 21B-AM-1019-04     21B     AM    2018-10-19
 ## 5 -74.0  40.8 23A-AM-1018-02     23A     AM    2018-10-18
 ## 6 -74.0  40.8 38H-PM-1012-01     38H     PM    2018-10-12
-## # ... with 29 more variables: hectare_squirrel_number &lt;dbl&gt;,
-## #   age &lt;chr&gt;, primary_fur_color &lt;chr&gt;,
-## #   highlight_fur_color &lt;chr&gt;,
+## # i 29 more variables: hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
+## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
 ## #   combination_of_primary_and_highlight_color &lt;chr&gt;,
 ## #   color_notes &lt;chr&gt;, location &lt;chr&gt;,
 ## #   above_ground_sighter_measurement &lt;chr&gt;,
-## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;, ...
+## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;,
+## #   climbing &lt;lgl&gt;, eating &lt;lgl&gt;, foraging &lt;lgl&gt;, ...
 ```
 ]
 
@@ -296,13 +336,13 @@ squirrels %&gt;% tail()
 ## 4 -74.0  40.8 37B-AM-1018-04     37B     AM    2018-10-18
 ## 5 -74.0  40.8 21C-PM-1006-01     21C     PM    2018-10-06
 ## 6 -74.0  40.8 7G-PM-1018-04      07G     PM    2018-10-18
-## # ... with 29 more variables: hectare_squirrel_number &lt;dbl&gt;,
-## #   age &lt;chr&gt;, primary_fur_color &lt;chr&gt;,
-## #   highlight_fur_color &lt;chr&gt;,
+## # i 29 more variables: hectare_squirrel_number &lt;dbl&gt;, age &lt;chr&gt;,
+## #   primary_fur_color &lt;chr&gt;, highlight_fur_color &lt;chr&gt;,
 ## #   combination_of_primary_and_highlight_color &lt;chr&gt;,
 ## #   color_notes &lt;chr&gt;, location &lt;chr&gt;,
 ## #   above_ground_sighter_measurement &lt;chr&gt;,
-## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;, ...
+## #   specific_location &lt;chr&gt;, running &lt;lgl&gt;, chasing &lt;lgl&gt;,
+## #   climbing &lt;lgl&gt;, eating &lt;lgl&gt;, foraging &lt;lgl&gt;, ...
 ```
 ]
 
@@ -331,7 +371,7 @@ squirrels %&gt;% tail()
 ## 13 -74.0  40.8
 ## 14 -74.0  40.8
 ## 15 -74.0  40.8
-## # ... with 3,008 more rows
+## # i 3,008 more rows
 ```
 ]
 ]
@@ -416,9 +456,28 @@ squirrels %&gt;%
              color = n)) +
   geom_hex()
 ```
+
+```
+## Warning: The following aesthetics were dropped during statistical
+## transformation: colour.
+## i This can happen when ggplot fails to infer the correct
+##   grouping structure in the data.
+## i Did you forget to specify a `group` aesthetic or to convert a
+##   numerical variable into a factor?
+```
 ]		
 ]
 .pull-right[
+
+```
+## Warning: The following aesthetics were dropped during statistical
+## transformation: colour.
+## i This can happen when ggplot fails to infer the correct
+##   grouping structure in the data.
+## i Did you forget to specify a `group` aesthetic or to convert a
+##   numerical variable into a factor?
+```
+
 &lt;img src="d15_goodtalk_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
@@ -459,17 +518,17 @@ squirrels %&gt;%
 ## # A tibble: 11 x 3
 ##    shift age   other_interactions                                
 ##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                                             
-##  1 AM    Adult staring at us                                     
-##  2 PM    Adult he took 2 steps then turned and stared at me      
-##  3 PM    Adult stared                                            
-##  4 PM    Adult stared                                            
-##  5 PM    Adult stared                                            
-##  6 PM    Adult stared &amp; then went back up tree—then ran to diffe~
-##  7 PM    Adult stared at me                                      
-##  8 AM    Adult approaches (saw me &amp; came forward),runs from (sta~
-##  9 AM    Adult started climbing down to me                       
-## 10 PM    Adult stared at me                                      
-## # ... with 1 more row
+##  1 AM    Adult "staring at us"                                   
+##  2 PM    Adult "he took 2 steps then turned and stared at me"    
+##  3 PM    Adult "stared"                                          
+##  4 PM    Adult "stared"                                          
+##  5 PM    Adult "stared"                                          
+##  6 PM    Adult "stared &amp; then went back up tree\u2014then ran to~
+##  7 PM    Adult "stared at me"                                    
+##  8 AM    Adult "approaches (saw me &amp; came forward),runs from (st~
+##  9 AM    Adult "started climbing down to me"                     
+## 10 PM    Adult "stared at me"                                    
+## # i 1 more row
 ```
 ]
 
@@ -558,6 +617,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

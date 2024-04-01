@@ -637,6 +637,7 @@ glimpse(imdb_top_250)
 ```
 
 - Add a variable for rank
+
 ```{r}
 imdb_top_250 <- imdb_top_250 %>%
   mutate(rank = 1:nrow(imdb_top_250)) %>%

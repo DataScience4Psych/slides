@@ -19,6 +19,7 @@ output:
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(palmerpenguins)
+conflicts_prefer(palmerpenguins::penguins)
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
 ```

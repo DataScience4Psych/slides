@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Visualizing data with ggplot2<br> 👩‍🎨
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -45,19 +49,22 @@ class: middle
 .pull-left-narrow[
 &lt;img src="img/ggplot2-part-of-tidyverse.png" width="60%" style="display: block; margin: auto;" /&gt;
 ] 
+
+&lt;!-- markdownlint-disable error --&gt;
 .pull-right-wide[ 
 - **ggplot2** is tidyverse's data visualization package 
 - Structure of the code for plots can be summarized as
 
 
 ```r
-ggplot(data = [dataset], 
-     mapping = aes(x = [x-variable], 
-                   y = [y-variable])) +
+ggplot(data = [[dataset]],
+     mapping = aes(x = [[x-variable]],
+                   y = [[y-variable]])) +
    geom_xxx() +
    other options
 ```
 ]
+&lt;!-- markdownlint-enable --&gt;
 
 ---
 
@@ -86,14 +93,14 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adeli~
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torg~
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.~
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.~
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195~
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 362~
-## $ sex               &lt;fct&gt; male, female, female, NA, female, mal~
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2~
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adeli…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torg…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 362…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, mal…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2…
 ```
 
 
@@ -110,7 +117,7 @@ glimpse(penguins)
 
 
 ```r
-ggplot(data = penguins, 
+ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm, y = bill_length_mm,
                      color = species)) +
   geom_point() +
@@ -121,7 +128,8 @@ ggplot(data = penguins,
 ```
 
 ```
-## Warning: Removed 2 rows containing missing values (geom_point).
+## Warning: Removed 2 rows containing missing values or values outside the
+## scale range (`geom_point()`).
 ```
 
 ---
@@ -364,7 +372,7 @@ ggplot(data = penguins,
 &gt; label the legend "Species", 
 &gt; **and add a caption for the data source.**
 ]
-
+ 
 .pull-left[
 
 ```r
@@ -446,7 +454,8 @@ ggplot(data = penguins,
 ```
 
 ```
-## Warning: Removed 2 rows containing missing values (geom_point).
+## Warning: Removed 2 rows containing missing values or values outside the
+## scale range (`geom_point()`).
 ```
 
 ---
@@ -699,7 +708,8 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```
 
 ```
-## Warning: Removed 2 rows containing missing values (geom_point).
+## Warning: Removed 2 rows containing missing values or values outside the
+## scale range (`geom_point()`).
 ```
 
 ---
@@ -876,6 +886,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
