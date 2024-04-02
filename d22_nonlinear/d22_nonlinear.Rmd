@@ -392,7 +392,7 @@ linear_reg() %>%
 
 ## Interpreting the slope
 
-$$ \widehat{log(price)} = 4.67 + 0.0192 Width $$
+$$\widehat{log(price)} = 4.67 + 0.0192 Width$$
 
 --
 - For each additional inch the painting is wider, the log price of the painting is expected to be higher, on average, by 0.0192 livres.
@@ -476,8 +476,8 @@ the slope changes: *"For each unit increase in x, y is expected on average to be
 
 - Data transformations may also be useful when the relationship is non-linear
 - However in those cases a polynomial regression may be more appropriate
-  + This kind of modeling This is beyond the scope of this course, 
-  + but you're welcomed to try it for a portfolio piece...
+  + This kind of modeling is beyond the scope of this course, 
+  + but you're welcome to try it for a portfolio piece...
 
 ---
 
