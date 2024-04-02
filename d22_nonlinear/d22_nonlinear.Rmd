@@ -22,10 +22,14 @@ library(tidymodels)
 library(ggtext)
 library(knitr)
 library(kableExtra)
+# install.packages("remotes")
+#remotes::install_github("MatthewBJane/ThemePark")
+#library(ThemePark)
 set.seed(1234)
 options(dplyr.print_min = 10, dplyr.print_max = 6)
 # Remember to compile
 # xaringan::inf_mr(cast_from = "..")
+
 ```
 
 class: middle
@@ -71,8 +75,10 @@ ht_wt_fit_aug <- augment(ht_wt_fit$fit) #<<
 
 ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted height", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", 
+             lty = "dashed") +
+  labs(x = "Predicted Height", y = "Residuals") + theme_bw()
+  
 ```
 ]
 
@@ -83,7 +89,10 @@ ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
 ht_wt_fit_aug
 ```
 ]
+```{r,include=FALSE,eval=TRUE}
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 
+```
 
 ---
 
@@ -108,8 +117,8 @@ df <- tibble(
 )
 ggplot(df, mapping = aes(x = fake_predicted, y = fake_resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")  + theme_bw() 
 ```
 
 ---
@@ -136,8 +145,8 @@ df <- tibble(
 )
 ggplot(df, mapping = aes(x = fake_predicted, y = fake_resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")  + theme_bw()
 ```
 
 ---
@@ -159,8 +168,8 @@ df <- tibble(
 )
 ggplot(df, mapping = aes(x = fake_predicted, y = fake_resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")  + theme_bw()
 ```
 
 ---
@@ -179,8 +188,8 @@ df <- tibble(
 )
 ggplot(df, mapping = aes(x = fake_predicted, y = fake_resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")  + theme_bw()
 ```
 
 ---
@@ -199,8 +208,8 @@ df <- tibble(
 )
 ggplot(df, mapping = aes(x = fake_predicted, y = fake_resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted", y = "Residuals")  + theme_bw()
 ```
 
 ---
@@ -212,8 +221,8 @@ What patterns does the residuals plot reveal that should make us question whethe
 ```{r out.width = "60%", echo=FALSE}
 ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
   geom_point(alpha = 0.5) +
-  geom_hline(yintercept = 0, color = "gray", lty = "dashed") +
-  labs(x = "Predicted height", y = "Residuals")
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted height", y = "Residuals")  + theme_bw()
 ```
 
 ---
@@ -229,7 +238,7 @@ class: middle
 ```{r echo=FALSE, out.width = "70%"}
 ggplot(data = pp, aes(x = price)) +
   geom_histogram(binwidth = 1000) +
-  labs(title = "Prices of paintings")
+  labs(title = "Prices of paintings")  + theme_bw()
 ```
 
 ---
@@ -239,7 +248,7 @@ ggplot(data = pp, aes(x = price)) +
 ```{r echo=FALSE, out.width = "70%", warning = FALSE}
 ggplot(data = pp, aes(x = Width_in, y = price)) +
   geom_point(alpha = 0.5) +
-  labs(x = "Width (in)", y = "Price (livres)")
+  labs(x = "Width (in)", y = "Price (livres)")  + theme_bw()
 ```
 
 ---
@@ -273,7 +282,7 @@ ggplot(data = pp_wt_lt_100,
     subtitle = "For width < 100 in",
     x = "Width (inches)", 
     y = "Price (livres)"
-    )
+    )  + theme_bw()
 ```
 ]
 
@@ -287,7 +296,7 @@ ggplot(data = pp_wt_lt_100,
     subtitle = "For width < 100 in",
     x = "Width (inches)", 
     y = "Log(price) (log livres)"
-    )
+    )  + theme_bw()
 ```
 ]
 
@@ -317,7 +326,7 @@ ggplot(data = price_wt_fit_aug,
     subtitle = "For width < 100 in",
     x = "Predicted price (livres)", 
     y = "Residuals"
-    )
+    )  + theme_bw()
 ```
 ]
 .pull-right[
@@ -338,7 +347,7 @@ ggplot(data = lprice_wt_fit_aug,
     subtitle = "For width < 100 in",
     x = "Predicted log(price) (log livres)", 
     y = "Residuals"
-    )
+    ) + theme_bw()
 ```
 ]
 
@@ -372,8 +381,8 @@ How do we interpret the slope of this model?
 ```{r echo=FALSE, message=FALSE, out.width="60%"}
 ggplot(data = pp_wt_lt_100, mapping = aes(x = Width_in, y = log(price))) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", color = "#8E2C90", se = FALSE) +
-  labs(x = "Width (in)", y = "Log(price) (log livres)")
+  geom_smooth(method = "lm", color = "#bf2986ff", se = FALSE) +
+  labs(x = "Width (in)", y = "Log(price) (log livres)")+theme_bw()
 ```
 
 ---
