@@ -262,12 +262,6 @@ class: middle
 
 ## Observed sample
 
-
-```
-## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurst_slope_obs), : All aesthetics have length 1, but the data has 50 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -277,13 +271,7 @@ class: middle
 Generated assuming there are more students like the ones in the observed sample...
 
 
-
-```
-## Error in `map()`:
-## ℹ In index: 1.
-## Caused by error in `vec_size()`:
-## ! `x` must be a vector, not a &lt;boot_split/rsplit&gt; object.
-```
+&lt;img src="d26_quantify_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -315,12 +303,6 @@ elmhurtst_boot_1 &lt;- elmhurst %&gt;%
 ```
 
 
-
-```
-## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_1_slope), : All aesthetics have length 1, but the data has 50 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-14-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -333,12 +315,6 @@ elmhurtst_boot_2 &lt;- elmhurst %&gt;%
   slice_sample(n = 50, replace = TRUE)
 ```
 
-
-
-```
-## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_2_slope), : All aesthetics have length 1, but the data has 50 rows.
-## ℹ Did you mean to use `annotate()`?
-```
 
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-16-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -353,12 +329,6 @@ elmhurtst_boot_3 &lt;- elmhurst %&gt;%
 ```
 
 
-
-```
-## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_3_slope), : All aesthetics have length 1, but the data has 50 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-18-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -371,12 +341,6 @@ elmhurtst_boot_4 &lt;- elmhurst %&gt;%
   slice_sample(n = 50, replace = TRUE)
 ```
 
-
-
-```
-## Warning in geom_text(aes(x = 200, y = 40), label = paste("slope =", elmhurtst_boot_4_slope), : All aesthetics have length 1, but the data has 50 rows.
-## ℹ Did you mean to use `annotate()`?
-```
 
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-20-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
@@ -411,37 +375,6 @@ we could keep going...
 ---
 
 ## 95% confidence interval
-
-
-```
-## Warning in geom_segment(aes(x = intervals %&gt;% pull(.lower), xend = intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
-```
-## Warning in geom_text(aes(x = intervals %&gt;% pull(.lower), y = 30), label = as.character(intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
-```
-## Warning in geom_segment(aes(x = intervals %&gt;% pull(.upper), xend = intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
-```
-## Warning in geom_text(aes(x = intervals %&gt;% pull(.upper), y = 30), label = as.character(intervals %&gt;% : All aesthetics have length 1, but the data has 1000 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
-```
-## Warning in geom_segment(aes(x = elmhurst_slope_obs, xend = elmhurst_slope_obs, : All aesthetics have length 1, but the data has 1000 rows.
-## ℹ Did you mean to use `annotate()`?
-```
-
-```
-## Warning in geom_text(aes(x = elmhurst_slope_obs, y = 30), label = as.character(elmhurst_slope_obs), : All aesthetics have length 1, but the data has 1000 rows.
-## ℹ Did you mean to use `annotate()`?
-```
 
 &lt;img src="d26_quantify_files/figure-html/unnamed-chunk-24-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 

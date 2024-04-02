@@ -64,10 +64,10 @@ edi_3br
 
 ## Observed sample
 
-```{r message=FALSE, echo=FALSE, out.width="75%"}
+```{r echo=FALSE, message=FALSE, out.width="75%"}
 ggplot(data = edi_3br, mapping = aes(x = rent)) +
   geom_histogram(binwidth = 200) +
-  labs(title = "Rent of 3 BR flats in Edinburgh")
+  labs(title = "Rent of 3 BR flats in Edinburgh")+theme_bw()
 ```
 
 ---
@@ -214,7 +214,7 @@ upper_bound <- boot_df %>% summarize(upper_bound = quantile(stat, 0.975)) %>% pu
 ```{r echo=FALSE, out.width="70%"}
 ggplot(data = boot_df, mapping = aes(x = stat)) +
   geom_histogram(binwidth = 100) +
-  geom_vline(xintercept = c(lower_bound, upper_bound), color = "#A7D5E8", size = 2) +
+  geom_vline(xintercept = c(lower_bound, upper_bound), color = "#A7D5E8", linewidth = 2) +
   labs(title = "Bootstrap distribution of means",
        subtitle = "and 95% confidence interval")
 ```
@@ -267,9 +267,9 @@ u99 <- boot_df %>% summarize(lower_bound = quantile(stat, 0.995)) %>% round(2) %
 
 ggplot(data = boot_df, mapping = aes(x = stat)) +
   geom_histogram(binwidth = 100) +
-  geom_vline(xintercept = c(lower_bound, upper_bound), color = "#A7D5E8", lty = 2, size = 2) +
-  geom_vline(xintercept = c(l90, u90), color = "chartreuse4", lty = 3, size = 2) +
-  geom_vline(xintercept = c(l99, u99), color = "orange", lty = 6, size = 2) +
+  geom_vline(xintercept = c(lower_bound, upper_bound), color = "#A7D5E8", lty = 2, linewidth = 2) +
+  geom_vline(xintercept = c(l90, u90), color = "chartreuse4", lty = 3, linewidth = 2) +
+  geom_vline(xintercept = c(l99, u99), color = "orange", lty = 6, linewidth = 2) +
   labs(title = "Bootstrap distribution of means",
        subtitle = "and various confidence intervals")
 ```
