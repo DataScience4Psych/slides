@@ -29,10 +29,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 dev.off <- function() {
   invisible(grDevices::dev.off())
 }
-# countdown
-if (!require("countdown")) devtools::install_github("gadenbuie/countdown")
 
-library(countdown)
 # conflicted
 library(conflicted)
 conflict_prefer("filter", "dplyr")

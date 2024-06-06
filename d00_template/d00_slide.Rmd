@@ -17,7 +17,6 @@ output:
 ```{r child = "../setup.Rmd"}
 ```
 
-
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 # Remember to compile
 #xaringan::inf_mr(cast_from = "..")
@@ -27,12 +26,43 @@ library(tidyverse)
 if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
 ```
+
 ---
+
 class: middle
 
-# Hello world!
+# Title Slides
 
 ---
+
+Main Title Slide: Introduce the presentation.
+Section Title Slide: Introduce a new section or topic.
+Subsection Title Slide: Introduce a new subsection or subtopic.
+
+---
+## Main Title Slide: Introduce the presentation.
+---
+
+---
+## Section Title Slide: Introduce a new section or topic.
+
+---
+## Subsection Title Slide: Introduce a new subsection or subtopic.
+---
+
+---
+
+class: middle
+# Introduction Slides
+
+---
+
+Overview Slide: Provide a high-level summary of the presentation.
+Objectives Slide: State the goals or objectives of the presentation.
+
+
+---
+
 # Welcome to [Course/Topic Name]
 
 .br
@@ -43,29 +73,166 @@ Welcome to our journey through [Course/Topic Name]. We'll explore together, lear
 ]
 
 
----
 
-# Course Overview Slide Template
-
-## Course Overview
-
-What will we cover today?
-
-- **Introduction to [Topic]**
-  - Key concepts and why it matters.
-  
-- **Deep Dive: [Specific Topic]**
-  - Exploring in detail.
-  
-- **Practical Application**
-  - How can you apply this knowledge?
-
-- **Q&A**
-  - Your questions answered.
 
 ---
 
-Interactive Question Slide Template
+# Content Slides: Text
+
+---
+
+Simple Text Slide: Present a single concept or statement.
+Bullet Points Slide: List key points or ideas.
+Numbered List Slide: List items in a specific order.
+Quote Slide: Highlight a significant quote or statement.
+Tip Slide: Share a helpful tip or suggestion.
+
+---
+
+# Tip Slide
+
+.small[
+.instructions[
+Go to [your_instruction_link](https://yourlinkhere.com/), and perform the action (unless you already have done so). 
+]
+]
+
+.large[Tips for __________:<sup>✦</sup>]
+
+
+- Tip 1 with your content.
+- Tip 2 with your content.
+- Tip 3 with your content.
+- More tips as needed.
+
+
+--
+.small[ 
+<sup>✦</sup> Source: [Your Source Name](http://yoursourceurl.com) by Author/Creator Name
+]
+
+---
+
+
+class: middle
+
+# More Complicated Slides
+
+---
+
+## Nested subpoints
+
+.pull-left-narrow[
+.xlarge[
++ Point 1 <br><br>
++ Point 2 <br><br>
++ Point 3 <br><br>
+]
+]
+.pull-right-wide[
+.white[.]  
+<br>
+{{content}}
+]
+
+--
++ Subpoint 1
+  + Detail 1
+<br><br>
+{{content}}
+
+--
++ Subpoint 2
+  + Detail 2
+<br><br>
+{{content}}
+
+--
++ Subpoint 3
+  + Detail 3
+<br><br>
+{{content}}
+
+---
+
+
+class: middle
+
+# Visual Slides
+---
+
+Image Slide: Display an image prominently.
+Image with Caption Slide: Display an image with an explanatory caption.
+Side-by-Side Image and Text Slide: Present an image alongside descriptive text.
+Full-Width Image Slide: Use an image as the background for the slide.
+
+---
+
+# Image Slide external
+
+![Image Description](https://yourimageurl.com)
+
+---
+
+# Image Slide internal
+![Image Description](images/yourimage.png)
+
+---
+
+
+## Side-by-Side Image and Text
+
+.pull-left[
+```{r fig.align="center", echo=FALSE, out.width="50%"}
+knitr::include_graphics("img/demo.png")
+```
+]
+.pull-right[
+Your text here.
+]
+---
+
+
+# Data Slides
+
+---
+
+Simple Chart Slide: Display a chart or graph.
+Complex Data Visualization Slide: Present detailed data visualizations.
+Table Slide: Display tabular data.
+Infographic Slide: Use graphics to represent data visually.
+
+
+---
+
+class: middle, center
+
+# Code Slides
+
+---
+
+Code Chunk Slide: Display a block of code.
+Code with Output Slide: Show code alongside its output.
+
+
+---
+
+class: middle, inverse
+
+# Interactive Slides
+
+---
+
+FAQ Slide: Answer common questions.
+
+
+Interactive Poll Slide: Engage the audience with a poll.
+
+Think-Pair-Share Slide: Encourage audience participation.
+Discussion Slide: Facilitate a group discussion.
+Link Slide: Provide important links or resources.
+
+---
 
 ## Let's Discuss
 
@@ -79,33 +246,66 @@ Interactive Question Slide Template
 Feel free to share your thoughts and questions.
 ]
 
+---
 
-# Topic Title Here
+class: middle
 
-.small[
-.instructions[
-Go to [your_instruction_link](https://yourlinkhere.com/), and perform the action (unless you already have done so). 
-]
-]
+# Custom Background Slides
 
-Tips for __________:<sup>✦</sup>
+---
 
-.small[
-- Tip 1 with your content.
-- Tip 2 with your content.
-- Tip 3 with your content.
-- More tips as needed.
-]
-
---
-.small[ 
-<sup>✦</sup> Source: [Your Source Name](http://yoursourceurl.com) by Author/Creator Name
-]
+Custom Background with Text: Add text over a custom background.
+Custom Background with Data Visualization: Display data visualizations over a custom background.
 
 ---
 
 class: middle
 
-# Wrapping Up...
+Summary and Conclusion Slides
+
+---
+
+
+Summary Slide: Summarize key points.
+Conclusion Slide: Provide final thoughts or a call to action.
+Next Steps Slide: Outline next steps or actions to be taken.
+
+---
+
+class: middle
+Q&A Slides
+
+---
+
+Q&A Slide: Allow for audience questions.
+
+---
+
+class: middle
+# Contact Information Slides
+
+---
+
+## Contact Information Slide: Share contact details for follow-up.
+
+---
+
+## Contact Information
+
+- Email: _garrissm@wfu.edu_
+- Website: [yourwebsite.com](https://www.smasongarrison.com)
+- Twitter: [@yourhandle](https://twitter.com/smasongarrison)
+- GitHub: [github.com/smasongarrison](https://github.com/smasongarrison)
+- YouTube: [youtube.com/smasongarrison](https://youtube.com/smasongarrison)
+
+```{r qrcode, echo=FALSE, fig.align = "center", out.width = "30%", caption="Scan the QR code to visit the Data Science for Psych website"}
+
+library(qrcode)
+code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
+plot(code)
+```
+---
+
+## Team Introduction Slide: Introduce the team members.
 
 
