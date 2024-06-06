@@ -65,8 +65,7 @@ Objectives Slide: State the goals or objectives of the presentation.
 
 # Welcome to [Course/Topic Name]
 
-.br
-`r emo::ji('cat')`
+<br> `r emo::ji('cat')`<br>
 
 .large[
 Welcome to our journey through [Course/Topic Name]. We'll explore together, learn, and grow.
@@ -82,11 +81,15 @@ Welcome to our journey through [Course/Topic Name]. We'll explore together, lear
 ---
 
 Simple Text Slide: Present a single concept or statement.
+---
 Bullet Points Slide: List key points or ideas.
+---
 Numbered List Slide: List items in a specific order.
+---
 Quote Slide: Highlight a significant quote or statement.
-Tip Slide: Share a helpful tip or suggestion.
 
+---
+## Tip Slide: Share a helpful tip or suggestion.
 ---
 
 # Tip Slide
@@ -162,9 +165,6 @@ class: middle
 ---
 
 Image Slide: Display an image prominently.
-Image with Caption Slide: Display an image with an explanatory caption.
-Side-by-Side Image and Text Slide: Present an image alongside descriptive text.
-Full-Width Image Slide: Use an image as the background for the slide.
 
 ---
 
@@ -175,15 +175,30 @@ Full-Width Image Slide: Use an image as the background for the slide.
 ---
 
 # Image Slide internal
-![Image Description](images/yourimage.png)
+![Image Description](img/demo.png)
+
+
+
 
 ---
+Image with Caption Slide: Display an image with an explanatory caption.
+---
 
+```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
+knitr::include_graphics("img/demo.png")
+```
+
+.footnote[Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
+---
+
+
+Side-by-Side Image and Text Slide: Present an image alongside descriptive text.
+---
 
 ## Side-by-Side Image and Text
 
 .pull-left[
-```{r fig.align="center", echo=FALSE, out.width="50%"}
+```{r fig.align="center", echo=FALSE}
 knitr::include_graphics("img/demo.png")
 ```
 ]
@@ -193,13 +208,24 @@ Your text here.
 ---
 
 
+
+Full-Width Image Slide: Use an image as the background for the slide.
+---
+
+
+
+
+
 # Data Slides
 
 ---
 
 Simple Chart Slide: Display a chart or graph.
+---
 Complex Data Visualization Slide: Present detailed data visualizations.
+---
 Table Slide: Display tabular data.
+---
 Infographic Slide: Use graphics to represent data visually.
 
 
@@ -212,9 +238,8 @@ class: middle, center
 ---
 
 Code Chunk Slide: Display a block of code.
+---
 Code with Output Slide: Show code alongside its output.
-
-
 ---
 
 class: middle, inverse
@@ -224,14 +249,18 @@ class: middle, inverse
 ---
 
 FAQ Slide: Answer common questions.
-
+---
 
 Interactive Poll Slide: Engage the audience with a poll.
-
+---
 Think-Pair-Share Slide: Encourage audience participation.
-Discussion Slide: Facilitate a group discussion.
+---
+
 Link Slide: Provide important links or resources.
 
+---
+
+# Discussion Slide: Facilitate a group discussion.
 ---
 
 ## Let's Discuss
@@ -255,6 +284,8 @@ class: middle
 ---
 
 Custom Background with Text: Add text over a custom background.
+---
+
 Custom Background with Data Visualization: Display data visualizations over a custom background.
 
 ---
@@ -267,13 +298,16 @@ Summary and Conclusion Slides
 
 
 Summary Slide: Summarize key points.
+---
 Conclusion Slide: Provide final thoughts or a call to action.
+
+---
 Next Steps Slide: Outline next steps or actions to be taken.
 
 ---
 
 class: middle
-Q&A Slides
+# Q&A Slides
 
 ---
 
