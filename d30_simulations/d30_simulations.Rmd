@@ -1,0 +1,291 @@
+---
+title: "Data Simulations in R <br> `r emo::ji('chart_with_upwards_trend')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+<!-- https://github.com/Eclectikus/playingsonar/blob/master/InfoSonar.Rmd -->
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(openintro)
+library(tidymodels)
+library(DT)
+library(emo)
+library(openintro)
+
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
+```
+
+
+
+class: middle
+# Getting Started with Data Simulations in R
+
+---
+
+## Introduction to Data Simulations
+
+Simulating data is a powerful tool in statistics and data science.
+.pull-left[
+- It allows us to create artificial data that mimics real-world scenarios.
+- Useful for:
+  - Understanding statistical properties.
+  - Testing hypotheses.
+  - Demonstrating data analysis techniques.
+ ]
+.pull-right[
+
+```{r echo=FALSE, fig.align = "center"}
+knitr::include_graphics("img/ai_comparing_supervised.png")
+```
+]
+
+---
+
+## Generating Random Numbers
+
+Normal Distribution (`rnorm()`)
+
+.pull-left[
+- Commonly used for generating data that follows a Gaussian distribution.
+- Parameters: `n` (number of observations), `mean`, `sd` (standard deviation).
+
+```{r}
+observations <- 
+  rnorm(n = 5, mean = 0, sd = 1)
+observations
+```
+]
+.pull-right[
+
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+
+# Create data frame including the observations
+observations_df <- data.frame(y = dnorm(observations), x = observations)
+
+# Plot using ggplot2
+p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dnorm, n = 101) +
+  labs(title = "Normal Distribution", x = "x", y = "Density") +
+  theme_minimal()
+
+# Add points to the plot
+p + geom_point(data = observations_df, aes(y = y, x = x), color = "red", size = 3)
+
+```
+]
+
+---
+
+## Uniform Distribution (`runif()`)
+
+.pull-left[
+- Generates data evenly distributed over a specified range.
+- Parameters: `n`, `min`, `max`.
+
+```{r}
+observations <- 
+  runif(n = 5, min = 0, max = 1)
+```
+]
+.pull-right[
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+
+# Create data frame including the observations
+observations_df <- data.frame(y = dnorm(observations), x = observations)
+
+# Plot using ggplot2
+p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dunif, n = 101) +
+  labs(title = "Uniform Distribution", x = "x", y = "Density") +
+  theme_minimal()
+
+# Add points to the plot
+p + geom_point(data = observations_df, aes(y = y, x = x), color = "red", size = 3)
+
+```
+]
+---
+
+## Poisson Distribution (`rpois()`)
+
+.pull-left[
+- Used for count-based data, such as the number of events in a fixed period.
+- Parameter: `lambda` (mean).
+
+```{r}
+observations <- 
+  rpois(n = 5, lambda = 2)
+```
+]
+.pull-right[
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+
+observations_df <- data.frame(x = observations, y = dpois(observations, lambda = 2))
+
+# Create data for the Poisson distribution
+x_values <- seq(0, 10, by = 1)
+poisson_df <- data.frame(x = x_values, y = dpois(x_values, lambda = 2))
+
+# Plot using ggplot2
+p <- ggplot(poisson_df, aes(x = x, y = y)) +
+  geom_bar(stat = "identity", fill = "lightblue") +
+  labs(title = "Poisson Distribution", x = "x", y = "Density") +
+  theme_minimal()
+
+# make it jitter
+p + geom_jitter(data = observations_df, aes(y = y, x = x), color = "red", size = 3,height = 0.025, width=0.0)
+
+```
+]
+
+---
+class: middle
+
+## Deep Dive into the Normal Distribution
+
+---
+
+## Using `rnorm()`
+
+### Generating Five Random Numbers
+
+```{r}
+rnorm(5)
+```
+
+- Specify arguments explicitly for clarity:
+```{r}
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+--- 
+### Setting the Random Seed for Reproducibility
+
+```{r}
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+- Resetting the seed gives the same results:
+```{r}
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+---
+
+### Changing Parameters in `rnorm()`
+
+```{r}
+rnorm(n = 5, mean = 50, sd = 20)
+```
+
+- Using vectors for arguments:
+```{r}
+rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
+```
+
+---
+
+class: middle
+
+# Simulating Categorical Data with `rep()`
+
+---
+
+## Generate Character Vectors with `rep()`
+
+---
+
+### Using `letters` and `LETTERS`
+
+```{r}
+rep(letters[1:2], each = 3)
+rep(letters[1:2], times = 3)
+rep(letters[1:2], length.out = 5)
+rep(letters[1:2], times = c(2, 4))
+rep(letters[1:2], each = 2, times = 3)
+rep(letters[1:2], each = 2, length.out = 7)
+```
+
+---
+
+class: middle
+
+# Creating Datasets with Quantitative and Categorical Variables
+
+---
+
+## Simulate Data with No Differences Among Two Groups
+
+```{r}
+data.frame(group = rep(letters[1:2], each = 3),
+           response = rnorm(n = 6, mean = 0, sd = 1))
+```
+
+---
+
+## Simulate Data with Differences Among Groups
+
+```{r}
+data.frame(group = rep(letters[1:2], each = 3),
+           factor = rep(LETTERS[3:5], times = 2),
+           response = rnorm(n = 6, mean = c(5, 10), sd = 1))
+```
+
+---
+
+class: middle
+
+# Repeated Simulations with `replicate()`
+
+---
+
+## Using `replicate()` for Repeated Simulations
+
+### Simple Example of `replicate()`
+
+```{r}
+set.seed(16)
+replicate(n = 3, expr = rnorm(n = 5, mean = 0, sd = 1), simplify = FALSE)
+```
+
+---
+
+### Creating Multiple Datasets
+
+```{r}
+simlist <- replicate(n = 3, 
+          expr = data.frame(group = rep(letters[1:2], each = 3),
+                            response = rnorm(n = 6, mean = 0, sd = 1)),
+          simplify = FALSE)
+```
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+# Sources
+
+- Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
