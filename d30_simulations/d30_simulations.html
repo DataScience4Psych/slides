@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 ---
 
 
-&lt;!-- https://github.com/Eclectikus/playingsonar/blob/master/InfoSonar.Rmd --&gt;
+
 
 
 
@@ -58,8 +58,8 @@ Simulating data is a powerful tool in statistics and data science.
   - Demonstrating data analysis techniques.
  ]
 .pull-right[
-
-&lt;img src="img/ai_comparing_supervised.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="img/data scientist at work.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -95,14 +95,20 @@ observations
 .pull-left[
 - Generates data evenly distributed over a specified range.
 - Parameters: `n`, `min`, `max`.
-
+&lt;br&gt;&lt;br&gt;
 
 ``` r
 observations &lt;- 
   runif(n = 5, min = 0, max = 1)
+observations
+```
+
+```
+## [1] 0.6935913 0.5449748 0.2827336 0.9234335 0.2923158
 ```
 ]
 .pull-right[
+&lt;br&gt;
 &lt;img src="d30_simulations_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 ---
@@ -112,16 +118,66 @@ observations &lt;-
 .pull-left[
 - Used for count-based data, such as the number of events in a fixed period.
 - Parameter: `lambda` (mean).
-
+&lt;br&gt;&lt;br&gt;
 
 ``` r
 observations &lt;- 
   rpois(n = 5, lambda = 2)
+observations
+```
+
+```
+## [1] 3 1 1 1 1
 ```
 ]
+
 .pull-right[
+&lt;br&gt;&lt;br&gt;
 &lt;img src="d30_simulations_files/figure-html/unnamed-chunk-8-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ]
+
+---
+
+# Let's dig deeper into the Poisson distribution.
+
+.pull-left-narrow[
+- Lambda is the mean number of events in a fixed interval.
+- For demonstration purposes, 
+  - we will generate data for different lambda values one at a time.
+]
+.pull-right-wide[
+.tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
+.midi[
+
+``` r
+poisson_df1 &lt;- tibble(x = rpois(1000, 1),
+                      lambda = 1)
+poisson_df2 &lt;- tibble(x = rpois(1000, 2),
+                      lambda = 2)
+poisson_df3 &lt;- tibble(x = rpois(1000, 3),
+                      lambda = 3)
+poisson_df4 &lt;- tibble(x = rpois(1000, 4),
+                      lambda = 4)
+poisson_df5 &lt;- tibble(x = rpois(1000, 5),
+                      lambda =5)
+
+poisson_df &lt;- bind_rows(poisson_df1, 
+                        poisson_df2, 
+                        poisson_df3, 
+                        poisson_df4, 
+                        poisson_df5)
+```
+]]
+
+---
+
+## Let's plot the Poisson Distributions for Different Lambda Values
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-10-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+## Let's facet the plot 
+
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle
@@ -140,7 +196,7 @@ rnorm(5)
 ```
 
 ```
-## [1] -0.99838644 -0.77625389  0.06445882  0.95949406 -0.11028549
+## [1]  0.4424049  0.4545190 -0.9620740 -1.1324652 -0.6003270
 ```
 
 - Specify arguments explicitly for clarity:
@@ -150,7 +206,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 ```
 
 ```
-## [1] -0.5110095 -0.9111954 -0.8371717  2.4158352  0.1340882
+## [1] -1.77506105 -0.09171419 -0.23262573 -0.51310927  0.18558859
 ```
 
 --- 
@@ -326,7 +382,9 @@ class: middle
 
 ``` r
 set.seed(16)
-replicate(n = 3, expr = rnorm(n = 5, mean = 0, sd = 1), simplify = FALSE)
+replicate(n = 3, 
+expr = rnorm(n = 5, mean = 0, sd = 1), 
+simplify = FALSE)
 ```
 
 ```

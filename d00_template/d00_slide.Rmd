@@ -220,11 +220,11 @@ Full-Width Image Slide: Use an image as the background for the slide.
 
 ---
 
-Simple Chart Slide: Display a chart or graph.
+# Simple Chart Slide: Display a chart or graph.
 ---
-Complex Data Visualization Slide: Present detailed data visualizations.
+# Complex Data Visualization Slide: Present detailed data visualizations.
 ---
-Table Slide: Display tabular data.
+# Table Slide: Display tabular data.
 ---
 Infographic Slide: Use graphics to represent data visually.
 

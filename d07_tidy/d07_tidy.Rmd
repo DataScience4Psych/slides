@@ -71,7 +71,7 @@ What makes this data not tidy?
 
 <br>
 
-```{r hiv-est-prevalence-15-49, echo=FALSE, out.width="95%", fig.align = "center", caption = "Estimated HIV prevalence among 15-49 year olds", out.width = "70%"}
+```{r hiv-est-prevalence-15-49, echo=FALSE, fig.align = "center", caption = "Estimated HIV prevalence among 15-49 year olds", out.width = "70%"}
 knitr::include_graphics("img/hiv-est-prevalence-15-49.png")
 ```
 

@@ -13,7 +13,7 @@ output:
       slideNumberFormat: ""
 ---
 
-<!-- https://github.com/Eclectikus/playingsonar/blob/master/InfoSonar.Rmd -->
+
 
 ```{r child = "../setup.Rmd"}
 ```
@@ -47,9 +47,9 @@ Simulating data is a powerful tool in statistics and data science.
   - Demonstrating data analysis techniques.
  ]
 .pull-right[
-
-```{r echo=FALSE, fig.align = "center"}
-knitr::include_graphics("img/ai_comparing_supervised.png")
+<br><br>
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+knitr::include_graphics("img/data scientist at work.png")
 ```
 ]
 
@@ -72,7 +72,7 @@ observations
 .pull-right[
 
 ```{r echo=FALSE, fig.align = "center", out.width = "90%"}
-
+library(viridis)
 # Create data frame including the observations
 observations_df <- data.frame(y = dnorm(observations), x = observations)
 
@@ -83,7 +83,7 @@ p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
   theme_minimal()
 
 # Add points to the plot
-p + geom_point(data = observations_df, aes(y = y, x = x), color = "red", size = 3)
+p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, option = "D")[5], size = 2)
 
 ```
 ]
@@ -95,17 +95,19 @@ p + geom_point(data = observations_df, aes(y = y, x = x), color = "red", size = 
 .pull-left[
 - Generates data evenly distributed over a specified range.
 - Parameters: `n`, `min`, `max`.
-
+<br><br>
 ```{r}
 observations <- 
   runif(n = 5, min = 0, max = 1)
+observations
 ```
 ]
 .pull-right[
+<br>
 ```{r echo=FALSE, fig.align = "center", out.width = "90%"}
 
 # Create data frame including the observations
-observations_df <- data.frame(y = dnorm(observations), x = observations)
+observations_df <- data.frame(y = rep(.5, length(observations)), x = observations)
 
 # Plot using ggplot2
 p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
@@ -114,7 +116,7 @@ p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
   theme_minimal()
 
 # Add points to the plot
-p + geom_point(data = observations_df, aes(y = y, x = x), color = "red", size = 3)
+p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, option = "D")[5], size = 2)
 
 ```
 ]
@@ -125,32 +127,110 @@ p + geom_point(data = observations_df, aes(y = y, x = x), color = "red", size = 
 .pull-left[
 - Used for count-based data, such as the number of events in a fixed period.
 - Parameter: `lambda` (mean).
-
+<br><br>
 ```{r}
 observations <- 
   rpois(n = 5, lambda = 2)
+observations
 ```
 ]
+
 .pull-right[
+<br><br>
 ```{r echo=FALSE, fig.align = "center", out.width = "90%"}
 
 observations_df <- data.frame(x = observations, y = dpois(observations, lambda = 2))
 
 # Create data for the Poisson distribution
-x_values <- seq(0, 10, by = 1)
+x_values <- rep(seq(0, 10, by = 1),2)
 poisson_df <- data.frame(x = x_values, y = dpois(x_values, lambda = 2))
 
 # Plot using ggplot2
 p <- ggplot(poisson_df, aes(x = x, y = y)) +
-  geom_bar(stat = "identity", fill = "lightblue") +
-  labs(title = "Poisson Distribution", x = "x", y = "Density") +
+  geom_bar(stat = "identity", fill = viridis::viridis(7, option = "D")[5]) +
+  labs(title = "Poisson Distribution (Lambda = 2)", x = "x", y = "Density") +
   theme_minimal()
 
 # make it jitter
-p + geom_jitter(data = observations_df, aes(y = y, x = x), color = "red", size = 3,height = 0.025, width=0.0)
+#p + geom_jitter(data = observations_df, aes(y = y, x = x), color = "red", size = 2,height = 0.025, width=0.01)
+# Overlay observations as smaller bars
+
+
+# Overlay observations as smaller bars
+p + geom_bar(data = observations_df, aes(x = x, y = after_stat(count)/sum(after_stat(count))), 
+             stat = "count", fill = viridis::viridis(7, option = "D")[1], alpha = 1, 
+             position = "identity", width = 0.2)
 
 ```
 ]
+
+---
+
+# Let's dig deeper into the Poisson distribution.
+
+.pull-left-narrow[
+- Lambda is the mean number of events in a fixed interval.
+- For demonstration purposes, 
+  - we will generate data for different lambda values one at a time.
+]
+.pull-right-wide[
+.tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
+.midi[
+```{r}
+poisson_df1 <- tibble(x = rpois(1000, 1),
+                      lambda = 1)
+poisson_df2 <- tibble(x = rpois(1000, 2),
+                      lambda = 2)
+poisson_df3 <- tibble(x = rpois(1000, 3),
+                      lambda = 3)
+poisson_df4 <- tibble(x = rpois(1000, 4),
+                      lambda = 4)
+poisson_df5 <- tibble(x = rpois(1000, 5),
+                      lambda =5)
+
+poisson_df <- bind_rows(poisson_df1, 
+                        poisson_df2, 
+                        poisson_df3, 
+                        poisson_df4, 
+                        poisson_df5)
+```
+]]
+
+---
+
+## Let's plot the Poisson Distributions for Different Lambda Values
+```{r echo=FALSE, fig.align = "center", out.width = "85%"}
+ poisson_df <- mutate(poisson_df, lambda_factor = as.factor(lambda))
+ # Generate Poisson-distributed data for different lambda values
+# lambdas <- c(1, 2, 3, 4, 5)
+# data_list <- lapply(lambdas, function(lambda) {
+#     data.frame(x = rpois(1000, lambda), lambda = as.factor(lambda))
+# })
+
+ # Combine the data into one dataframe
+#poisson_df <- do.call(rbind, data_list)
+
+# Load necessary libraries
+ # Set seed for reproducibility
+
+ 
+# Plot the bar distributions using ggplot2
+p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
+     geom_bar(position = position_dodge(), stat = "count") +
+     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values", 
+          x = "Count", y = "Frequency") +
+     scale_fill_viridis_d() +  # Adds a nice color gradient based on the 'lambda'
+     theme_minimal()
+p
+```
+
+---
+## Let's facet the plot 
+
+```{r echo=FALSE, fig.align = "center", out.width = "80%"}
+p + facet_wrap(~lambda_factor)  + geom_vline(aes(xintercept = as.numeric(lambda)), linetype = "dashed", color = "red")
+
+```
 
 ---
 class: middle
@@ -261,7 +341,9 @@ class: middle
 
 ```{r}
 set.seed(16)
-replicate(n = 3, expr = rnorm(n = 5, mean = 0, sd = 1), simplify = FALSE)
+replicate(n = 3, 
+expr = rnorm(n = 5, mean = 0, sd = 1), 
+simplify = FALSE)
 ```
 
 ---
