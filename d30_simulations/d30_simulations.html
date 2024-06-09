@@ -73,7 +73,7 @@ Normal Distribution (`rnorm()`)
 - Parameters: `n` (number of observations), `mean`, `sd` (standard deviation).
 
 
-``` r
+```r
 set.seed(1234)
 observations &lt;- 
   rnorm(n = 5, mean = 0, sd = 1)
@@ -98,7 +98,7 @@ observations
 - Parameters: `n`, `min`, `max`.
 &lt;br&gt;&lt;br&gt;
 
-``` r
+```r
 set.seed(1235)
 observations &lt;- 
   runif(n = 5, min = 0, max = 1)
@@ -122,7 +122,7 @@ observations
 - Parameter: `lambda` (mean).
 &lt;br&gt;&lt;br&gt;
 
-``` r
+```r
 set.seed(123)
 observations &lt;- 
   rpois(n = 5, lambda = 2)
@@ -152,7 +152,7 @@ observations
 .tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
 .midi[
 
-``` r
+```r
 set.seed(123)
 poisson_df1 &lt;- tibble(x = rpois(1000, 1),
                       lambda = 1)
@@ -175,41 +175,45 @@ poisson_df &lt;- bind_rows(poisson_df1,
 
 ---
 
-## Let's plot the Poisson Distributions for Different Lambda Values
+## Let's plot the Poisson Distributions
 
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-10-1.png" width="85%" style="display: block; margin: auto;" /&gt;
-.footnote[The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-10-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+--
+
+.footnote[ The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
 ---
 
 ## Let's facet the plot 
 
 &lt;img src="d30_simulations_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+--
+
 .footnote[It definitely looks like it becomes more symmetric as lambda increases.]
 
 
 ---
 
-# We can keep playing around with the Poisson distribution....
+# We can keep playing around with the Poisson...
 
-.pull-left[
-- We can keeping generate data for different lambda values.
-- We can keeping plot the distributions for different lambda values.
-- It's a great way to develop your intuition for anydistribution (Poisson included).
+.pull-left-narrow[
+- We can keep generating data for different lambda values.
+- We can keep plotting the distributions for different lambda values.
+- Frankly, tt's a great way to develop your intuition 
+  - for any distribution (Poisson included).
 ]
 --
-.pull-right[
-- We can also explore other distributions.
-- We can also explore the relationship between different distributions.
-- We can also explore the relationship between distributions and real-world data.
-- The possibilities are endless.
+.pull-right-wide[
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-12-1.png" width="77%" style="display: block; margin: auto;" /&gt;
 ]
+
 ---
 
 #  The possibilities are endless
 
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-12-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-13-1.png" width="77%" style="display: block; margin: auto;" /&gt;
 
 ---
+
 class: middle
 
 ## Deep Dive into the Normal Distribution
@@ -221,29 +225,33 @@ class: middle
 ### Generating Five Random Numbers
 
 
-``` r
+```r
 rnorm(5)
 ```
 
 ```
-## [1]  0.16120429  1.08676062 -0.07194031 -1.52012142 -0.85266246
+## [1] -0.84085548  1.38435934 -1.25549186  0.07014277  1.71144087
 ```
 
 - Specify arguments explicitly for clarity:
 
-``` r
+
+
+```r
 rnorm(n = 5, mean = 0, sd = 1)
 ```
 
 ```
-## [1]  0.7059183  0.1581296  0.8395970  0.8151912 -0.1021357
+## [1] -1.3705874  0.9512344 -2.0176590  0.8445475  0.3004160
 ```
 
---- 
+---
+
 ### Setting the Random Seed for Reproducibility
 
+- Setting the seed ensures reproducibility:
 
-``` r
+```r
 set.seed(16)
 rnorm(n = 5, mean = 0, sd = 1)
 ```
@@ -252,9 +260,10 @@ rnorm(n = 5, mean = 0, sd = 1)
 ## [1]  0.4764134 -0.1253800  1.0962162 -1.4442290  1.1478293
 ```
 
-- Resetting the seed gives the same results:
+- The same seed gives the same results
 
-``` r
+
+```r
 set.seed(16)
 rnorm(n = 5, mean = 0, sd = 1)
 ```
@@ -262,29 +271,41 @@ rnorm(n = 5, mean = 0, sd = 1)
 ```
 ## [1]  0.4764134 -0.1253800  1.0962162 -1.4442290  1.1478293
 ```
+
+- As long as you use the same seed
+
+
+```r
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```
+## [1] -0.46841204 -1.00595059  0.06356268  1.02497260  0.57314202
+```
+
 
 ---
 
 ### Changing Parameters in `rnorm()`
 
 
-``` r
+```r
 rnorm(n = 5, mean = 50, sd = 20)
 ```
 
 ```
-## [1] 40.63176 29.88099 51.27125 70.49945 61.46284
+## [1] 86.94364 52.23867 35.07925 83.16427 64.43441
 ```
 
 - Using vectors for arguments:
 
-``` r
+```r
 rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
 ```
 
 ```
-##  [1]   1.8471821   5.5596668   5.0792536   1.6582137   8.6086028
-##  [6] -13.2616099   0.5759095   7.3638006   9.1453669   1.1276871
+##  [1]  -1.6630805   7.8795477  29.4552023  -0.5427317  10.6384354
+##  [6] -12.9559523  -0.3141739   4.0865922  49.4095699  -0.8658988
 ```
 
 ---
@@ -302,7 +323,7 @@ class: middle
 ### Using `letters` and `LETTERS`
 
 
-``` r
+```r
 rep(letters[1:2], each = 3)
 ```
 
@@ -310,7 +331,7 @@ rep(letters[1:2], each = 3)
 ## [1] "a" "a" "a" "b" "b" "b"
 ```
 
-``` r
+```r
 rep(letters[1:2], times = 3)
 ```
 
@@ -318,7 +339,7 @@ rep(letters[1:2], times = 3)
 ## [1] "a" "b" "a" "b" "a" "b"
 ```
 
-``` r
+```r
 rep(letters[1:2], length.out = 5)
 ```
 
@@ -326,7 +347,7 @@ rep(letters[1:2], length.out = 5)
 ## [1] "a" "b" "a" "b" "a"
 ```
 
-``` r
+```r
 rep(letters[1:2], times = c(2, 4))
 ```
 
@@ -334,7 +355,7 @@ rep(letters[1:2], times = c(2, 4))
 ## [1] "a" "a" "b" "b" "b" "b"
 ```
 
-``` r
+```r
 rep(letters[1:2], each = 2, times = 3)
 ```
 
@@ -342,7 +363,7 @@ rep(letters[1:2], each = 2, times = 3)
 ##  [1] "a" "a" "b" "b" "a" "a" "b" "b" "a" "a" "b" "b"
 ```
 
-``` r
+```r
 rep(letters[1:2], each = 2, length.out = 7)
 ```
 
@@ -361,19 +382,19 @@ class: middle
 ## Simulate Data with No Differences Among Two Groups
 
 
-``` r
+```r
 data.frame(group = rep(letters[1:2], each = 3),
            response = rnorm(n = 6, mean = 0, sd = 1))
 ```
 
 ```
 ##   group   response
-## 1     a -1.6477976
-## 2     a -0.3141739
-## 3     a -0.1826816
-## 4     b  1.4704785
-## 5     b -0.8658988
-## 6     b  1.5274670
+## 1     a  1.5274670
+## 2     a  1.0541781
+## 3     a  1.0300710
+## 4     b  0.8401609
+## 5     b  0.2169647
+## 6     b -0.6725256
 ```
 
 ---
@@ -381,7 +402,7 @@ data.frame(group = rep(letters[1:2], each = 3),
 ## Simulate Data with Differences Among Groups
 
 
-``` r
+```r
 data.frame(group = rep(letters[1:2], each = 3),
            factor = rep(LETTERS[3:5], times = 2),
            response = rnorm(n = 6, mean = c(5, 10), sd = 1))
@@ -389,12 +410,12 @@ data.frame(group = rep(letters[1:2], each = 3),
 
 ```
 ##   group factor  response
-## 1     a      C  6.054178
-## 2     a      D 11.030071
-## 3     a      E  5.840161
-## 4     b      C 10.216965
-## 5     b      D  4.327474
-## 6     b      E 10.132599
+## 1     a      C  5.132599
+## 2     a      D  9.929073
+## 3     a      E  4.057305
+## 4     b      C  8.977969
+## 5     b      D  5.280555
+## 6     b      E 10.544783
 ```
 
 ---
@@ -410,7 +431,7 @@ class: middle
 ### Simple Example of `replicate()`
 
 
-``` r
+```r
 set.seed(16)
 replicate(n = 3, 
 expr = rnorm(n = 5, mean = 0, sd = 1), 
@@ -433,7 +454,7 @@ simplify = FALSE)
 ### Creating Multiple Datasets
 
 
-``` r
+```r
 simlist &lt;- replicate(n = 3, 
           expr = data.frame(group = rep(letters[1:2], each = 3),
                             response = rnorm(n = 6, mean = 0, sd = 1)),
