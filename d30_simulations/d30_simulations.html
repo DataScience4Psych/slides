@@ -74,6 +74,7 @@ Normal Distribution (`rnorm()`)
 
 
 ``` r
+set.seed(1234)
 observations &lt;- 
   rnorm(n = 5, mean = 0, sd = 1)
 observations
@@ -98,13 +99,14 @@ observations
 &lt;br&gt;&lt;br&gt;
 
 ``` r
+set.seed(1235)
 observations &lt;- 
   runif(n = 5, min = 0, max = 1)
 observations
 ```
 
 ```
-## [1] 0.6935913 0.5449748 0.2827336 0.9234335 0.2923158
+## [1] 0.24259237 0.51535594 0.09942167 0.90153593 0.83890292
 ```
 ]
 .pull-right[
@@ -121,13 +123,14 @@ observations
 &lt;br&gt;&lt;br&gt;
 
 ``` r
+set.seed(123)
 observations &lt;- 
   rpois(n = 5, lambda = 2)
 observations
 ```
 
 ```
-## [1] 3 1 1 1 1
+## [1] 1 3 2 4 4
 ```
 ]
 
@@ -150,6 +153,7 @@ observations
 .midi[
 
 ``` r
+set.seed(123)
 poisson_df1 &lt;- tibble(x = rpois(1000, 1),
                       lambda = 1)
 poisson_df2 &lt;- tibble(x = rpois(1000, 2),
@@ -172,12 +176,38 @@ poisson_df &lt;- bind_rows(poisson_df1,
 ---
 
 ## Let's plot the Poisson Distributions for Different Lambda Values
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-10-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-10-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+.footnote[The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
 ---
+
 ## Let's facet the plot 
 
 &lt;img src="d30_simulations_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+.footnote[It definitely looks like it becomes more symmetric as lambda increases.]
+
+
+---
+
+# We can keep playing around with the Poisson distribution....
+
+.pull-left[
+- We can keeping generate data for different lambda values.
+- We can keeping plot the distributions for different lambda values.
+- It's a great way to develop your intuition for anydistribution (Poisson included).
+]
+--
+.pull-right[
+- We can also explore other distributions.
+- We can also explore the relationship between different distributions.
+- We can also explore the relationship between distributions and real-world data.
+- The possibilities are endless.
+]
+---
+
+#  The possibilities are endless
+
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-12-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle
@@ -196,7 +226,7 @@ rnorm(5)
 ```
 
 ```
-## [1]  0.4424049  0.4545190 -0.9620740 -1.1324652 -0.6003270
+## [1]  0.16120429  1.08676062 -0.07194031 -1.52012142 -0.85266246
 ```
 
 - Specify arguments explicitly for clarity:
@@ -206,7 +236,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 ```
 
 ```
-## [1] -1.77506105 -0.09171419 -0.23262573 -0.51310927  0.18558859
+## [1]  0.7059183  0.1581296  0.8395970  0.8151912 -0.1021357
 ```
 
 --- 

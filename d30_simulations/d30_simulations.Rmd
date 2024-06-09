@@ -24,7 +24,7 @@ library(tidymodels)
 library(DT)
 library(emo)
 library(openintro)
-
+library(viridis)
 # Remember to compile
 # xaringan::inf_mr(cast_from = "..")
 ```
@@ -64,6 +64,7 @@ Normal Distribution (`rnorm()`)
 - Parameters: `n` (number of observations), `mean`, `sd` (standard deviation).
 
 ```{r}
+set.seed(1234)
 observations <- 
   rnorm(n = 5, mean = 0, sd = 1)
 observations
@@ -97,6 +98,7 @@ p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, opt
 - Parameters: `n`, `min`, `max`.
 <br><br>
 ```{r}
+set.seed(1235)
 observations <- 
   runif(n = 5, min = 0, max = 1)
 observations
@@ -129,6 +131,7 @@ p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, opt
 - Parameter: `lambda` (mean).
 <br><br>
 ```{r}
+set.seed(123)
 observations <- 
   rpois(n = 5, lambda = 2)
 observations
@@ -177,6 +180,7 @@ p + geom_bar(data = observations_df, aes(x = x, y = after_stat(count)/sum(after_
 .tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
 .midi[
 ```{r}
+set.seed(123)
 poisson_df1 <- tibble(x = rpois(1000, 1),
                       lambda = 1)
 poisson_df2 <- tibble(x = rpois(1000, 2),
@@ -199,6 +203,7 @@ poisson_df <- bind_rows(poisson_df1,
 ---
 
 ## Let's plot the Poisson Distributions for Different Lambda Values
+
 ```{r echo=FALSE, fig.align = "center", out.width = "85%"}
  poisson_df <- mutate(poisson_df, lambda_factor = as.factor(lambda))
  # Generate Poisson-distributed data for different lambda values
@@ -223,12 +228,66 @@ p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
      theme_minimal()
 p
 ```
-
+.footnote[The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
 ---
+
 ## Let's facet the plot 
 
 ```{r echo=FALSE, fig.align = "center", out.width = "80%"}
 p + facet_wrap(~lambda_factor)  + geom_vline(aes(xintercept = as.numeric(lambda)), linetype = "dashed", color = "red")
+
+```
+.footnote[It definitely looks like it becomes more symmetric as lambda increases.]
+
+
+---
+
+# We can keep playing around with the Poisson distribution....
+
+.pull-left[
+- We can keeping generate data for different lambda values.
+- We can keeping plot the distributions for different lambda values.
+- It's a great way to develop your intuition for anydistribution (Poisson included).
+]
+--
+.pull-right[
+- We can also explore other distributions.
+- We can also explore the relationship between different distributions.
+- We can also explore the relationship between distributions and real-world data.
+- The possibilities are endless.
+]
+---
+
+#  The possibilities are endless
+
+```{r echo=FALSE, fig.align = "center", out.width = "85%"}
+ 
+ # Generate Poisson-distributed data for different lambda values
+lambdas <- c(1:50)
+ data_list <- lapply(lambdas, function(lambda) {
+     data.frame(x = rpois(1000, lambda), lambda = lambda)
+ })
+
+ # Combine the data into one dataframe
+poisson_df <- do.call(rbind, data_list) %>% 
+  mutate(lambda_factor = as.factor(lambda))
+
+# Load necessary libraries
+ # Set seed for reproducibility
+
+ 
+# Plot the bar distributions using ggplot2
+p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
+     geom_bar(position = position_dodge(), stat = "count") +
+     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values", 
+          x = "Count", y = "Frequency") +
+     scale_fill_viridis_d(option = "plasma") +  # Adds a nice color gradient based on the 'lambda'
+     theme_minimal() + guides(fill = "none")+ theme(legend.position = "bottom")+
+  # this trick lets you use a continuous color scale
+   geom_point(data = poisson_df, aes(x = x,y=0, color = lambda), 
+           alpha = 0) +
+     scale_color_gradientn(colors = viridis(length(lambdas), option = "plasma"), name = "Lambda")
+p
 
 ```
 

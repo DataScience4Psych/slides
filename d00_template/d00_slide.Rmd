@@ -35,21 +35,13 @@ class: middle
 
 ---
 
-Main Title Slide: Introduce the presentation.
-Section Title Slide: Introduce a new section or topic.
-Subsection Title Slide: Introduce a new subsection or subtopic.
 
----
 ## Main Title Slide: Introduce the presentation.
----
-
 ---
 ## Section Title Slide: Introduce a new section or topic.
 
 ---
 ## Subsection Title Slide: Introduce a new subsection or subtopic.
----
-
 ---
 
 class: middle
@@ -72,25 +64,66 @@ Welcome to our journey through [Course/Topic Name]. We'll explore together, lear
 ]
 
 
-
-
 ---
 
 # Content Slides: Text
 
 ---
+# Simple Text Slide: Present a single concept or statement.
+---
 
-Simple Text Slide: Present a single concept or statement.
+# Simple Text Slide
+
+Present a single concept or statement.
+
 ---
-Bullet Points Slide: List key points or ideas.
+# Bullet Points Slide: List key points or ideas.
 ---
+## Simple Bullet Points
+- Interactive
+  - Some lectures, lots of learn-by-doing
+- Meet twice a week 
+	- Tuesday are Face-to-Face Tutorials
+	- Thursdays are Solidarity Sessions
+- Bring your laptop! `r emo::ji('computer')`
+- Flipped Lectures
+	- Pre-recorded Lectures
+	- Module is finalized by the week's start
+---
+
+## Dynamic Bullet Points
+- Interactive
+  - Some lectures, lots of learn-by-doing
+--
+
+- Meet twice a week 
+	- Tuesday are Face-to-Face Tutorials
+	- Thursdays are Solidarity Sessions
+--
+
+- Bring your laptop! `r emo::ji('computer')`
+
+--
+- Flipped Lectures
+	- Pre-recorded Lectures
+	- Module is finalized by the week's start
+---
+
+
+
 Numbered List Slide: List items in a specific order.
 ---
 Quote Slide: Highlight a significant quote or statement.
 
 ---
+class: middle
+
+# More Complicated Slides
+---
+
 ## Tip Slide: Share a helpful tip or suggestion.
 ---
+
 
 # Tip Slide
 
@@ -102,9 +135,13 @@ Go to [your_instruction_link](https://yourlinkhere.com/), and perform the action
 
 .large[Tips for __________:<sup>✦</sup>]
 
-
+--
 - Tip 1 with your content.
+
+--
 - Tip 2 with your content.
+--
+
 - Tip 3 with your content.
 - More tips as needed.
 
@@ -114,14 +151,30 @@ Go to [your_instruction_link](https://yourlinkhere.com/), and perform the action
 <sup>✦</sup> Source: [Your Source Name](http://yoursourceurl.com) by Author/Creator Name
 ]
 
----
 
-
-class: middle
-
-# More Complicated Slides
 
 ---
+## What is data science?
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-flask fa"></i> = data science?
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-code fa"></i> = data science?
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-user fa"></i> + <i class="fa fa-code fa"></i> = data science?
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-users fa"></i> + <i class="fa fa-code fa"></i> = data science?
+--
+
+<br>
+<br>
+.large[
+Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. We're going to learn to do this in a `tidy` way -- more on that later!
+]
+---
+
 
 ## Nested subpoints
 
@@ -168,14 +221,14 @@ Image Slide: Display an image prominently.
 
 ---
 
-# Image Slide external
+# Image Slide full scale external
 
-![Image Description](https://yourimageurl.com)
+![Image Description](https://datascience4psych.github.io/DataScience4Psych/assets/logo.png)
 
 ---
 
-# Image Slide internal
-![Image Description](img/demo.png)
+# Image Slide full scale internal
+![Image Description](img/logo.png)
 
 
 
@@ -185,10 +238,10 @@ Image with Caption Slide: Display an image with an explanatory caption.
 ---
 
 ```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
-knitr::include_graphics("img/demo.png")
+knitr::include_graphics("img/logo.png")
 ```
 
-.footnote[Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
+.footnote[Credit: AUTHOR AUTHOR, [url](https://www.yourlink.com "Source")]
 ---
 
 
@@ -199,7 +252,7 @@ Side-by-Side Image and Text Slide: Present an image alongside descriptive text.
 
 .pull-left[
 ```{r fig.align="center", echo=FALSE}
-knitr::include_graphics("img/demo.png")
+knitr::include_graphics("img/logo.png")
 ```
 ]
 .pull-right[
@@ -207,7 +260,17 @@ Your text here.
 ]
 ---
 
+## Side-by-Side Text and Image
+.pull-left[
+Your text here.
+]
+.pull-right[
+```{r fig.align="center", echo=FALSE}
+knitr::include_graphics("img/logo.png")
+```
+]
 
+---
 
 Full-Width Image Slide: Use an image as the background for the slide.
 ---
@@ -260,13 +323,50 @@ Link Slide: Provide important links or resources.
 
 ---
 
+
+## Q&A Slide: Allow for audience questions.
+
+---
+
+# What is this course?
+
+This course is an introduction to data science that is designed for psychologists. It emphasizes statistical thinking and best practices.
+<br><br>
+--
+
+**Q - What data science background does this course assume?**  
+A - None.
+<br>
+--
+
+**Q - Is this an intro CS course?**  
+A - Although statistics and computer science $\ne$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get comfortable with those topics. However this course is **not** your typical course.
+<br>
+--
+
+**Q - Will we be doing computing?**   
+A - Yes.
+<br>
+--
+
+
+**Q - What computing language will we learn?**  
+A - R.
+<br>
+--
+
+**Q: Why not language X?**  
+A: We can discuss that *remotely* over `r emo::ji("coffee")`.
+
+---
+
 # Discussion Slide: Facilitate a group discussion.
+
 ---
 
 ## Let's Discuss
 
 - What is your understanding of [Topic/Question]?
-
 --
 
 - How do you see [Topic/Question] applying to your work/life?
@@ -307,15 +407,6 @@ Next Steps Slide: Outline next steps or actions to be taken.
 ---
 
 class: middle
-# Q&A Slides
-
----
-
-Q&A Slide: Allow for audience questions.
-
----
-
-class: middle
 # Contact Information Slides
 
 ---
@@ -327,8 +418,8 @@ class: middle
 ## Contact Information
 
 - Email: _garrissm@wfu.edu_
-- Website: [yourwebsite.com](https://www.smasongarrison.com)
-- Twitter: [@yourhandle](https://twitter.com/smasongarrison)
+- Website: [smasongarrison.com](https://www.smasongarrison.com)
+- Twitter: [@smasongarrison](https://twitter.com/smasongarrison)
 - GitHub: [github.com/smasongarrison](https://github.com/smasongarrison)
 - YouTube: [youtube.com/smasongarrison](https://youtube.com/smasongarrison)
 
@@ -338,8 +429,4 @@ library(qrcode)
 code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
 plot(code)
 ```
----
-
-## Team Introduction Slide: Introduce the team members.
-
 
