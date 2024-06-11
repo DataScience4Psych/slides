@@ -38,7 +38,7 @@
   color: var(--dark-blue);
 }
 
-.light-blue {
+.light-blue,.blue {
   color: var(--light-blue);
 }
 
@@ -46,7 +46,7 @@
   color: var(--green);
 }
 
-.gray {
+.gray,.grey {
   color: var(--gray);
 }
 
@@ -151,7 +151,10 @@ a>code {
   font-size: 400%;
   font-weight: bold;
 }
-
+.huger {
+  font-size: 400%;
+  font-weight: bold;
+}
 .larger {
   font-size: 250%
 }
@@ -396,6 +399,36 @@ blockquote {
 }
 
 
+/* Overlay style */
+.overlay-center {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust position to truly center */
+ /*  background: var(--light-blue);*/
+  /*  color: var(--dark-blue);*/
+  padding: 10px;
+ /*  border: 1px solid var(--dark-blue);*/ /* Add a border */
+  white-space: nowrap;
+ z-index: 1.2;
+  /* font-size: var(--larger);  /* Adjust based on your needs */
+ /*   line-height: 1.2;  *//* Ensure good readability */
+}
+/* Overlay style */
+.overlay-big {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust position to truly center */
+ /*  background: var(--light-blue);*/
+  /*  color: var(--dark-blue);*/
+  padding: 10px;
+ /*  border: 1px solid var(--dark-blue);*/ /* Add a border */
+  white-space: nowrap;
+  z-index: 1;
+  font-size: 400%;  /* Adjust based on your needs */
+ /*   line-height: 1.2;  *//* Ensure good readability */
+}
 /* Lists */
 ul {
   list-style: none;
@@ -455,7 +488,9 @@ div.my-footer {
   height: 35px;
   width: 100%;
 }
-
+.inverse.div.my-footer {
+  background-color: var(--light-blue)
+}
 div.my-footer span {
   font-size: 12pt;
   position: absolute;

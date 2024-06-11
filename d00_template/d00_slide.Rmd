@@ -111,14 +111,64 @@ Present a single concept or statement.
 
 
 
-Numbered List Slide: List items in a specific order.
+## Numbered List Slide: List items in a specific order.
 ---
-Quote Slide: Highlight a significant quote or statement.
+## Quote Slide: Highlight a significant quote or statement.
+
+---
+
+## Quote Slide
+
+.large[QUOTE TEXT HERE]
+
+.small[AUTHOR NAME, [SOURCE](https://www.yourlink.com "Source")]
 
 ---
 class: middle
 
 # More Complicated Slides
+
+---
+
+## Your turn
+
+---
+
+.your-turn[
+
+**Option 1.**
+
+- On Github, download the assignment called `AE01a - UN Votes`.
+- In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
+
+]
+
+---
+
+## Question Slide: Pose a question to the audience.
+
+---
+
+.question[
+What does it mean for a data analysis to be "reproducible"?
+]
+
+--
+
+Near-term goals:
+
+- Are the tables and figures reproducible from the code and data?
+- Does the code actually do what you think it does?
+- In addition to what was done, is it clear **why** it was done? 
+(e.g., how were parameter settings chosen?)
+
+Long-term goals:
+
+- Can the code be used for other data?
+- Can you extend the code to do other things?
+
 ---
 
 ## Tip Slide: Share a helpful tip or suggestion.
@@ -230,11 +280,24 @@ Image Slide: Display an image prominently.
 # Image Slide full scale internal
 ![Image Description](img/logo.png)
 
+---
 
+## Let's take a tour - R / RStudio
+
+.center[
+![](img/logo.png)
+]
+
+- Console
+- Using R as a calculator
+- Environment
+- Loading and viewing a data frame
+- Accessing a variable in a data frame
+- R functions
 
 
 ---
-Image with Caption Slide: Display an image with an explanatory caption.
+## Image with Caption Slide: Display an image with an explanatory caption.
 ---
 
 ```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
@@ -299,9 +362,25 @@ class: middle, center
 # Code Slides
 
 ---
-
 Code Chunk Slide: Display a block of code.
 ---
+
+## Code Chunk Slide with commentary
+
+---
+## Working with R at the command line (pt 2)
+
+- Go into the Console, where we interact with the live R process.
+- Make an assignment and then inspect the object you just created:
+
+```{r start_rbasics}
+x <- 3 * 4
+x
+```
+
+
+---
+
 Code with Output Slide: Show code alongside its output.
 ---
 

@@ -404,11 +404,13 @@ class: middle
 
 ## Voting patterns in the UN
 
+
+[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
+
+
 ```{r echo=FALSE, alt="UN Votes", out.width="100%"}
 knitr::include_graphics("img/unvotes.png")
 ```
-
-[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
 
 
 ---
