@@ -400,7 +400,7 @@ blockquote {
 
 
 /* Overlay style */
-.overlay-center {
+.overlay-clean {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -410,23 +410,24 @@ blockquote {
   padding: 10px;
  /*  border: 1px solid var(--dark-blue);*/ /* Add a border */
   white-space: nowrap;
- z-index: 1.2;
+  z-index: 1.2;
   /* font-size: var(--larger);  /* Adjust based on your needs */
  /*   line-height: 1.2;  *//* Ensure good readability */
 }
 /* Overlay style */
-.overlay-big {
+.overlay-background {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust position to truly center */
- /*  background: var(--light-blue);*/
+  background: var(--light-blue);
   /*  color: var(--dark-blue);*/
   padding: 10px;
- /*  border: 1px solid var(--dark-blue);*/ /* Add a border */
+  border: 2px solid var(--dark-blue); /* Add a border */
   white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.659); /* Add shadow */
   z-index: 1;
-  font-size: 400%;  /* Adjust based on your needs */
+ /*  font-size: 400%;  Adjust based on your needs */
  /*   line-height: 1.2;  *//* Ensure good readability */
 }
 /* Lists */
