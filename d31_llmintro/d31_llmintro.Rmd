@@ -1,0 +1,136 @@
+---
+title: "Introduction to Large Language Models <br> ``r emo::ji('robot')``"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(openintro)
+library(tidymodels)
+library(DT)
+library(emo)
+library(openintro)
+library(viridis)
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
+```
+
+
+
+class: middle
+# Getting Started with Large Language Models
+
+---
+
+## What are Large Language Models?
+
+- Large Language Models (LLMs) are advanced AI systems trained on vast amounts of text data.
+<br>
+--
+
+.pull-left[
+Key characteristics:
+
+- Massive scale (billions of parameters)
+- Self-supervised learning
+- Ability to generate human-like text
+- Versatile applications
+]
+
+--
+.pull-right[
+Examples:
+
+- GPT (Generative Pre-trained Transformer)
+- BERT (Bidirectional Encoder Representations from Transformers)
+- T5 (Text-to-Text Transfer Transformer)
+]
+
+---
+
+# Evolution of LLMs
+.question[
+How have LLMs evolved over time?
+]
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("img/chattimeline.png")
+```
+.footnote[
+Source: DALL-E: Based on the following prompt: "A visual timeline showcasing the evolution of large language models. The timeline starts from early simple models, progressing through key milestones such as the introduction of transformers, GPT-3, and up to GPT-4. Each milestone is marked with distinct icons and dates, illustrating the increasing complexity and capabilities of these models. The background features a blend of abstract digital patterns representing data and artificial intelligence. The color scheme is professional with shades of blue and gray, with highlighted elements in contrasting colors to emphasize progress."
+]
+
+---
+
+# Architecture of LLMs
+.pull-left[
+Key components:
+- Transformer architecture
+- Self-attention mechanism
+- Positional encoding
+- Layer normalization
+- Feed-forward neural networks
+]
+
+.pull-right[
+```{r,echo=FALSE}
+knitr::include_graphics("img/transformer.png")
+```
+]
+-- 
+.footnote[
+Source: DALL-E: Based on the following prompt: "A detailed infographic highlighting the architecture of transformer models. The diagram includes key components such as the encoder, decoder, attention mechanisms, and layers. Arrows indicate the flow of information between these components. The background features a modern design with subtle tech-related patterns. Use professional colors like shades of blue and gray, with important elements highlighted in contrasting colors to draw attention."
+]
+
+---
+
+# Training Process
+
+- Pre-training on large corpus of text data
+- Fine-tuning for specific tasks
+- Prompt engineering for task-specific performance
+
+--
+.question[
+What are the challenges in training LLMs?
+]
+
+---
+
+# Applications in Data Science
+LLMs can be used for various tasks in data science:
+
+- Text generation and summarization
+- Sentiment analysis
+- Named Entity Recognition (NER)
+- Question answering
+- Text classification
+- Language translation
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+# Sources
+
+- Claude Sonnet 3.5. on 07/18/2024
+- TBD
+
+---
