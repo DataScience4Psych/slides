@@ -38,8 +38,17 @@ class: middle
 
 ## What are Large Language Models?
 
-- Large Language Models (LLMs) are advanced AI systems trained on vast amounts of text data.
-<br>
+.pull-left[
+- Large Language Models (LLMs) 
+  - are a type of artificial intelligence designed to 
+    - understand and 
+    - generate human language. 
+- These advanced AI systems are trained on *vast* amounts of text data.
+]
+--
+.pull-right[
+- Examples of these models, such as GPT (Generative Pre-trained Transformer) and BERT (Bidirectional Encoder Representations from Transformers), have transformed how machines process language.
+
 --
 
 .pull-left[
@@ -66,6 +75,7 @@ Examples:
 .question[
 How have LLMs evolved over time?
 ]
+
 ```{r, echo=FALSE, out.width="50%"}
 knitr::include_graphics("img/chattimeline.png")
 ```
@@ -90,7 +100,9 @@ Key components:
 knitr::include_graphics("img/transformer.png")
 ```
 ]
+
 -- 
+
 .footnote[
 Source: DALL-E: Based on the following prompt: "A detailed infographic highlighting the architecture of transformer models. The diagram includes key components such as the encoder, decoder, attention mechanisms, and layers. Arrows indicate the flow of information between these components. The background features a modern design with subtle tech-related patterns. Use professional colors like shades of blue and gray, with important elements highlighted in contrasting colors to draw attention."
 ]
@@ -104,6 +116,7 @@ Source: DALL-E: Based on the following prompt: "A detailed infographic highlight
 - Prompt engineering for task-specific performance
 
 --
+
 .question[
 What are the challenges in training LLMs?
 ]
