@@ -1,0 +1,114 @@
+---
+title: "Conclusion Slides Template"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(emo)
+```
+
+class: middle
+
+# Summary
+
+Key points from today's presentation:
+
+1. First main point
+2. Second main point
+3. Third main point
+4. Fourth main point
+
+---
+
+# What We've Learned
+
+.pull-left[
+## Concepts
+- Concept A
+- Concept B
+- Concept C
+]
+
+.pull-right[
+## Skills
+- Skill X
+- Skill Y
+- Skill Z
+]
+
+---
+
+# Conclusion
+
+.large[
+In conclusion, we've explored [main topic]. Remember:
+
+- Key takeaway 1
+- Key takeaway 2
+- Key takeaway 3
+
+These insights will help you [achieve some goal or understand some concept better].
+]
+
+---
+
+# Next Steps
+
+Moving forward:
+
+1. Apply what you've learned to [specific task or project]
+2. Explore further resources on [related topic]
+3. Practice [particular skill] regularly
+4. Prepare for our next session on [upcoming topic]
+
+---
+
+class: middle
+
+# Wrapping Up... 
+
+.hand[
+Thank you for your attention and participation!
+]
+
+---
+
+# Q&A
+
+.large[
+Any final questions?
+]
+
+---
+
+# Contact Information
+
+- Email: _garrissm@wfu.edu_
+- Website: [smasongarrison.com](https://www.smasongarrison.com)
+- Twitter: [@smasongarrison](https://twitter.com/smasongarrison)
+- GitHub: [github.com/smasongarrison](https://github.com/smasongarrison)
+- YouTube: [youtube.com/smasongarrison](https://youtube.com/smasongarrison)
+
+```{r qrcode, echo=FALSE, fig.align = "center", out.width = "30%", caption="Scan the QR code to visit the Data Science for Psych website"}
+library(qrcode)
+code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
+plot(code)
+```
+
+---
+
+class: center, middle
+
+# Thank You!
+

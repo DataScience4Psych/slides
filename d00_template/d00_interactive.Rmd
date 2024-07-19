@@ -1,0 +1,146 @@
+---
+title: "Interactive Elements Slides Template"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(emo)
+```
+
+class: middle
+
+# Your Turn
+
+.your-turn[
+- On Github, download the assignment called `AE01a - UN Votes`.
+- In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
+]
+
+---
+
+# Question Slide
+
+.question[
+What does it mean for a data analysis to be "reproducible"?
+]
+
+--
+
+Near-term goals:
+
+- Are the tables and figures reproducible from the code and data?
+- Does the code actually do what you think it does?
+- In addition to what was done, is it clear **why** it was done? 
+(e.g., how were parameter settings chosen?)
+
+Long-term goals:
+
+- Can the code be used for other data?
+- Can you extend the code to do other things?
+
+---
+
+# Tip Slide
+
+.tip[
+When working in an R Markdown document, your analysis is re-run each time you knit. If web scraping in an R Markdown document, you'd be re-scraping the data each time you knit, which is undesirable (and not *nice*)!
+
+An alternative workflow: 
+- Use an R script to save your code 
+- Save interim data scraped using the code in the script as CSV or RDS files
+- Use the saved data in your analysis in your R Markdown document
+]
+
+---
+
+# FAQ Slide
+
+.question[
+Q: What programming language will we use in this course?
+]
+
+.answer[
+A: We will be using R in this course. R is a powerful language for statistical computing and graphics, widely used in data science and research.
+]
+
+--
+
+.question[
+Q: Do I need prior programming experience?
+]
+
+.answer[
+A: No prior programming experience is required. We'll start from the basics and build up your skills throughout the course.
+]
+
+---
+
+# Interactive Poll
+
+.large[
+What's your primary goal for taking this course?
+]
+
+- [ ] Learn data analysis skills
+- [ ] Improve programming abilities
+- [ ] Understand statistical concepts better
+- [ ] Apply data science to my field
+- [ ] Other (please specify in the chat)
+
+*Please raise your hand or use the reaction feature to indicate your choice.*
+
+---
+
+# Think-Pair-Share
+
+1. **Think** (1 minute): Reflect on the following question:
+   .question[
+   What's the most interesting data analysis you've seen recently?
+   ]
+
+2. **Pair** (2 minutes): Turn to your neighbor and discuss your thoughts.
+
+3. **Share** (5 minutes): We'll hear from several pairs about their discussions.
+
+---
+
+# Q&A Session
+
+.large[
+Now it's your turn to ask questions!
+]
+
+- Raise your hand or type in the chat to ask a question
+- We'll take questions for the next 10 minutes
+- If we don't get to your question, please email me or ask during office hours
+
+---
+
+# Discussion
+
+.large[
+Let's discuss the ethical implications of data science.
+]
+
+Consider these questions:
+1. What responsibilities do data scientists have?
+2. How can we ensure privacy in the age of big data?
+3. What are potential negative consequences of data-driven decision making?
+
+We'll break into small groups for 10 minutes, then come back for a full-class discussion.
+
+```
+

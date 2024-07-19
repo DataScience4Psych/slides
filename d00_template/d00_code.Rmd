@@ -1,0 +1,242 @@
+---
+title: "Code and Data Slides Template"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(knitr)
+library(palmerpenguins)
+```
+
+# Simple Code Chunk
+
+Here's a simple R code chunk:
+
+```{r simple-code}
+x <- 3 * 4
+y <- 10 - 2
+z <- x + y
+print(z)
+```
+
+---
+
+# Code with Output
+
+This code chunk will show both the code and its output:
+
+```{r code-with-output}
+# Create a vector
+numbers <- c(1, 2, 3, 4, 5)
+
+# Calculate mean and standard deviation
+mean_value <- mean(numbers)
+sd_value <- sd(numbers)
+
+# Print results
+cat("Mean:", mean_value, "\n")
+cat("Standard Deviation:", sd_value)
+```
+
+---
+
+# Code with Highlighted Lines
+
+In this example, we'll highlight important lines:
+
+```{r highlight-lines, highlight.output=c(1, 3)}
+# Load the tidyverse package
+library(tidyverse)
+
+# Create a simple dataframe
+df <- tibble(
+  x = 1:5,
+  y = c(2, 4, 6, 8, 10)
+)
+
+# Plot the data
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  geom_line()
+```
+
+---
+
+# Data Visualization Code
+
+Here's an example of creating a data visualization with code:
+
+```{r data-viz, fig.height=4}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point(alpha = 0.7) +
+  labs(title = "Penguin Size",
+       x = "Flipper Length (mm)",
+       y = "Body Mass (g)",
+       color = "Species") +
+  theme_minimal()
+```
+
+---
+
+# Data Manipulation
+
+This slide demonstrates data manipulation with dplyr:
+
+```{r data-manip}
+penguins %>%
+  group_by(species, island) %>%
+  summarize(
+    mean_body_mass = mean(body_mass_g, na.rm = TRUE),
+    mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE)
+  ) %>%
+  arrange(desc(mean_body_mass))
+```
+
+---
+
+# Interactive Code Output
+
+This slide shows how to create an interactive table:
+
+```{r interactive-table}
+library(DT)
+
+penguins %>%
+  select(species, island, body_mass_g, flipper_length_mm) %>%
+  datatable()
+```
+
+---
+
+# Code and Plot Side by Side
+
+.pull-left[
+```{r side-by-side-code, fig.show = "hide"}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Car Weight vs. Miles Per Gallon",
+    x = "Weight (1000 lbs)",
+    y = "Miles Per Gallon"
+  )
+```
+]
+.pull-right[
+```{r ref.label="side-by-side-code", echo = FALSE, out.width = "100%"}
+```
+]
+```
+
+---
+
+# Importing Data
+
+Here's how you might import and display a dataset:
+
+```{r import-data}
+# Read CSV file (replace with your actual file path)
+df <- read_csv("path/to/your/data.csv")
+
+# Display the first few rows
+head(df)
+```
+
+---
+
+# Statistical Analysis
+
+This slide demonstrates a simple statistical test:
+
+```{r stat-analysis}
+# Perform a t-test
+t_test_result <- t.test(flipper_length_mm ~ species, data = penguins)
+
+# Print the results
+print(t_test_result)
+```
+
+---
+
+## Residuals Plot
+
+.pull-left[
+```{r residuals-plot, fig.show="hide"}
+ht_wt_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp)
+
+ht_wt_fit_aug <- augment(ht_wt_fit$fit)
+
+ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
+  labs(x = "Predicted Height", y = "Residuals")
+```
+]
+.pull-right[
+```{r ref.label="residuals-plot", echo=FALSE, out.width="100%"}
+```
+]
+
+
+---
+
+
+## Model Output
+
+```{r model-output}
+linear_reg() %>%
+  set_engine("lm") %>%
+  fit(Height_in ~ Width_in, data = pp) %>%
+  tidy()
+```
+
+---
+
+
+## Data Exploration
+
+.pull-left[
+```{r data-explore, fig.show="hide"}
+ggplot(pp, aes(x = Width_in)) +
+  geom_histogram(binwidth = 5) +
+  labs(x = "Width (inches)", y = NULL)
+```
+]
+.pull-right[
+```{r ref.label="data-explore", echo=FALSE, out.width="100%"}
+```
+]
+---
+
+
+
+
+## Cross Validation Metrics
+
+```{r cv-metrics}
+collect_metrics(office_fit_rs)
+```
+
+
+---
+
+## Bootstrap Distribution
+
+```{r boot-dist, fig.height=4}
+ggplot(boot_df, aes(x = stat)) +
+  geom_histogram(binwidth = 100) +
+  labs(title = "Bootstrap distribution of means")
+```

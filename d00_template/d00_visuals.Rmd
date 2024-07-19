@@ -1,0 +1,122 @@
+---
+title: "Visual Elements Slides Template"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(emo)
+```
+
+# Full Scale External Image
+
+![Data Science Logo](https://datascience4psych.github.io/DataScience4Psych/assets/logo.png)
+
+---
+
+# Full Scale Internal Image
+
+![Data Science Logo](img/logo.png)
+
+---
+
+# Image with Caption
+
+```{r fig.align="center", echo=FALSE, alt="Data Science Logo", out.width="45%"}
+knitr::include_graphics("img/logo.png")
+```
+
+.footnote[Credit: S. Mason Garrison, [Data Science for Psych](https://datascience4psych.github.io/DataScience4Psych/)]
+
+---
+
+# Side-by-Side Image and Text
+
+.pull-left[
+```{r fig.align="center", echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/logo.png")
+```
+]
+.pull-right[
+This is the logo for the Data Science for Psych course. It represents the intersection of data science techniques with psychological research and analysis.
+]
+
+---
+
+# Full-Width Image Slide
+
+background-image: url(https://datascience4psych.github.io/DataScience4Psych/assets/logo.png)
+background-size: cover
+
+.footnote[Credit: S. Mason Garrison, Data Science for Psych]
+
+---
+
+# Simple Chart Slide
+
+```{r simple-chart, echo=FALSE, message=FALSE, warning=FALSE, out.width="70%"}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Car Weight vs. Miles Per Gallon",
+       x = "Weight (1000 lbs)",
+       y = "Miles Per Gallon")
+```
+
+---
+
+# Complex Data Visualization Slide
+
+```{r complex-viz, echo=FALSE, message=FALSE, warning=FALSE, out.width="80%"}
+library(gapminder)
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, size = pop, color = continent)) +
+  geom_point(alpha = 0.7) +
+  scale_x_log10() +
+  scale_size(range = c(2, 12)) +
+  facet_wrap(~year) +
+  labs(title = "Life Expectancy vs. GDP per Capita Over Time",
+       x = "GDP per Capita (log scale)",
+       y = "Life Expectancy",
+       size = "Population",
+       color = "Continent") +
+  theme_minimal()
+```
+
+---
+
+# Table Slide
+
+```{r table-slide, echo=FALSE}
+knitr::kable(head(mtcars[, 1:5]), format = "html")
+```
+
+---
+
+# Infographic Slide
+
+.pull-left[
+## Key Statistics
+
+- Statistic 1: 75%
+- Statistic 2: $1.2 million
+- Statistic 3: 5 years
+]
+
+.pull-right[
+```{r infographic, echo=FALSE, out.width="100%"}
+# Replace this with your actual infographic image
+knitr::include_graphics("https://venngage-wordpress.s3.amazonaws.com/uploads/2019/03/simple-data-infographic-template.png")
+```
+]
+

@@ -69,7 +69,9 @@ Welcome to our journey through [Course/Topic Name]. We'll explore together, lear
 # Content Slides: Text
 
 ---
+
 # Simple Text Slide: Present a single concept or statement.
+
 ---
 
 # Simple Text Slide
@@ -77,7 +79,7 @@ Welcome to our journey through [Course/Topic Name]. We'll explore together, lear
 Present a single concept or statement.
 
 ---
-# Bullet Points Slide: List key points or ideas.
+# Bullet Points Slides: List key points or ideas.
 ---
 ## Simple Bullet Points
 - Interactive

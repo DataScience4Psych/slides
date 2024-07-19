@@ -1,0 +1,104 @@
+---
+title: "Title and Introduction Slides Template"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(emo)
+```
+
+class: center, middle
+
+# Main Title Slide
+
+## Subtitle Goes Here
+
+### S. Mason Garrison
+
+#### Date
+
+---
+
+class: center, middle
+
+# Welcome to [Course/Topic Name]
+
+.large[
+Welcome to our journey through [Course/Topic Name]. 
+We'll explore, learn, and grow together.
+]
+
+---
+
+# Overview Slide
+
+This presentation will cover:
+
+1. Topic One
+2. Topic Two
+3. Topic Three
+4. Topic Four
+
+---
+
+# Objectives Slide
+
+By the end of this presentation, you will be able to:
+
+- Understand [Concept A]
+- Apply [Skill B]
+- Analyze [Situation C]
+- Evaluate [Idea D]
+
+---
+
+# Agenda Slide
+
+Today's agenda:
+
+| Time | Topic |
+|------|-------|
+| 9:00 - 9:30 | Introduction |
+| 9:30 - 10:30 | Main Content |
+| 10:30 - 10:45 | Break |
+| 10:45 - 11:30 | Discussion |
+| 11:30 - 12:00 | Conclusion |
+
+---
+
+# Why This Matters
+
+.pull-left[
+## Importance
+- Reason 1
+- Reason 2
+- Reason 3
+]
+
+.pull-right[
+## Applications
+- Field 1
+- Field 2
+- Field 3
+]
+
+---
+
+class: inverse, center, middle
+
+# Ready to Begin?
+
+Let's dive into [Topic/Course Name]!
+
+```

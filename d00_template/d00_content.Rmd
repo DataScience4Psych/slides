@@ -1,0 +1,81 @@
+---
+title: "Content Slides Template"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(emo)
+```
+
+# Simple Text Slide
+
+This is a simple text slide. Use it to present a single concept or statement.
+
+---
+
+# Bullet Points Slide
+
+- First main point
+  - Subpoint A
+  - Subpoint B
+- Second main point
+- Third main point
+
+---
+
+# Dynamic Bullet Points Slide
+
+- First point appears immediately
+
+--
+
+- Second point appears after a pause
+
+--
+
+- Third point also appears after a pause
+
+---
+
+# Numbered List Slide
+
+1. First item in the list
+2. Second item in the list
+3. Third item in the list
+
+---
+
+# Quote Slide
+
+.large[
+"The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge."
+]
+
+.right[
+-- Stephen Hawking
+]
+
+---
+
+# Two-Column Slide
+
+.pull-left[
+## Left Column
+Content for the left column goes here.
+]
+
+.pull-right[
+## Right Column
+Content for the right column goes here.
+]
