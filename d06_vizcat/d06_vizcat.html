@@ -54,7 +54,7 @@ class: middle
 ### Remember this Data?
 
 
-```r
+``` r
 library(tidyverse)
 starwars
 ```
@@ -83,7 +83,7 @@ starwars
 ---
 ### Perhaps now?
 
-```r
+``` r
 glimpse(starwars)
 ```
 
@@ -109,15 +109,15 @@ glimpse(starwars)
 ---
 #### Recode hair color
 
-  
-  ```r
-  starwars &lt;- starwars %&gt;%
+
+``` r
+starwars &lt;- starwars %&gt;%
   mutate(hair_color2 =
            fct_other(hair_color,
                      keep = c("black", "brown", "brown", "blond")
            )
   )
-  ```
+```
 ---
 
 
@@ -130,7 +130,7 @@ class: middle
 ## Bar plot
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
@@ -142,7 +142,7 @@ ggplot(data = starwars, mapping = aes(x = gender)) +
 ## Segmented bar plot: counts
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender, 
 *                 fill = hair_color))+
   geom_bar()
@@ -157,7 +157,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 ## Segmented bar plots
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender, 
 *   fill = hair_color2))+
   geom_bar()
@@ -170,7 +170,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 ## Segmented bar plots
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender, 
 *   fill = hair_color2))+
 * geom_bar()+
@@ -184,7 +184,7 @@ ggplot(data = starwars, mapping = aes(x = gender,
 ## Segmented bar plots: proportions
 
 
-```r
+``` r
 ggplot(data = starwars,
        mapping = aes(x = gender, fill = hair_color2)) +
   geom_bar(position = "fill") +
@@ -193,7 +193,7 @@ ggplot(data = starwars,
 
 &lt;img src="d06_vizcat_files/figure-html/unnamed-chunk-9-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
-```r
+``` r
 labs(y = "proportion")
 ```
 
@@ -228,7 +228,7 @@ labs(y = "proportion")
 ]
 .pull-right[.small[
 
-```r
+``` r
 *ggplot(starwars, aes(y = gender,
                   fill = hair_color2)) +
   geom_bar(position = "fill") +
@@ -272,7 +272,7 @@ class: middle
 ## Violin plots
 
 
-```r
+``` r
 ggplot(loans, aes(x = homeownership, y = loan_amount)) +
   geom_violin()
 ```
@@ -284,7 +284,7 @@ ggplot(loans, aes(x = homeownership, y = loan_amount)) +
 ## Ridge plots
 
 
-```r
+``` r
 library(ggridges)
 ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) + 
   geom_density_ridges(alpha = 0.5)

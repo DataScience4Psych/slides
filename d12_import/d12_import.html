@@ -70,7 +70,7 @@ class: middle
 ## Reading data
 
 
-```r
+``` r
 nobel &lt;- read_csv(file = "data/nobel.csv")
 ```
 
@@ -79,7 +79,7 @@ nobel &lt;- read_csv(file = "data/nobel.csv")
 .xxsmall[
 
 ```
-## -- Data Summary ------------------------
+## ── Data Summary ────────────────────────
 ##                            Values
 ## Name                       nobel 
 ## Number of rows             935   
@@ -92,7 +92,7 @@ nobel &lt;- read_csv(file = "data/nobel.csv")
 ## ________________________         
 ## Group variables            None  
 ## 
-## -- Variable type: character --------------------------------------------------------------------------------------------
+## ── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────────
 ##    skim_variable         n_missing complete_rate min max empty n_unique whitespace
 ##  1 firstname                     0        1        2  59     0      720          0
 ##  2 surname                      29        0.969    2  26     0      851          0
@@ -116,16 +116,16 @@ nobel &lt;- read_csv(file = "data/nobel.csv")
 ## 20 city_original               255        0.727    4  27     0      185          0
 ## 21 country_original            254        0.728    3  35     0       29          0
 ## 
-## -- Variable type: Date -------------------------------------------------------------------------------------------------
+## ── Variable type: Date ─────────────────────────────────────────────────────────────────────────────────────────────────
 ##   skim_variable n_missing complete_rate min        max        median     n_unique
 ## 1 born_date            33         0.965 1817-11-30 1997-07-12 1916-06-28      885
 ## 2 died_date           308         0.671 1903-11-01 2019-08-07 1983-03-09      616
 ## 
-## -- Variable type: numeric ----------------------------------------------------------------------------------------------
-##   skim_variable n_missing complete_rate    mean      sd   p0   p25  p50   p75 p100 hist                            
-## 1 id                    0             1  475.   278.       1  234.  470  716.  969 "\u2587\u2587\u2587\u2587\u2587"
-## 2 year                  0             1 1970.    33.3   1901 1947  1976 1999  2018 "\u2583\u2583\u2585\u2586\u2587"
-## 3 share                 0             1    1.99   0.936    1    1     2    3     4 "\u2587\u2587\u2581\u2585\u2582"
+## ── Variable type: numeric ──────────────────────────────────────────────────────────────────────────────────────────────
+##   skim_variable n_missing complete_rate    mean      sd   p0   p25  p50   p75 p100 hist 
+## 1 id                    0             1  475.   278.       1  234.  470  716.  969 ▇▇▇▇▇
+## 2 year                  0             1 1970.    33.3   1901 1947  1976 1999  2018 ▃▃▅▆▇
+## 3 share                 0             1    1.99   0.936    1    1     2    3     4 ▇▇▁▅▂
 ```
 ]
 
@@ -136,7 +136,7 @@ nobel &lt;- read_csv(file = "data/nobel.csv")
 - Write a file
 
 
-```r
+``` r
 df &lt;- tribble(
   ~x, ~y,
   1,  "a",
@@ -152,7 +152,7 @@ write_csv(df, file = "data/df.csv")
 - Check that it got written out
 
 
-```r
+``` r
 fs::dir_ls("data")
 ```
 
@@ -194,7 +194,7 @@ class: middle
 ---
 
 
-```r
+``` r
 edi_airbnb &lt;- read_csv("data/edi-airbnb.csv")
 names(edi_airbnb)
 ```
@@ -212,7 +212,7 @@ names(edi_airbnb)
 ... but R doesn't allow spaces in variable names
 
 
-```r
+``` r
 ggplot(edi_airbnb, aes(x = Number of bathrooms, y = Price)) +
   geom_point()
 ```
@@ -229,7 +229,7 @@ ggplot(edi_airbnb, aes(x = Number of bathrooms, y = Price)) +
 
 
 
-```r
+``` r
 edi_airbnb_col_names &lt;- read_csv("data/edi-airbnb.csv",
   col_names = c("id", "price", "neighbourhood", "accommodates",
                 "bathroom", "bedroom", "bed", 
@@ -252,7 +252,7 @@ names(edi_airbnb_col_names)
 ## Option 2 - Format text to snake_case
 
 
-```r
+``` r
 edi_airbnb_cleaned_names &lt;- edi_airbnb %&gt;%
   janitor::clean_names()
 
@@ -292,12 +292,12 @@ Which class is `x`? Why?
 ]
 .pull-right[
 
-```r
+``` r
 read_csv("data/df-na.csv")
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##   x     y              z     
 ##   &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt; 
 ## 1 1     a              hi    
@@ -317,7 +317,7 @@ read_csv("data/df-na.csv")
 ## Option 1. Explicit NAs
 
 
-```r
+``` r
 read_csv("data/df-na.csv", 
          na = c("", "NA", ".", "9999", "Not applicable"))
 ```
@@ -329,7 +329,7 @@ read_csv("data/df-na.csv",
 .pull-right[
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##       x y     z     
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
 ## 1     1 a     hi    
@@ -350,7 +350,7 @@ read_csv("data/df-na.csv",
 
 .midi[
 
-```r
+``` r
 read_csv("data/df-na.csv", 
   col_types = list(col_double(), col_character(), col_character()))
 ```
@@ -363,7 +363,7 @@ read_csv("data/df-na.csv",
 ```
 
 ```
-## # A tibble: 9 x 3
+## # A tibble: 9 × 3
 ##       x y              z     
 ##   &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt; 
 ## 1     1 a              hi    
@@ -432,7 +432,7 @@ variable type information you want to hold on to.
 `write_rds()`, respectively.
 
 
-```r
+``` r
 read_rds(path)
 write_rds(x, path)
 ```
@@ -467,7 +467,7 @@ arguments for the `read_excel()` function such that it looks like the following.
 .pull-right[
 
 ```
-## # A tibble: 9 x 2
+## # A tibble: 9 × 2
 ##   id      n    
 ##   &lt;chr&gt;   &lt;chr&gt;
 ## 1 Brand 1 n    
@@ -493,7 +493,7 @@ arguments for the `read_excel()` function such that it looks like the following.
 .pull-right[
 
 ```
-## # A tibble: 7 x 3
+## # A tibble: 7 × 3
 ##   brand      id     n
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Brand 1  1234     8
@@ -521,7 +521,7 @@ class: middle
 ---
 .medi[
 
-```r
+``` r
 sales_files &lt;- fs::dir_ls("data/sales")
 sales_files
 ```
@@ -531,14 +531,14 @@ sales_files
 ## data/sales/03-sales.csv
 ```
 
-```r
+``` r
 #library(vroom)
 sales &lt;- vroom::vroom(sales_files, id = "filename")
 sales
 ```
 
 ```
-## # A tibble: 19 x 6
+## # A tibble: 19 × 6
 ##    filename                month     year brand  item     n
 ##    &lt;chr&gt;                   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ##  1 data/sales/01-sales.csv January   2019     1  1234     3
@@ -551,7 +551,7 @@ sales
 ##  8 data/sales/02-sales.csv February  2019     1  1234     8
 ##  9 data/sales/02-sales.csv February  2019     1  8721     2
 ## 10 data/sales/02-sales.csv February  2019     1  1822     3
-## # i 9 more rows
+## # ℹ 9 more rows
 ```
 ]
 ---

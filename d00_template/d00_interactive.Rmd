@@ -46,6 +46,8 @@ Near-term goals:
 - In addition to what was done, is it clear **why** it was done? 
 (e.g., how were parameter settings chosen?)
 
+--
+
 Long-term goals:
 
 - Can the code be used for other data?
@@ -67,6 +69,7 @@ An alternative workflow:
 ---
 
 # FAQ Slide
+
 
 .question[
 Q: What programming language will we use in this course?
@@ -143,4 +146,3 @@ Consider these questions:
 We'll break into small groups for 10 minutes, then come back for a full-class discussion.
 
 ```
-

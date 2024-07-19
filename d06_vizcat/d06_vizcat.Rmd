@@ -53,7 +53,7 @@ glimpse(starwars)
 ---
 #### Recode hair color
 
-  ```{r }
+```{r }
 starwars <- starwars %>%
   mutate(hair_color2 =
            fct_other(hair_color,

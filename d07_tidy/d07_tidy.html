@@ -145,14 +145,14 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 
 .pull-left[
 
-```r
+``` r
 starwars %&gt;%
   select(name, height, mass)
 ```
 ]
 .pull-right[
 
-```r
+``` r
 starwars %&gt;%
   group_by(gender) %&gt;%
   summarize(
@@ -227,7 +227,7 @@ Tibbles are a better version of data frames.
 . . .
 .midi[
 
-```r
+``` r
 library(tidyverse)
 (df = data.frame("a" = 1:5, "b 2" = 5:1))
 ```
@@ -241,7 +241,7 @@ library(tidyverse)
 ## 5 5   1
 ```
 
-```r
+``` r
 (ti = tibble("a" = 1:5, "b 2" = 5:1))
 ```
 
@@ -263,7 +263,7 @@ library(tidyverse)
 . . .
 
 
-```r
+``` r
 df$c
 ```
 
@@ -271,7 +271,7 @@ df$c
 ## NULL
 ```
 
-```r
+``` r
 ti$c
 ```
 
@@ -290,7 +290,7 @@ ti$c
 . . .
 
 
-```r
+``` r
 df[,1]
 ```
 
@@ -298,7 +298,7 @@ df[,1]
 ## [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 ti[,1]
 ```
 
@@ -320,7 +320,7 @@ ti[,1]
 . . .
 
 
-```r
+``` r
 df$b
 ```
 
@@ -328,7 +328,7 @@ df$b
 ## [1] 5 4 3 2 1
 ```
 
-```r
+``` r
 ti$b
 ```
 
@@ -345,13 +345,13 @@ ti$b
 
 Previously...
 
-```r
+``` r
 df = data.frame(l1 = letters[1:5])
 ```
 
 The most annoying thing about data frames:
 
-```r
+``` r
 df$l2 = letters[1:5]
 class(df$l1)
 ```
@@ -360,7 +360,7 @@ class(df$l1)
 ## [1] "factor"
 ```
 
-```r
+``` r
 class(df$l2)
 ```
 
@@ -372,7 +372,7 @@ class(df$l2)
 
 # Tibbles don't have this problem
 
-```r
+``` r
 ## but with tibbles it's all the same
 ti = tibble(l1 = letters[1:5])
 ti$l2 = letters[1:5]
@@ -383,7 +383,7 @@ class(ti$l1)
 ## [1] "character"
 ```
 
-```r
+``` r
 class(ti$l2)
 ```
 
@@ -412,7 +412,7 @@ class: middle
 Base R has fixed this issue...
 
 
-```r
+``` r
 df = data.frame(l1 = letters[1:5])
 df$l2 = letters[1:5]
 class(df$l1)
@@ -422,7 +422,7 @@ class(df$l1)
 ## [1] "character"
 ```
 
-```r
+``` r
 class(df$l2)
 ```
 

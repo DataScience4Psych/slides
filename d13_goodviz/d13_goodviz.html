@@ -136,7 +136,7 @@ class: middle
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(x = opinion)) +
   geom_bar()
 ```
@@ -152,7 +152,7 @@ ggplot(brexit, aes(x = opinion)) +
 
 .midi[
 
-```r
+``` r
 ggplot(brexit, aes(x = fct_infreq(opinion))) +
   geom_bar()
 ```
@@ -165,7 +165,7 @@ ggplot(brexit, aes(x = fct_infreq(opinion))) +
 ## Clean up labels
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(x = opinion)) +
   geom_bar() +
 * labs(
@@ -183,7 +183,7 @@ ggplot(brexit, aes(x = opinion)) +
 
 .midi.pull-left-narrow[
 
-```r
+``` r
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
@@ -205,7 +205,7 @@ ggplot(brexit, aes(x = region)) +
 
 
 
-```r
+``` r
 brexit &lt;- brexit %&gt;%
   mutate(
 *   region = fct_relevel(
@@ -225,7 +225,7 @@ brexit &lt;- brexit %&gt;%
 `fct_recode`: Change factor levels by hand
 
 
-```r
+``` r
 brexit &lt;- brexit %&gt;%
   mutate(
 *   region = fct_recode(
@@ -262,7 +262,7 @@ class: middle
 ## Move them to the y-axis
 .medi[
 
-```r
+``` r
 ggplot(brexit, aes(x = region)) +
   geom_bar() +
 * coord_flip()
@@ -275,7 +275,7 @@ ggplot(brexit, aes(x = region)) +
 ## Move them to the y-axis
 .medi[
 
-```r
+``` r
 *ggplot(brexit, aes(y = region)) +
   geom_bar()
 ```
@@ -292,7 +292,7 @@ ggplot(brexit, aes(x = region)) +
 
 .medi.pull-left[
 
-```r
+``` r
 *ggplot(brexit, aes(y = fct_rev(region))) +
   geom_bar()
 ```
@@ -308,7 +308,7 @@ ggplot(brexit, aes(x = region)) +
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(y = fct_rev(region))) +
   geom_bar() +
 * labs(
@@ -334,7 +334,7 @@ class: middle
 
 .medi.pull-left-wide[
 
-```r
+``` r
 *ggplot(brexit, aes(y = region, fill = opinion)) +
   geom_bar()
 ```
@@ -354,7 +354,7 @@ class: middle
 
 .medi.pull-left-wide[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = region)) +
   geom_bar() +
 * facet_wrap(~region, nrow = 1)
@@ -373,7 +373,7 @@ ggplot(brexit, aes(y = opinion, fill = region)) +
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1)
@@ -393,7 +393,7 @@ ggplot(brexit, aes(y = opinion)) +
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1)
@@ -413,7 +413,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -434,7 +434,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -460,7 +460,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .medi[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -484,7 +484,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .medi[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1) +
@@ -509,7 +509,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .medi[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region,
@@ -541,7 +541,7 @@ class: middle
 
 .medi.pull-left[
 
-```r
+``` r
 ggplot(brexit, aes(y= region, fill = opinion)) +
   geom_bar(position = "fill") 
 ```
@@ -563,7 +563,7 @@ ggplot(brexit, aes(y= region, fill = opinion)) +
 
 .midi.pull-left-wide[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
@@ -606,7 +606,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ## Use better colors
 .midi.pull-left-wide[
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
@@ -640,7 +640,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ## Select theme
 
 
-```r
+``` r
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
   geom_bar() +
   facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +
@@ -692,7 +692,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ## Viridis scale works well with ordinal data 
 .medi.pull-left-wide[
 
-```r
+``` r
 ggplot(brexit, aes(y = region, fill = opinion)) +
   geom_bar(position = "fill") +
   scale_fill_viridis_d()

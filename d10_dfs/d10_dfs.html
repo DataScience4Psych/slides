@@ -81,7 +81,7 @@ Source: [Discover Magazine](https://www.discovermagazine.com/the-sciences/meet-1
 
 + Professions
 
-```r
+``` r
 professions
 ```
 
@@ -106,7 +106,7 @@ professions
 
 + Dates
 
-```r
+``` r
 dates
 ```
 
@@ -131,7 +131,7 @@ dates
 + Works
 
 
-```r
+``` r
 works
 ```
 
@@ -177,7 +177,7 @@ works
 
 .pull-left[.midi[
 
-```r
+``` r
 names(professions)
 ```
 
@@ -185,7 +185,7 @@ names(professions)
 ## [1] "name"       "profession"
 ```
 
-```r
+``` r
 names(dates)
 ```
 
@@ -193,7 +193,7 @@ names(dates)
 ## [1] "name"       "birth_year" "death_year"
 ```
 
-```r
+``` r
 names(works)
 ```
 
@@ -204,7 +204,7 @@ names(works)
 ]
 .pull-right[
 
-```r
+``` r
 nrow(professions)
 ```
 
@@ -212,7 +212,7 @@ nrow(professions)
 ## [1] 10
 ```
 
-```r
+``` r
 nrow(dates)
 ```
 
@@ -220,7 +220,7 @@ nrow(dates)
 ## [1] 8
 ```
 
-```r
+``` r
 nrow(works)
 ```
 
@@ -240,7 +240,7 @@ class: middle
 ## Joining data frames
 
 
-```r
+``` r
 something_join(x, y)
 ```
 
@@ -262,7 +262,7 @@ For the next few slides...
 .pull-left[
 
 
-```r
+``` r
 x
 ```
 
@@ -278,7 +278,7 @@ x
 .pull-right[
 
 
-```r
+``` r
 y
 ```
 
@@ -301,7 +301,7 @@ y
 ]
 .pull-right[
 
-```r
+``` r
 left_join(x, y)
 ```
 
@@ -320,7 +320,7 @@ left_join(x, y)
 ## `left_join()`
 
 
-```r
+``` r
 professions %&gt;%
 * left_join(dates)
 ```
@@ -350,7 +350,7 @@ professions %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 right_join(x, y)
 ```
 
@@ -370,7 +370,7 @@ right_join(x, y)
 
 
 
-```r
+``` r
 professions %&gt;%
 * right_join(dates)
 ```
@@ -398,7 +398,7 @@ professions %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 full_join(x, y)
 ```
 
@@ -418,7 +418,7 @@ full_join(x, y)
 ## `full_join()`
 
 
-```r
+``` r
 dates %&gt;%
 * full_join(works)
 ```
@@ -448,7 +448,7 @@ dates %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 inner_join(x, y)
 ```
 
@@ -466,7 +466,7 @@ inner_join(x, y)
 ## `inner_join()`
 
 
-```r
+``` r
 dates %&gt;%
 * inner_join(works)
 ```
@@ -493,7 +493,7 @@ dates %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 semi_join(x, y)
 ```
 
@@ -511,7 +511,7 @@ semi_join(x, y)
 ## `semi_join()`
 
 
-```r
+``` r
 dates %&gt;%
 * semi_join(works)
 ```
@@ -538,7 +538,7 @@ dates %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 anti_join(x, y)
 ```
 
@@ -555,7 +555,7 @@ anti_join(x, y)
 ## `anti_join()`
 
 
-```r
+``` r
 dates %&gt;%
 * anti_join(works)
 ```
@@ -572,7 +572,7 @@ dates %&gt;%
 ## Putting it altogether
 
 
-```r
+``` r
 professions %&gt;%
   left_join(dates) %&gt;%
   left_join(works)
@@ -620,7 +620,7 @@ class: middle
 
 .pull-left[
 
-```r
+``` r
 enrollment
 ```
 
@@ -635,7 +635,7 @@ enrollment
 ]
 .pull-right[
 
-```r
+``` r
 survey
 ```
 
@@ -656,7 +656,7 @@ survey
 
 + In class
 
-```r
+``` r
 enrollment %&gt;% 
 * left_join(survey, by = "id")
 ```
@@ -677,7 +677,7 @@ enrollment %&gt;%
 
 + Survey missing
 
-```r
+``` r
 enrollment %&gt;% 
 * anti_join(survey, by = "id")
 ```
@@ -694,7 +694,7 @@ enrollment %&gt;%
 
 + Dropped
 
-```r
+``` r
 survey %&gt;% 
 * anti_join(enrollment, by = "id")
 ```
@@ -728,7 +728,7 @@ class: middle
 
 .pull-left[
 
-```r
+``` r
 purchases
 ```
 
@@ -745,7 +745,7 @@ purchases
 ]
 .pull-right[
 
-```r
+``` r
 prices
 ```
 
@@ -769,7 +769,7 @@ prices
 
 .pull-left[
 
-```r
+``` r
 purchases %&gt;% 
 * left_join(prices)
 ```
@@ -788,7 +788,7 @@ purchases %&gt;%
 
 .pull-right[
 
-```r
+``` r
 purchases %&gt;% 
   left_join(prices) %&gt;%
 * summarize(total_revenue = sum(price))
@@ -810,7 +810,7 @@ purchases %&gt;%
 
 .pull-left[
 
-```r
+``` r
 purchases %&gt;% 
   left_join(prices)
 ```
@@ -828,7 +828,7 @@ purchases %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 purchases %&gt;% 
   left_join(prices) %&gt;%
 * group_by(customer_id) %&gt;%

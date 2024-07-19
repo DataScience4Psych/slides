@@ -7,6 +7,7 @@
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link href="libs/htmltools-fill/fill.css" rel="stylesheet" />
     <script src="libs/htmlwidgets/htmlwidgets.js"></script>
     <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
     <script src="libs/datatables-binding/datatables.js"></script>
@@ -58,7 +59,7 @@ class: middle
 A survey asked respondents their name and number of cats. The instructions said to enter the number of cats as a numerical value.
 .medi[
 
-```r
+``` r
 cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 ```
 ]
@@ -85,7 +86,7 @@ cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 ## Oh why won't you work?!
 
 
-```r
+``` r
 cat_lovers %&gt;%
   summarize(mean_cats = mean(number_of_cats))
 ```
@@ -107,7 +108,7 @@ cat_lovers %&gt;%
 ---
 .medi[
 
-```r
+``` r
 ?mean
 ```
 ]
@@ -118,7 +119,7 @@ cat_lovers %&gt;%
 ## Oh why won't you still work??!!
 
 
-```r
+``` r
 cat_lovers %&gt;%
   summarize(mean_cats = mean(number_of_cats, na.rm = TRUE))
 ```
@@ -146,7 +147,7 @@ What is the type of the `number_of_cats` variable?
 ]
 
 
-```r
+``` r
 glimpse(cat_lovers)
 ```
 
@@ -174,7 +175,7 @@ glimpse(cat_lovers)
 
 .midi[
 
-```r
+``` r
 cat_lovers %&gt;%
   mutate(number_of_cats = case_when(
     name == "Ginger Clark" ~ 2,
@@ -204,7 +205,7 @@ cat_lovers %&gt;%
 ## Always you need to respect data types
 
 
-```r
+``` r
 cat_lovers %&gt;%
   mutate(
     number_of_cats = case_when(
@@ -229,7 +230,7 @@ cat_lovers %&gt;%
 ## Now that we know what we're doing...
 
 
-```r
+``` r
 *cat_lovers &lt;- cat_lovers %&gt;%
   mutate(
     number_of_cats = case_when(
@@ -290,7 +291,7 @@ class: middle
 **logical** - boolean values `TRUE` and `FALSE`
 
 
-```r
+``` r
 typeof(TRUE)
 ```
 
@@ -302,7 +303,7 @@ typeof(TRUE)
 **character** - character strings
 
 
-```r
+``` r
 typeof("hello")
 ```
 
@@ -319,7 +320,7 @@ typeof("hello")
 **double** - floating point numerical values (default numerical type)
 
 
-```r
+``` r
 typeof(1.335)
 ```
 
@@ -327,7 +328,7 @@ typeof(1.335)
 ## [1] "double"
 ```
 
-```r
+``` r
 typeof(7)
 ```
 
@@ -339,7 +340,7 @@ typeof(7)
 **integer** - integer numerical values (indicated with an `L`)
 
 
-```r
+``` r
 typeof(7L)
 ```
 
@@ -347,7 +348,7 @@ typeof(7L)
 ## [1] "integer"
 ```
 
-```r
+``` r
 typeof(1:3)
 ```
 
@@ -363,7 +364,7 @@ typeof(1:3)
 Vectors can be constructed using the `c()` function.
 
 
-```r
+``` r
 c(1, 2, 3)
 ```
 
@@ -371,7 +372,7 @@ c(1, 2, 3)
 ## [1] 1 2 3
 ```
 
-```r
+``` r
 c("Hello", "World!")
 ```
 
@@ -379,7 +380,7 @@ c("Hello", "World!")
 ## [1] "Hello"  "World!"
 ```
 
-```r
+``` r
 c(c("hi", "hello"), c("bye", "jello"))
 ```
 
@@ -395,7 +396,7 @@ c(c("hi", "hello"), c("bye", "jello"))
 
 .medi.pull-left[
 
-```r
+``` r
 x &lt;- 1:3
 x
 ```
@@ -404,7 +405,7 @@ x
 ## [1] 1 2 3
 ```
 
-```r
+``` r
 typeof(x)
 ```
 
@@ -412,7 +413,7 @@ typeof(x)
 ## [1] "integer"
 ```
 
-```r
+``` r
 y &lt;- as.character(x)
 y
 ```
@@ -421,7 +422,7 @@ y
 ## [1] "1" "2" "3"
 ```
 
-```r
+``` r
 typeof(y)
 ```
 
@@ -432,7 +433,7 @@ typeof(y)
 --
 .medi.pull-right[
 
-```r
+``` r
 x &lt;- c(TRUE, FALSE)
 x
 ```
@@ -441,7 +442,7 @@ x
 ## [1]  TRUE FALSE
 ```
 
-```r
+``` r
 typeof(x)
 ```
 
@@ -449,7 +450,7 @@ typeof(x)
 ## [1] "logical"
 ```
 
-```r
+``` r
 y &lt;- as.numeric(x)
 y
 ```
@@ -458,7 +459,7 @@ y
 ## [1] 1 0
 ```
 
-```r
+``` r
 typeof(y)
 ```
 
@@ -477,7 +478,7 @@ R will happily convert between various types without complaint when different ty
 
 .pull-left[
 
-```r
+``` r
 c(1, "Hello")
 ```
 
@@ -485,7 +486,7 @@ c(1, "Hello")
 ## [1] "1"     "Hello"
 ```
 
-```r
+``` r
 c(FALSE, 3L)
 ```
 
@@ -495,7 +496,7 @@ c(FALSE, 3L)
 ]
 .pull-right[
 
-```r
+``` r
 c(1.2, 3L)
 ```
 
@@ -503,7 +504,7 @@ c(1.2, 3L)
 ## [1] 1.2 3.0
 ```
 
-```r
+``` r
 c(2L, "two")
 ```
 
@@ -535,7 +536,7 @@ If your guess was correct, great! If not, discuss why they have that type.
 
 .pull-left[
 
-```r
+``` r
 typeof(1)
 ```
 
@@ -545,7 +546,7 @@ typeof(1)
 ]
 .pull-right[
 
-```r
+``` r
 typeof("a")
 ```
 
@@ -557,7 +558,7 @@ typeof("a")
 and make a guess based on these. Then finally I'd check:
 .pull-left[
 
-```r
+``` r
 typeof(c(1, "a"))
 ```
 
@@ -592,7 +593,7 @@ class: middle
 
 .pull-left[
 
-```r
+``` r
 pi / 0
 ```
 
@@ -600,7 +601,7 @@ pi / 0
 ## [1] Inf
 ```
 
-```r
+``` r
 0 / 0
 ```
 
@@ -610,7 +611,7 @@ pi / 0
 ]
 .pull-right[
 
-```r
+``` r
 1/0 - 1/0
 ```
 
@@ -618,7 +619,7 @@ pi / 0
 ## [1] NaN
 ```
 
-```r
+``` r
 1/0 + 1/0
 ```
 
@@ -632,12 +633,12 @@ pi / 0
 ## `NA`s are special ❄️s
 
 
-```r
+``` r
 x &lt;- c(1, 2, 3, 4, NA)
 ```
 
 
-```r
+``` r
 mean(x)
 ```
 
@@ -645,7 +646,7 @@ mean(x)
 ## [1] NA
 ```
 
-```r
+``` r
 mean(x, na.rm = TRUE)
 ```
 
@@ -653,7 +654,7 @@ mean(x, na.rm = TRUE)
 ## [1] 2.5
 ```
 
-```r
+``` r
 summary(x)
 ```
 
@@ -669,7 +670,7 @@ summary(x)
 R uses `NA` to represent missing values in its data structures.
 
 
-```r
+``` r
 typeof(NA)
 ```
 
@@ -692,7 +693,7 @@ Why do the following give different answers?
 ]
 .pull-left[
 
-```r
+``` r
 # TRUE or NA
 TRUE | NA
 ```
@@ -703,7 +704,7 @@ TRUE | NA
 ]
 .pull-right[
 
-```r
+``` r
 # FALSE or NA
 FALSE | NA
 ```
@@ -722,7 +723,7 @@ FALSE | NA
 .medi.pull-left[
 - `TRUE` or `TRUE` is `TRUE` and `TRUE` or `FALSE` is also `TRUE`, and since both are `TRUE`
 
-```r
+``` r
 TRUE | TRUE
 ```
 
@@ -730,7 +731,7 @@ TRUE | TRUE
 ## [1] TRUE
 ```
 
-```r
+``` r
 FALSE | TRUE
 ```
 
@@ -743,7 +744,7 @@ FALSE | TRUE
 .medi.pull-right[
 - `FALSE` or `TRUE` is `TRUE` and `FALSE` or `FALSE` is also `FALSE`, so you you can't tell which should be the right answer
 
-```r
+``` r
 FALSE | TRUE
 ```
 
@@ -751,7 +752,7 @@ FALSE | TRUE
 ## [1] TRUE
 ```
 
-```r
+``` r
 FALSE | FALSE
 ```
 
@@ -793,7 +794,7 @@ We talked about *types* so far, next we'll introduce the concept of *classes*
 R uses factors to handle categorical variables, variables that have a fixed and known set of possible values
 
 
-```r
+``` r
 x &lt;- factor(c("BS", "MS", "PhD", "MS"))
 x
 ```
@@ -805,7 +806,7 @@ x
 
 .pull-left[
 
-```r
+``` r
 typeof(x)
 ```
 
@@ -815,7 +816,7 @@ typeof(x)
 ]
 .pull-right[
 
-```r
+``` r
 class(x)
 ```
 
@@ -832,7 +833,7 @@ class(x)
 We can think of factors like character (level labels) and an integer (level numbers) glued together
 
 
-```r
+``` r
 glimpse(x)
 ```
 
@@ -840,7 +841,7 @@ glimpse(x)
 ##  Factor w/ 3 levels "BS","MS","PhD": 1 2 3 2
 ```
 
-```r
+``` r
 as.integer(x)
 ```
 
@@ -853,7 +854,7 @@ as.integer(x)
 ## Dates
 
 
-```r
+``` r
 y &lt;- as.Date("2020-01-01")
 y
 ```
@@ -862,7 +863,7 @@ y
 ## [1] "2020-01-01"
 ```
 
-```r
+``` r
 typeof(y)
 ```
 
@@ -870,7 +871,7 @@ typeof(y)
 ## [1] "double"
 ```
 
-```r
+``` r
 class(y)
 ```
 
@@ -885,7 +886,7 @@ class(y)
 We can think of dates like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together
 
 
-```r
+``` r
 as.integer(y)
 ```
 
@@ -893,7 +894,7 @@ as.integer(y)
 ## [1] 18262
 ```
 
-```r
+``` r
 as.integer(y) / 365 # roughly 50 yrs
 ```
 
@@ -908,7 +909,7 @@ as.integer(y) / 365 # roughly 50 yrs
 We can think of data frames like vectors of equal length glued together
 
 
-```r
+``` r
 df &lt;- data.frame(x = 1:2, y = 3:4)
 df
 ```
@@ -921,7 +922,7 @@ df
 
 .pull-left[
 
-```r
+``` r
 typeof(df)
 ```
 
@@ -931,7 +932,7 @@ typeof(df)
 ]
 .pull-right[
 
-```r
+``` r
 class(df)
 ```
 
@@ -947,7 +948,7 @@ class(df)
 Lists are a generic vector container vectors of any type can go in them
 
 
-```r
+``` r
 l &lt;- list(
   x = 1:4,
   y = c("hi", "hello", "jello"),
@@ -975,7 +976,7 @@ l
 - When we use the `pull()` function, we extract a vector from the data frame
 
 
-```r
+``` r
 df
 ```
 
@@ -985,7 +986,7 @@ df
 ## 2 2 4
 ```
 
-```r
+``` r
 df %&gt;%
   pull(y)
 ```
@@ -1012,7 +1013,7 @@ class: middle
 ## Read data in as character strings
 
 
-```r
+``` r
 glimpse(cat_lovers)
 ```
 
@@ -1029,7 +1030,7 @@ glimpse(cat_lovers)
 ## But coerce when plotting
 .midi[
 
-```r
+``` r
 ggplot(cat_lovers, mapping = aes(x = handedness)) +
   geom_bar()
 ```
@@ -1042,7 +1043,7 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
 ## Use forcats to manipulate factors
 .midi[
 
-```r
+``` r
 cat_lovers %&gt;%
 * mutate(handedness = fct_infreq(handedness)) %&gt;%
   ggplot(mapping = aes(x = handedness)) +
@@ -1114,7 +1115,7 @@ Calculate and visualize the number of bookings on any given arrival date.
 ]
 
 
-```r
+``` r
 hotels %&gt;%
   select(starts_with("arrival_"))
 ```
@@ -1143,7 +1144,7 @@ hotels %&gt;%
 
 .medi[
 
-```r
+``` r
 library(glue)
 
 hotels %&gt;%
@@ -1179,7 +1180,7 @@ hotels %&gt;%
 
 .medi[
 
-```r
+``` r
 hotels %&gt;%
   mutate(arrival_date = glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")) %&gt;%
   count(arrival_date)
@@ -1209,7 +1210,7 @@ hotels %&gt;%
 
 .small[
 
-```r
+``` r
 hotels %&gt;%
   mutate(arrival_date =  glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}")) %&gt;%
   count(arrival_date) %&gt;%
@@ -1239,7 +1240,7 @@ Why does the plot start with August when we know our data start in July? And why
 
 .medi[
 
-```r
+``` r
 library(lubridate)
 
 hotels %&gt;%
@@ -1250,7 +1251,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 x 5
+## # A tibble: 119,390 × 5
 ##    arrival_date_year arrival_date_month arrival_date_week_number
 ##                &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
 ##  1              2015 July                                     27
@@ -1263,8 +1264,8 @@ hotels %&gt;%
 ##  8              2015 July                                     27
 ##  9              2015 July                                     27
 ## 10              2015 July                                     27
-## # i 119,380 more rows
-## # i 2 more variables: arrival_date_day_of_month &lt;dbl&gt;,
+## # ℹ 119,380 more rows
+## # ℹ 2 more variables: arrival_date_day_of_month &lt;dbl&gt;,
 ## #   arrival_date &lt;date&gt;
 ```
 ]
@@ -1275,14 +1276,14 @@ hotels %&gt;%
 
 .medi[
 
-```r
+``` r
 hotels %&gt;%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %&gt;% 
   count(arrival_date)
 ```
 
 ```
-## # A tibble: 793 x 2
+## # A tibble: 793 × 2
 ##    arrival_date     n
 ##    &lt;date&gt;       &lt;int&gt;
 ##  1 2015-07-01     122
@@ -1295,7 +1296,7 @@ hotels %&gt;%
 ##  8 2015-07-08      69
 ##  9 2015-07-09      80
 ## 10 2015-07-10      51
-## # i 783 more rows
+## # ℹ 783 more rows
 ```
 ]
 
@@ -1305,7 +1306,7 @@ hotels %&gt;%
 
 .small[
 
-```r
+``` r
 hotels %&gt;%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %&gt;% 
   count(arrival_date) %&gt;%
@@ -1322,7 +1323,7 @@ hotels %&gt;%
 
 .small[
 
-```r
+``` r
 hotels %&gt;%
   mutate(arrival_date = ymd(glue("{arrival_date_year} {arrival_date_month} {arrival_date_day_of_month}"))) %&gt;% 
   count(arrival_date) %&gt;%

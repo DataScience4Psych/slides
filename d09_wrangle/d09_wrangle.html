@@ -58,7 +58,7 @@ class: middle
 
 .medi[
 
-```r
+``` r
 hotels %&gt;%
 * select(hotel, lead_time)
 ```
@@ -86,7 +86,7 @@ hotels %&gt;%
 
 .small[
 
-```r
+``` r
 hotels %&gt;%
 * select(-agent)
 ```
@@ -120,7 +120,7 @@ hotels %&gt;%
 ## `select` a range of variables
 .medi[
 
-```r
+``` r
 hotels %&gt;%
 * select(hotel:arrival_date_month)
 ```
@@ -148,7 +148,7 @@ hotels %&gt;%
 ## `select` variables with certain characteristics
 .medi[
 
-```r
+``` r
 hotels %&gt;%
 * select(starts_with("arrival"))
 ```
@@ -176,7 +176,7 @@ hotels %&gt;%
 ## `select` variables with certain characteristics
 .medi[
 
-```r
+``` r
 hotels %&gt;%
 * select(ends_with("type"))
 ```
@@ -222,7 +222,7 @@ See help for any of these functions for more info, e.g. `?everything`.
 
 .pull-left[
 
-```r
+``` r
 hotels %&gt;%
   select(adults, children, babies) %&gt;%
 * arrange(babies)
@@ -247,7 +247,7 @@ hotels %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 hotels %&gt;%
   select(adults, children, babies) %&gt;%
 * arrange(desc(babies))
@@ -277,7 +277,7 @@ hotels %&gt;%
 
 .midi[
 
-```r
+``` r
 # first five
 hotels %&gt;%
 * slice(1:5)
@@ -314,7 +314,7 @@ certain lines of code while debugging.
 --
 .xsmall[
 
-```r
+``` r
 hotels %&gt;%
   # slice the first five rows  # this line is a comment
   #select(hotel) %&gt;%           # this one doesn't run
@@ -346,7 +346,7 @@ hotels %&gt;%
 
 .small[
 
-```r
+``` r
 # last five
 last_row &lt;- nrow(hotels)         # nrow() gives the number of rows in a data frame
 hotels %&gt;%
@@ -378,7 +378,7 @@ hotels %&gt;%
 
 .small[
 
-```r
+``` r
 # bookings in City Hotels
 hotels %&gt;%
 * filter(hotel == "City Hotel")
@@ -413,7 +413,7 @@ hotels %&gt;%
 ## `filter` for many conditions at once
 .medi[
 
-```r
+``` r
 hotels %&gt;%
   filter( 
 *   adults == 0,
@@ -444,7 +444,7 @@ hotels %&gt;%
 ## `filter` for more complex conditions
 .midi[
 
-```r
+``` r
 # bookings with no adults and some children or babies in the room
 hotels %&gt;%
   filter( 
@@ -522,7 +522,7 @@ class: middle
 .small[
 .pull-left[
 
-```r
+``` r
 hotels %&gt;% 
 * distinct(market_segment) %&gt;%
   arrange(market_segment)
@@ -544,7 +544,7 @@ hotels %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 hotels %&gt;% 
 * distinct(hotel, market_segment) %&gt;%
   arrange(hotel, market_segment)
@@ -578,7 +578,7 @@ hotels %&gt;%
 
 .pull-left[
 
-```r
+``` r
 # alphabetical order by default
 hotels %&gt;%
 * count(market_segment)
@@ -601,7 +601,7 @@ hotels %&gt;%
 --
 .pull-right[
 
-```r
+``` r
 # descending frequency order
 hotels %&gt;%
 * count(market_segment, sort = TRUE)
@@ -628,7 +628,7 @@ hotels %&gt;%
 
 .pull-left[
 
-```r
+``` r
 # ascending frequency order
 hotels %&gt;%
   count(market_segment) %&gt;%
@@ -651,7 +651,7 @@ hotels %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 # descending frequency order
 # just like adding sort = TRUE
 hotels %&gt;%
@@ -679,7 +679,7 @@ hotels %&gt;%
 ## `count` for multiple variables
 .medi[
 
-```r
+``` r
 hotels %&gt;%
 * count(hotel, market_segment)
 ```
@@ -711,7 +711,7 @@ hotels %&gt;%
 .midi[
 .pull-left[
 
-```r
+``` r
 # hotel type first
 hotels %&gt;%
 * count(hotel, market_segment)
@@ -739,7 +739,7 @@ hotels %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 # market segment first
 hotels %&gt;%
 * count(market_segment, hotel)
@@ -790,7 +790,7 @@ class: middle
 ## `mutate` to add a new variable
 .medi[
 
-```r
+``` r
 hotels %&gt;%
 * mutate(little_ones = children + babies) %&gt;%
   select(children, babies, little_ones) %&gt;%
@@ -823,7 +823,7 @@ hotels %&gt;%
 .midi[
 .pull-left[
 
-```r
+``` r
 # Resort Hotel
 hotels %&gt;%
   mutate(little_ones = children + babies) %&gt;%
@@ -853,7 +853,7 @@ hotels %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 # City Hotel
 hotels %&gt;%
   mutate(little_ones = children + babies) %&gt;%
@@ -891,7 +891,7 @@ What is happening in the following chunk?
 
 .midi[
 
-```r
+``` r
 hotels %&gt;%
   mutate(little_ones = children + babies) %&gt;%
   count(hotel, little_ones) %&gt;%
@@ -922,7 +922,7 @@ hotels %&gt;%
 # `summarize` for summary stats
 
 
-```r
+``` r
 # mean average daily rate for all bookings
 hotels %&gt;%
 * summarize(mean_adr = mean(adr))
@@ -955,7 +955,7 @@ column, but that's not recommended!
 ❌
 
 
-```r
+``` r
 hotels %&gt;%
   summarize(mean(adr))
 ```
@@ -970,7 +970,7 @@ hotels %&gt;%
 ✅
 
 
-```r
+``` r
 hotels %&gt;%
   summarize(mean_adr = mean(adr))
 ```
@@ -988,7 +988,7 @@ hotels %&gt;%
 # `group_by` for grouped operations
 
 
-```r
+``` r
 # mean average daily rate for all booking at city and resort hotels
 hotels %&gt;%
 * group_by(hotel) %&gt;%
@@ -1011,7 +1011,7 @@ The following two give the same result, so `count` is simply short for `group_by
 
 .pull-left[
 
-```r
+``` r
 hotels %&gt;%
   group_by(hotel) %&gt;%
   summarize(n = n())
@@ -1027,7 +1027,7 @@ hotels %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 hotels %&gt;%
   count(hotel)
 ```
@@ -1048,7 +1048,7 @@ hotels %&gt;%
 `summarize` can be used for multiple summary statistics as well
 
 
-```r
+``` r
 hotels %&gt;%
   summarize(
     min_adr = min(adr),

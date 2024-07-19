@@ -295,7 +295,7 @@ human activity is mainly responsible?
 --
 
 
-```r
+``` r
 (all &lt;- 1340 / 2966)
 ```
 
@@ -359,7 +359,7 @@ human activity is mainly responsible?
 --
 
 
-```r
+``` r
 (gb &lt;- 833 / 1633)
 ```
 
@@ -422,7 +422,7 @@ human activity is mainly responsible?
 --
 
 
-```r
+``` r
 (us &lt;- 507 / 1333)
 ```
 
@@ -439,7 +439,7 @@ human activity is mainly responsible?
 
 .pull-left[
 
-```r
+``` r
 all
 ```
 
@@ -447,7 +447,7 @@ all
 ## [1] 0.4517869
 ```
 
-```r
+``` r
 gb
 ```
 
@@ -455,7 +455,7 @@ gb
 ## [1] 0.5101041
 ```
 
-```r
+``` r
 us
 ```
 
@@ -879,7 +879,7 @@ class:middle
 .pull-left[
 
 ```
-## # A tibble: 4,526 x 3
+## # A tibble: 4,526 × 3
 ##    admit    gender dept 
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
 ##  1 Admitted Male   A    
@@ -897,13 +897,13 @@ class:middle
 ## 13 Admitted Male   A    
 ## 14 Admitted Male   A    
 ## 15 Admitted Male   A    
-## # i 4,511 more rows
+## # ℹ 4,511 more rows
 ```
 ]
 .medi[.pull-right[
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   gender     n
 ##   &lt;fct&gt;  &lt;int&gt;
 ## 1 Female  1835
@@ -911,7 +911,7 @@ class:middle
 ```
 
 ```
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   dept      n
 ##   &lt;ord&gt; &lt;int&gt;
 ## 1 A       933
@@ -923,7 +923,7 @@ class:middle
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   admit        n
 ##   &lt;fct&gt;    &lt;int&gt;
 ## 1 Rejected  2771
@@ -941,13 +941,13 @@ What can you say about the overall gender distribution?
 ]
 
 
-```r
+``` r
 ucbadmit %&gt;%
   count(gender, admit)
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##   gender admit        n
 ##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
 ## 1 Female Rejected  1278
@@ -959,7 +959,7 @@ ucbadmit %&gt;%
 ---
 
 
-```r
+``` r
 ucbadmit %&gt;%
   count(gender, admit) %&gt;%
   group_by(gender) %&gt;%
@@ -967,7 +967,7 @@ ucbadmit %&gt;%
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   gender [2]
 ##   gender admit        n prop_admit
 ##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;      &lt;dbl&gt;
@@ -990,7 +990,7 @@ ucbadmit %&gt;%
 
 .medi[.pull-right[
 
-```r
+``` r
 ggplot(ucbadmit, aes(y = gender, 
                      fill = admit)) +
   geom_bar(position = "fill") + 
@@ -1007,13 +1007,13 @@ What can you say about the gender distribution by department ?
 ]
 .center[
 
-```r
+``` r
 ucbadmit %&gt;%
   count(dept, gender, admit)
 ```
 
 ```
-## # A tibble: 24 x 4
+## # A tibble: 24 × 4
 ##    dept  gender admit        n
 ##    &lt;ord&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
 ##  1 A     Female Rejected    19
@@ -1026,7 +1026,7 @@ ucbadmit %&gt;%
 ##  8 B     Male   Admitted   353
 ##  9 C     Female Rejected   391
 ## 10 C     Female Admitted   202
-## # i 14 more rows
+## # ℹ 14 more rows
 ```
 ]
 ---
@@ -1036,14 +1036,14 @@ Let's try again... What can you say about the gender distribution by department?
 ]
 
 
-```r
+``` r
 ucbadmit %&gt;%
   count(dept, gender, admit) %&gt;%
   pivot_wider(names_from = dept, values_from = n)
 ```
 
 ```
-## # A tibble: 4 x 8
+## # A tibble: 4 × 8
 ##   gender admit        A     B     C     D     E     F
 ##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
 ## 1 Female Rejected    19     8   391   244   299   317
@@ -1062,7 +1062,7 @@ ucbadmit %&gt;%
 
 .midi.pull-right[
 
-```r
+``` r
 ggplot(ucbadmit, aes(y = gender, fill = admit)) +
   geom_bar(position = "fill") +
   facet_wrap(. ~ dept) +
@@ -1094,7 +1094,7 @@ ggplot(ucbadmit, aes(y = gender, fill = admit)) +
 .pull-left-wide[
 
 ```
-## # A tibble: 12 x 5
+## # A tibble: 12 × 5
 ## # Groups:   dept, gender [12]
 ##    dept  gender n_admitted n_applied prop_admit
 ##    &lt;ord&gt; &lt;fct&gt;       &lt;int&gt;     &lt;int&gt;      &lt;dbl&gt;
@@ -1115,7 +1115,7 @@ ggplot(ucbadmit, aes(y = gender, fill = admit)) +
 
 .pull-right-narrow.midi[
 
-```r
+``` r
 ucbadmit %&gt;%
   count(dept, gender, admit) %&gt;%
   group_by(dept, gender) %&gt;%
@@ -1150,7 +1150,7 @@ class: middle
 .pull-left-narrow[
 
 ```
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##       x     y z    
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
 ## 1     2     4 A    
@@ -1174,7 +1174,7 @@ class: middle
 .pull-left-narrow[
 
 ```
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##       x     y z    
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
 ## 1     2     4 A    
@@ -1198,7 +1198,7 @@ class: middle
 .pull-left-narrow[
 
 ```
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##       x     y z    
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
 ## 1     2     4 A    
@@ -1222,7 +1222,7 @@ class: middle
 .pull-left-narrow[
 
 ```
-## # A tibble: 8 x 3
+## # A tibble: 8 × 3
 ##       x     y z    
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
 ## 1     2     4 A    
@@ -1265,12 +1265,12 @@ class: middle
 
 .medi.pull-left[
 
-```r
+``` r
 ucbadmit
 ```
 
 ```
-## # A tibble: 4,526 x 3
+## # A tibble: 4,526 × 3
 ##    admit    gender dept 
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
 ##  1 Admitted Male   A    
@@ -1283,18 +1283,18 @@ ucbadmit
 ##  8 Admitted Male   A    
 ##  9 Admitted Male   A    
 ## 10 Admitted Male   A    
-## # i 4,516 more rows
+## # ℹ 4,516 more rows
 ```
 ]
 .medi.pull-right[
 
-```r
+``` r
 ucbadmit %&gt;% 
   group_by(gender)
 ```
 
 ```
-## # A tibble: 4,526 x 3
+## # A tibble: 4,526 × 3
 ## # Groups:   gender [2]
 ##    admit    gender dept 
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
@@ -1308,7 +1308,7 @@ ucbadmit %&gt;%
 ##  8 Admitted Male   A    
 ##  9 Admitted Male   A    
 ## 10 Admitted Male   A    
-## # i 4,516 more rows
+## # ℹ 4,516 more rows
 ```
 ]
 
@@ -1320,13 +1320,13 @@ ucbadmit %&gt;%
 
 .medi.pull-left[
 
-```r
+``` r
 ucbadmit %&gt;% 
   group_by(gender)
 ```
 
 ```
-## # A tibble: 4,526 x 3
+## # A tibble: 4,526 × 3
 ## # Groups:   gender [2]
 ##    admit    gender dept 
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
@@ -1340,18 +1340,18 @@ ucbadmit %&gt;%
 ##  8 Admitted Male   A    
 ##  9 Admitted Male   A    
 ## 10 Admitted Male   A    
-## # i 4,516 more rows
+## # ℹ 4,516 more rows
 ```
 ]
 .medi.pull-right[
 
-```r
+``` r
 ucbadmit %&gt;% 
   arrange(gender)
 ```
 
 ```
-## # A tibble: 4,526 x 3
+## # A tibble: 4,526 × 3
 ##    admit    gender dept 
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
 ##  1 Admitted Female A    
@@ -1364,7 +1364,7 @@ ucbadmit %&gt;%
 ##  8 Admitted Female A    
 ##  9 Admitted Female A    
 ## 10 Admitted Female A    
-## # i 4,516 more rows
+## # ℹ 4,516 more rows
 ```
 ]
 
@@ -1376,13 +1376,13 @@ ucbadmit %&gt;%
 
 .medi.pull-left[
 
-```r
+``` r
 ucbadmit %&gt;% 
   group_by(gender)
 ```
 
 ```
-## # A tibble: 4,526 x 3
+## # A tibble: 4,526 × 3
 ## # Groups:   gender [2]
 ##    admit    gender dept 
 ##    &lt;fct&gt;    &lt;fct&gt;  &lt;ord&gt;
@@ -1396,18 +1396,18 @@ ucbadmit %&gt;%
 ##  8 Admitted Male   A    
 ##  9 Admitted Male   A    
 ## 10 Admitted Male   A    
-## # i 4,516 more rows
+## # ℹ 4,516 more rows
 ```
 ]
 .medi.pull-right[
 
-```r
+``` r
 ucbadmit %&gt;% 
   count(gender)
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   gender     n
 ##   &lt;fct&gt;  &lt;int&gt;
 ## 1 Female  1835
@@ -1421,7 +1421,7 @@ ucbadmit %&gt;%
 
 .medi.pull-left[
 
-```r
+``` r
 ucbadmit %&gt;%
   count(gender, admit) %&gt;%
   group_by(gender) %&gt;%
@@ -1430,7 +1430,7 @@ ucbadmit %&gt;%
 ```
 
 ```
-## # A tibble: 4 x 2
+## # A tibble: 4 × 2
 ## # Groups:   gender [2]
 ##   gender prop_admit
 ##   &lt;fct&gt;       &lt;dbl&gt;
@@ -1442,7 +1442,7 @@ ucbadmit %&gt;%
 ]
 .medi.pull-right[
 
-```r
+``` r
 ucbadmit %&gt;%
   count(gender, admit) %&gt;%
   group_by(gender) %&gt;%
@@ -1452,7 +1452,7 @@ ucbadmit %&gt;%
 ```
 
 ```
-## # A tibble: 4 x 2
+## # A tibble: 4 × 2
 ##   gender prop_admit
 ##   &lt;fct&gt;       &lt;dbl&gt;
 ## 1 Female      0.696
@@ -1470,14 +1470,14 @@ ucbadmit %&gt;%
 
 .pull-left[
 
-```r
+``` r
 ucbadmit %&gt;%
   group_by(gender) %&gt;%
   summarize(n = n()) 
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   gender     n
 ##   &lt;fct&gt;  &lt;int&gt;
 ## 1 Female  1835
@@ -1486,13 +1486,13 @@ ucbadmit %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 ucbadmit %&gt;%
   count(gender)
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   gender     n
 ##   &lt;fct&gt;  &lt;int&gt;
 ## 1 Female  1835
@@ -1506,14 +1506,14 @@ ucbadmit %&gt;%
 
 .pull-left[
 
-```r
+``` r
 ucbadmit %&gt;%
   group_by(gender, admit) %&gt;%
   summarize(n = n()) 
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ## # Groups:   gender [2]
 ##   gender admit        n
 ##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
@@ -1525,13 +1525,13 @@ ucbadmit %&gt;%
 ]
 .pull-right[
 
-```r
+``` r
 ucbadmit %&gt;%
   count(gender, admit)
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ##   gender admit        n
 ##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
 ## 1 Female Rejected  1278
@@ -1550,14 +1550,14 @@ ucbadmit %&gt;%
 
 .medi[
 
-```r
+``` r
 ucbadmit %&gt;%
   group_by(gender, admit) %&gt;%
   summarize(n = n()) 
 ```
 
 ```
-## # A tibble: 4 x 3
+## # A tibble: 4 × 3
 ## # Groups:   gender [2]
 ##   gender admit        n
 ##   &lt;fct&gt;  &lt;fct&gt;    &lt;int&gt;
