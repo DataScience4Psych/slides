@@ -125,7 +125,7 @@ class: middle
 + Heights of the highest points by state
 
 
-```r
+``` r
 ## 
 ## load required packages and data
 library(tidyverse)
@@ -137,7 +137,7 @@ heights$elevation = heights$elevation * .3048
 ---
 ## Taking a look
 
-```r
+``` r
 heights
 ```
 
@@ -161,7 +161,7 @@ heights
 ---
 ## Taking another look
 
-```r
+``` r
 arrange(heights, elevation)
 ```
 
@@ -185,7 +185,7 @@ arrange(heights, elevation)
 ---
 ## Taking another another look
 
-```r
+``` r
 arrange(heights, desc(elevation))
 ```
 
@@ -220,7 +220,7 @@ possible
 ## Taking another³ look: Stem and Leaf
 .pull-left[
 
-```r
+``` r
 stem(heights$elevation)
 ```
 
@@ -278,7 +278,7 @@ states:
 Compare the stem-and-leaf plot with a density estimate
 
 
-```r
+``` r
 ggplot(heights, aes(x = elevation)) + geom_density()
 ```
 
@@ -293,7 +293,7 @@ Alaska?
 Compare the stem-and-leaf plot with a density estimate
 
 
-```r
+``` r
 ggplot(heights, aes(x = elevation)) + geom_density() + geom_rug()
 ```
 
@@ -323,7 +323,7 @@ class: middle
 .small[
 
 
-```r
+``` r
 starwars
 ```
 
@@ -362,7 +362,7 @@ starwars
 Take a `glimpse` at the data:
 
 
-```r
+``` r
 glimpse(starwars)
 ```
 
@@ -394,7 +394,7 @@ What does each column represent?
 ]
 
 
-```r
+``` r
 ?starwars
 ```
 
@@ -408,7 +408,7 @@ How many rows and columns does this dataset have?
 
 .pull-left[
 
-```r
+``` r
 nrow(starwars) # number of rows
 ```
 
@@ -416,7 +416,7 @@ nrow(starwars) # number of rows
 ## [1] 87
 ```
 
-```r
+``` r
 ncol(starwars) # number of columns
 ```
 
@@ -424,7 +424,7 @@ ncol(starwars) # number of columns
 ## [1] 14
 ```
 
-```r
+``` r
 dim(starwars)  # dimensions (row column)
 ```
 
@@ -457,7 +457,7 @@ Who is the not so tall but really chubby character?
 ## Mass vs. height
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   labs(title = "Mass vs. height of Starwars characters",
@@ -481,7 +481,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ]
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   labs(title = "Mass vs. height of Starwars characters",
@@ -507,7 +507,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 - Structure of the code for plots can be summarized as
 
 
-```r
+``` r
 ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
    geom_xxx() +
@@ -517,7 +517,7 @@ ggplot(data = [dataset],
 - The ggplot2 package comes with the tidyverse
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -606,7 +606,7 @@ class: middle
 ## Summarising Anscombe's quartet
 
 
-```r
+``` r
 quartet %&gt;%
   group_by(set) %&gt;%
   summarize(

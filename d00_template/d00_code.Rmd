@@ -78,8 +78,9 @@ ggplot(df, aes(x, y)) +
 Here's an example of creating a data visualization with code:
 
 ```{r data-viz, fig.height=4}
+conflicts_prefer(palmerpenguins::penguins,.quiet = TRUE)
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point(alpha = 0.7) +
+  geom_point(alpha = 0.7,na.rm=TRUE ) +
   labs(title = "Penguin Size",
        x = "Flipper Length (mm)",
        y = "Body Mass (g)",
@@ -125,7 +126,7 @@ penguins %>%
 ```{r side-by-side-code, fig.show = "hide"}
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  geom_smooth(method = "lm", se = FALSE,formula='y~x') +
   labs(
     title = "Car Weight vs. Miles Per Gallon",
     x = "Weight (1000 lbs)",
@@ -133,27 +134,15 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
   )
 ```
 ]
+
 .pull-right[
 ```{r ref.label="side-by-side-code", echo = FALSE, out.width = "100%"}
 ```
 ]
-```
+
 
 ---
 
-# Importing Data
-
-Here's how you might import and display a dataset:
-
-```{r import-data}
-# Read CSV file (replace with your actual file path)
-df <- read_csv("path/to/your/data.csv")
-
-# Display the first few rows
-head(df)
-```
-
----
 
 # Statistical Analysis
 
@@ -161,7 +150,7 @@ This slide demonstrates a simple statistical test:
 
 ```{r stat-analysis}
 # Perform a t-test
-t_test_result <- t.test(flipper_length_mm ~ species, data = penguins)
+t_test_result <- t.test(flipper_length_mm ~  sex, data = penguins)
 
 # Print the results
 print(t_test_result)
@@ -173,13 +162,13 @@ print(t_test_result)
 
 .pull-left[
 ```{r residuals-plot, fig.show="hide"}
-ht_wt_fit <- linear_reg() %>%
+depth_length_fit <- linear_reg() %>%
   set_engine("lm") %>%
-  fit(Height_in ~ Width_in, data = pp)
+  fit(bill_depth_mm ~ bill_length_mm, data = penguins)
 
-ht_wt_fit_aug <- augment(ht_wt_fit$fit)
+depth_length_fit_aug <- augment(depth_length_fit$fit)
 
-ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
+ggplot(depth_length_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
   geom_point(alpha = 0.5) +
   geom_hline(yintercept = 0, color = "#bf2986ff", lty = "dashed") +
   labs(x = "Predicted Height", y = "Residuals")
@@ -199,7 +188,7 @@ ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
 ```{r model-output}
 linear_reg() %>%
   set_engine("lm") %>%
-  fit(Height_in ~ Width_in, data = pp) %>%
+  fit(bill_depth_mm ~ bill_length_mm, data = penguins) %>%
   tidy()
 ```
 
@@ -210,33 +199,13 @@ linear_reg() %>%
 
 .pull-left[
 ```{r data-explore, fig.show="hide"}
-ggplot(pp, aes(x = Width_in)) +
+ggplot(penguins, aes(x = bill_depth_mm)) +
   geom_histogram(binwidth = 5) +
-  labs(x = "Width (inches)", y = NULL)
+  labs(x = "Bill Depth (mm)", y = NULL)
 ```
 ]
 .pull-right[
 ```{r ref.label="data-explore", echo=FALSE, out.width="100%"}
 ```
 ]
----
 
-
-
-
-## Cross Validation Metrics
-
-```{r cv-metrics}
-collect_metrics(office_fit_rs)
-```
-
-
----
-
-## Bootstrap Distribution
-
-```{r boot-dist, fig.height=4}
-ggplot(boot_df, aes(x = stat)) +
-  geom_histogram(binwidth = 100) +
-  labs(title = "Bootstrap distribution of means")
-```
