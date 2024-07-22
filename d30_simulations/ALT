@@ -1,0 +1,832 @@
+Certainly! I'll create a slide deck outline following the structure of the attached slides and based on the outline for data simulation. Here's how the slide deck could look:
+
+---
+title: "Data Simulation in R <br> `r emo::ji('robot')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+```
+
+class: middle
+
+# Introduction to Data Simulation in R
+
+---
+
+## Why Simulate Data?
+
+- Test statistical methods
+- Explore properties of distributions
+- Generate synthetic datasets
+- Understand complex systems
+
+---
+
+class: middle
+
+# Generating Random Numbers
+
+---
+
+## Normal Distribution with `rnorm()`
+
+```{r}
+set.seed(123)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+---
+
+## Uniform Distribution with `runif()`
+
+```{r}
+set.seed(123)
+runif(n = 5, min = 0, max = 1)
+```
+
+---
+
+## Poisson Distribution with `rpois()`
+
+```{r}
+set.seed(123)
+rpois(n = 5, lambda = 2)
+```
+
+---
+
+class: middle
+
+# Creating Categorical Variables
+
+---
+
+## Using `rep()` for Patterns
+
+```{r}
+rep(c("A", "B"), each = 3)
+rep(c("X", "Y", "Z"), times = 2)
+```
+
+---
+
+class: middle
+
+# Simulating Datasets
+
+---
+
+## Combining Variables
+
+```{r}
+set.seed(123)
+data.frame(
+  group = rep(c("Control", "Treatment"), each = 5),
+  value = rnorm(10, mean = 10, sd = 2)
+)
+```
+
+---
+
+class: middle
+
+# Functions for Data Simulation
+
+---
+
+## Writing a Custom Simulation Function
+
+```{r}
+simulate_experiment <- function(n_control, n_treatment, control_mean, treatment_mean, sd) {
+  data.frame(
+    group = rep(c("Control", "Treatment"), times = c(n_control, n_treatment)),
+    value = c(rnorm(n_control, mean = control_mean, sd = sd),
+              rnorm(n_treatment, mean = treatment_mean, sd = sd))
+  )
+}
+
+simulate_experiment(5, 5, 10, 12, 2)
+```
+
+---
+
+class: middle
+
+# Iteration in Simulations
+
+---
+
+## Using `replicate()`
+
+```{r}
+replicate(3, rnorm(5), simplify = FALSE)
+```
+
+---
+
+class: middle
+
+# Advanced Simulation Techniques
+
+---
+
+## Simulating Correlated Variables
+
+```{r}
+library(MASS)
+set.seed(123)
+sigma <- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
+mvrnorm(n = 5, mu = c(0, 0), Sigma = sigma)
+```
+
+---
+
+class: middle
+
+# Practical Applications
+
+---
+
+## Simulating for the Central Limit Theorem
+
+```{r}
+sample_means <- replicate(1000, mean(rexp(30, rate = 0.2)))
+hist(sample_means, main = "Sampling Distribution of the Mean")
+```
+
+---
+
+class: middle
+
+# Best Practices in Data Simulation
+
+---
+
+## Ensuring Reproducibility
+
+- Always set a seed
+- Document all parameters
+- Use version control
+
+---
+
+class: middle
+
+# Mars Colony Simulation Lab
+
+---
+
+## Simulating Colonist Attributes
+
+```{r}
+set.seed(42)
+colonists <- data.frame(
+  age = rnorm(100, mean = 35, sd = 5),
+  skill = runif(100, min = 0, max = 10),
+  role = sample(c("Engineer", "Scientist", "Doctor"), 100, replace = TRUE)
+)
+head(colonists)
+
+
+
+
+```
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+
+I apologize for the oversight. You're absolutely right. Let me revise the slide deck to better match the style of the example lectures and focus on teaching the skills needed for the lab without giving away the solutions. Here's a revised version:
+
+---
+title: "Data Simulation in R <br> `r emo::ji('robot')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(MASS)
+```
+
+class: middle
+
+# Simulating data in R `r emo::ji("game_die")`
+
+---
+
+## Why simulate data?
+
+- Understand statistical concepts
+- Test new methods
+- Generate synthetic datasets
+- Model real-world scenarios
+
+---
+
+## Random number generation
+
+.pull-left[
+```{r}
+# Normal distribution
+rnorm(5, mean = 0, sd = 1)
+
+# Uniform distribution
+runif(5, min = 0, max = 1)
+
+# Poisson distribution
+rpois(5, lambda = 2)
+```
+]
+
+.pull-right[
+.question[
+What do these functions do? How might they be useful?
+]
+]
+
+---
+
+## Setting the seed
+
+```{r}
+set.seed(123)
+rnorm(3)
+
+set.seed(123)
+rnorm(3)
+```
+
+.question[
+Why is setting a seed important?
+]
+
+---
+
+## Generating categorical variables
+
+.pull-left[
+```{r}
+# Repeat each value twice
+rep(c("A", "B", "C"), each = 2)
+
+# Repeat the whole vector twice
+rep(c("X", "Y"), times = 2)
+
+# Repeat with specific counts
+rep(c("P", "Q"), times = c(3, 1))
+```
+]
+
+.pull-right[
+.question[
+How could you use `rep()` to create balanced groups? Unbalanced groups?
+]
+]
+
+---
+
+## Creating a simple dataset
+
+.pull-left[
+```{r}
+set.seed(42)
+df <- data.frame(
+  group = rep(c("Control", "Treatment"), each = 5),
+  score = rnorm(10, mean = 100, sd = 15)
+)
+head(df)
+```
+]
+
+.pull-right[
+.question[
+How would you modify this code to create three groups instead of two?
+]
+]
+
+---
+
+## Writing a function for simulation
+
+```{r}
+simulate_groups <- function(n, group_means, group_sd) {
+  groups <- names(group_means)
+  data.frame(
+    group = rep(groups, each = n),
+    value = unlist(mapply(rnorm, n, group_means, MoreArgs = list(sd = group_sd)))
+  )
+}
+
+sim_data <- simulate_groups(5, c(A = 10, B = 12), 2)
+head(sim_data)
+```
+
+---
+
+## Replicating simulations
+
+.pull-left[
+```{r}
+replicate(3, rnorm(2), simplify = FALSE)
+```
+]
+
+.pull-right[
+.question[
+How would you use `replicate()` to simulate multiple datasets?
+]
+]
+
+---
+
+## Simulating correlated variables
+
+```{r}
+set.seed(123)
+sigma <- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
+mvrnorm(n = 5, mu = c(0, 0), Sigma = sigma)
+```
+
+.question[
+What does the correlation matrix represent? How would you interpret these results?
+]
+
+---
+
+.your-turn[
+- Go to the class git repo and start the "Mars Colony Simulation" lab.
+- Apply the simulation techniques we've learned to model attributes of potential Mars colonists.
+- Think about: What variables are important? How might they be distributed?
+]
+
+---
+
+class: middle
+
+# Wrapping up...
+
+---
+
+## Key takeaways
+
+- Simulations help us understand complex scenarios
+- R provides powerful tools for data simulation
+- Always set a seed for reproducibility
+- Functions can make your simulations more flexible and reusable
+
+---
+
+class: middle
+
+# Any questions?
+
+
+
+
+
+
+Certainly! I'll integrate the proposed slides into the current slide deck, maintaining the style and structure. Here's the updated slide deck:
+
+---
+title: "Data Simulations in R <br> `r emo::ji('chart_with_upwards_trend')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(openintro)
+library(tidymodels)
+library(DT)
+library(emo)
+library(openintro)
+library(viridis)
+library(MASS)
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
+```
+
+class: middle
+# Getting Started with Data Simulations in R
+
+---
+
+## Introduction to Data Simulations
+
+Simulating data is a powerful tool in statistics and data science.
+.pull-left[
+- It allows us to create artificial data that mimics real-world scenarios.
+- Useful for:
+  - Understanding statistical properties.
+  - Testing hypotheses.
+  - Demonstrating data analysis techniques.
+ ]
+.pull-right[
+<br><br>
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+knitr::include_graphics("img/data scientist at work.png")
+```
+]
+
+---
+
+## Generating Random Numbers
+
+Normal Distribution (`rnorm()`)
+
+.pull-left[
+- Commonly used for generating data that follows a Gaussian distribution.
+- Parameters: `n` (number of observations), `mean`, `sd` (standard deviation).
+
+```{r}
+set.seed(1234)
+observations <-
+  rnorm(n = 5, mean = 0, sd = 1)
+observations
+```
+]
+.pull-right[
+
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+library(viridis)
+# Create data frame including the observations
+observations_df <- data.frame(y = dnorm(observations), x = observations)
+
+# Plot using ggplot2
+p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dnorm, n = 101) +
+  labs(title = "Normal Distribution", x = "x", y = "Density") +
+  theme_minimal()
+
+# Add points to the plot
+p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, option = "D")[3], size = 2)
+
+```
+]
+
+---
+
+## Uniform Distribution (`runif()`)
+
+.pull-left[
+- Generates data evenly distributed over a specified range.
+- Parameters: `n`, `min`, `max`.
+<br><br>
+```{r}
+set.seed(1235)
+observations <-
+  runif(n = 5, min = 0, max = 1)
+observations
+```
+]
+.pull-right[
+<br>
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+
+# Create data frame including the observations
+observations_df <- data.frame(y = rep(.5, length(observations)), x = observations)
+
+# Plot using ggplot2
+p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dunif, n = 101) +
+  labs(title = "Uniform Distribution", x = "x", y = "Density") +
+  theme_minimal()
+
+# Add points to the plot
+p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, option = "D")[5], size = 2)
+
+```
+]
+
+---
+
+## Poisson Distribution (`rpois()`)
+
+.pull-left[
+- Used for count-based data, such as the number of events in a fixed period.
+- Parameter: `lambda` (mean).
+<br><br>
+```{r}
+set.seed(123)
+observations <-
+  rpois(n = 5, lambda = 2)
+observations
+```
+]
+
+.pull-right[
+<br><br>
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+
+observations_df <- data.frame(x = observations, y = dpois(observations, lambda = 2))
+
+# Create data for the Poisson distribution
+x_values <- rep(seq(0, 10, by = 1),2)
+poisson_df <- data.frame(x = x_values, y = dpois(x_values, lambda = 2))
+
+# Plot using ggplot2
+p <- ggplot(poisson_df, aes(x = x, y = y)) +
+  geom_bar(stat = "identity", fill = viridis::viridis(7, option = "D")[5]) +
+  labs(title = "Poisson Distribution (Lambda = 2)", x = "x", y = "Density") +
+  theme_minimal()
+
+# Overlay observations as smaller bars
+p + geom_bar(data = observations_df, aes(x = x, y = after_stat(count)/sum(after_stat(count))),
+             stat = "count", fill = viridis::viridis(7, option = "D")[1], alpha = 1,
+             position = "identity", width = 0.2)
+
+```
+]
+
+---
+
+# Let's dig deeper into the Poisson distribution.
+
+.pull-left-narrow[
+- Lambda is the mean number of events in a fixed interval.
+- For demonstration purposes,
+  - we will generate data for different lambda values one at a time.
+]
+.pull-right-wide[
+.tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
+.midi[
+```{r}
+set.seed(123)
+poisson_df1 <- tibble(x = rpois(1000, 1),
+                      lambda = 1)
+poisson_df2 <- tibble(x = rpois(1000, 2),
+                      lambda = 2)
+poisson_df3 <- tibble(x = rpois(1000, 3),
+                      lambda = 3)
+poisson_df4 <- tibble(x = rpois(1000, 4),
+                      lambda = 4)
+poisson_df5 <- tibble(x = rpois(1000, 5),
+                      lambda =5)
+
+poisson_df <- bind_rows(poisson_df1,
+                        poisson_df2,
+                        poisson_df3,
+                        poisson_df4,
+                        poisson_df5)
+```
+]]
+
+---
+
+## Let's plot the Poisson Distributions
+
+```{r echo=FALSE, fig.align = "center", out.width = "65%"}
+ poisson_df <- mutate(poisson_df, lambda_factor = as.factor(lambda))
+
+p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
+     geom_bar(position = position_dodge(), stat = "count") +
+     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values",
+          x = "Count", y = "Frequency") +
+     scale_fill_viridis_d() +  # Adds a nice color gradient based on the 'lambda'
+     theme_minimal() + theme(legend.position = "bottom")
+p
+```
+--
+
+.footnote[ The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
+
+---
+
+## Let's facet the plot
+
+```{r echo=FALSE, fig.align = "center", out.width = "80%"}
+p + facet_wrap(~lambda_factor)  + geom_vline(aes(xintercept = as.numeric(lambda)), linetype = "dashed", color = "red") + theme(legend.position = "bottom")
+
+```
+--
+
+.footnote[It definitely looks like it becomes more symmetric as lambda increases.]
+
+---
+
+class: middle
+
+## Deep Dive into the Normal Distribution
+
+---
+
+## Using `rnorm()`
+
+### Generating Five Random Numbers
+```{r echo=FALSE}
+set.seed(5)
+```
+```{r}
+rnorm(5)
+```
+
+- Specify arguments explicitly for clarity:
+```{r echo=FALSE}
+set.seed(515)
+```
+
+```{r}
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+---
+
+### Setting the Random Seed for Reproducibility
+
+- Setting the seed ensures reproducibility:
+```{r}
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+- The same seed gives the same results:
+
+```{r}
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+---
+
+### Changing Parameters in `rnorm()`
+
+```{r}
+rnorm(n = 5, mean = 50, sd = 20)
+```
+
+- Using vectors for arguments:
+```{r}
+rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
+```
+
+---
+
+class: middle
+
+# Simulating Categorical Data with `rep()`
+
+---
+
+## Generate Character Vectors with `rep()`
+
+```{r}
+rep(letters[1:2], each = 3)
+rep(letters[1:2], times = 3)
+rep(letters[1:2], length.out = 5)
+rep(letters[1:2], times = c(2, 4))
+```
+
+---
+
+class: middle
+
+# Creating Datasets with Quantitative and Categorical Variables
+
+---
+
+## Simulate Data with No Differences Among Two Groups
+
+```{r}
+data.frame(group = rep(letters[1:2], each = 3),
+           response = rnorm(n = 6, mean = 0, sd = 1))
+```
+
+---
+
+## Simulate Data with Differences Among Groups
+
+```{r}
+data.frame(group = rep(letters[1:2], each = 3),
+           factor = rep(LETTERS[3:5], times = 2),
+           response = rnorm(n = 6, mean = c(5, 10), sd = 1))
+```
+
+---
+
+class: middle
+
+# Repeated Simulations with `replicate()`
+
+---
+
+## Using `replicate()` for Repeated Simulations
+
+### Simple Example of `replicate()`
+
+```{r}
+set.seed(16)
+replicate(n = 3,
+expr = rnorm(n = 5, mean = 0, sd = 1),
+simplify = FALSE)
+```
+
+---
+
+### Creating Multiple Datasets
+
+```{r}
+simlist <- replicate(n = 3,
+          expr = data.frame(group = rep(letters[1:2], each = 3),
+                            response = rnorm(n = 6, mean = 0, sd = 1)),
+          simplify = FALSE)
+simlist[[1]]  # View the first simulated dataset
+```
+
+---
+
+class: middle
+
+# Advanced Simulation Techniques
+
+---
+
+## Simulating Correlated Variables
+
+```{r}
+set.seed(123)
+sigma <- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
+mvrnorm(n = 5, mu = c(0, 0), Sigma = sigma)
+```
+
+.question[
+What does the correlation matrix represent? How would you interpret these results?
+]
+
+---
+
+.your-turn[
+- Go to the class git repo and start the "Mars Colony Simulation" lab.
+- Apply the simulation techniques we've learned to model attributes of potential Mars colonists.
+- Think about: What variables are important? How might they be distributed?
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+## Key takeaways
+
+- Simulations help us understand complex scenarios
+- R provides powerful tools for data simulation
+- Always set a seed for reproducibility
+- Functions can make your simulations more flexible and reusable
+
+---
+
+# Sources
+
+- Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
+- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Any questions?

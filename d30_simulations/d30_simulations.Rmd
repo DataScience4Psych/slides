@@ -467,6 +467,48 @@ simlist <- replicate(n = 3,
           simplify = FALSE)
 ```
 
+
+---
+
+class: middle
+
+# Advanced Simulation Techniques
+
+---
+
+## Simulating Correlated Variables
+
+```{r}
+set.seed(123)
+sigma <- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
+mvrnorm(n = 5, mu = c(0, 0), Sigma = sigma)
+```
+
+.question[
+What does the correlation matrix represent? How would you interpret these results? 
+]
+
+---
+
+Power Analysis Simulations
+
+
+power_simulation <- function(n, effect_size, alpha = 0.05, nsim = 1000) {
+  significant_results <- replicate(nsim, {
+    group1 <- rnorm(n, mean = 0, sd = 1)
+    group2 <- rnorm(n, mean = effect_size, sd = 1)
+    t.test(group1, group2)$p.value < alpha
+  })
+  mean(significant_results)
+}
+
+power_simulation(n = 30, effect_size = 0.5)
+
+
+.question[
+How would you use this function to determine the sample size needed for 80% power?
+]
+
 ---
 
 class: middle
