@@ -45,23 +45,17 @@ class: middle
     - generate human language. 
 - These advanced AI systems are trained on *vast* amounts of text data.
 ]
+
 --
+
 .pull-right[
-- Examples of these models, such as GPT (Generative Pre-trained Transformer) and BERT (Bidirectional Encoder Representations from Transformers), have transformed how machines process language.
-
---
-
-.pull-left[
 Key characteristics:
 
 - Massive scale (billions of parameters)
 - Self-supervised learning
 - Ability to generate human-like text
 - Versatile applications
-]
 
---
-.pull-right[
 Examples:
 
 - GPT (Generative Pre-trained Transformer)

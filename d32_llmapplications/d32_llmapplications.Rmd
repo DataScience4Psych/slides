@@ -23,7 +23,7 @@ library(knitr)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
----
+
 
 class: middle
 
@@ -86,6 +86,7 @@ class: middle
 - Autoencoder architectures with LLMs can be used
 
 ---
+
 ## R Example: Text Classification (Sentiment Analysis)
 
 .midi[
@@ -166,9 +167,11 @@ class: middle
 knitr::include_graphics("img/An image illustrating automated content creation.png")
 ```
 ]
+
 ---
 
 ## Summarization
+
 .pull-left[
 - Condense long documents into brief summaries
 - Use cases:
