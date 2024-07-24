@@ -1,5 +1,5 @@
 ---
-title: "Use Cases of Large Language Models in Data Science <br> `r emo::ji('robot')`"
+title: "Use Cases of Large Language Models <br> `r emo::ji('robot')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -27,7 +27,7 @@ library(knitr)
 
 class: middle
 
-# Use Cases of Large Language Models in Data Science
+# Use Cases of Large Language Models
 
 ---
 
@@ -46,6 +46,17 @@ class: middle
 
 ---
 
+## Text Understanding and Analysis
+
+- Extract insights from text data
+- Applications:
+  - Text classification
+  - Named entity recognition
+  - Text similarity and clustering
+  - Anomaly detection
+
+---
+
 ## Text Classification 
 
 - Categorize text into predefined classes
@@ -54,26 +65,28 @@ class: middle
   - Topic classification
   - Intent detection in chatbots
 - Fine-tuned LLMs like BERT achieve state-of-the-art results
+  - [Tensorflow has really solid tutorials](https://www.tensorflow.org/text/tutorials/classify_text_with_bert)
 
 ---
 
 ## Named Entity Recognition
 
-- Identify and classify named entities in text
+- Identify and classify named entities in within unstructured text.
 - Use cases:
   - Information extraction
   - Building knowledge graphs
   - Enhancing search capabilities
-- Models like SpaCy and BERT can be fine-tuned for NER
+- Models like [SpaCy](https://spacy.io/) and [BERT](https://arxiv.org/abs/1810.04805) can be fine-tuned for NER
 
 ---
+
 ## Text Similarity and Clustering
 
 - Measure semantic similarity between texts
 - Use cases:
-  - Document deduplication
+  - Document de-duplication
   - Content recommendation systems
-- Sentence transformers like SBERT are effective for this
+- Sentence transformers like [SBERT](https://sbert.net/) are effective for this
 
 ---
 
@@ -84,6 +97,7 @@ class: middle
   - Fraud detection in financial documents
   - Identifying errors in medical records
 - Autoencoder architectures with LLMs can be used
+- **Check out this [Paper that talks more about this](https://arxiv.org/abs/2211.13900)**
 
 ---
 
@@ -162,6 +176,7 @@ class: middle
   - GPT-3 for natural language generation
   - GitHub Copilot for code completion
 ]
+
 .pull-right[
 ```{r echo=FALSE, out.width="90%",error=TRUE}
 knitr::include_graphics("img/An image illustrating automated content creation.png")
@@ -207,7 +222,7 @@ knitr::include_graphics("img/An image illustrating automated content creation.pn
 
 ## R Example: Text Generation (Simple Markov Chain)
 
-.midi[
+.tiny[
 ```{r}
 library(tidytext)
 library(dplyr)
@@ -313,13 +328,13 @@ class: middle
 ---
 
 ## Question Answering Systems
-
+.midi[
 ```{r}
 library(tidytext)
 library(dplyr)
 
 context <- "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. 
-It is named after the engineer Gustave Eiffel, whose company designed and built the tower."
+It is named after the engineer Gustave Eiffel, whose company designed and built the Tower."
 
 question <- "Who designed the Eiffel Tower?"
 
@@ -346,6 +361,7 @@ best_sentence <- sentences %>%
 
 print(best_sentence$sentence)
 ```
+]
 
 ---
 
@@ -357,7 +373,7 @@ class: middle
 
 ## Step 1: Setup
 
-.pull-left[
+.pull-left-wide[.midi[
 ```{r}
 library(tidytext)
 library(dplyr)
@@ -366,8 +382,8 @@ context <- "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mar
 
 question <- "Who designed the Eiffel Tower?"
 ```
-]
-.pull-right[
+]]
+.pull-right-narrow[
 - Load necessary libraries
 - Define the context (text containing the answer)
 - Define the question we want to answer
@@ -377,10 +393,10 @@ question <- "Who designed the Eiffel Tower?"
 
 ## Step 2: Tokenization
 
-.pull-left[
+.pull-left.midi[
 ```{r}
-(context_tokens <- tibble(text = context) %>%
-  unnest_tokens(word, text))
+context_tokens <- tibble(text = context) %>%
+  unnest_tokens(word, text)
 
 (question_tokens <- tibble(text = question) %>%
   unnest_tokens(word, text))
@@ -414,35 +430,40 @@ matching_words <- intersect(
 
 ## Step 4: Sentence Splitting
 
-.pull-left[
+
 ```{r}
 sentences <- tibble(text = context) %>%
-  unnest_tokens(sentence, text, token = "sentences")
+  unnest_tokens(sentence,
+                text,
+                token = "sentences")
 ```
-]
-.pull-right[
+
+--
+
 - Split the context into individual sentences
 - Again using `unnest_tokens()`, but with `token = "sentences"`
 - Prepares for sentence-level analysis
-]
+
+
 
 ---
 
 ## Step 5: Answer Extraction (Part 1)
 
-.pull-left[
+
 ```{r}
 best_sentence <- sentences %>%
   mutate(matches = sapply(sentence, function(s) {
     sum(matching_words %in% unlist(strsplit(s, " ")))
   }))
 ```
-]
-.pull-right[
+
+--
+
 - Count matching words in each sentence
 - `sapply()` applies the counting function to each sentence
 - Creates a new column 'matches' with the count
-]
+
 
 ---
 
@@ -455,6 +476,7 @@ best_sentence <- best_sentence %>%
   slice(1)
 ```
 ]
+
 .pull-right[
 - Rank sentences by number of matching words
 - `arrange(desc(matches))` sorts in descending order
@@ -465,16 +487,21 @@ best_sentence <- best_sentence %>%
 
 ## Step 6: Result Output
 
+
 .pull-left[
-```{r}
-print(best_sentence$sentence)
-```
-]
-.pull-right[
 - Print the sentence most likely to contain the answer
 - This sentence has the most word overlap with the question
 - A simple but effective approach for basic question answering
 ]
+
+
+.pull-right[
+```{r}
+print(best_sentence$sentence)
+```
+]
+
+
 
 ---
 
