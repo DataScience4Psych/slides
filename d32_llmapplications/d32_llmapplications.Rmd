@@ -522,7 +522,7 @@ How might you improve this basic question answering system?
 # Conclusion
 
 - LLMs have diverse applications across data science tasks
-- They excel at understanding and generating human language
+- They excel at generating human language
 - Continued research is improving their capabilities and efficiency
 - R provides tools for implementing some of these techniques
 
