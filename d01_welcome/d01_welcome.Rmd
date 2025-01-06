@@ -11,8 +11,9 @@ output:
       highlightLines: true
       highlightStyle: solarized-light
       countIncrementalSlides: false
-#      slideNumberFormat: ""
 ---
+
+
 
 ```{r child = "../setup.Rmd"}
 ```
@@ -48,8 +49,6 @@ library(emo)
 if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
 if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 ```
----
-class: middle
 
 # Hello world!
 
@@ -214,7 +213,7 @@ class: middle, bg_orange
 
 --
 + PSY 703: Data Science for Psychologists
-  + Blended Synchronous
+  + Flipped Classroom
 <br><br>
 {{content}}
 
@@ -233,14 +232,16 @@ class: middle, bg_orange
 {{content}}
 
 ---
+
 ## Structure
+
 - Interactive
   - Some lectures, lots of learn-by-doing
 --
 
 - Meet twice a week 
-	- Tuesday are Face-to-Face Tutorials
-	- Thursdays are Solidarity Sessions
+	- Mondays are Face-to-Face Tutorials
+	- Wednesdays are Solidarity Sessions
 --
 
 - Bring your laptop! `r emo::ji('computer')`
@@ -271,17 +272,52 @@ knitr::include_graphics("img/plot007w.png")
 ---
 
 # Categories of Topics
-.large.pull-left-narrow[
+
+.pull-left-narrow[.large[
 - What
 - How
 ]
-.pull-right-wide[
 
-```{r echo=FALSE, out.height="200%"}
+
+.tiny[
+```{r echo=TRUE, out.height="200%", eval=FALSE}
+library(dplyr) # or install.packages("dplyr") first
+library(jasmines) # or devtools::install_github("djnavarro/jasmines")
+p0 <- use_seed(1000) %>% # Set the seed of R‘s random number generator
+  scene_discs(
+    rings = 10,
+    points = 50000,
+    size = 50
+  ) %>%
+  mutate(ind = 1:n()) %>%
+  unfold_warp(
+    iterations = 10,
+    scale = .5,
+    output = "layer"
+  ) %>%
+  unfold_tempest(
+    iterations = 5,
+    scale = .015
+  ) %>%
+  style_ribbon(
+    color =  "#ec2582",       #"#F26BAA",
+    colour = "ind",
+    alpha = c(1,1),
+    background = "#34c9f4"
+  )
+ggsave("img/p0.png", p0, width = 20, height = 20, units = "in")
+
+```
+]
+]
+
+.pull-right-wide[
+```{r echo=FALSE, out.height="150%"}
 # r code to generate this figure is plot_jas.R
 knitr::include_graphics("img/p0.png")
 ```
 ]
+.footnote[ adapted from: https://towardsdatascience.com/getting-started-with-generative-art-in-r-3bc50067d34b]
 ---
 
 # Learning Outcomes
@@ -319,7 +355,7 @@ knitr::include_graphics("img/p0.png")
 
 - Labs
 - Portfolio
-- Presentation
+
 
 ---
 # Contract Grading
@@ -448,7 +484,7 @@ Tips for selecting a username:<sup>✦</sup>
 
 **Option 1.**
 
-- On Github, download the assignment called `AE01a - UN Votes`.
+- On GitHub, navigate to the assignment repository called `ae01a_unvotes`, which you can find at [github.com/DataScience4Psych/ae01a_unvotes](https://github.com/DataScience4Psych/ae01a_unvotes).
 - In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
@@ -461,7 +497,7 @@ Tips for selecting a username:<sup>✦</sup>
 
 **Option 2.**
 
-- On Github, download the assignment called called `AE01b_COVID`.
+- On Github, download the assignment called called `ae01b_covid`, which you can find at [github.com/DataScience4Psych/ae01b_covid](https://github.com/DataScience4Psych/ae01b_covid).
 - In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
