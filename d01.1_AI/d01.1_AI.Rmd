@@ -1,0 +1,373 @@
+---
+title: "Using AI Tools in Data Science <br> `r emo::ji('robot')`"
+author: "S. Mason Garrison"
+bibliography: "../references.bib"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+
+
+```{r child = "../setup.Rmd"}
+```
+
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
+#       slideNumberFormat: ""
+knitr::opts_chunk$set(knitr.duplicate.label = "allow")
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
+if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
+```
+
+
+class: middle, center
+
+
+# When and how to use AI in this course
+
+---
+
+## Learning R is challenging
+
+.pull-left[
+.hand[Common frustrations:]
+- Syntax feels foreign
+- Error messages are cryptic
+- Many approaches to same problem
+- Documentation can be confusing
+- I already know how to do this in SPSS
+- R is a whiny baby
+]
+
+.pull-right[
+.question[
+Have you already been tempted to ask AI for help?
+]
+]
+
+
+---
+
+## Why not use AI from the start?
+
+
+.question.med[
+If AI can write code for us, why learn $R$ the hard way first?
+]
+
+--
+
+.hand[Because AI tools are not perfect]:
+- Can give incorrect code
+- May use outdated approaches
+- Don't always follow best practices
+- Require R knowledge to evaluate
+- Can't teach you how to think like a programmer
+- You can't argue with them if you don't know enough to get annoyed by their antics
+
+---
+
+## Productivity vs Learning
+
+.pull-left[
+What research shows:
+- AI can boost productivity at all levels in writing (Noy et al, 2023) and coding (Chen et al., 2023; Peng et al 2023)
+- These gains are seen in both novices and experts
+- The short-term productivity gains can be substantial for novices
+- Limited research on how AI can impair the transition from novice to expert 
+- Open question: How can AI be used to help novices become experts?
+]
+
+
+--
+
+.pull-right[
+.question[
+Would you rather be productive now or skilled (and productive) forever?
+]
+
+
+---
+
+## Four stages of AI use
+
+- My advice for how to learn R with AI (Garrison & Tyson, 2026)
+<ol start="0">
+<li>No AI - Building foundations</li>
+<li>AI for understanding code</li>
+<li>AI for debugging help</li>
+<li>AI for code generation</li>
+</ol>
+
+.footnote[Garrison, S. M. & Tyson, H. K. (2026). *Pragmatic AI Integration in R Teaching: From Frustration to Facilitation* In I. Katzarska-Miller, M. Jackson, & M. Fortner, (Eds.) Integrating Artificial Intelligence into the Psychology Classroom. Society for the Teaching of Psychology: teach-
+psych.org/ebooks/]
+
+--
+  
+.question[
+    How will you know when you're ready for each stage?
+]
+
+
+
+---
+
+## Stage 0: Building foundations
+.pull-left[
+What you'll learn first:
+- Basic R syntax
+- Data structures
+- Functions
+- Debugging strategies
+]
+--
+  
+.pull-left[
+```r
+# You'll write code like this
+    diamonds %>%
+      select(carat, price) %>%
+      arrange(desc(price))
+```
+]
+
+.pull-right[
+And understand:
+- What each line does
+- Why it's structured this way
+- How to fix errors
+]
+
+---
+
+## Stage 1: AI for understanding
+
+.pull-left[
+Once you can write basic code, you can use AI to:
+- Get line-by-line explanations
+- Understand error messages
+- Learn alternative approaches
+]
+
+--
+.pull-right[
+But first verify:
+- Does the explanation match your understanding?
+- Are there terms you should look up?
+- Does the suggested usage align with class materials?
+]
+
+--
+.pull-left-wide[
+```{r ai, eval=FALSE}
+# Ask AI: "What does this code do?"
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  geom_smooth()
+```
+]
+
+.center.pull-right-narrow[
+```{r ai, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE,out.width="50%"}
+```
+]
+
+---
+
+## Stage 2: AI for debugging
+
+When you're comfortable with basic R, you can use AI to:
+- Identify syntax errors
+- Debug error messages
+- Fix common problems
+
+--
+  
+.question[
+  What makes a good AI debugging question?
+]
+
+--
+  
+Include:
+- Your code
+- The error message
+- What you've tried
+- Your expected output
+
+---
+
+## Stage 3: Advanced AI use
+
+.pull-left[
+In later stages, you can use AI for:
+- Code generation
+- Optimization suggestions
+- Alternative approaches
+]
+--
+.pull-right[
+But remember to:
+- Verify the output
+- Understand the code
+- Test the solution
+- Consider alternatives
+]
+
+---
+
+## Signs you're ready for AI tools
+
+.pull-left[
+  You can:
+  - Write basic R code
+  - Spot obvious errors
+  - Debug simple problems
+  - Read documentation
+]
+--
+.pull-right[
+  You understand:
+  - Data structures
+  - Function basics
+  - Pipe operations
+  - ggplot2 grammar
+]
+
+---
+
+class: middle, center
+
+# Practical Guidance on Using AI
+
+
+
+
+---
+  
+## Example: Appropriate AI use
+  
++ Good AI question:
+```r
+# "Can you explain why this gives an error?
+ggplot(diamonds, aes(x = carat) +
+  geom_histogram()"
+```
+
+--
+
++ Less-Good AI question:
+
+```r
+# "This doesn't work"
+ggplot(diamonds, aes(x = carat) +
+  geom_histogram()
+```
+
+--
+
++ Even Less-Good AI question:
+
+```r
+# "histogram the diamonds data in ggplot"
+```
+---
+
+class: middle, center
+
+# Guidelines for AI use
+
+---
+  
+## When to use AI
+  
+.pull-left[
+✅ Good times:
+- Understanding complex code
+- Debugging specific errors
+- Learning alternative approaches
+- Checking your work
+- For speeding up specific tasks you can already do
+]
+
+--
+.pull-right[
+❌ Bad times:
+- Before trying yourself
+- For basic syntax
+- Without understanding the output
+- As a substitute for learning
+- For entire assignments
+]
+
+---
+  
+## How to evaluate AI suggestions
+  
+Before using AI code:
+  
+- Can you explain what each line does?
+- Does it follow your expectations?
+- Would you be able to modify it?
+- Can you spot any potential problems?
+  
+---
+  
+## Example: Evaluating AI code
+  
+.pull-left[
+AI suggests:
+```r
+    diamonds_summary <- diamonds %>%
+      group_by(cut) %>%
+      summarize(
+        avg_price = mean(price),
+        count = n()
+      ) %>%
+      arrange(desc(avg_price))
+```
+]
+
+.pull-right[
+Check:
+- Do you understand each function?
+- Does the output match your expectations?
+- Is this the best way to solve the problem?
+- What assumptions does this code make?
+- How would you modify it?
+]
+
+---
+
+# Wrapping Up...
+
+## Key points
+
+- Build R foundations first
+- Use AI tools gradually
+- Always verify AI suggestions
+- Understand before using
+- Practice critical evaluation
+
+--
+
+.question[
+  Ready to start your R journey?
+]
+
+
+
+
