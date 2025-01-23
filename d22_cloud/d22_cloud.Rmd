@@ -1,0 +1,576 @@
+---
+title: "High Performance Data Science <br> `r emo::ji('rocket')`"
+author: "S. Mason Garrison"
+bibliography: "../references.bib"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "../setup.Rmd"}
+```
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+#       slideNumberFormat: ""  
+knitr::opts_chunk$set(knitr.duplicate.label = "allow")
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
+if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
+```
+
+
+class: middle
+
+# When Data Gets Big...
+
+---
+
+## What happens when we try this?
+
+```{r eval=FALSE}
+# Read 10GB of Twitter data
+tweets <- read_csv("twitter_dataset.csv")
+
+# Train model on full Netflix dataset
+netflix_model <- randomForest(rating ~ ., data=netflix_full)
+
+# Cross validate with 1000 iterations
+cv_results <- train(price ~ ., data=housing, 
+                   method="rf", 
+                   trControl=trainControl(number=1000))
+```
+
+--
+
+.large[
+Your laptop: `Error: cannot allocate vector of size 10 GB`
+]
+
+---
+
+## Why do we need more computing power?
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-laptop fa"></i> = `Error: cannot allocate vector`
+--
+
+- <i class="fa fa-clock fa"></i> + <i class="fa fa-laptop fa"></i> = `Still running...`
+--
+
+- <i class="fa fa-brain fa"></i> + <i class="fa fa-laptop fa"></i> = `System has run out of memory`
+--
+
+<br>
+<br>
+.large[
+Data science today involves datasets and models that are too big for your laptop. Let's learn how to scale up!
+]
+
+---
+
+## Real Example: Image Classification
+
+.pull-left[
+On a laptop:
+```python
+# Training ResNet50 on ImageNet
+# 14 million images
+# Memory Error! 
+```
+
+On DEAC:
+```python
+# Same model
+# 32 GPUs available
+# 80GB GPU memory each
+# ~100x faster training
+```
+]
+
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+#knitr::include_graphics("img/resnet.png") #image of same code working on deac
+```
+]
+
+---
+
+
+
+class: middle
+
+# Wrapping up... Why HPC?
+
+---
+
+class: middle
+
+# Meet DEAC
+
+---
+
+## Computing Resources
+
+### Processing Power
+.pull-left[
+- CPU cores
+  - First iPhone: 1 core
+  - Your laptop: 4-8 cores
+  - My laptop: 24 cores (Which is a silly amount)
+  - DEAC: 5,312 cores and up to 48 cores/job
+].pull-right[
+- GPUs
+  - First iPhone: 0 GPUs
+  - Your laptop: 1 GPU (embedded in your CPU)
+  - My laptop: 1 GPU (Which is a silly amount)
+  - DEAC: 32 NVIDIA A100/V100 GPUs
+      - 80GB memory each
+      - CUDA 11.x support
+]
+---
+
+### Memory & Storage
+.pull-left[
+- Total RAM
+  - First iPhone: 128 MB
+  - Your laptop: 8-16 GB
+  - My laptop: 128 GB (Which is a silly amount)
+  - DEAC: 41 TB and up to 256 GB/job
+].pull-right[
+- Total Storage
+  - First iPhone: 4 GB (or 16GB if you splurged)
+  - Your laptop: 256 GB
+  - My laptop: 3 TB (Which is a silly amount)
+  - DEAC: 280 TB
+      - Fast parallel filesystem
+      - Automatic backups
+]
+
+---
+
+## Data Science Software
+
+.pull-left[
+### R Environment
+- RStudio Server
+- Full tidyverse
+- data.table
+- Parallel backends
+- GPU libraries
+]
+
+.pull-right[
+### Python Tools
+- JupyterLab
+- pandas, numpy, scipy
+- scikit-learn
+- PyTorch, TensorFlow
+- dask for parallel
+]
+
+---
+
+.your-turn[
+Let's explore what's available:
+1. Go to ondemand.deac.wfu.edu
+2. Look at "Interactive Apps"
+3. Compare the different R/Python options
+4. What resources can you request?
+]
+
+
+---
+
+
+class: middle
+
+# Getting Started 
+
+---
+
+## Accessing DEAC
+
+.pull-left[
+### OnDemand Portal
+1. ondemand.deac.wfu.edu
+2. WFU credentials
+3. No SSH/terminal needed
+4. Works from any browser
+]
+
+.pull-right[
+.question[
+Which interface should you choose?
+]
+
+- RStudio Server: R analysis
+- JupyterLab: Python/R
+- VS Code: General coding
+]
+
+---
+
+## Let's Launch RStudio
+
+.pull-left[
+1. Click "Interactive Apps"
+2. Choose "RStudio Server"
+3. Set resources:
+   - Number of cores
+   - Memory needed
+   - Time required
+4. Launch!
+]
+
+.pull-right[
+```{r echo=FALSE, out.width="100%"}
+#knitr::include_graphics("img/rstudio-launch.png")
+```
+]
+
+---
+
+.your-turn[
+Start your first DEAC session:
+1. Launch RStudio Server
+2. Request:
+   - 4 cores
+   - 16 GB memory
+   - 2 hours runtime
+3. Create a new R script
+4. Try loading tidyverse
+5. Check available packages
+]
+
+
+
+---
+
+## Workflow
+
+1. User Access
+    - Web portal (OnDemand)
+    - Command line
+--
+
+2. Job Submission
+    - SLURM scheduler
+    - Resource requests
+--
+
+3. Computation
+    - Jobs run on nodes
+    - Results stored to disk
+--
+
+4. Data Management
+    - Working storage
+    - Archive options
+
+---
+
+.your-turn[
+- Log into [ondemand.deac.wfu.edu](https://ondemand.deac.wfu.edu)
+- Look at available applications
+- Try launching a Jupyter notebook
+]
+
+---
+
+class: middle
+
+# Wrapping up... Resources
+
+---
+
+class: middle
+
+# Getting Started
+
+---
+
+## First steps
+
+.pull-left[
+1. Request account
+2. Attend training
+3. Test connection
+4. Run sample job
+]
+
+.pull-right[
+```{r eval=FALSE}
+# Sample SLURM job
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=1
+#SBATCH --time=00:05:00
+
+echo "Hello from DEAC!"
+```
+]
+
+
+---
+
+class: middle
+
+# Parallel Processing
+
+---
+
+## Running in Parallel
+
+.pull-left[
+### Basic Example
+```{r eval=FALSE}
+# Sequential
+result <- lapply(1:100, slow_fn)
+
+# Parallel
+library(parallel)
+cores <- detectCores()
+result <- mclapply(1:100, 
+                  slow_fn,
+                  mc.cores = cores)
+```
+]
+
+.pull-right[
+### With tidyverse
+```{r eval=FALSE}
+library(furrr)
+plan(multicore, 
+     workers = availableCores())
+
+result <- 1:100 %>%
+  future_map(slow_fn)
+```
+]
+
+---
+
+## Real Example: Cross Validation
+
+```{r eval=FALSE}
+# Set up parallel backend
+library(doParallel)
+cl <- makeCluster(detectCores())
+registerDoParallel(cl)
+
+# Now caret uses all cores
+model <- train(
+  price ~ .,
+  data = housing,
+  method = "rf",
+  trControl = trainControl(
+    method = "cv",
+    number = 10
+  )
+)
+
+stopCluster(cl)
+```
+
+---
+
+.your-turn[
+Try parallel processing:
+```{r eval=FALSE}
+# Create test function
+slow_square <- function(x) {
+  Sys.sleep(0.1)  # Simulate work
+  return(x^2)
+}
+
+# Compare runtimes:
+# Sequential
+system.time(lapply(1:100, slow_square))
+
+# Parallel
+library(parallel)
+system.time(
+  mclapply(1:100, slow_square, 
+           mc.cores = detectCores())
+)
+```
+]
+
+---
+
+class: middle
+
+# Wrapping up... Parallel Processing
+
+---
+
+
+# SLURM Basics
+
+```{r, echo=FALSE, out.width="80%"}
+#knitr::include_graphics("page1_image.png")
+```
+
+---
+
+# Login and Compute
+
+Steps in the DEAC Workflow:
+
+1. User Access
+2. Scheduler
+3. Network
+4. Compute
+
+```{r, echo=FALSE, out.width="80%"}
+#knitr::include_graphics("page2_image.png")
+```
+
+---
+
+# What is SLURM?
+
+- SLURM is the brain of the cluster.
+
+Provides two vital parts:
+
+1. "Resource Manager"
+   - Knows WHAT hardware resources are available.
+2. "Scheduler"
+   - Tells WHO (job) to run WHERE (resources).
+   - Considers priority and fairshare for WHEN to run.
+
+---
+
+# What is a Job?
+
+- A “job” is essentially any computational task.
+  - Computational tasks take time to complete.
+  - Tasks also utilize some level of CPU processing and consume memory or RAM.
+- How many CPUs and how much RAM does your computer have?
+- How does that compare to a $12,000 server?
+
+---
+
+# What Info Does SLURM Need?
+
+SLURM assigns resources to jobs. Users request resources from SLURM:
+
+1. Number of Nodes
+2. Number of CPU cores
+3. Amount of Memory (RAM)
+4. Amount of time you need these resources.
+5. Other constraints your job requires.
+
+---
+
+# Assigning Resources
+
+- SLURM looks at all compute nodes to see which compute nodes can support the resource requests from a job.
+- Compute nodes can support multiple jobs without individual jobs needing to share (or fight over) resources.
+- If the resources needed to support a job aren’t available, SLURM will put the job in a queue.
+- Jobs in the queue are assigned a priority and scheduled once running jobs complete and relinquish resources.
+
+---
+
+# Partitions
+
+| Name     | Nodes       | Time       | Priority         |
+|----------|-------------|------------|------------------|
+| Small    | 1 node      | <=1 Day    | Highest Priority |
+| Large    | <=16 nodes  | <=180 Days | Low Priority     |
+| Debug    | 1 node      | <=1 Hour   | Highest Priority |
+
+---
+
+# Submitting a Job
+
+Example SLURM job script:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name="MyFirstJob"
+#SBATCH --partition=small
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=8GB
+#SBATCH --time=00-00:05:00 # DD-HH:MM:SS
+
+# Go to the assigned scratch directory
+cd /scratch/$SLURM_JOB_ID
+
+# Here is a command to identify the node name
+hostname
+
+# Here is a command to print your working directory
+pwd
+```
+
+---
+
+# Submitting a Job (cont.)
+
+If your SLURM script is named “MyFirstJob.slurm” then submit your job to the scheduler with:
+
+```bash
+sbatch MyFirstJob.slurm
+```
+
+---
+
+# Useful SLURM Commands
+
+1. Get basic information about the cluster:
+   ```bash
+   sinfo
+   ```
+2. See detailed information about which nodes are currently IDLE:
+   ```bash
+   sinfo -Nel -p small -t idle
+   ```
+3. See which jobs are running (for your username):
+   ```bash
+   squeue [-u $USER]
+   squeue --me
+   ```
+4. Detailed job information:
+   ```bash
+   scontrol show job JOBID
+   ```
+
+---
+
+# Job States
+
+- **RUNNING**
+  - Running jobs are assigned to a compute node and are assigned resources. Running jobs will continue to run until they complete, exceed time requested, or fail.
+- **PENDING**
+  - Pending jobs are in the queue and awaiting resources.
+- **FAILED**
+  - Failed jobs end prematurely, and can fail for a multitude of reasons.
+
+---
+
+# Sharing Nodes and Core Locality
+
+- You can ensure the CPU cores assigned to your job exist on the same CPU socket by using the option --ntasks-per-socket.
+
+Pass the following information:
+
+- `-N 1` Number of nodes
+- `-n 22` Number of cores
+- `--ntasks-per-socket=22` Number of cores per socket.
+
+The values for n and ntasks-per-socket should be equal, and the total value for n should not exceed half of the CPU cores on a compute node (32 or 24).
+
+---
+
