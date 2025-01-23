@@ -104,7 +104,7 @@ class: middle
 ## R Example: Text Classification (Sentiment Analysis)
 
 .midi[
-```{r}
+```{r, warning=FALSE}
 library(tidytext)
 library(dplyr)
 library(ggplot2)
@@ -145,14 +145,28 @@ sentiment_scores
 ## Visualize Sentiment Analysis Results
 
 .midi[
-```{r,echo=FALSE}
+```{r,echo=FALSE,fig.align='center'}
 df %>%
   unnest_tokens(word, text) %>%
   inner_join(get_sentiments("bing")) %>%
-ggplot(aes(x = sentiment)) +
-  geom_bar()+
-  coord_flip() + theme_classic()+
-  labs(title = "Overall Vibes", x = "", y = "Count")
+  ggplot(aes(x = sentiment)) +
+  geom_bar(fill = "#0078D7", color = "black", width = 0.7) + # Darker blue bars with black borders
+  coord_flip() +
+  theme_minimal(base_size = 18) + # Larger text for better readability
+  theme(
+    panel.background = element_rect(fill = "white", color = NA), # Match background color to slide
+    plot.background = element_rect(fill = "white", color = NA),
+    text = element_text(color = "black"), # Match font color to slide
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    panel.grid.major = element_line(color = "gray40", linewidth = 0.5), # Use `linewidth` for gridline thickness
+    panel.grid.minor = element_line(color = "gray70", linewidth = 0.25)  # Use `linewidth` for minor gridlines
+  ) +
+  labs(
+    title = "Overall Vibes",
+    x = "",
+    y = "Count"
+  )
+
 ```
 ]
 
@@ -222,7 +236,7 @@ knitr::include_graphics("img/An image illustrating automated content creation.pn
 
 ## R Example: Text Generation (Simple Markov Chain)
 
-.tiny[
+.midi[
 ```{r}
 library(tidytext)
 library(dplyr)
