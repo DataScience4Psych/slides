@@ -98,7 +98,7 @@ What research shows:
 .question[
 Would you rather be productive now or skilled (and productive) forever?
 ]
-
+]
 
 ---
 
@@ -352,8 +352,6 @@ Check:
 
 ---
 
-# Wrapping Up...
-
 ## Key points
 
 - Build R foundations first
@@ -369,5 +367,7 @@ Check:
 ]
 
 
+---
 
+# Wrapping Up...
 

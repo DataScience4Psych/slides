@@ -264,7 +264,7 @@ word_pairs
 # Create a simple Markov chain
 markov_chain <- word_pairs %>%
   group_by(word) %>%
-  summarise(next_words = list(next_word))
+  summarize(next_words = list(next_word))
 
 markov_chain
 ```

@@ -279,7 +279,7 @@ word_pairs
 # Create a simple Markov chain
 markov_chain &lt;- word_pairs %&gt;%
   group_by(word) %&gt;%
-  summarise(next_words = list(next_word))
+  summarize(next_words = list(next_word))
 
 markov_chain
 ```
