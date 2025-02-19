@@ -36,7 +36,7 @@ if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 
 
 ### **Modules Overview**
-- [Effective Data Visualization](#3)
+- [M5: Effective Data Visualization](#3)
 
 
 ---
