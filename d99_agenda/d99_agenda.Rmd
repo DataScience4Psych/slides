@@ -1,0 +1,110 @@
+---
+title: "Class Session Slides <br> `r emo::ji('cat')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+
+
+```{r child = "../setup.Rmd"}
+```
+
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+#       slideNumberFormat: ""  
+knitr::opts_chunk$set(knitr.duplicate.label = "allow")
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
+if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
+```
+
+
+## Navigation Menu
+
+
+### **Modules Overview**
+- Effective Data Visualization** {#module-5}
+- [Module X](#module-x)
+- [Module Y](#module-y)
+- [Module Z](#module-z)
+
+---
+
+## **Module 5: Effective Data Visualization** {#module-5}
+
+### **Today’s Plan:**
+- **Refine & Troubleshoot**: Improve visualizations based on feedback.
+- **Analyze Misleading Visuals**: Discuss & revise problematic designs.
+- **Spatial Data Visualization**: Hands-on lab (for those at that stage).
+
+
+**By the end of this module, you should be able to:**
+- Apply effective `ggplot2` techniques, including appropriate geoms, scales, and coordinate systems.
+- Analyze misleading visualizations and discuss better design choices.
+- Use spatial data visualization techniques in the lab.
+
+
+[Back to Menu](#navigation-menu)
+
+
+---
+
+## **Module X: [Module Title]** {#module-x}
+
+### **Today’s Plan:**
+- **[Key Topic 1]**: [Brief description].
+- **[Key Topic 2]**: [Brief description].
+- **[Key Topic 3]**: [Brief description].
+
+**By the end of this module, you should be able to:**
+- [Learning Outcome 1].
+- [Learning Outcome 2].
+- [Learning Outcome 3].
+
+[Back to Menu](#navigation-menu)
+
+---
+
+## **Module Y: [Module Title]** {#module-y}
+
+### **Today’s Plan:**
+- **[Key Topic 1]**: [Brief description].
+- **[Key Topic 2]**: [Brief description].
+- **[Key Topic 3]**: [Brief description].
+
+**By the end of this module, you should be able to:**
+- [Learning Outcome 1].
+- [Learning Outcome 2].
+- [Learning Outcome 3].
+
+[Back to Menu](#navigation-menu)
+
+---
+
+## **Module Z: [Module Title]** {#module-Z}
+
+### **Today’s Plan:**
+- **[Key Topic 1]**: [Brief description].
+- **[Key Topic 2]**: [Brief description].
+- **[Key Topic 3]**: [Brief description].
+
+**By the end of this module, you should be able to:**
+- [Learning Outcome 1].
+- [Learning Outcome 2].
+- [Learning Outcome 3].
+
+[Back to Menu](#navigation-menu)
+
