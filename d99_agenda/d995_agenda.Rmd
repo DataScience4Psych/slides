@@ -40,8 +40,9 @@ if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 - [M3: Welcome to the Tidyverse](#5)
 - [M4: Data Diving with Types](#6)
 - [M5: Effective Data Visualization](#7)
-- [M6: Confounding and Communication](#8)
-- [M7: Web Scraping](#9)
+- [Check-In: Midterm Review](#8)
+- [M6: Confounding and Communication](#9)
+- [M7: Web Scraping](#10)
 
 ---
 
@@ -125,6 +126,35 @@ if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 - Use spatial data visualization techniques in the lab.
 
 [Back to Menu](#2)
+
+---
+
+## Midsemester Check-In
+
+You're halfway through the semester—great work so far! Your **midsemester check-in** is recommended by the end of this week. This is a chance to reflect on your progress and make any necessary adjustments.  
+
+.pull-left[
+### ✅ **What to Do:**  
+- **Schedule Your Check-In**: Meet with me between **Weeks 5-8**.
+- **Review Your Contract**: Check if you're meeting your commitments.  
+- **Come prepared**: Think about what’s going well and what you might need help with.  
+- **Request Contract Adjustments**: If needed, submit changes before the deadline.
+
+[Back to Menu](#2)
+]
+.pull-right[
+### 🔗 **Helpful Resources:**  
+- **📑 Contract Repo**: [Access your contract](https://github.com/DataScience4Psych/2025_contracts/issues).  
+- **📜 Contract Guidelines**: [Review the details](https://smasongarrison.github.io/syllabi/data-science.html#contract-details).  
+- **📅 Check-In Schedule**: [Book your check-in](https://calendly.com/smasongarrison/checkin).  
+```{r, echo=FALSE}
+library(qrcode)
+plot(qr_code('https://calendly.com/smasongarrison/checkin'))
+```
+]
+
+[Back to Menu](#2)
+
 
 ---
 
