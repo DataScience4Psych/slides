@@ -27,7 +27,22 @@ df <- data.frame(
       #        title = str_replace_all(str_remove(df_docs, "\\.html"),"[_-]"," "),
               title = str_remove(df_docs, "\\.html"),  
               link = make_full(df_docs)
-)
+) %>% filter (!title %in% c("d00_template/d00_visuals",
+                            "d00_template/d00_slide",
+                            "d00_APS/d00_aps",
+                            "d00_APS/d00_teaser",
+                            "d00_template/d00_closers",
+                            "d00_template/d00_code",
+                            "d00_template/d00_slide",
+                            "d00_template/d00_interactive",
+                            "d00_template/d00_content",
+                            "d00_template/d00_openers",
+                            "d00_template/d00_teaser",
+                          "d23_multiple/d23_multiple_files/figure-html/widgets/widget_plotly-plot",
+                          "setup",
+                          "workshop/archive/h1",
+                            "index")) %>%
+  arrange(title)
 
 
 df %>%
