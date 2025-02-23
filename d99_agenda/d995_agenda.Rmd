@@ -34,13 +34,84 @@ if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 
 ## Navigation Menu
 
-
 ### **Modules Overview**
-- [M5: Effective Data Visualization](#3)
-
+- [M1: Welcome to Data Science](#3)
+- [M2: Data and Visualization](#4)
+- [M3: Welcome to the Tidyverse](#5)
+- [M4: Data Diving with Types](#6)
+- [M5: Effective Data Visualization](#7)
+- [M6: Confounding and Communication](#8)
+- [M7: Web Scraping](#9)
 
 ---
 
+## **Module 1: Welcome to Data Science**
+
+### **Today’s Plan:**
+- **Introduction to Data Science**: Key concepts and importance.
+- **Tools & Setup**: Overview of R, RStudio, and Git.
+- **Exploring Data**: Initial data exploration techniques.
+- **Hello R**: Hands-on lab (for those at that stage).
+
+**By the end of this module, you should be able to:**
+- Explain what data science is and why it matters.
+- Set up and use basic tools for data science.
+- Perform basic data exploration using R.
+
+[Back to Menu](#2)
+
+---
+
+## **Module 2: Data and Visualization**
+
+### **Today’s Plan:**
+- **Exploratory Data Analysis (EDA)**: Understanding data distribution.
+- **Principles of Visualization**: Designing clear and effective graphs.
+- **Using `ggplot2`**: Building visualizations step-by-step.
+- **Plastic Waste**: Hands-on lab (for those at that stage).
+
+**By the end of this module, you should be able to:**
+- Conduct exploratory data analysis in R.
+- Design effective and clear data visualizations.
+- Use `ggplot2` for creating different types of plots.
+
+[Back to Menu](#2)
+  
+---
+
+## **Module 3: Welcome to the Tidyverse**
+
+### **Today’s Plan:**
+- **Tidy Data**: Understanding structured data principles.
+- **Grammar of Data Wrangling**: Key transformations with `dplyr`.
+- **Working with Multiple Data Frames**: Efficient data merging techniques.
+- **Nobel Laureates**: Hands-on lab (for those at that stage).
+
+**By the end of this module, you should be able to:**
+- Clean and reshape data using `tidyverse` tools.
+- Use `dplyr` for common data wrangling tasks.
+- Work with multiple datasets efficiently in R.
+
+[Back to Menu](#2)
+
+---
+
+## **Module 4: Data Diving with Types**
+
+### **Today’s Plan:**
+- **Data Types & Recoding**: Understanding data structures.
+- **Importing Data**: Reading and processing datasets in R.
+- **Transformations & Cleaning**: Handling missing data and type conversions.
+- **Visualizing Spatial Data**: Hands-on lab (for those at that stage).
+
+**By the end of this module, you should be able to:**
+- Understand different data types and their implications.
+- Import and process data from various sources.
+- Perform essential data transformations in R.
+
+[Back to Menu](#2)
+---
+  
 ## **Module 5: Effective Data Visualization**
 
 ### **Today’s Plan:**
@@ -48,12 +119,45 @@ if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 - **Analyze Misleading Visuals**: Discuss & revise problematic designs.
 - **Spatial Data Visualization**: Hands-on lab (for those at that stage).
 
-
 **By the end of this module, you should be able to:**
 - Apply effective `ggplot2` techniques, including appropriate geoms, scales, and coordinate systems.
 - Analyze misleading visualizations and discuss better design choices.
 - Use spatial data visualization techniques in the lab.
 
+[Back to Menu](#2)
+
+---
+
+## **Module 6: Confounding and Communication**
+
+### **Today’s Plan:**
+- **Understanding Confounding**: Case studies and discussion.
+- **Simpson’s Paradox**: Exploring real-world implications.
+- **Science Communication Strategies**: Effective storytelling with data.
+- **Ugly Charts**: Hands-on lab (for those at that stage).
+
+**By the end of this module, you should be able to:**
+- Explain confounding and its impact on study design.
+- Identify and analyze Simpson’s Paradox in real-world datasets.
+- Apply principles of effective data storytelling.
+- Critically evaluate misleading or poorly designed data visualizations.
 
 [Back to Menu](#2)
 
+---
+
+## **Module 7: Web Scraping**
+
+### **Today’s Plan:**
+- **Introduction to Web Scraping**: Basics of extracting data from the web.
+- **Techniques & Tools**: Using R for scraping, including `rvest` and `httr`.
+- **Top 250 Movies on IMDB**: Exploring a real-world scraping example.
+- **Hands-on Lab: Better Viz** (for those at that stage).
+
+**By the end of this module, you should be able to:**
+- Explain the fundamentals of web scraping and its applications.
+- Use R packages like `rvest` and `httr` to scrape data.
+- Apply CSS selectors using SelectorGadget.
+- Work with real-world web scraping examples in R.
+
+[Back to Menu](#2)
