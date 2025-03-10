@@ -77,38 +77,98 @@ Image Source: DALL-E: Based on the following prompt: "A visual timeline showcasi
 ---
 
 
-# History of LLMs:
-- Early models: 
-  - Rule-based systems
-  - Statistical models
-  
-- Modern models:
+# History of LLMs
+.pull-left.medi[
+## Early models
+- Rule-based systems (1960s-1980s)
+    - ELIZA: Simple pattern matching with templated responses
+    - SHRDLU: Understanding commands through syntax rules
+- Statistical models (1990s-2000s)
+    - N-grams: Word prediction based on previous few words
+    - Hidden Markov Models: Adding probability to language patterns
+]
+--
+.pull-right.medi[
+ ## Modern models
   - OpenAI’s LLM ChatGPT (Chat Generative Pre-Trained Transformer) (November 2022)
-  -Stanford CRFM and MosaicML's BioMedLM (Biomedical Language Model) (Dec/January 2023)
-    - Domain-specific LLMs for biomedical research (trained on PubMed
+  - Stanford CRFM and MosaicML's BioMedLM (Biomedical Language Model) (Dec/January 2023)
+    - Domain-specific LLMs for biomedical research (trained on PubMed)
   - Meta AI's LLaMA (Large Language Model Meta AI) (Feb 2023)
   - OpenAI's GPT-4 (Generative Pre-trained Transformer) (March 2023)
   - Google's LaMDA (Language Model for Dialogue Applications) (May 2023)
-
-
-
+]
 .footnote[Alan D. Thompson has a really nice timeline of AI [timelineof AI](https://lifearchitect.ai/timeline/) and [table of models](https://lifearchitect.ai/models-table/)
 ]
 
 ---
-
-
-
 
 class: middle
 # How do LLMs work?
 
 ---
 
+
+
+## The Core Concept: Next-Token Prediction
+
+.pull-left[
+**From rules to learning:**
+- Early AI: Explicit rules programmed by humans
+- Modern LLMs: Learn patterns from data
+
+**The prediction task:**
+- Given a sequence of words, predict what comes next
+- Example:
+  - Input: "The capital of France is"
+  - LLM predicts: "Paris" with high confidence
+]
+--
+.pull-right[
+**This simple task leads to:**
+- Grammar understanding
+- Factual knowledge
+- Reasoning capabilities
+- Context awareness
+
+.question[
+How can this single objective (next-word prediction) lead to such versatile abilities?
+]
+]
+
+---
+
+## How LLMs Process Language
+
+.pull-left[
+- LLMs don't process raw text directly
+- Text is split into "tokens"
+  - Words, subwords, or characters
+  - Example: "psychology" → ["psycho", "logy"]
+- Different models use different tokenization methods
+  - GPT models: Byte-Pair Encoding (BPE)
+  - BERT: WordPiece
+]
+
+.pull-right[
+- Tokens converted to vector representations
+- Context window limits how much text can be processed
+  - GPT-3.5: ~4,000 tokens
+  - GPT-4: 8,000-32,000 tokens
+  - Claude: Up to 100,000 tokens
+- Models predict tokens based on previous tokens
+]
+
+---
+
 # Architecture of LLMs
+
 .pull-left[
 Key components:
-- Transformer architecture
+- **Transformer architecture**
+  - Neural network design specialized for sequential data
+  - Introduced in "Attention is All You Need" (2017)
+  - Processes entire sequences at once, not one-by-one
+  - Stacks of identical layers that transform data
 - Self-attention mechanism
 - Positional encoding
 - Layer normalization
@@ -121,7 +181,7 @@ knitr::include_graphics("img/transformer.png")
 ```
 ]
 
--- 
+--
 
 .footnote[
 Image Source: DALL-E: Based on the following prompt: "A detailed infographic highlighting the architecture of transformer models. The diagram includes key components such as the encoder, decoder, attention mechanisms, and layers. Arrows indicate the flow of information between these components. The background features a modern design with subtle tech-related patterns. Use professional colors like shades of blue and gray, with important elements highlighted in contrasting colors to draw attention."
@@ -129,21 +189,112 @@ Image Source: DALL-E: Based on the following prompt: "A detailed infographic hig
 
 ---
 
-# Training Process
 
-- Pre-training on large corpus of text data
-- Fine-tuning for specific tasks
-- Prompt engineering for task-specific performance
 
---
+class: middle
+# LLM Training Process
 
-.question[
-What are the challenges in training LLMs?
+---
+
+## LLM Training: Three-Stage Process
+
+.pull-left[
+1. **Pre-training**
+   - Self-supervised learning on massive text corpus
+   - Learns statistical patterns in language
+
+2. **Supervised Fine-Tuning (SFT)**
+   - Human-labeled examples of desired outputs
+   - Aligns with human instructions
+
+3. **Reinforcement Learning from Human Feedback (RLHF)**
+   - Human preferences used to refine model
+   - Rewards helpful, truthful, harmless outputs
+]
+
+.pull-right[
+```{r echo=FALSE, out.width="90%",error=TRUE}
+# This would be an image showing the three-stage training process
+knitr::include_graphics("img/llm-training-stages.png")
+```
 ]
 
 ---
 
+## Pre-training: Learning from Data
+
+.pull-left[
+**Training objective:**
+- Next token prediction
+- Model learns to predict what comes next in a sequence
+- Example: "The capital of France is ___" → "Paris"
+
+**Data sources:**
+- Books, articles, websites
+- Social media, forums
+- Code repositories
+- Wikipedia
+- Scientific literature
+]
+
+.pull-right[
+**Scale:**
+- Hundreds of billions to trillions of tokens
+- GPT-3: 300B tokens
+- PaLM: 780B tokens
+- GPT-4: Estimated trillions of tokens
+
+**Computational requirements:**
+- Thousands of GPUs/TPUs
+- Weeks to months of training time
+- Massive energy consumption
+  - GPT-3: ~1,287 MWh (equivalent to 120+ US homes' annual usage)
+]
+
+---
+
+## Fine-tuning: Aligning with Human Intent
+
+.pull-left[
+**Supervised Fine-Tuning (SFT):**
+- Human-written examples of desired outputs
+- Model learns to follow instructions
+- Much smaller dataset than pre-training
+  - Thousands to millions of examples
+]
+
+.pull-right[
+**Reinforcement Learning from Human Feedback (RLHF):**
+1. Generate multiple responses to prompts
+2. Human labelers rank responses by quality
+3. Train reward model on these preferences
+4. Use reinforcement learning to optimize model against reward function
+
+**Result:** More helpful, accurate, and safe outputs
+]
+
+---
+
+## Challenges in LLM Training
+
+- **Catastrophic forgetting**
+  - Model loses previously learned knowledge during fine-tuning
+  - Addressed through careful parameter updates
+- **Reward hacking**
+  - Model optimizes for reward signals rather than true intentions
+  - Requires robust reward modeling
+- **Data contamination**
+  - Test datasets appearing in training data
+  - Inflated benchmark performance
+- **Evaluation methods**
+  - Perplexity (how well model predicts text)
+  - Benchmark datasets (MMLU, HumanEval, TruthfulQA)
+  - Human evaluations and red teaming
+
+---
+
 # Applications in Data Science
+
 LLMs can be used for various tasks in data science:
 
 - Text generation and summarization
@@ -152,6 +303,51 @@ LLMs can be used for various tasks in data science:
 - Question answering
 - Text classification
 - Language translation
+---
+
+## Limitations of LLMs
+
+.pull-left[
+- **Hallucinations**
+  - Generation of plausible but false information
+  - Critical concern for research applications
+- **Bias**
+  - Models inherit biases from training data
+  - Can perpetuate stereotypes and inequalities
+]
+--
+.pull-right[
+- **Context window limitations**
+  - Cannot process unlimited amounts of text
+  - May miss important context
+- **Computational costs**
+  - API usage can be expensive
+  - Local deployment requires significant resources
+]
+
+---
+
+class: middle
+
+# Ethical Considerations
+
+---
+
+## Ethics and Responsible Use
+
+- **Privacy concerns**
+  - Sensitive data in prompts
+  - Data retention policies
+  - Re-identification risks
+- **Academic integrity**
+  - Proper attribution
+  - Transparency about AI use
+  - Maintaining research standards
+- **Misinformation risks**
+  - Fact-checking importance
+  - Critical evaluation of outputs
+  - Responsibility in publishing
+
 
 ---
 
