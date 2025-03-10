@@ -49,11 +49,12 @@ class: middle
 --
 
 .pull-right[
-Key characteristics:
-
+**Key characteristics:**
 - Massive scale (billions of parameters)
 - Self-supervised learning
-- Ability to generate human-like text
+- Ability to generate human-like (generate coherent, contextually relevant) text
+- Versatility across various language tasks
+
 - Versatile applications and examples
   - GPT (Generative Pre-trained Transformer)
   - BERT (Bidirectional Encoder Representations from Transformers)
@@ -63,64 +64,91 @@ Key characteristics:
 ---
 
 # Evolution of LLMs
-.question[
-How have LLMs evolved over time?
-]
-
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("img/chattimeline.png")
-```
-.footnote[
-Image Source: DALL-E: Based on the following prompt: "A visual timeline showcasing the evolution of large language models. The timeline starts from early simple models, progressing through key milestones such as the introduction of transformers, GPT-3, and up to GPT-4. Each milestone is marked with distinct icons and dates, illustrating the increasing complexity and capabilities of these models. The background features a blend of abstract digital patterns representing data and artificial intelligence. The color scheme is professional with shades of blue and gray, with highlighted elements in contrasting colors to emphasize progress."
-]
-
----
-
-
-# History of LLMs
-.pull-left.medi[
-## Early models
+.pull-left[
+**Early approaches (1960s-2000s):**
 - Rule-based systems (1960s-1980s)
     - ELIZA: Simple pattern matching with templated responses
     - SHRDLU: Understanding commands through syntax rules
 - Statistical models (1990s-2000s)
     - N-grams: Word prediction based on previous few words
     - Hidden Markov Models: Adding probability to language patterns
+- Limited by manual rules and sparse data
+]
+
+.pull-right[
+**The transformer revolution (2017):**
+- "Attention is All You Need" paper
+- Parallel processing of text
+- Breakthrough in handling context
+
+```{r, echo=FALSE, out.width="90%", align="center"}
+knitr::include_graphics("img/chattimeline.png")
+```
+
+
+.footnote.tiny[
+Image Source: DALL-E <!-- Based on the following prompt: "A visual timeline showcasing the evolution of large language models. The timeline starts from early simple models, progressing through key milestones such as the introduction of transformers, GPT-3, and up to GPT-4. Each milestone is marked with distinct icons and dates, illustrating the increasing complexity and capabilities of these models. The background features a blend of abstract digital patterns representing data and artificial intelligence. The color scheme is professional with shades of blue and gray, with highlighted elements in contrasting colors to emphasize progress." -->
+]
+]
+---
+
+
+# Key Milestones in LLM Development
+
+.pull-left.medi[
+## Foundational models:
+- BERT (2018): Bidirectional understanding
+- GPT series (2018-present): Increasingly powerful generative models
+- T5 (2019): Text-to-Text Transfer Transformer
 ]
 --
 .pull-right.medi[
- ## Modern models
-  - OpenAI’s LLM ChatGPT (Chat Generative Pre-Trained Transformer) (November 2022)
-  - Stanford CRFM and MosaicML's BioMedLM (Biomedical Language Model) (Dec/January 2023)
+## Recent breakthroughs
+  - Nov 2022: OpenAI’s LLM ChatGPT (Chat Generative Pre-Trained Transformer)
+  - Dec/January 2023: Stanford CRFM and MosaicML's BioMedLM (Biomedical Language Model)
     - Domain-specific LLMs for biomedical research (trained on PubMed)
-  - Meta AI's LLaMA (Large Language Model Meta AI) (Feb 2023)
-  - OpenAI's GPT-4 (Generative Pre-trained Transformer) (March 2023)
-  - Google's LaMDA (Language Model for Dialogue Applications) (May 2023)
+  - Feb 2023: Meta AI's LLaMA (Large Language Model Meta AI)
+  - March 2023: OpenAI's GPT-4
+  - May 2023: Google's LaMDA (Language Model for Dialogue Applications)
 ]
-.footnote[Alan D. Thompson has a really nice timeline of AI [timelineof AI](https://lifearchitect.ai/timeline/) and [table of models](https://lifearchitect.ai/models-table/)
+.footnote[Timeline resource: [Alan D. Thompson's timeline of AI](https://lifearchitect.ai/timeline/) and [table of models](https://lifearchitect.ai/models-table/)
 ]
 
 ---
 
 class: middle
-# How do LLMs work?
+# How LLMs Work: Core Concepts
 
 ---
 
 
-
 ## The Core Concept: Next-Token Prediction
 
-.pull-left[
-**From rules to learning:**
-- Early AI: Explicit rules programmed by humans
-- Modern LLMs: Learn patterns from data
-
-**The prediction task:**
+pull-left[
+**The fundamental task:**
 - Given a sequence of words, predict what comes next
 - Example:
   - Input: "The capital of France is"
-  - LLM predicts: "Paris" with high confidence
+  - Prediction: "Paris" (with high confidence)
+
+**Learning approach:**
+- From explicit rules to learning patterns
+- Self-supervised learning from vast text corpora
+]
+
+.pull-right[
+**This simple objective leads to:**
+- Understanding of grammar and syntax
+- Acquisition of factual knowledge
+- Reasoning capabilities
+- Contextual awareness
+
+.question[
+How can this seemingly simple prediction task lead to such sophisticated language abilities?
+]
+]
+
+
 ]
 --
 .pull-right[
