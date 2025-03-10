@@ -24,6 +24,7 @@
   --green: #8fada7;
   --gray: #A7A7A7;
   --dark-gray: #5b5b5b;
+  --orange: #f35b33;
   --pink: #F26BAA;
   --yellow: #e9d968;
   --beige: #fdf6e3;
@@ -536,7 +537,7 @@ div.my-footer a {
   font-size: 12pt;
 }
 
-/* Slide number 
+/* Slide number
 .title-slide .remark-slide-number {
   display: none;
 }

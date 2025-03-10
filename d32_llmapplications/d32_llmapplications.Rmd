@@ -103,25 +103,63 @@ class: middle
 
 ## R Example: Text Classification (Sentiment Analysis)
 
-.midi[
-```{r, warning=FALSE}
-library(tidytext)
+Let us perform sentiment analysis on the opening lines of Jane Austen's novels.
+
+```{r echo=FALSE}
+library(janeaustenr)
 library(dplyr)
-library(ggplot2)
+library(stringr)
 
-# Sample text data
-texts <- c(
-  "I love this product! It's amazing.",
-  "This is terrible. I hate it.",
-  "It's okay, nothing special.",
-  "Wow, absolutely fantastic experience!",
-  "Disappointed with the quality."
-)
+tidy_books_openinglines <- austen_books() %>%
+  group_by(book) %>%
+  mutate(
+    linenumber = row_number(),
+    chapter = cumsum(str_detect(text, 
+                                regex("^chapter [\\divxlc]", 
+                                      ignore_case = TRUE)))) %>%
+    filter(linenumber < 100& chapter == 1 & text != "" & !text %in% c("CHAPTER 1","CHAPTER I","Chapter 1")) %>% 
+  select(book, text) %>% # select columns
+  slice_head(n = 2)%>% # slice the first sentence by book 
+# concatenate the text by book
+  summarise(text = paste(text, collapse = " ")) %>% 
+  mutate(book = str_remove(book, "_")) %>% 
+  ungroup()
 
-# Create a tibble
-df <- tibble(text = texts)
+tidy_books_openinglines %>% 
+  knitr::kable()
+#  ungroup() %>%
+# unnest_tokens(word, text)
+
+tidy_books_chap1 <- austen_books() %>%
+  group_by(book) %>%
+  mutate(
+    linenumber = row_number(),
+    chapter = cumsum(str_detect(text, 
+                                regex("^chapter [\\divxlc]", 
+                                      ignore_case = TRUE)))) %>%
+    filter(chapter == 1 & linenumber < 50 & text != "" & !text %in% c("CHAPTER 1","CHAPTER I","Chapter 1")) %>% 
+  select(book, text) %>% # select columns
+#  slice_head(n = 2)%>% # slice the first sentence by book 
+# concatenate the text by book
+  summarise(text = paste(text, collapse = " ")) %>% 
+  mutate(book = str_remove(book, "_")) %>% 
+  ungroup()
+tidy_books_openinglines_chap2 <- austen_books() %>%
+  group_by(book) %>%
+  mutate(
+    linenumber = row_number(),
+    chapter = cumsum(str_detect(text, 
+                                regex("^chapter [\\divxlc]", 
+                                      ignore_case = TRUE)))) %>%
+    filter(chapter == 2 & text != "" & !text %in% c("CHAPTER 2","CHAPTER II","Chapter 2")) %>% 
+  select(book, text) %>% # select columns
+  slice_head(n = 2)%>% # slice the first sentence by book 
+# concatenate the text by book
+  summarise(text = paste(text, collapse = " ")) %>% 
+  mutate(book = str_remove(book, "_")) %>% 
+  ungroup()
+
 ```
-]
 
 ---
 
@@ -129,12 +167,18 @@ df <- tibble(text = texts)
 
 .midi[
 ```{r}
-sentiment_scores <- df %>%
+
+library(tidytext)
+library(dplyr)
+library(ggplot2)
+
+sentiment_scores <- tidy_books_openinglines %>%
   unnest_tokens(word, text) %>%
   inner_join(get_sentiments("bing")) %>%
   count(sentiment) %>%
   spread(sentiment, n, fill = 0) %>%
   mutate(sentiment_score = positive - negative)
+
 
 sentiment_scores
 ```
@@ -144,9 +188,10 @@ sentiment_scores
 
 ## Visualize Sentiment Analysis Results
 
-.midi[
-```{r,echo=FALSE,fig.align='center'}
-df %>%
+.pull-left[
+
+```{r,echo=FALSE,fig.align='center', out.width="90%"}
+tidy_books_openinglines  %>%
   unnest_tokens(word, text) %>%
   inner_join(get_sentiments("bing")) %>%
   ggplot(aes(x = sentiment)) +
@@ -169,7 +214,72 @@ df %>%
 
 ```
 ]
+.pull-right[
 
+```{r, echo=FALSE, warning=FALSE, fig.align='center', out.width="90%"}
+
+#install.packages("tidyverse")
+#install.packages("tidytext")
+#install.packages("ggwordcloud")
+
+library(tidyverse)
+library(tidytext)
+library(ggwordcloud)
+# Tokenize and join with sentiment lexicon
+word_sentiments <- tidy_books_openinglines%>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE)
+
+# Assign colors based on sentiment
+word_sentiments <- word_sentiments %>%
+  mutate(color = ifelse(sentiment == "positive", "#34c9f4", "#f35b33"))
+
+# Generate Word Cloud
+ggplot(word_sentiments, aes(label = word, size = n, color = sentiment)) +
+  geom_text_wordcloud_area() +
+  scale_color_manual(values = c("positive" = "#34c9f4", "negative" = "#f35b33")) +
+  scale_size_area(max_size = 40, trans = power_trans(1/.7)) +  theme_minimal()
+
+```
+
+]
+
+---
+
+
+## Visualize Sentiment Analysis Results (Chapter 1)
+
+```{r, echo=FALSE, warning=FALSE, fig.align='center', out.width="85%"}
+
+#install.packages("tidyverse")
+#install.packages("tidytext")
+#install.packages("ggwordcloud")
+
+library(tidyverse)
+library(tidytext)
+library(ggwordcloud)
+# Tokenize and join with sentiment lexicon
+word_sentiments <- tidy_books_chap1 %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE)
+
+# Assign colors based on sentiment
+word_sentiments <- word_sentiments %>%
+  mutate(color = ifelse(sentiment == "positive", "#34c9f4", "#f35b33"))
+
+# Generate Word Cloud
+ggplot(word_sentiments, aes(label = word, size = n, color = sentiment)) +
+  geom_text_wordcloud(rm_outside =TRUE) +
+  scale_color_manual(values = c("positive" = "#34c9f4", "negative" = "#f35b33")) +
+  scale_size_area(max_size = 20) +
+  theme_minimal()
+
+
+```
+
+<!-- Note that MISS is still the largest word, but the word cloud is more balanced -->
 ---
 
 class: middle

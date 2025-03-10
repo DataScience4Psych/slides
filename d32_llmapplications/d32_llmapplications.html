@@ -118,26 +118,17 @@ class: middle
 
 ## R Example: Text Classification (Sentiment Analysis)
 
-.midi[
+Let us perform sentiment analysis on the opening lines of Jane Austen's novels.
 
-``` r
-library(tidytext)
-library(dplyr)
-library(ggplot2)
 
-# Sample text data
-texts &lt;- c(
-  "I love this product! It's amazing.",
-  "This is terrible. I hate it.",
-  "It's okay, nothing special.",
-  "Wow, absolutely fantastic experience!",
-  "Disappointed with the quality."
-)
-
-# Create a tibble
-df &lt;- tibble(text = texts)
-```
-]
+|book                |text                                                                                                                                          |
+|:-------------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+|Sense &amp; Sensibility |The family of Dashwood had long been settled in Sussex.  Their estate was large, and their residence was at Norland Park, in the centre of    |
+|Pride &amp; Prejudice   |It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.                         |
+|Mansfield Park      |About thirty years ago Miss Maria Ward, of Huntingdon, with only seven thousand pounds, had the good luck to captivate Sir Thomas Bertram, of |
+|Emma                |Emma Woodhouse, handsome, clever, and rich, with a comfortable home and happy disposition, seemed to unite some of the best blessings of      |
+|Northanger Abbey    |No one who had ever seen Catherine Morland in her infancy would have supposed her born to be an heroine. Her situation in life, the character |
+|Persuasion          |Sir Walter Elliot, of Kellynch Hall, in Somersetshire, was a man who, for his own amusement, never took up any book but the Baronetage; there |
 
 ---
 
@@ -146,12 +137,17 @@ df &lt;- tibble(text = texts)
 .midi[
 
 ``` r
-sentiment_scores &lt;- df %&gt;%
+library(tidytext)
+library(dplyr)
+library(ggplot2)
+
+sentiment_scores &lt;- tidy_books_openinglines %&gt;%
   unnest_tokens(word, text) %&gt;%
   inner_join(get_sentiments("bing")) %&gt;%
   count(sentiment) %&gt;%
   spread(sentiment, n, fill = 0) %&gt;%
   mutate(sentiment_score = positive - negative)
+
 
 sentiment_scores
 ```
@@ -160,7 +156,7 @@ sentiment_scores
 ## # A tibble: 1 × 3
 ##   negative positive sentiment_score
 ##      &lt;dbl&gt;    &lt;dbl&gt;           &lt;dbl&gt;
-## 1        3        4               1
+## 1        1       12              11
 ```
 ]
 
@@ -168,10 +164,24 @@ sentiment_scores
 
 ## Visualize Sentiment Analysis Results
 
-.midi[
-&lt;img src="d32_llmapplications_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+.pull-left[
+
+&lt;img src="d32_llmapplications_files/figure-html/unnamed-chunk-4-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+
+&lt;img src="d32_llmapplications_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
 ]
 
+---
+
+
+## Visualize Sentiment Analysis Results (Chapter 1)
+
+&lt;img src="d32_llmapplications_files/figure-html/unnamed-chunk-6-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+&lt;!-- Note that MISS is still the largest word, but the word cloud is more balanced --&gt;
 ---
 
 class: middle
@@ -339,7 +349,7 @@ cat(generate_text("the", 8))
 ```
 
 ```
-## the fox the fox runs away quickly
+## the fox the quick brown fox jumps over the
 ```
 ]
 
@@ -612,11 +622,11 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

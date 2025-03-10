@@ -387,7 +387,8 @@ class: middle
 
 # Sources
 
-- Claude Sonnet 3.5. on 07/18/2024
+- Claude Sonnet 3.5 on 07/18/2024
+- Claude Sonnet 3.7 on 03/10/2025
 - TBD
 
----
+
