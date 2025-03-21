@@ -34,13 +34,14 @@ class: middle
 
 ---
 
-## Machine Learning in Data Science
+## What is Machine Learning?
 
 .pull-right-wide[
-- Machine Learning is a subset of data science focused on models and algorithms that allow computers to 
-  - "learn" from and make decisions based on data.
-- These models make predictions or decisions without being explicitly programmed for the task. 
-- This process involves "learning" patterns from past data to apply to new, unseen data.]
+- Machine Learning is a subset of data science focused on models and algorithms that allow computers to:
+  - "Learn" from data without being explicitly programmed for specific tasks
+  - Identify patterns and make decisions based on data
+  - Apply learned patterns from past data to new, unseen situations
+  - Improve performance with experience]
 
 ---
 
@@ -113,7 +114,7 @@ Testing assesses how well the model generalizes.
 
 ---
 
-# Machine Learning in Practice
+# Machine Learning $in$ Practice
 
 ---
 
