@@ -36,12 +36,39 @@ class: middle
 
 ## What is Machine Learning?
 
-.pull-right-wide[
 - Machine Learning is a subset of data science focused on models and algorithms that allow computers to:
   - "Learn" from data without being explicitly programmed for specific tasks
   - Identify patterns and make decisions based on data
   - Apply learned patterns from past data to new, unseen situations
-  - Improve performance with experience]
+  - Improve performance with experience
+
+
+---
+### Machine Learning vs. Traditional Statistics
+.pull-left[
+**Statistical Inference**: Focuses on inference, explanation, and uncertainty
+- Asks questions like:
+  - "Why did this happen?"
+  - "Are these groups different?"
+- Focus on hypothesis testing
+- Emphasis on model assumptions
+- Goal: understand relationships
+- Primarily explanatory
+- Concerned with p-values
+]
+
+--
+.pull-right[
+**Machine Learning**: Focuses on prediction and patterns
+- Asks questions like:
+  - "What will happen next?"
+  -  "Which category does this belong to?"
+- Focus on prediction accuracy
+- Emphasis on out-of-sample performance
+- Goal: make accurate predictions
+- Primarily predictive
+- Concerned with error rates
+]
 
 ---
 
@@ -60,12 +87,6 @@ knitr::include_graphics("img/ai_comparing_supervised.png")
 
 ]
 
----
-
-## Machine Learning vs. Traditional Statistics
-
-- **Statistical Inference:** Focus on hypothesis testing, model assumptions.
-- **Machine Learning:** Emphasis on prediction accuracy and model performance on unseen data.
 
 
 ---
