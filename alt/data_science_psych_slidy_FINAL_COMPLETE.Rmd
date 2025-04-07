@@ -1,0 +1,59 @@
+---
+title: "Welcome to Data Science <br> `r emo::ji('cat')`<br> for Psychologists"
+author: "S. Mason Garrison"
+output:
+  slidy_presentation:
+    self_contained: true
+---
+
+
+title: "Welcome to Data Science <br> `r emo::ji('cat')`<br> for Psychologists"
+author: "S. Mason Garrison"
+output:
+  slidy_presentation:
+    self_contained: true
+---
+
+
+```{r child = "../setup.Rmd"}
+```
+
+```{css, echo = F}
+.bg_orange {
+  position: relative;
+  z-index: 1;
+}
+
+.bg_orange::before {    
+      content: "";
+      background-image: url("../img/orangebook.png");
+      background-size: contain;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.10;
+      z-index: -1;
+}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+#       slideNumberFormat: ""  
+knitr::opts_chunk$set(knitr.duplicate.label = "allow")
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
+if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
+```
+
+## Hello world!
+
+## What is data science?
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-flask fa"></i> = data science?
+--
+...
