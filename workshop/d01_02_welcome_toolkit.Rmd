@@ -86,7 +86,7 @@ knitr::include_graphics("img/appendix_plot_altop_com_4520.png")
 
 ## Let's Zoom in on this a bit on these 176 million pairs
 
-```{r echo=FALSE, out.width="100%",fig.align = 'center'}
+```{r echo=FALSE, out.width="35%",fig.align = 'center'}
 knitr::include_graphics("img/appendix_plot_altop_com_10.png")
 ```
 
@@ -352,17 +352,15 @@ plot(code)
 
 --
 
-<br><br><br><br><br><br><br>
-
-```{r quickstart,echo=FALSE,out.width="10%"}
+```{r quickstart,echo=FALSE,out.width="30%"}
 library(qrcode)
-code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/1801_workshop_quickstart.html")
+code <- qr_code("https://datascience4psych.github.io/DataScience4Psych/workshop-links.html")
 plot(code)
 ```
 
 .small[
 .center[
-[Workshop Quick Start](https://DataScience4Psych.github.io/DataScience4Psych/1801_workshop_quickstart.html)
+[Workshop Quick Start](https://datascience4psych.github.io/DataScience4Psych/workshop-links.html)
 ]
 ]
 
