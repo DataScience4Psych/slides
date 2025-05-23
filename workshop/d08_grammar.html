@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Grammar of data wrangling   ⚓</title>
+    <title>Grammar of data wrangling   🏹</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -14,7 +14,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Grammar of data wrangling <br> ⚓
+# Grammar of data wrangling <br> 🏹
 ]
 .author[
 ### S. Mason Garrison
@@ -78,7 +78,7 @@ layout: true
 - Goal for original data collection: Development of prediction models to classify a hotel booking's likelihood to be canceled ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5))
 
 
-```r
+``` r
 hotels &lt;- read_csv("data/hotels.csv")
 ```
 
@@ -91,7 +91,7 @@ Source: [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master
 ## First look: Variables
 
 
-```r
+``` r
 names(hotels)
 ```
 
@@ -119,7 +119,7 @@ names(hotels)
 ## Second look: Overview
 
 
-```r
+``` r
 glimpse(hotels)
 ```
 
@@ -149,7 +149,7 @@ glimpse(hotels)
 View only `lead_time` (number of days between booking and arrival date):
 
 
-```r
+``` r
 select(hotels, lead_time)
 ```
 
@@ -172,7 +172,7 @@ select(hotels, lead_time)
 
 .pull-left[
 
-```r
+``` r
 *select(
   hotels, 
   lead_time
@@ -189,7 +189,7 @@ select(hotels, lead_time)
 
 .pull-left[
 
-```r
+``` r
 select( 
 * hotels,
   lead_time
@@ -207,7 +207,7 @@ select(
 
 .pull-left[
 
-```r
+``` r
 select( 
   hotels, 
 * lead_time
@@ -226,7 +226,7 @@ select(
 
 .pull-left[
 
-```r
+``` r
 select( 
   hotels, 
   lead_time
@@ -260,7 +260,7 @@ dplyr functions always expect a data frame and always yield a data frame.
 ]
 
 
-```r
+``` r
 select(hotels, lead_time)
 ```
 
@@ -288,7 +288,7 @@ View only the `hotel` type and `lead_time`:
 
 .pull-left[
 
-```r
+``` r
 select(hotels, hotel, lead_time)
 ```
 
@@ -319,7 +319,7 @@ What if we wanted to select these columns, and then arrange the data in descendi
 .pull-left[
 Select:
 
-```r
+``` r
 hotels %&gt;%
   select(hotel, lead_time)
 ```
@@ -342,7 +342,7 @@ hotels %&gt;%
 .pull-right[
 Select, then arrange:
 
-```r
+``` r
 hotels %&gt;%
   select(hotel, lead_time) %&gt;%
   arrange(desc(lead_time))
@@ -387,7 +387,7 @@ In programming, a pipe is a technique for passing information from one process t
 .pull-right[
 .small[
 
-```r
+``` r
 *hotels %&gt;%
   select(hotel, lead_time) %&gt;%
   arrange(desc(lead_time))
@@ -421,7 +421,7 @@ In programming, a pipe is a technique for passing information from one process t
 .pull-right[
 .small[
 
-```r
+``` r
 hotels %&gt;%
 * select(hotel, lead_time) %&gt;%
   arrange(desc(lead_time))
@@ -456,7 +456,7 @@ In programming, a pipe is a technique for passing information from one process t
 .pull-right[
 .small[
 
-```r
+``` r
 hotels %&gt;%
   select(hotel, lead_time) %&gt;% 
 * arrange(desc(lead_time))
@@ -508,7 +508,7 @@ unlock car, start car, drive to work, park.
 --
 - Expressed as a set of nested functions in R pseudocode this would look like:
 
-```r
+``` r
 park(drive(start_car(find("keys")), to = "work"))
 ```
 
@@ -516,7 +516,7 @@ park(drive(start_car(find("keys")), to = "work"))
 - Writing it out using pipes give it a more natural (and easier to read) 
 structure:
 
-```r
+``` r
 find("keys") %&gt;%
   start_car() %&gt;%
   drive(to = "work") %&gt;%
@@ -532,7 +532,7 @@ Use the dot to
 - use the previous result for multiple arguments
 
 
-```r
+``` r
 hotels %&gt;%
   filter(hotel == "Resort Hotel") %&gt;%
 * lm(adr ~ lead_time, data = .)
@@ -564,19 +564,19 @@ hotels %&gt;%
 ❌
 
 
-```r
+``` r
 hotels +
   select(hotel, lead_time)
 ```
 
 ```
-## Error in select(hotel, lead_time): object 'hotel' not found
+## Error: object 'hotel' not found
 ```
 
 ✅
 
 
-```r
+``` r
 hotels %&gt;%
   select(hotel, lead_time)
 ```
@@ -601,21 +601,21 @@ hotels %&gt;%
 ❌
 
 
-```r
+``` r
 ggplot(hotels, aes(x = hotel, fill = deposit_type)) %&gt;%
   geom_bar()
 ```
 
 ```
 ## Error in `geom_bar()`:
-## ! `mapping` must be created by `aes()`
+## ! `mapping` must be created by `aes()`.
 ## ℹ Did you use `%&gt;%` or `|&gt;` instead of `+`?
 ```
 
 ✅
 
 
-```r
+``` r
 ggplot(hotels, aes(x = hotel, fill = deposit_type)) +
   geom_bar()
 ```
@@ -635,14 +635,14 @@ Many of the styling principles are consistent across `%&gt;%` and `+`:
 ❌
 
 
-```r
+``` r
 ggplot(hotels,aes(x=hotel,y=deposit_type))+geom_bar()
 ```
 
 ✅
 
 
-```r
+``` r
 ggplot(hotels, aes(x = hotel, y = deposit_type)) + 
   geom_bar()
 ```
@@ -663,11 +663,11 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

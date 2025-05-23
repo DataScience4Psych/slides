@@ -34,8 +34,7 @@ class: center, middle
 
 # Data Science for Psychologists Workshop
 ## APS Annual Convention
-### Mason Garrison
-#### Assistant Professor of Quantitative Psychology
+### Mason Garrison & Linn Zapffe
 #### Wake Forest University
 #### wifi: psychscience25
 
@@ -266,6 +265,18 @@ plt2 %>%
   ) %>%
   plotly::config(displayModeBar = TRUE)
 ```
+
+---
+
+## Our Co-Instructor
+
+### Linn Zapffe!
+
+- Linn is an extremely recent student in the *Funded* Psychology Master's program at Wake Forest University.
+- She also was an extraordinary student in my Data Science for Psychologists class.
+- She gave a flash talk yesterday, and will be giving a poster presentation ... Sunday
+- She's graciously agreed to help me out with this workshop, and I couldn't be more grateful.
+
 
 ---
 
