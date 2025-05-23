@@ -354,9 +354,15 @@ plot(code)
 
 <br><br><br><br><br><br><br>
 
+```{r quickstart,echo=FALSE,out.width="10%"}
+library(qrcode)
+code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/1801_workshop_quickstart.html")
+plot(code)
+```
+
 .small[
 .center[
-[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
+[Workshop Quick Start](https://DataScience4Psych.github.io/DataScience4Psych/1801_workshop_quickstart.html)
 ]
 ]
 
