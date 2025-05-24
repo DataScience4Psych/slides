@@ -37,6 +37,98 @@ layout: true
 ---
 
 
+```
+## learnr (NA -&gt; a644d2dd4...) [GitHub]
+```
+
+```
+## 
+## ── R CMD build ──────────────────────────────────────────────────
+##   
+  
+  
+   checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7783d867964\rstudio-learnr-a644d2d/DESCRIPTION' ...
+  
+✔  checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7783d867964\rstudio-learnr-a644d2d/DESCRIPTION'
+## 
+  
+  
+  
+─  preparing 'learnr': (6.8s)
+##    checking DESCRIPTION meta-information ...
+  
+   checking DESCRIPTION meta-information ... 
+  
+✔  checking DESCRIPTION meta-information
+## 
+  
+  
+  
+─  checking for LF line-endings in source and make files and shell scripts (357ms)
+## 
+  
+─  checking for empty or unneeded directories
+## 
+  
+  
+  
+─  building 'learnr_0.11.5.9000.tar.gz' (363ms)
+## 
+  
+   
+## 
+```
+
+```
+## ── R CMD build ──────────────────────────────────────────────────
+##   
+  
+  
+   checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7786f101001\rstudio-gradethis-502af70/DESCRIPTION' ...
+  
+✔  checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7786f101001\rstudio-gradethis-502af70/DESCRIPTION'
+## 
+  
+  
+  
+─  preparing 'gradethis': (3.1s)
+##    checking DESCRIPTION meta-information ...
+  
+   checking DESCRIPTION meta-information ... 
+  
+✔  checking DESCRIPTION meta-information
+## 
+  
+  
+  
+─  installing the package to process help pages
+## 
+  
+  
+  
+─  saving partial Rd database (7.4s)
+## 
+  
+  
+  
+─  checking for LF line-endings in source and make files and shell scripts
+## 
+  
+─  checking for empty or unneeded directories
+##    Removed empty directory 'gradethis/archive'
+## 
+  
+   Omitted 'LazyData' from DESCRIPTION
+## 
+  
+  
+  
+─  building 'gradethis_0.2.14.tar.gz' (587ms)
+## 
+  
+   
+## 
+```
 
 class: middle
 
@@ -65,7 +157,7 @@ class: middle
 
 .center[.midi[
 
-```r
+``` r
 starwars
 ```
 
@@ -100,7 +192,7 @@ starwars
 Take a `glimpse` at the data:
 .medi[
 
-```r
+``` r
 glimpse(starwars)
 ```
 
@@ -118,7 +210,7 @@ glimpse(starwars)
 ## $ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masc…
 ## $ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine",…
 ## $ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human",…
-## $ films      &lt;list&gt; &lt;"The Empire Strikes Back", "Revenge of the…
+## $ films      &lt;list&gt; &lt;"A New Hope", "The Empire Strikes Back", "…
 ## $ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;…
 ## $ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TI…
 ```
@@ -132,7 +224,7 @@ What does each column represent?
 ]
 
 
-```r
+``` r
 ?starwars
 ```
 
@@ -146,7 +238,7 @@ How many rows and columns does this dataset have?
 
 .pull-left[
 
-```r
+``` r
 nrow(starwars) # number of rows
 ```
 
@@ -154,7 +246,7 @@ nrow(starwars) # number of rows
 ## [1] 87
 ```
 
-```r
+``` r
 ncol(starwars) # number of columns
 ```
 
@@ -162,7 +254,7 @@ ncol(starwars) # number of columns
 ## [1] 14
 ```
 
-```r
+``` r
 dim(starwars)  # dimensions (row column)
 ```
 
@@ -195,7 +287,7 @@ Who is the not so tall but really chubby character?
 ## Mass vs. height
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   labs(title = "Mass vs. height of Starwars characters",
@@ -203,8 +295,8 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ```
 
 ```
-## Warning: Removed 28 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 28 rows containing missing values or values outside the
+## scale range (`geom_point()`).
 ```
 
 &lt;img src="d03_dataviz_files/figure-html/mass-height-1.png" width="50%" style="display: block; margin: auto;" /&gt;
@@ -219,7 +311,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ]
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_point() +
   labs(title = "Mass vs. height of Starwars characters",
@@ -227,8 +319,8 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ```
 
 ```
-## Warning: Removed 28 rows containing missing values
-## (`geom_point()`).
+## Warning: Removed 28 rows containing missing values or values outside the
+## scale range (`geom_point()`).
 ```
 
 .footnote[
@@ -252,7 +344,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ]
 --
 
-```r
+``` r
 ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
    geom_xxx() +
@@ -273,7 +365,7 @@ ggplot(data = [dataset],
 - The ggplot2 package comes with the tidyverse
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -367,7 +459,7 @@ class: middle
 &lt;br&gt;
 .medi.pull-left-narrow[
 
-```r
+``` r
 quartet %&gt;%
   group_by(set) %&gt;%
   summarize(
@@ -408,10 +500,10 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
