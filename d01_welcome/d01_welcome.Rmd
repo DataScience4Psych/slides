@@ -449,11 +449,13 @@ class: middle
 
 # Wrapping Up...
 
-```{r qr}
+.medi[
+```{r qr,echo=TRUE,out.width="50%"}
 library(qrcode)
 code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
 plot(code)
 ```
+]
 ---
 
 class: middle
