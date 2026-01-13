@@ -48,6 +48,7 @@ if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
 if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
 if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
+library(magick); library(pdftools)
 ```
 
 
@@ -214,7 +215,7 @@ class: middle, bg_orange
 ]
 
 --
-+ PSY 703: Data Science for Psychologists
++ Data Science for Psychologists
   + Flipped Classroom
 <br><br>
 {{content}}
@@ -242,8 +243,8 @@ class: middle, bg_orange
 --
 
 - Meet twice a week 
-	- Mondays are Face-to-Face Tutorials
-	- Wednesdays are Solidarity Sessions
+	- Tuesdays are Face-to-Face Tutorials
+	- Thursdays are Solidarity Sessions
 --
 
 - Bring your laptop! `r emo::ji('computer')`
@@ -323,14 +324,25 @@ knitr::include_graphics("img/p0.png")
 ---
 
 # Learning Outcomes
-
+.pull-left[
 - Using R to visualize and model many kinds of data.
 - Given a dataset,
 	- able to visualize
 	- generate hypotheses
 	- investigate those hypotheses, &
 	- communicate your results.
-	
+]
+.pull-right[
+```{r echo=FALSE, out.width="99%"}
+# r code to generate this figure is plot_jas.R
+magick::image_read_pdf("img/ggpedigree_plot-1.pdf",
+                       pages = 1)
+```
+
+.footnote[Garrison, S. M. (recommended accept). ggpedigree: Visualizing Pedigrees with 'ggplot2' and 'plotly'. *Journal of Open Source Software, 9*(97), 5436. https://doi.org/10.21105/joss.09434
+]
+]
+
 ---
 
 # Materials
@@ -350,14 +362,22 @@ knitr::include_graphics("img/p0.png")
 	- R
 	- Rstudio,
 	- Github
-	  
+
+
 ---
 
 # Milestones
-
+.pull-left[
+.large[
 - Labs
 - Portfolio
-
+]
+]
+.pull-right[
+```{r ref.label="qr",echo=FALSE,out.width="100%"}
+```
+.footnote[ [datascience4psych.github.io/DataScience4Psych](https://datascience4psych.github.io/DataScience4Psych/)]
+]
 
 ---
 # Contract Grading
@@ -371,7 +391,7 @@ knitr::include_graphics("img/p0.png")
 
 ## Diversity & Inclusion:
 
-.midi[
+.medi[
 **Intent:** Students from all diverse backgrounds and perspectives be well-served by this course, that students' learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit. It is my intent to present materials and activities that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture. Let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.
 ]
 
@@ -429,7 +449,11 @@ class: middle
 
 # Wrapping Up...
 
-
+```{r qr}
+library(qrcode)
+code <- qr_code("https://DataScience4Psych.github.io/DataScience4Psych/")
+plot(code)
+```
 ---
 
 class: middle
