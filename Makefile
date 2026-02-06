@@ -19,28 +19,28 @@ help: ## Show this help message
 		awk 'BEGIN {FS = ":.*?## "}; {printf "  %-18s %s\n", $$1, $$2}'
 
 list: ## List all slide decks found in the repo
-	@Rscript build.R --dry-run
+	@Rscript scripts/build.R --dry-run
 
 validate: ## Run validation checks on all slide decks
-	@Rscript validate.R
+	@Rscript scripts/validate.R
 
 validate-fix: ## Run validation checks with suggested fixes
-	@Rscript validate.R --fix
+	@Rscript scripts/validate.R --fix
 
 build-all: ## Compile all slide decks
-	Rscript build.R
+	Rscript scripts/build.R
 
 build-changed: ## Compile only decks with modified .Rmd files
-	Rscript build.R --changed
+	Rscript scripts/build.R --changed
 
 build: ## Compile a specific deck (usage: make build DECK=d03_dataviz)
 ifndef DECK
 	$(error DECK is not set. Usage: make build DECK=d03_dataviz)
 endif
-	Rscript build.R $(DECK)
+	Rscript scripts/build.R $(DECK)
 
 index: ## Rebuild the slide index/sitemap page
-	Rscript build.R --index
+	Rscript scripts/build.R --index
 
 clean-cache: ## Remove all knitr cache and intermediate files
 	find . -type d -name "*_cache" -exec rm -rf {} + 2>/dev/null || true
