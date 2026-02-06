@@ -1,0 +1,87 @@
+Type: Compendium
+Package: DataScience4Psych.slides
+Title: Data Science for Psychologists - Slide Decks
+Version: 1.0.0
+Authors@R: person("S. Mason", "Garrison", role = c("aut", "cre"))
+Description: Xaringan slide decks for the Data Science for Psychologists course.
+    This DESCRIPTION file is used for dependency management with remotes::install_deps().
+License: CC BY-SA 4.0
+Depends:
+    R (>= 4.1.0)
+Imports:
+    conflicted,
+    dplyr,
+    emo,
+    fontawesome,
+    gapminder,
+    ggplot2,
+    glue,
+    gt,
+    htmltools,
+    knitr,
+    lubridate,
+    magick,
+    palmerpenguins,
+    patchwork,
+    rmarkdown,
+    scales,
+    stringi,
+    tidyverse,
+    xaringan,
+    xaringanExtra
+Suggests:
+    BGmisc,
+    caret,
+    countdown,
+    DAAG,
+    doParallel,
+    DT,
+    dsbox,
+    e1071,
+    furrr,
+    gghighlight,
+    ggpedigree,
+    ggridges,
+    ggtext,
+    ggwordcloud,
+    gradethis,
+    here,
+    htmlwidgets,
+    janeaustenr,
+    janitor,
+    jasmines,
+    kableExtra,
+    mathart,
+    mlbench,
+    openintro,
+    pdftools,
+    plotly,
+    qrcode,
+    readxl,
+    remotes,
+    reshape2,
+    robotstxt,
+    rvest,
+    shiny,
+    skimr,
+    stringr,
+    ThemePark,
+    tibble,
+    tidymodels,
+    tidytext,
+    Tmisc,
+    viridis,
+    vroom,
+    widgetframe
+Remotes:
+    hadley/emo,
+    djnavarro/jasmines,
+    marcusvolz/mathart,
+    rstudio-education/dsbox,
+    rstudio-education/gradethis,
+    R-Computing-Lab/BGmisc,
+    R-Computing-Lab/ggpedigree,
+    MatthewBJane/ThemePark,
+    gadenbuie/countdown,
+    mine-cetinkaya-rundel/nycsquirrels18
+Encoding: UTF-8
