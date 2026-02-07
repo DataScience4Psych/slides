@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
@@ -15,8 +15,12 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Fitting and interpreting models<br> 🏈
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -38,6 +42,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Specify, set, and fit linear regression models using tidymodels
+- Interpret slope and intercept coefficients in context
+- Apply least squares regression and residual analysis
+- Distinguish between numerical and categorical explanatory variables
+
+---
+
+class: middle
+
 # Models with numerical explanatory variables
 
 ---
@@ -46,7 +67,7 @@ class: middle
 ## Data: Paris Paintings
 
 
-```r
+``` r
 pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 ```
 
@@ -59,19 +80,19 @@ pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 
 `$$\widehat{height}_{i} = \beta_0 + \beta_1 \times width_{i}$$`
 
-&lt;img src="d21_fitting_files/figure-html/height-width-plot-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/height-width-plot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-&lt;img src="img/tidymodels.png" width="98%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/tidymodels.png" alt="" width="98%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Step 1: Specify model
 
 
-```r
+``` r
 linear_reg()
 ```
 
@@ -86,7 +107,7 @@ linear_reg()
 ## Step 2: Set model fitting *engine*
 
 
-```r
+``` r
 linear_reg() %&gt;%
   set_engine("lm") # lm: linear model
 ```
@@ -104,7 +125,7 @@ linear_reg() %&gt;%
 ... using **formula syntax**
 
 
-```r
+``` r
 linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(Height_in ~ Width_in, data = pp)
@@ -113,7 +134,6 @@ linear_reg() %&gt;%
 ```
 ## parsnip model object
 ## 
-## Fit time:  0ms 
 ## 
 ## Call:
 ## stats::lm(formula = Height_in ~ Width_in, data = data)
@@ -131,7 +151,6 @@ linear_reg() %&gt;%
 ```
 ## parsnip model object
 ## 
-## Fit time:  0ms 
 ## 
 ## Call:
 ## stats::lm(formula = Height_in ~ Width_in, data = data)
@@ -150,7 +169,7 @@ linear_reg() %&gt;%
 ## A tidy look at model output
 
 
-```r
+``` r
 linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(Height_in ~ Width_in, data = pp) %&gt;%
@@ -158,7 +177,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)    3.62    0.254        14.3 8.82e-45
@@ -190,7 +209,7 @@ linear_reg() %&gt;%
 
 Remember this adage when interpreting model coefficients
 
-&lt;img src="img/cell_phones.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/cell_phones.png" alt="" width="90%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: XKCD, [Cell phones](https://xkcd.com/925/)
@@ -232,19 +251,19 @@ class: middle
 
 ## Visualizing residuals
 
-&lt;img src="d21_fitting_files/figure-html/vis-res-1-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/vis-res-1-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Visualizing residuals (cont.)
 
-&lt;img src="d21_fitting_files/figure-html/vis-res-2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/vis-res-2-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Visualizing residuals (cont.)
 
-&lt;img src="d21_fitting_files/figure-html/vis-res-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d21_fitting_files/figure-html/vis-res-3-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -297,7 +316,7 @@ class: middle
 .midi[
 
 ```
-## # A tibble: 3,393 x 3
+## # A tibble: 3,393 × 3
 ##    name      Height_in landsALL
 ##    &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 L1764-2          37        0
@@ -320,7 +339,7 @@ class: middle
 ## 18 L1764-13a        15        1
 ## 19 L1764-13b        15        1
 ## 20 L1764-14         37        0
-## # ... with 3,373 more rows
+## # ℹ 3,373 more rows
 ```
 ]
 ]
@@ -334,7 +353,7 @@ class: middle
 ## Height &amp; landscape features
 
 
-```r
+``` r
 linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(Height_in ~ factor(landsALL), data = pp) %&gt;%
@@ -342,7 +361,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term              estimate std.error statistic  p.value
 ##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)          22.7      0.328      69.1 0       
@@ -364,7 +383,7 @@ linear_reg() %&gt;%
 ## Relationship between height and school
 
 
-```r
+``` r
 linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(Height_in ~ school_pntg, data = pp) %&gt;%
@@ -372,7 +391,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 7 x 5
+## # A tibble: 7 × 5
 ##   term            estimate std.error statistic p.value
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)        14.0       10.0     1.40  0.162  
@@ -390,7 +409,7 @@ linear_reg() %&gt;%
 
 
 ```
-## # A tibble: 7 x 5
+## # A tibble: 7 × 5
 ##   term            estimate std.error statistic p.value
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)        14.0       10.0     1.40  0.162  
@@ -411,7 +430,7 @@ linear_reg() %&gt;%
 ## Categorical predictor with 3+ levels
 
 .pull-left-wide[
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; school_pntg &lt;/th&gt;
@@ -426,66 +445,66 @@ linear_reg() %&gt;%
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; D/FL &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 255) !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 255) !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; G &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 255) !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; I &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 255) !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; S &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 255) !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; X &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 1) !important;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 1) !important;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(68, 1, 84, 255) !important;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 10em; color: white !important;background-color: rgba(122, 209, 81, 255) !important;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -494,7 +513,7 @@ linear_reg() %&gt;%
 .small[
 
 ```
-## # A tibble: 3,393 x 3
+## # A tibble: 3,393 × 3
 ##    name      Height_in school_pntg
 ##    &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      
 ##  1 L1764-2          37 F          
@@ -517,7 +536,7 @@ linear_reg() %&gt;%
 ## 18 L1764-13a        15 D/FL       
 ## 19 L1764-13b        15 D/FL       
 ## 20 L1764-14         37 F          
-## # ... with 3,373 more rows
+## # ℹ 3,373 more rows
 ```
 ]
 ]
@@ -529,7 +548,7 @@ linear_reg() %&gt;%
 .small[
 
 ```
-## # A tibble: 7 x 5
+## # A tibble: 7 × 5
 ##   term            estimate std.error statistic p.value
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)        14.0       10.0     1.40  0.162  
@@ -556,6 +575,32 @@ linear_reg() %&gt;%
 
 class: middle
 
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Linear regression with tidymodels
+- ✅ Slope and intercept interpretation
+- ✅ Least squares principles
+]
+
+.pull-right[
+### Skills
+- ✅ Fit regression models
+- ✅ Analyze residuals
+- ✅ Use dummy variables
+]
+
+---
+
+class: middle
+
 # Wrapping Up... 
 
 &lt;br&gt;
@@ -567,11 +612,11 @@ Sources:
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -612,6 +657,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

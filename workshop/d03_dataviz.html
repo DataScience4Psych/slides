@@ -37,98 +37,6 @@ layout: true
 ---
 
 
-```
-## learnr (NA -&gt; a644d2dd4...) [GitHub]
-```
-
-```
-## 
-## ── R CMD build ──────────────────────────────────────────────────
-##   
-  
-  
-   checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7783d867964\rstudio-learnr-a644d2d/DESCRIPTION' ...
-  
-✔  checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7783d867964\rstudio-learnr-a644d2d/DESCRIPTION'
-## 
-  
-  
-  
-─  preparing 'learnr': (6.8s)
-##    checking DESCRIPTION meta-information ...
-  
-   checking DESCRIPTION meta-information ... 
-  
-✔  checking DESCRIPTION meta-information
-## 
-  
-  
-  
-─  checking for LF line-endings in source and make files and shell scripts (357ms)
-## 
-  
-─  checking for empty or unneeded directories
-## 
-  
-  
-  
-─  building 'learnr_0.11.5.9000.tar.gz' (363ms)
-## 
-  
-   
-## 
-```
-
-```
-## ── R CMD build ──────────────────────────────────────────────────
-##   
-  
-  
-   checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7786f101001\rstudio-gradethis-502af70/DESCRIPTION' ...
-  
-✔  checking for file 'C:\Users\smaso\AppData\Local\Temp\RtmpwPhRPP\remotes7786f101001\rstudio-gradethis-502af70/DESCRIPTION'
-## 
-  
-  
-  
-─  preparing 'gradethis': (3.1s)
-##    checking DESCRIPTION meta-information ...
-  
-   checking DESCRIPTION meta-information ... 
-  
-✔  checking DESCRIPTION meta-information
-## 
-  
-  
-  
-─  installing the package to process help pages
-## 
-  
-  
-  
-─  saving partial Rd database (7.4s)
-## 
-  
-  
-  
-─  checking for LF line-endings in source and make files and shell scripts
-## 
-  
-─  checking for empty or unneeded directories
-##    Removed empty directory 'gradethis/archive'
-## 
-  
-   Omitted 'LazyData' from DESCRIPTION
-## 
-  
-  
-  
-─  building 'gradethis_0.2.14.tar.gz' (587ms)
-## 
-  
-   
-## 
-```
 
 class: middle
 
@@ -144,7 +52,7 @@ class: middle
 ]
 
 .pull-right[
-&lt;img src="img/orangebook.png" width="77%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/orangebook.png" alt="" width="77%" style="display: block; margin: auto;" /&gt;
 ] 
 
 
@@ -163,15 +71,19 @@ starwars
 
 ```
 ## # A tibble: 87 × 14
-##   name    height  mass hair_color skin_color eye_color birth_year
-##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
-## 1 Luke S…    172    77 blond      fair       blue            19  
-## 2 C-3PO      167    75 &lt;NA&gt;       gold       yellow         112  
-## 3 R2-D2       96    32 &lt;NA&gt;       white, bl… red             33  
-## 4 Darth …    202   136 none       white      yellow          41.9
-## 5 Leia O…    150    49 brown      light      brown           19  
-## 6 Owen L…    178   120 brown, gr… light      blue            52  
-## # ℹ 81 more rows
+##    name   height  mass hair_color skin_color eye_color birth_year
+##    &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;
+##  1 Luke …    172    77 blond      fair       blue            19  
+##  2 C-3PO     167    75 &lt;NA&gt;       gold       yellow         112  
+##  3 R2-D2      96    32 &lt;NA&gt;       white, bl… red             33  
+##  4 Darth…    202   136 none       white      yellow          41.9
+##  5 Leia …    150    49 brown      light      brown           19  
+##  6 Owen …    178   120 brown, gr… light      blue            52  
+##  7 Beru …    165    75 brown      light      blue            47  
+##  8 R5-D4      97    32 &lt;NA&gt;       white, red red             NA  
+##  9 Biggs…    183    84 black      light      brown           24  
+## 10 Obi-W…    182    77 auburn, w… fair       blue-gray       57  
+## # ℹ 77 more rows
 ## # ℹ 7 more variables: sex &lt;chr&gt;, gender &lt;chr&gt;, homeworld &lt;chr&gt;,
 ## #   species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
 ## #   starships &lt;list&gt;
@@ -228,7 +140,7 @@ What does each column represent?
 ?starwars
 ```
 
-&lt;img src="img/starwars-help.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/starwars-help.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -273,13 +185,13 @@ What other variables would help us understand data points that don't follow the 
 Who is the not so tall but really chubby character?
 ]
 
-&lt;img src="d03_dataviz_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d03_dataviz_files/figure-html/unnamed-chunk-8-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Jabba!
 
-&lt;img src="img/jabbaplot.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/jabbaplot.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -299,7 +211,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## scale range (`geom_point()`).
 ```
 
-&lt;img src="d03_dataviz_files/figure-html/mass-height-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d03_dataviz_files/figure-html/mass-height-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -332,7 +244,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Hello ggplot2!
 
 .pull-left-narrow[
-&lt;img src="img/ggplot2-part-of-tidyverse.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/ggplot2-part-of-tidyverse.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ] 
 .pull-right[
 - **ggplot2** is tidyverse's data visualization package 
@@ -373,7 +285,7 @@ library(tidyverse)
 
 ]
 .pull-right-wide[
-&lt;img src="img/grammar-of-graphics.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/grammar-of-graphics.png" alt="" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[ Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html)]
@@ -488,7 +400,7 @@ quartet %&gt;%
 ## Visualizing Anscombe's quartet
 &lt;br&gt;
 .middle[
-&lt;img src="d03_dataviz_files/figure-html/quartet-plot-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d03_dataviz_files/figure-html/quartet-plot-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 class: middle

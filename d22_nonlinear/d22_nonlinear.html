@@ -40,6 +40,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Identify model violations through residual plots and diagnostics
+- Apply log transformations to linearize non-linear relationships
+- Interpret slope coefficients from log-transformed models
+- Evaluate when transformations improve model fit
+
+---
+
+class: middle
+
 # Model checking
 
 ---
@@ -47,7 +64,7 @@ class: middle
 ## Data: Paris Paintings
 
 
-```r
+``` r
 pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 ```
 
@@ -67,13 +84,13 @@ pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 
 
 .panel[.panel-name[Plot]
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-3-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 .panel[.panel-name[Code]
 
-```r
+``` r
 ht_wt_fit &lt;- linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(Height_in ~ Width_in, data = pp)
@@ -92,7 +109,7 @@ ggplot(ht_wt_fit_aug, mapping = aes(x = .fitted, y = .resid)) +
 
 .panel[.panel-name[Augment]
 
-```r
+``` r
 ht_wt_fit_aug
 ```
 
@@ -121,7 +138,7 @@ ht_wt_fit_aug
 ## More on `augment()`
 
 
-```r
+``` r
 glimpse(ht_wt_fit_aug)
 ```
 
@@ -147,7 +164,7 @@ glimpse(ht_wt_fit_aug)
 - Residuals distributed randomly around 0
 - With no visible pattern along the x or y axes
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-7-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -157,7 +174,7 @@ glimpse(ht_wt_fit_aug)
 **Fan shapes**
 ]
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-8-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -167,7 +184,7 @@ glimpse(ht_wt_fit_aug)
 **Groups of patterns**
 ]
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-9-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -177,7 +194,7 @@ glimpse(ht_wt_fit_aug)
 **Residuals correlated with predicted values**
 ]
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-10-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -187,7 +204,7 @@ glimpse(ht_wt_fit_aug)
 **Any patterns!**
 ]
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-11-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-11-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -195,7 +212,7 @@ glimpse(ht_wt_fit_aug)
 What patterns does the residuals plot reveal that should make us question whether a linear model is a good fit for modeling the relationship between height and width of paintings?
 ]
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-12-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-12-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -207,13 +224,13 @@ class: middle
 
 ## Data: Paris Paintings
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-13-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Price vs. width
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-14-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -222,7 +239,7 @@ class: middle
 That is, paintings with width &lt; 2.54 m
 
 
-```r
+``` r
 pp_wt_lt_100 &lt;- pp %&gt;% 
   filter(Width_in &lt; 100)
 ```
@@ -238,11 +255,11 @@ Which plot shows a more linear relationship?
 .small[
   
 .pull-left[
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-16-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-17-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ]
@@ -257,10 +274,10 @@ Which plot shows a more linear relationship?
 ]
   
 .pull-left[
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-18-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-19-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -290,14 +307,14 @@ be useful.
 How do we interpret the slope of this model?
 ]
 
-&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-20-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d22_nonlinear_files/figure-html/unnamed-chunk-20-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Models with log transformation
 
 
-```r
+``` r
 linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(log(price) ~ Width_in, data = pp_wt_lt_100) %&gt;%
@@ -411,7 +428,7 @@ the slope changes: *"For each unit increase in x, y is expected on average to be
 In some cases, the value of the response variable might be 0, and
 
 
-```r
+``` r
 log(0)
 ```
 
@@ -424,7 +441,7 @@ log(0)
 The trick is to add a very small number to the value of the response variable for these cases so that the `log` function can still be applied:
 
 
-```r
+``` r
 log(0 + 0.00001)
 ```
 
@@ -432,6 +449,32 @@ log(0 + 0.00001)
 ## [1] -11.51293
 ```
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Model violations and diagnostics
+- ✅ Log transformations
+- ✅ Non-linear relationships
+]
+
+.pull-right[
+### Skills
+- ✅ Interpret residual plots
+- ✅ Apply transformations
+- ✅ Evaluate model improvements
+]
 
 ---
 
@@ -448,11 +491,11 @@ Sources:
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

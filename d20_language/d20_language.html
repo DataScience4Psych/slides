@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # The language of models<br> 💁
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -37,6 +41,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Conceptualize models as mathematical functions describing relationships
+- Interpret residuals and assess model fit
+- Compare linear vs. non-linear modeling approaches
+- Predict outcomes using response and explanatory variables
+
+---
+
+class: middle
+
 # What is a model?
 
 ---
@@ -47,16 +68,16 @@ class: middle
 - For now, we will focus on **linear** models (but remember there are *many* *many* other types of models too!)
 
 .pull-left[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-2-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-3-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
 ## Recall
 
-+ In your other classes, you learned how to infer parameter values and test hypotheses. 
++ In your other classes, you've hopefully learned how to infer parameter values and test hypotheses. 
 + Those parameter estimates and the corresponding tests are valid,
 	+ given certain assumptions about the data. 
 + In other videos, we're going to talk about: 
@@ -79,7 +100,7 @@ class: middle
 ## Paris Paintings
 
 
-```r
+``` r
 pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 ```
 
@@ -99,7 +120,7 @@ pp &lt;- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 
 ## Auctions back in the day
 
-&lt;img src="img/old-auction.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/old-auction.png" alt="" width="65%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 .small[
@@ -111,7 +132,7 @@ Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, P
 
 ## Paris auction market
 
-&lt;img src="img/auction-trend-paris.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/auction-trend-paris.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 .small[
@@ -123,14 +144,14 @@ Plot credit: Sandra van Ginhoven
 
 ## Départ pour la chasse
 
-&lt;img src="img/depart-pour-la-chasse.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/depart-pour-la-chasse.png" alt="" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Auction catalog text
 
 .pull-left[
-&lt;img src="img/auction-catalogue.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/auction-catalogue.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 .small[
@@ -140,12 +161,12 @@ Two paintings very rich in composition, of a beautiful execution, and whose meri
 
 ---
 
-&lt;img src="img/painting1.png" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="img/painting2.png" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="img/painting3.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/painting1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="img/painting2.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="img/painting3.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 
-```r
+``` r
 pp %&gt;%
   filter(name == "R1777-89a") %&gt;%
   glimpse()
@@ -170,12 +191,12 @@ pp %&gt;%
 ## $ logprice          &lt;dbl&gt; 8.575462
 ## $ price             &lt;dbl&gt; 5300
 ## $ count             &lt;dbl&gt; 1
-## $ subject           &lt;chr&gt; "D\u008epart pour la chasse"
+## $ subject           &lt;chr&gt; "D\x8epart pour la chasse"
 ## $ authorstandard    &lt;chr&gt; "Wouwerman, Philips"
 ## $ artistliving      &lt;dbl&gt; 0
 ## $ authorstyle       &lt;chr&gt; NA
 ## $ author            &lt;chr&gt; "Philippe Wouwermans"
-## $ winningbidder     &lt;chr&gt; "Langlier, Jacques for Poullain, Anto~
+## $ winningbidder     &lt;chr&gt; "Langlier, Jacques for Poullain, Anto…
 ## $ winningbiddertype &lt;chr&gt; "DC"
 ## $ endbuyer          &lt;chr&gt; "C"
 ...
@@ -231,13 +252,13 @@ class: middle
 
 .small[
 
-```r
+``` r
 ggplot(data = pp, aes(x = Height_in)) +
   geom_histogram(binwidth = 5) +
   labs(x = "Height, in inches", y = NULL)
 ```
 
-&lt;img src="d20_language_files/figure-html/height-dist-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/height-dist-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -246,13 +267,13 @@ ggplot(data = pp, aes(x = Height_in)) +
 
 .small[
 
-```r
+``` r
 ggplot(data = pp, aes(x = Width_in)) +
   geom_histogram(binwidth = 5) +
   labs(x = "Width, in inches", y = NULL)
 ```
 
-&lt;img src="d20_language_files/figure-html/width-dist-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/width-dist-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -271,12 +292,12 @@ ggplot(data = pp, aes(x = Width_in)) +
 ## Height as a function of width
 
 .pull-left[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-13-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .small.pull-right[
 
-```r
+``` r
 ggplot(data = pp, 
        aes(x = Width_in, y = Height_in)) +
   geom_point() +
@@ -290,12 +311,13 @@ ggplot(data = pp,
 ```
 
 ```
-## Warning: Removed 258 rows containing non-finite values
-## (stat_smooth).
+## Warning: Removed 258 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
 ```
 
 ```
-## Warning: Removed 258 rows containing missing values (geom_point).
+## Warning: Removed 258 rows containing missing values or values outside the
+## scale range (`geom_point()`).
 ```
 ]
 
@@ -305,13 +327,13 @@ ggplot(data = pp,
 ## ... without the measure of uncertainty
 
 .pull-left[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-14-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .small.pull-right[
 
-```r
+``` r
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
   geom_smooth(method = "lm", 
@@ -331,11 +353,11 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## ... with different cosmetic choices
 
 .pull-left[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-15-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .small.pull-right[
 
-```r
+``` r
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE,
@@ -355,11 +377,11 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## Other smoothing methods: gam
 
 .pull-left[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-16-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .small.pull-right[
 
-```r
+``` r
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
 * geom_smooth(method = "gam",
@@ -379,12 +401,12 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## Other smoothing methods: loess
 
 .pull-left[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-17-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .small.pull-right[
 
-```r
+``` r
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
 * geom_smooth(method = "loess",
@@ -425,14 +447,14 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## Residuals
 
 
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-18-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Residuals (Code)
 .midi[
 
-```r
+``` r
 ht_wt_fit &lt;- linear_reg() %&gt;%
   set_engine("lm") %&gt;%
   fit(Height_in ~ Width_in, data = pp)
@@ -464,7 +486,7 @@ ggplot(data = ht_wt_fit_aug) +
 The plot below displays the relationship between height and width of paintings. The only difference from the previous plots is that it uses a smaller alpha value, making the points somewhat transparent. What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?
 ]
 
-&lt;img src="d20_language_files/figure-html/height-width-plot-alpha-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/height-width-plot-alpha-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -492,7 +514,7 @@ How, if at all, does the relationship between width and height of paintings vary
 ]
 ]
 .pull-right-wide[
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-19-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-19-1.png" alt="" width="90%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -501,7 +523,7 @@ How, if at all, does the relationship between width and height of paintings vary
 ## Code
 
 
-```r
+``` r
 ggplot(data = pp, 
        aes(x = Width_in, y = Height_in, color = factor(landsALL))) +
   geom_point(alpha = 0.4) +
@@ -523,14 +545,14 @@ ggplot(data = pp,
 
 
 .panel[.panel-name[Plot]
-&lt;img src="d20_language_files/figure-html/unnamed-chunk-20-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d20_language_files/figure-html/unnamed-chunk-20-1.png" alt="" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(data = pp, 
        aes(x = Width_in, y = Height_in, color = factor(landsALL))) +
   geom_point(alpha = 0.4) +
@@ -588,6 +610,32 @@ is just as important as the model, if not more!
 
 class: middle
 
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Models as mathematical functions
+- ✅ Response vs. explanatory variables
+- ✅ Residuals and model fit
+]
+
+.pull-right[
+### Skills
+- ✅ Interpret model outputs
+- ✅ Compare modeling approaches
+- ✅ Make predictions
+]
+
+---
+
+class: middle
+
 # Wrapping Up... 
 
 &lt;br&gt;
@@ -599,11 +647,11 @@ Sources:
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -644,6 +692,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

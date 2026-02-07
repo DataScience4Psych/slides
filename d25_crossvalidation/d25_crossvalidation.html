@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Cross validation<br> ⛑
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -36,6 +40,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Perform v-fold cross-validation to assess model generalization
+- Build and evaluate complete modeling workflows with recipes
+- Calculate performance metrics (RMSE, R²) on training and test data
+- Compare training vs. test performance to detect overfitting
+
+---
+
+class: middle
+
 # Data and exploration
 
 ---
@@ -48,26 +69,26 @@ class: middle
 ## Data
 
 
-```r
+``` r
 office_ratings &lt;- read_csv("data/office_ratings.csv")
 office_ratings
 ```
 
 ```
-## # A tibble: 188 x 6
+## # A tibble: 188 × 6
 ##    season episode title        imdb_rating total_votes air_date  
 ##     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    
 ##  1      1       1 Pilot                7.6        3706 2005-03-24
-##  2      1       2 Diversity D~         8.3        3566 2005-03-29
+##  2      1       2 Diversity D…         8.3        3566 2005-03-29
 ##  3      1       3 Health Care          7.9        2983 2005-04-05
 ##  4      1       4 The Alliance         8.1        2886 2005-04-12
 ##  5      1       5 Basketball           8.4        3179 2005-04-19
 ##  6      1       6 Hot Girl             7.8        2852 2005-04-26
 ##  7      2       1 The Dundies          8.7        3213 2005-09-20
-##  8      2       2 Sexual Hara~         8.2        2736 2005-09-27
-##  9      2       3 Office Olym~         8.4        2742 2005-10-04
+##  8      2       2 Sexual Hara…         8.2        2736 2005-09-27
+##  9      2       3 Office Olym…         8.4        2742 2005-10-04
 ## 10      2       4 The Fire             8.4        2713 2005-10-11
-## # ... with 178 more rows
+## # ℹ 178 more rows
 ```
 
 .footnote[
@@ -80,13 +101,13 @@ Source: The data come from [data.world](https://data.world/anujjain7/the-office-
 
 ## IMDB ratings
 .pull-left-wide[
-&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-3-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .small.pull-right-narrow[
 
-```r
+``` r
 ggplot(office_ratings, 
        aes(x = imdb_rating)) +
   geom_histogram(binwidth = 0.25) +
@@ -102,13 +123,13 @@ ggplot(office_ratings,
 ## IMDB ratings vs. number of votes
 
 .pull-left-wide[
-&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-4-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .small.pull-right-narrow[
 
-```r
+``` r
 ggplot(office_ratings, 
        aes(x = total_votes, 
            y = imdb_rating, 
@@ -128,13 +149,13 @@ ggplot(office_ratings,
 ## Outliers
 
 .pull-left-wide[
-&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-5-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .small.pull-right-narrow[
 
-```r
+``` r
 ggplot(office_ratings, 
        aes(x = total_votes, 
            y = imdb_rating)) +
@@ -160,13 +181,13 @@ If you like the [Dinner Party](https://www.imdb.com/title/tt1031477/) episode, I
 ## IMDB ratings vs. seasons
 
 .pull-left-wide[
-&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d25_crossvalidation_files/figure-html/unnamed-chunk-6-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 .small.pull-right-narrow[
 
-```r
+``` r
 ggplot(office_ratings, 
        aes(x = factor(season),
            y = imdb_rating,
@@ -195,7 +216,7 @@ class: middle
 - Create an initial split
 
 
-```r
+``` r
 set.seed(1122)
 office_split &lt;- initial_split(office_ratings) # prop = 3/4 by default
 ```
@@ -205,7 +226,7 @@ office_split &lt;- initial_split(office_ratings) # prop = 3/4 by default
 - Save training data
 .medi[
 
-```r
+``` r
 office_train &lt;- training(office_split)
 dim(office_train)
 ```
@@ -220,7 +241,7 @@ dim(office_train)
 - Save testing data
 .medi[
 
-```r
+``` r
 office_test  &lt;- testing(office_split)
 dim(office_test)
 ```
@@ -235,7 +256,7 @@ dim(office_test)
 ## Specify model
 
 
-```r
+``` r
 office_mod &lt;- linear_reg() %&gt;%
   set_engine("lm")
 
@@ -255,7 +276,7 @@ office_mod
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 office_rec &lt;- recipe(imdb_rating ~ ., data = office_train) %&gt;%
   # title isn't a predictor, but keep around to ID
   update_role(title, new_role = "ID") %&gt;%
@@ -275,26 +296,8 @@ office_rec &lt;- recipe(imdb_rating ~ ., data = office_train) %&gt;%
 .panel[.panel-name[Output]
 .small[
 
-```r
+``` r
 office_rec
-```
-
-```
-## Recipe
-## 
-## Inputs:
-## 
-##       role #variables
-##         ID          1
-##    outcome          1
-##  predictor          4
-## 
-## Operations:
-## 
-## Date features from air_date
-## Variables removed air_date
-## Dummy variables from contains("month")
-## Zero variance filter on all_predictors()
 ```
 ]
 ]
@@ -307,7 +310,7 @@ office_rec
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 office_wflow &lt;- workflow() %&gt;%
   add_model(office_mod) %&gt;%
   add_recipe(office_rec)
@@ -316,24 +319,24 @@ office_wflow &lt;- workflow() %&gt;%
 .panel[.panel-name[Output]
 .small[
 
-```r
+``` r
 office_wflow
 ```
 
 ```
-## == Workflow =====================================================
+## ══ Workflow ═════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: linear_reg()
 ## 
-## -- Preprocessor -------------------------------------------------
+## ── Preprocessor ─────────────────────────────────────────────────
 ## 4 Recipe Steps
 ## 
-## * step_date()
-## * step_rm()
-## * step_dummy()
-## * step_zv()
+## • step_date()
+## • step_rm()
+## • step_dummy()
+## • step_zv()
 ## 
-## -- Model --------------------------------------------------------
+## ── Model ────────────────────────────────────────────────────────
 ## Linear Regression Model Specification (regression)
 ## 
 ## Computational engine: lm
@@ -349,7 +352,7 @@ office_wflow
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 office_fit &lt;- office_wflow %&gt;%
   fit(data = office_train)
 ```
@@ -357,13 +360,13 @@ office_fit &lt;- office_wflow %&gt;%
 .panel[.panel-name[Output]
 .small[
 
-```r
+``` r
 tidy(office_fit) %&gt;%
   print(n = 12)
 ```
 
 ```
-## # A tibble: 12 x 5
+## # A tibble: 12 × 5
 ##    term                estimate std.error statistic  p.value
 ##    &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 (Intercept)         7.23     0.205        35.4   3.14e-68
@@ -394,7 +397,7 @@ class: middle
 ## Make predictions for training data
 
 
-```r
+``` r
 office_train_pred &lt;- predict(office_fit, office_train) %&gt;%
   bind_cols(office_train %&gt;% select(imdb_rating, title))
 
@@ -402,7 +405,7 @@ office_train_pred
 ```
 
 ```
-## # A tibble: 141 x 3
+## # A tibble: 141 × 3
 ##    .pred imdb_rating title               
 ##    &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;               
 ##  1  7.90         8.1 Garden Party        
@@ -415,7 +418,7 @@ office_train_pred
 ##  8  8.00         7.8 WUPHF.com           
 ##  9  9.56         9.6 Stress Relief       
 ## 10  8.11         8.1 Manager and Salesman
-## # ... with 131 more rows
+## # ℹ 131 more rows
 ```
 
 ---
@@ -425,12 +428,12 @@ office_train_pred
 Percentage of variability in the IMDB ratings explained by the model
 
 
-```r
+``` r
 rsq(office_train_pred, truth = imdb_rating, estimate = .pred)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rsq     standard       0.500
@@ -453,12 +456,12 @@ $$ RMSE = \sqrt{\frac{\sum_{i = 1}^n (y_i - \hat{y}_i)^2}{n}} $$
 --
 
 
-```r
+``` r
 rmse(office_train_pred, truth = imdb_rating, estimate = .pred)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard       0.373
@@ -479,12 +482,12 @@ Is this RMSE considered low or high?
 ]
 
 
-```r
+``` r
 rmse(office_train_pred, truth = imdb_rating, estimate = .pred)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard       0.373
@@ -493,13 +496,13 @@ rmse(office_train_pred, truth = imdb_rating, estimate = .pred)
 --
 
 
-```r
+``` r
 office_train %&gt;%
   summarize(min = min(imdb_rating), max = max(imdb_rating))
 ```
 
 ```
-## # A tibble: 1 x 2
+## # A tibble: 1 × 2
 ##     min   max
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1   6.7   9.7
@@ -520,7 +523,7 @@ but, really, who cares about predictions on .pink[training] data?
 ## Make predictions for testing data
 
 
-```r
+``` r
 office_test_pred &lt;- predict(office_fit, office_test) %&gt;%
   bind_cols(office_test %&gt;% select(imdb_rating, title))
 
@@ -528,7 +531,7 @@ office_test_pred
 ```
 
 ```
-## # A tibble: 47 x 3
+## # A tibble: 47 × 3
 ##    .pred imdb_rating title               
 ##    &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;               
 ##  1  8.52         8.4 Office Olympics     
@@ -541,7 +544,7 @@ office_test_pred
 ##  8  8.35         8   Diwali              
 ##  9  8.77         8.7 A Benihana Christmas
 ## 10  8.40         8.2 Ben Franklin        
-## # ... with 37 more rows
+## # ℹ 37 more rows
 ```
 
 ---
@@ -551,12 +554,12 @@ office_test_pred
 - RMSE of model fit to testing data
 .medi[
 
-```r
+``` r
 rmse(office_test_pred, truth = imdb_rating, estimate = .pred)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rmse    standard       0.386
@@ -565,12 +568,12 @@ rmse(office_test_pred, truth = imdb_rating, estimate = .pred)
 - `\(R^2\)` of model fit to testing data
 .medi[
 
-```r
+``` r
 rsq(office_test_pred, truth = imdb_rating, estimate = .pred)
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 rsq     standard       0.556
@@ -582,30 +585,11 @@ rsq(office_test_pred, truth = imdb_rating, estimate = .pred)
 
 &lt;br&gt;
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; metric &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; train &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; test &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; comparison &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; RMSE &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.373 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.386 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; RMSE lower for training &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; R-squared &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.500 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.556 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; R-squared higher for training &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|metric    | train|  test|comparison                    |
+|:---------|-----:|-----:|:-----------------------------|
+|RMSE      | 0.373| 0.386|RMSE lower for training       |
+|R-squared | 0.500| 0.556|R-squared higher for training |
 
 ---
 
@@ -657,7 +641,7 @@ You might also heard of this referred to as k-fold cross validation.
 
 ## Cross validation
 
-&lt;img src="img/cross-validation.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/cross-validation.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -665,7 +649,7 @@ You might also heard of this referred to as k-fold cross validation.
 
 .pull-left[
 
-```r
+``` r
 set.seed(345)
 
 folds &lt;- vfold_cv(office_train, 
@@ -675,7 +659,7 @@ folds
 
 ```
 ## #  5-fold cross-validation 
-## # A tibble: 5 x 2
+## # A tibble: 5 × 2
 ##   splits           id   
 ##   &lt;list&gt;           &lt;chr&gt;
 ## 1 &lt;split [112/29]&gt; Fold1
@@ -686,7 +670,7 @@ folds
 ```
 ]
 .pull-right[
-&lt;img src="img/cross-validation.png" width="100%" style="display: block; margin: auto 0 auto auto;" /&gt;
+&lt;img src="img/cross-validation.png" alt="" width="100%" style="display: block; margin: auto 0 auto auto;" /&gt;
 ]
 
 ---
@@ -695,7 +679,7 @@ folds
 
 .pull-left[
 
-```r
+``` r
 set.seed(456)
 office_fit_rs &lt;- office_wflow %&gt;%
   fit_resamples(folds)
@@ -704,27 +688,27 @@ office_fit_rs &lt;- office_wflow %&gt;%
 ]
 
 .pull-right[
-&lt;img src="img/cross-validation-animated.gif" width="100%" style="display: block; margin: auto 0 auto auto;" /&gt;
+&lt;img src="img/cross-validation-animated.gif" alt="" width="100%" style="display: block; margin: auto 0 auto auto;" /&gt;
 ]
 
 ---
 
 
-```r
+``` r
 office_fit_rs
 ```
 
 ```
 ## # Resampling results
 ## # 5-fold cross-validation 
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##   splits           id    .metrics         .notes          
 ##   &lt;list&gt;           &lt;chr&gt; &lt;list&gt;           &lt;list&gt;          
-## 1 &lt;split [112/29]&gt; Fold1 &lt;tibble [2 x 4]&gt; &lt;tibble [0 x 1]&gt;
-## 2 &lt;split [113/28]&gt; Fold2 &lt;tibble [2 x 4]&gt; &lt;tibble [0 x 1]&gt;
-## 3 &lt;split [113/28]&gt; Fold3 &lt;tibble [2 x 4]&gt; &lt;tibble [0 x 1]&gt;
-## 4 &lt;split [113/28]&gt; Fold4 &lt;tibble [2 x 4]&gt; &lt;tibble [0 x 1]&gt;
-## 5 &lt;split [113/28]&gt; Fold5 &lt;tibble [2 x 4]&gt; &lt;tibble [0 x 1]&gt;
+## 1 &lt;split [112/29]&gt; Fold1 &lt;tibble [2 × 4]&gt; &lt;tibble [0 × 4]&gt;
+## 2 &lt;split [113/28]&gt; Fold2 &lt;tibble [2 × 4]&gt; &lt;tibble [0 × 4]&gt;
+## 3 &lt;split [113/28]&gt; Fold3 &lt;tibble [2 × 4]&gt; &lt;tibble [0 × 4]&gt;
+## 4 &lt;split [113/28]&gt; Fold4 &lt;tibble [2 × 4]&gt; &lt;tibble [0 × 4]&gt;
+## 5 &lt;split [113/28]&gt; Fold5 &lt;tibble [2 × 4]&gt; &lt;tibble [0 × 4]&gt;
 ```
 
 ---
@@ -732,16 +716,16 @@ office_fit_rs
 ## Collect CV metrics
 
 
-```r
+``` r
 collect_metrics(office_fit_rs)
 ```
 
 ```
-## # A tibble: 2 x 6
-##   .metric .estimator  mean     n std_err .config             
-##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
-## 1 rmse    standard   0.403     5  0.0336 Preprocessor1_Model1
-## 2 rsq     standard   0.413     5  0.0727 Preprocessor1_Model1
+## # A tibble: 2 × 6
+##   .metric .estimator  mean     n std_err .config        
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;          
+## 1 rmse    standard   0.403     5  0.0336 pre0_mod0_post0
+## 2 rsq     standard   0.413     5  0.0727 pre0_mod0_post0
 ```
 
 ---
@@ -750,67 +734,39 @@ collect_metrics(office_fit_rs)
 
 .panel[.panel-name[Raw]
 
-```r
+``` r
 collect_metrics(office_fit_rs, summarize = FALSE) %&gt;%
   print(n = 10)
 ```
 
 ```
-## # A tibble: 10 x 5
-##    id    .metric .estimator .estimate .config             
-##    &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-##  1 Fold1 rmse    standard       0.430 Preprocessor1_Model1
-##  2 Fold1 rsq     standard       0.134 Preprocessor1_Model1
-##  3 Fold2 rmse    standard       0.368 Preprocessor1_Model1
-##  4 Fold2 rsq     standard       0.496 Preprocessor1_Model1
-##  5 Fold3 rmse    standard       0.452 Preprocessor1_Model1
-##  6 Fold3 rsq     standard       0.501 Preprocessor1_Model1
-##  7 Fold4 rmse    standard       0.289 Preprocessor1_Model1
-##  8 Fold4 rsq     standard       0.529 Preprocessor1_Model1
-##  9 Fold5 rmse    standard       0.475 Preprocessor1_Model1
-## 10 Fold5 rsq     standard       0.403 Preprocessor1_Model1
+## # A tibble: 10 × 5
+##    id    .metric .estimator .estimate .config        
+##    &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+##  1 Fold1 rmse    standard       0.430 pre0_mod0_post0
+##  2 Fold1 rsq     standard       0.134 pre0_mod0_post0
+##  3 Fold2 rmse    standard       0.368 pre0_mod0_post0
+##  4 Fold2 rsq     standard       0.496 pre0_mod0_post0
+##  5 Fold3 rmse    standard       0.452 pre0_mod0_post0
+##  6 Fold3 rsq     standard       0.501 pre0_mod0_post0
+##  7 Fold4 rmse    standard       0.289 pre0_mod0_post0
+##  8 Fold4 rsq     standard       0.529 pre0_mod0_post0
+##  9 Fold5 rmse    standard       0.475 pre0_mod0_post0
+## 10 Fold5 rsq     standard       0.403 pre0_mod0_post0
 ```
 ]
 
 ---
 
 .panel[.panel-name[Tidy]
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Fold &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; RMSE &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; R-squared &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Fold1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.430 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.134 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Fold2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.368 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.496 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Fold3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.452 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.501 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Fold4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.289 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.529 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Fold5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.475 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.403 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|Fold  |  RMSE| R-squared|
+|:-----|-----:|---------:|
+|Fold1 | 0.430|     0.134|
+|Fold2 | 0.368|     0.496|
+|Fold3 | 0.452|     0.501|
+|Fold4 | 0.289|     0.529|
+|Fold5 | 0.475|     0.403|
 ]
 
 
@@ -822,7 +778,7 @@ collect_metrics(office_fit_rs, summarize = FALSE) %&gt;%
 
 
 ```
-## # A tibble: 1 x 6
+## # A tibble: 1 × 6
 ##     min   max  mean   med     sd    IQR
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 0.289 0.475 0.403 0.430 0.0751 0.0841
@@ -832,7 +788,7 @@ collect_metrics(office_fit_rs, summarize = FALSE) %&gt;%
 
 
 ```
-## # A tibble: 1 x 6
+## # A tibble: 1 × 6
 ##     min   max  mean   med    sd   IQR
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1   6.7   9.7  8.24   8.2 0.530 0.600
@@ -842,7 +798,33 @@ collect_metrics(office_fit_rs, summarize = FALSE) %&gt;%
 
 ## What's next?
 
-&lt;img src="img/post-cv-testing.png" width="90%" style="display: block; margin: auto 0 auto auto;" /&gt;
+&lt;img src="img/post-cv-testing.png" alt="" width="90%" style="display: block; margin: auto 0 auto auto;" /&gt;
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ V-fold cross-validation
+- ✅ Modeling workflows with recipes
+- ✅ Performance metrics
+]
+
+.pull-right[
+### Skills
+- ✅ Assess model generalization
+- ✅ Calculate RMSE and R²
+- ✅ Detect overfitting
+]
 
 ---
 
@@ -859,11 +841,11 @@ Sources:
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -904,6 +886,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
