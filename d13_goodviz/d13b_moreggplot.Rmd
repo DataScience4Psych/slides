@@ -28,6 +28,23 @@ library(here)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Deepen understanding of the Grammar of Graphics framework
+- Apply advanced ggplot2 techniques for complex visualizations
+- Combine multiple layers and transformations effectively
+- Create sophisticated plots using extended ggplot2 functionality
+
+---
+
+class: middle
+
 # Deep Diving into Grammar of Graphics
 
 ---
@@ -718,6 +735,30 @@ Remember our passage from Tukey:
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Advanced Concepts
+- ✅ Deep Grammar of Graphics
+- ✅ Complex layer combinations
+]
+
+.pull-right[
+### Skills
+- ✅ Apply advanced ggplot2 techniques
+- ✅ Create sophisticated visualizations
+]
+
 ---
 
 class: middle

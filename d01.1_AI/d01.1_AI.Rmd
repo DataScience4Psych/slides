@@ -32,6 +32,23 @@ if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
 if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Understand when and how to appropriately use AI tools in this course
+- Distinguish between acceptable and unacceptable AI assistance
+- Apply AI ethically to enhance learning without compromising academic integrity
+- Use AI as a learning aid rather than a replacement for understanding
+
+---
+
 
 class: middle, center
 
@@ -366,6 +383,32 @@ Check:
   Ready to start your R journey?
 ]
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Understanding
+- ✅ Appropriate AI use in course
+- ✅ Acceptable vs. unacceptable assistance
+- ✅ Ethical AI application
+]
+
+.pull-right[
+### Practice
+- ✅ Use AI as learning aid
+- ✅ Maintain academic integrity
+- ✅ Enhance understanding with AI
+]
 
 ---
 
