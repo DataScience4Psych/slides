@@ -28,6 +28,23 @@ library(DT)
 #xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Write reusable functions with clear inputs, bodies, and return values
+- Map functions over data structures using purrr
+- Automate repetitive tasks through function creation and iteration
+- Understand function environments, scoping, and naming best practices
+
+---
+
 
 class: middle
 
@@ -1109,6 +1126,32 @@ It looks like the value of `w` changed inside the function, but the value in the
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Function structure (inputs, body, return)
+- ✅ Environments and scoping
+- ✅ Naming best practices
+]
+
+.pull-right[
+### Skills
+- ✅ Write reusable functions
+- ✅ Map functions with purrr
+- ✅ Automate repetitive tasks
+]
 
 ---
 

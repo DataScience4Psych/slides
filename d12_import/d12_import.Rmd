@@ -30,6 +30,23 @@ conflict_prefer("col_double", "readr")
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Read rectangular data from CSV, Excel, and other file formats
+- Handle variable naming issues and define appropriate column types
+- Clean data through NA management and type specification
+- Write data to multiple formats and import multiple files efficiently
+
+---
+
+class: middle
+
 # Reading rectangular data into R
 
 ---
@@ -419,6 +436,32 @@ class: middle
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Data Import
+- ✅ Read from CSV, Excel, etc.
+- ✅ Handle naming issues
+- ✅ Define column types
+]
+
+.pull-right[
+### Data Export
+- ✅ Clean and manage NAs
+- ✅ Write to multiple formats
+- ✅ Import multiple files
+]
 
 ---
 
