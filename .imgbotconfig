@@ -1,5 +1,5 @@
 {
-    "schedule": "daily", // daily|weekly|monthly
+    "schedule": "weekly", // daily|weekly|monthly
     "ignoredFiles": [
     	"*.svg",                   // by extension
     	"docs/0602-ugly-charts_files/*", // by folderpath
@@ -8,5 +8,5 @@
     ],
     "aggressiveCompression": "true", // true|false
     "compressWiki": "true", // true|false
-    "minKBReduced": 100 // set reduction threshold (default to 10)
+    "minKBReduced": 30 // set reduction threshold (default to 10)
 }
