@@ -42,6 +42,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Distinguish between observational studies and experiments
+- Identify confounding variables and understand Simpson's Paradox
+- Calculate conditional probabilities and assess independence
+- Evaluate causal claims from study designs
+
+---
+
+class: middle
+
 # Scientific studies
 
 ---
@@ -146,7 +163,7 @@ Souce: [Study: Cereal Keeps Girls Slim](https://www.cbsnews.com/news/study-cerea
 
 ## Correlation != causation
 .center[
-&lt;img src="img/xkcdcorrelation.png" width="60%" height="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/xkcdcorrelation.png" alt="" width="60%" height="100%" style="display: block; margin: auto;" /&gt;
 ]
 .footnote[
 Randall Munroe CC BY-NC 2.5 http://xkcd.com/552/
@@ -156,7 +173,7 @@ Randall Munroe CC BY-NC 2.5 http://xkcd.com/552/
 
 ## Studies and conclusions
 
-&lt;img src="img/random_sample_assign_grid.png" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/random_sample_assign_grid.png" alt="" width="70%" height="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle
@@ -628,7 +645,7 @@ class: middle
 &lt;br&gt;
 
 .pull-left-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-13-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right-narrow[
@@ -681,7 +698,7 @@ class: middle
 &lt;br&gt;
 
 .pull-left-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-15-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right-narrow[
 &lt;table&gt;
@@ -732,7 +749,7 @@ class: middle
 &lt;br&gt;
 
 .pull-left-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-17-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right-narrow[
@@ -795,7 +812,7 @@ class: middle
 &lt;br&gt;
 
 .pull-left-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-19-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right-narrow[
@@ -985,7 +1002,7 @@ ucbadmit %&gt;%
 ## Overall gender distribution
 
 .pull-left[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-24-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .medi[.pull-right[
@@ -1057,7 +1074,7 @@ ucbadmit %&gt;%
 ## Gender distribution, by department
 
 .pull-left[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-27-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .midi.pull-right[
@@ -1081,10 +1098,10 @@ ggplot(ucbadmit, aes(y = gender, fill = admit)) +
 ## Case for gender discrimination?
 
 .pull-left[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-28-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-29-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1164,7 +1181,7 @@ class: middle
 ```
 ]
 .pull-right-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-32-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1188,7 +1205,7 @@ class: middle
 ```
 ]
 .pull-right-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-34-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1212,7 +1229,7 @@ class: middle
 ```
 ]
 .pull-right-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-36-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1236,7 +1253,7 @@ class: middle
 ```
 ]
 .pull-right-wide[
-&lt;img src="d14_confound_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d14_confound_files/figure-html/unnamed-chunk-38-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1572,6 +1589,32 @@ ucbadmit %&gt;%
 
 class: middle
 
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Observational vs. experimental studies
+- ✅ Confounding variables
+- ✅ Simpson's Paradox
+]
+
+.pull-right[
+### Skills
+- ✅ Calculate conditional probabilities
+- ✅ Assess independence
+- ✅ Evaluate causal claims
+]
+
+---
+
+class: middle
+
 # Wrapping Up... 
 
 &lt;br&gt;
@@ -1584,11 +1627,11 @@ Sources:
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

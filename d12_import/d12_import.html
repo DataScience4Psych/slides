@@ -40,6 +40,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Read rectangular data from CSV, Excel, and other file formats
+- Handle variable naming issues and define appropriate column types
+- Clean data through NA management and type specification
+- Write data to multiple formats and import multiple files efficiently
+
+---
+
+class: middle
+
 # Reading rectangular data into R
 
 ---
@@ -47,10 +64,10 @@ class: middle
 class: middle
 
 .pull-left[
-&lt;img src="img/readr.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/readr.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="img/readxl.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/readxl.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -288,7 +305,7 @@ Which class is `x`? Why?
 
 .pull-left[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="img/df-na.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/df-na.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 
@@ -324,7 +341,7 @@ read_csv("data/df-na.csv",
 
 .pull-left[
 &lt;br&gt;
-&lt;img src="img/df-na.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/df-na.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 
@@ -559,7 +576,7 @@ sales
 ## vroom vroom!!
 
 .pull-left[
-&lt;img src="img/vroom.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/vroom.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 - **vroom** is most useful for reading large amounts of data in, fast!
@@ -598,16 +615,42 @@ class: middle
 
 class: middle
 
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Data Import
+- ✅ Read from CSV, Excel, etc.
+- ✅ Handle naming issues
+- ✅ Define column types
+]
+
+.pull-right[
+### Data Export
+- ✅ Clean and manage NAs
+- ✅ Write to multiple formats
+- ✅ Import multiple files
+]
+
+---
+
+class: middle
+
 # Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

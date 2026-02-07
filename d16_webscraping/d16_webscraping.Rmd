@@ -303,8 +303,17 @@ class: middle
 
 ## Read the whole page
 
-```{r}
+```{r eval=FALSE}
+library(rvest)
 page <- read_html("https://www.imdb.com/chart/top/")
+page
+```
+
+```{r echo=FALSE}
+# In case the website is down, we have a backup copy of the page in the `backup` folder
+page <- tryCatch(read_html("https://www.imdb.com/chart/top/"), error = function(e) {
+  read_html( "backup//IMDb Top 250 movies.html")
+})
 page
 ```
 
@@ -347,7 +356,7 @@ knitr::include_graphics("img/titles.png")
 .pull-left[
 ```{r output.lines=17}
 page %>%
-  html_nodes(".titleColumn a")
+  html_nodes(".ipc-title__text")
 ```
 ]
 .pull-right[
@@ -363,7 +372,7 @@ knitr::include_graphics("img/titles.png")
 .pull-left[
 ```{r output.lines=16}
 page %>%
-  html_nodes(".titleColumn a") %>%
+  html_nodes(".ipc-title__text") %>%
   html_text()
 ```
 ]
@@ -380,7 +389,7 @@ knitr::include_graphics("img/titles.png")
 .pull-left[
 ```{r output.lines=14}
 titles <- page %>%
-  html_nodes(".titleColumn a") %>%
+ html_nodes(".ipc-title__text") %>%
   html_text()
 
 titles
@@ -412,8 +421,9 @@ knitr::include_graphics("img/years.png")
 
 .pull-left[
 ```{r output.lines=17}
-page %>%
-  html_nodes(".secondaryInfo")
+page %>% 
+  html_nodes(".cli-title-metadata-item") %>%
+  html_text()
 ```
 ]
 .pull-right[
@@ -429,8 +439,8 @@ knitr::include_graphics("img/years.png")
 .pull-left[
 ```{r output.lines=16}
 page %>%
-  html_nodes(".secondaryInfo") %>%
-  html_text()
+ html_nodes(".cli-title-metadata-item") %>% 
+    html_text()
 ```
 ]
 .pull-right[
@@ -443,7 +453,7 @@ knitr::include_graphics("img/years.png")
 
 ## Clean up the text
 
-We need to go from `"(1994)"` to `1994`:
+In previous years, we've need to go from `"(1994)"` to `1994`:
 
 - Remove `(` and `)`: string manipulation
 - Convert to numeric: `as.numeric()`
@@ -478,10 +488,11 @@ knitr::include_graphics("img/stringr.png")
 
 ```{r output.lines=15}
 page %>%
-  html_nodes(".secondaryInfo") %>%
+  html_nodes(".cli-title-metadata-item") %>% 
   html_text() %>%
   str_remove("\\(") # remove (
 ```
+
 
 ---
 
@@ -489,7 +500,7 @@ page %>%
 
 ```{r output.lines=13}
 page %>%
-  html_nodes(".secondaryInfo") %>%
+  html_nodes(".cli-title-metadata-item") %>%
   html_text() %>%
   str_remove("\\(") %>% # remove (
   str_remove("\\)") # remove )
@@ -501,7 +512,7 @@ page %>%
 
 ```{r output.lines=11}
 page %>%
-  html_nodes(".secondaryInfo") %>%
+  html_nodes(".cli-title-metadata-item") %>%
   html_text() %>%
   str_remove("\\(") %>% # remove (
   str_remove("\\)") %>% # remove )
@@ -515,7 +526,7 @@ page %>%
 .pull-left[
 ```{r output.lines=11}
 years <- page %>%
-  html_nodes(".secondaryInfo") %>%
+  html_nodes(".cli-title-metadata-item") %>%
   html_text() %>%
   str_remove("\\(") %>% # remove (
   str_remove("\\)") %>% # remove )

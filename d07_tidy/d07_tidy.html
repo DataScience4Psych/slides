@@ -38,6 +38,23 @@ layout: true
 
 
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Identify characteristics of tidy data and recognize common untidy patterns
+- Distinguish between data frames and tibbles and their advantages
+- Apply principles of displaying vs. summarizing data appropriately
+- Evaluate data structure choices based on consistency and predictability
+
+---
+
 ## Tidy data
 
 &gt;Happy families are all alike; every unhappy family is unhappy in its own way. 
@@ -70,7 +87,7 @@ layout: true
 What makes this data not tidy?
 ]
 
-&lt;img src="img/hyperwar-airplanes-on-hand.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/hyperwar-airplanes-on-hand.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [Army Air Forces Statistical Digest, WW II](https://www.ibiblio.org/hyperwar/AAF/StatDigest/aafsd-3.html)
@@ -84,7 +101,7 @@ What makes this data not tidy?
 
 &lt;br&gt;
 
-&lt;img src="img/hiv-est-prevalence-15-49.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/hiv-est-prevalence-15-49.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [Gapminder, Estimated HIV prevalence among 15-49 year olds](https://www.gapminder.org/data)
@@ -98,7 +115,7 @@ What makes this data not tidy?
 
 &lt;br&gt;
 
-&lt;img src="img/us-general-economic-characteristic-acs-2017.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/us-general-economic-characteristic-acs-2017.png" alt="" width="85%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03)
@@ -430,16 +447,47 @@ class(df$l2)
 ## [1] "character"
 ```
 
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Tidy data principles
+- ✅ Tibbles vs. data frames
+]
+
+.pull-right[
+### Skills
+- ✅ Recognize untidy patterns
+- ✅ Work with tibbles
+- ✅ Display and summarize data appropriately
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
