@@ -30,6 +30,23 @@ class: middle
 
 ---
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Construct layered plots using ggplot2's grammar (data + aesthetics + geoms)
+- Map variables to aesthetics and distinguish mapping from setting
+- Use faceting to explore conditional relationships in data
+- Create publication-ready plots with proper labels and scales
+
+---
+
 ## ggplot2 $\in$ tidyverse
 
 .pull-left-narrow[
@@ -767,6 +784,31 @@ ggplot(
 .pull-right-wide[
 ```{r ref.label = "facet-color-no-legend", echo = FALSE, warning = FALSE, out.width = "100%"}
 ```
+]
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Understanding
+- ✅ ggplot2's layered grammar
+- ✅ Mapping vs. setting aesthetics
+]
+
+.pull-right[
+### Skills
+- ✅ Build complex plots with layers
+- ✅ Use faceting effectively
+- ✅ Create publication-ready visualizations
 ]
 
 ---
