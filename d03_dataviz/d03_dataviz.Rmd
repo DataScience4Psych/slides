@@ -41,6 +41,23 @@ class: middle
 
 ---
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Conduct exploratory data analysis and explain why visualization matters
+- Describe the Grammar of Graphics framework
+- Interpret and create basic visualizations using ggplot2
+- Understand dataset structure (observations, variables, values)
+
+---
+
 
 .pull-left[ 
 > "We will be exploring numbers. We need to handle them easily and look at them effectively. Techniques for handling and looking — whether graphical, arithmetic, or intermediate — will be important."
@@ -483,6 +500,30 @@ ggplot(student_survey, aes(x = fb_visits_per_day)) +
 - Jenny Bryan's Stat545 ([link](https://stat545.com))
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Conduct exploratory data analysis
+- ✅ Understand Grammar of Graphics
+]
+
+.pull-right[
+### Skills  
+- ✅ Create basic ggplot2 visualizations
+- ✅ Interpret dataset structures
+]
 
 ---
 class: middle

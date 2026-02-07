@@ -26,6 +26,23 @@ library(dsbox)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Execute select operations with helper functions to manage multiple variables
+- Create new variables with mutate and calculate summary statistics
+- Perform grouped operations using group_by for categorical subdivisions
+- Apply distinct, count, and arrange to identify patterns in data
+
+---
+
+class: middle
+
 # Working with a single data frame
 
 ---
@@ -527,6 +544,32 @@ Time to actually play around with the Hotels dataset!
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Skills
+- ✅ Use select with helper functions
+- ✅ Create variables with mutate
+- ✅ Calculate summary statistics
+]
+
+.pull-right[
+### Advanced Operations
+- ✅ Perform grouped operations
+- ✅ Use distinct and count
+- ✅ Arrange and identify patterns
+]
 
 ---
 

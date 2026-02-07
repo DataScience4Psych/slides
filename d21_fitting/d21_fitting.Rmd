@@ -30,6 +30,23 @@ options(dplyr.print_min = 10, dplyr.print_max = 6)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Specify, set, and fit linear regression models using tidymodels
+- Interpret slope and intercept coefficients in context
+- Apply least squares regression and residual analysis
+- Distinguish between numerical and categorical explanatory variables
+
+---
+
+class: middle
+
 # Models with numerical explanatory variables
 
 ---
@@ -396,6 +413,32 @@ pp %>%
 ]
 
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Linear regression with tidymodels
+- ✅ Slope and intercept interpretation
+- ✅ Least squares principles
+]
+
+.pull-right[
+### Skills
+- ✅ Fit regression models
+- ✅ Analyze residuals
+- ✅ Use dummy variables
+]
 
 ---
 

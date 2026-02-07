@@ -23,6 +23,23 @@ library(emo)
 #xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Use the pipe operator (`%>%`) to chain multiple dplyr functions
+- Apply dplyr verbs (select, arrange, slice, filter) to subset and reorder data
+- Construct complex filtering conditions using logical operators
+- Explain dplyr's design principles and when to use piping
+
+---
+
 
 ## A grammar of data wrangling...
 
@@ -437,6 +454,31 @@ ggplot(hotels, aes(x = hotel, y = deposit_type)) +
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Grammar of data manipulation
+- ✅ dplyr design principles
+]
+
+.pull-right[
+### Skills
+- ✅ Use pipe operator for chaining
+- ✅ Apply select, arrange, slice, filter
+- ✅ Construct complex filtering conditions
+]
 
 ---
 class: middle

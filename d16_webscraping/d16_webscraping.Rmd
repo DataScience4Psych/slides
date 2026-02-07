@@ -31,6 +31,23 @@ library(DT)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Parse HTML documents using rvest functions
+- Extract data from websites using CSS selectors and SelectorGadget
+- Transform scraped text into structured data frames
+- Apply ethical considerations and check robots.txt before scraping
+
+---
+
+class: middle
+
 # Scraping the web
 
 ---
@@ -811,6 +828,32 @@ Two different scenarios for web scraping:
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Web scraping fundamentals
+- ✅ HTML parsing with rvest
+- ✅ Ethical considerations
+]
+
+.pull-right[
+### Skills
+- ✅ Use CSS selectors
+- ✅ Extract and structure data
+- ✅ Check robots.txt
+]
 
 ---
 

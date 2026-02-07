@@ -27,6 +27,23 @@ library(e1071)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Distinguish between supervised, unsupervised, and reinforcement learning
+- Preprocess and split data for machine learning workflows
+- Train classification models and evaluate using confusion matrices
+- Calculate and interpret accuracy, precision, and recall metrics
+
+---
+
 
 
 class: middle
@@ -374,4 +391,36 @@ Recall: The proportion of actual positives that were identified correctly.
 # Sources
 
 - [Eclectikus](https://github.com/Eclectikus)'s Playing with Sonar ([link](https://github.com/Eclectikus/playingsonar))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Supervised vs. unsupervised learning
+- ✅ ML workflows and preprocessing
+- ✅ Confusion matrices
+]
+
+.pull-right[
+### Skills
+- ✅ Split and prepare data
+- ✅ Train classification models
+- ✅ Calculate accuracy, precision, recall
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 

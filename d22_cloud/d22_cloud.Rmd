@@ -28,6 +28,23 @@ if (!require("jasmines")) devtools::install_github("djnavarro/jasmines")
 if (!require("mathart")) devtools::install_github("marcusvolz/mathart")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Understand challenges when working with large datasets
+- Apply sampling and aggregation strategies for big data visualization
+- Use efficient data structures and visualization techniques
+- Recognize when to use cloud computing resources
+
+---
+
 
 class: middle
 
@@ -574,3 +591,34 @@ The values for n and ntasks-per-socket should be equal, and the total value for 
 
 ---
 
+
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Big data challenges
+- ✅ Sampling and aggregation
+- ✅ Efficient data structures
+]
+
+.pull-right[
+### Skills
+- ✅ Visualize large datasets
+- ✅ Use cloud resources
+- ✅ Apply efficient techniques
+]
+
+---
+
+class: middle
+
+# Wrapping Up...

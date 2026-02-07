@@ -57,6 +57,23 @@ library(magick); library(pdftools)
 
 ---
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Explain what data science means and how it combines data, domain expertise, and coding
+- Navigate the course structure and understand how to get help
+- Identify the five core principles ("Big 5") that guide this course
+- Create a GitHub account and begin your journey in reproducible data analysis
+
+---
+
 ## What is data science?
 
 - <i class="fa fa-database fa"></i> + <i class="fa fa-flask fa"></i> = data science?
@@ -529,6 +546,31 @@ Tips for selecting a username:<sup>✦</sup>
 - In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
 - Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
 - Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
+]
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Understanding
+- ✅ Explain what data science means
+- ✅ Understand how data, domain expertise, and coding combine
+]
+
+.pull-right[
+### Practical Skills
+- ✅ Navigate the course structure  
+- ✅ Identify the "Big 5" principles
+- ✅ Create a GitHub account
 ]
 
 ---

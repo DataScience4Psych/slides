@@ -31,6 +31,23 @@ library(DT)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Evaluate ethical concerns in data causality claims and misrepresentation
+- Detect manipulation in visualizations (axes, scales, maps, area distortion)
+- Assess privacy violations and data re-identification risks
+- Visualize uncertainty appropriately in data presentations
+
+---
+
+class: middle
+
 # Misrepresentation
 
 ---
@@ -458,4 +475,36 @@ Carole Cadwalladr and Emma Graham-Harrison. [How Cambridge Analytica turned Face
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Ethical Awareness
+- ✅ Recognize misrepresentation
+- ✅ Detect visualization manipulation
+- ✅ Assess privacy risks
+]
+
+.pull-right[
+### Skills
+- ✅ Evaluate causal claims
+- ✅ Identify data re-identification risks
+- ✅ Visualize uncertainty appropriately
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 

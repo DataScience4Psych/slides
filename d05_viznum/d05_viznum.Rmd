@@ -29,6 +29,23 @@ class: middle
 
 ---
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Describe distribution shape, center, and spread using statistical terminology
+- Create histograms and density plots to explore numerical distributions
+- Construct box plots and scatterplots for univariate and bivariate analysis
+- Apply faceting and color to compare distributions across groups
+
+---
+
 ## Number of variables involved
 
 - Univariate data analysis - distribution of single variable
@@ -456,4 +473,35 @@ ggplot(loans %>% filter(debt_to_income < 100),
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Understanding
+- ✅ Distribution characteristics (shape, center, spread)
+- ✅ Variable types and their visualization needs
+]
+
+.pull-right[
+### Skills
+- ✅ Create histograms, density plots, box plots
+- ✅ Use faceting to compare distributions
+- ✅ Visualize bivariate relationships
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 

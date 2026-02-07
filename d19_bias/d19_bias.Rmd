@@ -32,6 +32,23 @@ library(DT)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Recognize patterns of bias in algorithms across gender, race, and sentencing
+- Explain how training data perpetuates historical biases
+- Analyze case studies of bias in AI systems (facial recognition, hiring)
+- Advocate for ethical data science practices and do-good initiatives
+
+---
+
+class: middle
+
 # First a bit of fun...
 # The Hathaway Effect
 
@@ -292,6 +309,32 @@ How do you train yourself to make the right decisions (or reduce the likelihood 
 .midi[
 Julien Cornebise. AI for Good in the R and Python ecosystems. useR 2019.
 ]
+]
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Awareness
+- ✅ Recognize algorithmic bias patterns
+- ✅ Understand training data impact
+- ✅ Analyze bias case studies
+]
+
+.pull-right[
+### Action
+- ✅ Identify bias in AI systems
+- ✅ Advocate for ethical practices
+- ✅ Support do-good initiatives
 ]
 
 ---

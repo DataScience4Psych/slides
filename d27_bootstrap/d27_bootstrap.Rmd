@@ -30,6 +30,23 @@ elmhurst_boot <- bootstraps(elmhurst, times = 1000)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Execute bootstrap resampling with replacement to estimate sampling distributions
+- Calculate confidence intervals from bootstrap distributions at various levels
+- Explain the relationship between confidence level, precision, and interval width
+- Apply bootstrap techniques to any sample statistic (mean, median, etc.)
+
+---
+
+class: middle
+
 # Rent in Edinburgh
 
 ---
@@ -324,6 +341,32 @@ edi_3br %>%
   - For a median: `calculate(stat = "median")`
   
   
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Bootstrap resampling
+- ✅ Sampling distributions
+- ✅ Confidence levels and precision
+]
+
+.pull-right[
+### Skills
+- ✅ Calculate bootstrap CIs
+- ✅ Apply to any statistic
+- ✅ Interpret interval width
+]
+
 ---
 
 class: middle

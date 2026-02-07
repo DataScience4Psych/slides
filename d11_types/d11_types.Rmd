@@ -29,6 +29,23 @@ library(htmlwidgets)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Identify basic data types in R (logical, double, integer, character)
+- Distinguish between explicit and implicit type coercion
+- Recognize special values (NA, NaN, Inf) and their behavior
+- Apply data classes (factors, dates, data frames) to real-world problems
+
+---
+
+class: middle
+
 # Why should you care about data types?
 
 ---
@@ -835,6 +852,32 @@ hotels %>%
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Julia Fukuyama's EDA ([link](https://jfukuyama.github.io/))
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Basic data types in R
+- ✅ Type coercion (explicit/implicit)
+- ✅ Special values (NA, NaN, Inf)
+]
+
+.pull-right[
+### Skills
+- ✅ Work with factors and dates
+- ✅ Apply appropriate data classes
+- ✅ Handle type conversions
+]
 
 ---
 

@@ -23,6 +23,23 @@ library(emo)
 #xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Identify characteristics of tidy data and recognize common untidy patterns
+- Distinguish between data frames and tibbles and their advantages
+- Apply principles of displaying vs. summarizing data appropriately
+- Evaluate data structure choices based on consistency and predictability
+
+---
+
 ## Tidy data
 
 >Happy families are all alike; every unhappy family is unhappy in its own way. 
@@ -291,5 +308,36 @@ df$l2 = letters[1:5]
 class(df$l1)
 class(df$l2)
 ```
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Tidy data principles
+- ✅ Tibbles vs. data frames
+]
+
+.pull-right[
+### Skills
+- ✅ Recognize untidy patterns
+- ✅ Work with tibbles
+- ✅ Display and summarize data appropriately
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 

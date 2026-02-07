@@ -27,6 +27,23 @@ set.seed(1234)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Conceptualize models as mathematical functions describing relationships
+- Interpret residuals and assess model fit
+- Compare linear vs. non-linear modeling approaches
+- Predict outcomes using response and explanatory variables
+
+---
+
+class: middle
+
 # What is a model?
 
 ---
@@ -554,6 +571,32 @@ is just as important as the model, if not more!
 - Prediction: 
   - Plug in $x$, get the predicted $y$
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Models as mathematical functions
+- ✅ Response vs. explanatory variables
+- ✅ Residuals and model fit
+]
+
+.pull-right[
+### Skills
+- ✅ Interpret model outputs
+- ✅ Compare modeling approaches
+- ✅ Make predictions
+]
 
 ---
 

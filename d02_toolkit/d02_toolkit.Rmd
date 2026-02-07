@@ -31,6 +31,23 @@ class: middle
 
 ---
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Define reproducibility in data analysis and explain its importance
+- Use R and RStudio for basic data analysis tasks
+- Create and knit R Markdown documents that integrate code, narrative, and output
+- Understand the basics of Git and GitHub for version control
+
+---
+
 ## Reproducibility checklist
 
 .question[
@@ -436,6 +453,31 @@ knitr::include_graphics("img/r-help.png")
 - Kieran Healy's [Data Visualization: A practical introduction](http://socviz.co/appendix.html#a-little-more-about-r)
 - [Jenny Bryan's Stat545](https://stat545.com)
 - [Modern Dive](https://moderndive.com/)
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Define reproducibility in data analysis
+- ✅ Understand the toolkit: R, RStudio, R Markdown, Git/GitHub
+]
+
+.pull-right[
+### Skills
+- ✅ Use R and RStudio basics
+- ✅ Create R Markdown documents
+- ✅ Understand version control principles
+]
 
 ---
 class: middle

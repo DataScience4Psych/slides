@@ -30,6 +30,23 @@ options(dplyr.print_min = 10, dplyr.print_max = 6)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Build and interpret models with multiple predictors
+- Distinguish between main effects and interaction effects
+- Use adjusted R-squared for comparing models
+- Visualize and interpret interaction effects
+
+---
+
+class: middle
+
 # The linear model with multiple predictors
 
 ---
@@ -677,6 +694,32 @@ glance(pp_int_fit)$adj.r.squared
 - Can you? Yes
 - Should you? Probably not if you want to interpret these interactions in context
 of the data.
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Multiple predictors in models
+- ✅ Main vs. interaction effects
+- ✅ Adjusted R-squared
+]
+
+.pull-right[
+### Skills
+- ✅ Build multi-predictor models
+- ✅ Compare competing models
+- ✅ Interpret interactions
+]
 
 ---
 

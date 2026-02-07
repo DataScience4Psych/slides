@@ -29,6 +29,23 @@ class: middle
 
 ---
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Design segmented bar plots to display categorical relationships
+- Create violin and ridge plots for comparing numerical distributions across groups
+- Apply coordinate transformations and positioning strategies to categorical plots
+- Customize visualizations with appropriate labels and legends
+
+---
+
 ## Variables
 
 - **Numerical** variables can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
@@ -222,6 +239,31 @@ ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Categorical data visualization principles
+- ✅ Position and coordinate strategies
+]
+
+.pull-right[
+### Skills
+- ✅ Create bar plots, violin plots, ridge plots
+- ✅ Customize labels and legends
+- ✅ Compare distributions across groups
+]
 
 ---
 

@@ -29,6 +29,23 @@ library(dsbox)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Distinguish between observational studies and experiments
+- Identify confounding variables and understand Simpson's Paradox
+- Calculate conditional probabilities and assess independence
+- Evaluate causal claims from study designs
+
+---
+
+class: middle
+
 # Scientific studies
 
 ---
@@ -941,6 +958,32 @@ ucbadmit %>%
   group_by(gender, admit) %>%
   summarize(n = n()) 
 ```
+]
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Observational vs. experimental studies
+- ✅ Confounding variables
+- ✅ Simpson's Paradox
+]
+
+.pull-right[
+### Skills
+- ✅ Calculate conditional probabilities
+- ✅ Assess independence
+- ✅ Evaluate causal claims
 ]
 
 ---
