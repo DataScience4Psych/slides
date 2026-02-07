@@ -26,6 +26,23 @@ library(openintro)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Build interactive web applications using Shiny
+- Understand basic anatomy of Shiny apps (UI and server components)
+- Deploy interactive visualizations for exploratory data analysis
+- Combine Shiny with R Markdown documents
+
+---
+
 ## Shiny
 
 .pull-left[
@@ -67,5 +84,37 @@ server <- function(input, output) {}
 shinyApp(ui = ui, server = server)
 
 ```
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Shiny app structure
+- ✅ UI and server components
+- ✅ Interactive visualizations
+]
+
+.pull-right[
+### Skills
+- ✅ Build Shiny apps
+- ✅ Deploy interactive apps
+- ✅ Combine Shiny with R Markdown
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 

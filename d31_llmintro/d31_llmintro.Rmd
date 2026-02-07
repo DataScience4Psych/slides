@@ -29,6 +29,23 @@ library(viridis)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Explain how Large Language Models work through next-token prediction
+- Trace the evolution from rule-based systems to transformer architectures
+- Describe the three-stage training process (pre-training, fine-tuning, RLHF)
+- Identify key limitations and ethical considerations of LLM deployment
+
+---
+
 
 
 class: middle
@@ -390,5 +407,37 @@ class: middle
 - Claude Sonnet 3.5 on 07/18/2024
 - Claude Sonnet 3.7 on 03/10/2025
 - TBD
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Next-token prediction
+- ✅ Transformer architectures
+- ✅ Three-stage training process
+]
+
+.pull-right[
+### Understanding
+- ✅ Evolution of LLMs
+- ✅ Limitations and ethics
+- ✅ Deployment considerations
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 

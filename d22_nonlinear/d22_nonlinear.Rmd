@@ -34,6 +34,23 @@ options(dplyr.print_min = 10, dplyr.print_max = 6)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Identify model violations through residual plots and diagnostics
+- Apply log transformations to linearize non-linear relationships
+- Interpret slope coefficients from log-transformed models
+- Evaluate when transformations improve model fit
+
+---
+
+class: middle
+
 # Model checking
 
 ---
@@ -506,6 +523,32 @@ The trick is to add a very small number to the value of the response variable fo
 log(0 + 0.00001)
 ```
 
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Model violations and diagnostics
+- ✅ Log transformations
+- ✅ Non-linear relationships
+]
+
+.pull-right[
+### Skills
+- ✅ Interpret residual plots
+- ✅ Apply transformations
+- ✅ Evaluate model improvements
+]
 
 ---
 

@@ -23,6 +23,23 @@ library(knitr)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Apply LLMs to text classification, sentiment analysis, and NER tasks
+- Implement text generation using Markov chains and sequence modeling
+- Build question answering systems through text matching and retrieval
+- Evaluate different NLP techniques in R for practical data science problems
+
+---
+
 
 
 class: middle
@@ -649,6 +666,32 @@ How might you improve this basic question answering system?
 - They excel at generating human language
 - Continued research is improving their capabilities and efficiency
 - R provides tools for implementing some of these techniques
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Applications
+- ✅ Text classification and sentiment analysis
+- ✅ Named entity recognition
+- ✅ Text generation techniques
+]
+
+.pull-right[
+### Skills
+- ✅ Build QA systems
+- ✅ Implement NLP in R
+- ✅ Evaluate LLM techniques
+]
 
 ---
 

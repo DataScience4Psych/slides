@@ -29,6 +29,23 @@ library(viridis)
 # xaringan::inf_mr(cast_from = "..")
 ```
 
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Generate random numbers from various distributions (normal, uniform, Poisson)
+- Create simulated datasets with specific properties and relationships
+- Use simulations to develop intuition about statistical distributions
+- Apply replication techniques for repeated simulation experiments
+
+---
+
 
 
 class: middle
@@ -521,5 +538,37 @@ class: middle
 
 - Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Random number generation
+- ✅ Statistical distributions
+- ✅ Simulation principles
+]
+
+.pull-right[
+### Skills
+- ✅ Generate from various distributions
+- ✅ Create simulated datasets
+- ✅ Apply replication techniques
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
 
 ---

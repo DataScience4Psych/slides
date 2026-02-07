@@ -42,6 +42,23 @@ plot_colors=c("#E48957", "#CA235F")
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Recognize underfitting, appropriate fit, and overfitting scenarios
+- Split data into training and testing sets to prevent overfitting
+- Fit logistic regression models for classification tasks
+- Evaluate model performance using ROC curves and AUC metrics
+
+---
+
+class: middle
+
 # Prediction
 
 ---
@@ -444,6 +461,32 @@ email_pred %>%
 .pull-right-wide[
 ```{r ref.label="roc", echo=FALSE, out.width="100%"}
 ```
+]
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Underfitting vs. overfitting
+- ✅ Training/testing splits
+- ✅ Logistic regression
+]
+
+.pull-right[
+### Skills
+- ✅ Prevent overfitting
+- ✅ Fit classification models
+- ✅ Use ROC curves and AUC
 ]
 
 ---

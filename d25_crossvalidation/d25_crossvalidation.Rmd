@@ -28,6 +28,23 @@ set.seed(1234)
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Perform v-fold cross-validation to assess model generalization
+- Build and evaluate complete modeling workflows with recipes
+- Calculate performance metrics (RMSE, R²) on training and test data
+- Compare training vs. test performance to detect overfitting
+
+---
+
+class: middle
+
 # Data and exploration
 
 ---
@@ -589,6 +606,32 @@ office_train %>%
 ```{r echo=FALSE, out.width="90%", fig.align="right"}
 knitr::include_graphics("img/post-cv-testing.png")
 ```
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ V-fold cross-validation
+- ✅ Modeling workflows with recipes
+- ✅ Performance metrics
+]
+
+.pull-right[
+### Skills
+- ✅ Assess model generalization
+- ✅ Calculate RMSE and R²
+- ✅ Detect overfitting
+]
 
 ---
 
