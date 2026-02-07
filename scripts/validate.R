@@ -25,7 +25,7 @@ add_warning <- function(file, msg) {
 
 # --- Find all slide Rmd files ------------------------------------------------
 
-SKIP_DIRS <- c("d00_template", "alt", "img", "templates")
+SKIP_DIRS <- c("d00_template", "alt", "img", "templates","workshop/archive","archive")
 
 rmd_files <- list.files(".", pattern = "\\.Rmd$", recursive = TRUE,
                         full.names = TRUE)
