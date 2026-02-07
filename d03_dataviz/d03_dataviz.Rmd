@@ -21,7 +21,7 @@ output:
 
 
 
-```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+```{r packages, message=FALSE, warning=FALSE, include=FALSE}
 library(emo)
 library(tidyverse)
 library(fontawesome)

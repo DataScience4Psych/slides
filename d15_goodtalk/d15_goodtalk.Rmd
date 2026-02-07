@@ -16,7 +16,7 @@ output:
 ```{r child = "../setup.Rmd"}
 ```
 
-```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+```{r packages, message=FALSE, warning=FALSE, include=FALSE}
 library(tidyverse)
 library(scales)
 library(here)
