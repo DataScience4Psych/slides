@@ -80,7 +80,7 @@ class: middle
 - Data includes loans *made*, rather than loan applications.
 ]
 .pull-right-narrow[
-&lt;img src="img/lending-club.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/lending-club.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -90,7 +90,7 @@ class: middle
 We'll start by getting a brief overview of our dataset. 
 .medi[
 
-```r
+``` r
 library(openintro)
 glimpse(loans_full_schema)
 ```
@@ -121,7 +121,7 @@ glimpse(loans_full_schema)
 We then select a subset of variables that are particularly relevant for our exploration:
 
 
-```r
+``` r
 loans &lt;- loans_full_schema %&gt;%
   select(loan_amount, interest_rate, term, grade, 
          state, annual_income, homeownership, debt_to_income)
@@ -163,7 +163,6 @@ variable        | description    | type
 ]
 
 
-
 ---
 
 class: middle
@@ -184,17 +183,16 @@ class: middle
 ## Histogram: `loan_amount`
 
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram()
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-7-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-7-1.png" alt="" width="30%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -205,34 +203,34 @@ Let's explore the `loan_amount` variable with different binwidths.
 
 .pull-left[
 
-```r
+``` r
 ggplot(loans, 
        aes(x = loan_amount)) +
   geom_histogram(binwidth = 1000)
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-8-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-8-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 --
 .pull-right[
 
-```r
+``` r
 ggplot(loans, 
        aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000)
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-9-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 20000)
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-10-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -243,12 +241,12 @@ We can further customize the histograms by adjusting labels, colors, and other p
 
 .pull-left[
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-11-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount)) +
   geom_histogram(binwidth = 5000) +
 * labs(
@@ -266,11 +264,11 @@ ggplot(loans, aes(x = loan_amount)) +
 ## Fill with a categorical variable
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-12-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount, 
 *                 fill = homeownership)) +
   geom_histogram(binwidth = 5000,
@@ -289,11 +287,11 @@ ggplot(loans, aes(x = loan_amount,
 ## Facet with a categorical variable
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-13-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount, fill = homeownership)) + 
   geom_histogram(binwidth = 5000) +
   labs(
@@ -318,12 +316,12 @@ class: middle
 ## Density Plot
 
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount)) +
   geom_density()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-14-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -334,35 +332,35 @@ Density plots allow us to visualize the distribution of numerical data with vary
 .pull-left[
 + adjust = 0.5
 
-```r
+``` r
 ggplot(loans, 
        aes(x = loan_amount)) +
   geom_density(adjust = 0.5)
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-15-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-15-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 + adjust = 1
 
-```r
+``` r
 ggplot(loans, 
        aes(x = loan_amount)) +
   geom_density(adjust = 1) # default bandwidth
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-16-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-16-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
 # adjust = 2
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 2)
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-17-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-17-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -371,11 +369,11 @@ ggplot(loans, aes(x = loan_amount)) +
 We can customize density plots by adding labels, titles, and adjusting other visual properties.
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-18-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount)) +
   geom_density(adjust = 2) +
 * labs(
@@ -396,11 +394,11 @@ ggplot(loans, aes(x = loan_amount)) +
 ## Adding a categorical variable
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-19-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = loan_amount, 
 *                 fill = homeownership)) +
   geom_density(adjust = 2, 
@@ -426,35 +424,35 @@ class: middle
 ## Box plot
 
 
-```r
+``` r
 ggplot(loans, aes(x = interest_rate)) +
   geom_boxplot()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-20-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-20-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Box plot and outliers
 
 
-```r
+``` r
 ggplot(loans, aes(x = annual_income)) +
   geom_boxplot()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-21-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-21-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Customizing box plots
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-22-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = interest_rate)) +
   geom_boxplot() +
   labs(
@@ -475,11 +473,11 @@ ggplot(loans, aes(x = interest_rate)) +
 ## Adding a categorical variable
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-23-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 ggplot(loans, aes(x = interest_rate,
 *                 y = grade)) +
   geom_boxplot() +
@@ -512,25 +510,25 @@ class: middle
 
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-24-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-24-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Segmented bar plot: counts
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender, 
 *                 fill = hair_color))+
   geom_bar()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-25-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-25-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -539,20 +537,20 @@ ggplot(data = starwars, mapping = aes(x = gender,
 ## Segmented bar plots
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender, 
 *   fill = hair_color2))+
   geom_bar()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-26-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-26-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 # For the curious...
 
 
-```r
+``` r
 starwars &lt;- starwars %&gt;%
   mutate(hair_color2 =
            fct_other(hair_color,
@@ -568,39 +566,36 @@ starwars &lt;- starwars %&gt;%
 ## Segmented bar plots
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = gender, 
 *   fill = hair_color2))+
 * geom_bar()+
   coord_flip()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-28-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-28-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Segmented bar plots: proportions
 
 
-```r
+``` r
 ggplot(data = starwars,
        mapping = aes(x = gender, fill = hair_color2)) +
   geom_bar(position = "fill") +
   coord_flip()
 ```
 
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-29-1.png" width="43%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-29-1.png" alt="" width="43%" style="display: block; margin: auto;" /&gt;
 
-```r
+``` r
 labs(y = "proportion")
 ```
 
 ```
-## $y
-## [1] "proportion"
-## 
-## attr(,"class")
-## [1] "labels"
+## &lt;ggplot2::labels&gt; List of 1
+##  $ y: chr "proportion"
 ```
 
 
@@ -611,10 +606,10 @@ labs(y = "proportion")
   ]
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-30-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-31-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -624,11 +619,11 @@ labs(y = "proportion")
 We have flexibility in customizing bar plots by adjusting labels, titles, colors, and other visual properties.
 
 .pull-left[
-&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-32-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d05_06_viznumcat_files/figure-html/unnamed-chunk-32-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[.small[
 
-```r
+``` r
 *ggplot(starwars, aes(y = gender,
                   fill = hair_color2)) +
   geom_bar(position = "fill") +
@@ -650,7 +645,7 @@ class: middle
 ## Summary and Wrapping Up
 
 - In this session, we explored various techniques for visualizing numerical and categorical data. 
-- We examined histograms, density plots, bar plots, and scatterplots to gain insights into the relationships within the data. 
+- We examined histograms, density plots, and bar plots to gain insights into the relationships within the data. 
 - By effectively visualizing data, we can uncover patterns and trends that lead to deeper understanding.
 
 ---
@@ -663,11 +658,11 @@ class: middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

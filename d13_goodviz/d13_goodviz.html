@@ -40,6 +40,23 @@ layout: true
 
 class: middle
 
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Implement principles of effective visualization (simplicity, color, storytelling)
+- Organize data through ordering, faceting, and chart selection
+- Select meaningful color palettes and themes
+- Label visualizations clearly and reduce visual redundancy strategically
+
+---
+
+class: middle
+
 # Designing effective visualizations
 
 ---
@@ -47,10 +64,10 @@ class: middle
 ## Keep it simple
 
 .pull-left-narrow[
-&lt;img src="img/pie-3d.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/pie-3d.jpg" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right-wide[
-&lt;img src="d13_goodviz_files/figure-html/pie-to-bar-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/pie-to-bar-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -61,10 +78,10 @@ class: middle
 &lt;br&gt;
 
 .pull-left[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-2-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-3-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -72,7 +89,7 @@ class: middle
 
 ## Tell a story
 
-&lt;img src="img/time-series-story.png" width="95%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/time-series-story.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Credit: Angela Zoss and Eric Monson, Duke DVS
@@ -117,7 +134,7 @@ In September 2019, YouGov survey asked 1,639 GB adults the following question:
 .pull-right[
 
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-6-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[ 
@@ -142,7 +159,7 @@ ggplot(brexit, aes(x = opinion)) +
 ```
 ]
 .pull-right-wide[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-7-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-7-1.png" alt="" width="85%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -157,7 +174,7 @@ ggplot(brexit, aes(x = fct_infreq(opinion))) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-8-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -175,7 +192,7 @@ ggplot(brexit, aes(x = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-9-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -190,7 +207,7 @@ ggplot(brexit, aes(x = region)) +
 ]
 
 .pull-right-wide[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-10-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -217,7 +234,7 @@ brexit &lt;- brexit %&gt;%
 
 ---
 .pull-left-wide[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-12-1.png" width="120%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-12-1.png" alt="" width="120%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 ## Clean up labels
@@ -243,7 +260,7 @@ brexit &lt;- brexit %&gt;%
 
 ## Clean!
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-14-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-14-1.png" alt="" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -255,7 +272,7 @@ class: middle
 
 ## Long categories can be hard to read
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-15-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-15-1.png" alt="" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -268,7 +285,7 @@ ggplot(brexit, aes(x = region)) +
 * coord_flip()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-16-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-16-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -280,7 +297,7 @@ ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-17-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-17-1.png" alt="" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -298,7 +315,7 @@ ggplot(brexit, aes(x = region)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-18-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -318,7 +335,7 @@ ggplot(brexit, aes(y = fct_rev(region))) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-19-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
@@ -340,13 +357,13 @@ class: middle
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-20-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-21-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -361,11 +378,11 @@ ggplot(brexit, aes(y = opinion, fill = region)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-22-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-23-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -380,11 +397,11 @@ ggplot(brexit, aes(y = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-24-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-25-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -400,11 +417,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-26-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-27-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-27-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -422,11 +439,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-28-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-29-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-29-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -446,13 +463,13 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-30-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-31-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -476,7 +493,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-32-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-32-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -501,7 +518,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-33-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-33-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -549,13 +566,13 @@ ggplot(brexit, aes(y= region, fill = opinion)) +
 
 .pull-right[
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-35-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-36-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -582,13 +599,13 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .pull-right-narrow[
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-37-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 .center[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-38-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-38-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -599,7 +616,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 [colorbrewer2.org](https://colorbrewer2.org/)
 ]
 
-&lt;img src="img/color-brewer.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/color-brewer.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -625,14 +642,14 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 .pull-right-narrow[
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-40-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
 .center[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-41-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-41-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -659,7 +676,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ---
 
 .center[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-42-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-42-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -668,11 +685,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ## Spot the Difference
 
 .pull-right-narrow[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-43-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-left-narrow[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-44-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-44-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -699,20 +716,20 @@ ggplot(brexit, aes(y = region, fill = opinion)) +
 ```
 ]
 .pull-right[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-45-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 
 ---
 .center[
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-46-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-46-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 ### Clean up labels (Again)
 
-&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-47-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d13_goodviz_files/figure-html/unnamed-chunk-47-1.png" alt="" width="75%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -725,16 +742,42 @@ ggplot(brexit, aes(y = region, fill = opinion)) +
 
 class: middle
 
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Design Principles
+- ✅ Simplicity and clarity
+- ✅ Effective use of color
+- ✅ Data organization strategies
+]
+
+.pull-right[
+### Skills
+- ✅ Choose appropriate chart types
+- ✅ Select meaningful palettes
+- ✅ Create clear labels
+]
+
+---
+
+class: middle
+
 # Wrapping Up...
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

@@ -5,16 +5,20 @@
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Prediction and overfitting<br> 🏃
+]
+.author[
 ### S. Mason Garrison
+]
 
 ---
 
@@ -33,6 +37,23 @@ layout: true
 ---
 
 
+
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Recognize underfitting, appropriate fit, and overfitting scenarios
+- Split data into training and testing sets to prevent overfitting
+- Fit logistic regression models for classification tasks
+- Evaluate model performance using ROC curves and AUC metrics
+
+---
 
 class: middle
 
@@ -61,7 +82,7 @@ class: middle
 .small[
 
 ```
-## # A tibble: 22 x 5
+## # A tibble: 22 × 5
 ##    term         estimate std.error statistic  p.value
 ##    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 (Intercept)  -9.09e+1   9.80e+3  -0.00928 9.93e- 1
@@ -93,10 +114,6 @@ class: middle
 ## Call:
 ## glm(formula = spam ~ re_subj, family = "binomial", data = email)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -0.5145  -0.5145  -0.5145  -0.1252   3.1155  
-## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)    
 ## (Intercept) -1.95542    0.05639 -34.677  &lt; 2e-16 ***
@@ -117,7 +134,7 @@ class: middle
 ]
 .pull-right[.panel[.panel-name[Code]
 
-```r
+``` r
 logistic_reg() %&gt;%
   set_engine("glm") %&gt;%
   fit(spam ~ ., data = email, 
@@ -130,7 +147,7 @@ logistic_reg() %&gt;%
 ## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 ```
 
-```r
+``` r
 summary(glm(spam~re_subj, data=email, family = "binomial"))
 ```
 ]
@@ -153,7 +170,7 @@ summary(glm(spam~re_subj, data=email, family = "binomial"))
 
 ## Underfitting and overfitting
 
-&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-3-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -197,7 +214,7 @@ class: middle
 ## Performing the split
 
 
-```r
+``` r
 # Fix random numbers by setting the seed 
 # Enables analysis to be reproducible when random numbers are used 
 set.seed(1066)
@@ -217,66 +234,66 @@ test_data  &lt;- testing(email_split)
 .small[
 .pull-left[
 
-```r
+``` r
 glimpse(train_data)
 ```
 
 ```
 ## Rows: 3,136
 ## Columns: 21
-## $ spam         &lt;fct&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ~
-## $ to_multiple  &lt;fct&gt; 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, ~
-## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ cc           &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ sent_email   &lt;fct&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ time         &lt;dttm&gt; 2012-02-10 17:21:24, 2012-02-09 04:32:51,~
-## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ~
-## $ dollar       &lt;dbl&gt; 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, ~
-## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no~
-## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ password     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, ~
-## $ num_char     &lt;dbl&gt; 18.649, 0.696, 2.792, 17.049, 8.592, 1.360~
-## $ line_breaks  &lt;int&gt; 388, 20, 39, 386, 146, 28, 740, 42, 152, 7~
-## $ format       &lt;fct&gt; 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, ~
-## $ re_subj      &lt;fct&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ exclaim_mess &lt;dbl&gt; 20, 1, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 1,~
-## $ number       &lt;fct&gt; big, small, small, small, small, small, sm~
+## $ spam         &lt;fct&gt; 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
+## $ to_multiple  &lt;fct&gt; 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, …
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ cc           &lt;int&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ sent_email   &lt;fct&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ time         &lt;dttm&gt; 2012-02-10 17:21:24, 2012-02-09 04:32:51,…
+## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ dollar       &lt;dbl&gt; 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, …
+## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no…
+## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ password     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, …
+## $ num_char     &lt;dbl&gt; 18.649, 0.696, 2.792, 17.049, 8.592, 1.360…
+## $ line_breaks  &lt;int&gt; 388, 20, 39, 386, 146, 28, 740, 42, 152, 7…
+## $ format       &lt;fct&gt; 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, …
+## $ re_subj      &lt;fct&gt; 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ exclaim_mess &lt;dbl&gt; 20, 1, 1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 1,…
+## $ number       &lt;fct&gt; big, small, small, small, small, small, sm…
 ```
 ]
 .pull-right[
 
-```r
+``` r
 glimpse(test_data)
 ```
 
 ```
 ## Rows: 785
 ## Columns: 21
-## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, ~
-## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
-## $ cc           &lt;int&gt; 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, ~
-## $ sent_email   &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, ~
-## $ time         &lt;dttm&gt; 2012-01-01 04:09:49, 2012-01-01 22:00:18,~
-## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ dollar       &lt;dbl&gt; 0, 0, 5, 0, 21, 0, 0, 0, 11, 18, 16, 0, 2,~
-## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no~
-## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ password     &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ num_char     &lt;dbl&gt; 13.256, 10.459, 18.037, 4.560, 16.647, 7.8~
-## $ line_breaks  &lt;int&gt; 255, 191, 345, 64, 560, 97, 881, 185, 350,~
-## $ format       &lt;fct&gt; 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, ~
-## $ re_subj      &lt;fct&gt; 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, ~
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, ~
-## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
-## $ exclaim_mess &lt;dbl&gt; 48, 0, 20, 0, 3, 1, 5, 3, 2, 15, 16, 4, 6,~
-## $ number       &lt;fct&gt; small, big, small, none, small, small, big~
+## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ cc           &lt;int&gt; 0, 0, 0, 0, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, …
+## $ sent_email   &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …
+## $ time         &lt;dttm&gt; 2012-01-01 04:09:49, 2012-01-01 22:00:18,…
+## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ dollar       &lt;dbl&gt; 0, 0, 5, 0, 21, 0, 0, 0, 11, 18, 16, 0, 2,…
+## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no…
+## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ password     &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ num_char     &lt;dbl&gt; 13.256, 10.459, 18.037, 4.560, 16.647, 7.8…
+## $ line_breaks  &lt;int&gt; 255, 191, 345, 64, 560, 97, 881, 185, 350,…
+## $ format       &lt;fct&gt; 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, …
+## $ re_subj      &lt;fct&gt; 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, …
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, …
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ exclaim_mess &lt;dbl&gt; 48, 0, 20, 0, 3, 1, 5, 3, 2, 15, 16, 4, 6,…
+## $ number       &lt;fct&gt; small, big, small, none, small, small, big…
 ```
 ]
 ]
@@ -294,7 +311,7 @@ class: middle
 
 
 
-```r
+``` r
 # AHHHHHHHHHHHHHHHHHHHH set iter doesn't stick!!!!
 email_fit &lt;- logistic_reg() %&gt;%
   set_engine("glm") %&gt;%
@@ -306,7 +323,7 @@ email_fit &lt;- logistic_reg() %&gt;%
 ```
 
 
-```r
+``` r
 email_fit &lt;- logistic_reg() %&gt;%
   set_engine("glm") %&gt;%
   fit(spam ~ ., data = train_data, family = "binomial") %&gt;%
@@ -316,7 +333,7 @@ email_fit &lt;- logistic_reg() %&gt;%
 
 ## Categorical predictors
 
-&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-9-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -326,13 +343,13 @@ email_fit &lt;- logistic_reg() %&gt;%
 - `from`: Whether the message was listed as from anyone (this is usually set by default for regular outgoing email)
 
 
-```r
+``` r
 train_data %&gt;%
   count(spam, from)
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   spam  from      n
 ##   &lt;fct&gt; &lt;fct&gt; &lt;int&gt;
 ## 1 0     1      2847
@@ -344,13 +361,13 @@ train_data %&gt;%
 - `sent_email`: Indicator for whether the sender had been sent an email in the last 30 days
 
 
-```r
+``` r
 train_data %&gt;%
   count(spam, sent_email)
 ```
 
 ```
-## # A tibble: 3 x 3
+## # A tibble: 3 × 3
 ##   spam  sent_email     n
 ##   &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;
 ## 1 0     0           1981
@@ -367,32 +384,30 @@ train_data %&gt;%
 
 ```
 ## 
-## -- Variable type: numeric --------------------------------------------------------------------------
-## # A tibble: 22 x 11
-##    skim_variable spam  n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
-##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 cc            0             0             1   0.416     2.73   0      0       0      0      68 
-##  2 cc            1             0             1   0.439     3.37   0      0       0      0      50 
-##  3 image         0             0             1   0.0534    0.502  0      0       0      0      20 
-##  4 image         1             0             1   0.00346   0.0588 0      0       0      0       1 
-##  5 attach        0             0             1   0.128     0.764  0      0       0      0      21 
-##  6 attach        1             0             1   0.235     0.629  0      0       0      0       2 
-##  7 dollar        0             0             1   1.61      5.43   0      0       0      0      64 
-##  8 dollar        1             0             1   0.599     1.95   0      0       0      0      26 
-*##  9 inherit       0             0             1   0.0365    0.242  0      0       0      0       6 
-*## 10 inherit       1             0             1   0.0727    0.564  0      0       0      0       9 
-## 11 viagra        0             0             1   0         0      0      0       0      0       0 
-## 12 viagra        1             0             1   0.0277    0.471  0      0       0      0       8 
-## 13 password      0             0             1   0.124     1.08   0      0       0      0      28 
-## 14 password      1             0             1   0.0208    0.185  0      0       0      0       2 
-## 15 num_char      0             0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
-## 16 num_char      1             0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
-## 17 line_breaks   0             0             1 245.      313.     2     42     138    319    3522 
-## 18 line_breaks   1             0             1  94.2     239.     1     14      23     66    2908 
-## 19 exclaim_subj  0             0             1   0.0804    0.272  0      0       0      0       1 
-## 20 exclaim_subj  1             0             1   0.0865    0.282  0      0       0      0       1 
-## 21 exclaim_mess  0             0             1   6.10     42.2    0      0       1      5    1203 
-## 22 exclaim_mess  1             0             1   4.70     55.4    0      0       0      1     939
+## ── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+##    skim_variable spam n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
+##  1 cc            0            0             1   0.416     2.73   0      0       0      0      68 
+##  2 cc            1            0             1   0.439     3.37   0      0       0      0      50 
+##  3 image         0            0             1   0.0534    0.502  0      0       0      0      20 
+##  4 image         1            0             1   0.00346   0.0588 0      0       0      0       1 
+##  5 attach        0            0             1   0.128     0.764  0      0       0      0      21 
+##  6 attach        1            0             1   0.235     0.629  0      0       0      0       2 
+##  7 dollar        0            0             1   1.61      5.43   0      0       0      0      64 
+##  8 dollar        1            0             1   0.599     1.95   0      0       0      0      26 
+##  9 inherit       0            0             1   0.0365    0.242  0      0       0      0       6 
+## 10 inherit       1            0             1   0.0727    0.564  0      0       0      0       9 
+*## 11 viagra        0            0             1   0         0      0      0       0      0       0 
+*## 12 viagra        1            0             1   0.0277    0.471  0      0       0      0       8 
+## 13 password      0            0             1   0.124     1.08   0      0       0      0      28 
+## 14 password      1            0             1   0.0208    0.185  0      0       0      0       2 
+## 15 num_char      0            0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
+## 16 num_char      1            0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
+## 17 line_breaks   0            0             1 245.      313.     2     42     138    319    3522 
+## 18 line_breaks   1            0             1  94.2     239.     1     14      23     66    2908 
+## 19 exclaim_subj  0            0             1   0.0804    0.272  0      0       0      0       1 
+## 20 exclaim_subj  1            0             1   0.0865    0.282  0      0       0      0       1 
+## 21 exclaim_mess  0            0             1   6.10     42.2    0      0       1      5    1203 
+## 22 exclaim_mess  1            0             1   4.70     55.4    0      0       0      1     939
 ```
 
 
@@ -404,32 +419,30 @@ train_data %&gt;%
 
 ```
 ## 
-## -- Variable type: numeric --------------------------------------------------------------------------
-## # A tibble: 22 x 11
-##    skim_variable spam  n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
-##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 cc            0             0             1   0.416     2.73   0      0       0      0      68 
-##  2 cc            1             0             1   0.439     3.37   0      0       0      0      50 
-##  3 image         0             0             1   0.0534    0.502  0      0       0      0      20 
-##  4 image         1             0             1   0.00346   0.0588 0      0       0      0       1 
-##  5 attach        0             0             1   0.128     0.764  0      0       0      0      21 
-##  6 attach        1             0             1   0.235     0.629  0      0       0      0       2 
-##  7 dollar        0             0             1   1.61      5.43   0      0       0      0      64 
-##  8 dollar        1             0             1   0.599     1.95   0      0       0      0      26 
-*##  9 inherit       0             0             1   0.0365    0.242  0      0       0      0       6 
-*## 10 inherit       1             0             1   0.0727    0.564  0      0       0      0       9 
-## 11 viagra        0             0             1   0         0      0      0       0      0       0 
-## 12 viagra        1             0             1   0.0277    0.471  0      0       0      0       8 
-## 13 password      0             0             1   0.124     1.08   0      0       0      0      28 
-## 14 password      1             0             1   0.0208    0.185  0      0       0      0       2 
-## 15 num_char      0             0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
-## 16 num_char      1             0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
-## 17 line_breaks   0             0             1 245.      313.     2     42     138    319    3522 
-## 18 line_breaks   1             0             1  94.2     239.     1     14      23     66    2908 
-## 19 exclaim_subj  0             0             1   0.0804    0.272  0      0       0      0       1 
-## 20 exclaim_subj  1             0             1   0.0865    0.282  0      0       0      0       1 
-## 21 exclaim_mess  0             0             1   6.10     42.2    0      0       1      5    1203 
-## 22 exclaim_mess  1             0             1   4.70     55.4    0      0       0      1     939
+## ── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+##    skim_variable spam n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
+##  1 cc            0            0             1   0.416     2.73   0      0       0      0      68 
+##  2 cc            1            0             1   0.439     3.37   0      0       0      0      50 
+##  3 image         0            0             1   0.0534    0.502  0      0       0      0      20 
+##  4 image         1            0             1   0.00346   0.0588 0      0       0      0       1 
+##  5 attach        0            0             1   0.128     0.764  0      0       0      0      21 
+##  6 attach        1            0             1   0.235     0.629  0      0       0      0       2 
+##  7 dollar        0            0             1   1.61      5.43   0      0       0      0      64 
+##  8 dollar        1            0             1   0.599     1.95   0      0       0      0      26 
+##  9 inherit       0            0             1   0.0365    0.242  0      0       0      0       6 
+## 10 inherit       1            0             1   0.0727    0.564  0      0       0      0       9 
+*## 11 viagra        0            0             1   0         0      0      0       0      0       0 
+*## 12 viagra        1            0             1   0.0277    0.471  0      0       0      0       8 
+## 13 password      0            0             1   0.124     1.08   0      0       0      0      28 
+## 14 password      1            0             1   0.0208    0.185  0      0       0      0       2 
+## 15 num_char      0            0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
+## 16 num_char      1            0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
+## 17 line_breaks   0            0             1 245.      313.     2     42     138    319    3522 
+## 18 line_breaks   1            0             1  94.2     239.     1     14      23     66    2908 
+## 19 exclaim_subj  0            0             1   0.0804    0.272  0      0       0      0       1 
+## 20 exclaim_subj  1            0             1   0.0865    0.282  0      0       0      0       1 
+## 21 exclaim_mess  0            0             1   6.10     42.2    0      0       1      5    1203 
+## 22 exclaim_mess  1            0             1   4.70     55.4    0      0       0      1     939
 ```
 ]
 
@@ -441,32 +454,30 @@ train_data %&gt;%
 
 ```
 ## 
-## -- Variable type: numeric --------------------------------------------------------------------------
-## # A tibble: 22 x 11
-##    skim_variable spam  n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
-##  * &lt;chr&gt;         &lt;fct&gt;     &lt;int&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-##  1 cc            0             0             1   0.416     2.73   0      0       0      0      68 
-##  2 cc            1             0             1   0.439     3.37   0      0       0      0      50 
-##  3 image         0             0             1   0.0534    0.502  0      0       0      0      20 
-##  4 image         1             0             1   0.00346   0.0588 0      0       0      0       1 
-##  5 attach        0             0             1   0.128     0.764  0      0       0      0      21 
-##  6 attach        1             0             1   0.235     0.629  0      0       0      0       2 
-##  7 dollar        0             0             1   1.61      5.43   0      0       0      0      64 
-##  8 dollar        1             0             1   0.599     1.95   0      0       0      0      26 
-*##  9 inherit       0             0             1   0.0365    0.242  0      0       0      0       6 
-*## 10 inherit       1             0             1   0.0727    0.564  0      0       0      0       9 
-## 11 viagra        0             0             1   0         0      0      0       0      0       0 
-## 12 viagra        1             0             1   0.0277    0.471  0      0       0      0       8 
-## 13 password      0             0             1   0.124     1.08   0      0       0      0      28 
-## 14 password      1             0             1   0.0208    0.185  0      0       0      0       2 
-## 15 num_char      0             0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
-## 16 num_char      1             0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
-## 17 line_breaks   0             0             1 245.      313.     2     42     138    319    3522 
-## 18 line_breaks   1             0             1  94.2     239.     1     14      23     66    2908 
-## 19 exclaim_subj  0             0             1   0.0804    0.272  0      0       0      0       1 
-## 20 exclaim_subj  1             0             1   0.0865    0.282  0      0       0      0       1 
-## 21 exclaim_mess  0             0             1   6.10     42.2    0      0       1      5    1203 
-## 22 exclaim_mess  1             0             1   4.70     55.4    0      0       0      1     939
+## ── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+##    skim_variable spam n_missing complete_rate      mean       sd    p0    p25    p50    p75  p100
+##  1 cc            0            0             1   0.416     2.73   0      0       0      0      68 
+##  2 cc            1            0             1   0.439     3.37   0      0       0      0      50 
+##  3 image         0            0             1   0.0534    0.502  0      0       0      0      20 
+##  4 image         1            0             1   0.00346   0.0588 0      0       0      0       1 
+##  5 attach        0            0             1   0.128     0.764  0      0       0      0      21 
+##  6 attach        1            0             1   0.235     0.629  0      0       0      0       2 
+##  7 dollar        0            0             1   1.61      5.43   0      0       0      0      64 
+##  8 dollar        1            0             1   0.599     1.95   0      0       0      0      26 
+##  9 inherit       0            0             1   0.0365    0.242  0      0       0      0       6 
+## 10 inherit       1            0             1   0.0727    0.564  0      0       0      0       9 
+*## 11 viagra        0            0             1   0         0      0      0       0      0       0 
+*## 12 viagra        1            0             1   0.0277    0.471  0      0       0      0       8 
+## 13 password      0            0             1   0.124     1.08   0      0       0      0      28 
+## 14 password      1            0             1   0.0208    0.185  0      0       0      0       2 
+## 15 num_char      0            0             1  11.3      14.3    0.003  1.95    6.91  15.8   161.
+## 16 num_char      1            0             1   4.90     12.1    0.001  0.499   1.09   3.37  128.
+## 17 line_breaks   0            0             1 245.      313.     2     42     138    319    3522 
+## 18 line_breaks   1            0             1  94.2     239.     1     14      23     66    2908 
+## 19 exclaim_subj  0            0             1   0.0804    0.272  0      0       0      0       1 
+## 20 exclaim_subj  1            0             1   0.0865    0.282  0      0       0      0       1 
+## 21 exclaim_mess  0            0             1   6.10     42.2    0      0       1      5    1203 
+## 22 exclaim_mess  1            0             1   4.70     55.4    0      0       0      1     939
 ```
 ]
 
@@ -475,7 +486,7 @@ train_data %&gt;%
 ## Fit a model to the training dataset
 
 
-```r
+``` r
 email_fit &lt;- logistic_reg() %&gt;%
   set_engine("glm") %&gt;%
 * fit(spam ~ . - from - sent_email - viagra,
@@ -485,14 +496,13 @@ suppressWarnings(.)
 
 .small[
 
-```r
+``` r
 email_fit
 ```
 
 ```
 ## parsnip model object
 ## 
-## Fit time:  21ms 
 ## 
 ## Call:  stats::glm(formula = spam ~ . - from - sent_email - viagra, family = stats::binomial, 
 ##     data = data)
@@ -516,12 +526,12 @@ email_fit
 ## Predict outcome on the testing dataset
 
 
-```r
+``` r
 predict(email_fit, test_data)
 ```
 
 ```
-## # A tibble: 785 x 1
+## # A tibble: 785 × 1
 ##    .pred_class
 ##    &lt;fct&gt;      
 ##  1 0          
@@ -534,7 +544,7 @@ predict(email_fit, test_data)
 ##  8 0          
 ##  9 0          
 ## 10 0          
-## # ... with 775 more rows
+## # ℹ 775 more rows
 ```
 
 
@@ -543,7 +553,7 @@ predict(email_fit, test_data)
 ## Predict probabilities on the testing dataset
 
 
-```r
+``` r
 email_pred &lt;- predict(email_fit, test_data, type = "prob") %&gt;%
   bind_cols(test_data %&gt;% select(spam, time))
 
@@ -551,7 +561,7 @@ email_pred
 ```
 
 ```
-## # A tibble: 785 x 4
+## # A tibble: 785 × 4
 ##    .pred_0  .pred_1 spam  time               
 ##      &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
 ##  1   0.927 0.0734   0     2012-01-01 04:09:49
@@ -564,7 +574,7 @@ email_pred
 ##  8   0.999 0.000545 0     2012-01-02 16:24:21
 ##  9   0.984 0.0155   0     2012-01-03 04:34:50
 ## 10   0.994 0.00594  0     2012-01-03 08:33:28
-## # ... with 775 more rows
+## # ℹ 775 more rows
 ```
 
 ---
@@ -573,14 +583,14 @@ email_pred
 
 .pull-left-wide[
 
-```r
+``` r
 email_pred %&gt;%
   arrange(desc(.pred_1)) %&gt;%
   print(n = 10)
 ```
 
 ```
-## # A tibble: 785 x 4
+## # A tibble: 785 × 4
 ##    .pred_0 .pred_1 spam  time               
 ##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
 ##  1   0.187   0.813 0     2012-01-08 09:28:42
@@ -593,7 +603,7 @@ email_pred %&gt;%
 ##  8   0.323   0.677 1     2012-02-28 05:19:20
 ##  9   0.372   0.628 0     2012-01-28 14:41:43
 ## 10   0.387   0.613 0     2012-02-04 05:39:37
-## # ... with 775 more rows
+## # ℹ 775 more rows
 ```
 ]
 
@@ -607,7 +617,7 @@ email_pred %&gt;%
 
 .medi.pull-left-narrow[
 
-```r
+``` r
 email_pred %&gt;%
   roc_curve(
     truth = spam,
@@ -618,7 +628,7 @@ email_pred %&gt;%
 ```
 ]
 .pull-right-wide[
-&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-20-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[
@@ -635,7 +645,7 @@ Find the area under the curve:
 
 .medi.pull-left-narrow[
 
-```r
+``` r
 email_pred %&gt;%
   roc_auc(
     truth = spam,
@@ -645,14 +655,40 @@ email_pred %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 roc_auc binary         0.862
 ```
 ]
 .pull-right-wide[
-&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d24_overfitting_files/figure-html/unnamed-chunk-22-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Underfitting vs. overfitting
+- ✅ Training/testing splits
+- ✅ Logistic regression
+]
+
+.pull-right[
+### Skills
+- ✅ Prevent overfitting
+- ✅ Fit classification models
+- ✅ Use ROC curves and AUC
 ]
 
 ---
@@ -670,11 +706,11 @@ Sources:
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -715,6 +751,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

@@ -70,7 +70,7 @@ layout: true
 What makes this data not tidy?
 ]
 
-&lt;img src="img/hyperwar-airplanes-on-hand.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/hyperwar-airplanes-on-hand.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [Army Air Forces Statistical Digest, WW II](https://www.ibiblio.org/hyperwar/AAF/StatDigest/aafsd-3.html)
@@ -84,7 +84,7 @@ What makes this data not tidy?
 
 &lt;br&gt;
 
-&lt;img src="img/hiv-est-prevalence-15-49.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/hiv-est-prevalence-15-49.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [Gapminder, Estimated HIV prevalence among 15-49 year olds](https://www.gapminder.org/data)
@@ -98,7 +98,7 @@ What makes this data not tidy?
 
 &lt;br&gt;
 
-&lt;img src="img/us-general-economic-characteristic-acs-2017.png" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/us-general-economic-characteristic-acs-2017.png" alt="" width="85%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_17_5YR_DP03)
@@ -113,15 +113,19 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 
 ```
 ## # A tibble: 87 × 3
-##   name           height  mass
-##   &lt;chr&gt;           &lt;int&gt; &lt;dbl&gt;
-## 1 Luke Skywalker    172    77
-## 2 C-3PO             167    75
-## 3 R2-D2              96    32
-## 4 Darth Vader       202   136
-## 5 Leia Organa       150    49
-## 6 Owen Lars         178   120
-## # ℹ 81 more rows
+##    name               height  mass
+##    &lt;chr&gt;               &lt;int&gt; &lt;dbl&gt;
+##  1 Luke Skywalker        172    77
+##  2 C-3PO                 167    75
+##  3 R2-D2                  96    32
+##  4 Darth Vader           202   136
+##  5 Leia Organa           150    49
+##  6 Owen Lars             178   120
+##  7 Beru Whitesun Lars    165    75
+##  8 R5-D4                  97    32
+##  9 Biggs Darklighter     183    84
+## 10 Obi-Wan Kenobi        182    77
+## # ℹ 77 more rows
 ```
 ]
 .pull-right[
@@ -130,9 +134,9 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 ## # A tibble: 3 × 2
 ##   gender    avg_ht
 ##   &lt;chr&gt;      &lt;dbl&gt;
-## 1 feminine    165.
+## 1 feminine    167.
 ## 2 masculine   177.
-## 3 &lt;NA&gt;        181.
+## 3 &lt;NA&gt;        175
 ```
 ]
 
@@ -141,14 +145,14 @@ Source: [US Census Fact Finder, General Economic Characteristics, ACS 2017](http
 
 .pull-left[
 
-```r
+``` r
 starwars %&gt;%
   select(name, height, mass)
 ```
 ]
 .pull-right[
 
-```r
+``` r
 starwars %&gt;%
   group_by(gender) %&gt;%
   summarize(
@@ -223,7 +227,7 @@ Tibbles are a better version of data frames.
 . . .
 .midi[
 
-```r
+``` r
 library(tidyverse)
 (df = data.frame("a" = 1:5, "b 2" = 5:1))
 ```
@@ -237,7 +241,7 @@ library(tidyverse)
 ## 5 5   1
 ```
 
-```r
+``` r
 (ti = tibble("a" = 1:5, "b 2" = 5:1))
 ```
 
@@ -259,7 +263,7 @@ library(tidyverse)
 . . .
 
 
-```r
+``` r
 df$c
 ```
 
@@ -267,7 +271,7 @@ df$c
 ## NULL
 ```
 
-```r
+``` r
 ti$c
 ```
 
@@ -286,7 +290,7 @@ ti$c
 . . .
 
 
-```r
+``` r
 df[,1]
 ```
 
@@ -294,7 +298,7 @@ df[,1]
 ## [1] 1 2 3 4 5
 ```
 
-```r
+``` r
 ti[,1]
 ```
 
@@ -316,7 +320,7 @@ ti[,1]
 . . .
 
 
-```r
+``` r
 df$b
 ```
 
@@ -324,7 +328,7 @@ df$b
 ## [1] 5 4 3 2 1
 ```
 
-```r
+``` r
 ti$b
 ```
 
@@ -341,13 +345,13 @@ ti$b
 
 Previously...
 
-```r
+``` r
 df = data.frame(l1 = letters[1:5])
 ```
 
 The most annoying thing about data frames:
 
-```r
+``` r
 df$l2 = letters[1:5]
 class(df$l1)
 ```
@@ -356,7 +360,7 @@ class(df$l1)
 ## [1] "factor"
 ```
 
-```r
+``` r
 class(df$l2)
 ```
 
@@ -368,7 +372,7 @@ class(df$l2)
 
 # Tibbles don't have this problem
 
-```r
+``` r
 ## but with tibbles it's all the same
 ti = tibble(l1 = letters[1:5])
 ti$l2 = letters[1:5]
@@ -379,7 +383,7 @@ class(ti$l1)
 ## [1] "character"
 ```
 
-```r
+``` r
 class(ti$l2)
 ```
 
@@ -401,7 +405,7 @@ class: middle
 Base R has fixed this issue...
 
 
-```r
+``` r
 df = data.frame(l1 = letters[1:5])
 df$l2 = letters[1:5]
 class(df$l1)
@@ -411,7 +415,7 @@ class(df$l1)
 ## [1] "character"
 ```
 
-```r
+``` r
 class(df$l2)
 ```
 
@@ -424,11 +428,11 @@ class(df$l2)
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
