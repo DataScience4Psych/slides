@@ -85,20 +85,20 @@ edi_3br &lt;- read_csv2("data/edi-3br.csv") # ; separated
 .small[
 
 ```
-## # A tibble: 15 × 4
+## # A tibble: 15 x 4
 ##    flat_id  rent title                       address             
 ##    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;                       &lt;chr&gt;               
-##  1 flat_01   825 3 bedroom apartment to rent Burnhead Grove, Edi…
-##  2 flat_02  2400 3 bedroom flat to rent      Simpson Loan, Quart…
-##  3 flat_03  1900 3 bedroom flat to rent      FETTES ROW, NEW TOW…
-##  4 flat_04  1500 3 bedroom apartment to rent Eyre Crescent, Edin…
-##  5 flat_05  3250 3 bedroom flat to rent      Walker Street, Edin…
-##  6 flat_06  2145 3 bedroom flat to rent      George Street, City…
-##  7 flat_07  1500 3 bedroom flat to rent      Waverley Place , Ed…
-##  8 flat_08  1950 3 bedroom flat to rent      Drumsheugh Place, E…
-##  9 flat_09  1725 3 bedroom flat to rent      Crighton Place, Lei…
-## 10 flat_10  2995 3 bedroom flat to rent      Simpson Loan, Meado…
-## # ℹ 5 more rows
+##  1 flat_01   825 3 bedroom apartment to rent Burnhead Grove, Edi~
+##  2 flat_02  2400 3 bedroom flat to rent      Simpson Loan, Quart~
+##  3 flat_03  1900 3 bedroom flat to rent      FETTES ROW, NEW TOW~
+##  4 flat_04  1500 3 bedroom apartment to rent Eyre Crescent, Edin~
+##  5 flat_05  3250 3 bedroom flat to rent      Walker Street, Edin~
+##  6 flat_06  2145 3 bedroom flat to rent      George Street, City~
+##  7 flat_07  1500 3 bedroom flat to rent      Waverley Place , Ed~
+##  8 flat_08  1950 3 bedroom flat to rent      Drumsheugh Place, E~
+##  9 flat_09  1725 3 bedroom flat to rent      Crighton Place, Lei~
+## 10 flat_10  2995 3 bedroom flat to rent      Simpson Loan, Meado~
+## # i 5 more rows
 ```
 ]
 
@@ -218,7 +218,7 @@ boot_df
 
 ```
 ## Response: rent (numeric)
-## # A tibble: 15,000 × 2
+## # A tibble: 15,000 x 2
 ##    replicate  stat
 ##        &lt;int&gt; &lt;dbl&gt;
 ##  1         1 1793.
@@ -231,7 +231,7 @@ boot_df
 ##  8         8 1817.
 ##  9         9 1963.
 ## 10        10 1800.
-## # ℹ 14,990 more rows
+## # i 14,990 more rows
 ```
 
 ---
@@ -261,7 +261,7 @@ boot_df %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##   lower upper
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 1603. 2213.

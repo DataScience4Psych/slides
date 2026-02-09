@@ -103,7 +103,7 @@ professions
 ```
 
 ```
-## # A tibble: 10 × 2
+## # A tibble: 10 x 2
 ##    name               profession                        
 ##    &lt;chr&gt;              &lt;chr&gt;                             
 ##  1 Ada Lovelace       Mathematician                     
@@ -128,7 +128,7 @@ dates
 ```
 
 ```
-## # A tibble: 8 × 3
+## # A tibble: 8 x 3
 ##   name               birth_year death_year
 ##   &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 Janaki Ammal             1897       1984
@@ -153,18 +153,18 @@ works
 ```
 
 ```
-## # A tibble: 9 × 2
+## # A tibble: 9 x 2
 ##   name               known_for                                   
 ##   &lt;chr&gt;              &lt;chr&gt;                                       
 ## 1 Ada Lovelace       first computer algorithm                    
-## 2 Marie Curie        theory of radioactivity,  discovery of elem…
+## 2 Marie Curie        theory of radioactivity,  discovery of elem~
 ## 3 Janaki Ammal       hybrid species, biodiversity protection     
-## 4 Chien-Shiung Wu    confim and refine theory of radioactive bet…
-## 5 Katherine Johnson  calculations of orbital mechanics critical …
+## 4 Chien-Shiung Wu    confim and refine theory of radioactive bet~
+## 5 Katherine Johnson  calculations of orbital mechanics critical ~
 ## 6 Vera Rubin         existence of dark matter                    
-## 7 Gladys West        mathematical modeling of the shape of the E…
-## 8 Flossie Wong-Staal first scientist to clone HIV and create a m…
-## 9 Jennifer Doudna    one of the primary developers of CRISPR, a …
+## 7 Gladys West        mathematical modeling of the shape of the E~
+## 8 Flossie Wong-Staal first scientist to clone HIV and create a m~
+## 9 Jennifer Doudna    one of the primary developers of CRISPR, a ~
 ```
 
 ---
@@ -173,19 +173,19 @@ works
 
 
 ```
-## # A tibble: 10 × 5
+## # A tibble: 10 x 5
 ##    name               profession  birth_year death_year known_for
 ##    &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    
-##  1 Ada Lovelace       Mathematic…         NA         NA first co…
-##  2 Marie Curie        Physicist …         NA         NA theory o…
-##  3 Janaki Ammal       Botanist          1897       1984 hybrid s…
-##  4 Chien-Shiung Wu    Physicist         1912       1997 confim a…
-##  5 Katherine Johnson  Mathematic…       1918       2020 calculat…
+##  1 Ada Lovelace       Mathematic~         NA         NA first co~
+##  2 Marie Curie        Physicist ~         NA         NA theory o~
+##  3 Janaki Ammal       Botanist          1897       1984 hybrid s~
+##  4 Chien-Shiung Wu    Physicist         1912       1997 confim a~
+##  5 Katherine Johnson  Mathematic~       1918       2020 calculat~
 ##  6 Rosalind Franklin  Chemist           1920       1958 &lt;NA&gt;     
-##  7 Vera Rubin         Astronomer        1928       2016 existenc…
-##  8 Gladys West        Mathematic…       1930         NA mathemat…
-##  9 Flossie Wong-Staal Virologist…       1947         NA first sc…
-## 10 Jennifer Doudna    Biochemist        1964         NA one of t…
+##  7 Vera Rubin         Astronomer        1928       2016 existenc~
+##  8 Gladys West        Mathematic~       1930         NA mathemat~
+##  9 Flossie Wong-Staal Virologist~       1947         NA first sc~
+## 10 Jennifer Doudna    Biochemist        1964         NA one of t~
 ```
 
 ---
@@ -284,7 +284,7 @@ x
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##      id value_x
 ##   &lt;dbl&gt; &lt;chr&gt;  
 ## 1     1 x1     
@@ -300,7 +300,7 @@ y
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##      id value_y
 ##   &lt;dbl&gt; &lt;chr&gt;  
 ## 1     1 y1     
@@ -323,7 +323,7 @@ left_join(x, y)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##      id value_x value_y
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
 ## 1     1 x1      y1     
@@ -343,7 +343,7 @@ professions %&gt;%
 ```
 
 ```
-## # A tibble: 10 × 4
+## # A tibble: 10 x 4
 ##    name               profession            birth_year death_year
 ##    &lt;chr&gt;              &lt;chr&gt;                      &lt;dbl&gt;      &lt;dbl&gt;
 ##  1 Ada Lovelace       Mathematician                 NA         NA
@@ -354,7 +354,7 @@ professions %&gt;%
 ##  6 Rosalind Franklin  Chemist                     1920       1958
 ##  7 Vera Rubin         Astronomer                  1928       2016
 ##  8 Gladys West        Mathematician               1930         NA
-##  9 Flossie Wong-Staal Virologist and Molec…       1947         NA
+##  9 Flossie Wong-Staal Virologist and Molec~       1947         NA
 ## 10 Jennifer Doudna    Biochemist                  1964         NA
 ```
 
@@ -372,7 +372,7 @@ right_join(x, y)
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##      id value_x value_y
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
 ## 1     1 x1      y1     
@@ -393,7 +393,7 @@ professions %&gt;%
 ```
 
 ```
-## # A tibble: 8 × 4
+## # A tibble: 8 x 4
 ##   name               profession             birth_year death_year
 ##   &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 Janaki Ammal       Botanist                     1897       1984
@@ -402,7 +402,7 @@ professions %&gt;%
 ## 4 Rosalind Franklin  Chemist                      1920       1958
 ## 5 Vera Rubin         Astronomer                   1928       2016
 ## 6 Gladys West        Mathematician                1930         NA
-## 7 Flossie Wong-Staal Virologist and Molecu…       1947         NA
+## 7 Flossie Wong-Staal Virologist and Molecu~       1947         NA
 ## 8 Jennifer Doudna    Biochemist                   1964         NA
 ```
 
@@ -420,7 +420,7 @@ full_join(x, y)
 ```
 
 ```
-## # A tibble: 4 × 3
+## # A tibble: 4 x 3
 ##      id value_x value_y
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
 ## 1     1 x1      y1     
@@ -441,19 +441,19 @@ dates %&gt;%
 ```
 
 ```
-## # A tibble: 10 × 4
+## # A tibble: 10 x 4
 ##    name               birth_year death_year known_for            
 ##    &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;                
-##  1 Janaki Ammal             1897       1984 hybrid species, biod…
-##  2 Chien-Shiung Wu          1912       1997 confim and refine th…
-##  3 Katherine Johnson        1918       2020 calculations of orbi…
+##  1 Janaki Ammal             1897       1984 hybrid species, biod~
+##  2 Chien-Shiung Wu          1912       1997 confim and refine th~
+##  3 Katherine Johnson        1918       2020 calculations of orbi~
 ##  4 Rosalind Franklin        1920       1958 &lt;NA&gt;                 
-##  5 Vera Rubin               1928       2016 existence of dark ma…
-##  6 Gladys West              1930         NA mathematical modelin…
-##  7 Flossie Wong-Staal       1947         NA first scientist to c…
-##  8 Jennifer Doudna          1964         NA one of the primary d…
-##  9 Ada Lovelace               NA         NA first computer algor…
-## 10 Marie Curie                NA         NA theory of radioactiv…
+##  5 Vera Rubin               1928       2016 existence of dark ma~
+##  6 Gladys West              1930         NA mathematical modelin~
+##  7 Flossie Wong-Staal       1947         NA first scientist to c~
+##  8 Jennifer Doudna          1964         NA one of the primary d~
+##  9 Ada Lovelace               NA         NA first computer algor~
+## 10 Marie Curie                NA         NA theory of radioactiv~
 ```
 
 ---
@@ -470,7 +470,7 @@ inner_join(x, y)
 ```
 
 ```
-## # A tibble: 2 × 3
+## # A tibble: 2 x 3
 ##      id value_x value_y
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
 ## 1     1 x1      y1     
@@ -489,16 +489,16 @@ dates %&gt;%
 ```
 
 ```
-## # A tibble: 7 × 4
+## # A tibble: 7 x 4
 ##   name               birth_year death_year known_for             
 ##   &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;                 
-## 1 Janaki Ammal             1897       1984 hybrid species, biodi…
-## 2 Chien-Shiung Wu          1912       1997 confim and refine the…
-## 3 Katherine Johnson        1918       2020 calculations of orbit…
-## 4 Vera Rubin               1928       2016 existence of dark mat…
-## 5 Gladys West              1930         NA mathematical modeling…
-## 6 Flossie Wong-Staal       1947         NA first scientist to cl…
-## 7 Jennifer Doudna          1964         NA one of the primary de…
+## 1 Janaki Ammal             1897       1984 hybrid species, biodi~
+## 2 Chien-Shiung Wu          1912       1997 confim and refine the~
+## 3 Katherine Johnson        1918       2020 calculations of orbit~
+## 4 Vera Rubin               1928       2016 existence of dark mat~
+## 5 Gladys West              1930         NA mathematical modeling~
+## 6 Flossie Wong-Staal       1947         NA first scientist to cl~
+## 7 Jennifer Doudna          1964         NA one of the primary de~
 ```
 
 ---
@@ -515,7 +515,7 @@ semi_join(x, y)
 ```
 
 ```
-## # A tibble: 2 × 2
+## # A tibble: 2 x 2
 ##      id value_x
 ##   &lt;dbl&gt; &lt;chr&gt;  
 ## 1     1 x1     
@@ -534,7 +534,7 @@ dates %&gt;%
 ```
 
 ```
-## # A tibble: 7 × 3
+## # A tibble: 7 x 3
 ##   name               birth_year death_year
 ##   &lt;chr&gt;                   &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 Janaki Ammal             1897       1984
@@ -560,7 +560,7 @@ anti_join(x, y)
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##      id value_x
 ##   &lt;dbl&gt; &lt;chr&gt;  
 ## 1     3 x3
@@ -578,7 +578,7 @@ dates %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##   name              birth_year death_year
 ##   &lt;chr&gt;                  &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 Rosalind Franklin       1920       1958
@@ -596,19 +596,19 @@ professions %&gt;%
 ```
 
 ```
-## # A tibble: 10 × 5
+## # A tibble: 10 x 5
 ##    name               profession  birth_year death_year known_for
 ##    &lt;chr&gt;              &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;    
-##  1 Ada Lovelace       Mathematic…         NA         NA first co…
-##  2 Marie Curie        Physicist …         NA         NA theory o…
-##  3 Janaki Ammal       Botanist          1897       1984 hybrid s…
-##  4 Chien-Shiung Wu    Physicist         1912       1997 confim a…
-##  5 Katherine Johnson  Mathematic…       1918       2020 calculat…
+##  1 Ada Lovelace       Mathematic~         NA         NA first co~
+##  2 Marie Curie        Physicist ~         NA         NA theory o~
+##  3 Janaki Ammal       Botanist          1897       1984 hybrid s~
+##  4 Chien-Shiung Wu    Physicist         1912       1997 confim a~
+##  5 Katherine Johnson  Mathematic~       1918       2020 calculat~
 ##  6 Rosalind Franklin  Chemist           1920       1958 &lt;NA&gt;     
-##  7 Vera Rubin         Astronomer        1928       2016 existenc…
-##  8 Gladys West        Mathematic…       1930         NA mathemat…
-##  9 Flossie Wong-Staal Virologist…       1947         NA first sc…
-## 10 Jennifer Doudna    Biochemist        1964         NA one of t…
+##  7 Vera Rubin         Astronomer        1928       2016 existenc~
+##  8 Gladys West        Mathematic~       1930         NA mathemat~
+##  9 Flossie Wong-Staal Virologist~       1947         NA first sc~
+## 10 Jennifer Doudna    Biochemist        1964         NA one of t~
 ```
 
 ---
@@ -642,7 +642,7 @@ enrollment
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##      id name           
 ##   &lt;dbl&gt; &lt;chr&gt;          
 ## 1     1 Dave Friday    
@@ -657,7 +657,7 @@ survey
 ```
 
 ```
-## # A tibble: 4 × 3
+## # A tibble: 4 x 3
 ##      id name    username            
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;               
 ## 1     2 Hermine bakealongwithhermine
@@ -679,7 +679,7 @@ enrollment %&gt;%
 ```
 
 ```
-## # A tibble: 3 × 4
+## # A tibble: 3 x 4
 ##      id name.x          name.y  username            
 ##   &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;               
 ## 1     1 Dave Friday     &lt;NA&gt;    &lt;NA&gt;                
@@ -700,7 +700,7 @@ enrollment %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##      id name       
 ##   &lt;dbl&gt; &lt;chr&gt;      
 ## 1     1 Dave Friday
@@ -717,7 +717,7 @@ survey %&gt;%
 ```
 
 ```
-## # A tibble: 2 × 3
+## # A tibble: 2 x 3
 ##      id name  username       
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          
 ## 1     4 Peter peter_bakes    
@@ -750,7 +750,7 @@ purchases
 ```
 
 ```
-## # A tibble: 5 × 2
+## # A tibble: 5 x 2
 ##   customer_id item        
 ##         &lt;dbl&gt; &lt;chr&gt;       
 ## 1           1 bread       
@@ -767,7 +767,7 @@ prices
 ```
 
 ```
-## # A tibble: 5 × 2
+## # A tibble: 5 x 2
 ##   item         price
 ##   &lt;chr&gt;        &lt;dbl&gt;
 ## 1 avocado       0.5 
@@ -792,7 +792,7 @@ purchases %&gt;%
 ```
 
 ```
-## # A tibble: 5 × 3
+## # A tibble: 5 x 3
 ##   customer_id item         price
 ##         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
 ## 1           1 bread         1   
@@ -812,7 +812,7 @@ purchases %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##   total_revenue
 ##           &lt;dbl&gt;
 ## 1          5.75
@@ -833,7 +833,7 @@ purchases %&gt;%
 ```
 
 ```
-## # A tibble: 5 × 3
+## # A tibble: 5 x 3
 ##   customer_id item         price
 ##         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
 ## 1           1 bread         1   
@@ -853,7 +853,7 @@ purchases %&gt;%
 ```
 
 ```
-## # A tibble: 2 × 2
+## # A tibble: 2 x 2
 ##   customer_id total_revenue
 ##         &lt;dbl&gt;         &lt;dbl&gt;
 ## 1           1          1.95

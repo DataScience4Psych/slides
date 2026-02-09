@@ -77,7 +77,7 @@ The `allbacks` data frame gives measurements on the volume and weight of 15 book
 .small[
 
 ```
-## # A tibble: 15 × 4
+## # A tibble: 15 x 4
 ##    volume  area weight cover
 ##     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;
 ##  1    885   382    800 hb   
@@ -119,7 +119,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term        estimate std.error statistic    p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
 ## 1 (Intercept)  108.      88.4         1.22 0.245     
@@ -144,7 +144,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term        estimate std.error statistic      p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 (Intercept)  198.      59.2         3.34 0.00584     
@@ -162,7 +162,7 @@ linear_reg() %&gt;%
 
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term        estimate std.error statistic      p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 (Intercept)  198.      59.2         3.34 0.00584     
@@ -369,7 +369,7 @@ tidy(pp_fit)
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   4.77     0.0579      82.4  0       
@@ -383,7 +383,7 @@ tidy(pp_fit)
 
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   4.77     0.0579      82.4  0       
@@ -451,7 +451,7 @@ pp %&gt;%
 ```
 
 ```
-## # A tibble: 2 × 2
+## # A tibble: 2 x 2
 ##   artistliving     n
 ##   &lt;chr&gt;        &lt;int&gt;
 ## 1 Deceased      2937
@@ -483,11 +483,6 @@ ggplot(data = pp, aes(x = Surface, fill = artistliving)) +
   labs(x = "Surface area", y = NULL) +
   geom_vline(xintercept = 1000) +
   geom_vline(xintercept = 5000, linetype = "dashed", color = "gray")
-```
-
-```
-## Warning: Removed 176 rows containing non-finite outside the scale range
-## (`stat_bin()`).
 ```
 ]
 ]
@@ -587,7 +582,7 @@ tidy(pp_main_fit)
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term               estimate std.error statistic  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)        4.88     0.0424       115.   0       
@@ -642,7 +637,7 @@ tidy(pp_main_fit) %&gt;%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   term               estimate exp_estimate
 ##   &lt;chr&gt;                 &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 (Intercept)        4.88           132.  
@@ -692,7 +687,7 @@ tidy(pp_int_fit)
 ```
 
 ```
-## # A tibble: 4 × 5
+## # A tibble: 4 x 5
 ##   term                       estimate std.error statistic p.value
 ##   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)                 4.91e+0 0.0432       114.   0      
@@ -709,7 +704,7 @@ tidy(pp_int_fit)
 .midi[
 
 ```
-## # A tibble: 4 × 5
+## # A tibble: 4 x 5
 ##   term                       estimate std.error statistic p.value
 ##   &lt;chr&gt;                         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)                 4.91e+0 0.0432       114.   0      

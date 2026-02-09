@@ -143,17 +143,12 @@ penguins %&gt;%
 ```
 
 ```
-## `summarise()` has regrouped the output.
-## ℹ Summaries were computed grouped by species and island.
-## ℹ Output is grouped by species.
-## ℹ Use `summarise(.groups = "drop_last")` to silence this
-##   message.
-## ℹ Use `summarise(.by = c(species, island))` for per-operation
-##   grouping (`?dplyr::dplyr_by`) instead.
+## `summarise()` has grouped output by 'species'. You can override
+## using the `.groups` argument.
 ```
 
 ```
-## # A tibble: 5 × 4
+## # A tibble: 5 x 4
 ## # Groups:   species [3]
 ##   species   island    mean_body_mass mean_flipper_length
 ##   &lt;fct&gt;     &lt;fct&gt;              &lt;dbl&gt;               &lt;dbl&gt;
@@ -273,7 +268,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term           estimate std.error statistic  p.value
 ##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)     20.9       0.844      24.7  4.72e-78
@@ -292,19 +287,8 @@ ggplot(penguins, aes(x = bill_depth_mm)) +
   geom_histogram(binwidth = 5) +
   labs(x = "Bill Depth (mm)", y = NULL)
 ```
-
-```
-## Warning: Removed 2 rows containing non-finite outside the scale range
-## (`stat_bin()`).
-```
 ]
 .pull-right[
-
-```
-## Warning: Removed 2 rows containing non-finite outside the scale range
-## (`stat_bin()`).
-```
-
 &lt;img src="d00_code_files/figure-html/unnamed-chunk-3-1.png" alt="" width="100%" /&gt;
 ]
 

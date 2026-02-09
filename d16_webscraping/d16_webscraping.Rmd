@@ -423,7 +423,8 @@ knitr::include_graphics("img/years.png")
 ```{r output.lines=17}
 page %>% 
   html_nodes(".cli-title-metadata-item") %>%
-  html_text()
+  html_text() %>% # contains year
+  str_subset(., "[12][09][0-9][0-9]") # filter for nodes that contain "4 digit year starting with 19 or 20"
 ```
 ]
 .pull-right[
@@ -438,9 +439,10 @@ knitr::include_graphics("img/years.png")
 
 .pull-left[
 ```{r output.lines=16}
-page %>%
- html_nodes(".cli-title-metadata-item") %>% 
-    html_text()
+page %>% 
+  html_nodes(".cli-title-metadata-item") %>%
+  html_text() %>% # contains year
+  str_subset(., "[12][09][0-9][0-9]") # filter for nodes that contain "4 digit year starting with 19 or 20"
 ```
 ]
 .pull-right[
@@ -486,24 +488,27 @@ knitr::include_graphics("img/stringr.png")
 
 ## Clean up the text
 
-```{r output.lines=15}
+```{r output.lines=15,eval=FALSE}
 page %>%
   html_nodes(".cli-title-metadata-item") %>% 
   html_text() %>%
   str_remove("\\(") # remove (
 ```
-
-
+```{r years, output.lines=15}
+page %>% 
+  html_nodes(".cli-title-metadata-item") %>%
+  html_text() %>% # contains year
+  str_subset(., "[12][09][0-9][0-9]") # filter for nodes that contain "4 digit year starting with 19 or 20"
+```
 ---
 
 ## Clean up the text
 
 ```{r output.lines=13}
-page %>%
+page %>% 
   html_nodes(".cli-title-metadata-item") %>%
-  html_text() %>%
-  str_remove("\\(") %>% # remove (
-  str_remove("\\)") # remove )
+  html_text() %>% # contains year
+  str_subset(., "[12][09][0-9][0-9]") # filter for nodes that contain "4 digit year starting with 19 or 20"
 ```
 
 ---
@@ -511,11 +516,10 @@ page %>%
 ## Convert to numeric
 
 ```{r output.lines=11}
-page %>%
+page %>% 
   html_nodes(".cli-title-metadata-item") %>%
-  html_text() %>%
-  str_remove("\\(") %>% # remove (
-  str_remove("\\)") %>% # remove )
+  html_text() %>% # contains year
+  str_subset(., "[12][09][0-9][0-9]") # filter for nodes that contain "4 digit year starting with 19 or 20"
   as.numeric()
 ```
 
@@ -527,9 +531,8 @@ page %>%
 ```{r output.lines=11}
 years <- page %>%
   html_nodes(".cli-title-metadata-item") %>%
-  html_text() %>%
-  str_remove("\\(") %>% # remove (
-  str_remove("\\)") %>% # remove )
+  html_text() %>% # contains year
+  str_subset(., "[12][09][0-9][0-9]") %>%# filter for nodes that contain "4 digit year starting with 19 or 20"
   as.numeric()
 
 years

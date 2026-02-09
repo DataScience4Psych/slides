@@ -82,7 +82,7 @@ cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 ]
 
 ```
-## # A tibble: 60 × 3
+## # A tibble: 60 x 3
 ##    name           number_of_cats handedness
 ##    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;     
 ##  1 Bernice Warren 0              left      
@@ -95,7 +95,7 @@ cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 ##  8 Darin Woods    1              left      
 ##  9 Agnes Cobb     0              left      
 ## 10 Tabitha Grant  0              left      
-## # ℹ 50 more rows
+## # i 50 more rows
 ```
 
 ---
@@ -109,14 +109,7 @@ cat_lovers %&gt;%
 ```
 
 ```
-## Warning: There was 1 warning in `summarize()`.
-## ℹ In argument: `mean_cats = mean(number_of_cats)`.
-## Caused by warning in `mean.default()`:
-## ! argument is not numeric or logical: returning NA
-```
-
-```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##   mean_cats
 ##       &lt;dbl&gt;
 ## 1        NA
@@ -142,14 +135,7 @@ cat_lovers %&gt;%
 ```
 
 ```
-## Warning: There was 1 warning in `summarize()`.
-## ℹ In argument: `mean_cats = mean(number_of_cats, na.rm = TRUE)`.
-## Caused by warning in `mean.default()`:
-## ! argument is not numeric or logical: returning NA
-```
-
-```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##   mean_cats
 ##       &lt;dbl&gt;
 ## 1        NA
@@ -171,9 +157,9 @@ glimpse(cat_lovers)
 ```
 ## Rows: 60
 ## Columns: 3
-## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will…
-## $ number_of_cats &lt;chr&gt; "0", "0", "1", "3", "3", "2", "1", "1", …
-## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", …
+## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will~
+## $ number_of_cats &lt;chr&gt; "0", "0", "1", "3", "3", "2", "1", "1", ~
+## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", ~
 ```
 
 ---
@@ -203,14 +189,7 @@ cat_lovers %&gt;%
 ```
 
 ```
-## Warning: There was 1 warning in `mutate()`.
-## ℹ In argument: `number_of_cats = case_when(...)`.
-## Caused by warning:
-## ! NAs introduced by coercion
-```
-
-```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##   mean_cats
 ##       &lt;dbl&gt;
 ## 1     0.833
@@ -236,7 +215,7 @@ cat_lovers %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##   mean_cats
 ##       &lt;dbl&gt;
 ## 1     0.833
@@ -1037,9 +1016,9 @@ glimpse(cat_lovers)
 ```
 ## Rows: 60
 ## Columns: 3
-## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will…
-## $ number_of_cats &lt;dbl&gt; 0, 0, 1, 3, 3, 2, 1, 1, 0, 0, 0, 0, 1, 3…
-## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", …
+## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will~
+## $ number_of_cats &lt;dbl&gt; 0, 0, 1, 3, 3, 2, 1, 1, 0, 0, 0, 0, 1, 3~
+## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", ~
 ```
 
 ---
@@ -1138,7 +1117,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 × 4
+## # A tibble: 119,390 x 4
 ##    arrival_date_year arrival_date_month arrival_date_week_number
 ##                &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
 ##  1              2015 July                                     27
@@ -1151,8 +1130,8 @@ hotels %&gt;%
 ##  8              2015 July                                     27
 ##  9              2015 July                                     27
 ## 10              2015 July                                     27
-## # ℹ 119,380 more rows
-## # ℹ 1 more variable: arrival_date_day_of_month &lt;dbl&gt;
+## # i 119,380 more rows
+## # i 1 more variable: arrival_date_day_of_month &lt;dbl&gt;
 ```
 
 ---
@@ -1172,7 +1151,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 × 5
+## # A tibble: 119,390 x 5
 ##    arrival_date_year arrival_date_month arrival_date_week_number
 ##                &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
 ##  1              2015 July                                     27
@@ -1185,8 +1164,8 @@ hotels %&gt;%
 ##  8              2015 July                                     27
 ##  9              2015 July                                     27
 ## 10              2015 July                                     27
-## # ℹ 119,380 more rows
-## # ℹ 2 more variables: arrival_date_day_of_month &lt;dbl&gt;,
+## # i 119,380 more rows
+## # i 2 more variables: arrival_date_day_of_month &lt;dbl&gt;,
 ## #   arrival_date &lt;glue&gt;
 ```
 ]
@@ -1204,7 +1183,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 793 × 2
+## # A tibble: 793 x 2
 ##    arrival_date       n
 ##    &lt;glue&gt;         &lt;int&gt;
 ##  1 2015 August 1    110
@@ -1217,7 +1196,7 @@ hotels %&gt;%
 ##  8 2015 August 16    98
 ##  9 2015 August 17   188
 ## 10 2015 August 18    94
-## # ℹ 783 more rows
+## # i 783 more rows
 ```
 ]
 
@@ -1268,7 +1247,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 119,390 × 5
+## # A tibble: 119,390 x 5
 ##    arrival_date_year arrival_date_month arrival_date_week_number
 ##                &lt;dbl&gt; &lt;chr&gt;                                 &lt;dbl&gt;
 ##  1              2015 July                                     27
@@ -1281,8 +1260,8 @@ hotels %&gt;%
 ##  8              2015 July                                     27
 ##  9              2015 July                                     27
 ## 10              2015 July                                     27
-## # ℹ 119,380 more rows
-## # ℹ 2 more variables: arrival_date_day_of_month &lt;dbl&gt;,
+## # i 119,380 more rows
+## # i 2 more variables: arrival_date_day_of_month &lt;dbl&gt;,
 ## #   arrival_date &lt;date&gt;
 ```
 ]
@@ -1300,7 +1279,7 @@ hotels %&gt;%
 ```
 
 ```
-## # A tibble: 793 × 2
+## # A tibble: 793 x 2
 ##    arrival_date     n
 ##    &lt;date&gt;       &lt;int&gt;
 ##  1 2015-07-01     122
@@ -1313,7 +1292,7 @@ hotels %&gt;%
 ##  8 2015-07-08      69
 ##  9 2015-07-09      80
 ## 10 2015-07-10      51
-## # ℹ 783 more rows
+## # i 783 more rows
 ```
 ]
 

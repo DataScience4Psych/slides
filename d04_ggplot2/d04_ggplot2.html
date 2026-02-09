@@ -110,14 +110,14 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adeli…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torg…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 362…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, mal…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2…
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adeli~
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torg~
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.~
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.~
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195~
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 362~
+## $ sex               &lt;fct&gt; male, female, female, NA, female, mal~
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2~
 ```
 
 
@@ -142,11 +142,6 @@ ggplot(data = penguins,
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
        x = "Bill depth (mm)", y = "Bill length (mm)",
        color = "Species")
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the
-## scale range (`geom_point()`).
 ```
 
 ---
@@ -470,11 +465,6 @@ ggplot(data = penguins,
   scale_color_viridis_d()
 ```
 
-```
-## Warning: Removed 2 rows containing missing values or values outside the
-## scale range (`geom_point()`).
-```
-
 ---
 
 # Narrative
@@ -722,11 +712,6 @@ class: middle
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_grid(species ~ island)
-```
-
-```
-## Warning: Removed 2 rows containing missing values or values outside the
-## scale range (`geom_point()`).
 ```
 
 ---
