@@ -1,6 +1,6 @@
 # Vibe Coding Slides (d33)
 
-This slide deck covers the concept of **vibe coding** - a programming philosophy that emphasizes aesthetic pleasure, flow state, and the joy of coding.
+This slide deck covers the concept of **vibe coding** - a programming philosophy that emphasizes aesthetic pleasure, flow state, and the joy of coding, enhanced by modern AI tools.
 
 ## Topics Covered
 
@@ -8,6 +8,7 @@ This slide deck covers the concept of **vibe coding** - a programming philosophy
 - What is vibe coding?
 - The philosophy behind vibe coding
 - Comparison with traditional coding approaches
+- **Learning Goals** for the session
 
 ### Core Principles
 1. **Embrace the Flow** - Achieving flow state in programming
@@ -15,6 +16,15 @@ This slide deck covers the concept of **vibe coding** - a programming philosophy
 3. **Aesthetics Matter** - The importance of beautiful, readable code
 4. **Trust Your Intuition** - Developing coding instincts
 5. **Create a Vibe-Friendly Environment** - Setting up for success
+
+### AI Tools for Vibe Coding
+- **GitHub Copilot** - Inline suggestions and flow maintenance
+- **ChatGPT / Claude** - Code refactoring and explanations
+- When AI enhances vs. kills the vibe
+- Vibe coding workflows with AI
+- Prompt engineering for better code
+- Code review and refactoring with AI
+- Maintaining ownership while using AI
 
 ### Practical Applications
 - Vibe coding in R and data science
@@ -48,6 +58,10 @@ This slide deck covers the concept of **vibe coding** - a programming philosophy
 - Collaborative vibe coding
 - Growing your vibe over time
 
+### Summary
+- **Learning Goals Achieved** - Review of key concepts and skills
+- The Vibe Coding Manifesto
+
 ## Compiling the Slides
 
 To compile these slides, use the following R command:
@@ -58,8 +72,9 @@ xaringan::inf_mr(cast_from = "..")
 
 ## Structure
 
-- `d33_vibecoding.Rmd` - Main slide deck source file
+- `d33_vibecoding.Rmd` - Main slide deck source file (~58 slides, 1392 lines)
 - `img/` - Directory for images and supporting graphics
+- `README.md` - This documentation file
 
 ## Author
 
@@ -70,3 +85,4 @@ S. Mason Garrison
 - [R for Data Science](https://r4ds.had.co.nz/)
 - [Tidyverse Style Guide](https://style.tidyverse.org/)
 - [The Programmer's Brain](https://www.manning.com/books/the-programmers-brain)
+- [GitHub Copilot Documentation](https://docs.github.com/en/copilot)

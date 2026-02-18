@@ -24,6 +24,28 @@ if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
 ```
 
+# Hello world!
+
+---
+
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Define vibe coding and explain how it enhances the coding experience
+- Use AI tools (GitHub Copilot, ChatGPT, Claude) to write code with better flow and aesthetics
+- Apply the five core principles of vibe coding to your R programming practice
+- Leverage AI assistance to achieve flow state and improve code quality
+- Evaluate when AI-assisted coding enhances vs. hinders the vibe
+
+---
+
 class: middle
 
 # What is Vibe Coding?
@@ -253,6 +275,351 @@ Your coding environment affects your vibe.
 - Organized file structure
 - Helpful keyboard shortcuts
 - Background music (if it helps)
+
+---
+
+class: middle
+
+# AI Tools for Vibe Coding
+
+---
+
+## AI as Your Vibe Coding Partner `r emo::ji('robot')`
+
+.large[
+AI tools can enhance your vibe coding experience when used thoughtfully.
+]
+
+--
+
+**Popular AI coding assistants:**
+
+--
+
+.pull-left[
+**GitHub Copilot**
+- Inline code suggestions
+- Context-aware completions
+- Maintains your flow state
+- Learns your coding style
+]
+
+--
+
+.pull-right[
+**ChatGPT / Claude**
+- Code explanation & refactoring
+- Debugging assistance
+- Pattern suggestions
+- Documentation help
+]
+
+---
+
+## When AI Enhances the Vibe `r emo::ji('sparkles')`
+
+.large[
+AI tools work best when they support your flow, not interrupt it.
+]
+
+--
+
+**Good vibe AI use:**
+
+--
+
+- `r emo::ji('check')` **Autocomplete mundane code** - Let AI handle boilerplate while you focus on logic
+
+--
+
+- `r emo::ji('check')` **Suggest better names** - "What's a clearer name for this function?"
+
+--
+
+- `r emo::ji('check')` **Refactor for clarity** - "How can I make this more readable?"
+
+--
+
+- `r emo::ji('check')` **Explain complex code** - Understanding beats copy-pasting
+
+--
+
+- `r emo::ji('check')` **Generate test cases** - AI excels at creating thorough examples
+
+---
+
+## When AI Kills the Vibe `r emo::ji('x')`
+
+.large[
+Beware of AI anti-patterns that disrupt flow.
+]
+
+--
+
+**Bad vibe AI use:**
+
+--
+
+- `r emo::ji('x')` **Accepting without understanding** - Code you can't explain isn't yours
+
+--
+
+- `r emo::ji('x')` **Over-reliance on suggestions** - Kills your creative flow
+
+--
+
+- `r emo::ji('x')` **Using outdated patterns** - AI may suggest old approaches
+
+--
+
+- `r emo::ji('x')` **Copying complex logic blindly** - Recipe for future debugging pain
+
+--
+
+.large[
+`r emo::ji('bulb')` **Remember:** You're the architect, AI is your assistant!
+]
+
+---
+
+## Vibe Coding with GitHub Copilot
+
+.large[
+Copilot can maintain flow when configured properly.
+]
+
+--
+
+**Vibe-enhancing Copilot workflow:**
+
+```{r eval=FALSE}
+# 1. Write a clear comment about your intent
+# Calculate average response time by participant group
+
+# 2. Let Copilot suggest, but review carefully
+response_data %>%
+  group_by(participant_group) %>%
+  summarise(
+    avg_response_time = mean(response_time_ms, na.rm = TRUE),
+    n = n()
+  )
+
+# 3. Refine the suggestion to match your style
+# 4. Keep coding with momentum!
+```
+
+--
+
+.tip[
+**Pro tip:** Use Copilot for structure, add your own variable names for clarity.
+]
+
+---
+
+## Vibe Coding with ChatGPT/Claude
+
+.large[
+Use conversational AI for bigger picture vibe improvements.
+]
+
+--
+
+**Example conversation:**
+
+.pull-left[
+**You:** 
+"I have this code that works but feels clunky. How can I make it more elegant?"
+
+```{r eval=FALSE}
+for (i in 1:nrow(data)) {
+  if (data$age[i] > 18) {
+    data$adult[i] <- "yes"
+  } else {
+    data$adult[i] <- "no"
+  }
+}
+```
+]
+
+--
+
+.pull-right[
+**AI:**
+"Here's a more 'vibe-friendly' approach using tidyverse:"
+
+```{r eval=FALSE}
+data <- data %>%
+  mutate(
+    adult = if_else(
+      age > 18, 
+      "yes", 
+      "no"
+    )
+  )
+```
+]
+
+---
+
+## The Vibe Coding AI Workflow `r emo::ji('recycle')`
+
+.large[
+Integrate AI smoothly into your coding rhythm.
+]
+
+--
+
+**The cycle:**
+
+1. `r emo::ji('thought_balloon')` **Think** - Clarify your intent first
+
+--
+
+2. `r emo::ji('keyboard')` **Code** - Start writing with your own understanding
+
+--
+
+3. `r emo::ji('robot')` **Assist** - Let AI suggest improvements or completions
+
+--
+
+4. `r emo::ji('eyes')` **Review** - Does the AI suggestion feel right?
+
+--
+
+5. `r emo::ji('art')` **Refine** - Adapt to your style and standards
+
+--
+
+6. `r emo::ji('check')` **Test** - Verify it works as expected
+
+--
+
+<br>
+
+.large[
+`r emo::ji('sparkles')` **This workflow maintains YOUR vibe while leveraging AI power!**
+]
+
+---
+
+## AI for Code Review and Refactoring
+
+.large[
+AI excels at suggesting vibe improvements to existing code.
+]
+
+--
+
+**Ask AI to:**
+
+--
+
+- "Review this function for readability"
+
+--
+
+- "Suggest better variable names"
+
+--
+
+- "How can I make this more idiomatic in R?"
+
+--
+
+- "What edge cases am I missing?"
+
+--
+
+- "Refactor this to use tidyverse patterns"
+
+--
+
+**Example prompt:**
+```
+"I wrote this code for data cleaning. Can you suggest 
+improvements for readability and maintainability while 
+keeping the tidyverse style?"
+```
+
+---
+
+## Prompt Engineering for Vibe Coding
+
+.large[
+Good prompts lead to good vibes.
+]
+
+--
+
+**Vibe-friendly prompts:**
+
+--
+
+.pull-left[
+**Specific:**
+- "Write a function to calculate Z-scores that follows tidyverse style"
+- "Refactor this loop into a purrr::map() call"
+]
+
+--
+
+.pull-right[
+**Context-aware:**
+- "Using ggplot2, create an elegant visualization of..."
+- "In the style of the tidyverse, how would you..."
+]
+
+--
+
+**Include your constraints:**
+```
+"Create a readable function for [task] that:
+- Uses descriptive variable names
+- Includes error handling
+- Follows tidyverse conventions
+- Has a clear return value"
+```
+
+---
+
+## Maintaining Your Vibe with AI
+
+.large[
+Stay in control of the coding experience.
+]
+
+--
+
+**Best practices:**
+
+--
+
+1. **Set boundaries** - Decide when to use AI vs. code independently
+
+--
+
+2. **Maintain ownership** - Understand every line AI suggests
+
+--
+
+3. **Preserve your style** - Adapt AI suggestions to your aesthetic
+
+--
+
+4. **Stay critical** - Question AI recommendations
+
+--
+
+5. **Learn continuously** - Use AI to discover new patterns, not replace learning
+
+--
+
+<br>
+
+.large[
+`r emo::ji('balance_scale')` **Balance: AI as enhancer, not replacement**
+]
 
 ---
 
@@ -950,6 +1317,35 @@ Vibe coding is a practice, not a destination.
 - [RStudio Community](https://community.rstudio.com/)
 - [R-Ladies](https://rladies.org/)
 - [R4DS Online Learning Community](https://www.rfordatasci.com/)
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Define vibe coding philosophy
+- ✅ Five core principles
+- ✅ AI tools for vibe coding
+- ✅ Vibe-friendly workflows
+]
+
+.pull-right[
+### Skills
+- ✅ Use GitHub Copilot effectively
+- ✅ Prompt ChatGPT/Claude for better code
+- ✅ Achieve flow state while coding
+- ✅ Refactor with intention and aesthetics
+- ✅ Evaluate AI suggestions critically
+]
 
 ---
 
