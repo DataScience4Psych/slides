@@ -391,7 +391,7 @@ Copilot can maintain flow when configured properly.
 --
 
 **Vibe-enhancing Copilot workflow:**
-
+.midi[
 ```{r eval=FALSE}
 # 1. Write a clear comment about your intent
 # Calculate average response time by participant group
@@ -407,7 +407,7 @@ response_data %>%
 # 3. Refine the suggestion to match your style
 # 4. Keep coding with momentum!
 ```
-
+]
 --
 
 .tip[
@@ -513,24 +513,11 @@ AI excels at suggesting vibe improvements to existing code.
 
 **Ask AI to:**
 
---
 
 - "Review this function for readability"
-
---
-
 - "Suggest better variable names"
-
---
-
 - "How can I make this more idiomatic in R?"
-
---
-
 - "What edge cases am I missing?"
-
---
-
 - "Refactor this to use tidyverse patterns"
 
 --
@@ -698,12 +685,12 @@ clean_data <-
 
 ## Visualization: Where Vibe Really Shines `r emo::ji('rainbow')`
 
-.large[
+.midi[
 Creating beautiful visualizations is peak vibe coding!
 ]
 
 --
-
+.midi[
 ```{r simple-plot, eval=FALSE}
 ggplot(data = penguins, 
        aes(x = flipper_length_mm, 
@@ -719,7 +706,7 @@ ggplot(data = penguins,
     color = "Species"
   )
 ```
-
+]
 --
 
 .large[
@@ -735,7 +722,7 @@ Well-named, single-purpose functions are pure vibe.
 ]
 
 --
-
+.midi[
 **Bad vibe function:**
 ```{r eval=FALSE}
 f <- function(x, y, z) {
@@ -745,9 +732,10 @@ f <- function(x, y, z) {
   return(c)
 }
 ```
+]
 
 --
-
+.midi[
 **Good vibe function:**
 ```{r eval=FALSE}
 calculate_performance_score <- function(accuracy, speed, weight = 1.0) {
@@ -758,7 +746,7 @@ calculate_performance_score <- function(accuracy, speed, weight = 1.0) {
   return(normalized_score)
 }
 ```
-
+]
 --
 
 .large[
@@ -786,9 +774,10 @@ Pick a style guide and stick to it.
 - Google's R Style Guide
 - Your own consistent approach
 
---
+---
 
-**Key style elements:**
+# Key style elements:
+
 ```{r eval=FALSE}
 # Good spacing
 result <- function_name(argument1 = value1, argument2 = value2)
@@ -854,20 +843,20 @@ Vibe coding isn't about grinding—it's about quality time with code.
 ]
 
 --
-
+.pull-left[
 **The Pomodoro Vibe:**
 - Code for 25-50 minutes
 - Take a 5-10 minute break
 - Repeat with good energy
 
---
-
+]
+.pull-right[
 **Benefits:**
 - Maintains mental freshness
 - Prevents burnout
 - Keeps the creative flow going
 - Better problem-solving
-
+]
 --
 
 .tip[
@@ -890,7 +879,7 @@ Refactoring is not a chore—it's an art form!
 - Long functions → Smaller, focused functions
 - Cryptic names → Descriptive names
 
---
+---
 
 **The refactoring vibe:**
 ```{r eval=FALSE}
@@ -1094,7 +1083,7 @@ Discover when and how you code best.
 
 ---
 
-## Build a Vibe Coding Community `r emo::ji('people')`
+## Build a Vibe Coding Community `r emo::ji('group')`
 
 .large[
 Share the vibe with others!
@@ -1130,7 +1119,7 @@ class: middle
 .your-turn[
 
 Take this code and improve its vibe:
-
+.pull-left[
 ```{r eval=FALSE}
 d <- read.csv("data.csv")
 d <- d[d$age > 18,]
@@ -1138,15 +1127,16 @@ d$bmi <- d$weight / (d$height^2)
 m <- mean(d$bmi)
 print(m)
 ```
-
+]
+.pull-right[
 **Consider:**
 - Variable names
 - Readability  
 - Flow
 - Comments (if needed)
 ]
-
---
+]
+---
 
 **Possible solution on next slide...**
 
