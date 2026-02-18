@@ -27,28 +27,37 @@ df <- data.frame(
       #        title = str_replace_all(str_remove(df_docs, "\\.html"),"[_-]"," "),
               title = str_remove(df_docs, "\\.html"),  
               link = make_full(df_docs)
-) %>% filter (!title %in% c("d00_template/d00_visuals",
-                            "d00_template/d00_slide",
+) %>% filter (!title %in% c(
                             "d00_APS/d00_aps",
                             "d00_APS/d00_teaser",
-                            "d00_template/d00_closers",
-                            "d00_template/d00_code",
-                            "d00_template/d00_slide",
-                            "d00_template/d00_interactive",
-                            "d00_template/d00_content",
-                            "d00_template/d00_openers",
-                            "d00_template/d00_teaser",
                           "d23_multiple/d23_multiple_files/figure-html/widgets/widget_plotly-plot",
                           "setup",
                           "workshop/archive/h1",
                             "index")) %>%
-  arrange(title)
+  filter (!str_detect(title, "alt/")) %>%
+  filter (!str_detect(title, "d00_template/")) %>%
+  filter (!str_detect(title, "d00_APS/")) %>%
+   filter (!str_detect(title, "00_ASU/")) %>%
+    filter (!str_detect(title, "backup")) %>%
+    filter (!str_detect(title, "figure-html")) %>%
+    filter (!str_detect(title, "widgets")) %>%
+    filter (!str_detect(title, "archive")) %>%
+  mutate(group = case_when(
+          str_detect(title, "workshop") ~ "Workshop",
+          TRUE ~ "Class"
+        ))
 
 
 df %>%
     mutate(
         link = glue::glue("[slides]({link})"),
-        link = map(link, gt::md)) %>%
+        link = map(link, gt::md),
+        title = case_when(
+          title == "d01.1_AI/d01.1_AI" ~ "d01_zAI/d01_zAI",
+          TRUE ~ title
+        )) %>%
+  arrange(title)  %>% 
+  select(group, title, link) %>%
     gt()
 
 ```
