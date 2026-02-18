@@ -1,0 +1,1382 @@
+---
+title: "Vibe Coding <br> `r emo::ji('sparkles')`<br> The Art of Coding with Flow"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    self_contained: TRUE
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+library(tidyverse)
+if (!require("emo")) devtools::install_github("hadley/emo")
+library(emo)
+```
+
+# Hello world!
+
+---
+
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Define vibe coding and explain how it enhances the coding experience
+- Use AI tools (GitHub Copilot, ChatGPT, Claude) to write code with better flow and aesthetics
+- Apply the five core principles of vibe coding to your R programming practice
+- Leverage AI assistance to achieve flow state and improve code quality
+- Evaluate when AI-assisted coding enhances vs. hinders the vibe
+
+---
+
+class: middle
+
+# What is Vibe Coding?
+
+---
+
+## Vibe Coding Defined
+
+.large[
+**Vibe coding** is a programming philosophy that emphasizes:
+]
+
+--
+
+- `r emo::ji('sparkles')` **Aesthetic pleasure** in writing code
+
+--
+
+- `r emo::ji('ocean')` **Flow state** and intuitive development
+
+--
+
+- `r emo::ji('art')` **Elegance** over complexity
+
+--
+
+- `r emo::ji('musical_note')` **Rhythm** in your coding process
+
+--
+
+.large[
+It's about making the *journey* of coding as enjoyable as the destination.
+]
+
+---
+
+## The Philosophy Behind Vibe Coding
+
+.pull-left[
+**Traditional Coding:**
+- Focus on solving problems
+- Efficiency first
+- "Get it working"
+- Technical correctness
+]
+
+--
+
+.pull-right[
+**Vibe Coding:**
+- Focus on the experience
+- Joy and flow first
+- "Make it feel good"
+- Aesthetic harmony
+- *Then* optimize
+]
+
+--
+
+<br>
+
+.large[
+`r emo::ji('bulb')` **Key Insight:** When coding feels good, you code better!
+]
+
+---
+
+class: middle
+
+# Core Principles of Vibe Coding
+
+---
+
+## Principle 1: Embrace the Flow `r emo::ji('ocean')`
+
+.large[
+**Flow state** is when you're completely immersed in your work.
+]
+
+--
+
+**How to achieve flow in coding:**
+
+--
+
+- Minimize distractions (notifications off `r emo::ji('no_bell')`)
+
+--
+
+- Choose tasks that match your skill level
+
+--
+
+- Set clear, achievable goals for each session
+
+--
+
+- Use tools that feel natural and responsive
+
+--
+
+.tip[
+**Tip:** Set up your environment before you start. Good music `r emo::ji('headphones')`, comfortable setup, and a clear plan help you enter flow faster.
+]
+
+---
+
+## Principle 2: Code with Intention `r emo::ji('dart')`
+
+.large[
+Every line of code should have a clear purpose and feel right.
+]
+
+--
+
+**Bad vibe code:**
+```{r eval=FALSE}
+# Unclear, rushed code
+x <- filter(data, a > 5)
+y <- select(x, b, c, d)
+z <- mutate(y, e = b * c)
+```
+
+--
+
+**Good vibe code:**
+```{r eval=FALSE}
+# Clear, intentional pipeline
+analysis_data <- raw_data %>%
+  filter(age > 5) %>%
+  select(participant_id, response_time, accuracy) %>%
+  mutate(performance_score = response_time * accuracy)
+```
+
+--
+
+.large[
+`r emo::ji('check')` The second version tells a story and feels right to read!
+]
+
+---
+
+## Principle 3: Aesthetics Matter `r emo::ji('art')`
+
+.large[
+Beautiful code is easier to understand and maintain.
+]
+
+--
+
+.pull-left[
+**Elements of aesthetic code:**
+- Consistent formatting
+- Meaningful names
+- Balanced spacing
+- Visual alignment
+- Color-coded syntax
+]
+
+--
+
+.pull-right[
+**Benefits:**
+- Easier to read
+- Fewer bugs
+- More enjoyable
+- Better collaboration
+- Faster debugging
+]
+
+---
+
+## Principle 4: Trust Your Intuition `r emo::ji('thinking')`
+
+.large[
+If code feels awkward to write, it probably needs refactoring.
+]
+
+--
+
+**Listen to your gut:**
+
+--
+
+- Does this function name make sense? `r emo::ji('question')`
+
+--
+
+- Is this too complex for what it does? `r emo::ji('confused')`
+
+--
+
+- Would I understand this tomorrow? `r emo::ji('calendar')`
+
+--
+
+- Does this feel elegant or clunky? `r emo::ji('balance_scale')`
+
+--
+
+<br>
+
+.large[
+`r emo::ji('star')` **Remember:** Your intuition improves with experience!
+]
+
+---
+
+## Principle 5: Create a Vibe-Friendly Environment `r emo::ji('house')`
+
+.large[
+Your coding environment affects your vibe.
+]
+
+--
+
+**Physical setup:**
+- Comfortable chair and desk
+- Good lighting (natural or warm)
+- Plants or personal touches `r emo::ji('plant')`
+- Clean, organized space
+
+--
+
+**Digital setup:**
+- Pleasing color theme
+- Organized file structure
+- Helpful keyboard shortcuts
+- Background music (if it helps)
+
+---
+
+class: middle
+
+# AI Tools for Vibe Coding
+
+---
+
+## AI as Your Vibe Coding Partner `r emo::ji('robot')`
+
+.large[
+AI tools can enhance your vibe coding experience when used thoughtfully.
+]
+
+--
+
+**Popular AI coding assistants:**
+
+--
+
+.pull-left[
+**GitHub Copilot**
+- Inline code suggestions
+- Context-aware completions
+- Maintains your flow state
+- Learns your coding style
+]
+
+--
+
+.pull-right[
+**ChatGPT / Claude**
+- Code explanation & refactoring
+- Debugging assistance
+- Pattern suggestions
+- Documentation help
+]
+
+---
+
+## When AI Enhances the Vibe `r emo::ji('sparkles')`
+
+.large[
+AI tools work best when they support your flow, not interrupt it.
+]
+
+--
+
+**Good vibe AI use:**
+
+--
+
+- `r emo::ji('check')` **Autocomplete mundane code** - Let AI handle boilerplate while you focus on logic
+
+--
+
+- `r emo::ji('check')` **Suggest better names** - "What's a clearer name for this function?"
+
+--
+
+- `r emo::ji('check')` **Refactor for clarity** - "How can I make this more readable?"
+
+--
+
+- `r emo::ji('check')` **Explain complex code** - Understanding beats copy-pasting
+
+--
+
+- `r emo::ji('check')` **Generate test cases** - AI excels at creating thorough examples
+
+---
+
+## When AI Kills the Vibe `r emo::ji('x')`
+
+.large[
+Beware of AI anti-patterns that disrupt flow.
+]
+
+--
+
+**Bad vibe AI use:**
+
+--
+
+- `r emo::ji('x')` **Accepting without understanding** - Code you can't explain isn't yours
+
+--
+
+- `r emo::ji('x')` **Over-reliance on suggestions** - Kills your creative flow
+
+--
+
+- `r emo::ji('x')` **Using outdated patterns** - AI may suggest old approaches
+
+--
+
+- `r emo::ji('x')` **Copying complex logic blindly** - Recipe for future debugging pain
+
+--
+
+.large[
+`r emo::ji('bulb')` **Remember:** You're the architect, AI is your assistant!
+]
+
+---
+
+## Vibe Coding with GitHub Copilot
+
+.large[
+Copilot can maintain flow when configured properly.
+]
+
+--
+
+**Vibe-enhancing Copilot workflow:**
+.midi[
+```{r eval=FALSE}
+# 1. Write a clear comment about your intent
+# Calculate average response time by participant group
+
+# 2. Let Copilot suggest, but review carefully
+response_data %>%
+  group_by(participant_group) %>%
+  summarise(
+    avg_response_time = mean(response_time_ms, na.rm = TRUE),
+    n = n()
+  )
+
+# 3. Refine the suggestion to match your style
+# 4. Keep coding with momentum!
+```
+]
+--
+
+.tip[
+**Pro tip:** Use Copilot for structure, add your own variable names for clarity.
+]
+
+---
+
+## Vibe Coding with ChatGPT/Claude
+
+.large[
+Use conversational AI for bigger picture vibe improvements.
+]
+
+--
+
+**Example conversation:**
+
+.pull-left[
+**You:** 
+"I have this code that works but feels clunky. How can I make it more elegant?"
+
+```{r eval=FALSE}
+for (i in 1:nrow(data)) {
+  if (data$age[i] > 18) {
+    data$adult[i] <- "yes"
+  } else {
+    data$adult[i] <- "no"
+  }
+}
+```
+]
+
+--
+
+.pull-right[
+**AI:**
+"Here's a more 'vibe-friendly' approach using tidyverse:"
+
+```{r eval=FALSE}
+data <- data %>%
+  mutate(
+    adult = if_else(
+      age > 18, 
+      "yes", 
+      "no"
+    )
+  )
+```
+]
+
+---
+
+## The Vibe Coding AI Workflow `r emo::ji('recycle')`
+
+.large[
+Integrate AI smoothly into your coding rhythm.
+]
+
+--
+
+**The cycle:**
+
+1. `r emo::ji('thought_balloon')` **Think** - Clarify your intent first
+
+--
+
+2. `r emo::ji('keyboard')` **Code** - Start writing with your own understanding
+
+--
+
+3. `r emo::ji('robot')` **Assist** - Let AI suggest improvements or completions
+
+--
+
+4. `r emo::ji('eyes')` **Review** - Does the AI suggestion feel right?
+
+--
+
+5. `r emo::ji('art')` **Refine** - Adapt to your style and standards
+
+--
+
+6. `r emo::ji('check')` **Test** - Verify it works as expected
+
+--
+
+<br>
+
+.large[
+`r emo::ji('sparkles')` **This workflow maintains YOUR vibe while leveraging AI power!**
+]
+
+---
+
+## AI for Code Review and Refactoring
+
+.large[
+AI excels at suggesting vibe improvements to existing code.
+]
+
+--
+
+**Ask AI to:**
+
+
+- "Review this function for readability"
+- "Suggest better variable names"
+- "How can I make this more idiomatic in R?"
+- "What edge cases am I missing?"
+- "Refactor this to use tidyverse patterns"
+
+--
+
+**Example prompt:**
+```
+"I wrote this code for data cleaning. Can you suggest 
+improvements for readability and maintainability while 
+keeping the tidyverse style?"
+```
+
+---
+
+## Prompt Engineering for Vibe Coding
+
+.large[
+Good prompts lead to good vibes.
+]
+
+--
+
+**Vibe-friendly prompts:**
+
+--
+
+.pull-left[
+**Specific:**
+- "Write a function to calculate Z-scores that follows tidyverse style"
+- "Refactor this loop into a purrr::map() call"
+]
+
+--
+
+.pull-right[
+**Context-aware:**
+- "Using ggplot2, create an elegant visualization of..."
+- "In the style of the tidyverse, how would you..."
+]
+
+--
+
+**Include your constraints:**
+```
+"Create a readable function for [task] that:
+- Uses descriptive variable names
+- Includes error handling
+- Follows tidyverse conventions
+- Has a clear return value"
+```
+
+---
+
+## Maintaining Your Vibe with AI
+
+.large[
+Stay in control of the coding experience.
+]
+
+--
+
+**Best practices:**
+
+--
+
+1. **Set boundaries** - Decide when to use AI vs. code independently
+
+--
+
+2. **Maintain ownership** - Understand every line AI suggests
+
+--
+
+3. **Preserve your style** - Adapt AI suggestions to your aesthetic
+
+--
+
+4. **Stay critical** - Question AI recommendations
+
+--
+
+5. **Learn continuously** - Use AI to discover new patterns, not replace learning
+
+--
+
+<br>
+
+.large[
+`r emo::ji('balance_scale')` **Balance: AI as enhancer, not replacement**
+]
+
+---
+
+class: middle
+
+# Vibe Coding in R and Data Science
+
+---
+
+## The Tidyverse: Vibe Coding Champion `r emo::ji('trophy')`
+
+.large[
+The tidyverse embodies vibe coding principles!
+]
+
+--
+
+**Why the tidyverse has good vibes:**
+
+```{r eval=FALSE}
+# Reads like a sentence, flows naturally
+starwars %>%
+  filter(!is.na(height)) %>%
+  group_by(species) %>%
+  summarise(
+    avg_height = mean(height),
+    count = n()
+  ) %>%
+  arrange(desc(avg_height))
+```
+
+--
+
+.large[
+`r emo::ji('sparkles')` The pipe operator `%>%` creates natural flow and rhythm!
+]
+
+---
+
+## Example: Data Cleaning with Good Vibes
+
+.pull-left[
+**Without vibe:**
+```{r eval=FALSE}
+d <- read.csv("data.csv")
+d <- d[complete.cases(d),]
+d$x2 <- d$x * d$x
+d <- d[d$y > 0,]
+names(d)[3] <- "z"
+```
+]
+
+--
+
+.pull-right[
+**With vibe:**
+```{r eval=FALSE}
+clean_data <- 
+  read_csv("data.csv") %>%
+  drop_na() %>%
+  mutate(x_squared = x^2) %>%
+  filter(response > 0) %>%
+  rename(score = original_score)
+```
+]
+
+--
+
+<br>
+
+.large[
+`r emo::ji('check')` The second version flows, tells a story, and feels satisfying to write!
+]
+
+---
+
+## Visualization: Where Vibe Really Shines `r emo::ji('rainbow')`
+
+.midi[
+Creating beautiful visualizations is peak vibe coding!
+]
+
+--
+.midi[
+```{r simple-plot, eval=FALSE}
+ggplot(data = penguins, 
+       aes(x = flipper_length_mm, 
+           y = body_mass_g, 
+           color = species)) +
+  geom_point(alpha = 0.7, size = 3) +
+  scale_color_viridis_d() +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Palmer Penguins: Body Mass vs. Flipper Length",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species"
+  )
+```
+]
+--
+
+.large[
+`r emo::ji('art')` Building plots layer by layer has a satisfying rhythm!
+]
+
+---
+
+## Function Writing: The Vibe Way
+
+.large[
+Well-named, single-purpose functions are pure vibe.
+]
+
+--
+.midi[
+**Bad vibe function:**
+```{r eval=FALSE}
+f <- function(x, y, z) {
+  a <- x + y
+  b <- a * z
+  c <- sqrt(b)
+  return(c)
+}
+```
+]
+
+--
+.midi[
+**Good vibe function:**
+```{r eval=FALSE}
+calculate_performance_score <- function(accuracy, speed, weight = 1.0) {
+  raw_score <- accuracy + speed
+  weighted_score <- raw_score * weight
+  normalized_score <- sqrt(weighted_score)
+  
+  return(normalized_score)
+}
+```
+]
+--
+
+.large[
+`r emo::ji('sparkles')` Clear names and structure = good vibes!
+]
+
+---
+
+class: middle
+
+# Practical Vibe Coding Tips
+
+---
+
+## Tip 1: Use Consistent Style `r emo::ji('art')`
+
+.large[
+Pick a style guide and stick to it.
+]
+
+--
+
+**Popular R style guides:**
+- [Tidyverse Style Guide](https://style.tidyverse.org/)
+- Google's R Style Guide
+- Your own consistent approach
+
+---
+
+# Key style elements:
+
+```{r eval=FALSE}
+# Good spacing
+result <- function_name(argument1 = value1, argument2 = value2)
+
+# Clear structure
+if (condition) {
+  action()
+} else {
+  alternative_action()
+}
+
+# Meaningful names
+user_age <- calculate_age(birth_date)
+```
+
+---
+
+## Tip 2: Comment with Purpose `r emo::ji('memo')`
+
+.large[
+Comments should add value, not clutter.
+]
+
+--
+
+.pull-left[
+**Bad comments:**
+```{r eval=FALSE}
+# Add 1 to x
+x <- x + 1
+
+# Loop through data
+for (i in 1:10) {
+  # Print i
+  print(i)
+}
+```
+]
+
+--
+
+.pull-right[
+**Good comments:**
+```{r eval=FALSE}
+# Adjust for zero-indexing
+position <- position + 1
+
+# Process each participant
+# Note: Excluding participant 7 
+# due to equipment failure
+for (id in valid_participants) {
+  analyze_responses(id)
+}
+```
+]
+
+---
+
+## Tip 3: Take Breaks `r emo::ji('coffee')`
+
+.large[
+Vibe coding isn't about grinding—it's about quality time with code.
+]
+
+--
+.pull-left[
+**The Pomodoro Vibe:**
+- Code for 25-50 minutes
+- Take a 5-10 minute break
+- Repeat with good energy
+
+]
+.pull-right[
+**Benefits:**
+- Maintains mental freshness
+- Prevents burnout
+- Keeps the creative flow going
+- Better problem-solving
+]
+--
+
+.tip[
+**Pro tip:** Some of your best coding insights come *during* breaks! `r emo::ji('bulb')`
+]
+
+---
+
+## Tip 4: Refactor with Joy `r emo::ji('recycle')`
+
+.large[
+Refactoring is not a chore—it's an art form!
+]
+
+--
+
+**Refactoring opportunities:**
+- Repetitive code → Functions
+- Nested conditionals → Guard clauses
+- Long functions → Smaller, focused functions
+- Cryptic names → Descriptive names
+
+---
+
+**The refactoring vibe:**
+```{r eval=FALSE}
+# Before: Repetitive and dull
+mean_height <- mean(data$height)
+mean_weight <- mean(data$weight)
+mean_age <- mean(data$age)
+
+# After: Elegant and satisfying
+summary_stats <- data %>%
+  summarise(across(c(height, weight, age), mean))
+```
+
+---
+
+## Tip 5: Celebrate Small Wins `r emo::ji('party')`
+
+.large[
+Acknowledge your progress, no matter how small!
+]
+
+--
+
+**Celebrate when you:**
+- Write an elegant function `r emo::ji('check')`
+- Fix a tricky bug `r emo::ji('bug')`
+- Create a beautiful visualization `r emo::ji('art')`
+- Refactor messy code `r emo::ji('sparkles')`
+- Learn something new `r emo::ji('books')`
+
+--
+
+<br>
+
+.large[
+`r emo::ji('star')` **Remember:** Programming is a journey, enjoy each step!
+]
+
+---
+
+class: middle
+
+# Common Vibe Killers (and How to Fix Them)
+
+---
+
+## Vibe Killer 1: Analysis Paralysis `r emo::ji('thinking')`
+
+.large[
+**Problem:** Overthinking before starting
+]
+
+--
+
+**The fix:**
+- Start with a minimal viable solution
+- Iterate and improve
+- "Done is better than perfect" (then refine)
+
+--
+
+```{r eval=FALSE}
+# Don't wait for the perfect approach
+# Start simple:
+preliminary_result <- data %>%
+  filter(condition == "treatment") %>%
+  summarise(mean_score = mean(score))
+
+# Then enhance:
+# Add error handling, visualization, etc.
+```
+
+---
+
+## Vibe Killer 2: Error Frustration `r emo::ji('rage')`
+
+.large[
+**Problem:** Errors killing your flow
+]
+
+--
+
+**The fix:**
+- Errors are learning opportunities `r emo::ji('books')`
+- Read error messages carefully
+- Break the problem into smaller pieces
+- Take a short walk if stuck
+
+--
+
+.tip[
+**Pro tip:** Keep a "solved errors" notebook. Future-you will thank present-you! `r emo::ji('notebook')`
+]
+
+---
+
+## Vibe Killer 3: Comparison `r emo::ji('eyes')`
+
+.large[
+**Problem:** Comparing yourself to others
+]
+
+--
+
+**The fix:**
+- Focus on your own progress
+- Everyone starts somewhere
+- Celebrate your unique coding style
+- Learn from others, don't compete
+
+--
+
+<br>
+
+.large[
+`r emo::ji('rainbow')` **Your vibe is unique—embrace it!**
+]
+
+---
+
+## Vibe Killer 4: Messy Environment `r emo::ji('tornado')`
+
+.large[
+**Problem:** Cluttered workspace or code
+]
+
+--
+
+**The fix:**
+```{r eval=FALSE}
+# Regular cleanup ritual
+# 1. Archive old experiments
+archive/
+  old_analysis_v1.R
+  abandoned_approach.R
+
+# 2. Organize current work
+scripts/
+  01_data_cleaning.R
+  02_exploratory_analysis.R
+  03_modeling.R
+
+# 3. Clear working directory
+rm(list = ls()) # But save important objects first!
+```
+
+---
+
+class: middle
+
+# Building Your Vibe Coding Practice
+
+---
+
+## Start Your Vibe Coding Journal `r emo::ji('notebook')`
+
+.large[
+Track your coding journey and insights.
+]
+
+--
+
+**What to include:**
+- Elegant code snippets you're proud of
+- Problems solved and how
+- New techniques learned
+- Moments of flow and insight
+- Personal coding preferences
+
+--
+
+**Benefits:**
+- Reinforces learning
+- Creates a personal reference
+- Shows your progress
+- Identifies patterns in your work
+
+---
+
+## Find Your Coding Rhythm `r emo::ji('musical_note')`
+
+.large[
+Discover when and how you code best.
+]
+
+--
+
+**Questions to explore:**
+- What time of day do you feel most creative?
+- Does music help or hinder? (If yes, what type?)
+- Short bursts or long sessions?
+- Morning freshness or evening focus?
+
+--
+
+**Experiment and adjust:**
+- Try different schedules
+- Test various environments
+- Notice what feels best
+- Honor your natural rhythms
+
+---
+
+## Build a Vibe Coding Community `r emo::ji('group')`
+
+.large[
+Share the vibe with others!
+]
+
+--
+
+**Ways to connect:**
+- Join R communities (R-Ladies, local R user groups)
+- Share your code and visualizations
+- Participate in TidyTuesday
+- Attend coding meetups
+- Pair program with friends
+
+--
+
+<br>
+
+.large[
+`r emo::ji('heart')` **Good vibes are contagious!**
+]
+
+---
+
+class: middle
+
+# Vibe Coding Challenges
+
+---
+
+## Your Turn: Vibe-ify This Code `r emo::ji('wrench')`
+
+.your-turn[
+
+Take this code and improve its vibe:
+.pull-left[
+```{r eval=FALSE}
+d <- read.csv("data.csv")
+d <- d[d$age > 18,]
+d$bmi <- d$weight / (d$height^2)
+m <- mean(d$bmi)
+print(m)
+```
+]
+.pull-right[
+**Consider:**
+- Variable names
+- Readability  
+- Flow
+- Comments (if needed)
+]
+]
+---
+
+**Possible solution on next slide...**
+
+---
+
+## Vibe-ified Solution `r emo::ji('sparkles')`
+
+```{r eval=FALSE}
+# Calculate BMI for adult participants
+participant_data <- read_csv("data.csv") %>%
+  filter(age > 18) %>%
+  mutate(
+    bmi = weight_kg / (height_m^2)
+  )
+
+# Summary statistics
+average_bmi <- participant_data %>%
+  summarise(mean_bmi = mean(bmi, na.rm = TRUE)) %>%
+  pull(mean_bmi)
+
+# Report findings
+glue::glue("Average BMI for adult participants: {round(average_bmi, 2)}")
+```
+
+--
+
+.large[
+`r emo::ji('check')` Much better vibe! Clear, readable, and purposeful.
+]
+
+---
+
+class: middle
+
+# Advanced Vibe Coding
+
+---
+
+## Vibe Coding with Projects `r emo::ji('file_folder')`
+
+.large[
+Good project structure = sustained good vibes
+]
+
+--
+
+**Example R project structure:**
+```
+my_analysis/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── scripts/
+│   ├── 01_import.R
+│   ├── 02_clean.R
+│   └── 03_analyze.R
+├── outputs/
+│   ├── figures/
+│   └── tables/
+├── R/
+│   └── custom_functions.R
+└── README.md
+```
+
+---
+
+## Vibe Coding with Version Control `r emo::ji('floppy_disk')`
+
+.large[
+Git commits can have good vibes too!
+]
+
+--
+
+**Bad commit messages:**
+```
+"fixed stuff"
+"asdf"
+"final version"
+"FINAL VERSION 2"
+```
+
+--
+
+**Good vibe commit messages:**
+```
+"Add data cleaning pipeline for survey responses"
+"Improve visualization color scheme for accessibility"
+"Refactor analysis functions for clarity"
+"Document assumptions in modeling approach"
+```
+
+--
+
+.tip[
+**Tip:** Write commit messages your future self will appreciate! `r emo::ji('calendar')`
+]
+
+---
+
+## Vibe Coding with Collaboration `r emo::ji('handshake')`
+
+.large[
+Spread good vibes to your team!
+]
+
+--
+
+**Best practices:**
+- Write code others can understand
+- Document your reasoning
+- Be open to feedback
+- Share your discoveries
+- Celebrate team wins
+
+--
+
+**Code review mindset:**
+- Assume positive intent
+- Ask questions, don't criticize
+- Offer suggestions, not demands
+- Learn from each other
+
+---
+
+class: middle
+
+# The Future of Your Vibe Coding Journey
+
+---
+
+## Growing Your Vibe `r emo::ji('seedling')`
+
+.large[
+Vibe coding is a practice, not a destination.
+]
+
+--
+
+**Continue to:**
+- Experiment with new approaches
+- Refine your personal style
+- Stay curious and playful
+- Share your knowledge
+- Keep learning
+
+--
+
+**Remember:**
+- There's no "perfect" vibe
+- Your vibe will evolve
+- What matters is enjoying the journey
+- Code with intention and joy
+
+---
+
+## Resources for Vibe Coders `r emo::ji('books')`
+
+**Learning resources:**
+- [R for Data Science](https://r4ds.had.co.nz/) - The vibe-friendly intro
+- [Tidyverse Style Guide](https://style.tidyverse.org/) - For consistent aesthetics
+- [The Programmer's Brain](https://www.manning.com/books/the-programmers-brain) - Understanding flow
+- [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) - Weekly practice
+
+--
+
+**Community:**
+- [RStudio Community](https://community.rstudio.com/)
+- [R-Ladies](https://rladies.org/)
+- [R4DS Online Learning Community](https://www.rfordatasci.com/)
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Define vibe coding philosophy
+- ✅ Five core principles
+- ✅ AI tools for vibe coding
+- ✅ Vibe-friendly workflows
+]
+
+.pull-right[
+### Skills
+- ✅ Use GitHub Copilot effectively
+- ✅ Prompt ChatGPT/Claude for better code
+- ✅ Achieve flow state while coding
+- ✅ Refactor with intention and aesthetics
+- ✅ Evaluate AI suggestions critically
+]
+
+---
+
+## Summary: The Vibe Coding Manifesto `r emo::ji('scroll')`
+
+.large[
+**We believe:**
+]
+
+1. Code should be a joy to write and read
+2. Aesthetics and clarity matter
+3. Flow state enhances creativity
+4. Small, intentional improvements compound
+5. The journey is as important as the destination
+6. Good vibes lead to better code
+7. Community makes us all better
+
+--
+
+<br>
+
+.large[
+`r emo::ji('sparkles')` **Now go forth and code with good vibes!** `r emo::ji('sparkles')`
+]
+
+---
+
+class: middle, center
+
+# Questions? `r emo::ji('question')`
+
+---
+
+## Contact Information
+
+- Email: _garrissm@wfu.edu_
+- Website: [smasongarrison.com](https://www.smasongarrison.com)
+- GitHub: [github.com/smasongarrison](https://github.com/smasongarrison)
+
+<br>
+
+.large[
+`r emo::ji('pray')` **Happy vibe coding!** `r emo::ji('computer')`
+]
