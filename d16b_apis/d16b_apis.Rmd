@@ -71,23 +71,23 @@ Today we focus on the second approach.
 
 ## Why use an API?
 
-- **Structured data**: APIs return data in a consistent, machine-readable format (JSON, XML)
+- APIs return data in a consistent, machine-readable format (JSON, XML)
 
 --
 
-- **Reliability**: the data format is documented and maintained by the provider
+- The data format is documented and maintained by the provider
 
 --
 
-- **Permission**: APIs are *intended* for programmatic access
+- APIs are *intended* for programmatic access
 
 --
 
-- **Efficiency**: you get exactly the data you need, no parsing HTML
+- You get exactly the data you need, no parsing HTML
 
 --
 
-- **Ethics**: using an API respects the data provider's terms of service
+- Using an API respects the data provider's terms of service
 
 ---
 
@@ -115,9 +115,13 @@ An **API** is a set of rules that allows one piece of software to talk to anothe
 
 ---
 
-## Anatomy of an API request
+.question[
+What kinds of data have you encountered that might be available through an API?
+]
 
-A typical API request has these parts:
+---
+
+## Anatomy of an API request
 
 --
 
@@ -195,10 +199,10 @@ Most modern APIs return data in **JSON** format:
 
 --
 
-- **Key-value pairs**: `"name": "R Project"`
-- **Nested structures**: objects within objects
-- **Arrays**: lists of values `["Ross Ihaka", "Robert Gentleman"]`
-- **Data types**: strings, numbers, booleans, null
+- Key-value pairs: `"name": "R Project"`
+- Nested structures: objects within objects
+- Arrays: lists of values `["Ross Ihaka", "Robert Gentleman"]`
+- Data types: strings, numbers, booleans, null
 
 ---
 
@@ -252,7 +256,7 @@ Key functions:
 
 Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) provides weather data with no authentication required.
 
-```{r first-api, cache=TRUE}
+```{r eval=FALSE}
 response <- GET(
   "https://api.open-meteo.com/v1/forecast",
   query = list(
@@ -260,6 +264,15 @@ response <- GET(
     longitude = -80.24,
     current_weather = "true"
   )
+)
+```
+
+```{r first-api, echo=FALSE}
+response <- tryCatch(
+  GET("https://api.open-meteo.com/v1/forecast",
+      query = list(latitude = 36.00, longitude = -80.24,
+                   current_weather = "true")),
+  error = function(e) NULL
 )
 ```
 
@@ -305,6 +318,14 @@ tibble(
 
 ---
 
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `01-weather-api.R`.
+- Follow along, and fill in the blanks as we go based on upcoming slides.
+]
+
+---
+
 class: middle
 
 # Wrapping Up...
@@ -321,7 +342,7 @@ class: middle
 
 The [Hipolabs Universities API](http://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
 
-```{r uni-api, cache=TRUE}
+```{r eval=FALSE}
 response <- GET(
   "http://universities.hipolabs.com/search",
   query = list(
@@ -331,6 +352,15 @@ response <- GET(
 )
 
 status_code(response)
+```
+
+```{r uni-api, echo=FALSE}
+response <- tryCatch(
+  GET("http://universities.hipolabs.com/search",
+      query = list(country = "United States", name = "Wake Forest")),
+  error = function(e) NULL
+)
+if (!is.null(response)) status_code(response)
 ```
 
 ---
@@ -360,11 +390,17 @@ uni_df
 
 ---
 
+.question[
+What information would you want to extract from the university data? How would you reshape it into a tidy format?
+]
+
+---
+
 ## Scaling up: multiple queries
 
 What if we want universities from several countries?
 
-```{r multi-country, cache=TRUE}
+```{r eval=FALSE}
 countries <- c("United States", "United Kingdom", "Canada")
 
 all_unis <- map_dfr(countries, function(country) {
@@ -378,6 +414,20 @@ all_unis <- map_dfr(countries, function(country) {
     select(name, country) %>%
     head(10)  # first 10 per country for demo
 })
+```
+
+```{r multi-country, echo=FALSE}
+all_unis <- tryCatch(
+  map_dfr(c("United States", "United Kingdom", "Canada"), function(country) {
+    resp <- GET("http://universities.hipolabs.com/search",
+                query = list(country = country))
+    content(resp, as = "text", encoding = "UTF-8") %>%
+      fromJSON(flatten = TRUE) %>%
+      select(name, country) %>%
+      head(10)
+  }),
+  error = function(e) tibble(name = character(), country = character())
+)
 ```
 
 ---
@@ -437,7 +487,7 @@ get_universities <- function(country, name = NULL) {
 
 ## Using the helper function
 
-```{r cache=TRUE}
+```{r}
 # Search for psychology-related universities
 psych_unis <- get_universities("United States", name = "psychology")
 nrow(psych_unis)
@@ -445,7 +495,7 @@ nrow(psych_unis)
 
 --
 
-```{r cache=TRUE}
+```{r}
 # Get Canadian universities
 canadian_unis <- get_universities("Canada")
 nrow(canadian_unis)
@@ -454,9 +504,9 @@ nrow(canadian_unis)
 --
 
 This pattern -- wrapping API calls in functions -- makes your code:
-- **Reusable**: call it many times with different parameters
-- **Readable**: clear what the function does
-- **Robust**: error handling in one place
+- Reusable: call it many times with different parameters
+- Readable: clear what the function does
+- Robust: error handling in one place
 
 ---
 
@@ -611,20 +661,20 @@ This is especially important when:
 ---
 
 .your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `02-university-api.R`.
+- Use the Hipolabs Universities API to search for universities in a country of your choice.
+- Parse the JSON response and create a tidy data frame.
+- Try querying multiple countries and combining the results.
+]
 
-### Practice: Explore a public API
+---
 
-Pick one of these free APIs and retrieve some data:
-
-- [Open-Meteo](https://open-meteo.com/) - Weather forecasts (no key needed)
-- [Hipolabs Universities](http://universities.hipolabs.com/) - University search (no key needed)
-- [Open Library](https://openlibrary.org/developers/api) - Book data (no key needed)
-
-1. Make a GET request using httr
-2. Check the status code
-3. Parse the JSON response
-4. Create a tidy tibble from the results
-
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `03-open-library.R`.
+- Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
+- Parse the response and create a data frame with title, author, and year.
 ]
 
 ---
@@ -693,6 +743,12 @@ safe_api_call <- function(url, params) {
 
 ---
 
+.question[
+When would you choose web scraping over using an API? When would an API be the better choice?
+]
+
+---
+
 ## Comparing approaches: scraping vs. API
 
 | | Web Scraping | Web API |
@@ -729,18 +785,18 @@ Today, you should now be able to...
 
 .pull-left[
 ### Concepts
-- Distinguish scraping vs. APIs
-- HTTP request/response cycle
-- JSON data format
-- Authentication patterns
+- ✅ Distinguish scraping vs. APIs
+- ✅ HTTP request/response cycle
+- ✅ JSON data format
+- ✅ Authentication patterns
 ]
 
 .pull-right[
 ### Skills
-- Make API calls with httr
-- Parse JSON with jsonlite
-- Write reusable API functions
-- Handle errors and rate limits
+- ✅ Make API calls with httr
+- ✅ Parse JSON with jsonlite
+- ✅ Write reusable API functions
+- ✅ Handle errors and rate limits
 ]
 
 ---
