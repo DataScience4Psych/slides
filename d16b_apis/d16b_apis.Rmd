@@ -70,19 +70,19 @@ Today we focus on the second approach.
 
 ## Why use an API?
 
-- APIs return data in a consistent, machine-readable format (JSON, XML)
+- **Structured data**: APIs return data in a consistent, machine-readable format (JSON, XML)
 
 --
-- The data format is documented and maintained by the provider
+- **Consistency**: The data format is documented and maintained by the provider
 
 --
-- APIs are *intended* for programmatic access
+- **Permission**: APIs are *intended* for programmatic access
 
 --
-- You get exactly the data you need, no parsing HTML
+-  **Efficiency**:You get exactly the data you need, no parsing HTML
 
 --
-- Using an API respects the data provider's terms of service
+-  **Ethics**: Using an API respects the data provider's terms of service
 
 ---
 
@@ -110,9 +110,9 @@ An **API** is a set of rules that allows one piece of software to talk to anothe
 
 ---
 
-.question[
+.xlarge[.question[
 What kinds of data have you encountered that might be available through an API?
-]
+]]
 
 ---
 
@@ -120,17 +120,17 @@ What kinds of data have you encountered that might be available through an API?
 
 --
 
-1. **Base URL**: the address of the API
+1. **Base URL**: the address of the API <br>
    `https://api.example.com/`
 
 --
 
-2. **Endpoint**: the specific resource you want
+2. **Endpoint**: the specific resource you want<br>
    `https://api.example.com/data/`
 
 --
 
-3. **Parameters**: filters or options for your request
+3. **Parameters**: filters or options for your request<br>
    `https://api.example.com/data?year=2024&limit=10`
 
 --
@@ -148,7 +148,7 @@ What kinds of data have you encountered that might be available through an API?
 When the server responds, you get:
 
 --
-
+.pull-left[
 - **Status code**: was the request successful?
 
 | Code | Meaning |
@@ -161,12 +161,12 @@ When the server responds, you get:
 | `404` | Not found |
 | `429` | Too many requests (rate limited) |
 | `500` | Internal server error |
-
+]
 --
-
+.pull-right[
 - **Headers**: metadata about the response
 - **Body**: the actual data (usually JSON)
-
+]
 ---
 
 class: middle
@@ -178,7 +178,7 @@ class: middle
 ## JavaScript Object Notation (JSON)
 
 Most modern APIs return data in **JSON** format:
-
+.pull-left.small[
 ```json
 {
   "name": "R Project",
@@ -191,35 +191,42 @@ Most modern APIs return data in **JSON** format:
   }
 }
 ```
-
+]
 --
-
+.pull-right[
 - Key-value pairs: `"name": "R Project"`
 - Nested structures: objects within objects
 - Arrays: lists of values `["Ross Ihaka", "Robert Gentleman"]`
 - Data types: strings, numbers, booleans, null
-
+]
 ---
 
 ## JSON to R
 
 The **jsonlite** package converts JSON into R objects:
+- JSON objects become named lists or data frames
+- JSON arrays become vectors or lists
+- Nested JSON becomes nested lists
 
+--
+
+.pull-left[
 ```{r}
+library(jsonlite)
 json_text <- '{
   "name": "R Project",
   "year": 1993,
   "open_source": true
 }'
+```
+]
 
+.pull-right[
+```{r}
 fromJSON(json_text)
 ```
+]
 
---
-
-- JSON objects become named lists or data frames
-- JSON arrays become vectors or lists
-- Nested JSON becomes nested lists
 
 ---
 
@@ -255,20 +262,30 @@ Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) pr
 response <- GET(
   "https://api.open-meteo.com/v1/forecast",
   query = list(
-    latitude = 36.00,        # Winston-Salem, NC
-    longitude = -80.24,
-    current_weather = "true"
+   latitude = 36.00,        # Winston-Salem, NC
+  longitude = -80.24,
+	models= "gfs_seamless", 
+	current= "temperature_2m", # current temperature at 2 meters above ground
+	wind_speed_unit= "mph", precipitation_unit= "inch", temperature_unit= "fahrenheit"
   )
 )
 ```
 
-```{r first-api, echo=FALSE}
+```{r first-api, echo=FALSE, cache=TRUE}
 response <- tryCatch(
   GET("https://api.open-meteo.com/v1/forecast",
       query = list(latitude = 36.00, longitude = -80.24,
-                   current_weather = "true")),
+                     hourly="temperature_2m",
+	models= "gfs_seamless",
+	current= "temperature_2m",
+	wind_speed_unit= "mph",
+	precipitation_unit= "inch",
+	temperature_unit= "fahrenheit"
+                   
+                   )),
   error = function(e) NULL
 )
+
 ```
 
 --
@@ -293,7 +310,7 @@ names(weather_data)
 --
 
 ```{r}
-weather_data$current_weather
+weather_data$current
 ```
 
 ---
@@ -301,13 +318,12 @@ weather_data$current_weather
 ## From API response to tibble
 
 ```{r}
-current <- weather_data$current_weather
+current <- weather_data$current
+hourly <- weather_data$hourly
 
 tibble(
-  temperature = current$temperature,
-  windspeed = current$windspeed,
-  wind_direction = current$winddirection,
-  time = current$time
+  temperature = hourly$temperature_2m,
+  time = hourly$time
 )
 ```
 

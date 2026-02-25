@@ -90,19 +90,19 @@ Today we focus on the second approach.
 
 ## Why use an API?
 
-- APIs return data in a consistent, machine-readable format (JSON, XML)
+- **Structured data**: APIs return data in a consistent, machine-readable format (JSON, XML)
 
 --
-- The data format is documented and maintained by the provider
+- **Consistency**: The data format is documented and maintained by the provider
 
 --
-- APIs are *intended* for programmatic access
+- **Permission**: APIs are *intended* for programmatic access
 
 --
-- You get exactly the data you need, no parsing HTML
+-  **Efficiency**:You get exactly the data you need, no parsing HTML
 
 --
-- Using an API respects the data provider's terms of service
+-  **Ethics**: Using an API respects the data provider's terms of service
 
 ---
 
@@ -130,9 +130,9 @@ An **API** is a set of rules that allows one piece of software to talk to anothe
 
 ---
 
-.question[
+.xlarge[.question[
 What kinds of data have you encountered that might be available through an API?
-]
+]]
 
 ---
 
@@ -140,17 +140,17 @@ What kinds of data have you encountered that might be available through an API?
 
 --
 
-1. **Base URL**: the address of the API
+1. **Base URL**: the address of the API &lt;br&gt;
    `https://api.example.com/`
 
 --
 
-2. **Endpoint**: the specific resource you want
+2. **Endpoint**: the specific resource you want&lt;br&gt;
    `https://api.example.com/data/`
 
 --
 
-3. **Parameters**: filters or options for your request
+3. **Parameters**: filters or options for your request&lt;br&gt;
    `https://api.example.com/data?year=2024&amp;limit=10`
 
 --
@@ -168,7 +168,7 @@ What kinds of data have you encountered that might be available through an API?
 When the server responds, you get:
 
 --
-
+.pull-left[
 - **Status code**: was the request successful?
 
 | Code | Meaning |
@@ -181,12 +181,12 @@ When the server responds, you get:
 | `404` | Not found |
 | `429` | Too many requests (rate limited) |
 | `500` | Internal server error |
-
+]
 --
-
+.pull-right[
 - **Headers**: metadata about the response
 - **Body**: the actual data (usually JSON)
-
+]
 ---
 
 class: middle
@@ -198,7 +198,7 @@ class: middle
 ## JavaScript Object Notation (JSON)
 
 Most modern APIs return data in **JSON** format:
-
+.pull-left.small[
 ```json
 {
   "name": "R Project",
@@ -211,28 +211,40 @@ Most modern APIs return data in **JSON** format:
   }
 }
 ```
-
+]
 --
-
+.pull-right[
 - Key-value pairs: `"name": "R Project"`
 - Nested structures: objects within objects
 - Arrays: lists of values `["Ross Ihaka", "Robert Gentleman"]`
 - Data types: strings, numbers, booleans, null
-
+]
 ---
 
 ## JSON to R
 
 The **jsonlite** package converts JSON into R objects:
+- JSON objects become named lists or data frames
+- JSON arrays become vectors or lists
+- Nested JSON becomes nested lists
 
+--
+
+.pull-left[
 
 ``` r
+library(jsonlite)
 json_text &lt;- '{
   "name": "R Project",
   "year": 1993,
   "open_source": true
 }'
+```
+]
 
+.pull-right[
+
+``` r
 fromJSON(json_text)
 ```
 
@@ -246,12 +258,8 @@ fromJSON(json_text)
 ## $open_source
 ## [1] TRUE
 ```
+]
 
---
-
-- JSON objects become named lists or data frames
-- JSON arrays become vectors or lists
-- Nested JSON becomes nested lists
 
 ---
 
@@ -288,9 +296,11 @@ Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) pr
 response &lt;- GET(
   "https://api.open-meteo.com/v1/forecast",
   query = list(
-    latitude = 36.00,        # Winston-Salem, NC
-    longitude = -80.24,
-    current_weather = "true"
+   latitude = 36.00,        # Winston-Salem, NC
+  longitude = -80.24,
+	models= "gfs_seamless", 
+	current= "temperature_2m", # current temperature at 2 meters above ground
+	wind_speed_unit= "mph", precipitation_unit= "inch", temperature_unit= "fahrenheit"
   )
 )
 ```
@@ -323,41 +333,30 @@ names(weather_data)
 ```
 
 ```
-## [1] "latitude"              "longitude"            
-## [3] "generationtime_ms"     "utc_offset_seconds"   
-## [5] "timezone"              "timezone_abbreviation"
-## [7] "elevation"             "current_weather_units"
-## [9] "current_weather"
+##  [1] "latitude"              "longitude"            
+##  [3] "generationtime_ms"     "utc_offset_seconds"   
+##  [5] "timezone"              "timezone_abbreviation"
+##  [7] "elevation"             "current_units"        
+##  [9] "current"               "hourly_units"         
+## [11] "hourly"
 ```
 
 --
 
 
 ``` r
-weather_data$current_weather
+weather_data$current
 ```
 
 ```
 ## $time
-## [1] "2026-02-25T15:00"
+## [1] "2026-02-25T15:15"
 ## 
 ## $interval
 ## [1] 900
 ## 
-## $temperature
-## [1] 9.4
-## 
-## $windspeed
-## [1] 20.1
-## 
-## $winddirection
-## [1] 224
-## 
-## $is_day
-## [1] 1
-## 
-## $weathercode
-## [1] 3
+## $temperature_2m
+## [1] 49
 ```
 
 ---
@@ -366,21 +365,26 @@ weather_data$current_weather
 
 
 ``` r
-current &lt;- weather_data$current_weather
+current &lt;- weather_data$current
+hourly &lt;- weather_data$hourly
 
 tibble(
-  temperature = current$temperature,
-  windspeed = current$windspeed,
-  wind_direction = current$winddirection,
-  time = current$time
+  temperature = hourly$temperature_2m,
+  time = hourly$time
 )
 ```
 
 ```
-## # A tibble: 1 × 4
-##   temperature windspeed wind_direction time            
-##         &lt;dbl&gt;     &lt;dbl&gt;          &lt;int&gt; &lt;chr&gt;           
-## 1         9.4      20.1            224 2026-02-25T15:00
+## # A tibble: 168 × 2
+##   temperature time            
+##         &lt;dbl&gt; &lt;chr&gt;           
+## 1        35.2 2026-02-25T00:00
+## 2        33.7 2026-02-25T01:00
+## 3        33.3 2026-02-25T02:00
+## 4        34.2 2026-02-25T03:00
+## 5        36.1 2026-02-25T04:00
+## 6        36.2 2026-02-25T05:00
+## # ℹ 162 more rows
 ```
 
 ---
@@ -519,8 +523,8 @@ all_unis %&gt;%
 
 --
 
-<div id="htmlwidget-0d7db73d03839427d3b7" style="width:100%;height:300px;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0d7db73d03839427d3b7">{"x":{"filter":"none","vertical":false,"data":[[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>country<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"p","pageLength":8,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"country","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ca9fad3bdbff68b373a0" style="width:100%;height:300px;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ca9fad3bdbff68b373a0">{"x":{"filter":"none","vertical":false,"data":[[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>country<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"p","pageLength":8,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"country","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
