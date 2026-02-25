@@ -1,31 +1,51 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Working with Web APIs   🔌</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <script src="libs/jquery/jquery-3.6.0.min.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="../slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Working with Web APIs <br> 🔌
+]
+.author[
+### S. Mason Garrison
+]
+
 ---
-title: "Working with Web APIs <br> `r emo::ji('electric_plug')`"
-author: "S. Mason Garrison"
-output:
-  xaringan::moon_reader:
-    css: "../slides.css"
-    lib_dir: libs
-    nature:
-      ratio: "16:9"
-      highlightLines: true
-      highlightStyle: solarized-light
-      countIncrementalSlides: false
-      slideNumberFormat: ""
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
 ---
 
-```{r child = "../setup.Rmd"}
-```
 
-```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(httr)
-library(jsonlite)
-library(DT)
-
-# Remember to compile
-#xaringan::inf_mr(cast_from = "..")
-
-```
 
 class: middle
 
@@ -131,7 +151,7 @@ What kinds of data have you encountered that might be available through an API?
 --
 
 3. **Parameters**: filters or options for your request
-   `https://api.example.com/data?year=2024&limit=10`
+   `https://api.example.com/data?year=2024&amp;limit=10`
 
 --
 
@@ -205,14 +225,26 @@ Most modern APIs return data in **JSON** format:
 
 The **jsonlite** package converts JSON into R objects:
 
-```{r}
-json_text <- '{
+
+``` r
+json_text &lt;- '{
   "name": "R Project",
   "year": 1993,
   "open_source": true
 }'
 
 fromJSON(json_text)
+```
+
+```
+## $name
+## [1] "R Project"
+## 
+## $year
+## [1] 1993
+## 
+## $open_source
+## [1] TRUE
 ```
 
 --
@@ -251,8 +283,9 @@ Key functions:
 
 Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) provides weather data with no authentication required.
 
-```{r eval=FALSE}
-response <- GET(
+
+``` r
+response &lt;- GET(
   "https://api.open-meteo.com/v1/forecast",
   query = list(
     latitude = 36.00,        # Winston-Salem, NC
@@ -262,46 +295,78 @@ response <- GET(
 )
 ```
 
-```{r first-api, echo=FALSE}
-response <- tryCatch(
-  GET("https://api.open-meteo.com/v1/forecast",
-      query = list(latitude = 36.00, longitude = -80.24,
-                   current_weather = "true")),
-  error = function(e) NULL
-)
-```
+
 
 --
 
-```{r}
+
+``` r
 status_code(response)
+```
+
+```
+## [1] 200
 ```
 
 ---
 
 ## Inspecting the response
 
-```{r}
+
+``` r
 # Parse the JSON content
-weather_data <- content(response, as = "text", encoding = "UTF-8") %>%
+weather_data &lt;- content(response, as = "text", encoding = "UTF-8") %&gt;%
   fromJSON()
 
 # What did we get?
 names(weather_data)
 ```
 
+```
+## [1] "latitude"              "longitude"            
+## [3] "generationtime_ms"     "utc_offset_seconds"   
+## [5] "timezone"              "timezone_abbreviation"
+## [7] "elevation"             "current_weather_units"
+## [9] "current_weather"
+```
+
 --
 
-```{r}
+
+``` r
 weather_data$current_weather
+```
+
+```
+## $time
+## [1] "2026-02-25T15:00"
+## 
+## $interval
+## [1] 900
+## 
+## $temperature
+## [1] 9.4
+## 
+## $windspeed
+## [1] 20.1
+## 
+## $winddirection
+## [1] 224
+## 
+## $is_day
+## [1] 1
+## 
+## $weathercode
+## [1] 3
 ```
 
 ---
 
 ## From API response to tibble
 
-```{r}
-current <- weather_data$current_weather
+
+``` r
+current &lt;- weather_data$current_weather
 
 tibble(
   temperature = current$temperature,
@@ -311,10 +376,17 @@ tibble(
 )
 ```
 
+```
+## # A tibble: 1 × 4
+##   temperature windspeed wind_direction time            
+##         &lt;dbl&gt;     &lt;dbl&gt;          &lt;int&gt; &lt;chr&gt;           
+## 1         9.4      20.1            224 2026-02-25T15:00
+```
+
 ---
 
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
 - Open `01-weather-api.R`.
 - Follow along, and fill in the blanks as we go based on upcoming slides.
 ]
@@ -337,8 +409,9 @@ class: middle
 
 The [Hipolabs Universities API](http://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
 
-```{r eval=FALSE}
-response <- GET(
+
+``` r
+response &lt;- GET(
   "http://universities.hipolabs.com/search",
   query = list(
     country = "United States",
@@ -349,38 +422,55 @@ response <- GET(
 status_code(response)
 ```
 
-```{r uni-api, echo=FALSE}
-response <- tryCatch(
-  GET("http://universities.hipolabs.com/search",
-      query = list(country = "United States", name = "Wake Forest")),
-  error = function(e) NULL
-)
-if (!is.null(response)) status_code(response)
+
+```
+## [1] 200
 ```
 
 ---
 
 ## Parse the response
 
-```{r}
-universities <- content(response, as = "text", encoding = "UTF-8") %>%
+
+``` r
+universities &lt;- content(response, as = "text", encoding = "UTF-8") %&gt;%
   fromJSON(flatten = TRUE)
 
 glimpse(universities)
+```
+
+```
+## Rows: 2
+## Columns: 6
+## $ country          &lt;chr&gt; "United States", "United States"
+## $ name             &lt;chr&gt; "Wake Forest University", "Wake Forest…
+## $ alpha_two_code   &lt;chr&gt; "US", "US"
+## $ web_pages        &lt;list&gt; "http://www.wfu.edu/", "http://www.wak…
+## $ `state-province` &lt;lgl&gt; NA, NA
+## $ domains          &lt;list&gt; "wfu.edu", "wakehealth.edu"
 ```
 
 ---
 
 ## Build a tidy data frame
 
-```{r}
-uni_df <- universities %>%
+
+``` r
+uni_df &lt;- universities %&gt;%
   select(name, country,
          state = `state-province`,
-         website = web_pages) %>%
+         website = web_pages) %&gt;%
   unnest(website)
 
 uni_df
+```
+
+```
+## # A tibble: 2 × 4
+##   name                       country       state website         
+##   &lt;chr&gt;                      &lt;chr&gt;         &lt;lgl&gt; &lt;chr&gt;           
+## 1 Wake Forest University     United States NA    http://www.wfu.…
+## 2 Wake Forest Baptist Health United States NA    http://www.wake…
 ```
 
 ---
@@ -395,49 +485,42 @@ What information would you want to extract from the university data? How would y
 
 What if we want universities from several countries?
 
-```{r eval=FALSE}
-countries <- c("United States", "United Kingdom", "Canada")
 
-all_unis <- map_dfr(countries, function(country) {
-  resp <- GET(
+``` r
+countries &lt;- c("United States", "United Kingdom", "Canada")
+
+all_unis &lt;- map_dfr(countries, function(country) {
+  resp &lt;- GET(
     "http://universities.hipolabs.com/search",
     query = list(country = country)
   )
 
-  content(resp, as = "text", encoding = "UTF-8") %>%
-    fromJSON(flatten = TRUE) %>%
-    select(name, country) %>%
+  content(resp, as = "text", encoding = "UTF-8") %&gt;%
+    fromJSON(flatten = TRUE) %&gt;%
+    select(name, country) %&gt;%
     head(10)  # first 10 per country for demo
 })
 ```
 
-```{r multi-country, echo=FALSE}
-all_unis <- tryCatch(
-  map_dfr(c("United States", "United Kingdom", "Canada"), function(country) {
-    resp <- GET("http://universities.hipolabs.com/search",
-                query = list(country = country))
-    content(resp, as = "text", encoding = "UTF-8") %>%
-      fromJSON(flatten = TRUE) %>%
-      select(name, country) %>%
-      head(10)
-  }),
-  error = function(e) tibble(name = character(), country = character())
-)
-```
+
 
 ---
 
-```{r}
-all_unis %>%
+
+``` r
+all_unis %&gt;%
   count(country, sort = TRUE)
+```
+
+```
+## # A tibble: 0 × 2
+## # ℹ 2 variables: country &lt;chr&gt;, n &lt;int&gt;
 ```
 
 --
 
-```{r echo=FALSE}
-all_unis %>%
-  datatable(options = list(dom = "p", pageLength = 8), height = 300)
-```
+<div id="htmlwidget-0d7db73d03839427d3b7" style="width:100%;height:300px;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0d7db73d03839427d3b7">{"x":{"filter":"none","vertical":false,"data":[[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>country<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"p","pageLength":8,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"country","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -457,12 +540,13 @@ class: middle
 
 When you query the same API repeatedly, write a helper function:
 
-```{r}
-get_universities <- function(country, name = NULL) {
-  params <- list(country = country)
-  if (!is.null(name)) params$name <- name
 
-  resp <- GET(
+``` r
+get_universities &lt;- function(country, name = NULL) {
+  params &lt;- list(country = country)
+  if (!is.null(name)) params$name &lt;- name
+
+  resp &lt;- GET(
     "http://universities.hipolabs.com/search",
     query = params
   )
@@ -472,8 +556,8 @@ get_universities <- function(country, name = NULL) {
     return(tibble())
   }
 
-  content(resp, as = "text", encoding = "UTF-8") %>%
-    fromJSON(flatten = TRUE) %>%
+  content(resp, as = "text", encoding = "UTF-8") %&gt;%
+    fromJSON(flatten = TRUE) %&gt;%
     as_tibble()
 }
 ```
@@ -482,18 +566,28 @@ get_universities <- function(country, name = NULL) {
 
 ## Using the helper function
 
-```{r}
+
+``` r
 # Search for psychology-related universities
-psych_unis <- get_universities("United States", name = "psychology")
+psych_unis &lt;- get_universities("United States", name = "psychology")
 nrow(psych_unis)
+```
+
+```
+## [1] 1
 ```
 
 --
 
-```{r}
+
+``` r
 # Get Canadian universities
-canadian_unis <- get_universities("Canada")
+canadian_unis &lt;- get_universities("Canada")
 nrow(canadian_unis)
+```
+
+```
+## [1] 157
 ```
 
 --
@@ -545,14 +639,15 @@ Getting an API key typically involves:
 
 --
 
-```{r eval=FALSE}
+
+``` r
 # In your .Renviron file:
 # MY_API_KEY=abc123xyz
 
 # In your R script:
-api_key <- Sys.getenv("MY_API_KEY")
+api_key &lt;- Sys.getenv("MY_API_KEY")
 
-response <- GET(
+response &lt;- GET(
   "https://api.example.com/data",
   add_headers(Authorization = paste("Bearer", api_key))
 )
@@ -562,7 +657,8 @@ response <- GET(
 
 ## Common authentication patterns
 
-```{r eval=FALSE}
+
+``` r
 # 1. API key as query parameter
 GET("https://api.example.com/data",
     query = list(api_key = Sys.getenv("API_KEY")))
@@ -597,8 +693,9 @@ APIs limit how many requests you can make in a given time period.
 - Check the API documentation for rate limits
 - Add delays between requests with `Sys.sleep()`
 
-```{r eval=FALSE}
-results <- map(1:100, function(i) {
+
+``` r
+results &lt;- map(1:100, function(i) {
   Sys.sleep(0.5)  # wait half a second between requests
   GET(paste0("https://api.example.com/item/", i))
 })
@@ -617,13 +714,14 @@ results <- map(1:100, function(i) {
 
 Just like with web scraping, avoid making unnecessary API calls:
 
-```{r eval=FALSE}
+
+``` r
 # Save API response data locally
 if (!file.exists("data/api_results.rds")) {
-  results <- get_universities("United States")
+  results &lt;- get_universities("United States")
   saveRDS(results, "data/api_results.rds")
 } else {
-  results <- readRDS("data/api_results.rds")
+  results &lt;- readRDS("data/api_results.rds")
 }
 ```
 
@@ -656,7 +754,7 @@ This is especially important when:
 ---
 
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
 - Open `02-university-api.R`.
 - Use the Hipolabs Universities API to search for universities in a country of your choice.
 - Parse the JSON response and create a tidy data frame.
@@ -666,7 +764,7 @@ This is especially important when:
 ---
 
 .your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
 - Open `03-open-library.R`.
 - Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
 - Parse the response and create a data frame with title, author, and year.
@@ -690,25 +788,26 @@ class: middle
 
 Many APIs return results in pages:
 
-```{r eval=FALSE}
-all_results <- list()
-page <- 1
+
+``` r
+all_results &lt;- list()
+page &lt;- 1
 
 repeat {
-  resp <- GET("https://api.example.com/data",
+  resp &lt;- GET("https://api.example.com/data",
               query = list(page = page, per_page = 100))
 
-  data <- content(resp, as = "text", encoding = "UTF-8") %>%
+  data &lt;- content(resp, as = "text", encoding = "UTF-8") %&gt;%
     fromJSON()
 
   if (length(data$results) == 0) break
 
-  all_results[[page]] <- data$results
-  page <- page + 1
+  all_results[[page]] &lt;- data$results
+  page &lt;- page + 1
   Sys.sleep(0.5)
 }
 
-final_data <- bind_rows(all_results)
+final_data &lt;- bind_rows(all_results)
 ```
 
 ---
@@ -717,17 +816,18 @@ final_data <- bind_rows(all_results)
 
 APIs can fail for many reasons. Always handle errors gracefully:
 
-```{r eval=FALSE}
-safe_api_call <- function(url, params) {
+
+``` r
+safe_api_call &lt;- function(url, params) {
   tryCatch({
-    resp <- GET(url, query = params)
+    resp &lt;- GET(url, query = params)
 
     if (status_code(resp) != 200) {
       warning("Request failed: HTTP ", status_code(resp))
       return(NULL)
     }
 
-    content(resp, as = "text", encoding = "UTF-8") %>%
+    content(resp, as = "text", encoding = "UTF-8") %&gt;%
       fromJSON(flatten = TRUE)
   }, error = function(e) {
     warning("Error: ", e$message)
@@ -760,7 +860,7 @@ When would you choose web scraping over using an API? When would an API be the b
 
 # Sources
 
-- Hadley Wickham & Jenny Bryan, [R for Data Science](https://r4ds.hadley.nz/)
+- Hadley Wickham &amp; Jenny Bryan, [R for Data Science](https://r4ds.hadley.nz/)
 - Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - httr package documentation ([link](https://httr.r-lib.org/))
 - Open-Meteo API ([link](https://open-meteo.com/))
@@ -799,3 +899,141 @@ Today, you should now be able to...
 class: middle
 
 # Wrapping Up...
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
