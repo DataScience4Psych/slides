@@ -299,10 +299,21 @@ status_code(response)
 ## Inspecting the response
 
 ```{r}
-# Parse the JSON content
-weather_data <- content(response, as = "text", encoding = "UTF-8") %>%
-  fromJSON()
+# Parse the JSON content safely
+if (is.null(response)) {
+  stop("Weather API request failed: response is NULL. Please re-run the request chunk.")
+}
 
+if (httr::status_code(response) != 200) {
+  stop(paste0(
+    "Weather API request failed with status code ",
+    httr::status_code(response),
+    ". Please check your API key, parameters, or try again later."
+  ))
+}
+
+weather_data <- httr::content(response, as = "text", encoding = "UTF-8") %>%
+  jsonlite::fromJSON()
 # What did we get?
 names(weather_data)
 ```
