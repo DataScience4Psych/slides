@@ -362,11 +362,11 @@ class: middle
 
 ## Hipolabs Universities API
 
-The [Hipolabs Universities API](http://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
+The [Hipolabs Universities API](https://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
 
 ```{r eval=FALSE}
 response <- GET(
-  "http://universities.hipolabs.com/search",
+  "https://universities.hipolabs.com/search",
   query = list(
     country = "United States",
     name = "Wake Forest"
@@ -378,7 +378,7 @@ status_code(response)
 
 ```{r uni-api, echo=FALSE}
 response <- tryCatch(
-  GET("http://universities.hipolabs.com/search",
+  GET("https://universities.hipolabs.com/search",
       query = list(country = "United States", name = "Wake Forest")),
   error = function(e) NULL
 )
@@ -427,7 +427,7 @@ countries <- c("United States", "United Kingdom", "Canada")
 
 all_unis <- map_dfr(countries, function(country) {
   resp <- GET(
-    "http://universities.hipolabs.com/search",
+    "https://universities.hipolabs.com/search",
     query = list(country = country)
   )
 
@@ -441,7 +441,7 @@ all_unis <- map_dfr(countries, function(country) {
 ```{r multi-country, echo=FALSE}
 all_unis <- tryCatch(
   map_dfr(c("United States", "United Kingdom", "Canada"), function(country) {
-    resp <- GET("http://universities.hipolabs.com/search",
+    resp <- GET("https://universities.hipolabs.com/search",
                 query = list(country = country))
     content(resp, as = "text", encoding = "UTF-8") %>%
       fromJSON(flatten = TRUE) %>%
@@ -490,7 +490,7 @@ get_universities <- function(country, name = NULL) {
   if (!is.null(name)) params$name <- name
 
   resp <- GET(
-    "http://universities.hipolabs.com/search",
+    "https://universities.hipolabs.com/search",
     query = params
   )
 
@@ -791,7 +791,7 @@ When would you choose web scraping over using an API? When would an API be the b
 - Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - httr package documentation ([link](https://httr.r-lib.org/))
 - Open-Meteo API ([link](https://open-meteo.com/))
-- Hipolabs Universities API ([link](http://universities.hipolabs.com/))
+- Hipolabs Universities API ([link](https://universities.hipolabs.com/))
 
 ---
 
