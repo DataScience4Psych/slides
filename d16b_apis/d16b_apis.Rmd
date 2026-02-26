@@ -280,9 +280,7 @@ response <- tryCatch(
 	current= "temperature_2m",
 	wind_speed_unit= "mph",
 	precipitation_unit= "inch",
-	temperature_unit= "fahrenheit"
-                   
-                   )),
+	temperature_unit= "fahrenheit" )),
   error = function(e) NULL
 )
 
@@ -298,20 +296,21 @@ status_code(response)
 
 ## Inspecting the response
 
-```{r}
+```{r, echo=FALSE}
 # Parse the JSON content safely
 if (is.null(response)) {
-  stop("Weather API request failed: response is NULL. Please re-run the request chunk.")
+  warning("Weather API request failed: response is NULL. Please re-run the request chunk.")
 }
 
 if (httr::status_code(response) != 200) {
-  stop(paste0(
+  warning(paste0(
     "Weather API request failed with status code ",
     httr::status_code(response),
     ". Please check your API key, parameters, or try again later."
   ))
 }
-
+```
+```{r}
 weather_data <- httr::content(response, as = "text", encoding = "UTF-8") %>%
   jsonlite::fromJSON()
 # What did we get?
