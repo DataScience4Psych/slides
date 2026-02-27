@@ -258,6 +258,17 @@ Key functions:
 
 Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) provides weather data with no authentication required.
 
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `01-weather-api.R`.
+- Follow along, and fill in the blanks as we go based on upcoming slides.
+]
+
+---
+
+# Querying the Open-Meteo API
+
 ```{r eval=FALSE}
 response <- GET(
   "https://api.open-meteo.com/v1/forecast",
@@ -328,23 +339,53 @@ weather_data$current
 ## From API response to tibble
 
 ```{r}
-current <- weather_data$current
 hourly <- weather_data$hourly
 
-tibble(
+tidy_forecast <- tibble(
   temperature = hourly$temperature_2m,
-  time = hourly$time
-)
+  time = as.POSIXct(hourly$time),
+  date = as.Date(hourly$time),
+) %>% arrange(date) %>% mutate(date = as.factor(date))
 ```
 
 ---
 
-.your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
-- Open `01-weather-api.R`.
-- Follow along, and fill in the blanks as we go based on upcoming slides.
+## Visualize the forecast
+
+.pull-left[
+
+```{r forecast-plot, echo=FALSE}
+tidy_forecast %>%
+  mutate(time = as.POSIXct(time)) %>%
+  ggplot(aes(x = time, y = temperature)) +
+  geom_line() +
+  labs(
+    title = "Hourly temperature forecast – Winston-Salem, NC",
+    x     = "Time",
+    y     = "Temperature (°F)"
+  )
+```
+]
+.pull-right[
+```{r forecast-plot, echo=TRUE}
+```
 ]
 
+---
+
+
+```{r}
+library(ggridges)
+tidy_forecast %>%
+  ggplot(  aes(x = temperature, y = date, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 4, 
+                               rel_min_height = 0.01, alpha = 0.5) +
+  labs(
+    title = "Hourly temperature forecast – Winston-Salem, NC",
+    y     = "Time",
+    x     = "Temperature (°F)"
+  ) + viridis::scale_fill_viridis(name = "Temperature (°F)", option = "C")  + theme_ridges() + theme(legend.position = "right")
+```
 ---
 
 class: middle
@@ -365,7 +406,7 @@ The [Hipolabs Universities API](https://universities.hipolabs.com/) lets you sea
 
 ```{r eval=FALSE}
 response <- GET(
-  "https://universities.hipolabs.com/search",
+  "http://universities.hipolabs.com/search",
   query = list(
     country = "United States",
     name = "Wake Forest"
@@ -377,7 +418,7 @@ status_code(response)
 
 ```{r uni-api, echo=FALSE}
 response <- tryCatch(
-  GET("https://universities.hipolabs.com/search",
+  GET("http://universities.hipolabs.com/search",
       query = list(country = "United States", name = "Wake Forest")),
   error = function(e) NULL
 )
@@ -426,7 +467,7 @@ countries <- c("United States", "United Kingdom", "Canada")
 
 all_unis <- map_dfr(countries, function(country) {
   resp <- GET(
-    "https://universities.hipolabs.com/search",
+    "http://universities.hipolabs.com/search",
     query = list(country = country)
   )
 
@@ -440,7 +481,7 @@ all_unis <- map_dfr(countries, function(country) {
 ```{r multi-country, echo=FALSE}
 all_unis <- tryCatch(
   map_dfr(c("United States", "United Kingdom", "Canada"), function(country) {
-    resp <- GET("https://universities.hipolabs.com/search",
+    resp <- GET("http://universities.hipolabs.com/search",
                 query = list(country = country))
     content(resp, as = "text", encoding = "UTF-8") %>%
       fromJSON(flatten = TRUE) %>%
@@ -489,7 +530,7 @@ get_universities <- function(country, name = NULL) {
   if (!is.null(name)) params$name <- name
 
   resp <- GET(
-    "https://universities.hipolabs.com/search",
+    "http://universities.hipolabs.com/search",
     query = params
   )
 
