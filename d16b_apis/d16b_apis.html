@@ -411,15 +411,6 @@ tidy_forecast %&gt;%
 ---
 
 .pull-left[
-
-```
-## Warning: The dot-dot notation (`..x..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(x)` instead.
-## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this
-## warning was generated.
-```
-
 &lt;img src="d16b_apis_files/figure-html/forecast-ridgeplot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 --
@@ -428,7 +419,7 @@ tidy_forecast %&gt;%
 ``` r
 library(ggridges)
 tidy_forecast %&gt;%
-  ggplot(  aes(x = temperature, y = date, fill = ..x..)) +
+  ggplot(  aes(x = temperature, y = date, fill = after_stat(x))) +
   geom_density_ridges_gradient(scale = 4, 
                                rel_min_height = 0.01, alpha = 0.5) +
   labs(

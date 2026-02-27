@@ -378,7 +378,7 @@ tidy_forecast %>%
 ```{r forecast-ridgeplot, echo=FALSE}
 library(ggridges)
 tidy_forecast %>%
-  ggplot(  aes(x = temperature, y = date, fill = ..x..)) +
+  ggplot(  aes(x = temperature, y = date, fill = after_stat(x))) +
   geom_density_ridges_gradient(scale = 4, 
                                rel_min_height = 0.01, alpha = 0.5) +
   labs(

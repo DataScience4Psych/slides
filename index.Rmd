@@ -10,7 +10,9 @@ library(tidyverse)
 library(stringi)
 
 
-make_full = function(myurl,gituser="datascience4psych",myrepo="slides") {
+make_full = function(myurl,
+                     gituser="datascience4psych",
+                     myrepo="slides") {
   paste0('https://',gituser,'.github.io/',myrepo,'/',myurl)
 # paste0('https://',gituser,'.github.io/',myurl)
 }
