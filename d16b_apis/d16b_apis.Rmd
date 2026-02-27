@@ -1,0 +1,887 @@
+---
+title: "Working with Web APIs <br> `r emo::ji('electric_plug')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(httr)
+library(jsonlite)
+library(DT)
+
+# Remember to compile
+#xaringan::inf_mr(cast_from = "..")
+
+```
+
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Distinguish between web scraping and web APIs as data collection methods
+- Explain the structure of HTTP requests and responses
+- Use the httr package to make API requests in R
+- Parse JSON responses into tidy data frames
+- Apply best practices for authentication, rate limiting, and ethical API use
+
+---
+
+class: middle
+
+# Recap: Scraping vs. APIs
+
+---
+
+## Two approaches to web data
+
+In the web scraping module, we saw two scenarios:
+
+--
+
+- **Screen scraping**: extract data from the source code of a website, with an HTML parser or regular expressions
+
+--
+- **Web APIs**: a website offers a set of structured HTTP requests that return JSON or XML files
+
+--
+
+Today we focus on the second approach.
+
+---
+
+## Why use an API?
+
+- **Structured data**: APIs return data in a consistent, machine-readable format (JSON, XML)
+
+--
+- **Consistency**: The data format is documented and maintained by the provider
+
+--
+- **Permission**: APIs are *intended* for programmatic access
+
+--
+-  **Efficiency**:You get exactly the data you need, no parsing HTML
+
+--
+-  **Ethics**: Using an API respects the data provider's terms of service
+
+---
+
+class: middle
+
+# What is an API?
+
+---
+
+## Application Programming Interface
+
+An **API** is a set of rules that allows one piece of software to talk to another.
+
+--
+
+- Think of it like a menu at a restaurant:
+  - The menu (API documentation) tells you what you can order
+  - You place an order (make a request)
+  - The kitchen (server) prepares your food
+  - You receive your meal (get a response)
+
+--
+
+- A **web API** specifically uses HTTP (the same protocol your browser uses) to send and receive data over the internet
+
+---
+
+.xlarge[.question[
+What kinds of data have you encountered that might be available through an API?
+]]
+
+---
+
+## Anatomy of an API request
+
+--
+
+1. **Base URL**: the address of the API <br>
+   `https://api.example.com/`
+
+--
+
+2. **Endpoint**: the specific resource you want<br>
+   `https://api.example.com/data/`
+
+--
+
+3. **Parameters**: filters or options for your request<br>
+   `https://api.example.com/data?year=2024&limit=10`
+
+--
+
+4. **HTTP method**: what action you want to perform
+   - `GET` - retrieve data (most common)
+   - `POST` - send data
+   - `PUT` - update data
+   - `DELETE` - remove data
+
+---
+
+## HTTP response
+
+When the server responds, you get:
+
+--
+.pull-left[
+- **Status code**: was the request successful?
+
+| Code | Meaning |
+|------|---------|
+| `200` | OK - success! |
+| `301` | Moved permanently (redirect) |
+| `400` | Bad request (something wrong with your request) |
+| `401` | Unauthorized (need authentication) |
+| `403` | Forbidden (not allowed) |
+| `404` | Not found |
+| `429` | Too many requests (rate limited) |
+| `500` | Internal server error |
+]
+--
+.pull-right[
+- **Headers**: metadata about the response
+- **Body**: the actual data (usually JSON)
+]
+---
+
+class: middle
+
+# JSON: The language of APIs
+
+---
+
+## JavaScript Object Notation (JSON)
+
+Most modern APIs return data in **JSON** format:
+.pull-left.small[
+```json
+{
+  "name": "R Project",
+  "year": 1993,
+  "open_source": true,
+  "creators": ["Ross Ihaka", "Robert Gentleman"],
+  "stats": {
+    "packages": 20000,
+    "users": "millions"
+  }
+}
+```
+]
+--
+.pull-right[
+- Key-value pairs: `"name": "R Project"`
+- Nested structures: objects within objects
+- Arrays: lists of values `["Ross Ihaka", "Robert Gentleman"]`
+- Data types: strings, numbers, booleans, null
+]
+---
+
+## JSON to R
+
+The **jsonlite** package converts JSON into R objects:
+- JSON objects become named lists or data frames
+- JSON arrays become vectors or lists
+- Nested JSON becomes nested lists
+
+--
+
+.pull-left[
+```{r}
+library(jsonlite)
+json_text <- '{
+  "name": "R Project",
+  "year": 1993,
+  "open_source": true
+}'
+```
+]
+
+.pull-right[
+```{r}
+fromJSON(json_text)
+```
+]
+
+
+---
+
+class: middle
+
+# Making API requests in R
+
+---
+
+## The httr package
+
+.pull-left[
+- **httr** makes HTTP requests from R simple and consistent
+- Works well with the tidyverse pipeline
+- Handles authentication, headers, and content parsing
+]
+.pull-right[
+Key functions:
+- `GET()` - make a GET request
+- `POST()` - make a POST request
+- `content()` - extract response content
+- `status_code()` - check the status code
+- `headers()` - view response headers
+]
+
+---
+
+## A first API call
+
+Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) provides weather data with no authentication required.
+
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `01-weather-api.R`.
+- Follow along, and fill in the blanks as we go based on upcoming slides.
+]
+
+---
+
+# Querying the Open-Meteo API
+
+```{r eval=FALSE}
+response <- GET(
+  "https://api.open-meteo.com/v1/forecast",
+  query = list(
+   latitude = 36.00,        # Winston-Salem, NC
+  longitude = -80.24,
+	models= "gfs_seamless", 
+	current= "temperature_2m", # current temperature at 2 meters above ground
+	wind_speed_unit= "mph", precipitation_unit= "inch", temperature_unit= "fahrenheit"
+  )
+)
+```
+
+```{r first-api, echo=FALSE, cache=TRUE}
+response <- tryCatch(
+  GET("https://api.open-meteo.com/v1/forecast",
+      query = list(latitude = 36.00, longitude = -80.24,
+                     hourly="temperature_2m",
+	models= "gfs_seamless",
+	current= "temperature_2m",
+	wind_speed_unit= "mph",
+	precipitation_unit= "inch",
+	temperature_unit= "fahrenheit" )),
+  error = function(e) NULL
+)
+
+```
+
+--
+
+```{r}
+status_code(response)
+```
+
+---
+
+## Inspecting the response
+
+```{r, echo=FALSE}
+# Parse the JSON content safely
+if (is.null(response)) {
+  warning("Weather API request failed: response is NULL. Please re-run the request chunk.")
+}
+
+if (httr::status_code(response) != 200) {
+  warning(paste0(
+    "Weather API request failed with status code ",
+    httr::status_code(response),
+    ". Please check your API key, parameters, or try again later."
+  ))
+}
+```
+```{r}
+weather_data <- httr::content(response, as = "text", encoding = "UTF-8") %>%
+  jsonlite::fromJSON()
+# What did we get?
+names(weather_data)
+```
+
+--
+
+```{r}
+weather_data$current
+```
+
+---
+
+## From API response to tibble
+
+```{r}
+hourly <- weather_data$hourly
+
+tidy_forecast <- tibble(
+  temperature = hourly$temperature_2m,
+  time = as.POSIXct(hourly$time),
+  date = as.Date(hourly$time),
+) %>% arrange(date) %>% mutate(date = as.factor(date))
+```
+
+---
+
+## Visualize the forecast
+
+.pull-left[
+
+```{r forecast-plot, echo=FALSE}
+tidy_forecast %>%
+  mutate(time = as.POSIXct(time)) %>%
+  ggplot(aes(x = time, y = temperature)) +
+  geom_line() +
+  labs(
+    title = "Hourly temperature forecast – Winston-Salem, NC",
+    x     = "Time",
+    y     = "Temperature (°F)"
+  )
+```
+]
+--
+.pull-right[
+```{r forecast-plot, echo=TRUE,eval=FALSE}
+```
+]
+
+---
+
+.pull-left[
+```{r forecast-ridgeplot, echo=FALSE}
+library(ggridges)
+tidy_forecast %>%
+  ggplot(  aes(x = temperature, y = date, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 4, 
+                               rel_min_height = 0.01, alpha = 0.5) +
+  labs(
+    title = "Hourly temperature forecast – Winston-Salem, NC",
+    y     = "Time",
+    x     = "Temperature (°F)"
+  ) + viridis::scale_fill_viridis(name = "Temperature (°F)", option = "C")  + theme_ridges() + theme(legend.position = "right")
+```
+]
+--
+.pull-right[
+```{r forecast-ridgeplot, echo=TRUE,eval=FALSE}
+```
+]
+
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# A richer example: University data
+
+---
+
+
+
+## Hipolabs Universities API
+
+The [Hipolabs Universities API](https://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
+.pull-left[
+```{r eval=FALSE}
+response <- GET(
+  "http://universities.hipolabs.com/search",
+  query = list(
+    country = "United States",
+    name = "Wake Forest"
+  )
+)
+
+status_code(response)
+```
+
+```{r uni-api, echo=FALSE}
+response <- tryCatch(
+  GET("http://universities.hipolabs.com/search",
+      query = list(country = "United States", name = "Wake Forest")),
+  error = function(e) NULL
+)
+if (!is.null(response)) status_code(response)
+```
+]
+--
+.pull-right[
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `02-university-api.R`.
+- Use the Hipolabs Universities API to search for universities in a country of your choice.
+- Parse the JSON response and create a tidy data frame.
+- Try querying multiple countries and combining the results.
+]
+]
+
+---
+
+## Parse the response
+
+```{r}
+universities <- content(response, as = "text", encoding = "UTF-8") %>%
+  fromJSON(flatten = TRUE)
+
+glimpse(universities)
+```
+
+---
+
+## Build a tidy data frame
+
+```{r}
+uni_df <- universities %>%
+  select(name, country,
+         state = `state-province`,
+         website = web_pages) %>%
+  unnest(website)
+
+uni_df
+```
+
+---
+
+.question[
+What information would you want to extract from the university data? How would you reshape it into a tidy format?
+]
+
+---
+
+## Scaling up: multiple queries
+
+What if we want universities from several countries?
+
+```{r eval=FALSE}
+countries <- c("United States", "United Kingdom", "Canada")
+
+all_unis <- map_dfr(countries, function(country) {
+  resp <- GET(
+    "http://universities.hipolabs.com/search",
+    query = list(country = country)
+  )
+
+  content(resp, as = "text", encoding = "UTF-8") %>%
+    fromJSON(flatten = TRUE) %>%
+    select(name, country) %>%
+    head(10)  # first 10 per country for demo
+})
+```
+
+```{r multi-country, echo=FALSE}
+all_unis <- tryCatch(
+  map_dfr(c("United States", "United Kingdom", "Canada"), function(country) {
+    resp <- GET("http://universities.hipolabs.com/search",
+                query = list(country = country))
+    content(resp, as = "text", encoding = "UTF-8") %>%
+      fromJSON(flatten = TRUE) %>%
+      select(name, country) %>%
+      head(10)
+  }),
+  error = function(e) tibble(name = character(), country = character())
+)
+```
+
+---
+
+```{r}
+all_unis %>%
+  count(country, sort = TRUE)
+```
+
+--
+
+```{r echo=FALSE}
+all_unis %>%
+  datatable(options = list(dom = "p", pageLength = 8), height = 300)
+```
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Writing functions for API calls
+
+---
+
+## Why wrap API calls in functions?
+
+When you query the same API repeatedly, write a helper function:
+
+```{r}
+get_universities <- function(country, name = NULL) {
+  params <- list(country = country)
+  if (!is.null(name)) params$name <- name
+
+  resp <- GET(
+    "http://universities.hipolabs.com/search",
+    query = params
+  )
+
+  if (status_code(resp) != 200) {
+    warning("API request failed with status: ", status_code(resp))
+    return(tibble())
+  }
+
+  content(resp, as = "text", encoding = "UTF-8") %>%
+    fromJSON(flatten = TRUE) %>%
+    as_tibble()
+}
+```
+
+---
+
+## Using the helper function
+
+```{r}
+# Search for psychology-related universities
+psych_unis <- get_universities("United States", name = "psychology")
+nrow(psych_unis)
+```
+
+--
+
+```{r}
+# Get Canadian universities
+canadian_unis <- get_universities("Canada")
+nrow(canadian_unis)
+```
+
+--
+
+This pattern -- wrapping API calls in functions -- makes your code:
+- Reusable: call it many times with different parameters
+- Readable: clear what the function does
+- Robust: error handling in one place
+
+---
+
+class: middle
+
+# Authentication
+
+---
+
+## API keys
+
+Many APIs require an **API key** to:
+- Identify who is making requests
+- Enforce rate limits
+- Track usage
+
+--
+
+Getting an API key typically involves:
+1. Creating an account on the API provider's website
+2. Generating a key in your dashboard
+3. Including the key in your requests
+
+---
+
+## Using API keys safely
+
+.pull-left[
+### Do
+- Store keys in `.Renviron` file
+- Use `Sys.getenv()` to read them
+- Add `.Renviron` to `.gitignore`
+]
+
+.pull-right[
+### Don't
+- Hard-code keys in your scripts
+- Commit keys to git
+- Share keys publicly
+]
+
+--
+
+```{r eval=FALSE}
+# In your .Renviron file:
+# MY_API_KEY=abc123xyz
+
+# In your R script:
+api_key <- Sys.getenv("MY_API_KEY")
+
+response <- GET(
+  "https://api.example.com/data",
+  add_headers(Authorization = paste("Bearer", api_key))
+)
+```
+
+---
+
+## Common authentication patterns
+
+```{r eval=FALSE}
+# 1. API key as query parameter
+GET("https://api.example.com/data",
+    query = list(api_key = Sys.getenv("API_KEY")))
+
+# 2. API key in header
+GET("https://api.example.com/data",
+    add_headers("X-API-Key" = Sys.getenv("API_KEY")))
+
+# 3. Bearer token
+GET("https://api.example.com/data",
+    add_headers(Authorization = paste("Bearer", Sys.getenv("TOKEN"))))
+
+# 4. Basic authentication
+GET("https://api.example.com/data",
+    authenticate("username", "password"))
+```
+
+---
+
+class: middle
+
+# Best practices and ethics
+
+---
+
+## Rate limiting
+
+APIs limit how many requests you can make in a given time period.
+
+--
+
+- Check the API documentation for rate limits
+- Add delays between requests with `Sys.sleep()`
+
+```{r eval=FALSE}
+results <- map(1:100, function(i) {
+  Sys.sleep(0.5)  # wait half a second between requests
+  GET(paste0("https://api.example.com/item/", i))
+})
+```
+
+--
+
+- Watch for `429 Too Many Requests` status codes
+- Some APIs include rate limit info in response headers:
+  - `X-RateLimit-Remaining`
+  - `X-RateLimit-Reset`
+
+---
+
+## Caching API responses
+
+Just like with web scraping, avoid making unnecessary API calls:
+
+```{r eval=FALSE}
+# Save API response data locally
+if (!file.exists("data/api_results.rds")) {
+  results <- get_universities("United States")
+  saveRDS(results, "data/api_results.rds")
+} else {
+  results <- readRDS("data/api_results.rds")
+}
+```
+
+--
+
+This is especially important when:
+- Knitting R Markdown documents (avoid re-fetching each time)
+- Working with APIs that have strict rate limits
+- The data doesn't change frequently
+
+---
+
+## Ethical API use
+
+.pull-left[
+### Read the documentation
+- Understand the terms of service
+- Respect rate limits
+- Know what data you're allowed to collect
+]
+
+.pull-right[
+### Be a good citizen
+- Cache responses when possible
+- Don't scrape what the API provides
+- Give attribution when required
+- Don't redistribute data without permission
+]
+
+
+---
+
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Common API patterns in R
+
+---
+
+## Working with paginated APIs
+
+Many APIs return results in pages:
+
+```{r eval=FALSE}
+all_results <- list()
+page <- 1
+
+repeat {
+  resp <- GET("https://api.example.com/data",
+              query = list(page = page, per_page = 100))
+
+  data <- content(resp, as = "text", encoding = "UTF-8") %>%
+    fromJSON()
+
+  if (length(data$results) == 0) break
+
+  all_results[[page]] <- data$results
+  page <- page + 1
+  Sys.sleep(0.5)
+}
+
+final_data <- bind_rows(all_results)
+```
+
+---
+
+## Error handling
+
+APIs can fail for many reasons. Always handle errors gracefully:
+
+```{r eval=FALSE}
+safe_api_call <- function(url, params) {
+  tryCatch({
+    resp <- GET(url, query = params)
+
+    if (status_code(resp) != 200) {
+      warning("Request failed: HTTP ", status_code(resp))
+      return(NULL)
+    }
+
+    content(resp, as = "text", encoding = "UTF-8") %>%
+      fromJSON(flatten = TRUE)
+  }, error = function(e) {
+    warning("Error: ", e$message)
+    return(NULL)
+  })
+}
+```
+
+---
+
+.question[
+When would you choose web scraping over using an API? When would an API be the better choice?
+]
+
+---
+
+## Comparing approaches: scraping vs. API
+
+| | Web Scraping | Web API |
+|--|--|--|
+| **Data format** | HTML (unstructured) | JSON/XML (structured) |
+| **Tools** | rvest | httr, jsonlite |
+| **Reliability** | Breaks when site changes | Stable, versioned |
+| **Permission** | Check robots.txt | Check API docs/ToS |
+| **Speed** | Need to parse HTML | Direct data access |
+| **Authentication** | Usually none | Often requires API key |
+| **Rate limits** | Be polite | Documented limits |
+
+---
+
+# Sources
+
+- Hadley Wickham & Jenny Bryan, [R for Data Science](https://r4ds.hadley.nz/)
+- Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- httr package documentation ([link](https://httr.r-lib.org/))
+- Open-Meteo API ([link](https://open-meteo.com/))
+- Hipolabs Universities API ([link](https://universities.hipolabs.com/))
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Distinguish scraping vs. APIs
+- ✅ HTTP request/response cycle
+- ✅ JSON data format
+- ✅ Authentication patterns
+]
+
+.pull-right[
+### Skills
+- ✅ Make API calls with httr
+- ✅ Parse JSON with jsonlite
+- ✅ Write reusable API functions
+- ✅ Handle errors and rate limits
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+--- 
+
+# Bonus Exercise: Open Library API
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `03-open-library.R`.
+- Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
+- Parse the response and create a data frame with title, author, and year.
+]
+
+---
