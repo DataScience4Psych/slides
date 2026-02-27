@@ -366,15 +366,16 @@ tidy_forecast %>%
   )
 ```
 ]
+--
 .pull-right[
-```{r forecast-plot, echo=TRUE}
+```{r forecast-plot, echo=TRUE,eval=FALSE}
 ```
 ]
 
 ---
 
-
-```{r}
+.pull-left[
+```{r forecast-ridgeplot, echo=FALSE}
 library(ggridges)
 tidy_forecast %>%
   ggplot(  aes(x = temperature, y = date, fill = ..x..)) +
@@ -386,6 +387,14 @@ tidy_forecast %>%
     x     = "Temperature (°F)"
   ) + viridis::scale_fill_viridis(name = "Temperature (°F)", option = "C")  + theme_ridges() + theme(legend.position = "right")
 ```
+]
+--
+.pull-right[
+```{r forecast-ridgeplot, echo=TRUE,eval=FALSE}
+```
+]
+
+
 ---
 
 class: middle

@@ -292,6 +292,17 @@ Key functions:
 Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) provides weather data with no authentication required.
 
 
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
+- Open `01-weather-api.R`.
+- Follow along, and fill in the blanks as we go based on upcoming slides.
+]
+
+---
+
+# Querying the Open-Meteo API
+
+
 ``` r
 response &lt;- GET(
   "https://api.open-meteo.com/v1/forecast",
@@ -323,11 +334,10 @@ status_code(response)
 ## Inspecting the response
 
 
-``` r
-# Parse the JSON content
-weather_data &lt;- content(response, as = "text", encoding = "UTF-8") %&gt;%
-  fromJSON()
 
+``` r
+weather_data &lt;- httr::content(response, as = "text", encoding = "UTF-8") %&gt;%
+  jsonlite::fromJSON()
 # What did we get?
 names(weather_data)
 ```
@@ -350,13 +360,13 @@ weather_data$current
 
 ```
 ## $time
-## [1] "2026-02-25T15:15"
+## [1] "2026-02-27T00:15"
 ## 
 ## $interval
 ## [1] 900
 ## 
 ## $temperature_2m
-## [1] 49
+## [1] 52.6
 ```
 
 ---
@@ -365,36 +375,64 @@ weather_data$current
 
 
 ``` r
-current &lt;- weather_data$current
 hourly &lt;- weather_data$hourly
 
-tibble(
+tidy_forecast &lt;- tibble(
   temperature = hourly$temperature_2m,
-  time = hourly$time
-)
-```
-
-```
-## # A tibble: 168 × 2
-##   temperature time            
-##         &lt;dbl&gt; &lt;chr&gt;           
-## 1        35.2 2026-02-25T00:00
-## 2        33.7 2026-02-25T01:00
-## 3        33.3 2026-02-25T02:00
-## 4        34.2 2026-02-25T03:00
-## 5        36.1 2026-02-25T04:00
-## 6        36.2 2026-02-25T05:00
-## # ℹ 162 more rows
+  time = as.POSIXct(hourly$time),
+  date = as.Date(hourly$time),
+) %&gt;% arrange(date) %&gt;% mutate(date = as.factor(date))
 ```
 
 ---
 
-.your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
-- Open `01-weather-api.R`.
-- Follow along, and fill in the blanks as we go based on upcoming slides.
+## Visualize the forecast
+
+.pull-left[
+
+&lt;img src="d16b_apis_files/figure-html/forecast-plot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+
+``` r
+tidy_forecast %&gt;%
+  mutate(time = as.POSIXct(time)) %&gt;%
+  ggplot(aes(x = time, y = temperature)) +
+  geom_line() +
+  labs(
+    title = "Hourly temperature forecast – Winston-Salem, NC",
+    x     = "Time",
+    y     = "Temperature (°F)"
+  )
+```
 ]
 
+---
+
+
+
+``` r
+library(ggridges)
+tidy_forecast %&gt;%
+  ggplot(  aes(x = temperature, y = date, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 4, 
+                               rel_min_height = 0.01, alpha = 0.5) +
+  labs(
+    title = "Hourly temperature forecast – Winston-Salem, NC",
+    y     = "Time",
+    x     = "Temperature (°F)"
+  ) + viridis::scale_fill_viridis(name = "Temperature (°F)", option = "C")  + theme_ridges() + theme(legend.position = "right")
+```
+
+```
+## Warning: The dot-dot notation (`..x..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(x)` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.
+```
+
+&lt;img src="d16b_apis_files/figure-html/unnamed-chunk-10-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ---
 
 class: middle
@@ -411,7 +449,7 @@ class: middle
 
 ## Hipolabs Universities API
 
-The [Hipolabs Universities API](http://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
+The [Hipolabs Universities API](https://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
 
 
 ``` r
@@ -446,12 +484,12 @@ glimpse(universities)
 ```
 ## Rows: 2
 ## Columns: 6
-## $ country          &lt;chr&gt; "United States", "United States"
 ## $ name             &lt;chr&gt; "Wake Forest University", "Wake Forest…
 ## $ alpha_two_code   &lt;chr&gt; "US", "US"
-## $ web_pages        &lt;list&gt; "http://www.wfu.edu/", "http://www.wak…
-## $ `state-province` &lt;lgl&gt; NA, NA
 ## $ domains          &lt;list&gt; "wfu.edu", "wakehealth.edu"
+## $ country          &lt;chr&gt; "United States", "United States"
+## $ `state-province` &lt;lgl&gt; NA, NA
+## $ web_pages        &lt;list&gt; "http://www.wfu.edu/", "http://www.wak…
 ```
 
 ---
@@ -523,8 +561,8 @@ all_unis %&gt;%
 
 --
 
-<div id="htmlwidget-ca9fad3bdbff68b373a0" style="width:100%;height:300px;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ca9fad3bdbff68b373a0">{"x":{"filter":"none","vertical":false,"data":[[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>country<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"p","pageLength":8,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"country","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1b4ff99564eb6e8884a5" style="width:100%;height:300px;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1b4ff99564eb6e8884a5">{"x":{"filter":"none","vertical":false,"data":[[],[],[]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>country<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"p","pageLength":8,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"name","targets":1},{"name":"country","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -868,7 +906,7 @@ When would you choose web scraping over using an API? When would an API be the b
 - Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - httr package documentation ([link](https://httr.r-lib.org/))
 - Open-Meteo API ([link](https://open-meteo.com/))
-- Hipolabs Universities API ([link](http://universities.hipolabs.com/))
+- Hipolabs Universities API ([link](https://universities.hipolabs.com/))
 
 ---
 
