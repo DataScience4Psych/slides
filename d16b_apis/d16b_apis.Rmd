@@ -409,10 +409,12 @@ class: middle
 
 ---
 
+
+
 ## Hipolabs Universities API
 
 The [Hipolabs Universities API](https://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
-
+.pull-left[
 ```{r eval=FALSE}
 response <- GET(
   "http://universities.hipolabs.com/search",
@@ -433,6 +435,18 @@ response <- tryCatch(
 )
 if (!is.null(response)) status_code(response)
 ```
+]
+--
+.pull-right[
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `02-university-api.R`.
+- Use the Hipolabs Universities API to search for universities in a country of your choice.
+- Parse the JSON response and create a tidy data frame.
+- Try querying multiple countries and combining the results.
+]
+]
 
 ---
 
@@ -729,26 +743,9 @@ This is especially important when:
 - Don't redistribute data without permission
 ]
 
----
-
-.your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
-- Open `02-university-api.R`.
-- Use the Hipolabs Universities API to search for universities in a country of your choice.
-- Parse the JSON response and create a tidy data frame.
-- Try querying multiple countries and combining the results.
-]
 
 ---
 
-.your-turn[
-- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
-- Open `03-open-library.R`.
-- Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
-- Parse the response and create a data frame with title, author, and year.
-]
-
----
 
 class: middle
 
@@ -875,3 +872,16 @@ Today, you should now be able to...
 class: middle
 
 # Wrapping Up...
+
+--- 
+
+# Bonus Exercise: Open Library API
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
+- Open `03-open-library.R`.
+- Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
+- Parse the response and create a data frame with title, author, and year.
+]
+
+---

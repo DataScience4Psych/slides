@@ -392,6 +392,7 @@ tidy_forecast &lt;- tibble(
 
 &lt;img src="d16b_apis_files/figure-html/forecast-plot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ]
+--
 .pull-right[
 
 ``` r
@@ -409,7 +410,20 @@ tidy_forecast %&gt;%
 
 ---
 
+.pull-left[
 
+```
+## Warning: The dot-dot notation (`..x..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(x)` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.
+```
+
+&lt;img src="d16b_apis_files/figure-html/forecast-ridgeplot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+]
+--
+.pull-right[
 
 ``` r
 library(ggridges)
@@ -423,16 +437,9 @@ tidy_forecast %&gt;%
     x     = "Temperature (°F)"
   ) + viridis::scale_fill_viridis(name = "Temperature (°F)", option = "C")  + theme_ridges() + theme(legend.position = "right")
 ```
+]
 
-```
-## Warning: The dot-dot notation (`..x..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(x)` instead.
-## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this
-## warning was generated.
-```
 
-&lt;img src="d16b_apis_files/figure-html/unnamed-chunk-10-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 ---
 
 class: middle
@@ -447,10 +454,12 @@ class: middle
 
 ---
 
+
+
 ## Hipolabs Universities API
 
 The [Hipolabs Universities API](https://universities.hipolabs.com/) lets you search for universities worldwide -- no API key needed.
-
+.pull-left[
 
 ``` r
 response &lt;- GET(
@@ -468,6 +477,18 @@ status_code(response)
 ```
 ## [1] 200
 ```
+]
+--
+.pull-right[
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
+- Open `02-university-api.R`.
+- Use the Hipolabs Universities API to search for universities in a country of your choice.
+- Parse the JSON response and create a tidy data frame.
+- Try querying multiple countries and combining the results.
+]
+]
 
 ---
 
@@ -793,26 +814,9 @@ This is especially important when:
 - Don't redistribute data without permission
 ]
 
----
-
-.your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
-- Open `02-university-api.R`.
-- Use the Hipolabs Universities API to search for universities in a country of your choice.
-- Parse the JSON response and create a tidy data frame.
-- Try querying multiple countries and combining the results.
-]
 
 ---
 
-.your-turn[
-- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
-- Open `03-open-library.R`.
-- Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
-- Parse the response and create a data frame with title, author, and year.
-]
-
----
 
 class: middle
 
@@ -941,6 +945,19 @@ Today, you should now be able to...
 class: middle
 
 # Wrapping Up...
+
+--- 
+
+# Bonus Exercise: Open Library API
+
+.your-turn[
+- [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
+- Open `03-open-library.R`.
+- Use the [Open Library API](https://openlibrary.org/developers/api) to search for books on a topic of your choice.
+- Parse the response and create a data frame with title, author, and year.
+]
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
