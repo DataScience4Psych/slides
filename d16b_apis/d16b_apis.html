@@ -307,11 +307,13 @@ Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) pr
 response &lt;- GET(
   "https://api.open-meteo.com/v1/forecast",
   query = list(
-   latitude = 36.00,        # Winston-Salem, NC
+  latitude = 36.00,        # Winston-Salem, NC
   longitude = -80.24,
 	models= "gfs_seamless", 
 	current= "temperature_2m", # current temperature at 2 meters above ground
-	wind_speed_unit= "mph", precipitation_unit= "inch", temperature_unit= "fahrenheit"
+	wind_speed_unit= "mph", 
+  precipitation_unit= "inch", 
+  temperature_unit= "fahrenheit"
   )
 )
 ```
@@ -381,7 +383,8 @@ tidy_forecast &lt;- tibble(
   temperature = hourly$temperature_2m,
   time = as.POSIXct(hourly$time),
   date = as.Date(hourly$time),
-) %&gt;% arrange(date) %&gt;% mutate(date = as.factor(date))
+) %&gt;% arrange(date) %&gt;% 
+  mutate(date = as.factor(date))
 ```
 
 ---
@@ -390,7 +393,7 @@ tidy_forecast &lt;- tibble(
 
 .pull-left[
 
-&lt;img src="d16b_apis_files/figure-html/forecast-plot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d16b_apis_files/figure-html/forecast-plot-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 --
 .pull-right[
@@ -411,7 +414,7 @@ tidy_forecast %&gt;%
 ---
 
 .pull-left[
-&lt;img src="d16b_apis_files/figure-html/forecast-ridgeplot-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d16b_apis_files/figure-html/forecast-ridgeplot-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 --
 .pull-right[
@@ -496,12 +499,12 @@ glimpse(universities)
 ```
 ## Rows: 2
 ## Columns: 6
-## $ name             &lt;chr&gt; "Wake Forest University", "Wake Forest…
-## $ alpha_two_code   &lt;chr&gt; "US", "US"
-## $ domains          &lt;list&gt; "wfu.edu", "wakehealth.edu"
 ## $ country          &lt;chr&gt; "United States", "United States"
-## $ `state-province` &lt;lgl&gt; NA, NA
 ## $ web_pages        &lt;list&gt; "http://www.wfu.edu/", "http://www.wak…
+## $ alpha_two_code   &lt;chr&gt; "US", "US"
+## $ `state-province` &lt;lgl&gt; NA, NA
+## $ name             &lt;chr&gt; "Wake Forest University", "Wake Fores…
+## $ domains          &lt;list&gt; "wfu.edu", "wakehealth.edu"
 ```
 
 ---

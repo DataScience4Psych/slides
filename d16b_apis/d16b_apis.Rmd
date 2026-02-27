@@ -268,20 +268,21 @@ Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) pr
 ---
 
 # Querying the Open-Meteo API
-
+.midi[
 ```{r eval=FALSE}
 response <- GET(
   "https://api.open-meteo.com/v1/forecast",
   query = list(
-   latitude = 36.00,        # Winston-Salem, NC
+  latitude = 36.00,        # Winston-Salem, NC
   longitude = -80.24,
 	models= "gfs_seamless", 
-	current= "temperature_2m", # current temperature at 2 meters above ground
-	wind_speed_unit= "mph", precipitation_unit= "inch", temperature_unit= "fahrenheit"
-  )
-)
+	current= "temperature_2m", # current temp at 2 meters above ground
+	wind_speed_unit= "mph", 
+  precipitation_unit= "inch", 
+  temperature_unit= "fahrenheit"
+  ))
 ```
-
+]
 ```{r first-api, echo=FALSE, cache=TRUE}
 response <- tryCatch(
   GET("https://api.open-meteo.com/v1/forecast",
@@ -324,8 +325,7 @@ if (httr::status_code(response) != 200) {
 ```{r}
 weather_data <- httr::content(response, as = "text", encoding = "UTF-8") %>%
   jsonlite::fromJSON()
-# What did we get?
-names(weather_data)
+names(weather_data)# What did we get?
 ```
 
 --
@@ -345,7 +345,8 @@ tidy_forecast <- tibble(
   temperature = hourly$temperature_2m,
   time = as.POSIXct(hourly$time),
   date = as.Date(hourly$time),
-) %>% arrange(date) %>% mutate(date = as.factor(date))
+) %>% arrange(date) %>% 
+  mutate(date = as.factor(date))
 ```
 
 ---
@@ -354,7 +355,7 @@ tidy_forecast <- tibble(
 
 .pull-left[
 
-```{r forecast-plot, echo=FALSE}
+```{r forecast-plot, echo=FALSE, out.width="100%"}
 tidy_forecast %>%
   mutate(time = as.POSIXct(time)) %>%
   ggplot(aes(x = time, y = temperature)) +
@@ -375,7 +376,7 @@ tidy_forecast %>%
 ---
 
 .pull-left[
-```{r forecast-ridgeplot, echo=FALSE}
+```{r forecast-ridgeplot, echo=FALSE, out.width="100%"}
 library(ggridges)
 tidy_forecast %>%
   ggplot(  aes(x = temperature, y = date, fill = after_stat(x))) +
@@ -436,8 +437,9 @@ response <- tryCatch(
 if (!is.null(response)) status_code(response)
 ```
 ]
---
-.pull-right[
+---
+
+# Code along!
 
 .your-turn[
 - [class git repo](https://github.com/DataScience4Psych) > `AE 09 - APIs`.
@@ -446,7 +448,7 @@ if (!is.null(response)) status_code(response)
 - Parse the JSON response and create a tidy data frame.
 - Try querying multiple countries and combining the results.
 ]
-]
+
 
 ---
 
@@ -545,7 +547,7 @@ class: middle
 
 ## Why wrap API calls in functions?
 
-When you query the same API repeatedly, write a helper function:
+When you call the same API repeatedly, it can be helpful to wrap the logic in a function:
 
 ```{r}
 get_universities <- function(country, name = NULL) {
