@@ -24,8 +24,8 @@ base_url <- "https://api.open-meteo.com/v1/forecast"
 response <- GET(
   base_url,
   query = list(
-    latitude  = ___,      # fill in: latitude  (degrees N)
-    longitude = ___,      # fill in: longitude (degrees E, negative for W)
+    latitude  = ___,      
+    longitude = ___,      
     models              = "gfs_seamless",
     current             = "temperature_2m",
     wind_speed_unit     = "mph",
@@ -55,14 +55,14 @@ weather_data <- content(response, as = "text", encoding = "UTF-8") %>%
   fromJSON()
 
 # What top-level fields did we get back?
-names(___)    # fill in: the parsed object
+names(___)    
 
 # -----------------------------------------------
 # Step 3: Explore the current conditions
 # -----------------------------------------------
 
 # Pull out the current-conditions block
-current <- weather_data$___   # fill in: the sub-list with current obs
+current <- weather_data$___   
 
 current
 
@@ -73,8 +73,8 @@ current
 hourly <- weather_data$hourly
 
 tidy_forecast <- tibble(
-  time        = ___,   # fill in: the hourly time vector
-  temperature = ___    # fill in: the hourly temperature_2m vector
+  time        = ___,  
+  temperature = ___    
 )
 
 tidy_forecast
@@ -85,7 +85,7 @@ tidy_forecast
 
 tidy_forecast %>%
   mutate(time = as.POSIXct(time)) %>%
-  ggplot(aes(x = ___, y = ___)) +   # fill in: x = time, y = temperature
+  ggplot(aes(x = ___, y = ___)) +   
   geom_line() +
   labs(
     title = "Hourly temperature forecast – Winston-Salem, NC",
