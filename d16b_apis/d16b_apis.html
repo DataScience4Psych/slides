@@ -117,7 +117,6 @@ class: middle
 An **API** is a set of rules that allows one piece of software to talk to another.
 
 --
-
 - Think of it like a menu at a restaurant:
   - The menu (API documentation) tells you what you can order
   - You place an order (make a request)
@@ -125,7 +124,6 @@ An **API** is a set of rules that allows one piece of software to talk to anothe
   - You receive your meal (get a response)
 
 --
-
 - A **web API** specifically uses HTTP (the same protocol your browser uses) to send and receive data over the internet
 
 ---
@@ -301,7 +299,7 @@ Let's query a free, public API. The [Open-Meteo API](https://open-meteo.com/) pr
 ---
 
 # Querying the Open-Meteo API
-
+.midi[
 
 ``` r
 response &lt;- GET(
@@ -310,14 +308,13 @@ response &lt;- GET(
   latitude = 36.00,        # Winston-Salem, NC
   longitude = -80.24,
 	models= "gfs_seamless", 
-	current= "temperature_2m", # current temperature at 2 meters above ground
+	current= "temperature_2m", # current temp at 2 meters above ground
 	wind_speed_unit= "mph", 
   precipitation_unit= "inch", 
   temperature_unit= "fahrenheit"
-  )
-)
+  ))
 ```
-
+]
 
 
 --
@@ -335,13 +332,13 @@ status_code(response)
 
 ## Inspecting the response
 
+.pull-left[
 
 
 ``` r
 weather_data &lt;- httr::content(response, as = "text", encoding = "UTF-8") %&gt;%
   jsonlite::fromJSON()
-# What did we get?
-names(weather_data)
+names(weather_data)# What did we get?
 ```
 
 ```
@@ -353,8 +350,9 @@ names(weather_data)
 ## [11] "hourly"
 ```
 
+]
 --
-
+.midi[
 
 ``` r
 weather_data$current
@@ -370,6 +368,7 @@ weather_data$current
 ## $temperature_2m
 ## [1] 52.6
 ```
+]
 
 ---
 
@@ -395,8 +394,10 @@ tidy_forecast &lt;- tibble(
 
 &lt;img src="d16b_apis_files/figure-html/forecast-plot-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
+
 --
-.pull-right[
+
+.midi.pull-right[
 
 ``` r
 tidy_forecast %&gt;%
@@ -417,12 +418,14 @@ tidy_forecast %&gt;%
 &lt;img src="d16b_apis_files/figure-html/forecast-ridgeplot-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 --
-.pull-right[
+
+.midi.pull-right[
 
 ``` r
 library(ggridges)
 tidy_forecast %&gt;%
-  ggplot(  aes(x = temperature, y = date, fill = after_stat(x))) +
+  ggplot(aes(x = temperature, 
+             y = date, fill = after_stat(x))) +
   geom_density_ridges_gradient(scale = 4, 
                                rel_min_height = 0.01, alpha = 0.5) +
   labs(
@@ -472,8 +475,9 @@ status_code(response)
 ## [1] 200
 ```
 ]
---
-.pull-right[
+---
+
+# Code along!
 
 .your-turn[
 - [class git repo](https://github.com/DataScience4Psych) &gt; `AE 09 - APIs`.
@@ -482,7 +486,7 @@ status_code(response)
 - Parse the JSON response and create a tidy data frame.
 - Try querying multiple countries and combining the results.
 ]
-]
+
 
 ---
 
@@ -595,7 +599,7 @@ class: middle
 
 ## Why wrap API calls in functions?
 
-When you query the same API repeatedly, write a helper function:
+When you call the same API repeatedly, it can be helpful to wrap the logic in a function:
 
 
 ``` r

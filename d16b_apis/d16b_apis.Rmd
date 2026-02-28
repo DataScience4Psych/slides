@@ -97,7 +97,6 @@ class: middle
 An **API** is a set of rules that allows one piece of software to talk to another.
 
 --
-
 - Think of it like a menu at a restaurant:
   - The menu (API documentation) tells you what you can order
   - You place an order (make a request)
@@ -105,7 +104,6 @@ An **API** is a set of rules that allows one piece of software to talk to anothe
   - You receive your meal (get a response)
 
 --
-
 - A **web API** specifically uses HTTP (the same protocol your browser uses) to send and receive data over the internet
 
 ---
@@ -308,6 +306,7 @@ status_code(response)
 
 ## Inspecting the response
 
+.pull-left[
 ```{r, echo=FALSE}
 # Parse the JSON content safely
 if (is.null(response)) {
@@ -328,11 +327,14 @@ weather_data <- httr::content(response, as = "text", encoding = "UTF-8") %>%
 names(weather_data)# What did we get?
 ```
 
+]
 --
 
+.midi[
 ```{r}
 weather_data$current
 ```
+]
 
 ---
 
@@ -367,8 +369,10 @@ tidy_forecast %>%
   )
 ```
 ]
+
 --
-.pull-right[
+
+.midi.pull-right[
 ```{r forecast-plot, echo=TRUE,eval=FALSE}
 ```
 ]
@@ -379,7 +383,8 @@ tidy_forecast %>%
 ```{r forecast-ridgeplot, echo=FALSE, out.width="100%"}
 library(ggridges)
 tidy_forecast %>%
-  ggplot(  aes(x = temperature, y = date, fill = after_stat(x))) +
+  ggplot(aes(x = temperature, 
+             y = date, fill = after_stat(x))) +
   geom_density_ridges_gradient(scale = 4, 
                                rel_min_height = 0.01, alpha = 0.5) +
   labs(
@@ -390,7 +395,8 @@ tidy_forecast %>%
 ```
 ]
 --
-.pull-right[
+
+.midi.pull-right[
 ```{r forecast-ridgeplot, echo=TRUE,eval=FALSE}
 ```
 ]
