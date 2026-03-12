@@ -1,5 +1,5 @@
 ---
-title: "Getting Started <br> `r emo::ji('compass')`<br> Your Course Ecosystem"
+title: "Getting Started <br> `r emo::ji('rocket')`<br> Data Science for Psychologists"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -26,36 +26,109 @@ library(emo)
 ```
 
 
-class: middle
+# Hello world!
 
-# Welcome to Your Extended Syllabus Day
+---
 
+## What is data science?
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-flask fa"></i> = data science?
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-code fa"></i> = data science?
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-user fa"></i> + <i class="fa fa-code fa"></i> = data science?
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-users fa"></i> + <i class="fa fa-code fa"></i> = data science?
+--
+
+<br>
+<br>
 .large[
-Today we're going to set everything up together, step by step.
+Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. We're going to learn to do this in a `tidy` way -- more on that later!
 ]
 
 ---
 
-## Learning Goals
+class: middle
 
-By the end of this session, you will be able to...
+# What does data science look like in the wild?
 
-- Identify where all course materials live (spoiler: it's all GitHub `r emo::ji("winking_face")`)
-- Navigate the course notes, syllabus, and slides
-- Set up your GitHub account
-- Install R and RStudio on your laptop
-- Understand the flipped classroom workflow
-- Know what a typical week looks like
+---
+
+# The US of Bey
+
+```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="55%"}
+knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
+```
+
+.footnote[Brooke Watson, [blog.brooke.science/posts/the-us-of-bey](https://blog.brooke.science/posts/the-us-of-bey/)
+]
+
+---
+
+# Punctuation in literature
+
+```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
+knitr::include_graphics("img/julia-silge-punctuation.png")
+```
+
+.footnote[ Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
+
+---
+
+# Text analysis of Trump's tweets
+
+```{r fig.align="center", echo=FALSE, alt="Trump tweets", out.width="61%"}
+knitr::include_graphics("img/david-robinson-trump-tweets.png")
+```
+
+.footnote[David Robinson, [varianceexplained.org/r/trump-tweets](http://varianceexplained.org/r/trump-tweets)
+]
+
+---
+
+## Greatest Twitter scheme of all time
+
+```{r fig.align="center", echo=FALSE,out.width="38%"}
+knitr::include_graphics("img/bohemian-rhapsody.png")
+```
+
+.footnote[
+[gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d](https://gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d)
+]
 
 ---
 
 class: middle
 
-# "Wait, is everything on a different website?"
+.large[
+Every one of these projects used **R**, **data from the real world**, and **code shared on GitHub**.
+]
+
+--
+
+.large[
+By the end of this course, you'll have the skills to do this too.
+]
+
+--
+
+.large[
+Let's get you set up. `r emo::ji("wrench")`
+]
 
 ---
 
-## The Big Reveal
+class: middle
+
+# But first -- where does this course actually live?
+
+---
+
+## "Wait, is everything on a different website?"
 
 .large[
 Everything in this course lives on **GitHub**.
@@ -89,109 +162,6 @@ What it **actually** is:
 
 ---
 
-## How GitHub Pages Works
-
-.center[
-```
-GitHub Repository (where files live)
-        |
-        v
-GitHub Pages (turns files into a website)
-        |
-        v
-You see a nice website at *.github.io
-```
-]
-
---
-
-- The syllabus? Files in a GitHub repo, rendered as a website.
-- The course notes? Files in a GitHub repo, rendered as a website.
-- The slides? Files in a GitHub repo, rendered as a website.
-- Your assignments? Files in a GitHub repo that **you** will work on.
-
---
-
-.center[.large[
-It's GitHub all the way down. `r emo::ji("turtle")`
-]]
----
-
-class: middle
-
-# Let's Tour the Ecosystem
-
----
-
-## `r emo::ji("one")` The Course Notes (Your Home Base)
-
-.large[
-.center[
-[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
-]
-]
-
---
-
-- This is where the **content** lives: readings, tutorials, videos
-- Organized by module (we'll walk through these in order)
-- Includes links to labs, assignments, and the portfolio
-- **Bookmark this.** You'll visit it every week.
-
---
-
-.tip[
-Think of the course notes as your **textbook replacement** -- but interactive, with embedded code and videos.
-]
-
----
-
-## `r emo::ji("two")` The Syllabus
-
-.large[
-.center[
-[smasongarrison.github.io/syllabi/applieddatascience.html](https://smasongarrison.github.io/syllabi/applieddatascience.html)
-]
-]
-
---
-
-- Policies, grading, schedule, office hours
-- Contract grading details
-- The "official" course information
-
---
-
-.tip[
-You'll reference the syllabus most at the **start** of the semester and when you have questions about grading or policies. The course notes are your day-to-day resource.
-]
-
----
-
-## `r emo::ji("three")` The GitHub Organization
-
-.large[
-.center[
-[github.com/DataScience4Psych](https://github.com/DataScience4Psych)
-]
-]
-
---
-
-- This is the GitHub **organization** for our class
-- Contains repositories for:
-  - Labs and assignments (e.g., `ae01a_unvotes`)
-  - The course notes themselves
-  - Anything else we build together
-
---
-
-.tip[
-When you get an assignment link, it will point here. You'll fork or clone the repo, do your work, and push it back.
-]
-
----
-
 ## How the Pieces Connect
 
 ```
@@ -217,34 +187,86 @@ Plus: **smasongarrison.github.io/syllabi** `r emo::ji("right_arrow")` Syllabus (
 
 ---
 
-class: middle
-
-# Now Let's Get You Set Up
-
----
-
-## Setup Checklist
-
-We're going to do all of these **together, right now**:
+## `r emo::ji("one")` The Course Notes (Your Home Base)
 
 .large[
-1. `r emo::ji("check_box")` Create a GitHub account
-2. `r emo::ji("check_box")` Install R
-3. `r emo::ji("check_box")` Install RStudio
-4. `r emo::ji("check_box")` Verify everything works
+.center[
+[DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
 ]
+]
+
+- This is where the **content** lives: readings, tutorials, videos
+- Organized by module (we'll walk through these in order)
+- Includes links to labs, assignments, and the portfolio
+- **Bookmark this.** You'll visit it every week.
 
 --
 
-.center[.large[
-`r emo::ji("laptop")` Open your laptops!
-]]
+.tip[
+Think of the course notes as your **textbook replacement** -- but interactive, with embedded code and videos.
+]
+
+---
+
+## `r emo::ji("two")` The Syllabus
+
+.large[
+.center[
+[smasongarrison.github.io/syllabi/applieddatascience.html](https://smasongarrison.github.io/syllabi/applieddatascience.html)
+]
+]
+
+- Policies, grading, schedule, office hours
+- Contract grading details
+- The "official" course information
+
+--
+
+.tip[
+You'll reference the syllabus most at the **start** of the semester and when you have questions about grading or policies. The course notes are your day-to-day resource.
+]
+
+---
+
+## `r emo::ji("three")` The GitHub Organization
+
+.large[
+.center[
+[github.com/DataScience4Psych](https://github.com/DataScience4Psych)
+]
+]
+
+- This is the GitHub **organization** for our class
+- Contains repositories for:
+  - Labs and assignments (e.g., `ae01a_unvotes`)
+  - The course notes themselves
+  - Anything else we build together
+
+--
+
+.tip[
+When you get an assignment link, it will point here. You'll fork or clone the repo, do your work, and push it back.
+]
 
 ---
 
 class: middle
 
-# Step 1: Create a GitHub Account
+.large[
+Remember those data-in-the-wild examples? Every single one shared their code on GitHub.
+
+That Trump tweet analysis? [It's a GitHub repo.](http://varianceexplained.org/r/trump-tweets)
+
+The Beyoncé map? [GitHub repo.](https://blog.brooke.science/posts/the-us-of-bey/)
+
+**GitHub is how data scientists share and collaborate.** And now you need an account.
+]
+
+---
+
+class: middle
+
+# Step 1: Create a GitHub Account `r emo::ji("octocat")`
 
 ---
 
@@ -272,7 +294,7 @@ Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-ad
 
 ---
 
-## Once You Have an Account
+## Now explore with your new account
 
 .your-turn[
 1. Go to [github.com/DataScience4Psych](https://github.com/DataScience4Psych)
@@ -287,6 +309,43 @@ You're looking at the **source code** behind the course notes website!
 .question[
 What do you notice? What kinds of files do you see?
 ]
+
+---
+
+## Voting patterns in the UN
+
+Here's another example -- this one is **interactive**:
+
+[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
+
+```{r echo=FALSE, alt="UN Votes", out.width="100%"}
+knitr::include_graphics("img/unvotes.png")
+```
+
+---
+
+## That UN Votes app? Built entirely in R.
+
+.pull-left[
+The app you just saw was made with:
+- **R** for the data analysis
+- **Shiny** for the interactivity
+- Data from a **public R package**
+
+One of your first assignments will be to make your own version of this visualization.
+]
+
+.pull-right[
+```{r echo=FALSE, out.width="95%"}
+knitr::include_graphics("img/unvotes.png")
+```
+]
+
+--
+
+.center[.large[
+So let's install R. `r emo::ji("wrench")`
+]]
 
 ---
 
@@ -375,7 +434,13 @@ When you open RStudio, you'll see four panels:
 
 ---
 
-## Let's Verify Everything Works
+class: middle
+
+# Now let's actually *do* something with it
+
+---
+
+## Your first lines of R
 
 .your-turn[
 Open RStudio and type the following in the **Console** (bottom left):
@@ -383,29 +448,125 @@ Open RStudio and type the following in the **Console** (bottom left):
 ```r
 print("Hello, Data Science!")
 ```
+]
 
-Then try:
+--
+
+Now try some math:
 
 ```r
-R.version.string
+2 + 2
+sqrt(144)
+```
+
+--
+
+.center[
+`r emo::ji("tada")` Congrats -- you're running R code!
+]
+
+---
+
+## Your first data visualization
+
+.your-turn[
+Copy and paste this into your console:
+
+```r
+library(ggplot2)
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  labs(title = "Engine size vs. fuel efficiency",
+       x = "Engine displacement (liters)",
+       y = "Highway miles per gallon")
 ```
 ]
 
 --
 
+You just created a publication-quality scatter plot with **three lines of code**.
+
+--
+
 .question[
-What version of R are you running? Type it in the chat!
+What patterns do you see in the data?
+]
+
+---
+
+## From data to insight
+
+```{r echo=FALSE, out.width="70%", fig.align="center"}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 3) +
+  labs(title = "Engine size vs. fuel efficiency",
+       x = "Engine displacement (liters)",
+       y = "Highway miles per gallon")
+```
+
+.center[
+This is what you'll be doing all semester -- turning data into stories.
 ]
 
 ---
 
 class: middle
 
-# The Flipped Classroom
+# The Big Ideas Behind This Course
 
 ---
 
-## How This Class Actually Works
+# Big Ideas
+
+.pull-left[
+- **R**eproducibility
+- **R**eplication
+- **R**obust Methods
+- **R**eally Nice Visualization
+- **R**
+]
+
+.center.pull-right[
+```{r echo=FALSE, out.width="95%",fig.align = 'left'}
+knitr::include_graphics("img/plot007w.png")
+```
+]
+
+---
+
+# What is this course?
+
+This course is an introduction to data science that is designed for psychologists. It emphasizes statistical thinking and best practices.
+<br><br>
+--
+
+**Q - What data science background does this course assume?**
+A - None.
+<br>
+--
+
+**Q - Will we be doing computing?**
+A - Yes.
+<br>
+--
+
+**Q - What computing language will we learn?**
+A - R.
+<br>
+--
+
+**Q: Why not language X?**
+A: We can discuss that *remotely* over `r emo::ji("coffee")`.
+
+---
+
+class: middle
+
+# How This Class Works
+
+---
+
+## The Flipped Classroom
 
 This is a **flipped classroom**. Here's what that means:
 
@@ -457,6 +618,92 @@ The pre-recorded content **is** the lecture. Class time is for **doing**, not wa
 
 ---
 
+## Logistics
+
+.pull-left-narrow[
+.xlarge[
++ Course <br><br>
++ Professor <br><br>
++ Assistants <br><br>
+]
+]
+.pull-right-wide[
+.white[.]
+<br>
+{{content}}
+
+]
+
+--
++ Data Science for Psychologists
+  + Flipped Classroom
+<br><br>
+{{content}}
+
+--
++ S. Mason Garrison
+  + Green 438/Zoom
+  + Office Hours [calendly.com/smasongarrison/](http://www.calendly.com/smasongarrison/)
+<br><br>
+{{content}}
+
+--
++ Tukey `r emo::ji('cat_face')`
++ Archie `r emo::ji('smiley_cat')`
++ Annie `r emo::ji('pouting_cat')`
+
+{{content}}
+
+---
+
+## Contract Grading
+
+- This course uses **contract grading**
+- Assessment based on **effort and completion**, not perfection
+- More representative of the real scientific process
+- Specifics are in the syllabus and course notes
+
+--
+
+### Your Milestones
+.pull-left[
+.large[
+- Labs
+- Portfolio
+]
+]
+
+.pull-right[
+We'll revisit grading details as the semester progresses -- for now, know that this class rewards **doing the work**, not being perfect.
+]
+
+---
+
+## Diversity & Inclusion
+
+.medi[
+**Intent:** Students from all diverse backgrounds and perspectives be well-served by this course, that students' learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength and benefit. It is my intent to present materials and activities that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture. Let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.
+]
+
+--
+
+.midi[
+- If you have a name or set of pronouns that differ from those that appear in your official records, please let me know.
+- If you feel your performance is being impacted by your experiences outside of class, please don't hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your advisor is an excellent resource.
+- I (like many people) am still in the process of learning about diverse perspectives/identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.
+]
+
+---
+
+## Sharing/reusing code
+
+- I am well aware that a huge volume of code is available on the web to solve any number of problems.
+- Unless I explicitly tell you not to use something, you can use any online resources (e.g. StackOverflow, RStudio Community), but you must explicitly cite where you obtained any code you directly use (or use as inspiration).
+- You are welcome to discuss the problems together and ask for advice, but you may not create code for your classmates.
+- You won't learn anything if other people write your code for you!
+
+---
+
 ## Where to Find What (Quick Reference)
 
 | I need to...                        | Go to...                          |
@@ -466,7 +713,6 @@ The pre-recorded content **is** the lecture. Class time is for **doing**, not wa
 | Start a lab or assignment           | GitHub Organization               |
 | Ask a question                      | Course Discussion Forum           |
 | Get help from the professor         | Office Hours (Calendly)           |
-| See the module schedule             | Course Notes or Syllabus          |
 
 --
 
@@ -528,60 +774,62 @@ Give context from **course concepts**, not assignment numbers. "I have a questio
 
 class: middle
 
-# Contract Grading
+# Your Turn!
 
 ---
 
-## How Grading Works
+.your-turn[
 
-- This course uses **contract grading**
-- Assessment based on **effort and completion**, not perfection
-- More representative of the real scientific process
+**Option 1.**
 
---
+- On GitHub, navigate to the assignment repository called `ae01a_unvotes`, which you can find at [github.com/DataScience4Psych/ae01a_unvotes](https://github.com/DataScience4Psych/ae01a_unvotes).
+- In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
 
-### Your Milestones
-.pull-left[
-.large[
-- Labs
-- Portfolio
-]
 ]
 
-.pull-right[
-Specifics are in the syllabus and course notes -- we'll revisit grading details as the semester goes on.
+---
+
+.your-turn[
+
+**Option 2.**
+
+- On Github, download the assignment called `ae01b_covid`, which you can find at [github.com/DataScience4Psych/ae01b_covid](https://github.com/DataScience4Psych/ae01b_covid).
+- In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
 ]
 
 ---
 
 class: middle
 
-# Let's Navigate Together
+# Summary
 
 ---
 
-## Live Walk-Through
+## What We've Accomplished Today
 
-.your-turn[
-Follow along on your laptop:
-
-1. Open the **Course Notes**: [DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
-2. Find the table of contents -- click through a few modules
-3. Open the **Syllabus**: [smasongarrison.github.io/syllabi/applieddatascience.html](https://smasongarrison.github.io/syllabi/applieddatascience.html)
-4. Find the grading section
-5. Open the **GitHub Org**: [github.com/DataScience4Psych](https://github.com/DataScience4Psych)
-6. Find a lab repository (e.g., `ae01a_unvotes`)
+.pull-left[
+### Understanding
+- `r emo::ji("check_mark")` Saw data science in the wild
+- `r emo::ji("check_mark")` All course materials live on GitHub
+- `r emo::ji("check_mark")` Course notes = daily home base
+- `r emo::ji("check_mark")` Know the Big 5 principles
 ]
 
---
-
-.question[
-Can you see how these three places connect? What questions do you have?
+.pull-right[
+### Setup Complete
+- `r emo::ji("check_mark")` GitHub account created
+- `r emo::ji("check_mark")` R installed
+- `r emo::ji("check_mark")` RStudio installed
+- `r emo::ji("check_mark")` Made your first plot!
 ]
 
 ---
 
-## Quick Recap: Your Bookmarks
+## Your Bookmarks
 
 .large[
 Save these three links:
@@ -600,52 +848,12 @@ Save these three links:
 
 class: middle
 
-# Summary: Learning Goals Achieved
-
----
-
-## What We've Accomplished Today
-
-.pull-left[
-### Understanding
-- `r emo::ji("check_mark")` All course materials live on GitHub
-- `r emo::ji("check_mark")` Course notes = daily home base
-- `r emo::ji("check_mark")` Syllabus = policies & grading
-- `r emo::ji("check_mark")` GitHub Org = assignments & source
-]
-
-.pull-right[
-### Setup Complete
-- `r emo::ji("check_mark")` GitHub account created
-- `r emo::ji("check_mark")` R installed
-- `r emo::ji("check_mark")` RStudio installed
-- `r emo::ji("check_mark")` Verified everything works
-]
-
----
-
-## What's Coming Next
-
-- Next module: **What is Data Science?** (the fun stuff!)
-- You'll watch pre-recorded content before our next class
-- Start at the Course Notes, Module 1
-
---
-
-.center[.large[
-`r emo::ji("compass")` You now know where everything is.
-
-`r emo::ji("laptop")` You have the tools installed.
-
-`r emo::ji("rocket")` You're ready to go!
-]]
-
----
-
-class: middle
-
 .hand[
-Now that you know where everything lives...
+You've seen what data science can do.
 <br>
-let's do some data science!
+You've got the tools installed.
+<br>
+You know where everything lives.
+<br><br>
+Now let's do some data science!
 ]
