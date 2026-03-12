@@ -68,9 +68,9 @@ class: middle
 By the end of this session, you will be able to...
 
 - Explain what data science means and how it combines data, domain expertise, and coding
-- Navigate the course structure and understand how to get help
+- Recognize data science in the wild through real-world examples
 - Identify the five core principles ("Big 5") that guide this course
-- Create a GitHub account and begin your journey in reproducible data analysis
+- Understand the key learning outcomes and materials for this course
 
 ---
 
@@ -123,7 +123,7 @@ A - R.
 --
 
 **Q: Why not language X?**  
-A: We can discuss that *remotely* over `r emo::ji("coffee")`.
+A: We can discuss that over `r emo::ji("coffee")`.
 
 
 ---
@@ -563,14 +563,13 @@ Today, you should now be able to...
 .pull-left[
 ### Understanding
 - ✅ Explain what data science means
-- ✅ Understand how data, domain expertise, and coding combine
+- ✅ Recognize data science in the wild
 ]
 
 .pull-right[
 ### Practical Skills
-- ✅ Navigate the course structure  
 - ✅ Identify the "Big 5" principles
-- ✅ Create a GitHub account
+- ✅ Understand key learning outcomes and materials
 ]
 
 ---
