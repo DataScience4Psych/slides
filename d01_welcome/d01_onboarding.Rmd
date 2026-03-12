@@ -52,12 +52,6 @@ Data science is an exciting discipline that allows you to turn raw data into und
 
 ---
 
-class: middle
-
-# What does data science look like in the wild?
-
----
-
 # The US of Bey
 
 ```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="55%"}
@@ -69,62 +63,29 @@ knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
 
 ---
 
-# Punctuation in literature
+## How was this made?
 
-```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
-knitr::include_graphics("img/julia-silge-punctuation.png")
+.pull-left[
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
 ```
-
-.footnote[ Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
-
----
-
-# Text analysis of Trump's tweets
-
-```{r fig.align="center", echo=FALSE, alt="Trump tweets", out.width="61%"}
-knitr::include_graphics("img/david-robinson-trump-tweets.png")
-```
-
-.footnote[David Robinson, [varianceexplained.org/r/trump-tweets](http://varianceexplained.org/r/trump-tweets)
 ]
 
----
+.pull-right[
+- Data about Beyoncé's song lyrics
+- Analyzed and visualized with **R**
+- Code shared publicly on **GitHub**
 
-## Greatest Twitter scheme of all time
-
-```{r fig.align="center", echo=FALSE,out.width="38%"}
-knitr::include_graphics("img/bohemian-rhapsody.png")
-```
-
-.footnote[
-[gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d](https://gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d)
-]
-
----
-
-class: middle
-
-.large[
-Every one of these projects used **R**, **data from the real world**, and **code shared on GitHub**.
+The creator wrote R code, pushed it to GitHub, and anyone can see exactly how she made it.
 ]
 
 --
 
-.large[
-By the end of this course, you'll have the skills to do this too.
-]
-
---
-
-.large[
-Let's get you set up. `r emo::ji("wrench")`
-]
-
----
-
-class: middle
-
-# But first -- where does this course actually live?
+.center[.large[
+**GitHub** is how data scientists share and collaborate.
+<br>
+And it's where this entire course lives.
+]]
 
 ---
 
@@ -183,6 +144,48 @@ What it **actually** is:
 
 .center[
 Plus: **smasongarrison.github.io/syllabi** `r emo::ji("right_arrow")` Syllabus (policies & grading)
+]
+
+---
+
+## Let's get you on GitHub right now
+
+.instructions[
+Go to [github.com](https://github.com/), and create an account (unless you already have one).
+]
+
+Tips for selecting a username:
+
+.small[
+- Incorporate your actual name.
+- Reuse username from other contexts, e.g., Twitter or Slack.
+- Pick a username you'll be comfortable revealing to your future boss.
+- Shorter is better than longer.
+- Be as unique as possible in as few characters as possible.
+- Make it timeless. Don't highlight your current university, employer, etc.
+- Avoid words laden with special meaning in programming, like `NA`.
+]
+
+.footnote[
+Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan
+]
+
+---
+
+## Now see the course from the inside
+
+.your-turn[
+1. Go to [github.com/DataScience4Psych](https://github.com/DataScience4Psych)
+2. Look around -- can you find the course notes repository?
+3. Click on it and browse the files
+
+You're looking at the **source code** behind the course notes website!
+]
+
+--
+
+.question[
+What do you notice? What kinds of files do you see?
 ]
 
 ---
@@ -252,69 +255,14 @@ When you get an assignment link, it will point here. You'll fork or clone the re
 
 class: middle
 
-.large[
-Remember those data-in-the-wild examples? Every single one shared their code on GitHub.
-
-That Trump tweet analysis? [It's a GitHub repo.](http://varianceexplained.org/r/trump-tweets)
-
-The Beyoncé map? [GitHub repo.](https://blog.brooke.science/posts/the-us-of-bey/)
-
-**GitHub is how data scientists share and collaborate.** And now you need an account.
-]
-
----
-
-class: middle
-
-# Step 1: Create a GitHub Account `r emo::ji("octocat")`
-
----
-
-## Create a GitHub account
-
-.instructions[
-Go to [github.com](https://github.com/), and create an account (unless you already have one).
-]
-
-Tips for selecting a username:
-
-.small[
-- Incorporate your actual name.
-- Reuse username from other contexts, e.g., Twitter or Slack.
-- Pick a username you'll be comfortable revealing to your future boss.
-- Shorter is better than longer.
-- Be as unique as possible in as few characters as possible.
-- Make it timeless. Don't highlight your current university, employer, etc.
-- Avoid words laden with special meaning in programming, like `NA`.
-]
-
-.footnote[
-Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan
-]
-
----
-
-## Now explore with your new account
-
-.your-turn[
-1. Go to [github.com/DataScience4Psych](https://github.com/DataScience4Psych)
-2. Look around -- can you find the course notes repository?
-3. Click on it and browse the files
-
-You're looking at the **source code** behind the course notes website!
-]
-
---
-
-.question[
-What do you notice? What kinds of files do you see?
-]
+# So we know where things live and we're on GitHub.
+# Now let's see what R can do.
 
 ---
 
 ## Voting patterns in the UN
 
-Here's another example -- this one is **interactive**:
+This interactive app lets you explore how countries vote at the United Nations:
 
 [minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
 
@@ -324,7 +272,7 @@ knitr::include_graphics("img/unvotes.png")
 
 ---
 
-## That UN Votes app? Built entirely in R.
+## That app was built entirely in R.
 
 .pull-left[
 The app you just saw was made with:
@@ -333,6 +281,8 @@ The app you just saw was made with:
 - Data from a **public R package**
 
 One of your first assignments will be to make your own version of this visualization.
+
+But first, you need R on your machine.
 ]
 
 .pull-right[
@@ -340,18 +290,6 @@ One of your first assignments will be to make your own version of this visualiza
 knitr::include_graphics("img/unvotes.png")
 ```
 ]
-
---
-
-.center[.large[
-So let's install R. `r emo::ji("wrench")`
-]]
-
----
-
-class: middle
-
-# Step 2: Install R
 
 ---
 
@@ -381,12 +319,6 @@ Go to [cloud.r-project.org](https://cloud.r-project.org/) and download R for you
 .question[
 Raise your hand when R is installed! `r emo::ji("raising_hand")`
 ]
-
----
-
-class: middle
-
-# Step 3: Install RStudio
 
 ---
 
@@ -434,43 +366,68 @@ When you open RStudio, you'll see four panels:
 
 ---
 
-class: middle
+# Punctuation in literature
 
-# Now let's actually *do* something with it
+```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
+knitr::include_graphics("img/julia-silge-punctuation.png")
+```
+
+.footnote[ Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
 
 ---
 
-## Your first lines of R
+## This was a few lines of R code.
 
-.your-turn[
-Open RStudio and type the following in the **Console** (bottom left):
+.pull-left[
+Julia Silge wrote R code that:
+1. Read in the text of 9 novels
+2. Extracted every punctuation mark
+3. Visualized the patterns
+
+She did the whole thing in **R** and shared it on her **blog** (built with R too).
+]
+
+.pull-right[
+Let's see if your R installation works. Try this in your console:
 
 ```r
 print("Hello, Data Science!")
 ```
-]
 
---
-
-Now try some math:
+Then:
 
 ```r
 2 + 2
 sqrt(144)
 ```
+]
 
 --
 
 .center[
-`r emo::ji("tada")` Congrats -- you're running R code!
+`r emo::ji("tada")` If you got output, you're running R!
 ]
 
 ---
 
-## Your first data visualization
+# Text analysis of Trump's tweets
 
-.your-turn[
-Copy and paste this into your console:
+```{r fig.align="center", echo=FALSE, alt="Trump tweets", out.width="61%"}
+knitr::include_graphics("img/david-robinson-trump-tweets.png")
+```
+
+.footnote[David Robinson, [varianceexplained.org/r/trump-tweets](http://varianceexplained.org/r/trump-tweets)
+]
+
+---
+
+## He figured this out with a scatter plot.
+
+David Robinson noticed that tweets from an iPhone vs. an Android had totally different sentiments -- and used that to show two different people were writing on the account.
+
+--
+
+**You can make scatter plots like that right now.** Copy and paste this into your console:
 
 ```r
 library(ggplot2)
@@ -480,16 +437,11 @@ ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
        x = "Engine displacement (liters)",
        y = "Highway miles per gallon")
 ```
-]
-
---
-
-You just created a publication-quality scatter plot with **three lines of code**.
 
 --
 
 .question[
-What patterns do you see in the data?
+What patterns do you see? Which vehicle classes are the most fuel efficient?
 ]
 
 ---
@@ -504,8 +456,31 @@ ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
        y = "Highway miles per gallon")
 ```
 
-.center[
-This is what you'll be doing all semester -- turning data into stories.
+You just made a publication-quality scatter plot with **three lines of code**. This is what you'll be doing all semester -- turning data into stories.
+
+---
+
+## Greatest Twitter scheme of all time
+
+```{r fig.align="center", echo=FALSE,out.width="38%"}
+knitr::include_graphics("img/bohemian-rhapsody.png")
+```
+
+.footnote[
+[gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d](https://gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d)
+]
+
+---
+
+class: middle
+
+.large[
+You now have:
+- `r emo::ji("check_mark")` A **GitHub** account (where data scientists share work)
+- `r emo::ji("check_mark")` **R** and **RStudio** installed (the tools to do the work)
+- `r emo::ji("check_mark")` Your **first plot** (proof it all works)
+
+Now let's talk about how this class is going to run.
 ]
 
 ---
@@ -560,9 +535,41 @@ A: We can discuss that *remotely* over `r emo::ji("coffee")`.
 
 ---
 
-class: middle
+## Logistics
 
-# How This Class Works
+.pull-left-narrow[
+.xlarge[
++ Course <br><br>
++ Professor <br><br>
++ Assistants <br><br>
+]
+]
+.pull-right-wide[
+.white[.]
+<br>
+{{content}}
+
+]
+
+--
++ Data Science for Psychologists
+  + Flipped Classroom
+<br><br>
+{{content}}
+
+--
++ S. Mason Garrison
+  + Green 438/Zoom
+  + Office Hours [calendly.com/smasongarrison/](http://www.calendly.com/smasongarrison/)
+<br><br>
+{{content}}
+
+--
++ Tukey `r emo::ji('cat_face')`
++ Archie `r emo::ji('smiley_cat')`
++ Annie `r emo::ji('pouting_cat')`
+
+{{content}}
 
 ---
 
@@ -618,44 +625,6 @@ The pre-recorded content **is** the lecture. Class time is for **doing**, not wa
 
 ---
 
-## Logistics
-
-.pull-left-narrow[
-.xlarge[
-+ Course <br><br>
-+ Professor <br><br>
-+ Assistants <br><br>
-]
-]
-.pull-right-wide[
-.white[.]
-<br>
-{{content}}
-
-]
-
---
-+ Data Science for Psychologists
-  + Flipped Classroom
-<br><br>
-{{content}}
-
---
-+ S. Mason Garrison
-  + Green 438/Zoom
-  + Office Hours [calendly.com/smasongarrison/](http://www.calendly.com/smasongarrison/)
-<br><br>
-{{content}}
-
---
-+ Tukey `r emo::ji('cat_face')`
-+ Archie `r emo::ji('smiley_cat')`
-+ Annie `r emo::ji('pouting_cat')`
-
-{{content}}
-
----
-
 ## Contract Grading
 
 - This course uses **contract grading**
@@ -692,39 +661,6 @@ We'll revisit grading details as the semester progresses -- for now, know that t
 - If you feel your performance is being impacted by your experiences outside of class, please don't hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your advisor is an excellent resource.
 - I (like many people) am still in the process of learning about diverse perspectives/identities. If something was said in class (by anyone) that made you feel uncomfortable, please talk to me about it.
 ]
-
----
-
-## Sharing/reusing code
-
-- I am well aware that a huge volume of code is available on the web to solve any number of problems.
-- Unless I explicitly tell you not to use something, you can use any online resources (e.g. StackOverflow, RStudio Community), but you must explicitly cite where you obtained any code you directly use (or use as inspiration).
-- You are welcome to discuss the problems together and ask for advice, but you may not create code for your classmates.
-- You won't learn anything if other people write your code for you!
-
----
-
-## Where to Find What (Quick Reference)
-
-| I need to...                        | Go to...                          |
-|-------------------------------------|-----------------------------------|
-| Watch lectures / read content       | Course Notes                      |
-| Check policies or grading           | Syllabus                          |
-| Start a lab or assignment           | GitHub Organization               |
-| Ask a question                      | Course Discussion Forum           |
-| Get help from the professor         | Office Hours (Calendly)           |
-
---
-
-.center[.large[
-When in doubt, start at the **Course Notes**. Everything links from there.
-]]
-
----
-
-class: middle
-
-# Getting Help
 
 ---
 
@@ -772,9 +708,22 @@ Give context from **course concepts**, not assignment numbers. "I have a questio
 
 ---
 
+## Sharing/reusing code
+
+- I am well aware that a huge volume of code is available on the web to solve any number of problems.
+- Unless I explicitly tell you not to use something, you can use any online resources (e.g. StackOverflow, RStudio Community), but you must explicitly cite where you obtained any code you directly use (or use as inspiration).
+- You are welcome to discuss the problems together and ask for advice, but you may not create code for your classmates.
+- You won't learn anything if other people write your code for you!
+
+---
+
 class: middle
 
-# Your Turn!
+# Now let's put it all together.
+
+You have GitHub. You have R. You've made a plot.
+<br>
+Let's do your first real assignment.
 
 ---
 
@@ -803,6 +752,24 @@ class: middle
 
 ---
 
+## Where to Find What (Quick Reference)
+
+| I need to...                        | Go to...                          |
+|-------------------------------------|-----------------------------------|
+| Watch lectures / read content       | Course Notes                      |
+| Check policies or grading           | Syllabus                          |
+| Start a lab or assignment           | GitHub Organization               |
+| Ask a question                      | Course Discussion Forum           |
+| Get help from the professor         | Office Hours (Calendly)           |
+
+--
+
+.center[.large[
+When in doubt, start at the **Course Notes**. Everything links from there.
+]]
+
+---
+
 class: middle
 
 # Summary
@@ -822,9 +789,9 @@ class: middle
 .pull-right[
 ### Setup Complete
 - `r emo::ji("check_mark")` GitHub account created
-- `r emo::ji("check_mark")` R installed
-- `r emo::ji("check_mark")` RStudio installed
+- `r emo::ji("check_mark")` R and RStudio installed
 - `r emo::ji("check_mark")` Made your first plot!
+- `r emo::ji("check_mark")` Completed your first assignment
 ]
 
 ---
