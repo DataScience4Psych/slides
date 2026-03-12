@@ -23,6 +23,8 @@ knitr::opts_chunk$set(knitr.duplicate.label = "allow")
 library(tidyverse)
 if (!require("emo")) devtools::install_github("hadley/emo")
 library(emo)
+if (!require("psychTools")) install.packages("psychTools")
+library(psychTools)
 ```
 
 
@@ -52,37 +54,60 @@ Data science is an exciting discipline that allows you to turn raw data into und
 
 ---
 
-# The US of Bey
+## What does data science look like in psychology?
 
-```{r fig.align="center", echo=FALSE, alt="The US of Bey", out.width="55%"}
-knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
+2,800 people took a Big Five personality survey. Here's what that data looks like when you visualize it:
+
+```{r echo=FALSE, out.width="75%", fig.align="center"}
+bfi_long <- bfi %>%
+  select(A1:A5, C1:C5, E1:E5, N1:N5, O1:O5, age) %>%
+  pivot_longer(A1:O5, names_to = "item", values_to = "response") %>%
+  mutate(trait = case_when(
+    str_starts(item, "A") ~ "Agreeableness",
+    str_starts(item, "C") ~ "Conscientiousness",
+    str_starts(item, "E") ~ "Extraversion",
+    str_starts(item, "N") ~ "Neuroticism",
+    str_starts(item, "O") ~ "Openness"
+  )) %>%
+  filter(!is.na(response))
+
+bfi_long %>%
+  group_by(trait, response) %>%
+  summarize(n = n(), .groups = "drop") %>%
+  group_by(trait) %>%
+  mutate(prop = n / sum(n)) %>%
+  ggplot(aes(x = response, y = prop, fill = trait)) +
+  geom_col() +
+  facet_wrap(~trait) +
+  labs(title = "Big Five Personality Responses (n = 2,800)",
+       x = "Response (1 = Disagree, 6 = Agree)",
+       y = "Proportion") +
+  theme(legend.position = "none")
 ```
 
-.footnote[Brooke Watson, [blog.brooke.science/posts/the-us-of-bey](https://blog.brooke.science/posts/the-us-of-bey/)
-]
+.footnote[Data: SAPA Project via the `psychTools` R package (Revelle, Wilt & Rosenthal, 2010)]
 
 ---
 
 ## How was this made?
 
 .pull-left[
-```{r echo=FALSE, out.width="90%"}
-knitr::include_graphics("img/brooke-watson-us-of-bey.gif")
-```
+- **2,800 real participants** from a personality assessment project
+- Data stored in an **R package** anyone can install
+- Analyzed and visualized with a **few lines of R code**
+- The package, code, and data are all shared on **GitHub**
 ]
 
 .pull-right[
-- Data about Beyoncé's song lyrics
-- Analyzed and visualized with **R**
-- Code shared publicly on **GitHub**
+This is what reproducible psychological science looks like: open data, open code, open tools.
 
-The creator wrote R code, pushed it to GitHub, and anyone can see exactly how she made it.
+If you wanted to check this analysis, you could run the exact same code and get the exact same result.
 ]
 
 --
 
 .center[.large[
-**GitHub** is how data scientists share and collaborate.
+**GitHub** is how psychologists (and data scientists) share and collaborate.
 <br>
 And it's where this entire course lives.
 ]]
@@ -256,39 +281,52 @@ When you get an assignment link, it will point here. You'll fork or clone the re
 class: middle
 
 # So we know where things live and we're on GitHub.
-# Now let's see what R can do.
+# Now let's see what else R can do with psych data.
 
 ---
 
-## Voting patterns in the UN
+## Does personality change with age?
 
-This interactive app lets you explore how countries vote at the United Nations:
-
-[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
-
-```{r echo=FALSE, alt="UN Votes", out.width="100%"}
-knitr::include_graphics("img/unvotes.png")
+```{r echo=FALSE, out.width="75%", fig.align="center"}
+bfi %>%
+  select(A1:A5, N1:N5, age) %>%
+  filter(!is.na(age), age >= 15, age <= 80) %>%
+  mutate(
+    agreeableness = rowMeans(select(., A1:A5), na.rm = TRUE),
+    neuroticism = rowMeans(select(., N1:N5), na.rm = TRUE),
+    age_group = cut(age, breaks = seq(15, 80, by = 5))
+  ) %>%
+  pivot_longer(c(agreeableness, neuroticism), names_to = "trait", values_to = "score") %>%
+  mutate(trait = str_to_title(trait)) %>%
+  ggplot(aes(x = age, y = score, color = trait)) +
+  geom_smooth(method = "loess", se = TRUE) +
+  labs(title = "Personality Traits Across the Lifespan",
+       subtitle = "Big Five data from 2,800 participants",
+       x = "Age", y = "Mean Item Response", color = "Trait") +
+  theme(legend.position = "bottom")
 ```
 
+.footnote[Data: SAPA Project via `psychTools` (Revelle, Wilt & Rosenthal, 2010)]
+
 ---
 
-## That app was built entirely in R.
+## That plot was made entirely in R.
 
 .pull-left[
-The app you just saw was made with:
-- **R** for the data analysis
-- **Shiny** for the interactivity
-- Data from a **public R package**
+This visualization was made with:
+- **R** for the data wrangling
+- **ggplot2** for the visualization
+- Data from the **psychTools** R package
 
-One of your first assignments will be to make your own version of this visualization.
+These are real responses from 2,800 participants. The trends you see are consistent with decades of personality research.
 
-But first, you need R on your machine.
+But to do this yourself, you need R on your machine.
 ]
 
 .pull-right[
-```{r echo=FALSE, out.width="95%"}
-knitr::include_graphics("img/unvotes.png")
-```
+.question[
+What do you notice about neuroticism and agreeableness as people get older? Does this match your intuition?
+]
 ]
 
 ---
@@ -366,29 +404,28 @@ When you open RStudio, you'll see four panels:
 
 ---
 
-# Punctuation in literature
+## How much do mammals sleep?
 
-```{r fig.align="center", echo=FALSE, alt="Punctuation", out.width="45%"}
-knitr::include_graphics("img/julia-silge-punctuation.png")
+R comes with data built in. The `msleep` dataset has sleep data for 83 mammal species -- the kind of data a comparative psychologist might study.
+
+```{r echo=FALSE, out.width="65%", fig.align="center"}
+ggplot(msleep %>% filter(!is.na(vore)),
+       aes(x = reorder(vore, sleep_total, median), y = sleep_total, fill = vore)) +
+  geom_boxplot(show.legend = FALSE) +
+  labs(title = "Total Sleep by Diet in 83 Mammal Species",
+       x = "Diet Type", y = "Hours of Sleep per Day") +
+  scale_x_discrete(labels = c("carni" = "Carnivore", "herbi" = "Herbivore",
+                               "insecti" = "Insectivore", "omni" = "Omnivore"))
 ```
-
-.footnote[ Julia Silge, [juliasilge.com/blog/punctution-literature](https://juliasilge.com/blog/punctution-literature/)]
 
 ---
 
-## This was a few lines of R code.
+## Let's see if your R works.
 
 .pull-left[
-Julia Silge wrote R code that:
-1. Read in the text of 9 novels
-2. Extracted every punctuation mark
-3. Visualized the patterns
+That sleep plot? A few lines of code on data that's already in R.
 
-She did the whole thing in **R** and shared it on her **blog** (built with R too).
-]
-
-.pull-right[
-Let's see if your R installation works. Try this in your console:
+Let's make sure your installation is working. Try this in your console:
 
 ```r
 print("Hello, Data Science!")
@@ -402,6 +439,17 @@ sqrt(144)
 ```
 ]
 
+.pull-right[
+And try loading the data we'll use:
+
+```r
+library(ggplot2)
+head(msleep)
+```
+
+You should see a table of mammal species, their sleep times, and other variables.
+]
+
 --
 
 .center[
@@ -410,38 +458,25 @@ sqrt(144)
 
 ---
 
-# Text analysis of Trump's tweets
+## Your first psychology visualization
 
-```{r fig.align="center", echo=FALSE, alt="Trump tweets", out.width="61%"}
-knitr::include_graphics("img/david-robinson-trump-tweets.png")
-```
-
-.footnote[David Robinson, [varianceexplained.org/r/trump-tweets](http://varianceexplained.org/r/trump-tweets)
-]
-
----
-
-## He figured this out with a scatter plot.
-
-David Robinson noticed that tweets from an iPhone vs. an Android had totally different sentiments -- and used that to show two different people were writing on the account.
-
---
-
-**You can make scatter plots like that right now.** Copy and paste this into your console:
+**Copy and paste this into your console:**
 
 ```r
 library(ggplot2)
-ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
-  geom_point() +
-  labs(title = "Engine size vs. fuel efficiency",
-       x = "Engine displacement (liters)",
-       y = "Highway miles per gallon")
+ggplot(msleep, aes(x = bodywt, y = sleep_total, color = vore)) +
+  geom_point(size = 3) +
+  scale_x_log10() +
+  labs(title = "Body weight vs. sleep across mammals",
+       x = "Body weight (kg, log scale)",
+       y = "Total sleep (hours/day)",
+       color = "Diet")
 ```
 
 --
 
 .question[
-What patterns do you see? Which vehicle classes are the most fuel efficient?
+What patterns do you see? Do bigger animals sleep more or less?
 ]
 
 ---
@@ -449,26 +484,16 @@ What patterns do you see? Which vehicle classes are the most fuel efficient?
 ## From data to insight
 
 ```{r echo=FALSE, out.width="70%", fig.align="center"}
-ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+ggplot(msleep, aes(x = bodywt, y = sleep_total, color = vore)) +
   geom_point(size = 3) +
-  labs(title = "Engine size vs. fuel efficiency",
-       x = "Engine displacement (liters)",
-       y = "Highway miles per gallon")
+  scale_x_log10() +
+  labs(title = "Body weight vs. sleep across mammals",
+       x = "Body weight (kg, log scale)",
+       y = "Total sleep (hours/day)",
+       color = "Diet")
 ```
 
-You just made a publication-quality scatter plot with **three lines of code**. This is what you'll be doing all semester -- turning data into stories.
-
----
-
-## Greatest Twitter scheme of all time
-
-```{r fig.align="center", echo=FALSE,out.width="38%"}
-knitr::include_graphics("img/bohemian-rhapsody.png")
-```
-
-.footnote[
-[gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d](https://gist.github.com/mine-cetinkaya-rundel/03d7516dea1e5f2613a5d71c28edb08d)
-]
+You just made a publication-quality scatter plot with **four lines of code** -- using real data that a psychologist might analyze. This is what you'll be doing all semester.
 
 ---
 
@@ -476,9 +501,9 @@ class: middle
 
 .large[
 You now have:
-- `r emo::ji("check_mark")` A **GitHub** account (where data scientists share work)
-- `r emo::ji("check_mark")` **R** and **RStudio** installed (the tools to do the work)
-- `r emo::ji("check_mark")` Your **first plot** (proof it all works)
+- `r emo::ji("check_mark")` A **GitHub** account (where psychologists share reproducible work)
+- `r emo::ji("check_mark")` **R** and **RStudio** installed (the tools to analyze data)
+- `r emo::ji("check_mark")` Your **first plot** with real psychology data
 
 Now let's talk about how this class is going to run.
 ]
@@ -780,7 +805,7 @@ class: middle
 
 .pull-left[
 ### Understanding
-- `r emo::ji("check_mark")` Saw data science in the wild
+- `r emo::ji("check_mark")` Saw data science with psych data
 - `r emo::ji("check_mark")` All course materials live on GitHub
 - `r emo::ji("check_mark")` Course notes = daily home base
 - `r emo::ji("check_mark")` Know the Big 5 principles
@@ -790,7 +815,7 @@ class: middle
 ### Setup Complete
 - `r emo::ji("check_mark")` GitHub account created
 - `r emo::ji("check_mark")` R and RStudio installed
-- `r emo::ji("check_mark")` Made your first plot!
+- `r emo::ji("check_mark")` Made your first psych data plot!
 - `r emo::ji("check_mark")` Completed your first assignment
 ]
 
