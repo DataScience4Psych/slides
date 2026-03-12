@@ -53,11 +53,7 @@ df <- data.frame(
 df %>%
     mutate(
         link = glue::glue("[slides]({link})"),
-        link = map(link, gt::md),
-        title = case_when(
-          title == "d01.1_AI/d01.1_AI" ~ "d01_zAI/d01_zAI",
-          TRUE ~ title
-        )) %>%
+        link = map(link, gt::md)) %>%
   arrange(title)  %>% 
   select(group, title, link) %>%
     gt()

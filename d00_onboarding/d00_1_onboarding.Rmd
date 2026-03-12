@@ -58,7 +58,7 @@ Data science is an exciting discipline that allows you to turn raw data into und
 
 2,800 people took a Big Five personality survey. Here's what that data looks like when you visualize it:
 
-```{r echo=FALSE, out.width="75%", fig.align="center"}
+```{r bfi-code, echo=FALSE, out.width="65%", fig.align="center"}
 bfi_long <- bfi %>%
   select(A1:A5, C1:C5, E1:E5, N1:N5, O1:O5, age) %>%
   pivot_longer(A1:O5, names_to = "item", values_to = "response") %>%
@@ -82,10 +82,11 @@ bfi_long %>%
   labs(title = "Big Five Personality Responses (n = 2,800)",
        x = "Response (1 = Disagree, 6 = Agree)",
        y = "Proportion") +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  scale_fill_brewer(palette = "Set2")
 ```
 
-.footnote[Data: SAPA Project via the `psychTools` R package (Revelle, Wilt & Rosenthal, 2010)]
+.footnote[Data: SAPA Project via the `psychTools` R package (Revelle, Wilt & Rosenthal, 20XX)]
 
 ---
 
@@ -95,7 +96,29 @@ bfi_long %>%
 - **2,800 real participants** from a personality assessment project
 - Data stored in an **R package** anyone can install
 - Analyzed and visualized with a **few lines of R code**
-- The package, code, and data are all shared on **GitHub**
+]
+
+.pull-right[
+This is what data science looks like in psychology: real data, open tools, and reproducible code.
+]
+
+---
+
+# Wanna see the code behind that plot?
+
+class: middle
+
+--
+
+```{r bfi-code, echo=TRUE,eval=FALSE}
+```
+
+---
+
+.pull-left[
+- The data is from the SAPA Project, a large-scale personality assessment project that has collected data from thousands of participants.
+- All the data is stored in the `psychTools` R package, which anyone can install and use to access the data.
+- Other psychologists have also shared their data and code on GitHub, which means you can see exactly how they analyzed their data and even reproduce their results.
 ]
 
 .pull-right[
@@ -104,10 +127,9 @@ This is what reproducible psychological science looks like: open data, open code
 If you wanted to check this analysis, you could run the exact same code and get the exact same result.
 ]
 
---
-
+---
 .center[.large[
-**GitHub** is how psychologists (and data scientists) share and collaborate.
+**GitHub** is how data scientists and (some psychologists) share and collaborate.
 <br>
 And it's where this entire course lives.
 ]]
@@ -122,7 +144,7 @@ Everything in this course lives on **GitHub**.
 
 --
 
-.pull-left[
+.pull-left-narrow[
 What it **looks** like:
 - "The syllabus website"
 - "The course notes site"
@@ -132,7 +154,7 @@ What it **looks** like:
 
 --
 
-.pull-right[
+.pull-right-wide[
 What it **actually** is:
 - GitHub Pages `r emo::ji("right_arrow")` smasongarrison.github.io/syllabi
 - GitHub Pages `r emo::ji("right_arrow")` DataScience4Psych.github.io
@@ -150,6 +172,7 @@ What it **actually** is:
 
 ## How the Pieces Connect
 
+.code[
 ```
 ┌──────────────────────────────────────────────────┐
 │              github.com/DataScience4Psych         │
@@ -166,6 +189,7 @@ What it **actually** is:
    Course Notes Website              Slide Decks
    (your home base)               (in-class content)
 ```
+]
 
 .center[
 Plus: **smasongarrison.github.io/syllabi** `r emo::ji("right_arrow")` Syllabus (policies & grading)
@@ -240,13 +264,14 @@ Think of the course notes as your **textbook replacement** -- but interactive, w
 
 .large[
 .center[
-[smasongarrison.github.io/syllabi/applieddatascience.html](https://smasongarrison.github.io/syllabi/applieddatascience.html)
+[smasongarrison.github.io/syllabi/](https://smasongarrison.github.io/syllabi/)
 ]
 ]
 
 - Policies, grading, schedule, office hours
 - Contract grading details
 - The "official" course information
+- Not updated every week like the course notes, but important to reference when you have questions about how the class runs
 
 --
 
@@ -278,7 +303,7 @@ When you get an assignment link, it will point here. You'll fork or clone the re
 
 ---
 
-class: middle
+class: middle, inverted
 
 # So we know where things live and we're on GitHub.
 # Now let's see what else R can do with psych data.
@@ -303,10 +328,12 @@ bfi %>%
   labs(title = "Personality Traits Across the Lifespan",
        subtitle = "Big Five data from 2,800 participants",
        x = "Age", y = "Mean Item Response", color = "Trait") +
-  theme(legend.position = "bottom")
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  scale_color_manual(values = c("Agreeableness" = "#66c2a5", "Neuroticism" = "#fc8d62"))
 ```
 
-.footnote[Data: SAPA Project via `psychTools` (Revelle, Wilt & Rosenthal, 2010)]
+.footnote[Data: SAPA Project via `psychTools` (Revelle, Wilt & Rosenthal, 20XX)]
 
 ---
 
@@ -415,7 +442,7 @@ ggplot(msleep %>% filter(!is.na(vore)),
   labs(title = "Total Sleep by Diet in 83 Mammal Species",
        x = "Diet Type", y = "Hours of Sleep per Day") +
   scale_x_discrete(labels = c("carni" = "Carnivore", "herbi" = "Herbivore",
-                               "insecti" = "Insectivore", "omni" = "Omnivore"))
+                               "insecti" = "Insectivore", "omni" = "Omnivore")) 
 ```
 
 ---
@@ -483,15 +510,17 @@ What patterns do you see? Do bigger animals sleep more or less?
 
 ## From data to insight
 
-```{r echo=FALSE, out.width="70%", fig.align="center"}
+```{r echo=FALSE, out.width="65%", fig.align="center"}
 ggplot(msleep, aes(x = bodywt, y = sleep_total, color = vore)) +
   geom_point(size = 3) +
   scale_x_log10() +
   labs(title = "Body weight vs. sleep across mammals",
        x = "Body weight (kg, log scale)",
        y = "Total sleep (hours/day)",
-       color = "Diet")
+       color = "Diet") 
 ```
+
+--
 
 You just made a publication-quality scatter plot with **four lines of code** -- using real data that a psychologist might analyze. This is what you'll be doing all semester.
 
@@ -501,9 +530,9 @@ class: middle
 
 .large[
 You now have:
-- `r emo::ji("check_mark")` A **GitHub** account (where psychologists share reproducible work)
-- `r emo::ji("check_mark")` **R** and **RStudio** installed (the tools to analyze data)
-- `r emo::ji("check_mark")` Your **first plot** with real psychology data
+- `r emo::ji("check")` A **GitHub** account (where psychologists share reproducible work)
+- `r emo::ji("check")` **R** and **RStudio** installed (the tools to analyze data)
+- `r emo::ji("check")` Your **first plot** with real psychology data
 
 Now let's talk about how this class is going to run.
 ]
@@ -518,7 +547,7 @@ class: middle
 
 # Big Ideas
 
-.pull-left[
+.pull-left-narrow[
 - **R**eproducibility
 - **R**eplication
 - **R**obust Methods
@@ -526,7 +555,7 @@ class: middle
 - **R**
 ]
 
-.center.pull-right[
+.center.pull-right-wide[
 ```{r echo=FALSE, out.width="95%",fig.align = 'left'}
 knitr::include_graphics("img/plot007w.png")
 ```
@@ -556,7 +585,7 @@ A - R.
 --
 
 **Q: Why not language X?**
-A: We can discuss that *remotely* over `r emo::ji("coffee")`.
+A: We can discuss that over `r emo::ji("coffee")`.
 
 ---
 
@@ -616,13 +645,15 @@ This is a **flipped classroom**. Here's what that means:
 
 .pull-right[
 ### During Class
-- **Tuesdays:** Face-to-face tutorials
-  - Work through problems together
-  - Hands-on coding
-  - Get help in real time
-- **Thursdays:** Solidarity sessions
-  - Extended work time
-  - Peer collaboration
+
+- The face-to-face time is for **doing**. 
+- We'll spend class time working through labs together, coding, and collaborating. 
+- There will be some spontaneous just-in-time mini-lectures to clarify concepts, but the bulk of the time will be for hands-on work. 
+- Come ready to ask questions and get help with the material you covered before class. 
+- Please take advantage of this time to get help and collaborate with your classmates! 
+
+.tip[** People pay a lot of money for this kind of access to the professor and their peers -- use it!**]
+
 ]
 
 ---
@@ -645,7 +676,7 @@ Monday         Tuesday        Wednesday      Thursday       Friday
 --
 
 .tip[
-The pre-recorded content **is** the lecture. Class time is for **doing**, not watching.
+The pre-recorded content **is** the lecture. Class time is for **doing**.
 ]
 
 ---
@@ -657,7 +688,7 @@ The pre-recorded content **is** the lecture. Class time is for **doing**, not wa
 - More representative of the real scientific process
 - Specifics are in the syllabus and course notes
 
---
+---
 
 ### Your Milestones
 .pull-left[
@@ -712,7 +743,7 @@ We'll revisit grading details as the semester progresses -- for now, know that t
 ## Tips for Asking Good Questions
 
 .pull-left[
-### Do `r emo::ji("check_mark")`
+### Do `r emo::ji("check")`
 - "I'm getting this error when I try to filter: `Error: object 'x' not found`"
 - Share the code that caused the issue
 - Describe what you expected vs. what happened
@@ -736,7 +767,7 @@ Give context from **course concepts**, not assignment numbers. "I have a questio
 ## Sharing/reusing code
 
 - I am well aware that a huge volume of code is available on the web to solve any number of problems.
-- Unless I explicitly tell you not to use something, you can use any online resources (e.g. StackOverflow, RStudio Community), but you must explicitly cite where you obtained any code you directly use (or use as inspiration).
+- Unless I explicitly tell you not to use something, you can use any online resources (e.g. StackOverflow, RStudio Community), but you must explicitly credit where you obtained any code you directly use (or use as inspiration).
 - You are welcome to discuss the problems together and ask for advice, but you may not create code for your classmates.
 - You won't learn anything if other people write your code for you!
 
@@ -754,7 +785,6 @@ Let's do your first real assignment.
 
 .your-turn[
 
-**Option 1.**
 
 - On GitHub, navigate to the assignment repository called `ae01a_unvotes`, which you can find at [github.com/DataScience4Psych/ae01a_unvotes](https://github.com/DataScience4Psych/ae01a_unvotes).
 - In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
@@ -763,17 +793,12 @@ Let's do your first real assignment.
 
 ]
 
+
 ---
 
-.your-turn[
+# Where to Find What
 
-**Option 2.**
-
-- On Github, download the assignment called `ae01b_covid`, which you can find at [github.com/DataScience4Psych/ae01b_covid](https://github.com/DataScience4Psych/ae01b_covid).
-- In the Files pane in the bottom right corner, spot the file called `covid.Rmd`. Open it, and then click on the "Knit" button.
-- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
-- Change the country names to those you're interested in. Your spelling and capitalization should match how the countries appear in the data, so take a peek at the Appendix to confirm spelling. Knit again. Voila, your first data visualization!
-]
+class: middle
 
 ---
 
@@ -784,7 +809,7 @@ Let's do your first real assignment.
 | Watch lectures / read content       | Course Notes                      |
 | Check policies or grading           | Syllabus                          |
 | Start a lab or assignment           | GitHub Organization               |
-| Ask a question                      | Course Discussion Forum           |
+| Ask a question                      | GitHub Discussion Board           |
 | Get help from the professor         | Office Hours (Calendly)           |
 
 --
@@ -805,18 +830,18 @@ class: middle
 
 .pull-left[
 ### Understanding
-- `r emo::ji("check_mark")` Saw data science with psych data
-- `r emo::ji("check_mark")` All course materials live on GitHub
-- `r emo::ji("check_mark")` Course notes = daily home base
-- `r emo::ji("check_mark")` Know the Big 5 principles
+- `r emo::ji("check")` Saw data science with psych data
+- `r emo::ji("check")` All course materials live on GitHub
+- `r emo::ji("check")` Course notes = daily home base
+- `r emo::ji("check")` Know the Big 5 principles
 ]
 
 .pull-right[
 ### Setup Complete
-- `r emo::ji("check_mark")` GitHub account created
-- `r emo::ji("check_mark")` R and RStudio installed
-- `r emo::ji("check_mark")` Made your first psych data plot!
-- `r emo::ji("check_mark")` Completed your first assignment
+- `r emo::ji("check")` GitHub account created
+- `r emo::ji("check")` R and RStudio installed
+- `r emo::ji("check")` Made your first psych data plot!
+- `r emo::ji("check")` Completed your first assignment
 ]
 
 ---
@@ -824,17 +849,19 @@ class: middle
 ## Your Bookmarks
 
 .large[
-Save these three links:
-
+Save these four links:
+]
 1. `r emo::ji("book")` **Course Notes** (daily resource)
    - [DataScience4Psych.github.io/DataScience4Psych/](https://DataScience4Psych.github.io/DataScience4Psych/)
 
 2. `r emo::ji("scroll")` **Syllabus** (policies & grading)
-   - [smasongarrison.github.io/syllabi/applieddatascience.html](https://smasongarrison.github.io/syllabi/applieddatascience.html)
+   - [smasongarrison.github.io/syllabi/](https://smasongarrison.github.io/syllabi/)
 
 3. `r emo::ji("file_folder")` **GitHub Org** (assignments & source)
    - [github.com/DataScience4Psych](https://github.com/DataScience4Psych)
-]
+   
+4. `r emo::ji("speech_balloon")` **Discussion Forum** (ask questions)
+   - [github.com/DataScience4Psych/discussions](https://github.com/orgs/DataScience4Psych/discussions)
 
 ---
 
