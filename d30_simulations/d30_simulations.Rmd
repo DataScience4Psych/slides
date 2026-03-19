@@ -19,11 +19,12 @@ output:
 ```
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(MASS)
 library(openintro)
 library(tidymodels)
 library(DT)
 library(emo)
-library(openintro)
 library(viridis)
 # Remember to compile
 # xaringan::inf_mr(cast_from = "..")
@@ -40,9 +41,10 @@ class: middle
 By the end of this session, you will be able to...
 
 - Generate random numbers from various distributions (normal, uniform, Poisson)
-- Create simulated datasets with specific properties and relationships
+- Use `set.seed()` for reproducible simulations
+- Create simulated datasets with quantitative and categorical variables
 - Use simulations to develop intuition about statistical distributions
-- Apply replication techniques for repeated simulation experiments
+- Apply `replicate()` for repeated simulation experiments
 
 ---
 
@@ -489,11 +491,13 @@ simlist <- replicate(n = 3,
 
 class: middle
 
-# Advanced Simulation Techniques
+# A Preview of What's Next
 
 ---
 
 ## Simulating Correlated Variables
+
+So far, each variable we've simulated has been independent. But real data has **structure** — variables are correlated.
 
 ```{r}
 set.seed(123)
@@ -502,28 +506,13 @@ mvrnorm(n = 5, mu = c(0, 0), Sigma = sigma)
 ```
 
 .question[
-What does the correlation matrix represent? How would you interpret these results? 
+What does the covariance matrix represent? How would you interpret these results?
 ]
 
----
+--
 
-Power Analysis Simulations
-
-
-power_simulation <- function(n, effect_size, alpha = 0.05, nsim = 1000) {
-  significant_results <- replicate(nsim, {
-    group1 <- rnorm(n, mean = 0, sd = 1)
-    group2 <- rnorm(n, mean = effect_size, sd = 1)
-    t.test(group1, group2)$p.value < alpha
-  })
-  mean(significant_results)
-}
-
-power_simulation(n = 30, effect_size = 0.5)
-
-
-.question[
-How would you use this function to determine the sample size needed for 80% power?
+.tip[
+Next time, we'll go deeper: building full correlation structures, power analysis by simulation, and understanding the Central Limit Theorem — all through simulation.
 ]
 
 ---
@@ -555,14 +544,14 @@ Today, you should now be able to...
 ### Concepts
 - ✅ Random number generation
 - ✅ Statistical distributions
-- ✅ Simulation principles
+- ✅ Reproducibility with `set.seed()`
 ]
 
 .pull-right[
 ### Skills
-- ✅ Generate from various distributions
-- ✅ Create simulated datasets
-- ✅ Apply replication techniques
+- ✅ Generate from normal, uniform, Poisson
+- ✅ Create datasets with `rep()` and `rnorm()`
+- ✅ Repeat simulations with `replicate()`
 ]
 
 ---
