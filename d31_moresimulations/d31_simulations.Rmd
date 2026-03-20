@@ -409,6 +409,13 @@ cov_mat <- cor_mat * (sd_vec %*% t(sd_vec))
 cov_mat
 ```
 
+
+--
+
+.midi[
+The diagonal values (225) are the **variances** ($15^2 = 225$). The off-diagonal values (90) are the **covariances** ($0.4 \times 15 \times 15 = 90$).
+]
+
 ---
 
 ## Step 3: Generate the Data
@@ -445,6 +452,8 @@ as.data.frame(sim) %>%
 .question[How do we know the simulated data matches what we asked for?]
 
 --
+
+Always verify your parameters after generating data:
 
 .pull-left[
 ```{r}
@@ -489,11 +498,12 @@ cov_exams <- cor_exams * (sd_exams %*% t(sd_exams))
 
 --
 
-.tip[Make sure your correlation matrix is **symmetric** and **positive definite**. R will error otherwise.]
-
+.tip[
+When building correlation matrices, make sure they are **symmetric** (same value above and below the diagonal) and **positive definite** (all eigenvalues > 0). R will throw an error if the matrix isn't valid.
+]
 ---
 
-## Did the Correlations Recover?
+## Did It Work?
 
 ```{r echo=FALSE, fig.align="center", out.width="60%"}
 set.seed(42)
@@ -515,8 +525,11 @@ ggplot(comparison, aes(x = Population, y = Sample)) +
   theme_minimal()
 ```
 
----
+--
 
+The recovered correlations are close to the population values — simulation is working as intended.
+
+---
 
 class: middle
 
@@ -543,9 +556,9 @@ We can answer this **entirely through simulation**.
 
 ---
 
-## Building the Power Function
+## Building a Power Simulation, Step by Step
 
-One simulated experiment: generate two groups with a known difference, run a t-test.
+First, let's think about what a single simulated experiment looks like:
 
 ```{r eval=FALSE}
 group1 <- rnorm(n_per_group, mean = 0, sd = 10)
@@ -555,8 +568,33 @@ t.test(group1, group2)$p.value < 0.05
 
 --
 
-Repeat 1000 times and wrap it up:
+We generate two groups with a **known** difference (5 points), then test whether we can detect it...
 
+---
+
+## Repeating the Experiment
+
+
+Now repeat that experiment many times:
+
+
+```{r eval=FALSE}
+results <- replicate(1000, {
+  group1 <- rnorm(n_per_group, mean = 0, sd = 10)
+  group2 <- rnorm(n_per_group, mean = 5, sd = 10)
+  t.test(group1, group2)$p.value < 0.05
+})
+```
+
+--
+
+Each replication returns `TRUE` (significant) or `FALSE` (not significant).
+
+---
+
+## Wrapping It in a Function
+
+.pull-left[
 ```{r}
 power_sim <- function(n_per_group, effect = 5, sd = 10,
                       alpha = 0.05, nsim = 1000) {
@@ -568,10 +606,22 @@ power_sim <- function(n_per_group, effect = 5, sd = 10,
   mean(significant)
 }
 ```
+]
+--
+.pull-right[
+
+This function:
+1. Generates two groups with a known difference
+2. Runs a t-test
+3. Checks if p < .05
+4. Repeats 1000 times
+5. Returns the proportion of significant results = **power**
+]
 
 ---
 
-## Trying Different Sample Sizes
+## Let's Try a Few Sample Sizes
+
 
 ```{r}
 set.seed(2024)
@@ -592,7 +642,9 @@ power_sim(n_per_group = 60)
 
 --
 
-Where does it cross the conventional 80% threshold?
+.midi[
+Power goes up as sample size increases. But where does it cross the conventional 80% threshold?
+]
 
 ---
 
@@ -733,6 +785,7 @@ class: middle
 
 ---
 
+
 ## The Simulation Workflow
 
 .question[What are the key steps?]
@@ -763,16 +816,21 @@ class: middle
 
 ---
 
-## Use Cases in Psychology
+- How often does my test reject when it shouldn't? **Type I error rate**
 
-Monte Carlo simulation is used **all the time** in quantitative psychology:
+--
 
-- Does my method give unbiased estimates? **Bias**
-- How often does my test reject when it should? **Power**
-- How often does it reject when it shouldn't? **Type I error rate**
 - What happens when assumptions are violated? **Robustness**
 
-.footnote[See Muthen & Muthen (2002) on Monte Carlo for power, and Fan (2012) in the APA Handbook.]
+--
+
+- How large a sample do I need? **Sample size planning**
+
+--
+
+.footnote[
+For a deeper dive, see Muthén & Muthén (2002) on using Monte Carlo simulation for sample size and power determination, and Fan (2012) in the APA Handbook for a wonderful introduction aimed at psychology researchers.
+]
 
 ---
 

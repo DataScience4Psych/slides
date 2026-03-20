@@ -360,6 +360,13 @@ cov_mat
 ## [2,]   90  225
 ```
 
+
+--
+
+.midi[
+The diagonal values (225) are the **variances** (`\(15^2 = 225\)`). The off-diagonal values (90) are the **covariances** (`\(0.4 \times 15 \times 15 = 90\)`).
+]
+
 ---
 
 ## Step 3: Generate the Data
@@ -397,6 +404,8 @@ head(sim, 4)
 .question[How do we know the simulated data matches what we asked for?]
 
 --
+
+Always verify your parameters after generating data:
 
 .pull-left[
 
@@ -461,16 +470,20 @@ cov_exams &lt;- cor_exams * (sd_exams %*% t(sd_exams))
 
 --
 
-.tip[Make sure your correlation matrix is **symmetric** and **positive definite**. R will error otherwise.]
-
+.tip[
+When building correlation matrices, make sure they are **symmetric** (same value above and below the diagonal) and **positive definite** (all eigenvalues &gt; 0). R will throw an error if the matrix isn't valid.
+]
 ---
 
-## Did the Correlations Recover?
+## Did It Work?
 
 &lt;img src="d31_simulations_files/figure-html/unnamed-chunk-20-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
----
+--
 
+The recovered correlations are close to the population values — simulation is working as intended.
+
+---
 
 class: middle
 
@@ -497,9 +510,9 @@ We can answer this **entirely through simulation**.
 
 ---
 
-## Building the Power Function
+## Building a Power Simulation, Step by Step
 
-One simulated experiment: generate two groups with a known difference, run a t-test.
+First, let's think about what a single simulated experiment looks like:
 
 
 ``` r
@@ -510,8 +523,34 @@ t.test(group1, group2)$p.value &lt; 0.05
 
 --
 
-Repeat 1000 times and wrap it up:
+We generate two groups with a **known** difference (5 points), then test whether we can detect it...
 
+---
+
+## Repeating the Experiment
+
+
+Now repeat that experiment many times:
+
+
+
+``` r
+results &lt;- replicate(1000, {
+  group1 &lt;- rnorm(n_per_group, mean = 0, sd = 10)
+  group2 &lt;- rnorm(n_per_group, mean = 5, sd = 10)
+  t.test(group1, group2)$p.value &lt; 0.05
+})
+```
+
+--
+
+Each replication returns `TRUE` (significant) or `FALSE` (not significant).
+
+---
+
+## Wrapping It in a Function
+
+.pull-left[
 
 ``` r
 power_sim &lt;- function(n_per_group, effect = 5, sd = 10,
@@ -524,10 +563,22 @@ power_sim &lt;- function(n_per_group, effect = 5, sd = 10,
   mean(significant)
 }
 ```
+]
+--
+.pull-right[
+
+This function:
+1. Generates two groups with a known difference
+2. Runs a t-test
+3. Checks if p &lt; .05
+4. Repeats 1000 times
+5. Returns the proportion of significant results = **power**
+]
 
 ---
 
-## Trying Different Sample Sizes
+## Let's Try a Few Sample Sizes
+
 
 
 ``` r
@@ -563,13 +614,15 @@ power_sim(n_per_group = 60)
 
 --
 
-Where does it cross the conventional 80% threshold?
+.midi[
+Power goes up as sample size increases. But where does it cross the conventional 80% threshold?
+]
 
 ---
 
 ## The Power Curve
 
-&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-26-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-27-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -620,13 +673,13 @@ Let's go back to our exam score simulation (r = 0.4) and see how the estimate va
 
 ## Watching Estimates Converge
 
-&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-27-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-28-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## The Distribution Narrows
 
-&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-28-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-29-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -654,6 +707,7 @@ class: middle
 .hand[.light-blue[It's like a laboratory experiment, but for statistical methods.]]
 
 ---
+
 
 ## The Simulation Workflow
 
@@ -685,16 +739,21 @@ class: middle
 
 ---
 
-## Use Cases in Psychology
+- How often does my test reject when it shouldn't? **Type I error rate**
 
-Monte Carlo simulation is used **all the time** in quantitative psychology:
+--
 
-- Does my method give unbiased estimates? **Bias**
-- How often does my test reject when it should? **Power**
-- How often does it reject when it shouldn't? **Type I error rate**
 - What happens when assumptions are violated? **Robustness**
 
-.footnote[See Muthen &amp; Muthen (2002) on Monte Carlo for power, and Fan (2012) in the APA Handbook.]
+--
+
+- How large a sample do I need? **Sample size planning**
+
+--
+
+.footnote[
+For a deeper dive, see Muthén &amp; Muthén (2002) on using Monte Carlo simulation for sample size and power determination, and Fan (2012) in the APA Handbook for a wonderful introduction aimed at psychology researchers.
+]
 
 ---
 
