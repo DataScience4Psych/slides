@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Simulating Correlated Data   🎲</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Simulating Correlated Data <br> 🎲
+]
+.author[
+### S. Mason Garrison
+]
+
+---
+
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
+---
+
+
+
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Explain why and when simulation is a useful tool in data science and psychology
+- Simulate correlated variables using `mvrnorm()` from the MASS package
+- Use simulation to demonstrate statistical concepts like the Central Limit Theorem
+- Conduct a basic power analysis through simulation
+- Evaluate how sample size affects the precision and reliability of estimates
+
+---
+
+class: middle
+
+# Why Simulate?
+
+---
+
+
+.pull-left-narrow[
+We've already learned the **mechanics** of simulation:
+- `rnorm()`, `runif()`, `rpois()`
+- `rep()` for categorical variables
+- `replicate()` and `for()` loops
+]
+
+--
+
+.pull-right-wide[
+Now, we ask: **what can we actually do with all of this?**
+
+Simulation lets us...
+- Develop intuition about chance
+- Demonstrate statistical principles
+- Plan studies before collecting data
+- Test whether our methods actually work
+]
+
+--
+
+.hand[.light-blue[We have the tools. Now let's put them to work.]]
+
+---
+
+## Simulation as a Way of Thinking
+
+.alert[Have you ever found a "significant" result and wondered... is this real, or did I just get lucky?]
+
+--
+
+- Simulation gives us a way to answer that question **directly** — create a world where we **know** the truth, generate data, and see what happens.
+
+---
+
+class: middle
+
+# Spurious Correlations
+
+---
+
+## The Danger of Small Samples
+
+.question[
+You collect data on two variables from 10 people and find r = 0.45. Is that a real relationship?
+]
+
+--
+
+- Let's ask: **how often would we see r = 0.45 or more from two completely unrelated variables?**
+
+---
+
+## Simulating Spurious Correlations
+
+.midi.pull-left-narrow[
+
+
+``` r
+set.seed(2024)
+spurious_cors &lt;- replicate(10000, {
+  x &lt;- rnorm(10)
+  y &lt;- rnorm(10)
+  cor(x, y)
+})
+mean(abs(spurious_cors) &gt;= 0.45)
+```
+
+```
+## [1] 0.1896
+```
+]
+
+--
+
+- About 19% of the time!
+
+--
+
+.hand[.light-blue[With n = 10, even moderate correlations are expected by chance alone.]]
+
+.footnote[
+See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) for fun real-world examples.
+]
+
+---
+
+## Let's Watch It Happen
+
+Here's one random sample of n = 10 from two unrelated variables:
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-3-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Another Random Sample
+
+A **second** sample — same population (no relationship):
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-4-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
+
+--
+
+Different sample, different correlation — and the true value is **zero** in both cases.
+
+---
+
+## And another...
+
+And a **third ** ...
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-5-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.hand[.light-blue[We could keep going...]]
+
+---
+
+## 10,000 Samples Later
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-6-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## What About Larger Samples?
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-7-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.footnote[
+This is why we need large samples. Simulation lets us **see** this behavior directly.
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# The Central Limit Theorem via Simulation
+
+---
+
+## The Central Limit Theorem
+
+- The sampling distribution of the mean approaches a normal distribution as n increases, regardless of the population distribution.
+
+--
+
+- That's a big claim! Let's test it with a decidedly non-normal distribution.
+
+---
+
+## Start with a Skewed Distribution
+
+.pull-left[
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-8-1.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+This is clearly **not** normal — it's discrete, bounded at 0, and skewed right.
+]
+--
+
+.question[
+What do you think happens when we take the **mean** of samples from this distribution?
+]
+
+
+---
+
+## CLT in Action
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-9-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.footnote[Even with n = 30, the distribution of means looks approximately normal!]
+
+---
+
+## The CLT Code
+
+.midi[
+
+``` r
+set.seed(42)
+sample_means &lt;- replicate(
+  n = 5000,
+  expr = mean(rpois(n = 30, lambda = 2))
+)
+data.frame(sample_means) %&gt;%
+  ggplot(aes(x = sample_means)) +
+  geom_histogram(binwidth = 0.1)
+```
+]
+
+--
+
+.question[
+What would happen if you replaced `rpois(30, lambda = 2)` with `runif(30, min = 0, max = 1)`? Would the CLT still hold?
+]
+
+--
+
+.tip[Yes! The CLT holds for **any** population distribution, as long as n is large enough.]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Simulating Correlated Data with `mvrnorm()`
+
+---
+
+## The Problem with One Variable at a Time
+
+.alert[Imagine simulating data for a study on exam performance. You need midterm and final scores that are **correlated** — but building that with `y = 0.5*x + noise` is clunky.]
+
+--
+
+- You need to **know the equation** in advance
+- Hard to control the **exact correlation**
+- Doesn't scale to 3, 4, 5+ variables
+
+--
+
+.tip[`mvrnorm()` from the **MASS** package lets you specify the correlation structure directly.]
+
+---
+
+## What Does `mvrnorm()` Need?
+
+
+``` r
+mvrnorm(n, mu, Sigma)
+```
+
+--
+
+- **`n`** — number of observations (e.g., 200 students)
+
+--
+
+- **`mu`** — vector of means (one per variable)
+
+--
+
+- **`Sigma`** — **covariance matrix** (variances on diagonal, covariances off-diagonal)
+
+.footnote[A correlation matrix is a standardized covariance matrix where the diagonal is all 1s.]
+
+---
+
+## Step 1: Define Means and Correlation
+
+Let's simulate midterm and final exam scores (mean = 100, SD = 15, r = 0.4):
+
+
+``` r
+mu &lt;- c(100, 100)
+cor_mat &lt;- matrix(c(1.0, 0.4,
+                    0.4, 1.0), ncol = 2)
+```
+
+--
+
+## Step 2: Convert to Covariance
+
+`\(\text{Cov}(X_i, X_j) = r_{ij} \cdot SD_i \cdot SD_j\)`
+
+
+``` r
+sd_vec &lt;- c(15, 15)
+cov_mat &lt;- cor_mat * (sd_vec %*% t(sd_vec))
+cov_mat
+```
+
+```
+##      [,1] [,2]
+## [1,]  225   90
+## [2,]   90  225
+```
+
+
+--
+
+.midi[
+The diagonal values (225) are the **variances** (`\(15^2 = 225\)`). The off-diagonal values (90) are the **covariances** (`\(0.4 \times 15 \times 15 = 90\)`).
+]
+
+---
+
+## Step 3: Generate the Data
+
+.pull-left[
+
+``` r
+library(MASS)
+set.seed(11)
+sim &lt;- mvrnorm(
+  n = 200, mu = mu,
+  Sigma = cov_mat
+)
+colnames(sim) &lt;- c("Midterm", "Final")
+head(sim, 4)
+```
+
+```
+##       Midterm     Final
+## [1,] 87.17429  97.99095
+## [2,] 86.76120 113.90631
+## [3,] 91.28541  70.64941
+## [4,] 75.66035  90.13732
+```
+]
+
+.pull-right[
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-15-1.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Step 4: Check Your Work
+
+.question[How do we know the simulated data matches what we asked for?]
+
+--
+
+Always verify your parameters after generating data:
+
+.pull-left[
+
+``` r
+# Check means (target: 100, 100)
+colMeans(sim)
+```
+
+```
+##   Midterm     Final 
+## 100.27172  99.71524
+```
+
+``` r
+# Check SDs (target: 15, 15)
+apply(sim, 2, sd)
+```
+
+```
+##  Midterm    Final 
+## 14.38604 14.51655
+```
+]
+.pull-right[
+
+``` r
+# Check correlation (target: 0.4)
+cor(sim)
+```
+
+```
+##           Midterm     Final
+## Midterm 1.0000000 0.3731749
+## Final   0.3731749 1.0000000
+```
+]
+
+--
+
+.footnote[Close but not exact — that's sampling variability!]
+
+---
+
+## Scaling Up: Four Exam Scores
+
+.small[
+
+``` r
+var_names &lt;- c("Quiz", "Midterm", "Project", "Final")
+mu &lt;- c(75, 70, 80, 72)
+sd_exams &lt;- c(10, 12, 8, 15)
+cor_exams &lt;- matrix(
+  c(1.00, 0.55, 0.35, 0.50,
+    0.55, 1.00, 0.40, 0.65,
+    0.35, 0.40, 1.00, 0.45,
+    0.50, 0.65, 0.45, 1.00),
+  nrow = 4, byrow = TRUE,
+  dimnames = list(var_names, var_names))
+cov_exams &lt;- cor_exams * (sd_exams %*% t(sd_exams))
+```
+]
+
+--
+
+.tip[
+When building correlation matrices, make sure they are **symmetric** (same value above and below the diagonal) and **positive definite** (all eigenvalues &gt; 0). R will throw an error if the matrix isn't valid.
+]
+---
+
+## Did It Work?
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-20-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
+
+--
+
+The recovered correlations are close to the population values — simulation is working as intended.
+
+---
+
+class: middle
+
+# Power Analysis via Simulation
+
+---
+
+## What is Statistical Power?
+
+**Power** = the probability of detecting an effect *when one truly exists*.
+
+--
+
+- Low power means we miss real effects
+- High power means we reliably detect effects
+
+--
+
+.question[You're planning a study comparing reaction times between two groups. How many participants do you need?]
+
+--
+
+We can answer this **entirely through simulation**.
+
+---
+
+## Building a Power Simulation, Step by Step
+
+First, let's think about what a single simulated experiment looks like:
+
+
+``` r
+group1 &lt;- rnorm(n_per_group, mean = 0, sd = 10)
+group2 &lt;- rnorm(n_per_group, mean = 5, sd = 10)
+t.test(group1, group2)$p.value &lt; 0.05
+```
+
+--
+
+We generate two groups with a **known** difference (5 points), then test whether we can detect it...
+
+---
+
+## Repeating the Experiment
+
+
+Now repeat that experiment many times:
+
+
+
+``` r
+results &lt;- replicate(1000, {
+  group1 &lt;- rnorm(n_per_group, mean = 0, sd = 10)
+  group2 &lt;- rnorm(n_per_group, mean = 5, sd = 10)
+  t.test(group1, group2)$p.value &lt; 0.05
+})
+```
+
+--
+
+Each replication returns `TRUE` (significant) or `FALSE` (not significant).
+
+---
+
+## Wrapping It in a Function
+
+.pull-left[
+
+``` r
+power_sim &lt;- function(n_per_group, effect = 5, sd = 10,
+                      alpha = 0.05, nsim = 1000) {
+  significant &lt;- replicate(nsim, {
+    group1 &lt;- rnorm(n_per_group, mean = 0, sd = sd)
+    group2 &lt;- rnorm(n_per_group, mean = effect, sd = sd)
+    t.test(group1, group2)$p.value &lt; alpha
+  })
+  mean(significant)
+}
+```
+]
+--
+.pull-right[
+
+This function:
+1. Generates two groups with a known difference
+2. Runs a t-test
+3. Checks if p &lt; .05
+4. Repeats 1000 times
+5. Returns the proportion of significant results = **power**
+]
+
+---
+
+## Let's Try a Few Sample Sizes
+
+
+
+``` r
+set.seed(2024)
+power_sim(n_per_group = 10)
+```
+
+```
+## [1] 0.185
+```
+
+--
+
+
+``` r
+power_sim(n_per_group = 30)
+```
+
+```
+## [1] 0.484
+```
+
+--
+
+
+``` r
+power_sim(n_per_group = 60)
+```
+
+```
+## [1] 0.774
+```
+
+--
+
+.midi[
+Power goes up as sample size increases. But where does it cross the conventional 80% threshold?
+]
+
+---
+
+## The Power Curve
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-27-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.footnote[We need about 65 per group for 80% power. No formula required!]
+
+---
+
+## Why Simulation-Based Power?
+
+.pull-left[
+### Formulas work for simple cases
+- Two groups, equal variances
+- One predictor, normal outcome
+- Standard tests (t, ANOVA, chi-square)
+]
+
+--
+
+.pull-right[
+### Simulation works for everything
+- Complex designs (repeated measures, nested)
+- Non-normal data (e.g., reaction times)
+- Missing data patterns
+- Any model you can fit in R
+]
+
+--
+
+.footnote[See Fan (2012) in the *APA Handbook of Research Methods* for a great introduction.]
+
+---
+
+class: middle
+
+# How Much Data Do We Need?
+
+---
+
+## Sample Size and Precision
+
+.question[If we increase our sample size, do we get more precise estimates? How much more precise?]
+
+--
+
+Let's go back to our exam score simulation (r = 0.4) and see how the estimate varies.
+
+---
+
+## Watching Estimates Converge
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-28-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## The Distribution Narrows
+
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-29-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
+
+--
+
+.hand[.light-blue[Larger samples give estimates closer to the population value — the law of large numbers in action.]]
+
+---
+
+
+class: middle
+
+# Monte Carlo Simulation as a Research Tool
+
+---
+
+## What is a Monte Carlo Study?
+
+.alert[You've developed a new statistical method. How do you know it actually works?]
+
+--
+
+- You can't test it on real data — you never know the **truth**. A Monte Carlo study lets you create a world where you **do** know the truth, then see how your method performs.
+
+--
+
+.hand[.light-blue[It's like a laboratory experiment, but for statistical methods.]]
+
+---
+
+
+## The Simulation Workflow
+
+.question[What are the key steps?]
+
+--
+
+**Step 1:** Define population parameters (means, SDs, correlations, effects)
+
+--
+
+**Step 2:** Generate one dataset (`rnorm`, `runif`, `mvrnorm`)
+
+--
+
+**Step 3:** Apply your method and extract results (`lm`, `t.test`, `cor`)
+
+--
+
+**Step 4:** Repeat many times (`replicate` or `for` loop)
+
+--
+
+**Step 5:** Summarize across replications (bias, power, coverage)
+
+--
+
+.tip[Save results into a list and use `purrr::map()` to extract whatever you need.]
+
+---
+
+- How often does my test reject when it shouldn't? **Type I error rate**
+
+--
+
+- What happens when assumptions are violated? **Robustness**
+
+--
+
+- How large a sample do I need? **Sample size planning**
+
+--
+
+.footnote[
+For a deeper dive, see Muthén &amp; Muthén (2002) on using Monte Carlo simulation for sample size and power determination, and Fan (2012) in the APA Handbook for a wonderful introduction aimed at psychology researchers.
+]
+
+---
+
+class: middle
+
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Simulation as a way of thinking
+- ✅ Spurious correlations and sample size
+- ✅ Central Limit Theorem
+- ✅ Power analysis
+- ✅ Monte Carlo methodology
+]
+
+.pull-right[
+### Skills
+- ✅ Simulate correlated data with `mvrnorm()`
+- ✅ Convert correlation ↔ covariance matrices
+- ✅ Run power analyses by simulation
+- ✅ Design and evaluate simulation studies
+]
+
+---
+
+# Wrapping Up...
+
+---
+
+# Sources
+
+- Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
+- Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Fan, X. (2012). Designing simulation studies. In H. Cooper (Ed.), *APA Handbook of Research Methods in Psychology* (Vol. 2, pp. 427-444). APA.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

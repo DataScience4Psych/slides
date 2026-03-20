@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Data Simulations in R   📈</title>
+    <title>Data Simulations in R  🎲</title>
     <meta charset="utf-8" />
     <meta name="author" content="S. Mason Garrison" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -14,7 +14,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Data Simulations in R <br> 📈
+# Data Simulations in R<br> 🎲
 ]
 .author[
 ### S. Mason Garrison
@@ -40,119 +40,389 @@ layout: true
 
 
 
-
-
 class: middle
-# Getting Started with Data Simulations in R
+
+# Learning Goals
 
 ---
 
-## Introduction to Data Simulations
+## Learning Goals
 
-Simulating data is a powerful tool in statistics and data science.
+By the end of this session, you will be able to...
+
+- Generate random numbers from various distributions (normal, uniform, Poisson)
+- Use `set.seed()` for reproducible simulations
+- Create simulated datasets with quantitative and categorical variables
+- Use simulations to develop intuition about statistical distributions
+- Apply `replicate()` for repeated simulation experiments
+
+---
+
+class: middle
+
+# Why Simulate Data?
+
+---
+
+## Why Simulate Data?
+
+.alert[Imagine you're designing a psychology experiment, but you haven't collected any data yet. How do you know if your study will actually work?]
+
+--
+
+- Maybe you want to know: "If the true effect size is *d* = 0.5, will my sample of 30 participants be enough to detect it?"
+
+--
+
+- Or maybe you want to practice your analysis pipeline *before* you spend months in the lab.
+
+--
+
+- Simulation lets you create artificial data that behaves like real data — so you can plan, test, and build intuition.
+
+---
+
+# 
+
+- Simulation is a powerful tool for data scientists, especially in psychology where we often deal with complex, noisy data. 
+
 .pull-left[
-- It allows us to create artificial data that mimics real-world scenarios.
+- It allows us to explore "what if" scenarios and understand the behavior of statistical methods under controlled conditions.
 - Useful for:
   - Understanding statistical properties.
   - Testing hypotheses.
   - Demonstrating data analysis techniques.
+  - Diplomatically resolving reviewer comments about "what if the data looked like this instead?"
  ]
 .pull-right[
 &lt;br&gt;&lt;br&gt;
-&lt;img src="img/data scientist at work.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/data scientist at work.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
 ]
 
 ---
 
-## Generating Random Numbers
+class: middle
 
-Normal Distribution (`rnorm()`)
+# Generating Random Numbers
 
-.pull-left[
-- Commonly used for generating data that follows a Gaussian distribution.
-- Parameters: `n` (number of observations), `mean`, `sd` (standard deviation).
+---
 
+## The Normal Distribution: `rnorm()`
 
-```r
-set.seed(1234)
-observations &lt;- 
-  rnorm(n = 5, mean = 0, sd = 1)
-observations
-```
-
-```
-## [1] -1.2070657  0.2774292  1.0844412 -2.3456977  0.4291247
-```
+.question[
+If you measured the exam scores of every introductory psychology student at this university, what would the distribution look like?
 ]
+
+--
+
+- Probably something close to a **normal distribution** — a bell curve centered around some average.
+
+---
+
+# Perhaps something like this:
+.pull-left[
+
+```
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2
+## 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.
+```
+
+```
+## Warning in geom_text(aes(x = 98, y = 0.06), label = paste0("Mean (SD) = ", : All aesthetics have length 1, but the data has 100 rows.
+## ℹ Please consider using `annotate()` or provide this layer with
+##   data containing a single row.
+```
+
+```
+## Warning in geom_text(aes(x = 98, y = 0.03), label = paste0("+- 1 SD = ", : All aesthetics have length 1, but the data has 100 rows.
+## ℹ Please consider using `annotate()` or provide this layer with
+##   data containing a single row.
+```
+
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-3-1.png" alt="" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
 .pull-right[
-
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-4-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+- R can generate data that looks just like that, using `rnorm()`.
 ]
 
 ---
 
-## Uniform Distribution (`runif()`)
+## `rnorm()`: Start Simple
+
+Let's generate 5 random numbers from a standard normal distribution:
+
+
+
+
+``` r
+rnorm(5)
+```
+
+```
+## [1] -0.84085548  1.38435934 -1.25549186  0.07014277  1.71144087
+```
+
+--
+
+.midi[
+Notice how the values cluster around 0? That's because the default mean is 0, and the default standard deviation is 1.
+]
+
+---
+
+## `rnorm()`: Name Your Arguments
+
+It's clearer to specify the arguments explicitly:
+
+
+
+
+``` r
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```
+## [1] -1.3705874  0.9512344 -2.0176590  0.8445475  0.3004160
+```
+
+--
+
+- `n` = how many values to generate
+- `mean` = the center of the distribution
+- `sd` = how spread out the values are
+
+---
+
+## `rnorm()`: Make It Meaningful
+
+.question[
+Suppose exam scores in your class have a mean of 75 and a standard deviation of 10. How would you simulate 5 students' scores?
+]
+
+--
+
+
+``` r
+rnorm(n = 5, mean = 75, sd = 10)
+```
+
+```
+## [1] 86.36701 71.54886 84.49494 70.19404 79.74409
+```
+
+--
+
+.midi[
+These look like plausible exam scores! They're scattered around 75, mostly within about 10 points of the mean — exactly what we'd expect.
+]
+
+---
+
+## Changing Parameters in `rnorm()`
+
+
+``` r
+rnorm(n = 5, mean = 50, sd = 20)
+```
+
+```
+## [1] 63.97630 99.30568 46.03789 48.02040 21.58854
+```
+
+--
+
+Using vectors for arguments:
+
+
+``` r
+rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
+```
+
+```
+##  [1] -0.212758449  5.362138890 30.932826978  0.005486896
+##  [5] 15.720273382 12.015329504  1.416949724  0.536333842
+##  [9] 46.535237825  0.039130412
+```
+
+--
+
+.midi[
+The `mean` and `sd` vectors **recycle** — the first value gets mean 0 and sd 1, the second gets mean 5 and sd 5, the third gets mean 20 and sd 20, the fourth wraps back to mean 0 and sd 1, and so on.
+]
+
+---
+
+## Visualizing `rnorm()` Output
 
 .pull-left[
-- Generates data evenly distributed over a specified range.
-- Parameters: `n`, `min`, `max`.
-&lt;br&gt;&lt;br&gt;
+&lt;img src="d30_simulations_files/figure-html/norm-plot-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-```r
+.pull-right[
+- The curve shows the theoretical normal distribution.
+- The .hand[.light-blue[colored dots]] are our 5 simulated values.
+- Each time we run `rnorm()`, we get *different* dots — that's the randomness!
+]
+
+---
+
+## But Wait — Reproducibility!
+
+.question[
+If random numbers are different every time, how can we share our results with others and get the same answer?
+]
+
+---
+
+## `set.seed()`: Same Randomness Every Time
+
+
+``` r
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```
+## [1]  0.4764134 -0.1253800  1.0962162 -1.4442290  1.1478293
+```
+
+
+--
+
+Run it again with the **same seed**:
+
+
+``` r
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```
+## [1]  0.4764134 -0.1253800  1.0962162 -1.4442290  1.1478293
+```
+
+--
+
+.hand[Identical!]
+
+---
+
+## Without `set.seed()`, Results Change
+
+
+``` r
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```
+## [1] -0.46841204 -1.00595059  0.06356268  1.02497260  0.57314202
+```
+
+--
+
+
+``` r
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```
+## [1]  1.8471821  0.1119334 -0.7460373  1.6582137  0.7217206
+```
+
+--
+
+.tip[
+Always use `set.seed()` at the top of your script when doing simulations. Pick any number you like — it's just a starting point for the random number generator.
+]
+
+
+---
+## Uniform Distribution: `runif()`
+
+.question[
+What if every value in a range is equally likely — like reaction times that are randomly jittered between 0 and 500 ms?
+]
+
+--
+
+.pull-left[
+
+``` r
 set.seed(1235)
-observations &lt;- 
-  runif(n = 5, min = 0, max = 1)
-observations
+runif(n = 5, min = 0, max = 1)
 ```
 
 ```
 ## [1] 0.24259237 0.51535594 0.09942167 0.90153593 0.83890292
 ```
+
+- `min` and `max` define the range
+- Every value in that range is equally probable
 ]
+
 .pull-right[
-&lt;br&gt;
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-16-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
+
 ---
 
-## Poisson Distribution (`rpois()`)
+## Poisson Distribution: `rpois()`
+
+.question[
+How many times does a participant press a button in a 30-second window? How many errors does a student make on a task? These are **count data** — and the Poisson distribution models them.
+]
+
+--
 
 .pull-left[
-- Used for count-based data, such as the number of events in a fixed period.
-- Parameter: `lambda` (mean).
-&lt;br&gt;&lt;br&gt;
 
-```r
+``` r
 set.seed(123)
-observations &lt;- 
-  rpois(n = 5, lambda = 2)
-observations
+rpois(n = 5, lambda = 2)
 ```
 
 ```
 ## [1] 1 3 2 4 4
 ```
+
+- `lambda` = the average count (mean)
+- Values are always whole numbers (0, 1, 2, ...)
 ]
 
 .pull-right[
-&lt;br&gt;&lt;br&gt;
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-8-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-18-1.png" alt="" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-# Let's dig deeper into the Poisson distribution.
+class: middle
+
+# Let's dig deeper into the Poisson distribution...
+
+.hint[This is a great example of how simulation can help us understand a distribution that might be less familiar than the normal.]
+
+
+---
+
+# Digging Deeper into the Poisson Distribution
 
 .pull-left-narrow[
 - Lambda is the mean number of events in a fixed interval.
-- For demonstration purposes, 
+- For demonstration purposes,
   - we will generate data for different lambda values one at a time.
 ]
 .pull-right-wide[
-.tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
+.tip[ You don't have to generate Poisson-distributed data for different lambda values one at a time (lapply or purr is great for this). ]
 .midi[
 
-```r
+``` r
 set.seed(123)
 poisson_df1 &lt;- tibble(x = rpois(1000, 1),
                       lambda = 1)
@@ -165,10 +435,10 @@ poisson_df4 &lt;- tibble(x = rpois(1000, 4),
 poisson_df5 &lt;- tibble(x = rpois(1000, 5),
                       lambda =5)
 
-poisson_df &lt;- bind_rows(poisson_df1, 
-                        poisson_df2, 
-                        poisson_df3, 
-                        poisson_df4, 
+poisson_df &lt;- bind_rows(poisson_df1,
+                        poisson_df2,
+                        poisson_df3,
+                        poisson_df4,
                         poisson_df5)
 ```
 ]]
@@ -177,15 +447,16 @@ poisson_df &lt;- bind_rows(poisson_df1,
 
 ## Let's plot the Poisson Distributions
 
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-10-1.png" width="65%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-20-1.png" alt="" width="65%" style="display: block; margin: auto;" /&gt;
 --
 
 .footnote[ The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
+
 ---
 
-## Let's facet the plot 
+## Let's facet the plot
 
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-21-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 --
 
 .footnote[It definitely looks like it becomes more symmetric as lambda increases.]
@@ -198,19 +469,21 @@ poisson_df &lt;- bind_rows(poisson_df1,
 .pull-left-narrow[
 - We can keep generating data for different lambda values.
 - We can keep plotting the distributions for different lambda values.
-- Frankly, tt's a great way to develop your intuition 
+- Frankly, it's a great way to develop your intuition
   - for any distribution (Poisson included).
 ]
 --
 .pull-right-wide[
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-12-1.png" width="77%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-22-1.png" alt="" width="77%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 #  The possibilities are endless
 
-&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-13-1.png" width="77%" style="display: block; margin: auto;" /&gt;
+&lt;img src="d30_simulations_files/figure-html/unnamed-chunk-23-1.png" alt="" width="77%" style="display: block; margin: auto;" /&gt;
+
+
 
 ---
 
@@ -225,7 +498,7 @@ class: middle
 ### Generating Five Random Numbers
 
 
-```r
+``` r
 rnorm(5)
 ```
 
@@ -237,7 +510,7 @@ rnorm(5)
 
 
 
-```r
+``` r
 rnorm(n = 5, mean = 0, sd = 1)
 ```
 
@@ -251,7 +524,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 
 - Setting the seed ensures reproducibility:
 
-```r
+``` r
 set.seed(16)
 rnorm(n = 5, mean = 0, sd = 1)
 ```
@@ -263,7 +536,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 - The same seed gives the same results
 
 
-```r
+``` r
 set.seed(16)
 rnorm(n = 5, mean = 0, sd = 1)
 ```
@@ -275,7 +548,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 - As long as you use the same seed
 
 
-```r
+``` r
 rnorm(n = 5, mean = 0, sd = 1)
 ```
 
@@ -289,7 +562,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 ### Changing Parameters in `rnorm()`
 
 
-```r
+``` r
 rnorm(n = 5, mean = 50, sd = 20)
 ```
 
@@ -299,7 +572,8 @@ rnorm(n = 5, mean = 50, sd = 20)
 
 - Using vectors for arguments:
 
-```r
+
+``` r
 rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
 ```
 
@@ -307,6 +581,13 @@ rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
 ##  [1]  -1.6630805   7.8795477  29.4552023  -0.5427317  10.6384354
 ##  [6] -12.9559523  -0.3141739   4.0865922  49.4095699  -0.8658988
 ```
+
+--
+
+.tip[
+The `mean` and `sd` vectors **recycle** — the first value gets mean 0 and sd 1, the second gets mean 5 and sd 5, the third gets mean 20 and sd 20, the fourth wraps back to mean 0 and sd 1, and so on.
+]
+
 
 ---
 
@@ -316,46 +597,85 @@ class: middle
 
 ---
 
-## Generate Character Vectors with `rep()`
+## Why Do We Need `rep()`?
+
+.alert[You're setting up a between-subjects experiment with two conditions: **control** and **treatment**. You need to create group labels for your participants.]
+
+--
+
+- `rep()` repeats values in patterns — perfect for creating experimental conditions!
 
 ---
 
-### Using `letters` and `LETTERS`
+## `rep()`: The Basics
+
+.question[
+What's the difference between `each` and `times`?
+]
+
+--
 
 
-```r
-rep(letters[1:2], each = 3)
-```
-
-```
-## [1] "a" "a" "a" "b" "b" "b"
-```
-
-```r
-rep(letters[1:2], times = 3)
+``` r
+rep(c("control", "treatment"), each = 3)
 ```
 
 ```
-## [1] "a" "b" "a" "b" "a" "b"
+## [1] "control"   "control"   "control"   "treatment" "treatment"
+## [6] "treatment"
 ```
 
-```r
-rep(letters[1:2], length.out = 5)
-```
+.midi[`each = 3`: repeat each element 3 times before moving to the next]
 
-```
-## [1] "a" "b" "a" "b" "a"
-```
+--
 
-```r
-rep(letters[1:2], times = c(2, 4))
+
+``` r
+rep(c("control", "treatment"), times = 3)
 ```
 
 ```
-## [1] "a" "a" "b" "b" "b" "b"
+## [1] "control"   "treatment" "control"   "treatment" "control"  
+## [6] "treatment"
 ```
 
-```r
+.midi[`times = 3`: repeat the whole sequence 3 times]
+
+---
+
+## `rep()`: More Options
+
+Unequal group sizes:
+
+
+``` r
+rep(c("control", "treatment"), times = c(2, 4))
+```
+
+```
+## [1] "control"   "control"   "treatment" "treatment" "treatment"
+## [6] "treatment"
+```
+
+--
+
+Fixed total length:
+
+
+``` r
+rep(c("control", "treatment"), length.out = 5)
+```
+
+```
+## [1] "control"   "treatment" "control"   "treatment" "control"
+```
+
+---
+
+## `rep()`: Combining `each` and `times`
+
+
+``` r
 rep(letters[1:2], each = 2, times = 3)
 ```
 
@@ -363,7 +683,10 @@ rep(letters[1:2], each = 2, times = 3)
 ##  [1] "a" "a" "b" "b" "a" "a" "b" "b" "a" "a" "b" "b"
 ```
 
-```r
+--
+
+
+``` r
 rep(letters[1:2], each = 2, length.out = 7)
 ```
 
@@ -371,52 +694,109 @@ rep(letters[1:2], each = 2, length.out = 7)
 ## [1] "a" "a" "b" "b" "a" "a" "b"
 ```
 
+--
+
+.tip[
+`each` and `times` can be combined! This is useful for factorial designs where you need crossed conditions.
+]
+
+---
+
+## Using `letters` and `LETTERS`
+
+R has built-in vectors `letters` (a-z) and `LETTERS` (A-Z) that are handy for creating group labels:
+
+
+``` r
+rep(letters[1:2], each = 3)
+```
+
+```
+## [1] "a" "a" "a" "b" "b" "b"
+```
+
+``` r
+rep(LETTERS[1:3], times = 2)
+```
+
+```
+## [1] "A" "B" "C" "A" "B" "C"
+```
+
 ---
 
 class: middle
 
-# Creating Datasets with Quantitative and Categorical Variables
+# Building Simulated Datasets
 
 ---
+
+## Putting It Together: A Simple Experiment
+
+.question[
+You're simulating an experiment where two groups (control vs. treatment) complete a reaction time task. Under the null hypothesis, there's no group difference. What would that data look like?
+]
+
+--
 
 ## Simulate Data with No Differences Among Two Groups
 
 
-```r
-data.frame(group = rep(letters[1:2], each = 3),
-           response = rnorm(n = 6, mean = 0, sd = 1))
+``` r
+set.seed(42)
+data.frame(
+  group = rep(letters[1:2], each = 3),
+  response = rnorm(n = 6, mean = 0, sd = 1)
+)
 ```
 
 ```
 ##   group   response
-## 1     a  1.5274670
-## 2     a  1.0541781
-## 3     a  1.0300710
-## 4     b  0.8401609
-## 5     b  0.2169647
-## 6     b -0.6725256
+## 1     a  1.3709584
+## 2     a -0.5646982
+## 3     a  0.3631284
+## 4     b  0.6328626
+## 5     b  0.4042683
+## 6     b -0.1061245
 ```
+
+--
+
+.midi[
+Both groups draw from the *same* distribution. Any differences are just random noise.
+]
 
 ---
 
 ## Simulate Data with Differences Among Groups
 
+What if the treatment group is genuinely different?
 
-```r
-data.frame(group = rep(letters[1:2], each = 3),
-           factor = rep(LETTERS[3:5], times = 2),
-           response = rnorm(n = 6, mean = c(5, 10), sd = 1))
+
+``` r
+set.seed(42)
+data.frame(
+  group = rep(letters[1:2], each = 3),
+  factor = rep(LETTERS[3:5], times = 2),
+  response = rnorm(n = 6, mean = c(5, 10), sd = 1)
+)
 ```
 
 ```
 ##   group factor  response
-## 1     a      C  5.132599
-## 2     a      D  9.929073
-## 3     a      E  4.057305
-## 4     b      C  8.977969
-## 5     b      D  5.280555
-## 6     b      E 10.544783
+## 1     a      C  6.370958
+## 2     a      D  9.435302
+## 3     a      E  5.363128
+## 4     b      C 10.632863
+## 5     b      D  5.404268
+## 6     b      E  9.893875
 ```
+
+--
+
+.midi[
+Now the `mean` argument recycles: it alternates between 5 and 10, creating a genuine group difference in the data-generating process.
+]
 
 ---
 
@@ -426,16 +806,30 @@ class: middle
 
 ---
 
-## Using `replicate()` for Repeated Simulations
+## Why Repeat a Simulation?
 
-### Simple Example of `replicate()`
+.alert[Running a simulation once tells you what *could* happen. Running it 1,000 times tells you what *tends* to happen.]
+
+--
+
+.question[
+If you flip a coin 10 times, you might get 7 heads. But if you repeat that experiment 1,000 times, you'll see that the average is close to 5. That's the power of repetition!
+]
+
+---
+
+## `replicate()`: The Basics
+
+`replicate()` runs the same expression multiple times and collects the results.
 
 
-```r
+``` r
 set.seed(16)
-replicate(n = 3, 
-expr = rnorm(n = 5, mean = 0, sd = 1), 
-simplify = FALSE)
+replicate(
+  n = 3,
+  expr = rnorm(n = 5, mean = 0, sd = 1),
+  simplify = FALSE
+)
 ```
 
 ```
@@ -451,15 +845,172 @@ simplify = FALSE)
 
 ---
 
-### Creating Multiple Datasets
+## `replicate()`: Simulating Datasets
 
+.hand[.light-blue[This is where it gets powerful.]]
 
-```r
-simlist &lt;- replicate(n = 3, 
-          expr = data.frame(group = rep(letters[1:2], each = 3),
-                            response = rnorm(n = 6, mean = 0, sd = 1)),
-          simplify = FALSE)
+We can generate entire datasets over and over:
+
+.small[
+
+``` r
+set.seed(16)
+simlist &lt;- replicate(
+  n = 3,
+  expr = data.frame(
+    group = rep(letters[1:2], each = 3),
+    response = rnorm(n = 6, mean = 0, sd = 1)
+  ),
+  simplify = FALSE
+)
 ```
+]
+
+---
+
+# So what?
+
+.question[
+Why would you want 3 (or 3,000!) copies of the same experiment? Think about it before the next slide...
+]
+
+---
+
+## Peeking at Our Simulated Datasets
+
+
+``` r
+simlist[[1]]
+```
+
+```
+##   group   response
+## 1     a  0.4764134
+## 2     a -0.1253800
+## 3     a  1.0962162
+## 4     b -1.4442290
+## 5     b  1.1478293
+## 6     b -0.4684120
+```
+
+--
+
+
+``` r
+simlist[[2]]
+```
+
+```
+##   group    response
+## 1     a -1.00595059
+## 2     a  0.06356268
+## 3     a  1.02497260
+## 4     b  0.57314202
+## 5     b  1.84718210
+## 6     b  0.11193337
+```
+
+--
+
+.midi[
+Same structure, different random values. Each one is like running the experiment again in a parallel universe.
+]
+
+---
+
+class: middle
+
+# A Preview of What's Next...
+
+---
+
+## Simulating Correlated Variables
+
+So far, every variable we've simulated has been **independent**. But real psychological data has *structure*.
+
+--
+
+.question[
+If a student scores high on a midterm, what do you expect on the final? Probably also high — the variables are **correlated**.
+]
+
+--
+
+
+``` r
+set.seed(123)
+sigma &lt;- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
+correlated_scores &lt;- mvrnorm(n = 5, mu = c(80, 75), Sigma = sigma)
+colnames(correlated_scores) &lt;- c("midterm", "final")
+correlated_scores
+```
+
+```
+##       midterm    final
+## [1,] 78.65708 75.37215
+## [2,] 79.57020 75.03112
+## [3,] 81.98241 75.71735
+## [4,] 80.40449 74.71764
+## [5,] 80.33480 74.88914
+```
+
+---
+
+## What Does `mvrnorm()` Do?
+
+- `mu` = the means of each variable
+- `Sigma` = a **covariance matrix** that encodes how the variables relate
+
+--
+
+
+``` r
+sigma
+```
+
+```
+##      [,1] [,2]
+## [1,]  1.0  0.5
+## [2,]  0.5  1.0
+```
+
+.midi[
+The 0.5 off-diagonal values mean our two variables have a positive correlation of 0.5 — knowing one gives you some information about the other.
+]
+
+--
+
+.tip[
+Next time, we'll go deeper: building full correlation structures, using simulation for power analysis, and understanding the Central Limit Theorem — all through simulation.
+]
+
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Why simulation matters for experiment planning
+- ✅ How distributions (normal, uniform, Poisson) shape data
+- ✅ Why reproducibility requires `set.seed()`
+]
+
+.pull-right[
+### Skills
+- ✅ Generate random data with `rnorm()`, `runif()`, `rpois()`
+- ✅ Create group labels with `rep()`
+- ✅ Build simulated datasets with multiple variables
+- ✅ Repeat simulations with `replicate()`
+]
 
 ---
 
@@ -472,18 +1023,16 @@ class: middle
 # Sources
 
 - Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
-- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
-
----
+- Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false,
-"slideNumberFormat": ""
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

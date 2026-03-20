@@ -1,0 +1,880 @@
+---
+title: "Simulating Correlated Data <br> `r emo::ji('game_die')`"
+author: "S. Mason Garrison"
+output:
+  xaringan::moon_reader:
+    css: "../slides.css"
+    lib_dir: libs
+    nature:
+      ratio: "16:9"
+      highlightLines: true
+      highlightStyle: solarized-light
+      countIncrementalSlides: false
+      slideNumberFormat: ""
+---
+
+
+```{r child = "../setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(MASS)
+library(emo)
+library(viridis)
+library(knitr)
+# Remember to compile
+# xaringan::inf_mr(cast_from = "..")
+```
+
+class: middle
+
+# Learning Goals
+
+---
+
+## Learning Goals
+
+By the end of this session, you will be able to...
+
+- Explain why and when simulation is a useful tool in data science and psychology
+- Simulate correlated variables using `mvrnorm()` from the MASS package
+- Use simulation to demonstrate statistical concepts like the Central Limit Theorem
+- Conduct a basic power analysis through simulation
+- Evaluate how sample size affects the precision and reliability of estimates
+
+---
+
+class: middle
+
+# Why Simulate?
+
+---
+
+
+.pull-left-narrow[
+We've already learned the **mechanics** of simulation:
+- `rnorm()`, `runif()`, `rpois()`
+- `rep()` for categorical variables
+- `replicate()` and `for()` loops
+]
+
+--
+
+.pull-right-wide[
+Now, we ask: **what can we actually do with all of this?**
+
+Simulation lets us...
+- Develop intuition about chance
+- Demonstrate statistical principles
+- Plan studies before collecting data
+- Test whether our methods actually work
+]
+
+--
+
+.hand[.light-blue[We have the tools. Now let's put them to work.]]
+
+---
+
+## Simulation as a Way of Thinking
+
+.alert[Have you ever found a "significant" result and wondered... is this real, or did I just get lucky?]
+
+--
+
+- Simulation gives us a way to answer that question **directly** — create a world where we **know** the truth, generate data, and see what happens.
+
+---
+
+class: middle
+
+# Spurious Correlations
+
+---
+
+## The Danger of Small Samples
+
+.question[
+You collect data on two variables from 10 people and find r = 0.45. Is that a real relationship?
+]
+
+--
+
+- Let's ask: **how often would we see r = 0.45 or more from two completely unrelated variables?**
+
+---
+
+## Simulating Spurious Correlations
+
+.midi.pull-left-narrow[
+
+```{r}
+set.seed(2024)
+spurious_cors <- replicate(10000, {
+  x <- rnorm(10)
+  y <- rnorm(10)
+  cor(x, y)
+})
+mean(abs(spurious_cors) >= 0.45)
+```
+]
+
+--
+
+- About `r round(mean(abs(spurious_cors) >= 0.45) * 100)`% of the time!
+
+--
+
+.hand[.light-blue[With n = 10, even moderate correlations are expected by chance alone.]]
+
+.footnote[
+See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) for fun real-world examples.
+]
+
+---
+
+## Let's Watch It Happen
+
+Here's one random sample of n = 10 from two unrelated variables:
+
+```{r echo=FALSE, fig.align="center", out.width="50%"}
+set.seed(77)
+d1 <- data.frame(x = rnorm(10), y = rnorm(10))
+ggplot(d1, aes(x, y)) +
+  geom_point(size = 3, color = viridis(5)[2]) +
+  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
+  labs(title = paste0("Sample 1: r = ", round(cor(d1$x, d1$y), 2)),
+       x = "X (random)", y = "Y (random)") +
+  theme_minimal()
+```
+
+---
+
+## Another Random Sample
+
+A **second** sample — same population (no relationship):
+
+```{r echo=FALSE, fig.align="center", out.width="50%"}
+set.seed(88)
+d2 <- data.frame(x = rnorm(10), y = rnorm(10))
+ggplot(d2, aes(x, y)) +
+  geom_point(size = 3, color = viridis(5)[3]) +
+  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
+  labs(title = paste0("Sample 2: r = ", round(cor(d2$x, d2$y), 2)),
+       x = "X (random)", y = "Y (random)") +
+  theme_minimal()
+```
+
+--
+
+Different sample, different correlation — and the true value is **zero** in both cases.
+
+---
+
+## And another...
+
+And a **third ** ...
+
+```{r echo=FALSE, fig.align="center", out.width="50%"}
+set.seed(99)
+d3 <- data.frame(x = rnorm(10), y = rnorm(10))
+ggplot(d3, aes(x, y)) +
+  geom_point(size = 3, color = viridis(5)[1]) +
+  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
+  labs(title = paste0("Sample 3: r = ", round(cor(d3$x, d3$y), 2)),
+       x = "X (random)", y = "Y (random)") +
+  theme_minimal()
+```
+
+--
+
+.hand[.light-blue[We could keep going...]]
+
+---
+
+## 10,000 Samples Later
+
+```{r echo=FALSE, fig.align="center", out.width="70%"}
+data.frame(r = spurious_cors) %>%
+  ggplot(aes(x = r)) +
+  geom_histogram(binwidth = 0.05, fill = viridis(5)[3], color = "black") +
+  geom_vline(xintercept = c(-0.45, 0.45), linetype = "dashed",
+             color = viridis(5)[1], linewidth = 1) +
+  labs(title = "Correlations Between Two Unrelated Variables (n = 10)",
+       subtitle = "10,000 simulations from independent normals",
+       x = "Correlation (r)", y = "Count") +
+  theme_minimal()
+```
+
+---
+
+## What About Larger Samples?
+
+```{r echo=FALSE, fig.align="center", out.width="70%"}
+set.seed(2024)
+sim_cors <- data.frame()
+for (n in c(10, 30, 100, 500)) {
+  cors <- replicate(5000, cor(rnorm(n), rnorm(n)))
+  sim_cors <- rbind(sim_cors, data.frame(n = n, r = cors))
+}
+ggplot(sim_cors, aes(x = r, fill = factor(n))) +
+  geom_histogram(binwidth = 0.03, color = "black", alpha = 0.8) +
+  facet_wrap(~ paste("n =", n), scales = "free_y") +
+  scale_fill_viridis_d(end = 0.85) +
+  guides(fill = "none") +
+  labs(title = "Spurious Correlations Shrink with Sample Size",
+       x = "Correlation (r)", y = "Count") +
+  theme_minimal()
+```
+
+--
+
+.footnote[
+This is why we need large samples. Simulation lets us **see** this behavior directly.
+]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# The Central Limit Theorem via Simulation
+
+---
+
+## The Central Limit Theorem
+
+- The sampling distribution of the mean approaches a normal distribution as n increases, regardless of the population distribution.
+
+--
+
+- That's a big claim! Let's test it with a decidedly non-normal distribution.
+
+---
+
+## Start with a Skewed Distribution
+
+.pull-left[
+```{r echo=FALSE, fig.align="center", out.width="95%"}
+set.seed(123)
+data.frame(x = rpois(1000, lambda = 2)) %>%
+  ggplot(aes(x = x)) +
+  geom_bar(fill = viridis(5)[4], color = "black") +
+  labs(title = "Poisson Distribution (lambda = 2)",
+       x = "Value", y = "Count") +
+  theme_minimal()
+```
+]
+
+.pull-right[
+This is clearly **not** normal — it's discrete, bounded at 0, and skewed right.
+]
+--
+
+.question[
+What do you think happens when we take the **mean** of samples from this distribution?
+]
+
+
+---
+
+## CLT in Action
+
+```{r echo=FALSE, fig.align="center", out.width="70%"}
+set.seed(42)
+clt_data <- data.frame()
+for (n in c(1, 5, 30, 100)) {
+  means <- replicate(5000, mean(rpois(n, lambda = 2)))
+  clt_data <- rbind(clt_data, data.frame(n = n, sample_mean = means))
+}
+ggplot(clt_data, aes(x = sample_mean, fill = factor(n))) +
+  geom_histogram(binwidth = 0.1, color = "black", alpha = 0.8) +
+  facet_wrap(~ paste("n =", n), scales = "free") +
+  scale_fill_viridis_d(end = 0.85) +
+  guides(fill = "none") +
+  labs(title = "Sampling Distribution of the Mean (Poisson, lambda = 2)",
+       subtitle = "5,000 replications at each sample size",
+       x = "Sample Mean", y = "Count") +
+  theme_minimal()
+```
+
+--
+
+.footnote[Even with n = 30, the distribution of means looks approximately normal!]
+
+---
+
+## The CLT Code
+
+.midi[
+```{r eval=FALSE}
+set.seed(42)
+sample_means <- replicate(
+  n = 5000,
+  expr = mean(rpois(n = 30, lambda = 2))
+)
+data.frame(sample_means) %>%
+  ggplot(aes(x = sample_means)) +
+  geom_histogram(binwidth = 0.1)
+```
+]
+
+--
+
+.question[
+What would happen if you replaced `rpois(30, lambda = 2)` with `runif(30, min = 0, max = 1)`? Would the CLT still hold?
+]
+
+--
+
+.tip[Yes! The CLT holds for **any** population distribution, as long as n is large enough.]
+
+---
+
+class: middle
+
+# Wrapping Up...
+
+---
+
+class: middle
+
+# Simulating Correlated Data with `mvrnorm()`
+
+---
+
+## The Problem with One Variable at a Time
+
+.alert[Imagine simulating data for a study on exam performance. You need midterm and final scores that are **correlated** — but building that with `y = 0.5*x + noise` is clunky.]
+
+--
+
+- You need to **know the equation** in advance
+- Hard to control the **exact correlation**
+- Doesn't scale to 3, 4, 5+ variables
+
+--
+
+.tip[`mvrnorm()` from the **MASS** package lets you specify the correlation structure directly.]
+
+---
+
+## What Does `mvrnorm()` Need?
+
+```{r eval=FALSE}
+mvrnorm(n, mu, Sigma)
+```
+
+--
+
+- **`n`** — number of observations (e.g., 200 students)
+
+--
+
+- **`mu`** — vector of means (one per variable)
+
+--
+
+- **`Sigma`** — **covariance matrix** (variances on diagonal, covariances off-diagonal)
+
+.footnote[A correlation matrix is a standardized covariance matrix where the diagonal is all 1s.]
+
+---
+
+## Step 1: Define Means and Correlation
+
+Let's simulate midterm and final exam scores (mean = 100, SD = 15, r = 0.4):
+
+```{r}
+mu <- c(100, 100)
+cor_mat <- matrix(c(1.0, 0.4,
+                    0.4, 1.0), ncol = 2)
+```
+
+--
+
+## Step 2: Convert to Covariance
+
+$\text{Cov}(X_i, X_j) = r_{ij} \cdot SD_i \cdot SD_j$
+
+```{r}
+sd_vec <- c(15, 15)
+cov_mat <- cor_mat * (sd_vec %*% t(sd_vec))
+cov_mat
+```
+
+
+--
+
+.midi[
+The diagonal values (225) are the **variances** ($15^2 = 225$). The off-diagonal values (90) are the **covariances** ($0.4 \times 15 \times 15 = 90$).
+]
+
+---
+
+## Step 3: Generate the Data
+
+.pull-left[
+```{r}
+library(MASS)
+set.seed(11)
+sim <- mvrnorm(
+  n = 200, mu = mu,
+  Sigma = cov_mat
+)
+colnames(sim) <- c("Midterm", "Final")
+head(sim, 4)
+```
+]
+
+.pull-right[
+```{r echo=FALSE, fig.align="center", out.width="95%"}
+as.data.frame(sim) %>%
+  ggplot(aes(x = Midterm, y = Final)) +
+  geom_point(color = viridis(5)[2], alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
+  labs(title = "Simulated Exam Scores",
+       subtitle = "r = 0.4") +
+  theme_minimal()
+```
+]
+
+---
+
+## Step 4: Check Your Work
+
+.question[How do we know the simulated data matches what we asked for?]
+
+--
+
+Always verify your parameters after generating data:
+
+.pull-left[
+```{r}
+# Check means (target: 100, 100)
+colMeans(sim)
+```
+```{r}
+# Check SDs (target: 15, 15)
+apply(sim, 2, sd)
+```
+]
+.pull-right[
+```{r}
+# Check correlation (target: 0.4)
+cor(sim)
+```
+]
+
+--
+
+.footnote[Close but not exact — that's sampling variability!]
+
+---
+
+## Scaling Up: Four Exam Scores
+
+.small[
+```{r}
+var_names <- c("Quiz", "Midterm", "Project", "Final")
+mu <- c(75, 70, 80, 72)
+sd_exams <- c(10, 12, 8, 15)
+cor_exams <- matrix(
+  c(1.00, 0.55, 0.35, 0.50,
+    0.55, 1.00, 0.40, 0.65,
+    0.35, 0.40, 1.00, 0.45,
+    0.50, 0.65, 0.45, 1.00),
+  nrow = 4, byrow = TRUE,
+  dimnames = list(var_names, var_names))
+cov_exams <- cor_exams * (sd_exams %*% t(sd_exams))
+```
+]
+
+--
+
+.tip[
+When building correlation matrices, make sure they are **symmetric** (same value above and below the diagonal) and **positive definite** (all eigenvalues > 0). R will throw an error if the matrix isn't valid.
+]
+---
+
+## Did It Work?
+
+```{r echo=FALSE, fig.align="center", out.width="60%"}
+set.seed(42)
+exam_data <- mvrnorm(n = 150, mu = mu, Sigma = cov_exams)
+colnames(exam_data) <- var_names
+sim_cor <- cor(exam_data)
+pop_long <- as.data.frame(as.table(cor_exams)) %>% rename(Population = Freq)
+sim_long <- as.data.frame(as.table(sim_cor)) %>% rename(Sample = Freq)
+comparison <- left_join(pop_long, sim_long, by = c("Var1", "Var2")) %>%
+  filter(as.numeric(Var1) < as.numeric(Var2))
+ggplot(comparison, aes(x = Population, y = Sample)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray50") +
+  geom_point(size = 4, color = viridis(5)[2]) +
+  geom_text(aes(label = paste0(Var1, "-", Var2)), vjust = -1, size = 3.5) +
+  labs(title = "Population vs. Sample Correlations (n = 150)",
+       subtitle = "Points on the dashed line = perfect recovery",
+       x = "Population Correlation", y = "Sample Correlation") +
+  coord_equal(xlim = c(0.2, 0.8), ylim = c(0.2, 0.8)) +
+  theme_minimal()
+```
+
+--
+
+The recovered correlations are close to the population values — simulation is working as intended.
+
+---
+
+class: middle
+
+# Power Analysis via Simulation
+
+---
+
+## What is Statistical Power?
+
+**Power** = the probability of detecting an effect *when one truly exists*.
+
+--
+
+- Low power means we miss real effects
+- High power means we reliably detect effects
+
+--
+
+.question[You're planning a study comparing reaction times between two groups. How many participants do you need?]
+
+--
+
+We can answer this **entirely through simulation**.
+
+---
+
+## Building a Power Simulation, Step by Step
+
+First, let's think about what a single simulated experiment looks like:
+
+```{r eval=FALSE}
+group1 <- rnorm(n_per_group, mean = 0, sd = 10)
+group2 <- rnorm(n_per_group, mean = 5, sd = 10)
+t.test(group1, group2)$p.value < 0.05
+```
+
+--
+
+We generate two groups with a **known** difference (5 points), then test whether we can detect it...
+
+---
+
+## Repeating the Experiment
+
+
+Now repeat that experiment many times:
+
+
+```{r eval=FALSE}
+results <- replicate(1000, {
+  group1 <- rnorm(n_per_group, mean = 0, sd = 10)
+  group2 <- rnorm(n_per_group, mean = 5, sd = 10)
+  t.test(group1, group2)$p.value < 0.05
+})
+```
+
+--
+
+Each replication returns `TRUE` (significant) or `FALSE` (not significant).
+
+---
+
+## Wrapping It in a Function
+
+.pull-left[
+```{r}
+power_sim <- function(n_per_group, effect = 5, sd = 10,
+                      alpha = 0.05, nsim = 1000) {
+  significant <- replicate(nsim, {
+    group1 <- rnorm(n_per_group, mean = 0, sd = sd)
+    group2 <- rnorm(n_per_group, mean = effect, sd = sd)
+    t.test(group1, group2)$p.value < alpha
+  })
+  mean(significant)
+}
+```
+]
+--
+.pull-right[
+
+This function:
+1. Generates two groups with a known difference
+2. Runs a t-test
+3. Checks if p < .05
+4. Repeats 1000 times
+5. Returns the proportion of significant results = **power**
+]
+
+---
+
+## Let's Try a Few Sample Sizes
+
+
+```{r}
+set.seed(2024)
+power_sim(n_per_group = 10)
+```
+
+--
+
+```{r}
+power_sim(n_per_group = 30)
+```
+
+--
+
+```{r}
+power_sim(n_per_group = 60)
+```
+
+--
+
+.midi[
+Power goes up as sample size increases. But where does it cross the conventional 80% threshold?
+]
+
+---
+
+## The Power Curve
+
+```{r echo=FALSE, fig.align="center", out.width="80%"}
+set.seed(2024)
+sample_sizes <- seq(10, 100, by = 5)
+power_results <- sapply(sample_sizes, power_sim)
+data.frame(n = sample_sizes, power = power_results) %>%
+  ggplot(aes(x = n, y = power)) +
+  geom_line(color = viridis(3)[2], linewidth = 1.2) +
+  geom_point(color = viridis(3)[2], size = 2) +
+  geom_hline(yintercept = 0.80, linetype = "dashed", color = viridis(3)[1]) +
+  annotate("text", x = 15, y = 0.82, label = "80% power",
+           color = viridis(3)[1], size = 4, hjust = 0) +
+  labs(title = "Statistical Power by Sample Size",
+       subtitle = "Two-group comparison, d = 0.5 (effect = 5, SD = 10)",
+       x = "n per group", y = "Power") +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  theme_minimal()
+```
+
+--
+
+.footnote[We need about `r sample_sizes[which.min(abs(power_results - 0.80))]` per group for 80% power. No formula required!]
+
+---
+
+## Why Simulation-Based Power?
+
+.pull-left[
+### Formulas work for simple cases
+- Two groups, equal variances
+- One predictor, normal outcome
+- Standard tests (t, ANOVA, chi-square)
+]
+
+--
+
+.pull-right[
+### Simulation works for everything
+- Complex designs (repeated measures, nested)
+- Non-normal data (e.g., reaction times)
+- Missing data patterns
+- Any model you can fit in R
+]
+
+--
+
+.footnote[See Fan (2012) in the *APA Handbook of Research Methods* for a great introduction.]
+
+---
+
+class: middle
+
+# How Much Data Do We Need?
+
+---
+
+## Sample Size and Precision
+
+.question[If we increase our sample size, do we get more precise estimates? How much more precise?]
+
+--
+
+Let's go back to our exam score simulation (r = 0.4) and see how the estimate varies.
+
+---
+
+## Watching Estimates Converge
+
+```{r echo=FALSE, fig.align="center", out.width="80%"}
+set.seed(124)
+sample_sizes <- seq(30, 300, by = 30)
+reps <- 50
+results <- data.frame()
+for (size in sample_sizes) {
+  for (r in 1:reps) {
+    d <- mvrnorm(n = size, mu = c(100, 100),
+                 Sigma = matrix(c(225, 90, 90, 225), ncol = 2))
+    results <- rbind(results,
+      data.frame(SampleSize = size, Repetition = r,
+                 Correlation = cor(d[, 1], d[, 2])))
+  }
+}
+ggplot(results, aes(x = factor(SampleSize), y = Correlation)) +
+  geom_boxplot(fill = viridis(3)[2], alpha = 0.7, outlier.size = 1) +
+  geom_hline(yintercept = 0.4, linetype = "dashed", color = viridis(3)[1], linewidth = 1) +
+  annotate("text", x = 1, y = 0.42, label = "Population r = 0.4",
+           hjust = 0, color = viridis(3)[1], size = 3.5) +
+  labs(title = "Correlation Estimates by Sample Size",
+       x = "Sample Size", y = "Estimated Correlation") +
+  theme_minimal()
+```
+
+---
+
+## The Distribution Narrows
+
+```{r echo=FALSE, fig.align="center", out.width="70%"}
+show_sizes <- c(30, 90, 150, 300)
+results_subset <- results %>% filter(SampleSize %in% show_sizes)
+ggplot(results_subset, aes(x = Correlation, fill = factor(SampleSize))) +
+  geom_density(alpha = 0.6) +
+  geom_vline(xintercept = 0.4, linetype = "dashed", linewidth = 1) +
+  scale_fill_viridis_d(end = 0.85) +
+  labs(title = "Correlation Estimates Converge as n Increases",
+       x = "Estimated Correlation", y = "Density", fill = "Sample\nSize") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+--
+
+.hand[.light-blue[Larger samples give estimates closer to the population value — the law of large numbers in action.]]
+
+---
+
+
+class: middle
+
+# Monte Carlo Simulation as a Research Tool
+
+---
+
+## What is a Monte Carlo Study?
+
+.alert[You've developed a new statistical method. How do you know it actually works?]
+
+--
+
+- You can't test it on real data — you never know the **truth**. A Monte Carlo study lets you create a world where you **do** know the truth, then see how your method performs.
+
+--
+
+.hand[.light-blue[It's like a laboratory experiment, but for statistical methods.]]
+
+---
+
+
+## The Simulation Workflow
+
+.question[What are the key steps?]
+
+--
+
+**Step 1:** Define population parameters (means, SDs, correlations, effects)
+
+--
+
+**Step 2:** Generate one dataset (`rnorm`, `runif`, `mvrnorm`)
+
+--
+
+**Step 3:** Apply your method and extract results (`lm`, `t.test`, `cor`)
+
+--
+
+**Step 4:** Repeat many times (`replicate` or `for` loop)
+
+--
+
+**Step 5:** Summarize across replications (bias, power, coverage)
+
+--
+
+.tip[Save results into a list and use `purrr::map()` to extract whatever you need.]
+
+---
+
+- How often does my test reject when it shouldn't? **Type I error rate**
+
+--
+
+- What happens when assumptions are violated? **Robustness**
+
+--
+
+- How large a sample do I need? **Sample size planning**
+
+--
+
+.footnote[
+For a deeper dive, see Muthén & Muthén (2002) on using Monte Carlo simulation for sample size and power determination, and Fan (2012) in the APA Handbook for a wonderful introduction aimed at psychology researchers.
+]
+
+---
+
+class: middle
+
+
+---
+
+class: middle
+
+# Summary: Learning Goals Achieved
+
+---
+
+## What We've Learned
+
+Today, you should now be able to...
+
+.pull-left[
+### Concepts
+- ✅ Simulation as a way of thinking
+- ✅ Spurious correlations and sample size
+- ✅ Central Limit Theorem
+- ✅ Power analysis
+- ✅ Monte Carlo methodology
+]
+
+.pull-right[
+### Skills
+- ✅ Simulate correlated data with `mvrnorm()`
+- ✅ Convert correlation ↔ covariance matrices
+- ✅ Run power analyses by simulation
+- ✅ Design and evaluate simulation studies
+]
+
+---
+
+# Wrapping Up...
+
+---
+
+# Sources
+
+- Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
+- Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
+- Fan, X. (2012). Designing simulation studies. In H. Cooper (Ed.), *APA Handbook of Research Methods in Psychology* (Vol. 2, pp. 427-444). APA.
+

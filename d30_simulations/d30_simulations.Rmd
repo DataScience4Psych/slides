@@ -1,5 +1,5 @@
 ---
-title: "Data Simulations in R <br> `r emo::ji('chart_with_upwards_trend')`"
+title: "Data Simulations in R<br> `r emo::ji('game_die')`"
 author: "S. Mason Garrison"
 output:
   xaringan::moon_reader:
@@ -19,12 +19,14 @@ output:
 ```
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(MASS)
 library(openintro)
 library(tidymodels)
 library(DT)
 library(emo)
-library(openintro)
 library(viridis)
+set.seed(1234)
 # Remember to compile
 # xaringan::inf_mr(cast_from = "..")
 ```
@@ -40,161 +42,415 @@ class: middle
 By the end of this session, you will be able to...
 
 - Generate random numbers from various distributions (normal, uniform, Poisson)
-- Create simulated datasets with specific properties and relationships
+- Use `set.seed()` for reproducible simulations
+- Create simulated datasets with quantitative and categorical variables
 - Use simulations to develop intuition about statistical distributions
-- Apply replication techniques for repeated simulation experiments
+- Apply `replicate()` for repeated simulation experiments
 
 ---
-
-
 
 class: middle
-# Getting Started with Data Simulations in R
+
+# Why Simulate Data?
 
 ---
 
-## Introduction to Data Simulations
+## Why Simulate Data?
 
-Simulating data is a powerful tool in statistics and data science.
+.alert[Imagine you're designing a psychology experiment, but you haven't collected any data yet. How do you know if your study will actually work?]
+
+--
+
+- Maybe you want to know: "If the true effect size is *d* = 0.5, will my sample of 30 participants be enough to detect it?"
+
+--
+
+- Or maybe you want to practice your analysis pipeline *before* you spend months in the lab.
+
+--
+
+- Simulation lets you create artificial data that behaves like real data — so you can plan, test, and build intuition.
+
+---
+
+# 
+
+- Simulation is a powerful tool for data scientists, especially in psychology where we often deal with complex, noisy data. 
+
 .pull-left[
-- It allows us to create artificial data that mimics real-world scenarios.
+- It allows us to explore "what if" scenarios and understand the behavior of statistical methods under controlled conditions.
 - Useful for:
   - Understanding statistical properties.
   - Testing hypotheses.
   - Demonstrating data analysis techniques.
+  - Diplomatically resolving reviewer comments about "what if the data looked like this instead?"
  ]
 .pull-right[
 <br><br>
-```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+```{r echo=FALSE, fig.align = "center", out.width = "80%"}
 knitr::include_graphics("img/data scientist at work.png")
 ```
 ]
 
+]
+
 ---
 
-## Generating Random Numbers
+class: middle
 
-Normal Distribution (`rnorm()`)
+# Generating Random Numbers
 
+---
+
+## The Normal Distribution: `rnorm()`
+
+.question[
+If you measured the exam scores of every introductory psychology student at this university, what would the distribution look like?
+]
+
+--
+
+- Probably something close to a **normal distribution** — a bell curve centered around some average.
+
+---
+
+# Perhaps something like this:
 .pull-left[
-- Commonly used for generating data that follows a Gaussian distribution.
-- Parameters: `n` (number of observations), `mean`, `sd` (standard deviation).
-
-```{r}
+```{r echo=FALSE, fig.align = "center", out.width = "90%"}
 set.seed(1234)
 observations <- 
-  rnorm(n = 5, mean = 0, sd = 1)
-observations
-```
-]
-.pull-right[
+  rnorm(n = 100, mean = 80, sd = 10)
 
-```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+
 library(viridis)
+library(ggplot2)
 # Create data frame including the observations
-observations_df <- data.frame(y = dnorm(observations), x = observations)
+observations_df <- data.frame(y = dnorm(observations, mean = 80, sd = 10), x = observations, graded= observations )
+observations_df <- observations_df %>%  mutate(graded = case_when(graded > 100 ~ 100,
+                                                              graded < 0 ~ 0,
+                                                              TRUE ~ graded))
 
 # Plot using ggplot2
-p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
-  stat_function(fun = dnorm, n = 101) +
-  labs(title = "Normal Distribution", x = "x", y = "Density") +
-  theme_minimal()
-
+p <- ggplot(observations_df, aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density),x = graded
+                     ), bins = 20, fill = viridis(7, option = "D")[1], alpha = 0.5) +
+  stat_function(fun = dnorm, args = list(mean = 80, sd = 10), color = viridis(7, option = "D")[5], size = 1) +
+  labs(title = "Simulated Exam Scores", x = "Score", y = "Density") +
+  theme_minimal() 
 # Add points to the plot
-p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, option = "D")[3], size = 2)
+#p + geom_point(data = observations_df, aes(x = graded, y = y), color = viridis(7, option = "D")[3], size = 2)
+p + # add summary statistics to the plot
+geom_vline(aes(xintercept = mean(observations)), color = viridis(7, option = "D")[3],
+           linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = mean(observations) + sd(observations)), color = viridis(7, option = "D")[3],
+             
+             linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = mean(observations) - sd(observations)), color = viridis(7, option = "D")[3], linetype = "dashed", size = 1) +
+  geom_text(aes(x =98, y = 0.06), label = paste0("Mean (SD) = ", round(mean(observations), 2), "(", round(sd(observations), 2), ")"), color = viridis(7, option = "D")[3], vjust = -1) +
+  # +- z scores
+  geom_text(aes(x = 98, y = 0.03), label = paste0("+- 1 SD = ", round(mean(observations) + sd(observations), 2), " / ", round(mean(observations) - sd(observations), 2)),color = viridis(7, option = "D")[3], vjust = -1)
 
 ```
+]
+
+.pull-right[
+- R can generate data that looks just like that, using `rnorm()`.
 ]
 
 ---
 
-## Uniform Distribution (`runif()`)
+## `rnorm()`: Start Simple
+
+Let's generate 5 random numbers from a standard normal distribution:
+
+```{r echo=FALSE}
+set.seed(5)
+```
+
+```{r}
+rnorm(5)
+```
+
+--
+
+.midi[
+Notice how the values cluster around 0? That's because the default mean is 0, and the default standard deviation is 1.
+]
+
+---
+
+## `rnorm()`: Name Your Arguments
+
+It's clearer to specify the arguments explicitly:
+
+```{r echo=FALSE}
+set.seed(515)
+```
+
+```{r}
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+--
+
+- `n` = how many values to generate
+- `mean` = the center of the distribution
+- `sd` = how spread out the values are
+
+---
+
+## `rnorm()`: Make It Meaningful
+
+.question[
+Suppose exam scores in your class have a mean of 75 and a standard deviation of 10. How would you simulate 5 students' scores?
+]
+
+--
+
+```{r}
+rnorm(n = 5, mean = 75, sd = 10)
+```
+
+--
+
+.midi[
+These look like plausible exam scores! They're scattered around 75, mostly within about 10 points of the mean — exactly what we'd expect.
+]
+
+---
+
+## Changing Parameters in `rnorm()`
+
+```{r}
+rnorm(n = 5, mean = 50, sd = 20)
+```
+
+--
+
+Using vectors for arguments:
+
+```{r}
+rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
+```
+
+--
+
+.midi[
+The `mean` and `sd` vectors **recycle** — the first value gets mean 0 and sd 1, the second gets mean 5 and sd 5, the third gets mean 20 and sd 20, the fourth wraps back to mean 0 and sd 1, and so on.
+]
+
+---
+
+## Visualizing `rnorm()` Output
 
 .pull-left[
-- Generates data evenly distributed over a specified range.
-- Parameters: `n`, `min`, `max`.
-<br><br>
+```{r norm-plot, echo=FALSE, fig.align = "center", out.width = "100%"}
+set.seed(1234)
+observations <- rnorm(n = 5, mean = 0, sd = 1)
+observations_df <- data.frame(
+  y = dnorm(observations),
+  x = observations
+)
+
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dnorm, n = 101) +
+  geom_point(
+    data = observations_df,
+    aes(y = y, x = x),
+    color = viridis(7, option = "D")[3],
+    size = 3
+  ) +
+  labs(
+    title = "5 Draws from a Standard Normal",
+    x = "Value",
+    y = "Density"
+  ) +
+  theme_minimal()
+```
+]
+
+.pull-right[
+- The curve shows the theoretical normal distribution.
+- The .hand[.light-blue[colored dots]] are our 5 simulated values.
+- Each time we run `rnorm()`, we get *different* dots — that's the randomness!
+]
+
+---
+
+## But Wait — Reproducibility!
+
+.question[
+If random numbers are different every time, how can we share our results with others and get the same answer?
+]
+
+---
+
+## `set.seed()`: Same Randomness Every Time
+
+```{r}
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+
+--
+
+Run it again with the **same seed**:
+
+```{r}
+set.seed(16)
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+--
+
+.hand[Identical!]
+
+---
+
+## Without `set.seed()`, Results Change
+
+```{r}
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+--
+
+```{r}
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+--
+
+.tip[
+Always use `set.seed()` at the top of your script when doing simulations. Pick any number you like — it's just a starting point for the random number generator.
+]
+
+
+---
+## Uniform Distribution: `runif()`
+
+.question[
+What if every value in a range is equally likely — like reaction times that are randomly jittered between 0 and 500 ms?
+]
+
+--
+
+.pull-left[
 ```{r}
 set.seed(1235)
-observations <- 
-  runif(n = 5, min = 0, max = 1)
-observations
+runif(n = 5, min = 0, max = 1)
 ```
+
+- `min` and `max` define the range
+- Every value in that range is equally probable
 ]
+
 .pull-right[
-<br>
-```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+```{r echo=FALSE, fig.align = "center", out.width = "100%"}
+set.seed(1235)
+observations <- runif(n = 5, min = 0, max = 1)
+observations_df <- data.frame(
+  y = rep(0.5, length(observations)),
+  x = observations
+)
 
-# Create data frame including the observations
-observations_df <- data.frame(y = rep(.5, length(observations)), x = observations)
-
-# Plot using ggplot2
-p <- ggplot(data.frame(x = c(-4, 4)), aes(x)) +
+ggplot(data.frame(x = c(-4, 4)), aes(x)) +
   stat_function(fun = dunif, n = 101) +
-  labs(title = "Uniform Distribution", x = "x", y = "Density") +
+  geom_point(
+    data = observations_df,
+    aes(y = y, x = x),
+    color = viridis(7, option = "D")[5],
+    size = 3
+  ) +
+  labs(
+    title = "Uniform Distribution",
+    x = "Value",
+    y = "Density"
+  ) +
   theme_minimal()
-
-# Add points to the plot
-p + geom_point(data = observations_df, aes(y = y, x = x), color = viridis(7, option = "D")[5], size = 2)
-
 ```
 ]
+
 ---
 
-## Poisson Distribution (`rpois()`)
+## Poisson Distribution: `rpois()`
+
+.question[
+How many times does a participant press a button in a 30-second window? How many errors does a student make on a task? These are **count data** — and the Poisson distribution models them.
+]
+
+--
 
 .pull-left[
-- Used for count-based data, such as the number of events in a fixed period.
-- Parameter: `lambda` (mean).
-<br><br>
 ```{r}
 set.seed(123)
-observations <- 
-  rpois(n = 5, lambda = 2)
-observations
+rpois(n = 5, lambda = 2)
 ```
+
+- `lambda` = the average count (mean)
+- Values are always whole numbers (0, 1, 2, ...)
 ]
 
 .pull-right[
-<br><br>
-```{r echo=FALSE, fig.align = "center", out.width = "90%"}
+```{r echo=FALSE, fig.align = "center", out.width = "100%"}
+set.seed(123)
+observations <- rpois(n = 5, lambda = 2)
+observations_df <- data.frame(
+  x = observations,
+  y = dpois(observations, lambda = 2)
+)
 
-observations_df <- data.frame(x = observations, y = dpois(observations, lambda = 2))
+x_values <- rep(seq(0, 10, by = 1), 2)
+poisson_df <- data.frame(
+  x = x_values,
+  y = dpois(x_values, lambda = 2)
+)
 
-# Create data for the Poisson distribution
-x_values <- rep(seq(0, 10, by = 1),2)
-poisson_df <- data.frame(x = x_values, y = dpois(x_values, lambda = 2))
-
-# Plot using ggplot2
 p <- ggplot(poisson_df, aes(x = x, y = y)) +
-  geom_bar(stat = "identity", fill = viridis::viridis(7, option = "D")[5]) +
-  labs(title = "Poisson Distribution (Lambda = 2)", x = "x", y = "Density") +
+  geom_bar(
+    stat = "identity",
+    fill = viridis(7, option = "D")[5]
+  ) +
+  labs(
+    title = "Poisson Distribution (Lambda = 2)",
+    x = "Count",
+    y = "Density"
+  ) +
   theme_minimal()
 
-# make it jitter
-#p + geom_jitter(data = observations_df, aes(y = y, x = x), color = "red", size = 2,height = 0.025, width=0.01)
-# Overlay observations as smaller bars
-
-
-# Overlay observations as smaller bars
-p + geom_bar(data = observations_df, aes(x = x, y = after_stat(count)/sum(after_stat(count))), 
-             stat = "count", fill = viridis::viridis(7, option = "D")[1], alpha = 1, 
-             position = "identity", width = 0.2)
-
+p + geom_bar(
+  data = observations_df,
+  aes(x = x, y = after_stat(count) / sum(after_stat(count))),
+  stat = "count",
+  fill = viridis(7, option = "D")[1],
+  alpha = 1,
+  position = "identity",
+  width = 0.2
+)
 ```
 ]
 
 ---
 
-# Let's dig deeper into the Poisson distribution.
+class: middle
+
+# Let's dig deeper into the Poisson distribution...
+
+.hint[This is a great example of how simulation can help us understand a distribution that might be less familiar than the normal.]
+
+
+---
+
+# Digging Deeper into the Poisson Distribution
 
 .pull-left-narrow[
 - Lambda is the mean number of events in a fixed interval.
-- For demonstration purposes, 
+- For demonstration purposes,
   - we will generate data for different lambda values one at a time.
 ]
 .pull-right-wide[
-.tip[ You don't have to generate Poisson-distributed data for different lambda values  one at a time (lapply or purr is great for this). ]
+.tip[ You don't have to generate Poisson-distributed data for different lambda values one at a time (lapply or purr is great for this). ]
 .midi[
 ```{r}
 set.seed(123)
@@ -209,10 +465,10 @@ poisson_df4 <- tibble(x = rpois(1000, 4),
 poisson_df5 <- tibble(x = rpois(1000, 5),
                       lambda =5)
 
-poisson_df <- bind_rows(poisson_df1, 
-                        poisson_df2, 
-                        poisson_df3, 
-                        poisson_df4, 
+poisson_df <- bind_rows(poisson_df1,
+                        poisson_df2,
+                        poisson_df3,
+                        poisson_df4,
                         poisson_df5)
 ```
 ]]
@@ -223,36 +479,22 @@ poisson_df <- bind_rows(poisson_df1,
 
 ```{r echo=FALSE, fig.align = "center", out.width = "65%"}
  poisson_df <- mutate(poisson_df, lambda_factor = as.factor(lambda))
- # Generate Poisson-distributed data for different lambda values
-# lambdas <- c(1, 2, 3, 4, 5)
-# data_list <- lapply(lambdas, function(lambda) {
-#     data.frame(x = rpois(1000, lambda), lambda = as.factor(lambda))
-# })
-
- # Combine the data into one dataframe
-#poisson_df <- do.call(rbind, data_list)
-
-# Load necessary libraries
- # Set seed for reproducibility
-
- 
-# Plot the bar distributions using ggplot2
-
 
 p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
      geom_bar(position = position_dodge(), stat = "count") +
-     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values", 
+     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values",
           x = "Count", y = "Frequency") +
-     scale_fill_viridis_d() +  # Adds a nice color gradient based on the 'lambda'
+     scale_fill_viridis_d() +
      theme_minimal() + theme(legend.position = "bottom")
 p
 ```
 --
 
 .footnote[ The plot shows the Poisson distributions for different lambda values. The center of distribution increases as lambda does. It also looks like it becomes more symmetric as lambda increases.]
+
 ---
 
-## Let's facet the plot 
+## Let's facet the plot
 
 ```{r echo=FALSE, fig.align = "center", out.width = "80%"}
 p + facet_wrap(~lambda_factor)  + geom_vline(aes(xintercept = as.numeric(lambda)), linetype = "dashed", color = "red") + theme(legend.position = "bottom")
@@ -270,13 +512,13 @@ p + facet_wrap(~lambda_factor)  + geom_vline(aes(xintercept = as.numeric(lambda)
 .pull-left-narrow[
 - We can keep generating data for different lambda values.
 - We can keep plotting the distributions for different lambda values.
-- Frankly, tt's a great way to develop your intuition 
+- Frankly, it's a great way to develop your intuition
   - for any distribution (Poisson included).
 ]
 --
 .pull-right-wide[
 ```{r echo=FALSE, fig.align = "center", out.width = "77%"}
- 
+
  # Generate Poisson-distributed data for different lambda values
 lambdas <- c(1:10)
  data_list <- lapply(lambdas, function(lambda) {
@@ -284,25 +526,16 @@ lambdas <- c(1:10)
  })
 
  # Combine the data into one dataframe
-poisson_df <- do.call(rbind, data_list) %>% 
+poisson_df <- do.call(rbind, data_list) %>%
   mutate(lambda_factor = as.factor(lambda))
 
-# Load necessary libraries
- # Set seed for reproducibility
-
- 
-# Plot the bar distributions using ggplot2
 p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
      geom_bar(position = position_dodge(), stat = "count") +
-     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values", 
+     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values",
           x = "Count", y = "Frequency") +
-     scale_fill_viridis_d(option = "plasma") +  # Adds a nice color gradient based on the 'lambda'
-     theme_minimal() + #guides(fill = "none")+ 
-  theme(legend.position = "bottom")#+
-  # this trick lets you use a continuous color scale
- #  geom_point(data = poisson_df, aes(x = x,y=0, color = lambda), 
-  #         alpha = 0) +
- #    scale_color_gradientn(colors = viridis(length(lambdas), option = "plasma"), name = "Lambda")
+     scale_fill_viridis_d(option = "plasma") +
+     theme_minimal() +
+  theme(legend.position = "bottom")
 p
 ```
 ]
@@ -312,7 +545,7 @@ p
 #  The possibilities are endless
 
 ```{r echo=FALSE, fig.align = "center", out.width = "77%"}
- 
+
  # Generate Poisson-distributed data for different lambda values
 lambdas <- c(1:50)
  data_list <- lapply(lambdas, function(lambda) {
@@ -320,27 +553,23 @@ lambdas <- c(1:50)
  })
 
  # Combine the data into one dataframe
-poisson_df <- do.call(rbind, data_list) %>% 
+poisson_df <- do.call(rbind, data_list) %>%
   mutate(lambda_factor = as.factor(lambda))
 
-# Load necessary libraries
- # Set seed for reproducibility
-
- 
-# Plot the bar distributions using ggplot2
 p <- ggplot(poisson_df, aes(x = x, fill = lambda_factor)) +
      geom_bar(position = position_dodge(), stat = "count") +
-     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values", 
+     labs(title = "Bar Plot of Poisson Distributions for Different Lambda Values",
           x = "Count", y = "Frequency") +
-     scale_fill_viridis_d(option = "plasma") +  # Adds a nice color gradient based on the 'lambda'
+     scale_fill_viridis_d(option = "plasma") +
      theme_minimal() + guides(fill = "none")+ theme(legend.position = "bottom")+
-  # this trick lets you use a continuous color scale
-   geom_point(data = poisson_df, aes(x = x,y=0, color = lambda), 
+  geom_point(data = poisson_df, aes(x = x,y=0, color = lambda),
            alpha = 0) +
      scale_color_gradientn(colors = viridis(length(lambdas), option = "plasma"), name = "Lambda")
 p
 
 ```
+
+
 
 ---
 
@@ -353,6 +582,7 @@ class: middle
 ## Using `rnorm()`
 
 ### Generating Five Random Numbers
+
 ```{r echo=FALSE}
 set.seed(5)
 ```
@@ -361,6 +591,7 @@ rnorm(5)
 ```
 
 - Specify arguments explicitly for clarity:
+
 ```{r echo=FALSE}
 set.seed(515)
 ```
@@ -374,6 +605,7 @@ rnorm(n = 5, mean = 0, sd = 1)
 ### Setting the Random Seed for Reproducibility
 
 - Setting the seed ensures reproducibility:
+
 ```{r}
 set.seed(16)
 rnorm(n = 5, mean = 0, sd = 1)
@@ -386,7 +618,7 @@ set.seed(16)
 rnorm(n = 5, mean = 0, sd = 1)
 ```
 
-- As long as you use the same seed
+- As long as you use the same seed, you'll get the same random numbers — perfect for sharing your code and results with others!
 
 ```{r}
 rnorm(n = 5, mean = 0, sd = 1)
@@ -402,9 +634,17 @@ rnorm(n = 5, mean = 50, sd = 20)
 ```
 
 - Using vectors for arguments:
+
 ```{r}
 rnorm(n = 10, mean = c(0, 5, 20), sd = c(1, 5, 20))
 ```
+
+--
+
+.tip[
+The `mean` and `sd` vectors **recycle** — the first value gets mean 0 and sd 1, the second gets mean 5 and sd 5, the third gets mean 20 and sd 20, the fourth wraps back to mean 0 and sd 1, and so on.
+]
+
 
 ---
 
@@ -414,45 +654,139 @@ class: middle
 
 ---
 
-## Generate Character Vectors with `rep()`
+## Why Do We Need `rep()`?
+
+.alert[You're setting up a between-subjects experiment with two conditions: **control** and **treatment**. You need to create group labels for your participants.]
+
+--
+
+- `rep()` repeats values in patterns — perfect for creating experimental conditions!
 
 ---
 
-### Using `letters` and `LETTERS`
+## `rep()`: The Basics
+
+.question[
+What's the difference between `each` and `times`?
+]
+
+--
+
+```{r}
+rep(c("control", "treatment"), each = 3)
+```
+
+.midi[`each = 3`: repeat each element 3 times before moving to the next]
+
+--
+
+```{r}
+rep(c("control", "treatment"), times = 3)
+```
+
+.midi[`times = 3`: repeat the whole sequence 3 times]
+
+---
+
+## `rep()`: More Options
+
+Unequal group sizes:
+
+```{r}
+rep(c("control", "treatment"), times = c(2, 4))
+```
+
+--
+
+Fixed total length:
+
+```{r}
+rep(c("control", "treatment"), length.out = 5)
+```
+
+---
+
+## `rep()`: Combining `each` and `times`
+
+```{r}
+rep(letters[1:2], each = 2, times = 3)
+```
+
+--
+
+```{r}
+rep(letters[1:2], each = 2, length.out = 7)
+```
+
+--
+
+.tip[
+`each` and `times` can be combined! This is useful for factorial designs where you need crossed conditions.
+]
+
+---
+
+## Using `letters` and `LETTERS`
+
+R has built-in vectors `letters` (a-z) and `LETTERS` (A-Z) that are handy for creating group labels:
 
 ```{r}
 rep(letters[1:2], each = 3)
-rep(letters[1:2], times = 3)
-rep(letters[1:2], length.out = 5)
-rep(letters[1:2], times = c(2, 4))
-rep(letters[1:2], each = 2, times = 3)
-rep(letters[1:2], each = 2, length.out = 7)
+rep(LETTERS[1:3], times = 2)
 ```
 
 ---
 
 class: middle
 
-# Creating Datasets with Quantitative and Categorical Variables
+# Building Simulated Datasets
 
 ---
+
+## Putting It Together: A Simple Experiment
+
+.question[
+You're simulating an experiment where two groups (control vs. treatment) complete a reaction time task. Under the null hypothesis, there's no group difference. What would that data look like?
+]
+
+--
 
 ## Simulate Data with No Differences Among Two Groups
 
 ```{r}
-data.frame(group = rep(letters[1:2], each = 3),
-           response = rnorm(n = 6, mean = 0, sd = 1))
+set.seed(42)
+data.frame(
+  group = rep(letters[1:2], each = 3),
+  response = rnorm(n = 6, mean = 0, sd = 1)
+)
 ```
+
+--
+
+.midi[
+Both groups draw from the *same* distribution. Any differences are just random noise.
+]
 
 ---
 
 ## Simulate Data with Differences Among Groups
 
+What if the treatment group is genuinely different?
+
 ```{r}
-data.frame(group = rep(letters[1:2], each = 3),
-           factor = rep(LETTERS[3:5], times = 2),
-           response = rnorm(n = 6, mean = c(5, 10), sd = 1))
+set.seed(42)
+data.frame(
+  group = rep(letters[1:2], each = 3),
+  factor = rep(LETTERS[3:5], times = 2),
+  response = rnorm(n = 6, mean = c(5, 10), sd = 1)
+)
 ```
+
+--
+
+.midi[
+Now the `mean` argument recycles: it alternates between 5 and 10, creating a genuine group difference in the data-generating process.
+]
 
 ---
 
@@ -462,82 +796,132 @@ class: middle
 
 ---
 
-## Using `replicate()` for Repeated Simulations
+## Why Repeat a Simulation?
 
-### Simple Example of `replicate()`
+.alert[Running a simulation once tells you what *could* happen. Running it 1,000 times tells you what *tends* to happen.]
+
+--
+
+.question[
+If you flip a coin 10 times, you might get 7 heads. But if you repeat that experiment 1,000 times, you'll see that the average is close to 5. That's the power of repetition!
+]
+
+---
+
+## `replicate()`: The Basics
+
+`replicate()` runs the same expression multiple times and collects the results.
 
 ```{r}
 set.seed(16)
-replicate(n = 3, 
-expr = rnorm(n = 5, mean = 0, sd = 1), 
-simplify = FALSE)
+replicate(
+  n = 3,
+  expr = rnorm(n = 5, mean = 0, sd = 1),
+  simplify = FALSE
+)
 ```
 
 ---
 
-### Creating Multiple Datasets
+## `replicate()`: Simulating Datasets
+
+.hand[.light-blue[This is where it gets powerful.]]
+
+We can generate entire datasets over and over:
+
+.small[
+```{r}
+set.seed(16)
+simlist <- replicate(
+  n = 3,
+  expr = data.frame(
+    group = rep(letters[1:2], each = 3),
+    response = rnorm(n = 6, mean = 0, sd = 1)
+  ),
+  simplify = FALSE
+)
+```
+]
+
+---
+
+# So what?
+
+.question[
+Why would you want 3 (or 3,000!) copies of the same experiment? Think about it before the next slide...
+]
+
+---
+
+## Peeking at Our Simulated Datasets
 
 ```{r}
-simlist <- replicate(n = 3, 
-          expr = data.frame(group = rep(letters[1:2], each = 3),
-                            response = rnorm(n = 6, mean = 0, sd = 1)),
-          simplify = FALSE)
+simlist[[1]]
 ```
 
+--
+
+```{r}
+simlist[[2]]
+```
+
+--
+
+.midi[
+Same structure, different random values. Each one is like running the experiment again in a parallel universe.
+]
 
 ---
 
 class: middle
 
-# Advanced Simulation Techniques
+# A Preview of What's Next...
 
 ---
 
 ## Simulating Correlated Variables
 
+So far, every variable we've simulated has been **independent**. But real psychological data has *structure*.
+
+--
+
+.question[
+If a student scores high on a midterm, what do you expect on the final? Probably also high — the variables are **correlated**.
+]
+
+--
+
 ```{r}
 set.seed(123)
 sigma <- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
-mvrnorm(n = 5, mu = c(0, 0), Sigma = sigma)
+correlated_scores <- mvrnorm(n = 5, mu = c(80, 75), Sigma = sigma)
+colnames(correlated_scores) <- c("midterm", "final")
+correlated_scores
 ```
 
-.question[
-What does the correlation matrix represent? How would you interpret these results? 
+---
+
+## What Does `mvrnorm()` Do?
+
+- `mu` = the means of each variable
+- `Sigma` = a **covariance matrix** that encodes how the variables relate
+
+--
+
+```{r}
+sigma
+```
+
+.midi[
+The 0.5 off-diagonal values mean our two variables have a positive correlation of 0.5 — knowing one gives you some information about the other.
 ]
 
----
+--
 
-Power Analysis Simulations
-
-
-power_simulation <- function(n, effect_size, alpha = 0.05, nsim = 1000) {
-  significant_results <- replicate(nsim, {
-    group1 <- rnorm(n, mean = 0, sd = 1)
-    group2 <- rnorm(n, mean = effect_size, sd = 1)
-    t.test(group1, group2)$p.value < alpha
-  })
-  mean(significant_results)
-}
-
-power_simulation(n = 30, effect_size = 0.5)
-
-
-.question[
-How would you use this function to determine the sample size needed for 80% power?
+.tip[
+Next time, we'll go deeper: building full correlation structures, using simulation for power analysis, and understanding the Central Limit Theorem — all through simulation.
 ]
 
----
-
-class: middle
-
-# Wrapping Up...
-
----
-
-# Sources
-
-- Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
-- Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 
 ---
 
@@ -553,16 +937,17 @@ Today, you should now be able to...
 
 .pull-left[
 ### Concepts
-- ✅ Random number generation
-- ✅ Statistical distributions
-- ✅ Simulation principles
+- ✅ Why simulation matters for experiment planning
+- ✅ How distributions (normal, uniform, Poisson) shape data
+- ✅ Why reproducibility requires `set.seed()`
 ]
 
 .pull-right[
 ### Skills
-- ✅ Generate from various distributions
-- ✅ Create simulated datasets
-- ✅ Apply replication techniques
+- ✅ Generate random data with `rnorm()`, `runif()`, `rpois()`
+- ✅ Create group labels with `rep()`
+- ✅ Build simulated datasets with multiple variables
+- ✅ Repeat simulations with `replicate()`
 ]
 
 ---
@@ -572,3 +957,8 @@ class: middle
 # Wrapping Up...
 
 ---
+
+# Sources
+
+- Ariel Muldoon's [tutorial](https://github.com/aosmith16/simulation-helper-functions)
+- Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
