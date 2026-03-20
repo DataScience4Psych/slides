@@ -1,31 +1,43 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Simulating Correlated Data   🎲</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="S. Mason Garrison" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Simulating Correlated Data <br> 🎲
+]
+.author[
+### S. Mason Garrison
+]
+
 ---
-title: "Simulating Correlated Data <br> `r emo::ji('game_die')`"
-author: "S. Mason Garrison"
-output:
-  xaringan::moon_reader:
-    css: "../slides.css"
-    lib_dir: libs
-    nature:
-      ratio: "16:9"
-      highlightLines: true
-      highlightStyle: solarized-light
-      countIncrementalSlides: false
-      slideNumberFormat: ""
+
+
+
+
+
+
+layout: true
+  
+&lt;div class="my-footer"&gt;
+&lt;span&gt;
+&lt;a href="https://DataScience4Psych.github.io/DataScience4Psych/" target="_blank"&gt;Data Science for Psychologists&lt;/a&gt;
+&lt;/span&gt;
+&lt;/div&gt; 
+
 ---
 
 
-```{r child = "../setup.Rmd"}
-```
-
-```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(MASS)
-library(emo)
-library(viridis)
-library(knitr)
-# Remember to compile
-# xaringan::inf_mr(cast_from = "..")
-```
 
 class: middle
 
@@ -109,20 +121,25 @@ You collect data on two variables from 10 people and find r = 0.45. Is that a re
 
 .midi.pull-left-narrow[
 
-```{r}
+
+``` r
 set.seed(2024)
-spurious_cors <- replicate(10000, {
-  x <- rnorm(10)
-  y <- rnorm(10)
+spurious_cors &lt;- replicate(10000, {
+  x &lt;- rnorm(10)
+  y &lt;- rnorm(10)
   cor(x, y)
 })
-mean(abs(spurious_cors) >= 0.45)
+mean(abs(spurious_cors) &gt;= 0.45)
+```
+
+```
+## [1] 0.1896
 ```
 ]
 
 --
 
-- About `r round(mean(abs(spurious_cors) >= 0.45) * 100)`% of the time!
+- About 19% of the time!
 
 --
 
@@ -138,16 +155,7 @@ See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) fo
 
 Here's one random sample of n = 10 from two unrelated variables:
 
-```{r echo=FALSE, fig.align="center", out.width="50%"}
-set.seed(77)
-d1 <- data.frame(x = rnorm(10), y = rnorm(10))
-ggplot(d1, aes(x, y)) +
-  geom_point(size = 3, color = viridis(5)[2]) +
-  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
-  labs(title = paste0("Sample 1: r = ", round(cor(d1$x, d1$y), 2)),
-       x = "X (random)", y = "Y (random)") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-3-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -155,16 +163,7 @@ ggplot(d1, aes(x, y)) +
 
 A **second** sample — same population (no relationship):
 
-```{r echo=FALSE, fig.align="center", out.width="50%"}
-set.seed(88)
-d2 <- data.frame(x = rnorm(10), y = rnorm(10))
-ggplot(d2, aes(x, y)) +
-  geom_point(size = 3, color = viridis(5)[3]) +
-  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
-  labs(title = paste0("Sample 2: r = ", round(cor(d2$x, d2$y), 2)),
-       x = "X (random)", y = "Y (random)") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-4-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -176,16 +175,7 @@ Different sample, different correlation — and the true value is **zero** in bo
 
 And a **third ** ...
 
-```{r echo=FALSE, fig.align="center", out.width="50%"}
-set.seed(99)
-d3 <- data.frame(x = rnorm(10), y = rnorm(10))
-ggplot(d3, aes(x, y)) +
-  geom_point(size = 3, color = viridis(5)[1]) +
-  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
-  labs(title = paste0("Sample 3: r = ", round(cor(d3$x, d3$y), 2)),
-       x = "X (random)", y = "Y (random)") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-5-1.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -195,38 +185,13 @@ ggplot(d3, aes(x, y)) +
 
 ## 10,000 Samples Later
 
-```{r echo=FALSE, fig.align="center", out.width="70%"}
-data.frame(r = spurious_cors) %>%
-  ggplot(aes(x = r)) +
-  geom_histogram(binwidth = 0.05, fill = viridis(5)[3], color = "black") +
-  geom_vline(xintercept = c(-0.45, 0.45), linetype = "dashed",
-             color = viridis(5)[1], linewidth = 1) +
-  labs(title = "Correlations Between Two Unrelated Variables (n = 10)",
-       subtitle = "10,000 simulations from independent normals",
-       x = "Correlation (r)", y = "Count") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-6-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## What About Larger Samples?
 
-```{r echo=FALSE, fig.align="center", out.width="70%"}
-set.seed(2024)
-sim_cors <- data.frame()
-for (n in c(10, 30, 100, 500)) {
-  cors <- replicate(5000, cor(rnorm(n), rnorm(n)))
-  sim_cors <- rbind(sim_cors, data.frame(n = n, r = cors))
-}
-ggplot(sim_cors, aes(x = r, fill = factor(n))) +
-  geom_histogram(binwidth = 0.03, color = "black", alpha = 0.8) +
-  facet_wrap(~ paste("n =", n), scales = "free_y") +
-  scale_fill_viridis_d(end = 0.85) +
-  guides(fill = "none") +
-  labs(title = "Spurious Correlations Shrink with Sample Size",
-       x = "Correlation (r)", y = "Count") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-7-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -261,15 +226,7 @@ class: middle
 ## Start with a Skewed Distribution
 
 .pull-left[
-```{r echo=FALSE, fig.align="center", out.width="95%"}
-set.seed(123)
-data.frame(x = rpois(1000, lambda = 2)) %>%
-  ggplot(aes(x = x)) +
-  geom_bar(fill = viridis(5)[4], color = "black") +
-  labs(title = "Poisson Distribution (lambda = 2)",
-       x = "Value", y = "Count") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-8-1.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
@@ -286,23 +243,7 @@ What do you think happens when we take the **mean** of samples from this distrib
 
 ## CLT in Action
 
-```{r echo=FALSE, fig.align="center", out.width="70%"}
-set.seed(42)
-clt_data <- data.frame()
-for (n in c(1, 5, 30, 100)) {
-  means <- replicate(5000, mean(rpois(n, lambda = 2)))
-  clt_data <- rbind(clt_data, data.frame(n = n, sample_mean = means))
-}
-ggplot(clt_data, aes(x = sample_mean, fill = factor(n))) +
-  geom_histogram(binwidth = 0.1, color = "black", alpha = 0.8) +
-  facet_wrap(~ paste("n =", n), scales = "free") +
-  scale_fill_viridis_d(end = 0.85) +
-  guides(fill = "none") +
-  labs(title = "Sampling Distribution of the Mean (Poisson, lambda = 2)",
-       subtitle = "5,000 replications at each sample size",
-       x = "Sample Mean", y = "Count") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-9-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -313,13 +254,14 @@ ggplot(clt_data, aes(x = sample_mean, fill = factor(n))) +
 ## The CLT Code
 
 .midi[
-```{r eval=FALSE}
+
+``` r
 set.seed(42)
-sample_means <- replicate(
+sample_means &lt;- replicate(
   n = 5000,
   expr = mean(rpois(n = 30, lambda = 2))
 )
-data.frame(sample_means) %>%
+data.frame(sample_means) %&gt;%
   ggplot(aes(x = sample_means)) +
   geom_histogram(binwidth = 0.1)
 ```
@@ -367,7 +309,8 @@ class: middle
 
 ## What Does `mvrnorm()` Need?
 
-```{r eval=FALSE}
+
+``` r
 mvrnorm(n, mu, Sigma)
 ```
 
@@ -391,9 +334,10 @@ mvrnorm(n, mu, Sigma)
 
 Let's simulate midterm and final exam scores (mean = 100, SD = 15, r = 0.4):
 
-```{r}
-mu <- c(100, 100)
-cor_mat <- matrix(c(1.0, 0.4,
+
+``` r
+mu &lt;- c(100, 100)
+cor_mat &lt;- matrix(c(1.0, 0.4,
                     0.4, 1.0), ncol = 2)
 ```
 
@@ -401,12 +345,19 @@ cor_mat <- matrix(c(1.0, 0.4,
 
 ## Step 2: Convert to Covariance
 
-$\text{Cov}(X_i, X_j) = r_{ij} \cdot SD_i \cdot SD_j$
+`\(\text{Cov}(X_i, X_j) = r_{ij} \cdot SD_i \cdot SD_j\)`
 
-```{r}
-sd_vec <- c(15, 15)
-cov_mat <- cor_mat * (sd_vec %*% t(sd_vec))
+
+``` r
+sd_vec &lt;- c(15, 15)
+cov_mat &lt;- cor_mat * (sd_vec %*% t(sd_vec))
 cov_mat
+```
+
+```
+##      [,1] [,2]
+## [1,]  225   90
+## [2,]   90  225
 ```
 
 ---
@@ -414,28 +365,29 @@ cov_mat
 ## Step 3: Generate the Data
 
 .pull-left[
-```{r}
+
+``` r
 library(MASS)
 set.seed(11)
-sim <- mvrnorm(
+sim &lt;- mvrnorm(
   n = 200, mu = mu,
   Sigma = cov_mat
 )
-colnames(sim) <- c("Midterm", "Final")
+colnames(sim) &lt;- c("Midterm", "Final")
 head(sim, 4)
+```
+
+```
+##       Midterm     Final
+## [1,] 87.17429  97.99095
+## [2,] 86.76120 113.90631
+## [3,] 91.28541  70.64941
+## [4,] 75.66035  90.13732
 ```
 ]
 
 .pull-right[
-```{r echo=FALSE, fig.align="center", out.width="95%"}
-as.data.frame(sim) %>%
-  ggplot(aes(x = Midterm, y = Final)) +
-  geom_point(color = viridis(5)[2], alpha = 0.6) +
-  geom_smooth(method = "lm", se = FALSE, color = viridis(5)[4], formula = "y ~ x") +
-  labs(title = "Simulated Exam Scores",
-       subtitle = "r = 0.4") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-15-1.png" alt="" width="95%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -447,19 +399,38 @@ as.data.frame(sim) %>%
 --
 
 .pull-left[
-```{r}
+
+``` r
 # Check means (target: 100, 100)
 colMeans(sim)
 ```
-```{r}
+
+```
+##   Midterm     Final 
+## 100.27172  99.71524
+```
+
+``` r
 # Check SDs (target: 15, 15)
 apply(sim, 2, sd)
 ```
+
+```
+##  Midterm    Final 
+## 14.38604 14.51655
+```
 ]
 .pull-right[
-```{r}
+
+``` r
 # Check correlation (target: 0.4)
 cor(sim)
+```
+
+```
+##           Midterm     Final
+## Midterm 1.0000000 0.3731749
+## Final   0.3731749 1.0000000
 ```
 ]
 
@@ -472,18 +443,19 @@ cor(sim)
 ## Scaling Up: Four Exam Scores
 
 .small[
-```{r}
-var_names <- c("Quiz", "Midterm", "Project", "Final")
-mu <- c(75, 70, 80, 72)
-sd_exams <- c(10, 12, 8, 15)
-cor_exams <- matrix(
+
+``` r
+var_names &lt;- c("Quiz", "Midterm", "Project", "Final")
+mu &lt;- c(75, 70, 80, 72)
+sd_exams &lt;- c(10, 12, 8, 15)
+cor_exams &lt;- matrix(
   c(1.00, 0.55, 0.35, 0.50,
     0.55, 1.00, 0.40, 0.65,
     0.35, 0.40, 1.00, 0.45,
     0.50, 0.65, 0.45, 1.00),
   nrow = 4, byrow = TRUE,
   dimnames = list(var_names, var_names))
-cov_exams <- cor_exams * (sd_exams %*% t(sd_exams))
+cov_exams &lt;- cor_exams * (sd_exams %*% t(sd_exams))
 ```
 ]
 
@@ -495,25 +467,7 @@ cov_exams <- cor_exams * (sd_exams %*% t(sd_exams))
 
 ## Did the Correlations Recover?
 
-```{r echo=FALSE, fig.align="center", out.width="60%"}
-set.seed(42)
-exam_data <- mvrnorm(n = 150, mu = mu, Sigma = cov_exams)
-colnames(exam_data) <- var_names
-sim_cor <- cor(exam_data)
-pop_long <- as.data.frame(as.table(cor_exams)) %>% rename(Population = Freq)
-sim_long <- as.data.frame(as.table(sim_cor)) %>% rename(Sample = Freq)
-comparison <- left_join(pop_long, sim_long, by = c("Var1", "Var2")) %>%
-  filter(as.numeric(Var1) < as.numeric(Var2))
-ggplot(comparison, aes(x = Population, y = Sample)) +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "gray50") +
-  geom_point(size = 4, color = viridis(5)[2]) +
-  geom_text(aes(label = paste0(Var1, "-", Var2)), vjust = -1, size = 3.5) +
-  labs(title = "Population vs. Sample Correlations (n = 150)",
-       subtitle = "Points on the dashed line = perfect recovery",
-       x = "Population Correlation", y = "Sample Correlation") +
-  coord_equal(xlim = c(0.2, 0.8), ylim = c(0.2, 0.8)) +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-20-1.png" alt="" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -547,23 +501,25 @@ We can answer this **entirely through simulation**.
 
 One simulated experiment: generate two groups with a known difference, run a t-test.
 
-```{r eval=FALSE}
-group1 <- rnorm(n_per_group, mean = 0, sd = 10)
-group2 <- rnorm(n_per_group, mean = 5, sd = 10)
-t.test(group1, group2)$p.value < 0.05
+
+``` r
+group1 &lt;- rnorm(n_per_group, mean = 0, sd = 10)
+group2 &lt;- rnorm(n_per_group, mean = 5, sd = 10)
+t.test(group1, group2)$p.value &lt; 0.05
 ```
 
 --
 
 Repeat 1000 times and wrap it up:
 
-```{r}
-power_sim <- function(n_per_group, effect = 5, sd = 10,
+
+``` r
+power_sim &lt;- function(n_per_group, effect = 5, sd = 10,
                       alpha = 0.05, nsim = 1000) {
-  significant <- replicate(nsim, {
-    group1 <- rnorm(n_per_group, mean = 0, sd = sd)
-    group2 <- rnorm(n_per_group, mean = effect, sd = sd)
-    t.test(group1, group2)$p.value < alpha
+  significant &lt;- replicate(nsim, {
+    group1 &lt;- rnorm(n_per_group, mean = 0, sd = sd)
+    group2 &lt;- rnorm(n_per_group, mean = effect, sd = sd)
+    t.test(group1, group2)$p.value &lt; alpha
   })
   mean(significant)
 }
@@ -573,21 +529,36 @@ power_sim <- function(n_per_group, effect = 5, sd = 10,
 
 ## Trying Different Sample Sizes
 
-```{r}
+
+``` r
 set.seed(2024)
 power_sim(n_per_group = 10)
 ```
 
---
-
-```{r}
-power_sim(n_per_group = 30)
+```
+## [1] 0.185
 ```
 
 --
 
-```{r}
+
+``` r
+power_sim(n_per_group = 30)
+```
+
+```
+## [1] 0.484
+```
+
+--
+
+
+``` r
 power_sim(n_per_group = 60)
+```
+
+```
+## [1] 0.774
 ```
 
 --
@@ -598,27 +569,11 @@ Where does it cross the conventional 80% threshold?
 
 ## The Power Curve
 
-```{r echo=FALSE, fig.align="center", out.width="80%"}
-set.seed(2024)
-sample_sizes <- seq(10, 100, by = 5)
-power_results <- sapply(sample_sizes, power_sim)
-data.frame(n = sample_sizes, power = power_results) %>%
-  ggplot(aes(x = n, y = power)) +
-  geom_line(color = viridis(3)[2], linewidth = 1.2) +
-  geom_point(color = viridis(3)[2], size = 2) +
-  geom_hline(yintercept = 0.80, linetype = "dashed", color = viridis(3)[1]) +
-  annotate("text", x = 15, y = 0.82, label = "80% power",
-           color = viridis(3)[1], size = 4, hjust = 0) +
-  labs(title = "Statistical Power by Sample Size",
-       subtitle = "Two-group comparison, d = 0.5 (effect = 5, SD = 10)",
-       x = "n per group", y = "Power") +
-  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-26-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 --
 
-.footnote[We need about `r sample_sizes[which.min(abs(power_results - 0.80))]` per group for 80% power. No formula required!]
+.footnote[We need about 65 per group for 80% power. No formula required!]
 
 ---
 
@@ -665,46 +620,13 @@ Let's go back to our exam score simulation (r = 0.4) and see how the estimate va
 
 ## Watching Estimates Converge
 
-```{r echo=FALSE, fig.align="center", out.width="80%"}
-set.seed(124)
-sample_sizes <- seq(30, 300, by = 30)
-reps <- 50
-results <- data.frame()
-for (size in sample_sizes) {
-  for (r in 1:reps) {
-    d <- mvrnorm(n = size, mu = c(100, 100),
-                 Sigma = matrix(c(225, 90, 90, 225), ncol = 2))
-    results <- rbind(results,
-      data.frame(SampleSize = size, Repetition = r,
-                 Correlation = cor(d[, 1], d[, 2])))
-  }
-}
-ggplot(results, aes(x = factor(SampleSize), y = Correlation)) +
-  geom_boxplot(fill = viridis(3)[2], alpha = 0.7, outlier.size = 1) +
-  geom_hline(yintercept = 0.4, linetype = "dashed", color = viridis(3)[1], linewidth = 1) +
-  annotate("text", x = 1, y = 0.42, label = "Population r = 0.4",
-           hjust = 0, color = viridis(3)[1], size = 3.5) +
-  labs(title = "Correlation Estimates by Sample Size",
-       x = "Sample Size", y = "Estimated Correlation") +
-  theme_minimal()
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-27-1.png" alt="" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## The Distribution Narrows
 
-```{r echo=FALSE, fig.align="center", out.width="70%"}
-show_sizes <- c(30, 90, 150, 300)
-results_subset <- results %>% filter(SampleSize %in% show_sizes)
-ggplot(results_subset, aes(x = Correlation, fill = factor(SampleSize))) +
-  geom_density(alpha = 0.6) +
-  geom_vline(xintercept = 0.4, linetype = "dashed", linewidth = 1) +
-  scale_fill_viridis_d(end = 0.85) +
-  labs(title = "Correlation Estimates Converge as n Increases",
-       x = "Estimated Correlation", y = "Density", fill = "Sample\nSize") +
-  theme_minimal() +
-  theme(legend.position = "bottom")
-```
+&lt;img src="d31_simulations_files/figure-html/unnamed-chunk-28-1.png" alt="" width="70%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -772,7 +694,7 @@ Monte Carlo simulation is used **all the time** in quantitative psychology:
 - How often does it reject when it shouldn't? **Type I error rate**
 - What happens when assumptions are violated? **Robustness**
 
-.footnote[See Muthen & Muthen (2002) on Monte Carlo for power, and Fan (2012) in the APA Handbook.]
+.footnote[See Muthen &amp; Muthen (2002) on Monte Carlo for power, and Fan (2012) in the APA Handbook.]
 
 ---
 
@@ -820,3 +742,141 @@ Today, you should now be able to...
 - Mine Cetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
 - Fan, X. (2012). Designing simulation studies. In H. Cooper (Ed.), *APA Handbook of Research Methods in Psychology* (Vol. 2, pp. 427-444). APA.
 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightLines": true,
+  "highlightStyle": "solarized-light",
+  "countIncrementalSlides": false,
+  "slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
