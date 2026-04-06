@@ -18,13 +18,17 @@ output:
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(tidymodels)
 library(knitr)
-library(openintro)
-
+library(DiagrammeR)
 # Remember to compile
 # xaringan::inf_mr(cast_from = "..")
 ```
+
+class: middle
+
+# Interactive web apps with Shiny `r emo::ji("star")`
+
+---
 
 class: middle
 
@@ -36,10 +40,18 @@ class: middle
 
 By the end of this session, you will be able to...
 
-- Build interactive web applications using Shiny
-- Understand basic anatomy of Shiny apps (UI and server components)
-- Deploy interactive visualizations for exploratory data analysis
-- Combine Shiny with R Markdown documents
+- Describe the architecture of a Shiny app (UI + server + reactivity)
+- Build a user interface with inputs and outputs using `fluidPage()`
+- Write server logic that connects inputs to outputs via `render*()` and `*Output()` functions
+- Explain how reactivity works and why it matters
+- Create an interactive data visualization app from scratch
+- Deploy a Shiny app and integrate Shiny into R Markdown documents
+
+---
+
+class: middle
+
+# What is Shiny?
 
 ---
 
@@ -49,6 +61,7 @@ By the end of this session, you will be able to...
 - Shiny is an R package that makes it easy to build interactive web apps straight from R
 - You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards
 - You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions
+- **No web development experience required!**
 - Learn more at [shiny.rstudio.com](https://shiny.rstudio.com/)
 ]
 .pull-right[
@@ -62,28 +75,965 @@ knitr::include_graphics("img/shiny.png")
 ## High level view
 
 - Every Shiny app has a webpage that the user visits, and behind this webpage there is a computer that serves this webpage by running R
+
+--
+
 - When running your app locally, the computer serving your app is your computer
+
+--
+
 - When your app is deployed, the computer serving your app is a web server
 
 ---
 
-## Anatomy of a Shiny app
+## High level view
 
-- User interface
-  - controls the layout and appearance of app
-- Server function 
-  - contains instructions needed to build app
-  
-```{r echo=TRUE,eval=FALSE }
-library(shiny)
-# User interface 
-ui <- fluidPage()
 
-# Server function 
-server <- function(input, output) {}
-shinyApp(ui = ui, server = server)
+```{r echo=FALSE, out.width="100%", out.height="80%", fig.align = "center", fig.cap = "Shiny app anatomy"}
+DiagrammeR::grViz("
+digraph shiny_architecture {
+  graph [layout = dot, rankdir = LR]
+
+  node [
+    shape = box
+    style = 'rounded,filled'
+    fillcolor = '#F8F8F8'
+    color = '#444444'
+    fontname = Helvetica
+    fontsize = 20
+    penwidth = 1.2
+    width = 2.2
+    height = 1.0
+  ]
+    edge [
+    color = '#444444'
+    arrowsize = 0.8
+    fontname = Helvetica
+    fontsize = 16
+  ]
+
+  user   [label = 'User\n(Browser)']
+  server [label = 'Server\n(Running R)']
+
+  user -> server [label = 'request']
+  server -> user [label = 'response']
+}
+")
 
 ```
+--
+
+
+- The user interacts with the UI in their browser
+- The server runs R code in response to user actions
+- Updated outputs are sent back to the browser
+
+---
+
+class: middle
+
+# Anatomy of a Shiny app
+
+---
+
+## The two key pieces
+
+Every Shiny app has two components:
+
+.pull-left[
+### User Interface (UI)
+- Controls the **layout and appearance** of the app
+- Defines what the user **sees** and **interacts with**
+- Built with R functions that generate HTML
+]
+
+.pull-right[
+### Server function
+- Contains the **instructions** needed to build the app
+- Defines how **inputs** are transformed into **outputs**
+- Where your R code (data wrangling, plots, models) lives
+]
+
+---
+
+## The simplest Shiny app
+
+```{r echo=TRUE, eval=FALSE}
+library(shiny)
+
+ui <- fluidPage(
+  "Hello, world!"
+)
+
+server <- function(input, output) {
+  # Nothing here yet
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+.tip[
+`fluidPage()` creates a page that automatically adjusts to the browser window size. `shinyApp()` ties the UI and server together and launches the app.
+]
+
+---
+
+class: middle
+
+# Inputs
+
+---
+
+## Input functions
+
+Inputs let the user send values to the server. Every input function has at least two arguments:
+
+- `inputId`: a unique name used to access the value in the server (e.g., `input$name`)
+- `label`: the text displayed to the user
+
+---
+
+## Common input types
+
+| Function | Widget |
+|:---------|:-------|
+| `textInput()` | Text box |
+| `numericInput()` | Number spinner |
+| `sliderInput()` | Slider |
+| `selectInput()` | Dropdown menu |
+| `checkboxInput()` | Single checkbox |
+| `checkboxGroupInput()` | Group of checkboxes |
+| `radioButtons()` | Radio buttons |
+| `fileInput()` | File upload |
+
+---
+
+## Input example: slider
+
+```{r echo=TRUE, eval=FALSE}
+ui <- fluidPage(
+  sliderInput(
+    inputId = "num",          # access as input$num
+    label = "Choose a number", # what the user sees
+    value = 25,                # starting value
+    min = 1,                   # minimum value
+    max = 100                  # maximum value
+  )
+)
+```
+
+--
+
+.question[
+What do you think happens when the user moves the slider? Where does the value go?
+]
+
+---
+
+## Accessing input values
+
+In the server function, you access input values using `input$inputId`:
+
+```{r echo=TRUE, eval=FALSE}
+server <- function(input, output) {
+  # input$num contains the current slider value
+  # This value updates automatically when the user moves the slider
+}
+```
+
+.tip[
+You can only read `input` values inside **reactive contexts** — that means inside `render*()` functions, `reactive()`, or `observe()`. You'll see why soon!
+]
+
+---
+
+class: middle
+
+# Outputs
+
+---
+
+## Output functions: A two-step process
+
+Displaying output requires cooperation between the UI and server:
+
+.pull-left[
+### Step 1: UI placeholder
+Use an `*Output()` function to create a spot in the UI:
+- `plotOutput()`
+- `textOutput()`
+- `tableOutput()`
+- `verbatimTextOutput()`
+]
+
+.pull-right[
+### Step 2: Server rendering
+Use a `render*()` function to generate the content:
+- `renderPlot()`
+- `renderText()`
+- `renderTable()`
+- `renderPrint()`
+]
+
+---
+
+## The output pattern
+
+The `outputId` connects the UI placeholder to the server rendering:
+
+```{r echo=TRUE, eval=FALSE}
+# In the UI
+plotOutput(outputId = "my_plot")
+
+# In the server
+output$my_plot <- renderPlot({
+  # R code that creates a plot
+})
+```
+
+.tip[
+The names must match! `plotOutput("my_plot")` in the UI connects to `output$my_plot` in the server. This is how Shiny knows where to display each piece of output.
+]
+
+---
+
+## Common output pairs
+
+| Renders | UI function | Server function |
+|:--------|:------------|:----------------|
+| Plot | `plotOutput()` | `renderPlot()` |
+| Text | `textOutput()` | `renderText()` |
+| Table | `tableOutput()` | `renderTable()` |
+| Printed R output | `verbatimTextOutput()` | `renderPrint()` |
+| Data table | `dataTableOutput()` | `renderDataTable()` |
+
+---
+
+class: middle
+
+# Building an app step by step
+
+---
+
+class: middle
+
+# Coding out loud `r emo::ji("loudspeaker")`
+
+---
+
+.midi[
+> **Start with the basic app template**
+]
+
+```{r echo=TRUE, eval=FALSE}
+library(shiny)
+library(tidyverse)
+library(palmerpenguins)
+
+ui <- fluidPage() #<<
+
+server <- function(input, output) {}
+
+shinyApp(ui = ui, server = server)
+```
+
+This creates an empty app — just a blank page.
+
+---
+
+.midi[
+> Start with the basic app template,
+> **add a title to the page**
+]
+
+```{r echo=TRUE, eval=FALSE}
+ui <- fluidPage(
+  titlePanel("Palmer Penguins Explorer") #<<
+)
+
+server <- function(input, output) {}
+
+shinyApp(ui = ui, server = server)
+```
+
+`titlePanel()` adds a title at the top of the app and sets the browser tab title.
+
+---
+
+.midi[
+> Start with the basic app template,
+> add a title to the page,
+> **create a sidebar layout**
+]
+
+```{r echo=TRUE, eval=FALSE}
+ui <- fluidPage(
+  titlePanel("Palmer Penguins Explorer"),
+  sidebarLayout(                    #<<
+    sidebarPanel(                   #<<
+      # Inputs will go here        #<<
+    ),                              #<<
+    mainPanel(                      #<<
+      # Outputs will go here       #<<
+    )                               #<<
+  )                                 #<<
+)
+```
+
+`sidebarLayout()` is a common layout pattern: controls on the left, results on the right.
+
+---
+
+.midi[
+> Start with the basic app template,
+> add a title to the page,
+> create a sidebar layout,
+> **add a dropdown to select the x-axis variable**
+]
+
+```{r echo=TRUE, eval=FALSE}
+ui <- fluidPage(
+  titlePanel("Palmer Penguins Explorer"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(                                          #<<
+        inputId = "x_var",                                  #<<
+        label = "X-axis variable:",                         #<<
+        choices = c("bill_length_mm", "bill_depth_mm",      #<<
+                    "flipper_length_mm", "body_mass_g")      #<<
+      )                                                     #<<
+    ),
+    mainPanel()
+  )
+)
+```
+
+---
+
+.midi[
+> ...add a dropdown to select the x-axis variable,
+> **add a dropdown to select the y-axis variable**
+]
+
+```{r echo=TRUE, eval=FALSE}
+    sidebarPanel(
+      selectInput(
+        inputId = "x_var",
+        label = "X-axis variable:",
+        choices = c("bill_length_mm", "bill_depth_mm",
+                    "flipper_length_mm", "body_mass_g")
+      ),
+      selectInput(                                          #<<
+        inputId = "y_var",                                  #<<
+        label = "Y-axis variable:",                         #<<
+        choices = c("bill_depth_mm", "bill_length_mm",      #<<
+                    "flipper_length_mm", "body_mass_g")      #<<
+      )                                                     #<<
+    )
+```
+
+---
+
+.midi[
+> ...add dropdowns for x and y variables,
+> **add a checkbox to color by species**
+]
+
+```{r echo=TRUE, eval=FALSE}
+    sidebarPanel(
+      selectInput(
+        inputId = "x_var", label = "X-axis variable:",
+        choices = c("bill_length_mm", "bill_depth_mm",
+                    "flipper_length_mm", "body_mass_g")
+      ),
+      selectInput(
+        inputId = "y_var", label = "Y-axis variable:",
+        choices = c("bill_depth_mm", "bill_length_mm",
+                    "flipper_length_mm", "body_mass_g")
+      ),
+      checkboxInput(                                        #<<
+        inputId = "color_species",                          #<<
+        label = "Color by species",                         #<<
+        value = TRUE                                        #<<
+      )                                                     #<<
+    )
+```
+
+---
+
+.midi[
+> ...add inputs to the sidebar,
+> **add a plot output to the main panel**
+]
+
+```{r echo=TRUE, eval=FALSE}
+    mainPanel(
+      plotOutput(outputId = "scatter_plot") #<<
+    )
+```
+
+Now the UI is set up with inputs and an output placeholder. But the plot won't appear until we write the server logic!
+
+---
+
+.midi[
+> ...set up the UI,
+> **write the server logic to create the plot**
+]
+
+```{r echo=TRUE, eval=FALSE}
+server <- function(input, output) {
+  output$scatter_plot <- renderPlot({                          #<<
+    p <- ggplot(penguins,                                     #<<
+                aes(x = .data[[input$x_var]],                 #<<
+                    y = .data[[input$y_var]])) +              #<<
+      geom_point(size = 2, alpha = 0.7) +                     #<<
+      theme_minimal() +                                       #<<
+      labs(x = str_replace_all(input$x_var, "_", " "),        #<<
+           y = str_replace_all(input$y_var, "_", " "))        #<<
+    p                                                         #<<
+  })                                                          #<<
+}
+```
+
+.tip[
+`.data[[input$x_var]]` lets us use a string variable name inside `aes()`. This is called **tidy evaluation** with the `.data` pronoun.
+]
+
+---
+
+.midi[
+> ...create the basic plot,
+> **add conditional coloring by species**
+]
+
+```{r echo=TRUE, eval=FALSE}
+server <- function(input, output) {
+  output$scatter_plot <- renderPlot({
+    if (input$color_species) {                                #<<
+      p <- ggplot(penguins,                                   #<<
+                  aes(x = .data[[input$x_var]],               #<<
+                      y = .data[[input$y_var]],               #<<
+                      color = species)) +                     #<<
+        scale_color_viridis_d()                               #<<
+    } else {                                                  #<<
+      p <- ggplot(penguins,                                   #<<
+                  aes(x = .data[[input$x_var]],               #<<
+                      y = .data[[input$y_var]]))              #<<
+    }                                                         #<<
+    p + geom_point(size = 2, alpha = 0.7) +
+      theme_minimal() +
+      labs(x = str_replace_all(input$x_var, "_", " "),
+           y = str_replace_all(input$y_var, "_", " "))
+  })
+}
+```
+
+---
+
+## The complete app
+
+.pull-left[
+```{r echo=TRUE, eval=FALSE}
+library(shiny)
+library(tidyverse)
+library(palmerpenguins)
+
+ui <- fluidPage(
+  titlePanel("Palmer Penguins Explorer"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("x_var", "X-axis:",
+        choices = c("bill_length_mm",
+          "bill_depth_mm",
+          "flipper_length_mm",
+          "body_mass_g")),
+      selectInput("y_var", "Y-axis:",
+        choices = c("bill_depth_mm",
+          "bill_length_mm",
+          "flipper_length_mm",
+          "body_mass_g")),
+      checkboxInput("color_species",
+        "Color by species", TRUE)
+    ),
+    mainPanel(
+      plotOutput("scatter_plot")
+    )
+  )
+)
+```
+]
+
+.pull-right[
+```{r echo=TRUE, eval=FALSE}
+server <- function(input, output) {
+  output$scatter_plot <- renderPlot({
+    if (input$color_species) {
+      p <- ggplot(penguins,
+        aes(x = .data[[input$x_var]],
+            y = .data[[input$y_var]],
+            color = species)) +
+        scale_color_viridis_d()
+    } else {
+      p <- ggplot(penguins,
+        aes(x = .data[[input$x_var]],
+            y = .data[[input$y_var]]))
+    }
+    p + geom_point(size = 2,
+                   alpha = 0.7) +
+      theme_minimal() +
+      labs(
+        x = str_replace_all(
+              input$x_var, "_", " "),
+        y = str_replace_all(
+              input$y_var, "_", " "))
+  })
+}
+
+shinyApp(ui, server)
+```
+]
+
+---
+
+class: middle
+
+# Reactivity
+
+---
+
+## What is reactivity?
+
+Reactivity is the **magic** that makes Shiny apps interactive.
+
+--
+
+- When an **input** changes, Shiny automatically re-executes the **outputs** that depend on it
+
+--
+
+- You don't need to write code to "listen" for changes — Shiny handles this for you
+
+--
+
+- This is fundamentally different from typical R scripts where you run code top-to-bottom
+
+---
+
+## Reactive flow
+
+```{r echo=FALSE, out.width="100%", out.height="80%", fig.align = "center"}
+
+DiagrammeR::grViz("
+digraph reactive_flow {
+  graph [    layout = neato
+    splines = ortho
+    outputorder = edgesfirst
+    overlap = false
+    bgcolor = transparent]
+
+  node [
+    shape = box
+    style = 'rounded,filled'
+    fillcolor = '#F8F8F8'
+    color = '#444444'
+    fontname = Helvetica
+    fontsize = 20
+    penwidth = 1.2
+    width = 2.2
+    height = 1.0
+  ]
+    edge [
+    color = '#444444'
+    arrowsize = 0.8
+    fontname = Helvetica
+    fontsize = 16
+        penwidth = 1.2
+  ]
+
+  xvar   [label = 'input$x_var', pos = '0,1!']
+  yvar   [label = 'input$y_var', pos = '0,-1!']
+  join   [label = '', width = 0.01, height = 0.01, pos = '2,0!', shape = point]
+  render [label = 'renderPlot()', pos = '4,0!']
+  output [label = 'output$scatter_plot', pos = '7,0!']
+
+  { rank = same; xvar join render output }
+  { rank = same; yvar }
+
+  xvar -> join   [arrowhead = none]
+  yvar -> join   [arrowhead = none]
+  join -> render [tailclip = false]
+  render -> output
+}
+")
+```
+
+- When the user changes the x-axis dropdown, `renderPlot()` re-runs automatically
+- The plot updates in the browser without refreshing the page
+- Only outputs that depend on the changed input are updated
+
+---
+
+## Reactive expressions
+
+What if multiple outputs use the same processed data? Use `reactive()` to avoid repeating work:
+
+```{r echo=TRUE, eval=FALSE}
+server <- function(input, output) {
+  # Create a reactive expression for filtered data
+  filtered_data <- reactive({                              #<<
+    penguins %>%                                           #<<
+      filter(species %in% input$selected_species)          #<<
+  })                                                       #<<
+
+  output$scatter_plot <- renderPlot({
+    ggplot(filtered_data(), aes(x = bill_depth_mm,         #<<
+                                y = bill_length_mm)) +
+      geom_point()
+  })
+
+  output$summary_table <- renderTable({
+    filtered_data() %>% summarize(n = n())                 #<<
+  })
+}
+```
+
+.tip[
+Call a reactive expression like a function: `filtered_data()`, not `filtered_data`. The parentheses are required!
+]
+
+---
+
+## Rules of reactivity
+
+1. **Reactive sources**: `input$*` values — these change when the user interacts with the app
+
+2. **Reactive conductors**: `reactive()` expressions — these process data and cache results
+
+3. **Reactive endpoints**: `render*()` functions — these produce output for the UI
+
+--
+
+.question[
+Why can't you access `input$x_var` outside of a reactive context? Because Shiny needs to know *which* outputs depend on *which* inputs to know what to update!
+]
+
+---
+
+class: middle
+
+# Layouts and UI design
+
+---
+
+## Layout functions
+
+Shiny provides several layout options:
+
+.pull-left[
+### `sidebarLayout()`
+- Sidebar + main panel
+- Most common for simple apps
+- Good for input controls + single output
+
+### `fluidRow()` + `column()`
+- Grid-based layout
+- 12-column system (like Bootstrap)
+- More flexible positioning
+]
+
+.pull-right[
+### `tabsetPanel()`
+- Tabbed interface
+- Multiple views in the same space
+- Great for multiple visualizations
+
+### `navbarPage()`
+- Navigation bar at the top
+- Multiple pages in one app
+- Good for complex apps
+]
+
+---
+
+## Tabbed layout example
+
+```{r echo=TRUE, eval=FALSE}
+ui <- fluidPage(
+  titlePanel("Palmer Penguins Explorer"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("x_var", "X-axis:",
+                  choices = c("bill_length_mm", "bill_depth_mm",
+                              "flipper_length_mm", "body_mass_g"))
+    ),
+    mainPanel(
+      tabsetPanel(                                          #<<
+        tabPanel("Scatter Plot", plotOutput("scatter")),    #<<
+        tabPanel("Histogram", plotOutput("histogram")),     #<<
+        tabPanel("Data", dataTableOutput("data_table"))     #<<
+      )                                                     #<<
+    )
+  )
+)
+```
+
+---
+
+class: middle
+
+# Your turn!
+
+---
+
+## Your turn: Extend the app
+
+.your-turn[
+Take the Palmer Penguins Explorer app and add the following features:
+
+1. Add a `sliderInput()` for point size (range 1 to 5, default 2)
+2. Add a `selectInput()` to filter by island (Biscoe, Dream, Torgersen)
+3. Use the point size input in `geom_point(size = input$pt_size)`
+4. Filter the data using `filter(island == input$island)` before plotting
+
+**Hint**: You'll need to modify both the `ui` and the `server` function.
+]
+
+---
+
+## Your turn: Guiding questions
+
+.question[
+- Where does each new input go in the UI code?
+- How do you access the slider value in the server?
+- What happens if you put `input$pt_size` outside of `renderPlot()`?
+- How would you allow selecting **multiple** islands? (Hint: look at `checkboxGroupInput()`)
+]
+
+---
+
+class: middle
+
+# Shiny and R Markdown
+
+---
+
+## Embedding Shiny in R Markdown
+
+You can add Shiny components to R Markdown documents by adding `runtime: shiny` to the YAML header:
+
+```yaml
+---
+title: "My Interactive Report"
+output: html_document
+runtime: shiny
+---
+```
+
+--
+
+Then use `shiny` input and output functions directly in code chunks:
+
+```{r echo=TRUE, eval=FALSE}
+selectInput("var", "Variable:",
+            choices = names(mtcars))
+
+renderPlot({
+  hist(mtcars[[input$var]], main = input$var)
+})
+```
+
+---
+
+## Shiny documents vs. standalone apps
+
+.pull-left[
+### Shiny documents
+- R Markdown + Shiny
+- Great for interactive reports
+- Mixes narrative text with interactivity
+- Rendered with `rmarkdown::run()`
+]
+
+.pull-right[
+### Standalone apps
+- Pure Shiny (app.R or ui.R + server.R)
+- Better for complex applications
+- More control over layout
+- Run with `shiny::runApp()`
+]
+
+---
+
+## App file structures
+
+.pull-left[
+### Single file: `app.R`
+```{r echo=TRUE, eval=FALSE}
+# app.R
+library(shiny)
+
+ui <- fluidPage(...)
+server <- function(input, output) {...}
+shinyApp(ui, server)
+```
+Good for simple apps.
+]
+
+.pull-right[
+### Two files: `ui.R` + `server.R`
+```{r echo=TRUE, eval=FALSE}
+# ui.R
+fluidPage(...)
+
+# server.R
+function(input, output) {...}
+```
+Better for complex apps — separates concerns.
+]
+
+---
+
+class: middle
+
+# Sharing your app
+
+---
+
+## Deployment options
+
+.pull-left[
+### shinyapps.io
+- Free tier available
+- Hosted by Posit (RStudio)
+- Easy deployment from RStudio
+- `rsconnect::deployApp()`
+
+### Shiny Server
+- Self-hosted (open source)
+- Full control over infrastructure
+- Requires server administration
+]
+
+.pull-right[
+### Posit Connect
+- Enterprise solution
+- Scheduled reports + Shiny apps
+- Authentication and access control
+
+### shinylive
+- Runs R in the browser (WebAssembly)
+- No server needed!
+- Still experimental
+]
+
+---
+
+## Deploying to shinyapps.io
+
+```{r echo=TRUE, eval=FALSE}
+# Install the rsconnect package
+install.packages("rsconnect")
+
+# Configure your account (one time)
+rsconnect::setAccountInfo(
+  name = "your-account",
+  token = "your-token",
+  secret = "your-secret"
+)
+
+# Deploy your app
+rsconnect::deployApp()
+```
+
+.tip[
+You can find your token and secret at [shinyapps.io](https://www.shinyapps.io/) under Account → Tokens.
+]
+
+---
+
+class: middle
+
+# Tips and best practices
+
+---
+
+## Common mistakes
+
+.pull-left[
+### `r emo::ji("x")` Forgetting `()` on reactive expressions
+
+```{r echo=TRUE, eval=FALSE}
+# Wrong
+output$plot <- renderPlot({
+  ggplot(filtered_data, ...) #<<
+})
+
+# Right
+output$plot <- renderPlot({
+  ggplot(filtered_data(), ...) #<<
+})
+```
+]
+
+.pull-right[
+### `r emo::ji("x")` Mismatched output IDs
+
+```{r echo=TRUE, eval=FALSE}
+# UI says "my_plot"
+plotOutput("my_plot")
+
+# Server says "myplot" — won't work!
+output$myplot <- renderPlot({...}) #<<
+
+# Fix: names must match exactly
+output$my_plot <- renderPlot({...}) #<<
+```
+]
+
+---
+
+## Common mistakes (continued)
+
+.pull-left[
+### `r emo::ji("x")` Reading input outside reactive context
+
+```{r echo=TRUE, eval=FALSE}
+server <- function(input, output) {
+  # This will error!
+  x <- input$num #<<
+
+  # This is correct
+  output$text <- renderText({ #<<
+    input$num                  #<<
+  })                           #<<
+}
+```
+]
+
+.pull-right[
+### `r emo::ji("x")` Wrong render/output pairing
+
+```{r echo=TRUE, eval=FALSE}
+# textOutput with renderPlot — nope!
+textOutput("result")     #<<
+output$result <- renderPlot({...}) #<<
+
+# Must match:
+# plotOutput  ↔ renderPlot
+# textOutput  ↔ renderText
+# tableOutput ↔ renderTable
+```
+]
+
+---
+
+## Shiny resources
+
+- `r emo::ji("book")` [Mastering Shiny](https://mastering-shiny.org/) by Hadley Wickham — free online book
+- `r emo::ji("package")` [Shiny Cheatsheet](https://rstudio.github.io/cheatsheets/shiny.pdf) — quick reference
+- `r emo::ji("art")` [Shiny Gallery](https://shiny.rstudio.com/gallery/) — example apps for inspiration
+- `r emo::ji("computer")` [Shiny Tutorial](https://shiny.rstudio.com/tutorial/) — official video tutorials
 
 ---
 
@@ -99,16 +1049,18 @@ Today, you should now be able to...
 
 .pull-left[
 ### Concepts
-- ✅ Shiny app structure
-- ✅ UI and server components
-- ✅ Interactive visualizations
+- ✅ Shiny architecture (UI + server + reactivity)
+- ✅ Input/output function pairs
+- ✅ Reactive expressions and reactive flow
+- ✅ Layout and deployment options
 ]
 
 .pull-right[
 ### Skills
-- ✅ Build Shiny apps
-- ✅ Deploy interactive apps
-- ✅ Combine Shiny with R Markdown
+- ✅ Build a Shiny app from scratch
+- ✅ Connect inputs to outputs via `render*()`
+- ✅ Create interactive data visualizations
+- ✅ Embed Shiny in R Markdown documents
 ]
 
 ---
@@ -116,5 +1068,4 @@ Today, you should now be able to...
 class: middle
 
 # Wrapping Up...
-
 
