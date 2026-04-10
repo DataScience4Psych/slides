@@ -596,6 +596,22 @@ shinyApp(ui, server)
 
 ---
 
+## Live demo: Palmer Penguins Explorer
+
+```{r echo=FALSE}
+# UPDATE THIS URL after deploying to shinyapps.io:
+# rsconnect::deployApp("penguins-explorer")
+app_url <- "https://smasongarrison.shinyapps.io/penguins-explorer/"
+```
+
+<iframe src="`r app_url`" width="100%" height="500px" frameborder="0" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+
+.small[
+`r emo::ji("point_up")` This is a live Shiny app embedded in the slides via an iframe. Try changing the variables!
+]
+
+---
+
 class: middle
 
 # Reactivity
