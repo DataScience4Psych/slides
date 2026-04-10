@@ -522,9 +522,9 @@ Today you learned how to:
 
 In future sessions, we'll build on this foundation:
 
-- **Connecting GitHub to RStudio** — work on your project locally and sync to GitHub
-- **Cloning** — downloading a repository to your computer
-- **Pull → Stage → Commit → Push** — the everyday workflow
+- **GitHub Desktop** — a free app for working with repos on your own computer
+- **Cloning** — downloading a repository to your computer with one click
+- **Pull → Stage → Commit → Push** — the everyday workflow in GitHub Desktop
 - **Forking** — making your own copy of someone else's project
 - **Collaborating** — working with others on the same repository
 
@@ -553,7 +553,7 @@ That's it. Everything else builds on that idea.
 
 ## Helpful Resources
 
-- 📖 [Happy Git with R](https://happygitwithr.com/) — Jenny Bryan's guide for R users (we'll use this a lot)
+- 🖥️ [GitHub Desktop](https://desktop.github.com/) — free app for managing repos on your computer (what we'll use next!)
 - 🐙 [GitHub Docs: Getting Started](https://docs.github.com/en/get-started)
 - 🎒 [GitHub Student Developer Pack](https://education.github.com/pack) — free pro features with your `.edu` email
 - 📺 [GitHub Skills](https://skills.github.com/) — interactive tutorials on GitHub itself
@@ -563,7 +563,7 @@ That's it. Everything else builds on that idea.
 # Sources
 
 - Mine Çetinkaya-Rundel's Data Science in a Box ([link](https://datasciencebox.org/))
-- Jenny Bryan's [Happy Git with R](https://happygitwithr.com/)
 - [GitHub Docs](https://docs.github.com)
+- [GitHub Desktop Docs](https://docs.github.com/en/desktop)
 - PhD Comics [phdcomics.com](http://phdcomics.com)
 
